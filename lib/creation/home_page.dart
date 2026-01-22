@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                   AppColors.gradientCenter, // Center #2D3136 with opacity
                   AppColors.gradientBlack, // Black at bottom
                 ],
-                stops: [0.45, 0.9, 0.95],
+                stops: [0.35, 0.5, 0.95],
               ),
             ),
             child: SingleChildScrollView(
