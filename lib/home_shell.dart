@@ -122,6 +122,7 @@ class _HomeShellState extends State<HomeShell> {
     required String label,
     required int index,
   }) {
+    
     final bool isSelected = _selectedIndex == index;
     final Color itemColor = isSelected
         ? AppColors.navBarActive

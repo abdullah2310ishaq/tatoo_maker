@@ -4,6 +4,29 @@ import 'colors.dart';
 class ThemeManager {
   static const String _fontFamily = 'Amaranth';
 
+  /// Returns the dark mode background gradient decoration
+  static BoxDecoration get darkModeBackgroundGradient {
+    return const BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          AppColors.gradientBlack, // Black at top
+          AppColors.gradientCenter, // Center #2D3136 with opacity
+          AppColors.gradientBlack, // Black at bottom
+        ],
+        stops: [0.35, 0.5, 0.95],
+      ),
+    );
+  }
+
+  /// Returns the light mode background (white)
+  static BoxDecoration get lightModeBackground {
+    return const BoxDecoration(
+      color: AppColors.lightBackground,
+    );
+  }
+
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
@@ -16,9 +39,7 @@ class ThemeManager {
         secondary: AppColors.lightSecondary,
       ),
       scaffoldBackgroundColor: AppColors.lightBackground,
-      textTheme: const TextTheme().apply(
-        fontFamily: _fontFamily,
-      ),
+      textTheme: const TextTheme().apply(fontFamily: _fontFamily),
     );
   }
 
@@ -34,9 +55,7 @@ class ThemeManager {
         secondary: AppColors.darkSecondary,
       ),
       scaffoldBackgroundColor: AppColors.darkBackground,
-      textTheme: const TextTheme().apply(
-        fontFamily: _fontFamily,
-      ),
+      textTheme: const TextTheme().apply(fontFamily: _fontFamily),
     );
   }
 }

@@ -9,13 +9,12 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isDarkTheme = false; // Default to light theme
+  bool _isDarkTheme = true; // Default to dark theme
 
   void toggleTheme() {
     setState(() {

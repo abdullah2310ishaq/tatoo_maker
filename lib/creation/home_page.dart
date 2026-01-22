@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/colors.dart';
+import '../utils/theme_manager.dart';
+import '../providers/theme_provider.dart';
 import '../widgets/inkvision_underline.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,11 +21,47 @@ class _HomePageState extends State<HomePage> {
   bool _showTutorialOverlay = true; // Show on each restart for now
   final GlobalKey _dreamInkCardKey = GlobalKey();
 
-  final List<_TattooStyleItem> _styles = const [
-    _TattooStyleItem(label: 'Dragon', assetPath: 'assets/dragon.png'),
-    _TattooStyleItem(label: 'Unicorn', assetPath: 'assets/unicorn.png'),
-    _TattooStyleItem(label: 'Floral', assetPath: 'assets/floral.png'),
-  ];
+  List<_TattooStyleItem> get _styles {
+    final themeProvider = ThemeProvider.of(context);
+    final isDark =
+        themeProvider?.isDarkTheme ??
+        Theme.of(context).brightness == Brightness.dark;
+    return [
+      const _TattooStyleItem(label: 'Dragon', assetPath: 'assets/dragon.png'),
+      const _TattooStyleItem(label: 'Unicorn', assetPath: 'assets/unicorn.png'),
+      const _TattooStyleItem(label: 'Floral', assetPath: 'assets/floral.png'),
+      _TattooStyleItem(
+        label: 'Abstract',
+        assetPath: isDark
+            ? 'assets/abstract_dark.png'
+            : 'assets/abstract_light.png',
+      ),
+      _TattooStyleItem(
+        label: 'Butterfly',
+        assetPath: isDark
+            ? 'assets/butterfly_dark.png'
+            : 'assets/butterfly_light.png',
+      ),
+      _TattooStyleItem(
+        label: 'Eagle',
+        assetPath: isDark ? 'assets/eagle_dark.png' : 'assets/eagle_light.png',
+      ),
+      _TattooStyleItem(
+        label: 'Lion',
+        assetPath: isDark ? 'assets/lion_dark.png' : 'assets/lion_light.png',
+      ),
+      _TattooStyleItem(
+        label: 'Spider',
+        assetPath: isDark
+            ? 'assets/spider_dark.png'
+            : 'assets/spider_light.png',
+      ),
+      _TattooStyleItem(
+        label: 'Wolf',
+        assetPath: isDark ? 'assets/wolf_dark.png' : 'assets/wolf_light.png',
+      ),
+    ];
+  }
 
   @override
   void dispose() {
@@ -33,22 +71,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  AppColors.gradientBlack, // Black at top
-                  AppColors.gradientCenter, // Center #2D3136 with opacity
-                  AppColors.gradientBlack, // Black at bottom
-                ],
-                stops: [0.35, 0.5, 0.95],
-              ),
-            ),
+            decoration: isDark
+                ? ThemeManager.darkModeBackgroundGradient
+                : ThemeManager.lightModeBackground,
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
@@ -56,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   const SizedBox(height: 20),
                   // Header: menu + InkVision + notification (single line)
-                  _buildHeader(isDark: true),
+                  _buildHeader(isDark: isDark),
                   const SizedBox(height: 30),
                   // Describe Your Dream Ink card
                   _buildDreamInkCard(),
@@ -79,6 +109,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildHeader({required bool isDark}) {
+    final iconColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
+    final buttonBgColor = isDark
+        ? AppColors.buttonBackground
+        : AppColors.textGrey.withOpacity(0.1);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -87,7 +122,7 @@ class _HomePageState extends State<HomePage> {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: AppColors.buttonBackground,
+            color: buttonBgColor,
             borderRadius: BorderRadius.circular(12),
           ),
           child: IconButton(
@@ -95,12 +130,9 @@ class _HomePageState extends State<HomePage> {
               'assets/one.svg',
               width: 24,
               height: 24,
-              colorFilter: const ColorFilter.mode(
-                AppColors.textWhite,
-                BlendMode.srcIn,
-              ),
+              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
               placeholderBuilder: (context) =>
-                  const Icon(Icons.menu, color: AppColors.textWhite),
+                  Icon(Icons.menu, color: iconColor),
             ),
             onPressed: widget.onMenuTap,
           ),
@@ -116,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                   fontWeight: FontWeight.bold,
                   color: isDark
                       ? AppColors.textWhite
-                      : AppColors.buttonBackground,
+                      : AppColors.darkBackground,
                   fontFamily: 'Amaranth',
                 ),
               ),
@@ -130,7 +162,7 @@ class _HomePageState extends State<HomePage> {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: AppColors.buttonBackground,
+            color: buttonBgColor,
             borderRadius: BorderRadius.circular(12),
           ),
           child: IconButton(
@@ -138,14 +170,9 @@ class _HomePageState extends State<HomePage> {
               'assets/two.svg',
               width: 24,
               height: 24,
-              colorFilter: const ColorFilter.mode(
-                AppColors.textWhite,
-                BlendMode.srcIn,
-              ),
-              placeholderBuilder: (context) => const Icon(
-                Icons.notifications_outlined,
-                color: AppColors.textWhite,
-              ),
+              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+              placeholderBuilder: (context) =>
+                  Icon(Icons.notifications_outlined, color: iconColor),
             ),
             onPressed: () {},
           ),
@@ -155,6 +182,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildDreamInkCard() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
+    final cardBgColor = isDark ? null : AppColors.lightBackground;
+    final cardGradient = isDark
+        ? const LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [AppColors.cardGradientStart, AppColors.cardGradientEnd],
+          )
+        : null;
+
     return SizedBox(
       key: _dreamInkCardKey,
       height: 280,
@@ -162,56 +200,49 @@ class _HomePageState extends State<HomePage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: AppColors.titleGradientStart, width: 1),
+          color: cardBgColor,
+          gradient: cardGradient,
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
             padding: const EdgeInsets.all(20),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  AppColors.cardGradientStart,
-                  AppColors.cardGradientEnd,
-                ],
-              ),
-            ),
             child: Stack(
               children: [
                 // Orange glow: clipped to the same border radius, anchored to corner
-                Positioned(
-                  // Push slightly outside so it visually starts from the corner.
-                  top: -60,
-                  right: -60,
-                  child: IgnorePointer(
-                    child: Container(
-                      width: 180,
-                      height: 180,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(
-                          center: Alignment.topRight,
-                          radius: 0.9,
-                          colors: [
-                            AppColors.cardGlowStart,
-                            AppColors.cardGlowEnd,
-                          ],
+                if (isDark)
+                  Positioned(
+                    // Push slightly outside so it visually starts from the corner.
+                    top: -60,
+                    right: -60,
+                    child: IgnorePointer(
+                      child: Container(
+                        width: 180,
+                        height: 180,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(
+                            center: Alignment.topRight,
+                            radius: 0.9,
+                            colors: [
+                              AppColors.cardGlowStart,
+                              AppColors.cardGlowEnd,
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
                 // Content
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Describe Your Dream Ink',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.textWhite,
+                        color: textColor,
                         fontFamily: 'Amaranth',
                       ),
                     ),
@@ -222,10 +253,7 @@ class _HomePageState extends State<HomePage> {
                         controller: _dreamInkController,
                         maxLength: _maxCharacters,
                         maxLines: null,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: AppColors.textWhite,
-                        ),
+                        style: TextStyle(fontSize: 14, color: textColor),
                         decoration: InputDecoration(
                           hintText: 'Tell us what you envision...',
                           hintStyle: TextStyle(
@@ -305,39 +333,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildTattooStyleSection() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'Tattoo Style',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: AppColors.textWhite,
-              ),
-            ),
-            TextButton.icon(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: AppColors.textGrey,
-                padding: EdgeInsets.zero,
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-              icon: const Text(
-                'View All',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-              ),
-              label: const Icon(Icons.chevron_right, size: 18),
-            ),
-          ],
+        Text(
+          'Tattoo Style',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: textColor,
+          ),
         ),
         const SizedBox(height: 16),
         SizedBox(
           height: 190,
           child: ListView.separated(
+            key: ValueKey(ThemeProvider.of(context)?.isDarkTheme ?? false),
             scrollDirection: Axis.horizontal,
             itemCount: _styles.length,
             separatorBuilder: (_, __) => const SizedBox(width: 16),
@@ -356,16 +370,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildStyleCard(_TattooStyleItem item, int index, bool isSelected) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final double width = isSelected ? 150 : 130;
     final Color borderColor = isSelected
         ? AppColors.navBarActive
         : AppColors.cardGradientEnd;
+    final cardBgColor = isDark
+        ? const Color(0xFF151411)
+        : AppColors.lightCardBackground;
+    final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       width: width,
       decoration: BoxDecoration(
-        color: const Color(0xFF151411),
+        color: cardBgColor,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: borderColor, width: 1.4),
       ),
@@ -396,10 +415,10 @@ class _HomePageState extends State<HomePage> {
               Text(
                 item.label,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.textWhite,
+                  color: textColor,
                 ),
               ),
             ],
@@ -410,6 +429,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildExploreInspirationSection() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final List<String> inspirationImages = [
       'assets/inspiration_one.png',
       'assets/inspiration_two.png',
@@ -420,12 +441,12 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Explore Inspiration',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: AppColors.textWhite,
+            color: textColor,
           ),
         ),
         const SizedBox(height: 16),

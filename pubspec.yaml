@@ -71,6 +71,18 @@ flutter:
     - assets/dragon.png
     - assets/unicorn.png
     - assets/floral.png
+    - assets/abstract_dark.png
+    - assets/abstract_light.png
+    - assets/butterfly_dark.png
+    - assets/butterfly_light.png
+    - assets/eagle_dark.png
+    - assets/eagle_light.png
+    - assets/lion_dark.png
+    - assets/lion_light.png
+    - assets/spider_dark.png
+    - assets/spider_light.png
+    - assets/wolf_dark.png
+    - assets/wolf_light.png
     - assets/inspiration_one.png
     - assets/inspiration_two.png
     - assets/arrow.svg
