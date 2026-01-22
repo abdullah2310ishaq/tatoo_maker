@@ -41,7 +41,12 @@ class _HomePageState extends State<HomePage> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [AppColors.navBarBackground, AppColors.darkBackground],
+                colors: [
+                  AppColors.gradientBlack, // Black at top
+                  AppColors.gradientCenter, // Center #2D3136 with opacity
+                  AppColors.gradientBlack, // Black at bottom
+                ],
+                stops: [0.45, 0.9, 0.95],
               ),
             ),
             child: SingleChildScrollView(
@@ -480,7 +485,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildGenerateButton() {
-    final bool enabled = _selectedStyleIndex != null;
+    final bool enabled =
+        _selectedStyleIndex != null &&
+        _dreamInkController.text.trim().isNotEmpty;
 
     return GestureDetector(
       onTap: enabled
@@ -546,7 +553,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             // Arrow and text in a bordered container positioned below the card
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.46,
+              top: MediaQuery.of(context).size.height * 0.34,
               left: 20,
               right: 20,
               child: Container(

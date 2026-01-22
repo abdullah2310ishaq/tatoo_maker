@@ -38,4 +38,12 @@ class AppColors {
   ); // Drawer dark background
   static const Color textWhite = Colors.white;
   static const Color textGrey = Color(0xFF8E8E8E);
+
+  // Background gradient colors
+  static const Color gradientTop = Color(0xFF353A40); // #353A40
+  static const Color gradientBottom = Color(0xFF121416); // #121416
+  static const Color gradientCenter = Color(
+    0xFF353A40,
+  ); // #2D3136 with 30% opacity (darker)
+  static const Color gradientBlack = Color(0xFF000000); // #000000
 }
