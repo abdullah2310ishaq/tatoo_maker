@@ -1,17 +1,36 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'utils/colors.dart';
+import 'home_shell.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   final bool isDarkTheme;
 
   const SplashScreen({super.key, this.isDarkTheme = false});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 2), () {
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeShell()),
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: isDarkTheme
+          gradient: widget.isDarkTheme
               ? LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -24,14 +43,14 @@ class SplashScreen extends StatelessWidget {
                   stops: const [0.0817, 0.8703],
                 )
               : null,
-          color: isDarkTheme ? null : AppColors.lightBackground,
+          color: widget.isDarkTheme ? null : AppColors.lightBackground,
         ),
         child: Center(
           child: FractionallySizedBox(
             widthFactor: 0.7,
             heightFactor: 0.7,
             child: Image.asset(
-              isDarkTheme
+              widget.isDarkTheme
                   ? 'assets/splash_black.png'
                   : 'assets/splash_white.png',
               fit: BoxFit.contain,

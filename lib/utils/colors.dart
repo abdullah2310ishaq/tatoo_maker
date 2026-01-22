@@ -17,4 +17,25 @@ class AppColors {
 
   // Theme seed color - Orange
   static const Color primarySeed = Color(0xFFFF6B35);
+
+  // Navigation bar colors
+  static const Color navBarBackground = Color(0xFF1A1A1A); // Dark charcoal
+  static const Color navBarActive = Color(0xFFFF8C42); // Orange for active
+  static const Color navBarInactive = Color(0xFF8E8E8E); // Gray for inactive
+
+  // Home page colors
+  static const Color titleGradientStart = Color(0xFFF88532); // Orange
+  static const Color titleGradientEnd = Color(0xFF2D3136); // Dark gray
+  static const Color cardGradientStart = Color(0xFF151411); // Dark
+  static const Color cardGradientEnd = Color(0xFF1E1914); // Dark brown
+  static const Color cardGlowStart = Color(0xFFF88532); // Orange
+  static const Color cardGlowEnd = Color(
+    0x001E1914,
+  ); // Transparent (rgba(30, 25, 20, 0))
+  static const Color buttonBackground = Color(0xFF1A1A1A); // Dark charcoal
+  static const Color drawerDarkBackground = Color(
+    0xFF1B1C1F,
+  ); // Drawer dark background
+  static const Color textWhite = Colors.white;
+  static const Color textGrey = Color(0xFF8E8E8E);
 }

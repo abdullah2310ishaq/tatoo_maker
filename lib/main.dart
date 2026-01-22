@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'splash_screen.dart';
 import 'utils/theme_manager.dart';
+import 'providers/theme_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,12 +25,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'InkVision - Tattoo Maker',
-      theme: ThemeManager.lightTheme,
-      darkTheme: ThemeManager.darkTheme,
-      themeMode: _isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-      home: SplashScreen(isDarkTheme: _isDarkTheme),
+    return ThemeProvider(
+      isDarkTheme: _isDarkTheme,
+      toggleTheme: toggleTheme,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'InkVision - Tattoo Maker',
+        theme: ThemeManager.lightTheme,
+        darkTheme: ThemeManager.darkTheme,
+        themeMode: _isDarkTheme ? ThemeMode.dark : ThemeMode.light,
+        home: SplashScreen(isDarkTheme: _isDarkTheme),
+      ),
     );
   }
 }
