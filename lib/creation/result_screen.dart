@@ -1,7 +1,13 @@
 import 'dart:typed_data';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:gal/gal.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:cross_file/cross_file.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import 'virtual_try_on.dart';
 
 class ResultScreen extends StatelessWidget {
   final String styleName;
@@ -32,7 +38,7 @@ class ResultScreen extends StatelessWidget {
             children: [
               // Header: Close button + Title
               _buildHeader(context, isDark),
-              // Main image display
+              // Main image display - only one big image in center
               Expanded(
                 child: Center(
                   child: Padding(
@@ -41,17 +47,15 @@ class ResultScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              // Variation carousel
-              _buildVariationCarousel(isDark),
               const SizedBox(height: 24),
               // Action buttons
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   children: [
-                    _buildVirtualTryOnButton(isDark),
+                    _buildVirtualTryOnButton(context, isDark),
                     const SizedBox(height: 12),
-                    _buildSecondaryButtons(isDark),
+                    _buildSecondaryButtons(context, isDark),
                   ],
                 ),
               ),
@@ -100,15 +104,13 @@ class ResultScreen extends StatelessWidget {
 
   Widget _buildMainImage(bool isDark) {
     if (generatedImageBytes != null) {
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: Image.memory(
-          generatedImageBytes!,
-          fit: BoxFit.contain,
-          errorBuilder: (context, error, stackTrace) {
-            return _buildPlaceholder(isDark);
-          },
-        ),
+      // Show image directly on background (transparent background)
+      return Image.memory(
+        generatedImageBytes!,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stackTrace) {
+          return _buildPlaceholder(isDark);
+        },
       );
     }
     return _buildPlaceholder(isDark);
@@ -134,128 +136,136 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildVariationCarousel(bool isDark) {
-    // For now, show placeholder thumbnails
-    // Later, you can use variationImages if available
-    final thumbnails = List.generate(3, (index) => index);
+  // Commented out for now - variation carousel
+  // Widget _buildVariationCarousel(bool isDark) {
+  //   // For now, show placeholder thumbnails
+  //   // Later, you can use variationImages if available
+  //   final thumbnails = List.generate(3, (index) => index);
 
-    return SizedBox(
-      height: 120,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        itemCount: thumbnails.length,
-        itemBuilder: (context, index) {
-          final isActive = index == 0;
-          final isPro = index > 0;
+  //   return SizedBox(
+  //     height: 120,
+  //     child: ListView.builder(
+  //       scrollDirection: Axis.horizontal,
+  //       padding: const EdgeInsets.symmetric(horizontal: 20.0),
+  //       itemCount: thumbnails.length,
+  //       itemBuilder: (context, index) {
+  //         final isActive = index == 0;
+  //         final isPro = index > 0;
 
-          return Padding(
-            padding: EdgeInsets.only(
-              right: index < thumbnails.length - 1 ? 12 : 0,
-            ),
-            child: _buildThumbnail(
-              isDark: isDark,
-              isActive: isActive,
-              isPro: isPro,
-              imageBytes: index == 0 ? generatedImageBytes : null,
-            ),
-          );
-        },
-      ),
-    );
-  }
+  //         return Padding(
+  //           padding: EdgeInsets.only(
+  //             right: index < thumbnails.length - 1 ? 12 : 0,
+  //           ),
+  //           child: _buildThumbnail(
+  //             isDark: isDark,
+  //             isActive: isActive,
+  //             isPro: isPro,
+  //             imageBytes: index == 0 ? generatedImageBytes : null,
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
-  Widget _buildThumbnail({
-    required bool isDark,
-    required bool isActive,
-    required bool isPro,
-    Uint8List? imageBytes,
-  }) {
-    return GestureDetector(
-      onTap: () {
-        // Handle thumbnail tap - switch main image
-      },
-      child: Container(
-        width: 100,
-        height: 100,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isActive
-                ? AppColors.cardGlowStart
-                : AppColors.textGrey.withOpacity(0.3),
-            width: isActive ? 2 : 1,
-          ),
-        ),
-        child: Stack(
-          children: [
-            // Image or placeholder
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: imageBytes != null
-                  ? Image.memory(
-                      imageBytes,
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                    )
-                  : Container(
-                      width: 100,
-                      height: 100,
-                      color: isDark
-                          ? AppColors.buttonBackground
-                          : AppColors.textGrey.withOpacity(0.1),
-                      child: Icon(
-                        Icons.image,
-                        color: AppColors.textGrey,
-                        size: 32,
-                      ),
-                    ),
-            ),
-            // Pro badge
-            if (isPro)
-              Positioned(
-                top: 4,
-                right: 4,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 6,
-                    vertical: 2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.cardGlowStart,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Text(
-                    'Pro',
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                      fontFamily: 'Amaranth',
-                    ),
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Commented out - only used by variation carousel
+  // Widget _buildThumbnail({
+  //   required bool isDark,
+  //   required bool isActive,
+  //   required bool isPro,
+  //   Uint8List? imageBytes,
+  // }) {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       // Handle thumbnail tap - switch main image
+  //     },
+  //     child: Container(
+  //       width: 100,
+  //       height: 100,
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(12),
+  //         border: Border.all(
+  //           color: isActive
+  //               ? AppColors.cardGlowStart
+  //               : AppColors.textGrey.withOpacity(0.3),
+  //           width: isActive ? 2 : 1,
+  //         ),
+  //       ),
+  //       child: Stack(
+  //         children: [
+  //           // Image or placeholder
+  //           ClipRRect(
+  //             borderRadius: BorderRadius.circular(12),
+  //             child: imageBytes != null
+  //                 ? Image.memory(
+  //                     imageBytes,
+  //                     width: 100,
+  //                     height: 100,
+  //                     fit: BoxFit.cover,
+  //                   )
+  //                 : Container(
+  //                     width: 100,
+  //                     height: 100,
+  //                     color: isDark
+  //                         ? AppColors.buttonBackground
+  //                         : AppColors.textGrey.withOpacity(0.1),
+  //                     child: Icon(
+  //                       Icons.image,
+  //                       color: AppColors.textGrey,
+  //                       size: 32,
+  //                     ),
+  //                   ),
+  //           ),
+  //           // Pro badge
+  //           if (isPro)
+  //             Positioned(
+  //               top: 4,
+  //               right: 4,
+  //               child: Container(
+  //                 padding: const EdgeInsets.symmetric(
+  //                   horizontal: 6,
+  //                   vertical: 2,
+  //                 ),
+  //                 decoration: BoxDecoration(
+  //                   color: AppColors.cardGlowStart,
+  //                   borderRadius: BorderRadius.circular(4),
+  //                 ),
+  //                 child: Text(
+  //                   'Pro',
+  //                   style: TextStyle(
+  //                     fontSize: 10,
+  //                     fontWeight: FontWeight.w700,
+  //                     color: Colors.white,
+  //                     fontFamily: 'Amaranth',
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget _buildVirtualTryOnButton(bool isDark) {
+  Widget _buildVirtualTryOnButton(BuildContext context, bool isDark) {
     return SizedBox(
       width: double.infinity,
       height: 56,
       child: ElevatedButton(
         onPressed: () {
-          // Handle Virtual Try-On
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => VirtualTryOnScreen(
+                tattooImageBytes: generatedImageBytes,
+                styleName: styleName,
+              ),
+            ),
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFA6541D), // Burnt orange
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           elevation: 0,
         ),
         child: Text(
@@ -271,7 +281,7 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSecondaryButtons(bool isDark) {
+  Widget _buildSecondaryButtons(BuildContext context, bool isDark) {
     return Row(
       children: [
         Expanded(
@@ -280,7 +290,7 @@ class ResultScreen extends StatelessWidget {
             icon: Icons.share,
             isDark: isDark,
             onTap: () {
-              // Handle Share
+              _showShareBottomSheet(context, isDark);
             },
           ),
         ),
@@ -291,7 +301,7 @@ class ResultScreen extends StatelessWidget {
             icon: Icons.download,
             isDark: isDark,
             onTap: () {
-              // Handle Download
+              _saveImageToGallery(context);
             },
           ),
         ),
@@ -313,33 +323,149 @@ class ResultScreen extends StatelessWidget {
           color: isDark
               ? AppColors.buttonBackground
               : AppColors.textGrey.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: AppColors.textGrey.withOpacity(0.2),
             width: 1,
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-              size: 20,
+              fontFamily: 'Amaranth',
             ),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-                fontFamily: 'Amaranth',
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showShareBottomSheet(BuildContext context, bool isDark) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          color: isDark
+              ? AppColors.buttonBackground
+              : AppColors.lightBackground,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Handle bar
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                color: AppColors.textGrey.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(2),
               ),
             ),
+            // Share options - only Share option
+            _buildShareOption(
+              context: context,
+              isDark: isDark,
+              icon: Icons.share,
+              label: 'Share',
+              onTap: () {
+                Navigator.pop(context);
+                _shareImage(context);
+              },
+            ),
+            const SizedBox(height: 10),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildShareOption({
+    required BuildContext context,
+    required bool isDark,
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+      ),
+      title: Text(
+        label,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+          fontFamily: 'Amaranth',
+        ),
+      ),
+      onTap: onTap,
+    );
+  }
+
+  Future<void> _shareImage(BuildContext context) async {
+    if (generatedImageBytes == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('No image to share')));
+      return;
+    }
+
+    try {
+      // Save image to temporary file
+      final tempDir = await getTemporaryDirectory();
+      final file = File('${tempDir.path}/inkvision_${styleName}_${DateTime.now().millisecondsSinceEpoch}.png');
+      await file.writeAsBytes(generatedImageBytes!);
+
+      // Share the image file
+      await Share.shareXFiles(
+        [XFile(file.path)],
+        text: 'Check out my ${styleName} tattoo design!',
+        subject: '$styleName Tattoo Design',
+      );
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error sharing: $e')));
+      }
+    }
+  }
+
+  Future<void> _saveImageToGallery(BuildContext context) async {
+    if (generatedImageBytes == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No image to save')),
+      );
+      return;
+    }
+
+    try {
+      await Gal.putImageBytes(
+        generatedImageBytes!,
+        name: 'inkvision_${styleName}_${DateTime.now().millisecondsSinceEpoch}',
+      );
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Image saved to gallery')),
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error saving image: $e')),
+        );
+      }
+    }
   }
 }

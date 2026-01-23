@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 /// API Service for Prodia text-to-image and image-to-image generation
 class ProdiaApiService {
@@ -9,22 +10,9 @@ class ProdiaApiService {
   static const String _apiToken =
       'eyJhbGciOiJkaXIiLCJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIn0.._k05Twd72f3VpXEH.NTMw5WDFlsZQqc67PCWmPZKER_yUMNeUdR63goeffclZVsaEsMSnZu8_8KKNWmBH0KCWS3eeuoIoNxo7rAA6BPdtMXyM9rwHq2n3_L9dai9Abps_0ids6xAsA5Wo_WiGhwuxc_3eM1nWWYc_AmMz5zapabbOe3LwriCIGGpABnlSfw7fa8frQtNPyMFuBYGxUeScbk9H88c01R0-7ZMvIeEh_RfluDOgKeQY7MYAnbJOAAl1vkTKmo770ATG8MHkM5sP2Dno-ifMSpLyvzVfxNkoRXHAQ5mwykoQaCgYZu7y8DUiAZtb6S9JZB12GN8sF7Inj2PWfsAHd1p7bFboFiW1at8dQgLerWPOLY0IBNKChbCkez2wmqZ-bRkPz6nANz5Vez2hQ4UPudY6etNo0eIyXYF_jLO1LLbZ2ywC-4SgIU_SZOME4voli39IkmpWfk1_slFnh1GYI5cpZbmgKtjvRB9fKmVoc2WnkHxO6KXindAgIUMvOAjchQ9jN185p7gync-_gGki6CNNSaZFIikou2bJ946kNhf8Ev3uXcJqt1g.dPB0ImNvlLDFk3mBz9Xm2g';
 
-  late final Dio _dio;
-
-  ProdiaApiService() {
-    _dio = Dio(
-      BaseOptions(
-        baseUrl: _baseUrl,
-        headers: {
-          'Authorization': 'Bearer $_apiToken',
-          'Accept': 'image/jpeg',
-          'Content-Type': 'application/json',
-        },
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 60),
-      ),
-    );
-  }
+  final Map<String, String> _headers = {
+    'Authorization': 'Bearer $_apiToken',
+  };
 
   /// Text to Image using Flux Fast Schnell
   ///
@@ -41,6 +29,10 @@ class ProdiaApiService {
     int steps = 4,
   }) async {
     try {
+      print('ProdiaApiService: Starting text-to-image API call...');
+      print('ProdiaApiService: Prompt: $prompt');
+      print('ProdiaApiService: Dimensions: ${width}x${height}, Steps: $steps');
+      
       final job = {
         'type': 'inference.flux-fast.schnell.txt2img.v2',
         'config': {
@@ -51,30 +43,39 @@ class ProdiaApiService {
         },
       };
 
-      final response = await _dio.post(
-        '',
-        data: job,
-        options: Options(
-          headers: {'Accept': 'image/jpeg', 'Content-Type': 'application/json'},
-          responseType: ResponseType.bytes,
-        ),
+      print('ProdiaApiService: Sending request to API...');
+      // Match provided CURL: request JPEG from txt2img.
+      final headers = {
+        ..._headers,
+        'Accept': 'image/jpeg',
+        'Content-Type': 'application/json',
+      };
+
+      final response = await http.post(
+        Uri.parse(_baseUrl),
+        headers: headers,
+        body: jsonEncode(job),
       );
 
+      print('ProdiaApiService: Response received');
+      print('ProdiaApiService: Status Code: ${response.statusCode}');
+
       if (response.statusCode != 200) {
+        print('ProdiaApiService: Error - Status: ${response.statusCode}');
+        print('ProdiaApiService: Error - Body: ${response.body}');
         throw Exception(
-          'API Error: ${response.statusCode} - ${response.statusMessage}',
+          'API Error: ${response.statusCode} - ${response.reasonPhrase}',
         );
       }
 
-      final requestId = response.headers.value('x-request-id');
-      print('Request ID: $requestId');
-      print('Status: ${response.statusCode}');
+      final requestId = response.headers['x-request-id'];
+      print('ProdiaApiService: Request ID: $requestId');
+      print('ProdiaApiService: Image size: ${response.bodyBytes.length} bytes');
+      print('ProdiaApiService: Text-to-image API call successful!');
 
-      return Uint8List.fromList(response.data);
+      return response.bodyBytes;
     } catch (e) {
-      if (e is DioException) {
-        throw Exception('API Error: ${e.response?.statusCode} - ${e.message}');
-      }
+      print('ProdiaApiService: Error in text-to-image: $e');
       rethrow;
     }
   }
@@ -94,54 +95,344 @@ class ProdiaApiService {
     double guidanceScale = 1,
   }) async {
     try {
-      // Generate a unique image ID (you can use UUID or timestamp)
-      final imageId = '${DateTime.now().millisecondsSinceEpoch}.jpg';
-      final imageName = imageFile.path.split('/').last;
+      print('ProdiaApiService: Starting image-to-image API call...');
+      print('ProdiaApiService: Image file: ${imageFile.path}');
+      print('ProdiaApiService: Prompt: $prompt');
+      print('ProdiaApiService: Steps: $steps, Guidance Scale: $guidanceScale');
+      
+      // Use actual filename - must match what's uploaded
+      final imageName = imageFile.path.split(Platform.pathSeparator).last;
+      print('ProdiaApiService: Image Name: $imageName');
 
-      // Create FormData for multipart/form-data
-      // Note: The job needs to be sent as a JSON string with filename and content-type
+      // Read image file bytes
+      final imageBytes = await imageFile.readAsBytes();
+
+      // Create multipart request
+      final request = http.MultipartRequest('POST', Uri.parse(_baseUrl));
+      
+      // Add headers - match CURL exactly
+      request.headers.addAll(_headers);
+      request.headers['Accept'] = 'image/jpeg';
+
+      // Add image file - filename must match images array
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'input',
+          imageBytes,
+          filename: imageName,
+        ),
+      );
+
+      // Create job JSON - images array must contain the exact filename
       final jobJson = jsonEncode({
         'type': 'inference.flux-2.klein.img2img.v1',
         'config': {
           'prompt': prompt,
           'steps': steps,
           'guidance_scale': guidanceScale,
-          'images': [imageId],
+          'images': [imageName], // Use actual filename, not timestamp
         },
       });
 
-      final formData = FormData.fromMap({
-        'input': await MultipartFile.fromFile(
-          imageFile.path,
-          filename: imageName,
-        ),
-        'job': MultipartFile.fromString(jobJson, filename: 'job.json'),
-      });
-
-      final response = await _dio.post(
-        '',
-        data: formData,
-        options: Options(
-          headers: {'Accept': 'image/jpeg'},
-          responseType: ResponseType.bytes,
+      // Add job as a file (as per API documentation)
+      request.files.add(
+        http.MultipartFile.fromString(
+          'job',
+          jobJson,
+          filename: 'job.json',
         ),
       );
 
-      if (response.statusCode != 200) {
+      print('ProdiaApiService: Sending request to API...');
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
+
+      print('ProdiaApiService: Response received');
+      print('ProdiaApiService: Status Code: ${response.statusCode}');
+      print('ProdiaApiService: Response Body: ${response.body}');
+
+      if (response.statusCode != 200 && response.statusCode != 201 && response.statusCode != 202) {
+        print('ProdiaApiService: Error - Status: ${response.statusCode}');
+        print('ProdiaApiService: Error - Body: ${response.body}');
         throw Exception(
-          'API Error: ${response.statusCode} - ${response.statusMessage}',
+          'API Error: ${response.statusCode} - ${response.reasonPhrase}',
         );
       }
 
-      final requestId = response.headers.value('x-request-id');
-      print('Request ID: $requestId');
-      print('Status: ${response.statusCode}');
-
-      return Uint8List.fromList(response.data);
-    } catch (e) {
-      if (e is DioException) {
-        throw Exception('API Error: ${e.response?.statusCode} - ${e.message}');
+      // Parse job response
+      final jobResponse = jsonDecode(response.body) as Map<String, dynamic>;
+      final jobId = jobResponse['id'] as String?;
+      
+      if (jobId == null) {
+        throw Exception('No job ID returned from API');
       }
+
+      print('ProdiaApiService: Job ID: $jobId');
+      print('ProdiaApiService: Job State: ${jobResponse['state']?['current']}');
+
+      // Poll for job completion
+      return await _pollJobStatus(jobId);
+    } catch (e) {
+      print('ProdiaApiService: Error in image-to-image: $e');
+      rethrow;
+    }
+  }
+
+  /// Poll job status until completion and return the result image
+  Future<Uint8List> _pollJobStatus(String jobId, {bool acceptPng = false}) async {
+    const maxAttempts = 60; // Maximum 60 attempts (5 minutes with 5s intervals)
+    const pollInterval = Duration(seconds: 5);
+
+    for (int attempt = 0; attempt < maxAttempts; attempt++) {
+      print('ProdiaApiService: Polling job status (attempt ${attempt + 1}/$maxAttempts)...');
+      
+      final response = await http.get(
+        Uri.parse('$_baseUrl/$jobId'),
+        headers: {
+          ..._headers,
+          'Accept': 'application/json',
+        },
+      );
+
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get job status: ${response.statusCode}');
+      }
+
+      final jobData = jsonDecode(response.body) as Map<String, dynamic>;
+      final state = jobData['state'] as Map<String, dynamic>?;
+      final currentState = state?['current'] as String?;
+
+      print('ProdiaApiService: Job state: $currentState');
+
+      if (currentState == 'completed' || currentState == 'succeeded') {
+        // Job completed, fetch the result image
+        print('ProdiaApiService: Job completed, fetching result image...');
+        return await _fetchJobResult(jobId, acceptPng: acceptPng);
+      } else if (currentState == 'failed' || currentState == 'error') {
+        final message = state?['history']?.last?['message'] ?? 'Job failed';
+        throw Exception('Job failed: $message');
+      } else if (currentState == 'processing' || currentState == 'created') {
+        // Still processing, wait and poll again
+        print('ProdiaApiService: Job still processing, waiting ${pollInterval.inSeconds}s...');
+        await Future.delayed(pollInterval);
+      } else {
+        throw Exception('Unknown job state: $currentState');
+      }
+    }
+
+    throw Exception('Job polling timeout after $maxAttempts attempts');
+  }
+
+  /// Fetch the result image from a completed job
+  Future<Uint8List> _fetchJobResult(String jobId, {bool acceptPng = false}) async {
+    print('ProdiaApiService: Fetching result image for job $jobId...');
+    
+    final response = await http.get(
+      Uri.parse('$_baseUrl/$jobId'),
+      headers: {
+        ..._headers,
+        'Accept': acceptPng ? 'image/png' : 'image/jpeg',
+      },
+    );
+
+    if (response.statusCode != 200) {
+      print('ProdiaApiService: Error fetching result - Status: ${response.statusCode}');
+      print('ProdiaApiService: Error - Body: ${response.body}');
+      throw Exception('Failed to fetch result image: ${response.statusCode}');
+    }
+
+    final requestId = response.headers['x-request-id'];
+    print('ProdiaApiService: Request ID: $requestId');
+    print('ProdiaApiService: Image size: ${response.bodyBytes.length} bytes');
+    print('ProdiaApiService: Image-to-image API call successful!');
+
+    return response.bodyBytes;
+  }
+
+  /// Remove background from image using Prodia API
+  ///
+  /// [imageFile] - The input image file
+  ///
+  /// Returns the image with removed background as Uint8List bytes (PNG format)
+  Future<Uint8List> removeBackground({
+    required File imageFile,
+  }) async {
+    try {
+      print('ProdiaApiService: Starting background removal...');
+      print('ProdiaApiService: Image file: ${imageFile.path}');
+      
+      final imageName = imageFile.path.split(Platform.pathSeparator).last;
+      
+      // Read image file bytes
+      final imageBytes = await imageFile.readAsBytes();
+      print('ProdiaApiService: Image size: ${imageBytes.length} bytes');
+
+      // Create multipart request
+      final request = http.MultipartRequest('POST', Uri.parse(_baseUrl));
+      
+      // Add headers
+      request.headers.addAll(_headers);
+      request.headers['Accept'] = 'image/png'; // PNG for transparency
+
+      // Add image file
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'input',
+          imageBytes,
+          filename: imageName,
+        ),
+      );
+
+      // Create job JSON for background removal
+      final jobJson = jsonEncode({
+        'type': 'inference.remove-background.v1',
+        'config': {},
+      });
+
+      print('ProdiaApiService: Job JSON: $jobJson');
+
+      // Add job as a file
+      request.files.add(
+        http.MultipartFile.fromString(
+          'job',
+          jobJson,
+          filename: 'job.json',
+        ),
+      );
+
+      print('ProdiaApiService: Sending background removal request...');
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
+
+      print('ProdiaApiService: Response received');
+      print('ProdiaApiService: Status Code: ${response.statusCode}');
+      print('ProdiaApiService: Response Body: ${response.body.substring(0, response.body.length > 200 ? 200 : response.body.length)}');
+
+      if (response.statusCode != 200 && response.statusCode != 201 && response.statusCode != 202) {
+        print('ProdiaApiService: Error - Status: ${response.statusCode}');
+        print('ProdiaApiService: Error - Full Body: ${response.body}');
+        throw Exception(
+          'API Error: ${response.statusCode} - ${response.reasonPhrase}',
+        );
+      }
+
+      // Check if response is a job object or direct image
+      if (response.headers['content-type']?.contains('application/json') ?? false) {
+        // It's a job object, need to poll
+        print('ProdiaApiService: Received job object, starting polling...');
+        final jobResponse = jsonDecode(response.body) as Map<String, dynamic>;
+        final jobId = jobResponse['id'] as String?;
+        
+        if (jobId == null) {
+          throw Exception('No job ID returned from API');
+        }
+
+        print('ProdiaApiService: Background removal Job ID: $jobId');
+        print('ProdiaApiService: Job State: ${jobResponse['state']?['current']}');
+
+        // Poll for job completion
+        return await _pollJobStatus(jobId, acceptPng: true);
+      } else {
+        // Direct image response
+        final requestId = response.headers['x-request-id'];
+        print('ProdiaApiService: Request ID: $requestId');
+        print('ProdiaApiService: Image size: ${response.bodyBytes.length} bytes');
+        print('ProdiaApiService: Background removal successful!');
+        return response.bodyBytes;
+      }
+    } catch (e) {
+      print('ProdiaApiService: Error in background removal: $e');
+      rethrow;
+    }
+  }
+
+  /// Mask background using Prodia API
+  ///
+  /// This follows the provided CURL:
+  /// - multipart form with `input` and `job` as `job.json`
+  /// - Accept: image/jpeg
+  ///
+  /// Returns the masked image as Uint8List bytes (JPEG)
+  Future<Uint8List> maskBackground({
+    required File imageFile,
+  }) async {
+    try {
+      print('ProdiaApiService: Starting background mask...');
+      print('ProdiaApiService: Image file: ${imageFile.path}');
+
+      final imageName = imageFile.path.split(Platform.pathSeparator).last;
+      final imageBytes = await imageFile.readAsBytes();
+      print('ProdiaApiService: Image size: ${imageBytes.length} bytes');
+
+      final request = http.MultipartRequest('POST', Uri.parse(_baseUrl));
+      request.headers.addAll(_headers);
+      request.headers['Accept'] = 'image/jpeg';
+
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'input',
+          imageBytes,
+          filename: imageName,
+        ),
+      );
+
+      final jobJson = jsonEncode({
+        'type': 'inference.mask-background.v1',
+        'config': {},
+      });
+      print('ProdiaApiService: Job JSON: $jobJson');
+
+      request.files.add(
+        http.MultipartFile.fromString(
+          'job',
+          jobJson,
+          filename: 'job.json',
+          contentType: MediaType('application', 'json'),
+        ),
+      );
+
+      print('ProdiaApiService: Sending background mask request...');
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
+
+      print('ProdiaApiService: Response received');
+      print('ProdiaApiService: Status Code: ${response.statusCode}');
+      print(
+        'ProdiaApiService: Response Body: ${response.body.substring(0, response.body.length > 200 ? 200 : response.body.length)}',
+      );
+
+      if (response.statusCode != 200 &&
+          response.statusCode != 201 &&
+          response.statusCode != 202) {
+        print('ProdiaApiService: Error - Status: ${response.statusCode}');
+        print('ProdiaApiService: Error - Full Body: ${response.body}');
+        throw Exception(
+          'API Error: ${response.statusCode} - ${response.reasonPhrase}',
+        );
+      }
+
+      if (response.headers['content-type']?.contains('application/json') ??
+          false) {
+        print('ProdiaApiService: Received job object, starting polling...');
+        final jobResponse = jsonDecode(response.body) as Map<String, dynamic>;
+        final jobId = jobResponse['id'] as String?;
+        if (jobId == null) {
+          throw Exception('No job ID returned from API');
+        }
+
+        print('ProdiaApiService: Background mask Job ID: $jobId');
+        print('ProdiaApiService: Job State: ${jobResponse['state']?['current']}');
+
+        return await _pollJobStatus(jobId, acceptPng: false);
+      }
+
+      final requestId = response.headers['x-request-id'];
+      print('ProdiaApiService: Request ID: $requestId');
+      print('ProdiaApiService: Image size: ${response.bodyBytes.length} bytes');
+      print('ProdiaApiService: Background mask successful!');
+      return response.bodyBytes;
+    } catch (e) {
+      print('ProdiaApiService: Error in background mask: $e');
       rethrow;
     }
   }

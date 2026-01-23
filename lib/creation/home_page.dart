@@ -37,9 +37,9 @@ class _HomePageState extends State<HomePage> {
     'Butterfly':
         'Delicate butterfly tattoo representing transformation and growth, detailed wings, soft shading, elegant tattoo illustration, solid white ink, high contrast.',
     'Dragon':
-        'Fantasy dragon tattoo on black background, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines.',
+        'Fantasy dragon tattoo design, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines',
     'Unicorn':
-        'Unicorn head tattoo on black background, golden horn, flowing rainbow mane, detailed fantasy illustration.',
+        'Unicorn head tattoo design, golden horn, flowing rainbow mane, detailed fantasy illustration',
     'Floral':
         'Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast',
   };
@@ -558,12 +558,14 @@ class _HomePageState extends State<HomePage> {
                   : null;
               final assetPath = selectedStyle?.assetPath;
               final styleName = selectedStyle?.label;
+              final promptText = _dreamInkController.text.trim();
 
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => LoadingScreen(
                     selectedStyleAsset: assetPath,
                     styleName: styleName,
+                    promptText: promptText,
                   ),
                 ),
               );
