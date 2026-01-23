@@ -272,6 +272,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return SafeArea(
       child: Scaffold(
@@ -331,7 +332,12 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                     ),
                     // Action buttons
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: EdgeInsets.only(
+                        left: 20.0,
+                        right: 20.0,
+                        top: 20.0,
+                        bottom: bottomPadding > 0 ? bottomPadding : 20.0,
+                      ),
                       child: Column(
                         children: [
                           if (_bodyPartImage == null)

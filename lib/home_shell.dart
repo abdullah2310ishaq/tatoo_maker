@@ -41,23 +41,25 @@ class _HomeShellState extends State<HomeShell> {
         isDarkTheme: themeProvider?.isDarkTheme ?? false,
         onThemeToggle: themeProvider?.toggleTheme ?? () {},
       ),
-      body: SafeArea(
-        child: Container(
-          color: isDark ? AppColors.darkBackground : AppColors.lightBackground,
-          child: Stack(
-            children: [
-              // Main content area based on selected index
-              _buildCurrentPage(openDrawer),
-              // Floating bottom navigation bar
-              Positioned(
-                left: 20,
-                right: 20,
-                bottom: bottomPadding - 40,
-                child: _buildFloatingNavBar(),
-              ),
-            ],
+      body: Stack(
+        children: [
+          // Main content area based on selected index
+          SafeArea(
+            child: Container(
+              color: isDark
+                  ? AppColors.darkBackground
+                  : AppColors.lightBackground,
+              child: _buildCurrentPage(openDrawer),
+            ),
           ),
-        ),
+          // Floating bottom navigation bar - positioned above safe area
+          Positioned(
+            left: 20,
+            right: 20,
+            bottom: bottomPadding > 0 ? bottomPadding + 10 : 20,
+            child: _buildFloatingNavBar(),
+          ),
+        ],
       ),
     );
   }

@@ -20,6 +20,7 @@ class ExploreDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
     final iconColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final promptTextColor = isDark ? Colors.white70 : AppColors.textPrimary;
@@ -182,7 +183,11 @@ class ExploreDetailScreen extends StatelessWidget {
               const SizedBox(height: 24),
               // "Try This" button
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                  bottom: bottomPadding > 0 ? bottomPadding : 20.0,
+                ),
                 child: SizedBox(
                   width: double.infinity,
                   height: 56,
@@ -216,7 +221,6 @@ class ExploreDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ),

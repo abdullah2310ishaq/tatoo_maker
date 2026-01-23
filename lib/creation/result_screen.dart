@@ -24,6 +24,7 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return SafeArea(
       child: Scaffold(
@@ -50,7 +51,11 @@ class ResultScreen extends StatelessWidget {
               const SizedBox(height: 24),
               // Action buttons
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                  bottom: bottomPadding > 0 ? bottomPadding : 20.0,
+                ),
                 child: Column(
                   children: [
                     _buildVirtualTryOnButton(context, isDark),
@@ -59,7 +64,6 @@ class ResultScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -341,74 +345,6 @@ class ResultScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void _showShareBottomSheet(BuildContext context, bool isDark) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.buttonBackground
-              : AppColors.lightBackground,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Handle bar
-            Container(
-              width: 40,
-              height: 4,
-              margin: const EdgeInsets.only(bottom: 20),
-              decoration: BoxDecoration(
-                color: AppColors.textGrey.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            // Share options - only Share option
-            _buildShareOption(
-              context: context,
-              isDark: isDark,
-              icon: Icons.share,
-              label: 'Share',
-              onTap: () {
-                Navigator.pop(context);
-                _shareImage(context);
-              },
-            ),
-            const SizedBox(height: 10),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildShareOption({
-    required BuildContext context,
-    required bool isDark,
-    required IconData icon,
-    required String label,
-    required VoidCallback onTap,
-  }) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-      ),
-      title: Text(
-        label,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-          fontFamily: 'Amaranth',
-        ),
-      ),
-      onTap: onTap,
     );
   }
 
