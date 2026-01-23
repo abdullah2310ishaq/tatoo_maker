@@ -4,6 +4,7 @@ import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../providers/theme_provider.dart';
 import '../widgets/inkvision_underline.dart';
+import 'loading_screen.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
@@ -20,6 +21,28 @@ class _HomePageState extends State<HomePage> {
   static const int _maxCharacters = 250;
   bool _showTutorialOverlay = true; // Show on each restart for now
   final GlobalKey _dreamInkCardKey = GlobalKey();
+
+  // Style prompts map
+  static const Map<String, String> _stylePrompts = {
+    'Wolf':
+        'Minimal tribal wolf tattoo drawn with bold white lines , abstract sharp curves, clean line-art, tattoo flash style.',
+    'Abstract':
+        'Tribal abstract tattoo symbolizing inner strength and resilience, flowing sharp curves rising upward, bold confident line-art, powerful vertical composition, minimalist tribal style, solid white ink',
+    'Lion':
+        'Majestic lion tattoo representing courage and leadership, calm powerful expression, detailed mane, strong shading, artistic tattoo design, solid white ink, high contrast',
+    'Eagle':
+        'Eagle tattoo in mid-flight symbolizing freedom and vision, wide wings, sharp feather detail, dynamic motion, bold tattoo art, solid white ink, high contrast',
+    'Spider':
+        'Detailed spider tattoo symbolizing patience and control, realistic anatomy, clean web elements, dark artistic tattoo style, solid white ink, high contrast',
+    'Butterfly':
+        'Delicate butterfly tattoo representing transformation and growth, detailed wings, soft shading, elegant tattoo illustration, solid white ink, high contrast.',
+    'Dragon':
+        'Fantasy dragon tattoo on black background, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines.',
+    'Unicorn':
+        'Unicorn head tattoo on black background, golden horn, flowing rainbow mane, detailed fantasy illustration.',
+    'Floral':
+        'Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast',
+  };
 
   List<_TattooStyleItem> get _styles {
     final themeProvider = ThemeProvider.of(context);
@@ -397,6 +420,22 @@ class _HomePageState extends State<HomePage> {
               _selectedStyleIndex = null;
             } else {
               _selectedStyleIndex = index;
+              // Auto-fill text only if empty or if current text matches a prompt
+              final selectedStyle = _styles[index];
+              if (_stylePrompts.containsKey(selectedStyle.label)) {
+                final currentText = _dreamInkController.text.trim();
+                final isEmpty = currentText.isEmpty;
+                // Check if current text matches any prompt (was auto-filled)
+                final isPromptText = _stylePrompts.values.any(
+                  (prompt) => prompt.trim() == currentText,
+                );
+
+                // Only override if empty or if it's a prompt text (not user-written)
+                if (isEmpty || isPromptText) {
+                  _dreamInkController.text =
+                      _stylePrompts[selectedStyle.label]!;
+                }
+              }
             }
           });
         },
@@ -513,10 +552,21 @@ class _HomePageState extends State<HomePage> {
     return GestureDetector(
       onTap: enabled
           ? () {
-              // Placeholder tap handler for now.
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(const SnackBar(content: Text('Generate tapped')));
+              // Navigate to loading screen with selected style asset
+              final selectedStyle = _selectedStyleIndex != null
+                  ? _styles[_selectedStyleIndex!]
+                  : null;
+              final assetPath = selectedStyle?.assetPath;
+              final styleName = selectedStyle?.label;
+
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => LoadingScreen(
+                    selectedStyleAsset: assetPath,
+                    styleName: styleName,
+                  ),
+                ),
+              );
             }
           : null,
       child: Container(

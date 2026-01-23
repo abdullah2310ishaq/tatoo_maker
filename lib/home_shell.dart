@@ -52,7 +52,7 @@ class _HomeShellState extends State<HomeShell> {
               Positioned(
                 left: 20,
                 right: 20,
-                bottom: bottomPadding - 20,
+                bottom: bottomPadding - 40,
                 child: _buildFloatingNavBar(),
               ),
             ],
@@ -122,7 +122,6 @@ class _HomeShellState extends State<HomeShell> {
     required String label,
     required int index,
   }) {
-    
     final bool isSelected = _selectedIndex == index;
     final Color itemColor = isSelected
         ? AppColors.navBarActive
