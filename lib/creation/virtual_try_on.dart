@@ -9,7 +9,6 @@ import 'package:gal/gal.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
-import '../services/prodia_api_service.dart';
 
 class VirtualTryOnScreen extends StatefulWidget {
   final Uint8List? tattooImageBytes;
@@ -29,7 +28,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   File? _bodyPartImage;
   bool _isSaving = false;
   bool _isProcessing = false;
-  Uint8List? _processedTryOnBytes; // final processed (img2img) output
+  Uint8List? _processedTryOnBytes; // final processed output (captured preview)
   Offset _tattooPosition = const Offset(200, 300);
   double _tattooScale = 1.0;
   double _tattooRotation = 0.0;
@@ -37,7 +36,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   List<CameraDescription>? _cameras;
   bool _isCameraInitialized = false;
   final GlobalKey _previewRepaintKey = GlobalKey();
-  final ProdiaApiService _apiService = ProdiaApiService();
   final ScrollController _scrollController = ScrollController();
 
   // Gesture tracking variables
@@ -362,52 +360,58 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                           else
                             Column(
                               children: [
-                                SizedBox(
-                                  width: double.infinity,
-                                  height: 56,
-                                  child: ElevatedButton(
-                                    onPressed:
-                                        (_isProcessing ||
-                                            _bodyPartImage == null)
-                                        ? null
-                                        : () async {
-                                            if (_bodyPartImage == null) {
-                                              return;
-                                            }
-                                            await _processImageAutomatically(
-                                              _bodyPartImage!,
-                                            );
-                                          },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFFA6541D),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                    ),
-                                    child: _isProcessing
-                                        ? const SizedBox(
-                                            height: 20,
-                                            width: 20,
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: 2,
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                    Colors.white,
-                                                  ),
-                                            ),
-                                          )
-                                        : const Text(
-                                            'Apply',
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.white,
-                                              fontFamily: 'Amaranth',
-                                            ),
+                                if (_processedTryOnBytes == null)
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 56,
+                                    child: ElevatedButton(
+                                      onPressed:
+                                          (_isProcessing ||
+                                              _bodyPartImage == null)
+                                          ? null
+                                          : () async {
+                                              if (_bodyPartImage == null) {
+                                                return;
+                                              }
+                                              await _processImageAutomatically(
+                                                _bodyPartImage!,
+                                              );
+                                            },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color(
+                                          0xFFA6541D,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            12,
                                           ),
+                                        ),
+                                      ),
+                                      child: _isProcessing
+                                          ? const SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: CircularProgressIndicator(
+                                                strokeWidth: 2,
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                      Color
+                                                    >(Colors.white),
+                                              ),
+                                            )
+                                          : const Text(
+                                              'Apply',
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.white,
+                                                fontFamily: 'Amaranth',
+                                              ),
+                                            ),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 12),
+                                if (_processedTryOnBytes == null)
+                                  const SizedBox(height: 12),
                                 SizedBox(
                                   width: double.infinity,
                                   height: 56,

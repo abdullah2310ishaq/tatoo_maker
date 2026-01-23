@@ -5,6 +5,7 @@ import '../utils/theme_manager.dart';
 import '../providers/theme_provider.dart';
 import '../widgets/inkvision_underline.dart';
 import 'loading_screen.dart';
+import 'explore_detail_screen.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
@@ -95,6 +96,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+    // Add padding for floating navbar (approximately 80px height + spacing)
+    final navbarHeight = 80.0 + bottomPadding;
+
     return SafeArea(
       child: Stack(
         children: [
@@ -103,7 +108,11 @@ class _HomePageState extends State<HomePage> {
                 ? ThemeManager.darkModeBackgroundGradient
                 : ThemeManager.lightModeBackground,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: EdgeInsets.only(
+                left: 20.0,
+                right: 20.0,
+                bottom: navbarHeight, // Ensure content scrolls above navbar
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -470,11 +479,92 @@ class _HomePageState extends State<HomePage> {
   Widget _buildExploreInspirationSection() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
-    final List<String> inspirationImages = [
-      'assets/inspiration_one.png',
-      'assets/inspiration_two.png',
-      'assets/inspiration_one.png',
-      'assets/inspiration_two.png',
+
+    final List<Map<String, String?>> inspirationItems = [
+      {
+        'title': 'Gothqueen',
+        'prompt':
+            'Black and grey gothic queen tattoo, bald female face, ornate crown, geometric linework, realistic shading, symmetrical, high detail',
+        'bigImage': 'assets/explore/gothbig.png',
+        'smallImage': 'assets/explore/gothsmall.png',
+      },
+      {
+        'title': 'Floral',
+        'prompt':
+            'Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast',
+        'bigImage': 'assets/explore/floralbig.png',
+        'smallImage': null,
+      },
+      {
+        'title': 'Skull with fedora and pipe',
+        'prompt':
+            'Realistic black & grey skull tattoo, side-profile skull wearing a classic fedora, smoking a curved pipe with soft upward smoke, vintage noir style, detailed bone & teeth texture, smooth gradient shading with dotwork and soft realism, fine-needle detailing, high-contrast blacks, professional tattoo artwork.',
+        'bigImage': 'assets/explore/skullbig.png',
+        'smallImage': 'assets/explore/skullsmall.png',
+      },
+      {
+        'title': 'Elegant snake tattoo',
+        'prompt':
+            'Ultra-detailed black & white aggressive snake tattoo, open mouth with long fangs and forked tongue, flowing coiled body, fine-line detailed scales, deep black shading, strong contrast, realistic depth, clean negative space, traditional engraving × modern realism, razor-sharp outlines, monochrome ink, no background, professional tattoo flash, forearm or sleeve ready.',
+        'bigImage': 'assets/explore/snakebig.png',
+        'smallImage': 'assets/explore/snakesmall.png',
+      },
+      {
+        'title': 'Feather and birds in flight',
+        'prompt':
+            'Ultra-detailed black & white feather tattoo, elegant realistic feather with fine linework, symmetrical barbs and sharp spine, smooth dotwork gradient shading, minimal premium fineline style, small bird silhouettes flowing upward, balanced composition, razor-sharp outlines, high-contrast black ink, modern tattoo realism, monochrome only, no background on white canvas, professional flash, stencil-ready.',
+        'bigImage': 'assets/explore/featherbig.png',
+        'smallImage': 'assets/explore/feathersmall.png',
+      },
+      {
+        'title': 'Rainy bat with celestial stars',
+        'prompt':
+            'Symmetrical bat tattoo with fully spread wings, solid black body, wings filled with smooth rainbow gradient (purple to blue, green, yellow, orange), clean bold outlines with fine linework, subtle dotwork shading, surrounded by small stars and dots, two four-pointed stars above and below, mystical celestial vibe, modern neo-traditional style, high contrast, sharp detail.',
+        'bigImage': 'assets/explore/batbig.png',
+        'smallImage': 'assets/explore/batsmall.png',
+      },
+      {
+        'title': 'Elegant black cat silhouette design',
+        'prompt':
+            'A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art',
+        'bigImage': 'assets/explore/catbig.png',
+        'smallImage': 'assets/explore/catsmall.png',
+      },
+      {
+        'title': 'Red rose tattoo design',
+        'prompt':
+            'Realistic red rose tattoo, single blooming rose with layered petals, rich deep red color, fine detailed petal texture, subtle gradient shading, natural green stem with small thorns and two detailed leaves, clean crisp outlines, soft realism tattoo style, high contrast, smooth color blending, professional tattoo flash quality, isolated rose only',
+        'bigImage': 'assets/explore/rosebig.png',
+        'smallImage': 'assets/explore/rosesmall.png',
+      },
+      {
+        'title': 'Black infinity arrow tattoo',
+        'prompt':
+            'Realistic Minimalist black infinity arrow tattoo, smooth continuous loop with sharp arrow, clean bold linework, high-contrast solid black ink, modern minimal style, monochrome, stencil-ready.',
+        'bigImage': 'assets/explore/infinitybig.png',
+        'smallImage': 'assets/explore/infinitysmall.png',
+      },
+      {
+        'title': 'Black scorpion tattoo design',
+        'prompt':
+            'Realistic minimalist black scorpion tattoo design, bold solid black ink, sharp clean linework, symmetrical tribal-inspired detailing, high contrast, smooth curves, modern tattoo style, stencil-ready, isolated on plain background, ultra-detailed, professional tattoo flash',
+        'bigImage': 'assets/explore/scorpionbig.png',
+        'smallImage': 'assets/explore/scorpionsmall.png',
+      },
+      {
+        'title': 'Crescent moon and star tattoo',
+        'prompt':
+            'Minimalist black ink tattoo, fine-line style, upward crescent moon with solid black fill, small four-point star above aligned vertically, subtle dot accents, celestial and mystical aesthetic, simple geometry, balanced spacing, clean background, precise linework, high contrast, timeless minimal tattoo design',
+        'bigImage': 'assets/explore/moonbig.png',
+        'smallImage': 'assets/explore/moonsmall.png',
+      },
+      {
+        'title': 'Sleeping panda tattoo',
+        'prompt':
+            'Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.',
+        'bigImage': 'assets/explore/pandabig.png',
+        'smallImage': 'assets/explore/pandasmall.png',
+      },
     ];
 
     return Column(
@@ -498,38 +588,63 @@ class _HomePageState extends State<HomePage> {
             crossAxisSpacing: 16,
             childAspectRatio: 0.65,
           ),
-          itemCount: 4,
+          itemCount: inspirationItems.length,
           itemBuilder: (context, index) {
-            return _buildInspirationCard(inspirationImages[index]);
+            final item = inspirationItems[index];
+            return _buildInspirationCard(
+              item['title']!,
+              item['prompt']!,
+              item['bigImage']!,
+              item['smallImage'],
+            );
           },
         ),
       ],
     );
   }
 
-  Widget _buildInspirationCard(String imagePath) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFFE8B3A), width: 2),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Image.asset(
-          imagePath,
-          width: double.infinity,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            return Container(
-              color: AppColors.cardGradientStart,
-              child: const Center(
-                child: Icon(
-                  Icons.image_not_supported,
-                  color: AppColors.textGrey,
+  Widget _buildInspirationCard(
+    String title,
+    String prompt,
+    String bigImagePath,
+    String? smallImagePath,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ExploreDetailScreen(
+              title: title,
+              prompt: prompt,
+              bigImagePath: bigImagePath,
+              smallImagePath: smallImagePath,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xFFFE8B3A), width: 2),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.asset(
+            bigImagePath,
+            width: double.infinity,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                color: AppColors.cardGradientStart,
+                child: const Center(
+                  child: Icon(
+                    Icons.image_not_supported,
+                    color: AppColors.textGrey,
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

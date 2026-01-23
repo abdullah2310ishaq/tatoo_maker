@@ -1,0 +1,226 @@
+import 'package:flutter/material.dart';
+import '../utils/colors.dart';
+import '../utils/theme_manager.dart';
+import 'loading_screen.dart';
+
+class ExploreDetailScreen extends StatelessWidget {
+  final String title;
+  final String prompt;
+  final String bigImagePath;
+  final String? smallImagePath;
+
+  const ExploreDetailScreen({
+    super.key,
+    required this.title,
+    required this.prompt,
+    required this.bigImagePath,
+    this.smallImagePath,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final iconColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
+    final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
+    final promptTextColor = isDark ? Colors.white70 : AppColors.textPrimary;
+    final cardBgColor = isDark ? null : AppColors.lightBackground;
+    final cardGradient = isDark
+        ? const LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [AppColors.cardGradientStart, AppColors.cardGradientEnd],
+          )
+        : null;
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: isDark
+            ? AppColors.darkBackground
+            : AppColors.lightBackground,
+        body: Container(
+          decoration: isDark
+              ? ThemeManager.darkModeBackgroundGradient
+              : ThemeManager.lightModeBackground,
+          child: Column(
+            children: [
+              // Header: X icon on left, title centered
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 8.0,
+                  right: 8.0,
+                  top: 16.0,
+                ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    // Close icon on left
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        icon: Icon(Icons.close, color: iconColor, size: 28),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ),
+                    // Title centered
+                    Center(
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: textColor,
+                          fontFamily: 'Amaranth',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Asset image centered below X (smaller size)
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width *
+                          0.6, // 60% of screen width
+                      height: MediaQuery.of(context).size.width * 0.6,
+                      child: smallImagePath != null
+                          ? Image.asset(
+                              smallImagePath!,
+                              fit: BoxFit.contain,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.asset(
+                                  bigImagePath,
+                                  fit: BoxFit.contain,
+                                );
+                              },
+                            )
+                          : Image.asset(bigImagePath, fit: BoxFit.contain),
+                    ),
+                  ),
+                ),
+              ),
+              // Prompt Detail Card (styled like homepage input card) - Bigger
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // "Prompt" label
+                    Text(
+                      'Prompt',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: textColor,
+                        fontFamily: 'Amaranth',
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    // Prompt card with orange glow - Bigger
+                    Container(
+                      width: double.infinity,
+                      constraints: BoxConstraints(
+                        minHeight:
+                            MediaQuery.of(context).size.height *
+                            0.25, // At least 25% of screen height
+                      ),
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: AppColors.titleGradientStart,
+                          width: 1,
+                        ),
+                        color: cardBgColor,
+                        gradient: cardGradient,
+                      ),
+                      child: Stack(
+                        children: [
+                          // Orange glow in top-right corner (only in dark mode)
+                          if (isDark)
+                            Positioned(
+                              top: -60,
+                              right: -60,
+                              child: IgnorePointer(
+                                child: Container(
+                                  width: 180,
+                                  height: 180,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: RadialGradient(
+                                      center: Alignment.topRight,
+                                      radius: 0.9,
+                                      colors: [
+                                        AppColors.cardGlowStart,
+                                        AppColors.cardGlowEnd,
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          // Prompt text
+                          Text(
+                            prompt,
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: promptTextColor,
+                              fontFamily: 'Amaranth',
+                              height: 1.6,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+              // "Try This" button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => LoadingScreen(
+                            selectedStyleAsset: bigImagePath,
+                            styleName: title,
+                            promptText: prompt,
+                          ),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFA6541D), // Burnt orange
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8), // Stadium shape
+                      ),
+                    ),
+                    child: const Text(
+                      'Try This',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        fontFamily: 'Amaranth',
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

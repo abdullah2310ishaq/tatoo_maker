@@ -290,7 +290,7 @@ class ResultScreen extends StatelessWidget {
             icon: Icons.share,
             isDark: isDark,
             onTap: () {
-              _showShareBottomSheet(context, isDark);
+              _shareImage(context); // Direct share, no bottom sheet
             },
           ),
         ),
@@ -423,7 +423,9 @@ class ResultScreen extends StatelessWidget {
     try {
       // Save image to temporary file
       final tempDir = await getTemporaryDirectory();
-      final file = File('${tempDir.path}/inkvision_${styleName}_${DateTime.now().millisecondsSinceEpoch}.png');
+      final file = File(
+        '${tempDir.path}/inkvision_${styleName}_${DateTime.now().millisecondsSinceEpoch}.png',
+      );
       await file.writeAsBytes(generatedImageBytes!);
 
       // Share the image file
@@ -443,9 +445,9 @@ class ResultScreen extends StatelessWidget {
 
   Future<void> _saveImageToGallery(BuildContext context) async {
     if (generatedImageBytes == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No image to save')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('No image to save')));
       return;
     }
 
@@ -456,15 +458,15 @@ class ResultScreen extends StatelessWidget {
       );
 
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Image saved to gallery')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Image saved to gallery')));
       }
     } catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error saving image: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error saving image: $e')));
       }
     }
   }
