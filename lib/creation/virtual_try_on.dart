@@ -7,7 +7,6 @@ import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:gal/gal.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:google_mlkit_selfie_segmentation/google_mlkit_selfie_segmentation.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../services/prodia_api_service.dart';
@@ -29,9 +28,7 @@ class VirtualTryOnScreen extends StatefulWidget {
 class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   File? _bodyPartImage;
   bool _isSaving = false;
-  bool _isAnalyzing = false;
-  bool _isApplying = false;
-  bool _isPlacementDirty = false;
+  bool _isProcessing = false;
   Uint8List? _processedTryOnBytes; // final processed (img2img) output
   Offset _tattooPosition = const Offset(200, 300);
   double _tattooScale = 1.0;
@@ -41,20 +38,11 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   bool _isCameraInitialized = false;
   final GlobalKey _previewRepaintKey = GlobalKey();
   final ProdiaApiService _apiService = ProdiaApiService();
+  final ScrollController _scrollController = ScrollController();
 
   // Gesture tracking variables
   double _lastScale = 1.0;
   double _lastRotation = 0.0;
-
-  // ML Kit Selfie Segmentation
-  final SelfieSegmenter _selfieSegmenter = SelfieSegmenter(
-    mode: SegmenterMode.stream,
-    enableRawSizeMask: true,
-  );
-  SegmentationMask? _skinMask;
-  List<double> _maskConfidences = const [];
-  int _maskWidth = 0;
-  int _maskHeight = 0;
 
   @override
   void initState() {
@@ -83,6 +71,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   @override
   void dispose() {
     _cameraController?.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -113,14 +102,11 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     if (confirmedImage != null) {
       setState(() {
         _bodyPartImage = confirmedImage;
-        _isAnalyzing = true;
-        _isPlacementDirty = true;
         _processedTryOnBytes = null;
-        _maskConfidences = const [];
-        _maskWidth = 0;
-        _maskHeight = 0;
+        _tattooPosition = const Offset(200, 300);
+        _tattooScale = 1.0;
+        _tattooRotation = 0.0;
       });
-      await _processImageForSkinDetection(confirmedImage);
     }
   }
 
@@ -144,171 +130,64 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       if (confirmedImage != null) {
         setState(() {
           _bodyPartImage = confirmedImage;
-          _isAnalyzing = true;
-          _isPlacementDirty = true;
           _processedTryOnBytes = null;
-          _maskConfidences = const [];
-          _maskWidth = 0;
-          _maskHeight = 0;
-        });
-        await _processImageForSkinDetection(confirmedImage);
-      }
-    }
-  }
-
-  /// Process image using ML Kit Selfie Segmentation to detect human skin
-  Future<void> _processImageForSkinDetection(File imageFile) async {
-    try {
-      debugPrint('VirtualTryOn: Processing image for skin detection...');
-
-      final inputImage = InputImage.fromFilePath(imageFile.path);
-
-      // Process with ML Kit
-      final mask = await _selfieSegmenter.processImage(inputImage);
-
-      if (mask != null) {
-        debugPrint('VirtualTryOn: Skin mask detected successfully');
-        debugPrint(
-          'VirtualTryOn: Mask dimensions: ${mask.width}x${mask.height}',
-        );
-
-        setState(() {
-          _skinMask = mask;
-          _maskWidth = mask.width;
-          _maskHeight = mask.height;
-          _maskConfidences = mask.confidences;
-        });
-
-        // Automatically place tattoo on detected skin area
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) {
-            _autoPlaceTattooOnSkin();
-          }
-        });
-      } else {
-        debugPrint('VirtualTryOn: No skin detected in image');
-        setState(() {
-          _skinMask = null;
-          _maskWidth = 0;
-          _maskHeight = 0;
-          _maskConfidences = const [];
-        });
-      }
-    } catch (e) {
-      debugPrint('VirtualTryOn: Error processing skin detection: $e');
-      setState(() {
-        _skinMask = null;
-        _maskWidth = 0;
-        _maskHeight = 0;
-        _maskConfidences = const [];
-      });
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isAnalyzing = false;
+          _tattooPosition = const Offset(200, 300);
+          _tattooScale = 1.0;
+          _tattooRotation = 0.0;
         });
       }
     }
   }
 
-  /// Check if a position is on human skin
-  bool _isPositionOnSkin(Offset position) {
-    if (_maskWidth == 0 || _maskHeight == 0 || _maskConfidences.isEmpty) {
-      // If no mask, allow placement (fallback)
-      return true;
-    }
-
-    // Get image dimensions from the displayed image
-    final imageSize = MediaQuery.of(context).size;
-
-    // Calculate scale factors - mask dimensions
-    final maskWidth = _maskWidth.toDouble();
-    final maskHeight = _maskHeight.toDouble();
-    final imageAspectRatio = maskWidth / maskHeight;
-    final screenAspectRatio = imageSize.width / imageSize.height;
-
-    double displayWidth, displayHeight, offsetX, offsetY;
-
-    if (imageAspectRatio > screenAspectRatio) {
-      // Image is wider - fit to width
-      displayWidth = imageSize.width;
-      displayHeight = imageSize.width / imageAspectRatio;
-      offsetX = 0;
-      offsetY = (imageSize.height - displayHeight) / 2;
-    } else {
-      // Image is taller - fit to height
-      displayHeight = imageSize.height;
-      displayWidth = imageSize.height * imageAspectRatio;
-      offsetX = (imageSize.width - displayWidth) / 2;
-      offsetY = 0;
-    }
-
-    // Convert screen position to mask coordinates
-    final maskX = ((position.dx - offsetX) / displayWidth * maskWidth).toInt();
-    final maskY = ((position.dy - offsetY) / displayHeight * maskHeight)
-        .toInt();
-
-    // Check bounds
-    if (maskX < 0 ||
-        maskX >= maskWidth.toInt() ||
-        maskY < 0 ||
-        maskY >= maskHeight.toInt()) {
-      return false;
-    }
-
-    // Treat "person foreground" as allowed zone.
-    final idx = (maskY * _maskWidth) + maskX;
-    if (idx < 0 || idx >= _maskConfidences.length) return false;
-    return _maskConfidences[idx] >= 0.5;
-  }
-
-  /// Automatically place tattoo on detected skin area (center of image where skin is detected)
-  void _autoPlaceTattooOnSkin() {
-    if (_skinMask == null || _bodyPartImage == null || !mounted) {
-      // No skin detected, use default position
+  /// Automatically process image: combine body image + tattoo overlay and send to API
+  Future<void> _processImageAutomatically(File imageFile) async {
+    if (widget.tattooImageBytes == null) {
+      debugPrint('VirtualTryOn: No tattoo image to process');
       return;
     }
 
-    final imageSize = MediaQuery.of(context).size;
-    final maskWidth = _skinMask!.width.toDouble();
-    final maskHeight = _skinMask!.height.toDouble();
-    final imageAspectRatio = maskWidth / maskHeight;
-    final screenAspectRatio = imageSize.width / imageSize.height;
-
-    double displayWidth, displayHeight, offsetX, offsetY;
-
-    if (imageAspectRatio > screenAspectRatio) {
-      displayWidth = imageSize.width;
-      displayHeight = imageSize.width / imageAspectRatio;
-      offsetX = 0;
-      offsetY = (imageSize.height - displayHeight) / 2;
-    } else {
-      displayHeight = imageSize.height;
-      displayWidth = imageSize.height * imageAspectRatio;
-      offsetX = (imageSize.width - displayWidth) / 2;
-      offsetY = 0;
-    }
-
-    // Place tattoo at center of detected skin area (center of image)
-    // Convert mask center to screen coordinates
-    final maskCenterX = maskWidth / 2;
-    final maskCenterY = maskHeight / 2;
-
-    final screenX = (maskCenterX / maskWidth * displayWidth) + offsetX;
-    final screenY = (maskCenterY / maskHeight * displayHeight) + offsetY;
-
-    // Position tattoo center at this point (tattoo is 200x200, so offset by 100)
-    final bestSkinPosition = Offset(screenX - 100, screenY - 100);
-
     setState(() {
-      _tattooPosition = bestSkinPosition;
-      _tattooScale = 1.0;
-      _tattooRotation = 0.0;
+      _isProcessing = true;
     });
 
-    debugPrint(
-      'VirtualTryOn: Auto-placed tattoo at skin center (${screenX.toStringAsFixed(1)}, ${screenY.toStringAsFixed(1)})',
-    );
+    try {
+      debugPrint('VirtualTryOn: Capturing on-screen preview as final image...');
+
+      // Capture exactly what user sees in the preview (body + tattoo overlay)
+      final boundary =
+          _previewRepaintKey.currentContext?.findRenderObject()
+              as RenderRepaintBoundary?;
+      if (boundary == null) {
+        throw Exception('Preview not ready');
+      }
+
+      final uiImage = await boundary.toImage(pixelRatio: 2.0);
+      final byteData = await uiImage.toByteData(format: ui.ImageByteFormat.png);
+      if (byteData == null) {
+        throw Exception('Failed to encode preview');
+      }
+      final result = byteData.buffer.asUint8List();
+
+      if (!mounted) return;
+      setState(() {
+        _processedTryOnBytes = result;
+      });
+
+      debugPrint('VirtualTryOn: Preview capture completed');
+    } catch (e) {
+      debugPrint('VirtualTryOn: Error processing image: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Processing failed: $e')));
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+      }
+    }
   }
 
   Future<void> _showImageSourceDialog() async {
@@ -354,13 +233,11 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
 
   Future<void> _saveToGallery() async {
     try {
-      if (_bodyPartImage == null) return;
-      if (_isAnalyzing) return;
-      if (_isPlacementDirty || _processedTryOnBytes == null) {
+      if (_processedTryOnBytes == null) {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Please tap Apply first'),
+            content: Text('No processed image to save'),
             duration: Duration(seconds: 2),
           ),
         );
@@ -389,86 +266,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       if (mounted) {
         setState(() {
           _isSaving = false;
-        });
-      }
-    }
-  }
-
-  // NOTE: We save the on-screen preview via RepaintBoundary, so the output matches exactly.
-
-  Future<Uint8List> _capturePreviewBytes() async {
-    final boundary =
-        _previewRepaintKey.currentContext?.findRenderObject()
-            as RenderRepaintBoundary?;
-    if (boundary == null) {
-      throw Exception('Preview not ready');
-    }
-
-    final ui.Image image = await boundary.toImage(pixelRatio: 2.0);
-    final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    if (byteData == null) {
-      throw Exception('Failed to encode preview');
-    }
-    return byteData.buffer.asUint8List();
-  }
-
-  Future<void> _applyTryOnProcessing() async {
-    if (_bodyPartImage == null) return;
-    if (_isAnalyzing || _isSaving || _isApplying) return;
-    if (!_isPlacementDirty) return;
-
-    // Validate tattoo center is on person/skin region.
-    final tattooCenter = Offset(
-      _tattooPosition.dx + 100 * _tattooScale,
-      _tattooPosition.dy + 100 * _tattooScale,
-    );
-    if (!_isPositionOnSkin(tattooCenter)) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please keep the tattoo on the skin area only'),
-          duration: Duration(seconds: 2),
-        ),
-      );
-      return;
-    }
-
-    setState(() {
-      _isApplying = true;
-    });
-
-    try {
-      final previewBytes = await _capturePreviewBytes();
-      final tempDir = await Directory.systemTemp.createTemp('tryon_');
-      final tempFile = File(
-        '${tempDir.path}/tryon_${DateTime.now().millisecondsSinceEpoch}.png',
-      );
-      await tempFile.writeAsBytes(previewBytes);
-
-      final result = await _apiService.imageToImage(
-        imageFile: tempFile,
-        prompt:
-            'Make the tattoo look like a real tattoo on human skin, natural ink, realistic shading, blended with skin texture, high quality, preserve composition',
-        steps: 4,
-        guidanceScale: 1,
-      );
-
-      if (!mounted) return;
-      setState(() {
-        _processedTryOnBytes = result;
-        _isPlacementDirty = false;
-      });
-    } catch (e) {
-      debugPrint('VirtualTryOn: Apply processing failed: $e');
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Processing failed: $e')));
-      }
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isApplying = false;
         });
       }
     }
@@ -532,7 +329,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                     Expanded(
                       child: _bodyPartImage == null
                           ? _buildEmptyState(isDark)
-                          : _buildTattooPreview(isDark),
+                          : _buildResultView(isDark),
                     ),
                     // Action buttons
                     Padding(
@@ -570,22 +367,24 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                                   height: 56,
                                   child: ElevatedButton(
                                     onPressed:
-                                        (_isSaving ||
-                                            _isAnalyzing ||
-                                            _isApplying ||
-                                            !_isPlacementDirty)
+                                        (_isProcessing ||
+                                            _bodyPartImage == null)
                                         ? null
-                                        : _applyTryOnProcessing,
+                                        : () async {
+                                            if (_bodyPartImage == null) {
+                                              return;
+                                            }
+                                            await _processImageAutomatically(
+                                              _bodyPartImage!,
+                                            );
+                                          },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color(0xFFA6541D),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child:
-                                        (_isSaving ||
-                                            _isAnalyzing ||
-                                            _isApplying)
+                                    child: _isProcessing
                                         ? const SizedBox(
                                             height: 20,
                                             width: 20,
@@ -597,10 +396,8 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                                                   ),
                                             ),
                                           )
-                                        : Text(
-                                            _isPlacementDirty
-                                                ? 'Apply'
-                                                : 'Applied',
+                                        : const Text(
+                                            'Apply',
                                             style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w600,
@@ -617,9 +414,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                                   child: ElevatedButton(
                                     onPressed:
                                         (_isSaving ||
-                                            _isAnalyzing ||
-                                            _isApplying ||
-                                            _isPlacementDirty ||
+                                            _isProcessing ||
                                             _processedTryOnBytes == null)
                                         ? null
                                         : _saveToGallery,
@@ -688,7 +483,53 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     );
   }
 
-  Widget _buildTattooPreview(bool isDark) {
+  Widget _buildResultView(bool isDark) {
+    if (_isProcessing) {
+      return Container(
+        color: Colors.black54,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircularProgressIndicator(color: AppColors.cardGlowStart),
+              const SizedBox(height: 16),
+              const Text(
+                'Processing tattoo on human skin...',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Amaranth',
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'This may take a few moments',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 14,
+                  fontFamily: 'Amaranth',
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (_processedTryOnBytes != null) {
+      // Show processed result - pinch‑zoom & pan
+      return InteractiveViewer(
+        minScale: 1.0,
+        maxScale: 4.0,
+        panEnabled: true,
+        scaleEnabled: true,
+        child: Center(
+          child: Image.memory(_processedTryOnBytes!, fit: BoxFit.contain),
+        ),
+      );
+    }
+
+    // Show preview with tattoo overlay (before processing)
     return GestureDetector(
       onScaleStart: (details) {
         _lastScale = _tattooScale;
@@ -704,21 +545,11 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
           if (details.rotation != 0.0) {
             _tattooRotation = _lastRotation + details.rotation;
           }
-          // Handle pan (translation) - restrict to skin areas only
+          // Handle pan (translation)
           final newPosition = _tattooPosition + details.focalPointDelta;
-
-          // Check if new position is on skin (center of tattoo)
-          final tattooCenter = Offset(
-            newPosition.dx + 100 * _tattooScale, // Approximate tattoo center
-            newPosition.dy + 100 * _tattooScale,
-          );
-
-          if (_isPositionOnSkin(tattooCenter)) {
-            _tattooPosition = newPosition;
-            _isPlacementDirty = true;
-            _processedTryOnBytes = null;
-          }
-          // If not on skin, don't update position (tattoo stays in place)
+          _tattooPosition = newPosition;
+          // Any change to placement invalidates previous processed result
+          _processedTryOnBytes = null;
         });
       },
       child: RepaintBoundary(
@@ -742,43 +573,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                       height: 200,
                       fit: BoxFit.contain,
                     ),
-                  ),
-                ),
-              ),
-            // Loading overlay after capture (skin detection / applying / saving)
-            if (_isAnalyzing || _isApplying || _isSaving)
-              Container(
-                color: Colors.black54,
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const CircularProgressIndicator(
-                        color: AppColors.cardGlowStart,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        _isAnalyzing
-                            ? 'Detecting skin...'
-                            : _isApplying
-                            ? 'Applying tattoo...'
-                            : 'Saving to gallery...',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Amaranth',
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'This may take a few moments',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
-                          fontFamily: 'Amaranth',
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ),
@@ -873,7 +667,6 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
                           }
                         },
 
-                        
                         child: Container(
                           width: 60,
                           height: 60,
