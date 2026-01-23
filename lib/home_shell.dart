@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'utils/colors.dart';
 import 'creation/home_page.dart';
 import 'widgets/app_drawer.dart';
+import 'widgets/exit_confirmation_dialog.dart';
 import 'providers/theme_provider.dart';
 
 class HomeShell extends StatefulWidget {
@@ -26,40 +27,48 @@ class _HomeShellState extends State<HomeShell> {
     _scaffoldKey.currentState?.openDrawer();
   }
 
+  Future<bool> _onWillPop() async {
+    final shouldExit = await ExitConfirmationDialog.show(context);
+    return shouldExit ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final themeProvider = ThemeProvider.of(context);
 
-    return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: isDark
-          ? AppColors.darkBackground
-          : AppColors.lightBackground,
-      drawer: AppDrawer(
-        isDarkTheme: themeProvider?.isDarkTheme ?? false,
-        onThemeToggle: themeProvider?.toggleTheme ?? () {},
-      ),
-      body: Stack(
-        children: [
-          // Main content area based on selected index
-          SafeArea(
-            child: Container(
-              color: isDark
-                  ? AppColors.darkBackground
-                  : AppColors.lightBackground,
-              child: _buildCurrentPage(openDrawer),
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        key: _scaffoldKey,
+        backgroundColor: isDark
+            ? AppColors.darkBackground
+            : AppColors.lightBackground,
+        drawer: AppDrawer(
+          isDarkTheme: themeProvider?.isDarkTheme ?? false,
+          onThemeToggle: themeProvider?.toggleTheme ?? () {},
+        ),
+        body: Stack(
+          children: [
+            // Main content area based on selected index
+            SafeArea(
+              child: Container(
+                color: isDark
+                    ? AppColors.darkBackground
+                    : AppColors.lightBackground,
+                child: _buildCurrentPage(openDrawer),
+              ),
             ),
-          ),
-          // Floating bottom navigation bar - positioned above safe area
-          Positioned(
-            left: 20,
-            right: 20,
-            bottom: bottomPadding > 0 ? bottomPadding + 10 : 20,
-            child: _buildFloatingNavBar(),
-          ),
-        ],
+            // Floating bottom navigation bar - positioned above safe area
+            Positioned(
+              left: 20,
+              right: 20,
+              bottom: bottomPadding > 0 ? bottomPadding + 10 : 20,
+              child: _buildFloatingNavBar(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -82,10 +91,18 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   Widget _buildFloatingNavBar() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final navBarBgColor = isDark
+        ? AppColors.navBarBackground
+        : AppColors.lightBackground;
+
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.navBarBackground,
+        color: navBarBgColor,
         borderRadius: BorderRadius.circular(50),
+        border: isDark
+            ? null
+            : Border.all(color: AppColors.textGrey.withOpacity(0.2), width: 1),
         boxShadow: [
           BoxShadow(
             color: AppColors.navBarActive.withOpacity(0.3),
@@ -124,10 +141,13 @@ class _HomeShellState extends State<HomeShell> {
     required String label,
     required int index,
   }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final bool isSelected = _selectedIndex == index;
     final Color itemColor = isSelected
         ? AppColors.navBarActive
-        : AppColors.navBarInactive;
+        : (isDark
+              ? AppColors.navBarInactive
+              : AppColors.textPrimary.withOpacity(0.6));
 
     return Expanded(
       child: GestureDetector(
