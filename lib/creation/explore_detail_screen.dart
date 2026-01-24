@@ -87,18 +87,12 @@ class ExploreDetailScreen extends StatelessWidget {
                           MediaQuery.of(context).size.width *
                           0.6, // 60% of screen width
                       height: MediaQuery.of(context).size.width * 0.6,
-                      child: smallImagePath != null
-                          ? Image.asset(
-                              smallImagePath!,
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Image.asset(
-                                  bigImagePath,
-                                  fit: BoxFit.contain,
-                                );
-                              },
-                            )
-                          : Image.asset(bigImagePath, fit: BoxFit.contain),
+                      child: _buildImageAsset(
+                        context,
+                        smallImagePath,
+                        bigImagePath,
+                        isDark,
+                      ),
                     ),
                   ),
                 ),
@@ -226,5 +220,63 @@ class ExploreDetailScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Builds the image asset, automatically using dark version in dark theme
+  Widget _buildImageAsset(
+    BuildContext context,
+    String? smallImagePath,
+    String bigImagePath,
+    bool isDark,
+  ) {
+    if (smallImagePath == null) {
+      return Image.asset(bigImagePath, fit: BoxFit.contain);
+    }
+
+    final String regularSmallPath = smallImagePath;
+
+    if (isDark) {
+      // Try dark versions first
+      // Pattern 1: catsmall.png -> catsmalldark.png
+      final String darkPath1 = regularSmallPath.replaceAllMapped(
+        RegExp(r'(.+)(\.(png|jpg|jpeg))$'),
+        (match) => '${match.group(1)}dark${match.group(2)}',
+      );
+      // Pattern 2: feathersmall.png -> feathersmall_dark.png
+      final String darkPath2 = regularSmallPath.replaceAllMapped(
+        RegExp(r'(.+)(\.(png|jpg|jpeg))$'),
+        (match) => '${match.group(1)}_dark${match.group(2)}',
+      );
+
+      // Try dark version 1 first, then dark version 2, then regular small, then big
+      return Image.asset(
+        darkPath1,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stackTrace) {
+          return Image.asset(
+            darkPath2,
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) {
+              return Image.asset(
+                regularSmallPath,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(bigImagePath, fit: BoxFit.contain);
+                },
+              );
+            },
+          );
+        },
+      );
+    } else {
+      // Light theme: use regular small image or fallback to big
+      return Image.asset(
+        regularSmallPath,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stackTrace) {
+          return Image.asset(bigImagePath, fit: BoxFit.contain);
+        },
+      );
+    }
   }
 }

@@ -1,0 +1,143 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/material.dart';
+import '../../../utils/colors.dart';
+
+class ResultViewWidget extends StatefulWidget {
+  final File? bodyPartImage;
+  final Uint8List? tattooImageBytes;
+  final Uint8List? processedTryOnBytes;
+  final bool isProcessing;
+  final Offset tattooPosition;
+  final double tattooScale;
+  final double tattooRotation;
+  final GlobalKey previewRepaintKey;
+  final Function(Offset, double, double) onTattooTransform;
+  final bool isDark;
+
+  const ResultViewWidget({
+    super.key,
+    required this.bodyPartImage,
+    required this.tattooImageBytes,
+    required this.processedTryOnBytes,
+    required this.isProcessing,
+    required this.tattooPosition,
+    required this.tattooScale,
+    required this.tattooRotation,
+    required this.previewRepaintKey,
+    required this.onTattooTransform,
+    required this.isDark,
+  });
+
+  @override
+  State<ResultViewWidget> createState() => _ResultViewWidgetState();
+}
+
+class _ResultViewWidgetState extends State<ResultViewWidget> {
+  // Gesture tracking variables
+  double _lastScale = 1.0;
+  double _lastRotation = 0.0;
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.isProcessing) {
+      return Container(
+        color: Colors.black54,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircularProgressIndicator(color: AppColors.cardGlowStart),
+              const SizedBox(height: 16),
+              const Text(
+                'Processing tattoo on human skin...',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Amaranth',
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'This may take a few moments',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 14,
+                  fontFamily: 'Amaranth',
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (widget.processedTryOnBytes != null) {
+      // Show processed result - pinch‑zoom & pan
+      return InteractiveViewer(
+        minScale: 1.0,
+        maxScale: 4.0,
+        panEnabled: true,
+        scaleEnabled: true,
+        child: Center(
+          child: Image.memory(widget.processedTryOnBytes!, fit: BoxFit.contain),
+        ),
+      );
+    }
+
+    // Show preview with tattoo overlay (before processing)
+    return GestureDetector(
+      onScaleStart: (details) {
+        _lastScale = widget.tattooScale;
+        _lastRotation = widget.tattooRotation;
+      },
+      onScaleUpdate: (details) {
+        double newScale = _lastScale;
+        double newRotation = _lastRotation;
+        Offset newPosition = widget.tattooPosition;
+
+        // Handle scale
+        if (details.scale != 1.0) {
+          newScale = _lastScale * details.scale;
+        }
+        // Handle rotation
+        if (details.rotation != 0.0) {
+          newRotation = _lastRotation + details.rotation;
+        }
+        // Handle pan (translation)
+        newPosition = widget.tattooPosition + details.focalPointDelta;
+
+        widget.onTattooTransform(newPosition, newScale, newRotation);
+      },
+      child: RepaintBoundary(
+        key: widget.previewRepaintKey,
+        child: Stack(
+          children: [
+            // Body part image
+            Center(
+              child: Image.file(widget.bodyPartImage!, fit: BoxFit.contain),
+            ),
+            // Tattoo overlay (draggable)
+            if (widget.tattooImageBytes != null)
+              Positioned(
+                left: widget.tattooPosition.dx,
+                top: widget.tattooPosition.dy,
+                child: Transform.scale(
+                  scale: widget.tattooScale,
+                  child: Transform.rotate(
+                    angle: widget.tattooRotation,
+                    child: Image.memory(
+                      widget.tattooImageBytes!,
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}

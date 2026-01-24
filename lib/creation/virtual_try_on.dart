@@ -9,6 +9,12 @@ import 'package:gal/gal.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import 'virtual_try_on/pages/camera_preview_screen.dart';
+import 'virtual_try_on/pages/image_preview_screen.dart';
+import 'virtual_try_on/widgets/empty_state_widget.dart';
+import 'virtual_try_on/widgets/result_view_widget.dart';
+import 'virtual_try_on/widgets/virtual_try_on_header.dart';
+import 'virtual_try_on/widgets/action_buttons_widget.dart';
 
 class VirtualTryOnScreen extends StatefulWidget {
   final Uint8List? tattooImageBytes;
@@ -36,11 +42,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   List<CameraDescription>? _cameras;
   bool _isCameraInitialized = false;
   final GlobalKey _previewRepaintKey = GlobalKey();
-  final ScrollController _scrollController = ScrollController();
-
-  // Gesture tracking variables
-  double _lastScale = 1.0;
-  double _lastRotation = 0.0;
 
   @override
   void initState() {
@@ -69,7 +70,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   @override
   void dispose() {
     _cameraController?.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -79,6 +79,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
 
   Future<void> _openCamera() async {
     await _requestPermissions();
+    if (!mounted) return;
 
     if (!_isCameraInitialized || _cameraController == null) {
       ScaffoldMessenger.of(
@@ -88,6 +89,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     }
 
     // Navigate to camera preview - returns confirmed image or null
+    if (!mounted) return;
     final confirmedImage = await Navigator.push<File>(
       context,
       MaterialPageRoute(
@@ -110,6 +112,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
 
   Future<void> _pickImageFromGallery() async {
     await _requestPermissions();
+    if (!mounted) return;
 
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -117,6 +120,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
 
     if (image != null) {
       // Show preview screen with tick/cross buttons
+      if (!mounted) return;
       final confirmedImage = await Navigator.push<File>(
         context,
         MaterialPageRoute(
@@ -269,6 +273,16 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     }
   }
 
+  void _handleTattooTransform(Offset position, double scale, double rotation) {
+    setState(() {
+      _tattooPosition = position;
+      _tattooScale = scale;
+      _tattooRotation = rotation;
+      // Any change to placement invalidates previous processed result
+      _processedTryOnBytes = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -286,39 +300,9 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
           child: Stack(
             children: [
               // Header with close button
-              Positioned(
-                top: 16,
-                left: 20,
-                right: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.close,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                        size: 28,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    Text(
-                      'Virtual Try-On',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                        fontFamily: 'Amaranth',
-                      ),
-                    ),
-                    const SizedBox(width: 48), // Balance the close button
-                  ],
-                ),
+              VirtualTryOnHeader(
+                isDark: isDark,
+                onClose: () => Navigator.of(context).pop(),
               ),
               // Main content area
               Padding(
@@ -327,140 +311,35 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                   children: [
                     Expanded(
                       child: _bodyPartImage == null
-                          ? _buildEmptyState(isDark)
-                          : _buildResultView(isDark),
+                          ? EmptyStateWidget(isDark: isDark)
+                          : ResultViewWidget(
+                              bodyPartImage: _bodyPartImage,
+                              tattooImageBytes: widget.tattooImageBytes,
+                              processedTryOnBytes: _processedTryOnBytes,
+                              isProcessing: _isProcessing,
+                              tattooPosition: _tattooPosition,
+                              tattooScale: _tattooScale,
+                              tattooRotation: _tattooRotation,
+                              previewRepaintKey: _previewRepaintKey,
+                              onTattooTransform: _handleTattooTransform,
+                              isDark: isDark,
+                            ),
                     ),
                     // Action buttons
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 20.0,
-                        right: 20.0,
-                        top: 20.0,
-                        bottom: bottomPadding > 0 ? bottomPadding : 20.0,
-                      ),
-                      child: Column(
-                        children: [
-                          if (_bodyPartImage == null)
-                            SizedBox(
-                              width: double.infinity,
-                              height: 56,
-                              child: ElevatedButton(
-                                onPressed: _showImageSourceDialog,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFA6541D),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                                child: Text(
-                                  'Capture Photo',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                    fontFamily: 'Amaranth',
-                                  ),
-                                ),
-                              ),
-                            )
-                          else
-                            Column(
-                              children: [
-                                if (_processedTryOnBytes == null)
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 56,
-                                    child: ElevatedButton(
-                                      onPressed:
-                                          (_isProcessing ||
-                                              _bodyPartImage == null)
-                                          ? null
-                                          : () async {
-                                              if (_bodyPartImage == null) {
-                                                return;
-                                              }
-                                              await _processImageAutomatically(
-                                                _bodyPartImage!,
-                                              );
-                                            },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(
-                                          0xFFA6541D,
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            12,
-                                          ),
-                                        ),
-                                      ),
-                                      child: _isProcessing
-                                          ? const SizedBox(
-                                              height: 20,
-                                              width: 20,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                      Color
-                                                    >(Colors.white),
-                                              ),
-                                            )
-                                          : const Text(
-                                              'Apply',
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.white,
-                                                fontFamily: 'Amaranth',
-                                              ),
-                                            ),
-                                    ),
-                                  ),
-                                if (_processedTryOnBytes == null)
-                                  const SizedBox(height: 12),
-                                SizedBox(
-                                  width: double.infinity,
-                                  height: 56,
-                                  child: ElevatedButton(
-                                    onPressed:
-                                        (_isSaving ||
-                                            _isProcessing ||
-                                            _processedTryOnBytes == null)
-                                        ? null
-                                        : _saveToGallery,
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFFA6541D),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                    ),
-                                    child: _isSaving
-                                        ? const SizedBox(
-                                            height: 20,
-                                            width: 20,
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: 2,
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                    Colors.white,
-                                                  ),
-                                            ),
-                                          )
-                                        : const Text(
-                                            'Download',
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.white,
-                                              fontFamily: 'Amaranth',
-                                            ),
-                                          ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                        ],
-                      ),
+                    ActionButtonsWidget(
+                      bodyPartImage: _bodyPartImage,
+                      isProcessing: _isProcessing,
+                      isSaving: _isSaving,
+                      processedTryOnBytes: _processedTryOnBytes,
+                      onCapturePhoto: _showImageSourceDialog,
+                      onApply: () async {
+                        if (_bodyPartImage == null) {
+                          return;
+                        }
+                        await _processImageAutomatically(_bodyPartImage!);
+                      },
+                      onSave: _saveToGallery,
+                      bottomPadding: bottomPadding,
                     ),
                   ],
                 ),
@@ -468,351 +347,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildEmptyState(bool isDark) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.camera_alt, size: 80, color: AppColors.textGrey),
-          const SizedBox(height: 24),
-          Text(
-            'Capture a photo of your hand\nor body part to try on the tattoo',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-              fontFamily: 'Amaranth',
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildResultView(bool isDark) {
-    if (_isProcessing) {
-      return Container(
-        color: Colors.black54,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircularProgressIndicator(color: AppColors.cardGlowStart),
-              const SizedBox(height: 16),
-              const Text(
-                'Processing tattoo on human skin...',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'Amaranth',
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'This may take a few moments',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 14,
-                  fontFamily: 'Amaranth',
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    if (_processedTryOnBytes != null) {
-      // Show processed result - pinch‑zoom & pan
-      return InteractiveViewer(
-        minScale: 1.0,
-        maxScale: 4.0,
-        panEnabled: true,
-        scaleEnabled: true,
-        child: Center(
-          child: Image.memory(_processedTryOnBytes!, fit: BoxFit.contain),
-        ),
-      );
-    }
-
-    // Show preview with tattoo overlay (before processing)
-    return GestureDetector(
-      onScaleStart: (details) {
-        _lastScale = _tattooScale;
-        _lastRotation = _tattooRotation;
-      },
-      onScaleUpdate: (details) {
-        setState(() {
-          // Handle scale
-          if (details.scale != 1.0) {
-            _tattooScale = _lastScale * details.scale;
-          }
-          // Handle rotation
-          if (details.rotation != 0.0) {
-            _tattooRotation = _lastRotation + details.rotation;
-          }
-          // Handle pan (translation)
-          final newPosition = _tattooPosition + details.focalPointDelta;
-          _tattooPosition = newPosition;
-          // Any change to placement invalidates previous processed result
-          _processedTryOnBytes = null;
-        });
-      },
-      child: RepaintBoundary(
-        key: _previewRepaintKey,
-        child: Stack(
-          children: [
-            // Body part image
-            Center(child: Image.file(_bodyPartImage!, fit: BoxFit.contain)),
-            // Tattoo overlay (draggable)
-            if (widget.tattooImageBytes != null)
-              Positioned(
-                left: _tattooPosition.dx,
-                top: _tattooPosition.dy,
-                child: Transform.scale(
-                  scale: _tattooScale,
-                  child: Transform.rotate(
-                    angle: _tattooRotation,
-                    child: Image.memory(
-                      widget.tattooImageBytes!,
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// Custom painter for rendering skin mask overlay
-// (Removed) _SkinMaskPainter was unused.
-
-// Camera Preview Screen
-class CameraPreviewScreen extends StatefulWidget {
-  final CameraController cameraController;
-
-  const CameraPreviewScreen({super.key, required this.cameraController});
-
-  @override
-  State<CameraPreviewScreen> createState() => _CameraPreviewScreenState();
-}
-
-class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
-  File? _capturedImage;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          // Show captured image preview or camera preview
-          if (_capturedImage != null)
-            SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Image.file(_capturedImage!, fit: BoxFit.cover),
-            )
-          else
-            SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: CameraPreview(widget.cameraController),
-            ),
-          // Close button (top left)
-          Positioned(
-            top: 40,
-            left: 20,
-            child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.white, size: 32),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-          // Bottom buttons: Tick/Cross if captured, Capture button if not
-          Positioned(
-            bottom: 120,
-            left: 0,
-            right: 0,
-            child: _capturedImage != null
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Cross button - retake
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _capturedImage = null;
-                          });
-                        },
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.red.withValues(alpha: 0.8),
-                            border: Border.all(color: Colors.white, width: 3),
-                          ),
-                          child: const Icon(
-                            Icons.close,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 40),
-                      // Tick button - confirm
-                      GestureDetector(
-                        onTap: () {
-                          if (_capturedImage != null) {
-                            Navigator.pop(context, _capturedImage);
-                          }
-                        },
-
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.green.withValues(alpha: 0.8),
-                            border: Border.all(color: Colors.white, width: 3),
-                          ),
-                          child: const Icon(
-                            Icons.check,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                : Center(
-                    child: GestureDetector(
-                      onTap: _capturePhoto,
-                      child: Container(
-                        width: 70,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          border: Border.all(color: Colors.white, width: 4),
-                        ),
-                        child: const Icon(
-                          Icons.camera,
-                          color: Colors.black,
-                          size: 40,
-                        ),
-                      ),
-                    ),
-                  ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<void> _capturePhoto() async {
-    try {
-      final XFile image = await widget.cameraController.takePicture();
-      if (mounted) {
-        setState(() {
-          _capturedImage = File(image.path);
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error capturing photo: $e')));
-      }
-    }
-  }
-}
-
-/// Preview screen for gallery-selected images with tick/cross buttons
-class ImagePreviewScreen extends StatelessWidget {
-  final File imageFile;
-
-  const ImagePreviewScreen({super.key, required this.imageFile});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          // Image preview
-          SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Image.file(imageFile, fit: BoxFit.cover),
-          ),
-          // Close button (top left)
-          Positioned(
-            top: 40,
-            left: 20,
-            child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.white, size: 32),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-          // Bottom buttons: Cross and Tick
-          Positioned(
-            bottom: 40,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Cross button - cancel
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red.withValues(alpha: 0.8),
-                      border: Border.all(color: Colors.white, width: 3),
-                    ),
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 40),
-                // Tick button - confirm
-                GestureDetector(
-                  onTap: () => Navigator.pop(context, imageFile),
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.green.withValues(alpha: 0.8),
-                      border: Border.all(color: Colors.white, width: 3),
-                    ),
-                    child: const Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

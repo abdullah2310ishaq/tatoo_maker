@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     'Unicorn':
         'Unicorn head tattoo design, golden horn, flowing rainbow mane, detailed fantasy illustration',
     'Floral':
-        'Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast',
+        'Pastel floral bouquet, peach & blush roses, wildflowers, golden foliage, cascading ribbons, asymmetrical teardrop, romantic vintage, soft lighting, high realism, dark background.',
   };
 
   List<_TattooStyleItem> get _styles {
