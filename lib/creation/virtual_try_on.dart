@@ -639,7 +639,7 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
           ),
           // Bottom buttons: Tick/Cross if captured, Capture button if not
           Positioned(
-            bottom: 40,
+            bottom: 120,
             left: 0,
             right: 0,
             child: _capturedImage != null

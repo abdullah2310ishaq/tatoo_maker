@@ -13,37 +13,36 @@ class TattooPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bottomPadding = MediaQuery.of(context).padding.bottom;
-    // Add padding for floating navbar (approximately 80px height + spacing)
-    final navbarHeight = 270.0 + bottomPadding;
 
     return SafeArea(
       child: Container(
         decoration: isDark
             ? ThemeManager.darkModeBackgroundGradient
             : ThemeManager.lightModeBackground,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(
-            left: 20.0,
-            right: 20.0,
-            bottom: navbarHeight, // Ensure content scrolls above navbar
-          ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
-              // Header: menu + InkVision + notification (same as homepage)
+              // Header: menu + InkVision + notification
               _buildHeader(context, isDark: isDark),
-              const SizedBox(height: 130),
-              // Unicorn image centered
-              _buildUnicornImage(),
-              const SizedBox(height: 70),
-              // Welcome text
-              _buildWelcomeText(isDark),
-              const SizedBox(height: 30),
-              // Continue button
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 80),
+                    // Unicorn image centered
+                    _buildUnicornImage(),
+                    const SizedBox(height: 40),
+                    // Welcome text
+                    _buildWelcomeText(isDark),
+                  ],
+                ),
+              ),
+              // Continue button - little above navbar
               _buildContinueButton(context, isDark),
-              const SizedBox(height: 20),
+              const SizedBox(height: 120),
             ],
           ),
         ),
