@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'utils/colors.dart';
 import 'creation/home_page.dart';
+import 'tattoo/tattoo_page.dart';
 import 'widgets/app_drawer.dart';
 import 'widgets/exit_confirmation_dialog.dart';
 import 'providers/theme_provider.dart';
@@ -27,19 +29,22 @@ class _HomeShellState extends State<HomeShell> {
     _scaffoldKey.currentState?.openDrawer();
   }
 
-  Future<bool> _onWillPop() async {
-    final shouldExit = await ExitConfirmationDialog.show(context);
-    return shouldExit ?? false;
-  }
-
   @override
   Widget build(BuildContext context) {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final themeProvider = ThemeProvider.of(context);
 
-    return WillPopScope(
-      onWillPop: _onWillPop,
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        if (!didPop && mounted) {
+          final shouldExit = await ExitConfirmationDialog.show(context);
+          if (shouldExit == true && mounted) {
+            SystemNavigator.pop();
+          }
+        }
+      },
       child: Scaffold(
         key: _scaffoldKey,
         backgroundColor: isDark
@@ -78,9 +83,7 @@ class _HomeShellState extends State<HomeShell> {
       case 0:
         return HomePage(onMenuTap: openDrawer);
       case 1:
-        return const Center(
-          child: Text('Tattoo Page', style: TextStyle(fontSize: 24)),
-        );
+        return TattooPage(onMenuTap: openDrawer);
       case 2:
         return const Center(
           child: Text('Flower Page', style: TextStyle(fontSize: 24)),
@@ -102,10 +105,13 @@ class _HomeShellState extends State<HomeShell> {
         borderRadius: BorderRadius.circular(50),
         border: isDark
             ? null
-            : Border.all(color: AppColors.textGrey.withOpacity(0.2), width: 1),
+            : Border.all(
+                color: AppColors.textGrey.withValues(alpha: 0.2),
+                width: 1,
+              ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.navBarActive.withOpacity(0.3),
+            color: AppColors.navBarActive.withValues(alpha: 0.3),
             blurRadius: 20,
             spreadRadius: 2,
             offset: const Offset(0, 4),
@@ -147,7 +153,7 @@ class _HomeShellState extends State<HomeShell> {
         ? AppColors.navBarActive
         : (isDark
               ? AppColors.navBarInactive
-              : AppColors.textPrimary.withOpacity(0.6));
+              : AppColors.textPrimary.withValues(alpha: 0.6));
 
     return Expanded(
       child: GestureDetector(

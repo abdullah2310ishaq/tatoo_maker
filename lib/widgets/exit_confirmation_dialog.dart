@@ -21,15 +21,18 @@ class ExitConfirmationDialog extends StatelessWidget {
         ? AppColors.buttonBackground
         : AppColors.lightBackground;
 
+    // final screenWidth = MediaQuery.of(context).size.width;
+
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
+        width: double.infinity, // 85% of screen width
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: AppColors.titleGradientStart.withOpacity(0.3),
+            color: AppColors.titleGradientStart.withValues(alpha: 0.3),
             width: 1,
           ),
         ),
@@ -60,7 +63,7 @@ class ExitConfirmationDialog extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
-                color: textColor.withOpacity(0.7),
+                color: textColor.withValues(alpha: 0.7),
                 fontFamily: 'Amaranth',
               ),
             ),
@@ -78,7 +81,9 @@ class ExitConfirmationDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       side: BorderSide(
-                        color: AppColors.titleGradientStart.withOpacity(0.5),
+                        color: AppColors.titleGradientStart.withValues(
+                          alpha: 0.5,
+                        ),
                         width: 1,
                       ),
                     ),
@@ -98,7 +103,7 @@ class ExitConfirmationDialog extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      SystemNavigator.pop();
+                      Navigator.of(context).pop(true);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFA6541D), // Burnt orange
