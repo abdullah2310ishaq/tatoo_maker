@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/inkvision_underline.dart';
+import 'flower_input_screen.dart';
 
 class FlowerHome extends StatelessWidget {
   final VoidCallback? onMenuTap;
@@ -185,7 +186,9 @@ class FlowerHome extends StatelessWidget {
       height: 56,
       child: ElevatedButton(
         onPressed: () {
-          // TODO: Navigate to flower creation flow
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const FlowerInputScreen()),
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFA6541D), // Burnt orange
