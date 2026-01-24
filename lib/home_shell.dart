@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'utils/colors.dart';
 import 'creation/home_page.dart';
 import 'tattoo/tattoo_page.dart';
+import 'flower/flower_home.dart';
 import 'widgets/app_drawer.dart';
 import 'widgets/exit_confirmation_dialog.dart';
 import 'providers/theme_provider.dart';
@@ -85,9 +86,7 @@ class _HomeShellState extends State<HomeShell> {
       case 1:
         return TattooPage(onMenuTap: openDrawer);
       case 2:
-        return const Center(
-          child: Text('Flower Page', style: TextStyle(fontSize: 24)),
-        );
+        return FlowerHome(onMenuTap: openDrawer);
       default:
         return HomePage(onMenuTap: openDrawer);
     }
