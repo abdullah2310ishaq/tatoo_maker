@@ -16,11 +16,11 @@ class RealOnboardingThirdScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Top illustration
-            Expanded(flex: 3, child: _buildTopSection(isDark)),
-            // Keyboard section
+            // Top illustration - smaller flex to move up
+            Expanded(flex: 8, child: _buildTopSection(isDark)),
+            // Keyboard section - more flex to move down
             Expanded(flex: 4, child: _buildKeyboardSection(isDark)),
-            // Bottom section: Feature title, description
+            // Bottom section: Feature title, description - smaller flex
             Expanded(flex: 3, child: _buildBottomSection(isDark)),
           ],
         ),
@@ -30,26 +30,28 @@ class RealOnboardingThirdScreen extends StatelessWidget {
 
   Widget _buildTopSection(bool isDark) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Spacer(flex: 1),
-        // Flower bouquet illustration
+        const SizedBox(height: 50),
+        // Flower bouquet illustration - bigger
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40.0),
           child: Image.asset(
-            isDark ? 'assets/third_one_dark.png' : 'assets/third_one_light.png',
+            isDark
+                ? 'assets/splash/third_one_dark.png'
+                : 'assets/splash/third_one_light.png',
             fit: BoxFit.contain,
-            height: 150,
+            height: 220,
             errorBuilder: (context, error, stackTrace) {
               return Icon(
                 Icons.local_florist,
-                size: 120,
+                size: 150,
                 color: isDark ? AppColors.textWhite : AppColors.textPrimary,
               );
             },
           ),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 2),
         // Tattoo Maker title
         Text(
           'Tattoo Maker',
@@ -61,23 +63,22 @@ class RealOnboardingThirdScreen extends StatelessWidget {
             fontFamily: 'Amaranth',
           ),
         ),
-        const Spacer(flex: 1),
       ],
     );
   }
 
   Widget _buildKeyboardSection(bool isDark) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // Keyboard image
+          // Keyboard image - moved down
           Expanded(
             child: Image.asset(
               isDark
-                  ? 'assets/third_two_dark.png'
-                  : 'assets/third_two_light.png',
+                  ? 'assets/splash/third_two_dark.png'
+                  : 'assets/splash/third_two_light.png',
               fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) {
                 // Simple placeholder if image doesn't exist
@@ -98,9 +99,9 @@ class RealOnboardingThirdScreen extends StatelessWidget {
 
   Widget _buildBottomSection(bool isDark) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           // Feature title
           Text(
@@ -113,7 +114,7 @@ class RealOnboardingThirdScreen extends StatelessWidget {
               fontFamily: 'Amaranth',
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
           // Description
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
