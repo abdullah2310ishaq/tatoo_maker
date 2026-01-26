@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/colors.dart';
 import '../models/onboarding_models.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -22,11 +23,11 @@ class ZodiacDisplayPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
         // Back button
         Container(
-          width: 40,
-          height: 40,
+          width: 40.w,
+          height: 40.h,
           decoration: BoxDecoration(
             color: isDark
                 ? AppColors.buttonBackground
@@ -37,7 +38,7 @@ class ZodiacDisplayPage extends StatelessWidget {
             icon: Icon(
               Icons.arrow_back,
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-              size: 20,
+              size: 20.sp,
             ),
             onPressed: onBack,
             padding: EdgeInsets.zero,
@@ -47,7 +48,7 @@ class ZodiacDisplayPage extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final availableHeight = constraints.maxHeight;
-              final imageSize = (availableHeight * 0.5).clamp(140.0, 200.0);
+              final imageSize = (availableHeight * 0.5).clamp(140.h, 200.h);
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -66,24 +67,24 @@ class ZodiacDisplayPage extends StatelessWidget {
                             color: AppColors.cardGradientStart.withOpacity(0.1),
                             shape: BoxShape.circle,
                           ),
-                          child: const Center(
+                          child: Center(
                             child: Icon(
                               Icons.image_not_supported,
                               color: AppColors.textGrey,
-                              size: 48,
+                              size: 48.sp,
                             ),
                           ),
                         );
                       },
                     ),
                   ),
-                  SizedBox(height: (availableHeight * 0.05).clamp(12.0, 20.0)),
+                  SizedBox(height: (availableHeight * 0.05).clamp(12.h, 20.h)),
                   // Title - zodiac name
                   Text(
                     zodiacInfo.name,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 32,
+                      fontSize: 32.sp,
                       fontWeight: FontWeight.bold,
                       color: isDark
                           ? AppColors.textWhite
@@ -91,13 +92,13 @@ class ZodiacDisplayPage extends StatelessWidget {
                       fontFamily: 'Amaranth',
                     ),
                   ),
-                  SizedBox(height: (availableHeight * 0.03).clamp(8.0, 12.0)),
+                  SizedBox(height: (availableHeight * 0.03).clamp(8.h, 12.h)),
                   // Date range
                   Text(
                     zodiacInfo.dateRange,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
                       color: isDark
                           ? AppColors.textWhite
@@ -105,16 +106,16 @@ class ZodiacDisplayPage extends StatelessWidget {
                       fontFamily: 'Amaranth',
                     ),
                   ),
-                  SizedBox(height: (availableHeight * 0.08).clamp(16.0, 24.0)),
+                  SizedBox(height: (availableHeight * 0.08).clamp(16.h, 24.h)),
                   // Description - flexible to fit remaining space
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Text(
                         zodiacInfo.description,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.normal,
                           color: isDark
                               ? AppColors.textGrey
@@ -135,7 +136,7 @@ class ZodiacDisplayPage extends StatelessWidget {
           isLastStep: false,
           onPressed: onNext,
         ),
-        const SizedBox(height: 40),
+        SizedBox(height: 40.h),
       ],
     );
   }

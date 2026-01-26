@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -27,41 +28,44 @@ class StepLocationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             OnboardingHeader(currentStep: 3, onBack: onBack),
-            const SizedBox(height: 40),
+            SizedBox(height: 40.h),
             // Question
             Text(
               "Where you born?",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
                 color: textColor,
                 fontFamily: 'Amaranth',
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             // Input field
             Container(
               decoration: BoxDecoration(
                 color: isDark
                     ? AppColors.buttonBackground
                     : AppColors.lightCardBackground,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: borderColor, width: 1),
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(color: borderColor, width: 1.w),
               ),
               child: TextField(
                 controller: controller,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   color: textColor,
                   fontWeight: FontWeight.w500,
                 ),
                 decoration: InputDecoration(
                   hintText: "Location",
-                  hintStyle: TextStyle(fontSize: 16, color: AppColors.textGrey),
+                  hintStyle: TextStyle(
+                    fontSize: 16.sp,
+                    color: AppColors.textGrey,
+                  ),
                   border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 16,
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 16.h,
                   ),
                 ),
                 onChanged: (_) => setState(() {}),
@@ -74,7 +78,7 @@ class StepLocationPage extends StatelessWidget {
               isLastStep: false,
               onPressed: onNext,
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: 40.h),
           ],
         );
       },

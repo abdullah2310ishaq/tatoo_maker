@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -35,36 +36,36 @@ class StepTattooIdeaPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             OnboardingHeader(currentStep: 4, onBack: onBack),
-            const SizedBox(height: 50),
+            SizedBox(height: 50.h),
             // Question
             Text(
               "What your tattoo idea?",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
                 color: textColor,
                 fontFamily: 'Amaranth',
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             // Big input container like homepage
             Flexible(
               child: SizedBox(
-                height: 200,
+                height: 200.h,
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(16.r),
                     border: Border.all(
                       color: AppColors.titleGradientStart,
-                      width: 1,
+                      width: 1.w,
                     ),
                     color: cardBgColor,
                     gradient: cardGradient,
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(16.r),
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(16.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
@@ -72,24 +73,24 @@ class StepTattooIdeaPage extends StatelessWidget {
                           Text(
                             'What your tattoo idea?',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
                               color: textColor,
                               fontFamily: 'Amaranth',
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8.h),
                           Flexible(
                             fit: FlexFit.loose,
                             child: TextField(
                               controller: controller,
                               maxLength: maxCharacters,
                               maxLines: null,
-                              style: TextStyle(fontSize: 14, color: textColor),
+                              style: TextStyle(fontSize: 14.sp, color: textColor),
                               decoration: InputDecoration(
                                 hintText: 'Describe your tattoo idea...',
                                 hintStyle: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 14.sp,
                                   color: AppColors.textGrey,
                                 ),
                                 border: InputBorder.none,
@@ -114,7 +115,7 @@ class StepTattooIdeaPage extends StatelessWidget {
               isLastStep: false,
               onPressed: onNext,
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: 40.h),
           ],
         );
       },

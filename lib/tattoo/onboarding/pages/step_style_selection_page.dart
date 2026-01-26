@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/colors.dart';
 import '../models/onboarding_models.dart';
 import '../utils/zodiac_utils.dart';
@@ -34,26 +35,26 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OnboardingHeader(currentStep: 5, onBack: widget.onBack),
-        const SizedBox(height: 40),
+        SizedBox(height: 40.h),
         // Question
         Text(
           "Pick your title style",
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 24.sp,
             fontWeight: FontWeight.bold,
             color: textColor,
             fontFamily: 'Amaranth',
           ),
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: 30.h),
         // Style selection
         Expanded(
           child: SizedBox(
-            height: 190,
+            height: 190.h,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: styles.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 16),
+              separatorBuilder: (_, __) => SizedBox(width: 16.w),
               itemBuilder: (context, index) {
                 final item = styles[index];
                 final bool isSelected = widget.selectedStyleIndex == index;
@@ -69,7 +70,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
           isLastStep: true,
           onPressed: widget.onNext,
         ),
-        const SizedBox(height: 40),
+        SizedBox(height: 40.h),
       ],
     );
   }
@@ -80,7 +81,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
     bool isSelected,
     bool isDark,
   ) {
-    final double width = isSelected ? 150 : 130;
+    final double width = isSelected ? 150.w : 130.w;
     final Color borderColor = isSelected
         ? const Color(0xFFFE8B3A)
         : AppColors.cardGradientEnd;
@@ -94,22 +95,22 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
       width: width,
       decoration: BoxDecoration(
         color: cardBgColor,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: borderColor, width: 1.4),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: borderColor, width: 1.4.w),
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         onTap: () {
           widget.onStyleSelected(isSelected ? null : index);
         },
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(12.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                   child: Image.asset(
                     item.assetPath,
                     fit: BoxFit.contain,
@@ -117,13 +118,13 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
                       return Container(
                         decoration: BoxDecoration(
                           color: AppColors.cardGradientStart.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Icon(
                             Icons.image_not_supported,
                             color: AppColors.textGrey,
-                            size: 32,
+                            size: 32.sp,
                           ),
                         ),
                       );
@@ -131,12 +132,12 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Text(
                 item.label,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                   color: textColor,
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -31,6 +32,22 @@ class StepBirthdayPage extends StatefulWidget {
 }
 
 class _StepBirthdayPageState extends State<StepBirthdayPage> {
+  bool _isDateValid() {
+    final now = DateTime.now();
+    try {
+      final selectedDate = DateTime(
+        widget.selectedYear,
+        widget.selectedMonth + 1, // Month is 0-indexed in widget
+        widget.selectedDay,
+      );
+      // Date is valid if it's not in the future
+      return !selectedDate.isAfter(now);
+    } catch (e) {
+      // Invalid date (e.g., Feb 30)
+      return false;
+    }
+  }
+
   String _getFormattedDate() {
     final months = [
       'January',
@@ -58,7 +75,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OnboardingHeader(currentStep: 2, onBack: widget.onBack),
-        const SizedBox(height: 40),
+        SizedBox(height: 40.h),
         // Question and date
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,17 +83,17 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
             Text(
               "What's your birthday?",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
                 color: textColor,
                 fontFamily: 'Amaranth',
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Text(
               _getFormattedDate(),
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 color: textColor,
                 fontFamily: 'Amaranth',
@@ -84,22 +101,22 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
             ),
           ],
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: 30.h),
         // Date picker
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: EdgeInsets.only(top: 20.h),
             child: _buildDatePicker(isDark),
           ),
         ),
         const Spacer(),
         // Next button
         OnboardingNextButton(
-          enabled: true, // Always enabled for birthday
+          enabled: _isDateValid(), // Disabled if date is in future or invalid
           isLastStep: false,
           onPressed: widget.onNext,
         ),
-        const SizedBox(height: 40),
+        SizedBox(height: 40.h),
       ],
     );
   }
@@ -121,7 +138,8 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
     ];
     final days = List.generate(31, (i) => i + 1);
     final currentYear = DateTime.now().year;
-    final years = List.generate(100, (i) => currentYear - 18 - i);
+    // Generate years from current year down to 100 years ago
+    final years = List.generate(100, (i) => currentYear - i);
 
     return Stack(
       children: [
@@ -131,27 +149,36 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
               child: _buildPickerColumn(
                 items: months,
                 selectedIndex: widget.selectedMonth,
-                onChanged: widget.onMonthChanged,
+                onChanged: (index) {
+                  widget.onMonthChanged(index);
+                  setState(() {}); // Rebuild to update button state
+                },
                 isDark: isDark,
               ),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8.w),
             Expanded(
               child: _buildPickerColumn(
                 items: days.map((d) => d.toString()).toList(),
                 selectedIndex: widget.selectedDay - 1,
-                onChanged: (index) => widget.onDayChanged(index + 1),
+                onChanged: (index) {
+                  widget.onDayChanged(index + 1);
+                  setState(() {}); // Rebuild to update button state
+                },
                 isDark: isDark,
               ),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8.w),
             Expanded(
               child: _buildPickerColumn(
                 items: years.map((y) => y.toString()).toList(),
                 selectedIndex: years.contains(widget.selectedYear)
                     ? years.indexOf(widget.selectedYear)
                     : 0,
-                onChanged: (index) => widget.onYearChanged(years[index]),
+                onChanged: (index) {
+                  widget.onYearChanged(years[index]);
+                  setState(() {}); // Rebuild to update button state
+                },
                 isDark: isDark,
               ),
             ),
@@ -161,13 +188,13 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
           child: IgnorePointer(
             child: Center(
               child: Container(
-                height: 50,
+                height: 50.h,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color(0xFFFE8B3A),
-                    width: 1.5,
+                    width: 1.5.w,
                   ),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
               ),
             ),
@@ -184,12 +211,12 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
     required bool isDark,
   }) {
     return SizedBox(
-      height: 200,
+      height: 200.h,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25),
+        padding: EdgeInsets.symmetric(vertical: 25.h),
         child: ListWheelScrollView.useDelegate(
           controller: FixedExtentScrollController(initialItem: selectedIndex),
-          itemExtent: 50,
+          itemExtent: 50.h,
           physics: const FixedExtentScrollPhysics(),
           onSelectedItemChanged: onChanged,
           perspective: 0.003,
@@ -202,7 +229,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
                 child: Text(
                   items[index],
                   style: TextStyle(
-                    fontSize: isSelected ? 20 : 16,
+                    fontSize: isSelected ? 20.sp : 16.sp,
                     fontWeight: isSelected
                         ? FontWeight.bold
                         : FontWeight.normal,
