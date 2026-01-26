@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 
-/// Real onboarding screen - Third screen (Final)
 class RealOnboardingThirdScreen extends StatelessWidget {
   const RealOnboardingThirdScreen({super.key});
 
@@ -14,123 +13,83 @@ class RealOnboardingThirdScreen extends StatelessWidget {
           ? AppColors.darkBackground
           : AppColors.lightBackground,
       body: SafeArea(
-        child: Column(
-          children: [
-            // Top illustration - smaller flex to move up
-            Expanded(flex: 8, child: _buildTopSection(isDark)),
-            // Keyboard section - more flex to move down
-            Expanded(flex: 4, child: _buildKeyboardSection(isDark)),
-            // Bottom section: Feature title, description - smaller flex
-            Expanded(flex: 3, child: _buildBottomSection(isDark)),
-          ],
-        ),
-      ),
-    );
-  }
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
 
-  Widget _buildTopSection(bool isDark) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        const SizedBox(height: 50),
-        // Flower bouquet illustration - bigger
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-          child: Image.asset(
-            isDark
-                ? 'assets/splash/third_one_dark.png'
-                : 'assets/splash/third_one_light.png',
-            fit: BoxFit.contain,
-            height: 220,
-            errorBuilder: (context, error, stackTrace) {
-              return Icon(
-                Icons.local_florist,
-                size: 150,
-                color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-              );
-            },
-          ),
-        ),
-        const SizedBox(height: 2),
-        // Tattoo Maker title
-        Text(
-          'Tattoo Maker',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-            fontFamily: 'Amaranth',
-          ),
-        ),
-      ],
-    );
-  }
+                // ---------- TOP FLORAL ASSET ----------
+                Image.asset(
+                  isDark
+                      ? 'assets/splash/third_one_dark.png'
+                      : 'assets/splash/third_one_light.png',
+                  height: 250,
+                  fit: BoxFit.contain,
+                ),
 
-  Widget _buildKeyboardSection(bool isDark) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          // Keyboard image - moved down
-          Expanded(
-            child: Image.asset(
-              isDark
-                  ? 'assets/splash/third_two_dark.png'
-                  : 'assets/splash/third_two_light.png',
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                // Simple placeholder if image doesn't exist
-                return Center(
-                  child: Icon(
-                    Icons.keyboard,
-                    size: 100,
-                    color: isDark ? AppColors.textGrey : AppColors.textGrey,
+                const SizedBox(height: 2),
+
+                // ---------- TITLE ----------
+                Text(
+                  'Tattoo Maker',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Amaranth',
+                    color: isDark ? AppColors.textWhite : AppColors.textPrimary,
                   ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+                ),
 
-  Widget _buildBottomSection(bool isDark) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          // Feature title
-          Text(
-            'Flower Creation',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-              fontFamily: 'Amaranth',
+                const SizedBox(height: 24),
+
+                // ---------- KEYBOARD ASSET ----------
+                Image.asset(
+                  isDark
+                      ? 'assets/splash/third_two_dark.png'
+                      : 'assets/splash/third_two_light.png',
+                  height: 120,
+                  fit: BoxFit.contain,
+                ),
+
+                const SizedBox(height: 28),
+
+                // ---------- FEATURE TITLE ----------
+                Text(
+                  'Flower Creation',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 42,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Amaranth',
+                    color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                // ---------- DESCRIPTION ----------
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Text(
+                    'Turn your name into a beautiful\nflower-inspired design.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      height: 1.4,
+                      fontFamily: 'Amaranth',
+                      color: isDark
+                          ? AppColors.textGrey
+                          : AppColors.textPrimary,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 8),
-          // Description
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              'Turn your name into a beautiful\nflower-inspired design.',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: isDark ? AppColors.textGrey : AppColors.textPrimary,
-                fontFamily: 'Amaranth',
-                height: 1.5,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
