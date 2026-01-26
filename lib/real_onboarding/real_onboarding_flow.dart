@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../home_shell.dart';
@@ -88,21 +89,49 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
               child: Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextButton(
-                    onPressed: _onSkip,
-                    child: Text(
-                      AppLocalizations.of(context)!.skip,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                        fontFamily: 'Amaranth',
-                      ),
-                    ),
-                  ),
+                  padding: EdgeInsets.all(16.w),
+                  child: _currentPage == 0
+                      ? Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.w,
+                            vertical: 8.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.3),
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          child: TextButton(
+                            onPressed: _onSkip,
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)!.skip,
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontFamily: 'Amaranth',
+                              ),
+                            ),
+                          ),
+                        )
+                      : TextButton(
+                          onPressed: _onSkip,
+                          child: Text(
+                            AppLocalizations.of(context)!.skip,
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500,
+                              color: isDark
+                                  ? AppColors.textWhite
+                                  : AppColors.textPrimary,
+                              fontFamily: 'Amaranth',
+                            ),
+                          ),
+                        ),
                 ),
               ),
             ),
@@ -128,7 +157,6 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                elevation: 4,
               ),
               child: Text(
                 _currentPage == 2
@@ -174,27 +202,87 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   }
 }
 
-/// First onboarding screen (placeholder - to be implemented)
+/// First onboarding screen with onboarding_one.png
 class _FirstOnboardingScreen extends StatelessWidget {
   const _FirstOnboardingScreen();
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Container(
-      color: isDark ? AppColors.darkBackground : AppColors.lightBackground,
-      child: Center(
-        child: Text(
-          'First Onboarding Screen\n(To be implemented)',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 18,
-            color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-            fontFamily: 'Amaranth',
+    return Stack(
+      children: [
+        // Background image - full cover
+        Positioned.fill(
+          child: Image.asset(
+            'assets/splash/onboarding_one.png',
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Container(color: AppColors.lightBackground);
+            },
           ),
         ),
-      ),
+        // Gradient fade to white at bottom
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.transparent,
+                  Colors.transparent,
+                  AppColors.lightBackground.withValues(alpha: 0.5),
+                  AppColors.lightBackground,
+                ],
+                stops: const [0.0, 0.5, 0.7, 1.0],
+              ),
+            ),
+          ),
+        ),
+        // Content at bottom - simple positioning
+        SafeArea(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Title
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40.w),
+                  child: Center(
+                    child: Text(
+                      'Tattoo Creation',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 42.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textPrimary,
+                        fontFamily: 'Amaranth',
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                // Description
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40.w),
+                  child: Text(
+                    'Create unique tattoo designs and see how they look on your hand in real time.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.textPrimary,
+                      fontFamily: 'Amaranth',
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

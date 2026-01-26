@@ -15,12 +15,14 @@ class LoadingScreen extends StatefulWidget {
   selectedStyleAsset; // Asset path for the selected style (e.g., 'assets/unicorn.png')
   final String? styleName; // Name of the selected style (e.g., 'Unicorn')
   final String? promptText; // The text prompt for image generation
+  final String? name; // User's name for tattoo generation
 
   const LoadingScreen({
     super.key,
     this.selectedStyleAsset,
     this.styleName,
     this.promptText,
+    this.name,
   });
 
   @override
@@ -39,6 +41,7 @@ class _LoadingScreenState extends State<LoadingScreen>
   void initState() {
     super.initState();
     print('LoadingScreen: Initializing...');
+    print('LoadingScreen: Name: ${widget.name}');
     print('LoadingScreen: Style Name: ${widget.styleName}');
     print('LoadingScreen: Prompt Text: ${widget.promptText}');
 
@@ -56,8 +59,15 @@ class _LoadingScreenState extends State<LoadingScreen>
   }
 
   Future<void> _generateImage() async {
-    if (widget.promptText == null || widget.promptText!.isEmpty) {
-      print('LoadingScreen: No prompt text provided, using placeholder');
+    // Construct prompt from name, style, and tattoo idea
+    final name = widget.name?.trim() ?? '';
+    final style = widget.styleName?.trim() ?? '';
+    final idea = widget.promptText?.trim() ?? '';
+
+    if (name.isEmpty && idea.isEmpty) {
+      print(
+        'LoadingScreen: No name or prompt text provided, using placeholder',
+      );
       // Navigate after 3 seconds even without prompt
       _navigationTimer = Timer(const Duration(seconds: 3), () {
         if (mounted) {
@@ -67,12 +77,37 @@ class _LoadingScreenState extends State<LoadingScreen>
       return;
     }
 
+    // Build comprehensive prompt combining name, style, and idea
+    final List<String> promptParts = [];
+
+    if (name.isNotEmpty) {
+      promptParts.add('tattoo design with "${name}"');
+    }
+
+    if (style.isNotEmpty) {
+      promptParts.add('in ${style.toLowerCase()} style');
+    }
+
+    if (idea.isNotEmpty) {
+      promptParts.add(idea);
+    }
+
+    // Add style descriptors
+    promptParts.add(
+      'tattoo design, black and white, line art, minimalist, intricate details',
+    );
+
+    final finalPrompt = promptParts.join(', ');
+
     print('LoadingScreen: Starting image generation...');
-    print('LoadingScreen: Prompt: ${widget.promptText}');
+    print('LoadingScreen: Name: $name');
+    print('LoadingScreen: Style: $style');
+    print('LoadingScreen: Idea: $idea');
+    print('LoadingScreen: Final Prompt: $finalPrompt');
 
     try {
       final imageBytes = await _apiService.textToImage(
-        prompt: widget.promptText!,
+        prompt: finalPrompt,
         width: 1024,
         height: 1024,
         steps: 4,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../creation/loading_screen.dart';
-import 'onboarding/models/onboarding_models.dart';
 import 'onboarding/utils/zodiac_utils.dart';
 import 'onboarding/pages/step_name_page.dart';
 import 'onboarding/pages/step_birthday_page.dart';
@@ -133,7 +132,8 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   }
 
   void _startGenerationFlow(BuildContext context) {
-    final tattooIdea = _controllers[3].text.trim();
+    final name = _controllers[0].text.trim(); // Name from step 1
+    final tattooIdea = _controllers[3].text.trim(); // Tattoo idea from step 4
     final selectedStyle = _selectedStyleIndex != null
         ? getTattooStyles(
             Theme.of(context).brightness == Brightness.dark,
@@ -147,6 +147,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
             selectedStyleAsset: selectedStyle.assetPath,
             styleName: selectedStyle.label,
             promptText: tattooIdea,
+            name: name, // Pass the name to LoadingScreen
           ),
         ),
       );
