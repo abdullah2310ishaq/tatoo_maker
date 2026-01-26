@@ -381,6 +381,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try This'**
   String get tryThis;
+
+  /// Home: style prompt for Wolf
+  ///
+  /// In en, this message translates to:
+  /// **'Minimal tribal wolf tattoo drawn with bold white lines , abstract sharp curves, clean line-art, tattoo flash style.'**
+  String get tattooStylePromptWolf;
+
+  /// Home: style prompt for Abstract
+  ///
+  /// In en, this message translates to:
+  /// **'Tribal abstract tattoo symbolizing inner strength and resilience, flowing sharp curves rising upward, bold confident line-art, powerful vertical composition, minimalist tribal style, solid white ink'**
+  String get tattooStylePromptAbstract;
+
+  /// Home: style prompt for Lion
+  ///
+  /// In en, this message translates to:
+  /// **'Majestic lion tattoo representing courage and leadership, calm powerful expression, detailed mane, strong shading, artistic tattoo design, solid white ink, high contrast'**
+  String get tattooStylePromptLion;
+
+  /// Home: style prompt for Eagle
+  ///
+  /// In en, this message translates to:
+  /// **'Eagle tattoo in mid-flight symbolizing freedom and vision, wide wings, sharp feather detail, dynamic motion, bold tattoo art, solid white ink, high contrast'**
+  String get tattooStylePromptEagle;
+
+  /// Home: style prompt for Spider
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed spider tattoo symbolizing patience and control, realistic anatomy, clean web elements, dark artistic tattoo style, solid white ink, high contrast'**
+  String get tattooStylePromptSpider;
+
+  /// Home: style prompt for Butterfly
+  ///
+  /// In en, this message translates to:
+  /// **'Delicate butterfly tattoo representing transformation and growth, detailed wings, soft shading, elegant tattoo illustration, solid white ink, high contrast.'**
+  String get tattooStylePromptButterfly;
+
+  /// Home: style prompt for Dragon
+  ///
+  /// In en, this message translates to:
+  /// **'Fantasy dragon tattoo design, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines'**
+  String get tattooStylePromptDragon;
+
+  /// Home: style prompt for Unicorn
+  ///
+  /// In en, this message translates to:
+  /// **'Unicorn head tattoo design, golden horn, flowing rainbow mane, detailed fantasy illustration'**
+  String get tattooStylePromptUnicorn;
+
+  /// Home: style prompt for Floral
+  ///
+  /// In en, this message translates to:
+  /// **'Pastel floral bouquet, peach & blush roses, wildflowers, golden foliage, cascading ribbons, asymmetrical teardrop, romantic vintage, soft lighting, high realism, dark background.'**
+  String get tattooStylePromptFloral;
+
+  /// Home: "Describe Your Dream Ink" title
+  String get homeDescribeYourDreamInk;
+
+  /// Home: Dream ink input hint
+  String get homeDreamInkHint;
+
+  /// Home: Inspiration label
+  String get homeInspiration;
+
+  /// Home: "characters remaining" suffix (prepend number in UI)
+  String get homeCharactersRemaining;
+
+  /// Home: Tattoo Style section title
+  String get homeTattooStyle;
+
+  /// Home: Explore Inspiration section title
+  String get homeExploreInspiration;
+
+  /// Home: Generate button label
+  String get homeGenerate;
+
+  /// Home: Tutorial overlay text
+  String get homeTutorialOverlayText;
+
+  /// Home: Explore item title - Gothqueen
+  String get exploreTitleGothqueen;
+
+  /// Home: Explore item prompt - Gothqueen
+  String get explorePromptGothqueen;
+
+  /// Home: Explore item title - Floral
+  String get exploreTitleFloral;
+
+  /// Home: Explore item prompt - Floral
+  String get explorePromptFloral;
+
+  /// Home: Explore item title - Skull with fedora and pipe
+  String get exploreTitleSkullWithFedoraAndPipe;
+
+  /// Home: Explore item prompt - Skull with fedora and pipe
+  String get explorePromptSkullWithFedoraAndPipe;
+
+  /// Home: Explore item title - Elegant snake tattoo
+  String get exploreTitleElegantSnakeTattoo;
+
+  /// Home: Explore item prompt - Elegant snake tattoo
+  String get explorePromptElegantSnakeTattoo;
+
+  /// Home: Explore item title - Feather and birds in flight
+  String get exploreTitleFeatherAndBirdsInFlight;
+
+  /// Home: Explore item prompt - Feather and birds in flight
+  String get explorePromptFeatherAndBirdsInFlight;
+
+  /// Home: Explore item title - Rainy bat with celestial stars
+  String get exploreTitleRainyBatWithCelestialStars;
+
+  /// Home: Explore item prompt - Rainy bat with celestial stars
+  String get explorePromptRainyBatWithCelestialStars;
+
+  /// Home: Explore item title - Elegant black cat silhouette design
+  String get exploreTitleElegantBlackCatSilhouetteDesign;
+
+  /// Home: Explore item prompt - Elegant black cat silhouette design
+  String get explorePromptElegantBlackCatSilhouetteDesign;
+
+  /// Home: Explore item title - Red rose tattoo design
+  String get exploreTitleRedRoseTattooDesign;
+
+  /// Home: Explore item prompt - Red rose tattoo design
+  String get explorePromptRedRoseTattooDesign;
+
+  /// Home: Explore item title - Black infinity arrow tattoo
+  String get exploreTitleBlackInfinityArrowTattoo;
+
+  /// Home: Explore item prompt - Black infinity arrow tattoo
+  String get explorePromptBlackInfinityArrowTattoo;
+
+  /// Home: Explore item title - Black scorpion tattoo design
+  String get exploreTitleBlackScorpionTattooDesign;
+
+  /// Home: Explore item prompt - Black scorpion tattoo design
+  String get explorePromptBlackScorpionTattooDesign;
+
+  /// Home: Explore item title - Crescent moon and star tattoo
+  String get exploreTitleCrescentMoonAndStarTattoo;
+
+  /// Home: Explore item prompt - Crescent moon and star tattoo
+  String get explorePromptCrescentMoonAndStarTattoo;
+
+  /// Home: Explore item title - Sleeping panda tattoo
+  String get exploreTitleSleepingPandaTattoo;
+
+  /// Home: Explore item prompt - Sleeping panda tattoo
+  String get explorePromptSleepingPandaTattoo;
 }
 
 class _AppLocalizationsDelegate

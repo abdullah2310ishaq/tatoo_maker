@@ -59,7 +59,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
       'code': 'pt',
       'name': 'Portuguese',
       'nativeName': 'Português',
-      'imageAsset': 'assets/portugal.png',
+      'imageAsset': 'assets/language/portugal.png',
       'isPng': true,
     },
     {

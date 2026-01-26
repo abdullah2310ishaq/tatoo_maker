@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../providers/theme_provider.dart';
@@ -24,26 +25,16 @@ class _HomePageState extends State<HomePage> {
   bool _showTutorialOverlay = true; // Show on each restart for now
   final GlobalKey _dreamInkCardKey = GlobalKey();
 
-  // Style prompts map
-  static const Map<String, String> _stylePrompts = {
-    'Wolf':
-        'Minimal tribal wolf tattoo drawn with bold white lines , abstract sharp curves, clean line-art, tattoo flash style.',
-    'Abstract':
-        'Tribal abstract tattoo symbolizing inner strength and resilience, flowing sharp curves rising upward, bold confident line-art, powerful vertical composition, minimalist tribal style, solid white ink',
-    'Lion':
-        'Majestic lion tattoo representing courage and leadership, calm powerful expression, detailed mane, strong shading, artistic tattoo design, solid white ink, high contrast',
-    'Eagle':
-        'Eagle tattoo in mid-flight symbolizing freedom and vision, wide wings, sharp feather detail, dynamic motion, bold tattoo art, solid white ink, high contrast',
-    'Spider':
-        'Detailed spider tattoo symbolizing patience and control, realistic anatomy, clean web elements, dark artistic tattoo style, solid white ink, high contrast',
-    'Butterfly':
-        'Delicate butterfly tattoo representing transformation and growth, detailed wings, soft shading, elegant tattoo illustration, solid white ink, high contrast.',
-    'Dragon':
-        'Fantasy dragon tattoo design, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines',
-    'Unicorn':
-        'Unicorn head tattoo design, golden horn, flowing rainbow mane, detailed fantasy illustration',
-    'Floral':
-        'Pastel floral bouquet, peach & blush roses, wildflowers, golden foliage, cascading ribbons, asymmetrical teardrop, romantic vintage, soft lighting, high realism, dark background.',
+  Map<String, String> _stylePrompts(AppLocalizations l10n) => {
+    'Wolf': l10n.tattooStylePromptWolf,
+    'Abstract': l10n.tattooStylePromptAbstract,
+    'Lion': l10n.tattooStylePromptLion,
+    'Eagle': l10n.tattooStylePromptEagle,
+    'Spider': l10n.tattooStylePromptSpider,
+    'Butterfly': l10n.tattooStylePromptButterfly,
+    'Dragon': l10n.tattooStylePromptDragon,
+    'Unicorn': l10n.tattooStylePromptUnicorn,
+    'Floral': l10n.tattooStylePromptFloral,
   };
 
   List<_TattooStyleItem> get _styles {
@@ -218,6 +209,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildDreamInkCard() {
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final cardBgColor = isDark ? null : AppColors.lightBackground;
@@ -274,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Describe Your Dream Ink',
+                      l10n.homeDescribeYourDreamInk,
                       style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
@@ -291,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                         maxLines: null,
                         style: TextStyle(fontSize: 14.sp, color: textColor),
                         decoration: InputDecoration(
-                          hintText: 'Tell us what you envision...',
+                          hintText: l10n.homeDreamInkHint,
                           hintStyle: TextStyle(
                             fontSize: 14.sp,
                             color: AppColors.textGrey,
@@ -341,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             SizedBox(width: 8.w),
                             Text(
-                              'Inspiration',
+                              l10n.homeInspiration,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 color: AppColors.textGrey,
@@ -350,7 +342,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         Text(
-                          '${_maxCharacters - _dreamInkController.text.length} characters remaining',
+                          '${_maxCharacters - _dreamInkController.text.length} ${l10n.homeCharactersRemaining}',
                           style: TextStyle(
                             fontSize: 12.sp,
                             color: AppColors.textGrey,
@@ -369,6 +361,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildTattooStyleSection() {
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
 
@@ -376,7 +369,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Tattoo Style',
+          l10n.homeTattooStyle,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
@@ -407,6 +400,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildStyleCard(_TattooStyleItem item, int index, bool isSelected) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
+    final stylePrompts = _stylePrompts(l10n);
     final double width = isSelected ? 150.w : 130.w;
     final Color borderColor = isSelected
         ? AppColors.navBarActive
@@ -435,18 +430,17 @@ class _HomePageState extends State<HomePage> {
               _selectedStyleIndex = index;
               // Auto-fill text only if empty or if current text matches a prompt
               final selectedStyle = _styles[index];
-              if (_stylePrompts.containsKey(selectedStyle.label)) {
+              if (stylePrompts.containsKey(selectedStyle.label)) {
                 final currentText = _dreamInkController.text.trim();
                 final isEmpty = currentText.isEmpty;
                 // Check if current text matches any prompt (was auto-filled)
-                final isPromptText = _stylePrompts.values.any(
+                final isPromptText = stylePrompts.values.any(
                   (prompt) => prompt.trim() == currentText,
                 );
 
                 // Only override if empty or if it's a prompt text (not user-written)
                 if (isEmpty || isPromptText) {
-                  _dreamInkController.text =
-                      _stylePrompts[selectedStyle.label]!;
+                  _dreamInkController.text = stylePrompts[selectedStyle.label]!;
                 }
               }
             }
@@ -481,91 +475,80 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildExploreInspirationSection() {
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
 
     final List<Map<String, String?>> inspirationItems = [
       {
-        'title': 'Gothqueen',
-        'prompt':
-            'Black and grey gothic queen tattoo, bald female face, ornate crown, geometric linework, realistic shading, symmetrical, high detail',
+        'title': l10n.exploreTitleGothqueen,
+        'prompt': l10n.explorePromptGothqueen,
         'bigImage': 'assets/explore/gothbig.png',
         'smallImage': 'assets/explore/gothsmall.png',
       },
       {
-        'title': 'Floral',
-        'prompt':
-            'Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast',
+        'title': l10n.exploreTitleFloral,
+        'prompt': l10n.explorePromptFloral,
         'bigImage': 'assets/explore/floralbig.png',
         'smallImage': null,
       },
       {
-        'title': 'Skull with fedora and pipe',
-        'prompt':
-            'Realistic black & grey skull tattoo, side-profile skull wearing a classic fedora, smoking a curved pipe with soft upward smoke, vintage noir style, detailed bone & teeth texture, smooth gradient shading with dotwork and soft realism, fine-needle detailing, high-contrast blacks, professional tattoo artwork.',
+        'title': l10n.exploreTitleSkullWithFedoraAndPipe,
+        'prompt': l10n.explorePromptSkullWithFedoraAndPipe,
         'bigImage': 'assets/explore/skullbig.png',
         'smallImage': 'assets/explore/skullsmall.png',
       },
       {
-        'title': 'Elegant snake tattoo',
-        'prompt':
-            'Ultra-detailed black & white aggressive snake tattoo, open mouth with long fangs and forked tongue, flowing coiled body, fine-line detailed scales, deep black shading, strong contrast, realistic depth, clean negative space, traditional engraving × modern realism, razor-sharp outlines, monochrome ink, no background, professional tattoo flash, forearm or sleeve ready.',
+        'title': l10n.exploreTitleElegantSnakeTattoo,
+        'prompt': l10n.explorePromptElegantSnakeTattoo,
         'bigImage': 'assets/explore/snakebig.png',
         'smallImage': 'assets/explore/snakesmall.png',
       },
       {
-        'title': 'Feather and birds in flight',
-        'prompt':
-            'Ultra-detailed black & white feather tattoo, elegant realistic feather with fine linework, symmetrical barbs and sharp spine, smooth dotwork gradient shading, minimal premium fineline style, small bird silhouettes flowing upward, balanced composition, razor-sharp outlines, high-contrast black ink, modern tattoo realism, monochrome only, no background on white canvas, professional flash, stencil-ready.',
+        'title': l10n.exploreTitleFeatherAndBirdsInFlight,
+        'prompt': l10n.explorePromptFeatherAndBirdsInFlight,
         'bigImage': 'assets/explore/featherbig.png',
         'smallImage': 'assets/explore/feathersmall.png',
       },
       {
-        'title': 'Rainy bat with celestial stars',
-        'prompt':
-            'Symmetrical bat tattoo with fully spread wings, solid black body, wings filled with smooth rainbow gradient (purple to blue, green, yellow, orange), clean bold outlines with fine linework, subtle dotwork shading, surrounded by small stars and dots, two four-pointed stars above and below, mystical celestial vibe, modern neo-traditional style, high contrast, sharp detail.',
+        'title': l10n.exploreTitleRainyBatWithCelestialStars,
+        'prompt': l10n.explorePromptRainyBatWithCelestialStars,
         'bigImage': 'assets/explore/batbig.png',
         'smallImage': 'assets/explore/batsmall.png',
       },
       {
-        'title': 'Elegant black cat silhouette design',
-        'prompt':
-            'A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art',
+        'title': l10n.exploreTitleElegantBlackCatSilhouetteDesign,
+        'prompt': l10n.explorePromptElegantBlackCatSilhouetteDesign,
         'bigImage': 'assets/explore/catbig.png',
         'smallImage': 'assets/explore/catsmall.png',
       },
       {
-        'title': 'Red rose tattoo design',
-        'prompt':
-            'Realistic red rose tattoo, single blooming rose with layered petals, rich deep red color, fine detailed petal texture, subtle gradient shading, natural green stem with small thorns and two detailed leaves, clean crisp outlines, soft realism tattoo style, high contrast, smooth color blending, professional tattoo flash quality, isolated rose only',
+        'title': l10n.exploreTitleRedRoseTattooDesign,
+        'prompt': l10n.explorePromptRedRoseTattooDesign,
         'bigImage': 'assets/explore/rosebig.png',
         'smallImage': 'assets/explore/rosesmall.png',
       },
       {
-        'title': 'Black infinity arrow tattoo',
-        'prompt':
-            'Realistic Minimalist black infinity arrow tattoo, smooth continuous loop with sharp arrow, clean bold linework, high-contrast solid black ink, modern minimal style, monochrome, stencil-ready.',
+        'title': l10n.exploreTitleBlackInfinityArrowTattoo,
+        'prompt': l10n.explorePromptBlackInfinityArrowTattoo,
         'bigImage': 'assets/explore/infinitybig.png',
         'smallImage': 'assets/explore/infinitysmall.png',
       },
       {
-        'title': 'Black scorpion tattoo design',
-        'prompt':
-            'Realistic minimalist black scorpion tattoo design, bold solid black ink, sharp clean linework, symmetrical tribal-inspired detailing, high contrast, smooth curves, modern tattoo style, stencil-ready, isolated on plain background, ultra-detailed, professional tattoo flash',
+        'title': l10n.exploreTitleBlackScorpionTattooDesign,
+        'prompt': l10n.explorePromptBlackScorpionTattooDesign,
         'bigImage': 'assets/explore/scorpionbig.png',
         'smallImage': 'assets/explore/scorpionsmall.png',
       },
       {
-        'title': 'Crescent moon and star tattoo',
-        'prompt':
-            'Minimalist black ink tattoo, fine-line style, upward crescent moon with solid black fill, small four-point star above aligned vertically, subtle dot accents, celestial and mystical aesthetic, simple geometry, balanced spacing, clean background, precise linework, high contrast, timeless minimal tattoo design',
+        'title': l10n.exploreTitleCrescentMoonAndStarTattoo,
+        'prompt': l10n.explorePromptCrescentMoonAndStarTattoo,
         'bigImage': 'assets/explore/moonbig.png',
         'smallImage': 'assets/explore/moonsmall.png',
       },
       {
-        'title': 'Sleeping panda tattoo',
-        'prompt':
-            'Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.',
+        'title': l10n.exploreTitleSleepingPandaTattoo,
+        'prompt': l10n.explorePromptSleepingPandaTattoo,
         'bigImage': 'assets/explore/pandabig.png',
         'smallImage': 'assets/explore/pandasmall.png',
       },
@@ -575,7 +558,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Explore Inspiration',
+          l10n.homeExploreInspiration,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
@@ -665,6 +648,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildGenerateButton() {
+    final l10n = AppLocalizations.of(context)!;
     final bool enabled =
         _selectedStyleIndex != null &&
         _dreamInkController.text.trim().isNotEmpty;
@@ -711,7 +695,7 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Center(
           child: Text(
-            'Generate',
+            l10n.homeGenerate,
             style: TextStyle(
               fontSize: 25.sp,
               fontWeight: FontWeight.w600,
@@ -734,6 +718,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildTutorialOverlay() {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -780,7 +765,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 16.h),
                     // Text
                     Text(
-                      'Describe the tattoo you have in mind, or tap \'Inspiration\' for ideas',
+                      l10n.homeTutorialOverlayText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.sp,
