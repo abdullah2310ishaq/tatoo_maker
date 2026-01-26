@@ -51,96 +51,94 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Scaffold(
-      backgroundColor: isDark
-          ? AppColors.darkBackground
-          : AppColors.lightBackground,
-      body: Stack(
-        children: [
-          // PageView for swiping
-          SafeArea(
-            child: Column(
-              children: [
-                Expanded(
-                  child: PageView(
-                    controller: _pageController,
-                    onPageChanged: _onPageChanged,
-                    physics: const BouncingScrollPhysics(),
-                    children: const [
-                      // First screen (placeholder - to be created)
-                      _FirstOnboardingScreen(),
-                      // Second screen
-                      RealOnboardingScreen(),
-                      // Third screen
-                      RealOnboardingThirdScreen(),
-                    ],
-                  ),
-                ),
-                // Bottom navigation (Continue/Start button + pagination)
-                _buildBottomNavigation(isDark),
-              ],
-            ),
-          ),
-          // Skip button (only show on first two pages) - Stack on top
-          if (_currentPage < 2)
+    // Force light theme for onboarding (one-time flow)
+    return Theme(
+      data: ThemeData.light(),
+      child: Scaffold(
+        backgroundColor: AppColors.lightBackground,
+        body: Stack(
+          children: [
+            // PageView for swiping
             SafeArea(
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: EdgeInsets.all(16.w),
-                  child: _currentPage == 0
-                      ? Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16.w,
-                            vertical: 8.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.3),
-                            borderRadius: BorderRadius.circular(20.r),
-                          ),
-                          child: TextButton(
-                            onPressed: _onSkip,
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              minimumSize: Size.zero,
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: PageView(
+                      controller: _pageController,
+                      onPageChanged: _onPageChanged,
+                      physics: const BouncingScrollPhysics(),
+                      children: const [
+                        // First screen (placeholder - to be created)
+                        _FirstOnboardingScreen(),
+                        // Second screen
+                        RealOnboardingScreen(),
+                        // Third screen
+                        RealOnboardingThirdScreen(),
+                      ],
+                    ),
+                  ),
+                  // Bottom navigation (Continue/Start button + pagination)
+                  _buildBottomNavigation(),
+                ],
+              ),
+            ),
+            // Skip button (only show on first two pages) - Stack on top
+            if (_currentPage < 2)
+              SafeArea(
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.w),
+                    child: _currentPage == 0
+                        ? Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 16.w,
+                              vertical: 8.h,
                             ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.3),
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
+                            child: TextButton(
+                              onPressed: _onSkip,
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
+                              child: Text(
+                                AppLocalizations.of(context)!.skip,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontFamily: 'Amaranth',
+                                ),
+                              ),
+                            ),
+                          )
+                        : TextButton(
+                            onPressed: _onSkip,
                             child: Text(
                               AppLocalizations.of(context)!.skip,
                               style: TextStyle(
                                 fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.textPrimary,
                                 fontFamily: 'Amaranth',
                               ),
                             ),
                           ),
-                        )
-                      : TextButton(
-                          onPressed: _onSkip,
-                          child: Text(
-                            AppLocalizations.of(context)!.skip,
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w500,
-                              color: isDark
-                                  ? AppColors.textWhite
-                                  : AppColors.textPrimary,
-                              fontFamily: 'Amaranth',
-                            ),
-                          ),
-                        ),
+                  ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildBottomNavigation(bool isDark) {
+  Widget _buildBottomNavigation() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
       child: Column(
@@ -173,13 +171,13 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
           ),
           const SizedBox(height: 24),
           // Pagination dots
-          _buildPaginationDots(isDark),
+          _buildPaginationDots(),
         ],
       ),
     );
   }
 
-  Widget _buildPaginationDots(bool isDark) {
+  Widget _buildPaginationDots() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(3, (index) {
@@ -192,9 +190,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
             shape: BoxShape.circle,
             color: isActive
                 ? const Color(0xFFA6541D) // Orange for active
-                : (isDark
-                      ? AppColors.textGrey.withValues(alpha: 0.3)
-                      : AppColors.textGrey.withValues(alpha: 0.3)),
+                : AppColors.textGrey.withValues(alpha: 0.3),
           ),
         );
       }),

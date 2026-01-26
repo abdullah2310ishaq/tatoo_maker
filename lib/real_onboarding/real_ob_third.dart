@@ -7,25 +7,18 @@ class RealOnboardingThirdScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
+    // Light theme only for onboarding
     return Scaffold(
-      backgroundColor: isDark
-          ? AppColors.darkBackground
-          : AppColors.lightBackground,
+      backgroundColor: AppColors.lightBackground,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
-
-                // ---------- TOP FLORAL ASSET ----------
+                // ---------- TOP FLORAL ASSET ---------- (light theme only)
                 Image.asset(
-                  isDark
-                      ? 'assets/splash/third_one_dark.png'
-                      : 'assets/splash/third_one_light.png',
+                  'assets/splash/third_one_light.png',
                   height: 250,
                   fit: BoxFit.contain,
                 ),
@@ -40,17 +33,15 @@ class RealOnboardingThirdScreen extends StatelessWidget {
                     fontSize: 35,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'Amaranth',
-                    color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                    color: AppColors.textPrimary,
                   ),
                 ),
 
                 const SizedBox(height: 24),
 
-                // ---------- KEYBOARD ASSET ----------
+                // ---------- KEYBOARD ASSET ---------- (light theme only)
                 Image.asset(
-                  isDark
-                      ? 'assets/splash/third_two_dark.png'
-                      : 'assets/splash/third_two_light.png',
+                  'assets/splash/third_two_light.png',
                   height: 120,
                   fit: BoxFit.contain,
                 ),
@@ -65,7 +56,7 @@ class RealOnboardingThirdScreen extends StatelessWidget {
                     fontSize: 42,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Amaranth',
-                    color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                    color: AppColors.textPrimary,
                   ),
                 ),
 
@@ -81,9 +72,7 @@ class RealOnboardingThirdScreen extends StatelessWidget {
                       fontSize: 20,
                       height: 1.4,
                       fontFamily: 'Amaranth',
-                      color: isDark
-                          ? AppColors.textGrey
-                          : AppColors.textPrimary,
+                      color: AppColors.textPrimary,
                     ),
                   ),
                 ),

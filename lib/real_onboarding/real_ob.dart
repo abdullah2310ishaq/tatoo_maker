@@ -9,22 +9,19 @@ class RealOnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
+    // Light theme only for onboarding
     return Scaffold(
-      backgroundColor: isDark
-          ? AppColors.darkBackground
-          : AppColors.lightBackground,
+      backgroundColor: AppColors.lightBackground,
       body: Stack(
         children: [
           // Background image with fade to white
-          _buildBackground(isDark),
+          _buildBackground(),
           // Content
           SafeArea(
             child: Column(
               children: [
                 // Main content - starting from top
-                Expanded(child: _buildContent(context, isDark)),
+                Expanded(child: _buildContent(context)),
               ],
             ),
           ),
@@ -33,23 +30,17 @@ class RealOnboardingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBackground(bool isDark) {
+  Widget _buildBackground() {
     return Stack(
       children: [
-        // Background image with butterfly - covering full screen
+        // Background image with butterfly - covering full screen (light theme only)
         Positioned.fill(
           child: Image.asset(
-            isDark
-                ? 'assets/splash/splash_two_dark.png'
-                : 'assets/splash/splash_two_light.png',
+            'assets/splash/splash_two_light.png',
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
               // Fallback if image doesn't exist
-              return Container(
-                color: isDark
-                    ? AppColors.darkBackground
-                    : AppColors.lightBackground,
-              );
+              return Container(color: AppColors.lightBackground);
             },
           ),
         ),
@@ -63,10 +54,8 @@ class RealOnboardingScreen extends StatelessWidget {
                 colors: [
                   Colors.transparent,
                   Colors.transparent,
-                  isDark
-                      ? AppColors.darkBackground.withValues(alpha: 0.3)
-                      : AppColors.lightBackground.withValues(alpha: 0.5),
-                  isDark ? AppColors.darkBackground : AppColors.lightBackground,
+                  AppColors.lightBackground.withValues(alpha: 0.5),
+                  AppColors.lightBackground,
                 ],
                 stops: const [0.0, 0.5, 0.7, 1.0],
               ),
@@ -77,7 +66,7 @@ class RealOnboardingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildContent(BuildContext context, bool isDark) {
+  Widget _buildContent(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -93,7 +82,7 @@ class RealOnboardingScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 42.sp,
                 fontWeight: FontWeight.bold,
-                color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                color: AppColors.textPrimary,
                 fontFamily: 'Amaranth',
               ),
             ),
@@ -109,7 +98,7 @@ class RealOnboardingScreen extends StatelessWidget {
             style: TextStyle(
               fontSize: 20.sp,
               fontWeight: FontWeight.w400,
-              color: isDark ? AppColors.textGrey : AppColors.textPrimary,
+              color: AppColors.textPrimary,
               fontFamily: 'Amaranth',
               height: 1.5,
             ),

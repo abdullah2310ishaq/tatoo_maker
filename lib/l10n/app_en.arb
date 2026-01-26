@@ -31,5 +31,13 @@
   "flowerCreationDescription": "Turn your name into a beautiful\nflower-inspired design.",
   "@flowerCreationDescription": {
     "description": "Description text for third onboarding screen"
+  },
+  "chooseALanguage": "Choose a Language",
+  "@chooseALanguage": {
+    "description": "Title for language selection screen"
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next button text"
   }
 }
