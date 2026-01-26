@@ -763,5 +763,4 @@
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
   }
-  }
 }

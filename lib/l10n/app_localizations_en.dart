@@ -163,6 +163,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get virtualTryOnProcessingSubtitle => 'This may take a few moments';
 
   @override
+  String get virtualTryOnProcessingFailedTryAgain =>
+      'Couldn\'t process image. Try again.';
+
+  @override
   String get promptLabel => 'Prompt';
 
   @override
@@ -231,24 +235,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exploreTitleGothqueen => 'Gothqueen';
+
   @override
   String get explorePromptGothqueen =>
       'Black and grey gothic queen tattoo, bald female face, ornate crown, geometric linework, realistic shading, symmetrical, high detail';
 
   @override
   String get exploreTitleFloral => 'Floral';
+
   @override
   String get explorePromptFloral =>
       'Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast';
 
   @override
   String get exploreTitleSkullWithFedoraAndPipe => 'Skull with fedora and pipe';
+
   @override
   String get explorePromptSkullWithFedoraAndPipe =>
       'Realistic black & grey skull tattoo, side-profile skull wearing a classic fedora, smoking a curved pipe with soft upward smoke, vintage noir style, detailed bone & teeth texture, smooth gradient shading with dotwork and soft realism, fine-needle detailing, high-contrast blacks, professional tattoo artwork.';
 
   @override
   String get exploreTitleElegantSnakeTattoo => 'Elegant snake tattoo';
+
   @override
   String get explorePromptElegantSnakeTattoo =>
       'Ultra-detailed black & white aggressive snake tattoo, open mouth with long fangs and forked tongue, flowing coiled body, fine-line detailed scales, deep black shading, strong contrast, realistic depth, clean negative space, traditional engraving × modern realism, razor-sharp outlines, monochrome ink, no background, professional tattoo flash, forearm or sleeve ready.';
@@ -256,6 +264,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exploreTitleFeatherAndBirdsInFlight =>
       'Feather and birds in flight';
+
   @override
   String get explorePromptFeatherAndBirdsInFlight =>
       'Ultra-detailed black & white feather tattoo, elegant realistic feather with fine linework, symmetrical barbs and sharp spine, smooth dotwork gradient shading, minimal premium fineline style, small bird silhouettes flowing upward, balanced composition, razor-sharp outlines, high-contrast black ink, modern tattoo realism, monochrome only, no background on white canvas, professional flash, stencil-ready.';
@@ -263,6 +272,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exploreTitleRainyBatWithCelestialStars =>
       'Rainy bat with celestial stars';
+
   @override
   String get explorePromptRainyBatWithCelestialStars =>
       'Symmetrical bat tattoo with fully spread wings, solid black body, wings filled with smooth rainbow gradient (purple to blue, green, yellow, orange), clean bold outlines with fine linework, subtle dotwork shading, surrounded by small stars and dots, two four-pointed stars above and below, mystical celestial vibe, modern neo-traditional style, high contrast, sharp detail.';
@@ -270,12 +280,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exploreTitleElegantBlackCatSilhouetteDesign =>
       'Elegant black cat silhouette design';
+
   @override
   String get explorePromptElegantBlackCatSilhouetteDesign =>
       'A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art';
 
   @override
   String get exploreTitleRedRoseTattooDesign => 'Red rose tattoo design';
+
   @override
   String get explorePromptRedRoseTattooDesign =>
       'Realistic red rose tattoo, single blooming rose with layered petals, rich deep red color, fine detailed petal texture, subtle gradient shading, natural green stem with small thorns and two detailed leaves, clean crisp outlines, soft realism tattoo style, high contrast, smooth color blending, professional tattoo flash quality, isolated rose only';
@@ -283,6 +295,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exploreTitleBlackInfinityArrowTattoo =>
       'Black infinity arrow tattoo';
+
   @override
   String get explorePromptBlackInfinityArrowTattoo =>
       'Realistic Minimalist black infinity arrow tattoo, smooth continuous loop with sharp arrow, clean bold linework, high-contrast solid black ink, modern minimal style, monochrome, stencil-ready.';
@@ -290,6 +303,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exploreTitleBlackScorpionTattooDesign =>
       'Black scorpion tattoo design';
+
   @override
   String get explorePromptBlackScorpionTattooDesign =>
       'Realistic minimalist black scorpion tattoo design, bold solid black ink, sharp clean linework, symmetrical tribal-inspired detailing, high contrast, smooth curves, modern tattoo style, stencil-ready, isolated on plain background, ultra-detailed, professional tattoo flash';
@@ -297,12 +311,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exploreTitleCrescentMoonAndStarTattoo =>
       'Crescent moon and star tattoo';
+
   @override
   String get explorePromptCrescentMoonAndStarTattoo =>
       'Minimalist black ink tattoo, fine-line style, upward crescent moon with solid black fill, small four-point star above aligned vertically, subtle dot accents, celestial and mystical aesthetic, simple geometry, balanced spacing, clean background, precise linework, high contrast, timeless minimal tattoo design';
 
   @override
   String get exploreTitleSleepingPandaTattoo => 'Sleeping panda tattoo';
+
   @override
   String get explorePromptSleepingPandaTattoo =>
       'Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.';
@@ -314,30 +330,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loadingGeneratingYourTattoo => 'Generating your tattoo..';
 
   @override
-  String get virtualTryOnProcessingFailedTryAgain =>
-      'Couldn\'t process image. Try again.';
-
-  @override
   String get resultShare => 'Share';
 
   @override
   String get resultNoImageToShare => 'No image to share';
 
   @override
-  String resultShareText(String styleName) =>
-      'Check out my $styleName tattoo design!';
+  String resultShareText(String styleName) {
+    return 'Check out my $styleName tattoo design!';
+  }
 
   @override
-  String resultShareSubject(String styleName) => '$styleName Tattoo Design';
+  String resultShareSubject(String styleName) {
+    return '$styleName Tattoo Design';
+  }
 
   @override
-  String resultErrorSharing(String error) => 'Error sharing: $error';
+  String resultErrorSharing(String error) {
+    return 'Error sharing: $error';
+  }
 
   @override
   String get resultImageSavedToGallery => 'Image saved to gallery';
 
   @override
-  String resultErrorSaving(String error) => 'Error saving image: $error';
+  String resultErrorSaving(String error) {
+    return 'Error saving image: $error';
+  }
 
   @override
   String get flowerHomeTransformYourName => 'Transform your name';
@@ -356,19 +375,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'Creating your floral tattoo...';
 
   @override
-  String flowerLoadingDesigningWithBeautifulFlowers(String name) =>
-      'Designing "$name" with beautiful flowers';
+  String flowerLoadingDesigningWithBeautifulFlowers(String name) {
+    return 'Designing \"$name\" with beautiful flowers';
+  }
 
   @override
-  String flowerResultFloralTattooFor(String name) =>
-      'Floral tattoo for "$name"';
+  String flowerResultFloralTattooFor(String name) {
+    return 'Floral tattoo for \"$name\"';
+  }
 
   @override
-  String flowerResultShareText(String name) =>
-      'Check out my floral tattoo design for "$name"!';
+  String flowerResultShareText(String name) {
+    return 'Check out my floral tattoo design for \"$name\"!';
+  }
 
   @override
-  String flowerResultShareSubject(String name) => 'Floral Tattoo: $name';
+  String flowerResultShareSubject(String name) {
+    return 'Floral Tattoo: $name';
+  }
 
   @override
   String get tattooPageTurnYourNameIntoA => 'Turn your name into a';
@@ -584,7 +608,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get styleWolf => 'Wolf';
 
   @override
-  String onboardingStep(int currentStep) => 'Step $currentStep/5';
+  String onboardingStep(int currentStep) {
+    final intl.NumberFormat currentStepNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+    );
+    final String currentStepString = currentStepNumberFormat.format(
+      currentStep,
+    );
+
+    return 'Step $currentStepString/5';
+  }
 
   @override
   String get onboardingGetStarted => 'Get Started';

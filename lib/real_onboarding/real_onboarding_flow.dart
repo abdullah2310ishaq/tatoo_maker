@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../home_shell.dart';
@@ -30,22 +31,38 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
     });
   }
 
-  void _onSkip() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const HomeShell()),
-    );
+  void _onSkip() async {
+    await _markOnboardingCompleted();
+    if (mounted) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomeShell()),
+      );
+    }
   }
 
-  void _onContinue() {
+  void _onContinue() async {
     if (_currentPage < 2) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomeShell()),
-      );
+      await _markOnboardingCompleted();
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeShell()),
+        );
+      }
+    }
+  }
+
+  Future<void> _markOnboardingCompleted() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('onboarding_completed', true);
+    } catch (e) {
+      // Handle error silently
+      debugPrint('Error saving onboarding status: $e');
     }
   }
 

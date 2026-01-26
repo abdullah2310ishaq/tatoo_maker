@@ -5,7 +5,17 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ar.dart';
+import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
+import 'app_localizations_it.dart';
+import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
+import 'app_localizations_pt.dart';
+import 'app_localizations_ru.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,7 +102,19 @@ abstract class AppLocalizations {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('de'),
+    Locale('en'),
+    Locale('es'),
+    Locale('fr'),
+    Locale('it'),
+    Locale('ja'),
+    Locale('ko'),
+    Locale('pt'),
+    Locale('ru'),
+    Locale('zh'),
+  ];
 
   /// Skip button text for onboarding screens
   ///
@@ -382,6 +404,12 @@ abstract class AppLocalizations {
   /// **'This may take a few moments'**
   String get virtualTryOnProcessingSubtitle;
 
+  /// Virtual try-on: processing failed message
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t process image. Try again.'**
+  String get virtualTryOnProcessingFailedTryAgain;
+
   /// Label for the prompt section in explore detail
   ///
   /// In en, this message translates to:
@@ -449,129 +477,249 @@ abstract class AppLocalizations {
   String get tattooStylePromptFloral;
 
   /// Home: "Describe Your Dream Ink" title
+  ///
+  /// In en, this message translates to:
+  /// **'Describe Your Dream Ink'**
   String get homeDescribeYourDreamInk;
 
   /// Home: Dream ink input hint
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us what you envision...'**
   String get homeDreamInkHint;
 
   /// Home: Inspiration label
+  ///
+  /// In en, this message translates to:
+  /// **'Inspiration'**
   String get homeInspiration;
 
   /// Home: "characters remaining" suffix (prepend number in UI)
+  ///
+  /// In en, this message translates to:
+  /// **'characters remaining'**
   String get homeCharactersRemaining;
 
   /// Home: Tattoo Style section title
+  ///
+  /// In en, this message translates to:
+  /// **'Tattoo Style'**
   String get homeTattooStyle;
 
   /// Home: Explore Inspiration section title
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Inspiration'**
   String get homeExploreInspiration;
 
   /// Home: Generate button label
+  ///
+  /// In en, this message translates to:
+  /// **'Generate'**
   String get homeGenerate;
 
   /// Home: Tutorial overlay text
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the tattoo you have in mind, or tap \'Inspiration\' for ideas'**
   String get homeTutorialOverlayText;
 
   /// Home: Explore item title - Gothqueen
+  ///
+  /// In en, this message translates to:
+  /// **'Gothqueen'**
   String get exploreTitleGothqueen;
 
   /// Home: Explore item prompt - Gothqueen
+  ///
+  /// In en, this message translates to:
+  /// **'Black and grey gothic queen tattoo, bald female face, ornate crown, geometric linework, realistic shading, symmetrical, high detail'**
   String get explorePromptGothqueen;
 
   /// Home: Explore item title - Floral
+  ///
+  /// In en, this message translates to:
+  /// **'Floral'**
   String get exploreTitleFloral;
 
   /// Home: Explore item prompt - Floral
+  ///
+  /// In en, this message translates to:
+  /// **'Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast'**
   String get explorePromptFloral;
 
   /// Home: Explore item title - Skull with fedora and pipe
+  ///
+  /// In en, this message translates to:
+  /// **'Skull with fedora and pipe'**
   String get exploreTitleSkullWithFedoraAndPipe;
 
   /// Home: Explore item prompt - Skull with fedora and pipe
+  ///
+  /// In en, this message translates to:
+  /// **'Realistic black & grey skull tattoo, side-profile skull wearing a classic fedora, smoking a curved pipe with soft upward smoke, vintage noir style, detailed bone & teeth texture, smooth gradient shading with dotwork and soft realism, fine-needle detailing, high-contrast blacks, professional tattoo artwork.'**
   String get explorePromptSkullWithFedoraAndPipe;
 
   /// Home: Explore item title - Elegant snake tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Elegant snake tattoo'**
   String get exploreTitleElegantSnakeTattoo;
 
   /// Home: Explore item prompt - Elegant snake tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Ultra-detailed black & white aggressive snake tattoo, open mouth with long fangs and forked tongue, flowing coiled body, fine-line detailed scales, deep black shading, strong contrast, realistic depth, clean negative space, traditional engraving × modern realism, razor-sharp outlines, monochrome ink, no background, professional tattoo flash, forearm or sleeve ready.'**
   String get explorePromptElegantSnakeTattoo;
 
   /// Home: Explore item title - Feather and birds in flight
+  ///
+  /// In en, this message translates to:
+  /// **'Feather and birds in flight'**
   String get exploreTitleFeatherAndBirdsInFlight;
 
   /// Home: Explore item prompt - Feather and birds in flight
+  ///
+  /// In en, this message translates to:
+  /// **'Ultra-detailed black & white feather tattoo, elegant realistic feather with fine linework, symmetrical barbs and sharp spine, smooth dotwork gradient shading, minimal premium fineline style, small bird silhouettes flowing upward, balanced composition, razor-sharp outlines, high-contrast black ink, modern tattoo realism, monochrome only, no background on white canvas, professional flash, stencil-ready.'**
   String get explorePromptFeatherAndBirdsInFlight;
 
   /// Home: Explore item title - Rainy bat with celestial stars
+  ///
+  /// In en, this message translates to:
+  /// **'Rainy bat with celestial stars'**
   String get exploreTitleRainyBatWithCelestialStars;
 
   /// Home: Explore item prompt - Rainy bat with celestial stars
+  ///
+  /// In en, this message translates to:
+  /// **'Symmetrical bat tattoo with fully spread wings, solid black body, wings filled with smooth rainbow gradient (purple to blue, green, yellow, orange), clean bold outlines with fine linework, subtle dotwork shading, surrounded by small stars and dots, two four-pointed stars above and below, mystical celestial vibe, modern neo-traditional style, high contrast, sharp detail.'**
   String get explorePromptRainyBatWithCelestialStars;
 
   /// Home: Explore item title - Elegant black cat silhouette design
+  ///
+  /// In en, this message translates to:
+  /// **'Elegant black cat silhouette design'**
   String get exploreTitleElegantBlackCatSilhouetteDesign;
 
   /// Home: Explore item prompt - Elegant black cat silhouette design
+  ///
+  /// In en, this message translates to:
+  /// **'A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art'**
   String get explorePromptElegantBlackCatSilhouetteDesign;
 
   /// Home: Explore item title - Red rose tattoo design
+  ///
+  /// In en, this message translates to:
+  /// **'Red rose tattoo design'**
   String get exploreTitleRedRoseTattooDesign;
 
   /// Home: Explore item prompt - Red rose tattoo design
+  ///
+  /// In en, this message translates to:
+  /// **'Realistic red rose tattoo, single blooming rose with layered petals, rich deep red color, fine detailed petal texture, subtle gradient shading, natural green stem with small thorns and two detailed leaves, clean crisp outlines, soft realism tattoo style, high contrast, smooth color blending, professional tattoo flash quality, isolated rose only'**
   String get explorePromptRedRoseTattooDesign;
 
   /// Home: Explore item title - Black infinity arrow tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Black infinity arrow tattoo'**
   String get exploreTitleBlackInfinityArrowTattoo;
 
   /// Home: Explore item prompt - Black infinity arrow tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Realistic Minimalist black infinity arrow tattoo, smooth continuous loop with sharp arrow, clean bold linework, high-contrast solid black ink, modern minimal style, monochrome, stencil-ready.'**
   String get explorePromptBlackInfinityArrowTattoo;
 
   /// Home: Explore item title - Black scorpion tattoo design
+  ///
+  /// In en, this message translates to:
+  /// **'Black scorpion tattoo design'**
   String get exploreTitleBlackScorpionTattooDesign;
 
   /// Home: Explore item prompt - Black scorpion tattoo design
+  ///
+  /// In en, this message translates to:
+  /// **'Realistic minimalist black scorpion tattoo design, bold solid black ink, sharp clean linework, symmetrical tribal-inspired detailing, high contrast, smooth curves, modern tattoo style, stencil-ready, isolated on plain background, ultra-detailed, professional tattoo flash'**
   String get explorePromptBlackScorpionTattooDesign;
 
   /// Home: Explore item title - Crescent moon and star tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Crescent moon and star tattoo'**
   String get exploreTitleCrescentMoonAndStarTattoo;
 
   /// Home: Explore item prompt - Crescent moon and star tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Minimalist black ink tattoo, fine-line style, upward crescent moon with solid black fill, small four-point star above aligned vertically, subtle dot accents, celestial and mystical aesthetic, simple geometry, balanced spacing, clean background, precise linework, high contrast, timeless minimal tattoo design'**
   String get explorePromptCrescentMoonAndStarTattoo;
 
   /// Home: Explore item title - Sleeping panda tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Sleeping panda tattoo'**
   String get exploreTitleSleepingPandaTattoo;
 
   /// Home: Explore item prompt - Sleeping panda tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.'**
   String get explorePromptSleepingPandaTattoo;
 
   /// Generic: Tattoo label (fallback style name)
+  ///
+  /// In en, this message translates to:
+  /// **'Tattoo'**
   String get genericTattoo;
 
   /// Loading screen: generating message
+  ///
+  /// In en, this message translates to:
+  /// **'Generating your tattoo..'**
   String get loadingGeneratingYourTattoo;
 
-  /// Virtual try-on: processing failed message
-  String get virtualTryOnProcessingFailedTryAgain;
-
   /// Result screen: Share button label
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
   String get resultShare;
 
   /// Result screen: No image to share message
+  ///
+  /// In en, this message translates to:
+  /// **'No image to share'**
   String get resultNoImageToShare;
 
   /// Result screen: Share text with style name
+  ///
+  /// In en, this message translates to:
+  /// **'Check out my {styleName} tattoo design!'**
   String resultShareText(String styleName);
 
   /// Result screen: Share subject with style name
+  ///
+  /// In en, this message translates to:
+  /// **'{styleName} Tattoo Design'**
   String resultShareSubject(String styleName);
 
   /// Result screen: Error sharing message
+  ///
+  /// In en, this message translates to:
+  /// **'Error sharing: {error}'**
   String resultErrorSharing(String error);
 
   /// Result screen: Image saved to gallery message
+  ///
+  /// In en, this message translates to:
+  /// **'Image saved to gallery'**
   String get resultImageSavedToGallery;
 
   /// Result screen: Error saving message
+  ///
+  /// In en, this message translates to:
+  /// **'Error saving image: {error}'**
   String resultErrorSaving(String error);
 
   /// Flower home: title line 1
@@ -607,19 +755,19 @@ abstract class AppLocalizations {
   /// Flower loading screen: subtitle with name placeholder
   ///
   /// In en, this message translates to:
-  /// **'Designing "{name}" with beautiful flowers'**
+  /// **'Designing \"{name}\" with beautiful flowers'**
   String flowerLoadingDesigningWithBeautifulFlowers(String name);
 
   /// Flower result screen: placeholder text with name
   ///
   /// In en, this message translates to:
-  /// **'Floral tattoo for "{name}"'**
+  /// **'Floral tattoo for \"{name}\"'**
   String flowerResultFloralTattooFor(String name);
 
   /// Flower result screen: share text with name placeholder
   ///
   /// In en, this message translates to:
-  /// **'Check out my floral tattoo design for "{name}"!'**
+  /// **'Check out my floral tattoo design for \"{name}\"!'**
   String flowerResultShareText(String name);
 
   /// Flower result screen: share subject with name placeholder
@@ -643,7 +791,7 @@ abstract class AppLocalizations {
   /// Step birthday page: question text
   ///
   /// In en, this message translates to:
-  /// **'What's your birthday?'**
+  /// **'What\'s your birthday?'**
   String get stepBirthdayWhatsYourBirthday;
 
   /// Month name: January
@@ -721,7 +869,7 @@ abstract class AppLocalizations {
   /// Step name page: question text
   ///
   /// In en, this message translates to:
-  /// **'What's your name?'**
+  /// **'What\'s your name?'**
   String get stepNameWhatsYourName;
 
   /// Step name page: input hint text
@@ -1034,9 +1182,6 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Step {currentStep}/5'**
-  ///
-  /// Parameters:
-  /// - [currentStep]: The current step number
   String onboardingStep(int currentStep);
 
   /// Onboarding next button: text for final step
@@ -1146,8 +1291,19 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'ar',
+    'de',
+    'en',
+    'es',
+    'fr',
+    'it',
+    'ja',
+    'ko',
+    'pt',
+    'ru',
+    'zh',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1156,8 +1312,28 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'de':
+      return AppLocalizationsDe();
     case 'en':
       return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'fr':
+      return AppLocalizationsFr();
+    case 'it':
+      return AppLocalizationsIt();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
+    case 'pt':
+      return AppLocalizationsPt();
+    case 'ru':
+      return AppLocalizationsRu();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

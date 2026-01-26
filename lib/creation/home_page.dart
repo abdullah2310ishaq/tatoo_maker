@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
@@ -22,8 +23,29 @@ class _HomePageState extends State<HomePage> {
   int? _selectedStyleIndex;
   final TextEditingController _dreamInkController = TextEditingController();
   static const int _maxCharacters = 250;
-  bool _showTutorialOverlay = true; // Show on each restart for now
+  bool _showTutorialOverlay = false;
   final GlobalKey _dreamInkCardKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _checkTutorialStatus();
+  }
+
+  Future<void> _checkTutorialStatus() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final tutorialShown = prefs.getBool('home_tutorial_shown') ?? false;
+      if (!tutorialShown && mounted) {
+        setState(() {
+          _showTutorialOverlay = true;
+        });
+      }
+    } catch (e) {
+      // On error, don't show tutorial
+      debugPrint('Error checking tutorial status: $e');
+    }
+  }
 
   Map<String, String> _stylePrompts(AppLocalizations l10n) => {
     'Wolf': l10n.tattooStylePromptWolf,
@@ -720,10 +742,13 @@ class _HomePageState extends State<HomePage> {
   Widget _buildTutorialOverlay() {
     final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _showTutorialOverlay = false;
-        });
+      onTap: () async {
+        await _markTutorialAsShown();
+        if (mounted) {
+          setState(() {
+            _showTutorialOverlay = false;
+          });
+        }
       },
       child: Container(
         color: Colors.black.withOpacity(0.5),
@@ -731,7 +756,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             // Arrow and text in a bordered container positioned below the card
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.34,
+              top: MediaQuery.of(context).size.height * 0.33,
               left: 20.w,
               right: 20.w,
               child: Container(
@@ -783,6 +808,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  Future<void> _markTutorialAsShown() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('home_tutorial_shown', true);
+    } catch (e) {
+      // Handle error silently
+      debugPrint('Error saving tutorial status: $e');
+    }
   }
 }
 

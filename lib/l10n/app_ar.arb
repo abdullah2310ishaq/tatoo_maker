@@ -1,0 +1,766 @@
+{
+  "@@locale": "ar",
+  "skip": "تخطي",
+  "@skip": {
+    "description": "Skip button text for onboarding screens"
+  },
+  "continue_": "متابعة",
+  "@continue_": {
+    "description": "Continue button text for onboarding screens"
+  },
+  "start": "بدء",
+  "@start": {
+    "description": "Start button text for final onboarding screen"
+  },
+  "tattooCreation": "إنشاء الوشم",
+  "@tattooCreation": {
+    "description": "Title for first onboarding screen"
+  },
+  "tattooCreationDescription": "أنشئ تصميمات وشم فريدة وشاهد كيف تبدو على يدك في الوقت الفعلي.",
+  "@tattooCreationDescription": {
+    "description": "Description text for first onboarding screen"
+  },
+  "customCreation": "إنشاء مخصص",
+  "@customCreation": {
+    "description": "Title for second onboarding screen"
+  },
+  "customCreationDescription": "أنشئ تصميمات مخصصة وحقق\nأفكارك الإبداعية.",
+  "@customCreationDescription": {
+    "description": "Description text for second onboarding screen"
+  },
+  "tattooMaker": "صانع الوشم",
+  "@tattooMaker": {
+    "description": "Title for third onboarding screen"
+  },
+  "flowerCreation": "إنشاء الزهور",
+  "@flowerCreation": {
+    "description": "Feature title for third onboarding screen"
+  },
+  "flowerCreationDescription": "حول اسمك إلى تصميم جميل\nمستوحى من الزهور.",
+  "@flowerCreationDescription": {
+    "description": "Description text for third onboarding screen"
+  },
+  "chooseALanguage": "اختر لغة",
+  "@chooseALanguage": {
+    "description": "Title for language selection screen"
+  },
+  "next": "التالي",
+  "@next": {
+    "description": "Next button text"
+  },
+  "cameraPermissionRequired": "إذن الكاميرا مطلوب",
+  "@cameraPermissionRequired": {
+    "description": "Camera permission dialog title"
+  },
+  "permissionRequired": "إذن مطلوب",
+  "@permissionRequired": {
+    "description": "Generic permission dialog title"
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "description": "Dialog/CTA: Cancel"
+  },
+  "openSettings": "فتح الإعدادات",
+  "@openSettings": {
+    "description": "Dialog/CTA: Open Settings"
+  },
+  "retry": "إعادة المحاولة",
+  "@retry": {
+    "description": "Button label: Retry"
+  },
+  "cameraPermissionIsRequiredToTakePhotos": "إذن الكاميرا مطلوب لالتقاط الصور.",
+  "@cameraPermissionIsRequiredToTakePhotos": {
+    "description": "Camera permission required to take photos message"
+  },
+  "cameraAccessNeededEnableInSettings": "هذا التطبيق يحتاج إلى الوصول إلى الكاميرا لالتقاط الصور. يرجى تفعيله في الإعدادات.",
+  "@cameraAccessNeededEnableInSettings": {
+    "description": "Camera access explanation for settings dialog"
+  },
+  "noCamerasAvailableOnThisDevice": "لا توجد كاميرات متاحة على هذا الجهاز.",
+  "@noCamerasAvailableOnThisDevice": {
+    "description": "Error message shown when there are no cameras available"
+  },
+  "failedToInitializeCameraTryAgain": "فشل في تهيئة الكاميرا. يرجى المحاولة مرة أخرى.",
+  "@failedToInitializeCameraTryAgain": {
+    "description": "Error message shown when camera fails to initialize"
+  },
+  "cameraNotReadyPleaseWait": "الكاميرا غير جاهزة. يرجى الانتظار.",
+  "@cameraNotReadyPleaseWait": {
+    "description": "Error message shown when camera is not ready"
+  },
+  "couldntCapturePhotoTryAgain": "تعذر التقاط الصورة. حاول مرة أخرى.",
+  "@couldntCapturePhotoTryAgain": {
+    "description": "Error message shown when photo capture fails"
+  },
+  "cameraError": "خطأ في الكاميرا",
+  "@cameraError": {
+    "description": "Generic camera error label"
+  },
+  "lightTheme": "المظهر الفاتح",
+  "@lightTheme": {
+    "description": "Light theme label"
+  },
+  "darkTheme": "المظهر الداكن",
+  "@darkTheme": {
+    "description": "Dark theme label"
+  },
+  "languages": "اللغات",
+  "@languages": {
+    "description": "Drawer menu item: Languages"
+  },
+  "favorites": "المفضلة",
+  "@favorites": {
+    "description": "Drawer menu item: Favorites"
+  },
+  "rateUs": "قيمنا",
+  "@rateUs": {
+    "description": "Drawer menu item: Rate Us"
+  },
+  "privacyPolicy": "سياسة الخصوصية",
+  "@privacyPolicy": {
+    "description": "Drawer menu item: Privacy Policy"
+  },
+  "shareApp": "مشاركة التطبيق",
+  "@shareApp": {
+    "description": "Drawer menu item: Share App"
+  },
+  "feedback": "التعليقات",
+  "@feedback": {
+    "description": "Drawer menu item: Feedback"
+  },
+  "communityGuidelines": "إرشادات المجتمع",
+  "@communityGuidelines": {
+    "description": "Drawer menu item: Community Guidelines"
+  },
+  "moreApps": "المزيد من التطبيقات",
+  "@moreApps": {
+    "description": "Drawer menu item: More Apps"
+  },
+  "creation": "إنشاء",
+  "@creation": {
+    "description": "Bottom navigation item: Creation"
+  },
+  "tattoo": "الوشم",
+  "@tattoo": {
+    "description": "Bottom navigation item: Tattoo"
+  },
+  "flower": "الزهور",
+  "@flower": {
+    "description": "Bottom navigation item: Flower"
+  },
+  "couldntShareImageTryAgain": "تعذر مشاركة الصورة. حاول مرة أخرى.",
+  "@couldntShareImageTryAgain": {
+    "description": "Generic message when sharing fails"
+  },
+  "noImageToSave": "لا توجد صورة للحفظ",
+  "@noImageToSave": {
+    "description": "SnackBar message shown when there is no image to save"
+  },
+  "imageSavedToGalleryExcited": "تم حفظ الصورة في المعرض!",
+  "@imageSavedToGalleryExcited": {
+    "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
+  },
+  "couldntSaveImageTryAgain": "تعذر حفظ الصورة. حاول مرة أخرى.",
+  "@couldntSaveImageTryAgain": {
+    "description": "Generic message when saving fails"
+  },
+  "capturePhoto": "التقاط صورة",
+  "@capturePhoto": {
+    "description": "Virtual try-on: capture photo button label"
+  },
+  "apply": "تطبيق",
+  "@apply": {
+    "description": "Virtual try-on: apply button label"
+  },
+  "download": "تحميل",
+  "@download": {
+    "description": "Virtual try-on: download button label"
+  },
+  "virtualTryOn": "تجربة افتراضية",
+  "@virtualTryOn": {
+    "description": "Virtual try-on screen title"
+  },
+  "virtualTryOnEmptyState": "التقط صورة ليدك\nأو جزء من جسمك لتجربة الوشم",
+  "@virtualTryOnEmptyState": {
+    "description": "Virtual try-on empty state message"
+  },
+  "virtualTryOnProcessingTitle": "جارٍ معالجة الوشم على جلد الإنسان...",
+  "@virtualTryOnProcessingTitle": {
+    "description": "Virtual try-on processing status line 1"
+  },
+  "virtualTryOnProcessingSubtitle": "قد يستغرق هذا بضع لحظات",
+  "@virtualTryOnProcessingSubtitle": {
+    "description": "Virtual try-on processing status line 2"
+  },
+  "virtualTryOnProcessingFailedTryAgain": "تعذر معالجة الصورة. حاول مرة أخرى.",
+  "@virtualTryOnProcessingFailedTryAgain": {
+    "description": "Virtual try-on: processing failed message"
+  },
+  "promptLabel": "Prompt",
+  "@promptLabel": {
+    "description": "Label for the prompt section in explore detail"
+  },
+  "tryThis": "جرب هذا",
+  "@tryThis": {
+    "description": "Button text for trying an explore preset"
+  },
+  "tattooStylePromptWolf": "وشم ذئب قبلي بسيط مرسوم بخطوط بيضاء جريئة، منحنيات حادة مجردة، فن خط نظيف، أسلوب وشم فلاش.",
+  "@tattooStylePromptWolf": {
+    "description": "Home: style prompt for Wolf"
+  },
+  "tattooStylePromptAbstract": "وشم قبلي مجرد يرمز للقوة الداخلية والمرونة، منحنيات حادة متدفقة ترتفع للأعلى، فن خط جريء وواثق، تكوين عمودي قوي، أسلوب قبلي بسيط، حبر أبيض صلب",
+  "@tattooStylePromptAbstract": {
+    "description": "Home: style prompt for Abstract"
+  },
+  "tattooStylePromptLion": "وشم أسد مهيب يمثل الشجاعة والقيادة، تعبير هادئ وقوي، لبدة مفصلة، تظليل قوي، تصميم وشم فني، حبر أبيض صلب، تباين عالي",
+  "@tattooStylePromptLion": {
+    "description": "Home: style prompt for Lion"
+  },
+  "tattooStylePromptEagle": "وشم نسر في منتصف الطيران يرمز للحرية والرؤية، أجنحة عريضة، تفاصيل ريش حادة، حركة ديناميكية، فن وشم جريء، حبر أبيض صلب، تباين عالي",
+  "@tattooStylePromptEagle": {
+    "description": "Home: style prompt for Eagle"
+  },
+  "tattooStylePromptSpider": "وشم عنكبوت مفصل يرمز للصبر والتحكم، تشريح واقعي، عناصر شبكة نظيفة، أسلوب وشم فني داكن، حبر أبيض صلب، تباين عالي",
+  "@tattooStylePromptSpider": {
+    "description": "Home: style prompt for Spider"
+  },
+  "tattooStylePromptButterfly": "وشم فراشة رقيق يمثل التحول والنمو، أجنحة مفصلة، تظليل ناعم، رسم وشم أنيق، حبر أبيض صلب، تباين عالي.",
+  "@tattooStylePromptButterfly": {
+    "description": "Home: style prompt for Butterfly"
+  },
+  "tattooStylePromptDragon": "تصميم وشم تنين خيالي، جسم ملتف، حراشف داكنة، أجنحة برتقالية متوهجة، قرون حادة، خطوط نظيفة جريئة",
+  "@tattooStylePromptDragon": {
+    "description": "Home: style prompt for Dragon"
+  },
+  "tattooStylePromptUnicorn": "تصميم وشم رأس حصان وحيد القرن، قرن ذهبي، لبدة قوس قزح متدفقة، رسم خيالي مفصل",
+  "@tattooStylePromptUnicorn": {
+    "description": "Home: style prompt for Unicorn"
+  },
+  "tattooStylePromptFloral": "باقة زهرية باستيل، ورود خوخية ووردية، أزهار برية، أوراق ذهبية، شرائط متتالية، قطرة دموع غير متماثلة، عتيق رومانسي، إضاءة ناعمة، واقعية عالية، خلفية داكنة.",
+  "@tattooStylePromptFloral": {
+    "description": "Home: style prompt for Floral"
+  },
+  "homeDescribeYourDreamInk": "صف وشمك المثالي",
+  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "homeDreamInkHint": "أخبرنا بما تتخيله...",
+  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "homeInspiration": "الإلهام",
+  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "homeCharactersRemaining": "حرف متبقي",
+  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "homeTattooStyle": "أسلوب الوشم",
+  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "homeExploreInspiration": "استكشف الإلهام",
+  "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
+  "homeGenerate": "إنشاء",
+  "@homeGenerate": { "description": "Home: Generate button label" },
+  "homeTutorialOverlayText": "صف الوشم الذي تفكر فيه، أو اضغط على 'الإلهام' للحصول على أفكار",
+  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
+
+  "exploreTitleGothqueen": "Gothqueen",
+  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "explorePromptGothqueen": "وشم ملكة قوطية أسود ورمادي، وجه أنثى أصلع، تاج مزخرف، عمل خط هندسي، تظليل واقعي، متماثل، تفاصيل عالية",
+  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
+
+  "exploreTitleFloral": "Floral",
+  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "explorePromptFloral": "تصميم وشم زهري جميل مع بتلات وأوراق معقدة، منحنيات متدفقة طبيعية، أسلوب وشم نباتي، عمل خط مفصل، حبر أبيض صلب، تباين عالي",
+  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
+
+  "exploreTitleSkullWithFedoraAndPipe": "جمجمة مع قبعة فيدورا وأنبوب",
+  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "explorePromptSkullWithFedoraAndPipe": "وشم جمجمة واقعي أسود ورمادي، جمجمة جانبية ترتدي قبعة فيدورا كلاسيكية، تدخن أنبوبًا منحنيًا مع دخان صاعد ناعم، أسلوب نوير عتيق، نسيج عظم وأسنان مفصل، تظليل متدرج ناعم مع عمل نقطي وواقعية ناعمة، تفاصيل إبرة دقيقة، أسود عالي التباين، عمل فني وشم احترافي.",
+  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
+
+  "exploreTitleElegantSnakeTattoo": "وشم ثعبان أنيق",
+  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "explorePromptElegantSnakeTattoo": "وشم ثعبان عدواني فائق التفاصيل أسود وأبيض، فم مفتوح مع أنياب طويلة ولسان متشعب، جسم ملتف متدفق، حراشف مفصلة بخط دقيق، تظليل أسود عميق، تباين قوي، عمق واقعي، مساحة سلبية نظيفة، نقش تقليدي × واقعية حديثة، خطوط حادة كالموس، حبر أحادي اللون، بدون خلفية، وشم فلاش احترافي، جاهز للساعد أو الكم.",
+  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
+
+  "exploreTitleFeatherAndBirdsInFlight": "ريشة وطيور في الطيران",
+  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "explorePromptFeatherAndBirdsInFlight": "وشم ريشة فائق التفاصيل أسود وأبيض، ريشة أنيقة واقعية مع عمل خط دقيق، شعيرات متماثلة وعمود فقري حاد، تظليل متدرج عمل نقطي ناعم، أسلوب خط دقيق بسيط ممتاز، ظلال طيور صغيرة تتدفق للأعلى، تكوين متوازن، خطوط حادة كالموس، حبر أسود عالي التباين، واقعية وشم حديثة، أحادي اللون فقط، بدون خلفية على قماش أبيض، فلاش احترافي، جاهز للاستنسل.",
+  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
+
+  "exploreTitleRainyBatWithCelestialStars": "خفاش ماطر مع نجوم سماوية",
+  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "explorePromptRainyBatWithCelestialStars": "وشم خفاش متماثل بأجنحة مفتوحة بالكامل، جسم أسود صلب، أجنحة مملوءة بتدرج قوس قزح ناعم (من البنفسجي إلى الأزرق، الأخضر، الأصفر، البرتقالي)، خطوط عريضة نظيفة جريئة مع عمل خط دقيق، تظليل عمل نقطي خفيف، محاط بنجوم ونقاط صغيرة، نجمتان رباعيتان أعلاه وأسفله، جو سماوي صوفي، أسلوب تقليدي جديد حديث، تباين عالي، تفاصيل حادة.",
+  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
+
+  "exploreTitleElegantBlackCatSilhouetteDesign": "تصميم ظل قطة سوداء أنيقة",
+  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "explorePromptElegantBlackCatSilhouetteDesign": "تصميم وشم قطة سوداء بسيط بأسلوب مجرد أنيق، قطة جانبية جالسة بذيل منحني طويل متدفق، خطوط كنس ناعمة وحواف مدببة حادة، حبر أسود صلب مع تظليل متدرج خفيف للعمق، أشكال هندسية وسائلة تشكل الجسم، خطوط شوارب رقيقة تمتد من الوجه، أسلوب وشم خط دقيق حديث، تباين عالي، مساحة سلبية نظيفة، مظهر متطور وفني، فن وشم فلاش",
+  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
+
+  "exploreTitleRedRoseTattooDesign": "تصميم وشم وردة حمراء",
+  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "explorePromptRedRoseTattooDesign": "وشم وردة حمراء واقعي، وردة واحدة متفتحة مع بتلات متعددة الطبقات، لون أحمر عميق غني، نسيج بتلة مفصل دقيق، تظليل متدرج خفيف، ساق أخضر طبيعي مع أشواك صغيرة وورقتين مفصلة، خطوط نظيفة واضحة، أسلوب وشم واقعية ناعمة، تباين عالي، مزج لون ناعم، جودة وشم فلاش احترافية، وردة معزولة فقط",
+  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
+
+  "exploreTitleBlackInfinityArrowTattoo": "وشم سهم اللانهاية الأسود",
+  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "explorePromptBlackInfinityArrowTattoo": "وشم سهم لانهاية أسود بسيط واقعي، حلقة مستمرة ناعمة مع سهم حاد، عمل خط نظيف جريء، حبر أسود صلب عالي التباين، أسلوب بسيط حديث، أحادي اللون، جاهز للاستنسل.",
+  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
+
+  "exploreTitleBlackScorpionTattooDesign": "تصميم وشم عقرب أسود",
+  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "explorePromptBlackScorpionTattooDesign": "تصميم وشم عقرب أسود بسيط واقعي، حبر أسود صلب جريء، عمل خط نظيف حاد، تفاصيل مستوحاة من القبائل متماثلة، تباين عالي، منحنيات ناعمة، أسلوب وشم حديث، جاهز للاستنسل، معزول على خلفية عادية، فائق التفاصيل، وشم فلاش احترافي",
+  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
+
+  "exploreTitleCrescentMoonAndStarTattoo": "وشم هلال ونجمة",
+  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "explorePromptCrescentMoonAndStarTattoo": "وشم حبر أسود بسيط، أسلوب خط دقيق، هلال صاعد مع ملء أسود صلب، نجم رباعي صغير أعلاه محاذي عموديًا، لهجات نقطية خفيفة، جمال سماوي وصوفي، هندسة بسيطة، تباعد متوازن، خلفية نظيفة، عمل خط دقيق، تباين عالي، تصميم وشم بسيط خالد",
+  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
+
+  "exploreTitleSleepingPandaTattoo": "وشم باندا نائم",
+  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "explorePromptSleepingPandaTattoo": "وشم باندا لطيف بسيط، باندا نائمة صغيرة مستلقية على جانبها، شكل دائري بسيط، حبر أسود وأبيض صلب، ملء ناعم وسلس، تفاصيل وجهية قليلة، حواف نظيفة، أسلوب وشم بسيط حديث، أحادي اللون، بدون خلفية، قماش أبيض، جاهز للاستنسل.",
+  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
+
+  "genericTattoo": "الوشم",
+  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
+
+  "loadingGeneratingYourTattoo": "جارٍ إنشاء وشمك..",
+  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
+
+  "resultShare": "مشاركة",
+  "@resultShare": { "description": "Result screen: Share button label" },
+  "resultNoImageToShare": "لا توجد صورة للمشاركة",
+  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "resultShareText": "تحقق من تصميم وشم {styleName} الخاص بي!",
+  "@resultShareText": {
+    "description": "Result screen: Share text with style name",
+    "placeholders": {
+      "styleName": {
+        "type": "String"
+      }
+    }
+  },
+  "resultShareSubject": "تصميم وشم {styleName}",
+  "@resultShareSubject": {
+    "description": "Result screen: Share subject with style name",
+    "placeholders": {
+      "styleName": {
+        "type": "String"
+      }
+    }
+  },
+  "resultErrorSharing": "خطأ في المشاركة: {error}",
+  "@resultErrorSharing": {
+    "description": "Result screen: Error sharing message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resultImageSavedToGallery": "تم حفظ الصورة في المعرض",
+  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "resultErrorSaving": "خطأ في حفظ الصورة: {error}",
+  "@resultErrorSaving": {
+    "description": "Result screen: Error saving message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerHomeTransformYourName": "حول اسمك",
+  "@flowerHomeTransformYourName": {
+    "description": "Flower home: title line 1"
+  },
+  "flowerHomeIntoABouquetTattoo": "إلى وشم باقة",
+  "@flowerHomeIntoABouquetTattoo": {
+    "description": "Flower home: title line 2"
+  },
+  "flowerHomeCreate": "إنشاء",
+  "@flowerHomeCreate": {
+    "description": "Flower home: create button label"
+  },
+  "flowerInputEnterYourName": "أدخل اسمك",
+  "@flowerInputEnterYourName": {
+    "description": "Flower input screen: page title"
+  },
+  "flowerLoadingCreatingYourFloralTattoo": "جارٍ إنشاء وشمك الزهري...",
+  "@flowerLoadingCreatingYourFloralTattoo": {
+    "description": "Flower loading screen: main loading message"
+  },
+  "flowerLoadingDesigningWithBeautifulFlowers": "جارٍ تصميم \"{name}\" بأزهار جميلة",
+  "@flowerLoadingDesigningWithBeautifulFlowers": {
+    "description": "Flower loading screen: subtitle with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultFloralTattooFor": "وشم زهري لـ \"{name}\"",
+  "@flowerResultFloralTattooFor": {
+    "description": "Flower result screen: placeholder text with name",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultShareText": "تحقق من تصميم وشمي الزهري لـ \"{name}\"!",
+  "@flowerResultShareText": {
+    "description": "Flower result screen: share text with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultShareSubject": "الوشم الزهري: {name}",
+  "@flowerResultShareSubject": {
+    "description": "Flower result screen: share subject with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tattooPageTurnYourNameIntoA": "حول اسمك إلى",
+  "@tattooPageTurnYourNameIntoA": {
+    "description": "Tattoo page: welcome text line 1"
+  },
+  "tattooPageOneOfAKindTattoo": "وشم فريد من نوعه",
+  "@tattooPageOneOfAKindTattoo": {
+    "description": "Tattoo page: welcome text line 2"
+  },
+  "stepBirthdayWhatsYourBirthday": "ما هو تاريخ ميلادك؟",
+  "@stepBirthdayWhatsYourBirthday": {
+    "description": "Step birthday page: question text"
+  },
+  "monthJanuary": "يناير",
+  "@monthJanuary": {
+    "description": "Month name: January"
+  },
+  "monthFebruary": "فبراير",
+  "@monthFebruary": {
+    "description": "Month name: February"
+  },
+  "monthMarch": "مارس",
+  "@monthMarch": {
+    "description": "Month name: March"
+  },
+  "monthApril": "أبريل",
+  "@monthApril": {
+    "description": "Month name: April"
+  },
+  "monthMay": "مايو",
+  "@monthMay": {
+    "description": "Month name: May"
+  },
+  "monthJune": "يونيو",
+  "@monthJune": {
+    "description": "Month name: June"
+  },
+  "monthJuly": "يوليو",
+  "@monthJuly": {
+    "description": "Month name: July"
+  },
+  "monthAugust": "أغسطس",
+  "@monthAugust": {
+    "description": "Month name: August"
+  },
+  "monthSeptember": "سبتمبر",
+  "@monthSeptember": {
+    "description": "Month name: September"
+  },
+  "monthOctober": "أكتوبر",
+  "@monthOctober": {
+    "description": "Month name: October"
+  },
+  "monthNovember": "نوفمبر",
+  "@monthNovember": {
+    "description": "Month name: November"
+  },
+  "monthDecember": "ديسمبر",
+  "@monthDecember": {
+    "description": "Month name: December"
+  },
+  "stepNameWhatsYourName": "ما اسمك؟",
+  "@stepNameWhatsYourName": {
+    "description": "Step name page: question text"
+  },
+  "stepNameHint": "الاسم",
+  "@stepNameHint": {
+    "description": "Step name page: input hint text"
+  },
+  "stepLocationWhereYouBorn": "أين ولدت؟",
+  "@stepLocationWhereYouBorn": {
+    "description": "Step location page: question text"
+  },
+  "stepLocationHint": "الموقع",
+  "@stepLocationHint": {
+    "description": "Step location page: input hint text"
+  },
+  "stepStylePickYourTitleStyle": "اختر أسلوب العنوان",
+  "@stepStylePickYourTitleStyle": {
+    "description": "Step style selection page: question text"
+  },
+  "stepTattooIdeaWhatYourTattooIdea": "ما هي فكرة وشمك؟",
+  "@stepTattooIdeaWhatYourTattooIdea": {
+    "description": "Step tattoo idea page: question text"
+  },
+  "stepTattooIdeaHint": "صف فكرة وشمك...",
+  "@stepTattooIdeaHint": {
+    "description": "Step tattoo idea page: input hint text"
+  },
+  "zodiacCapricornName": "الجدي",
+  "@zodiacCapricornName": {
+    "description": "Zodiac sign name: Capricorn"
+  },
+  "zodiacCapricornDateRange": "22 ديسمبر – 19 يناير",
+  "@zodiacCapricornDateRange": {
+    "description": "Zodiac sign date range: Capricorn"
+  },
+  "zodiacCapricornDescription": "منضبط وطموح، بطبيعة عملية ومسؤولة. يقدرون النجاح ويفضلون بناء مستقبلهم من خلال الصبر والعمل الجاد.",
+  "@zodiacCapricornDescription": {
+    "description": "Zodiac sign description: Capricorn"
+  },
+  "zodiacAquariusName": "الدلو",
+  "@zodiacAquariusName": {
+    "description": "Zodiac sign name: Aquarius"
+  },
+  "zodiacAquariusDateRange": "20 يناير – 18 فبراير",
+  "@zodiacAquariusDateRange": {
+    "description": "Zodiac sign date range: Aquarius"
+  },
+  "zodiacAquariusDescription": "مستقل ومبدع، بطبيعة حرة وأصلية. يقدرون الحرية ويفضلون التعبير عن فرديتهم بأفكار فريدة.",
+  "@zodiacAquariusDescription": {
+    "description": "Zodiac sign description: Aquarius"
+  },
+  "zodiacPiscesName": "الحوت",
+  "@zodiacPiscesName": {
+    "description": "Zodiac sign name: Pisces"
+  },
+  "zodiacPiscesDateRange": "19 فبراير – 20 مارس",
+  "@zodiacPiscesDateRange": {
+    "description": "Zodiac sign date range: Pisces"
+  },
+  "zodiacPiscesDescription": "لطيف وحالم، بطبيعة حساسة ورحيمة. يقدرون المشاعر ويفضلون العيش من خلال الخيال واللطف والفهم العميق.",
+  "@zodiacPiscesDescription": {
+    "description": "Zodiac sign description: Pisces"
+  },
+  "zodiacAriesName": "الحمل",
+  "@zodiacAriesName": {
+    "description": "Zodiac sign name: Aries"
+  },
+  "zodiacAriesDateRange": "21 مارس – 19 أبريل",
+  "@zodiacAriesDateRange": {
+    "description": "Zodiac sign date range: Aries"
+  },
+  "zodiacAriesDescription": "جريء ونشط، بطبيعة واثقة ولا تخشى شيئًا. يحبون المبادرة ويفضلون القيادة بالشغف والعزيمة.",
+  "@zodiacAriesDescription": {
+    "description": "Zodiac sign description: Aries"
+  },
+  "zodiacTaurusName": "الثور",
+  "@zodiacTaurusName": {
+    "description": "Zodiac sign name: Taurus"
+  },
+  "zodiacTaurusDateRange": "20 أبريل – 20 مايو",
+  "@zodiacTaurusDateRange": {
+    "description": "Zodiac sign date range: Taurus"
+  },
+  "zodiacTaurusDescription": "جريء ونشط، بطبيعة واثقة ولا تخشى شيئًا. يحبون المبادرة ويفضلون القيادة بالشغف والعزيمة.",
+  "@zodiacTaurusDescription": {
+    "description": "Zodiac sign description: Taurus"
+  },
+  "zodiacGeminiName": "الجوزاء",
+  "@zodiacGeminiName": {
+    "description": "Zodiac sign name: Gemini"
+  },
+  "zodiacGeminiDateRange": "21 مايو – 20 يونيو",
+  "@zodiacGeminiDateRange": {
+    "description": "Zodiac sign date range: Gemini"
+  },
+  "zodiacGeminiDescription": "فضولي ونشط، بطبيعة سريعة الذهن وقابلة للتكيف. يستمتعون بالتواصل ويفضلون استكشاف أفكار جديدة بحماس.",
+  "@zodiacGeminiDescription": {
+    "description": "Zodiac sign description: Gemini"
+  },
+  "zodiacCancerName": "السرطان",
+  "@zodiacCancerName": {
+    "description": "Zodiac sign name: Cancer"
+  },
+  "zodiacCancerDateRange": "21 يونيو – 22 يوليو",
+  "@zodiacCancerDateRange": {
+    "description": "Zodiac sign date range: Cancer"
+  },
+  "zodiacCancerDescription": "حساس ومراعي، بطبيعة عاطفية عميقة ووقائية. يقدرون الروابط الوثيقة ويفضلون رعاية الآخرين بالدفء والولاء.",
+  "@zodiacCancerDescription": {
+    "description": "Zodiac sign description: Cancer"
+  },
+  "zodiacLeoName": "الأسد",
+  "@zodiacLeoName": {
+    "description": "Zodiac sign name: Leo"
+  },
+  "zodiacLeoDateRange": "23 يوليو – 22 أغسطس",
+  "@zodiacLeoDateRange": {
+    "description": "Zodiac sign date range: Leo"
+  },
+  "zodiacLeoDescription": "واثق وكاريزمي، بطبيعة جريئة وكريمة. يستمتعون بالإعجاب ويفضلون التعبير عن أنفسهم بالإبداع والفخر.",
+  "@zodiacLeoDescription": {
+    "description": "Zodiac sign description: Leo"
+  },
+  "zodiacVirgoName": "العذراء",
+  "@zodiacVirgoName": {
+    "description": "Zodiac sign name: Virgo"
+  },
+  "zodiacVirgoDateRange": "23 أغسطس – 22 سبتمبر",
+  "@zodiacVirgoDateRange": {
+    "description": "Zodiac sign date range: Virgo"
+  },
+  "zodiacVirgoDescription": "عملي ومتأمل، بطبيعة تركز على التفاصيل ومجتهدة. يقدرون الانضباط ويفضلون إحضار النظام والرعاية إلى كل ما يفعلونه.",
+  "@zodiacVirgoDescription": {
+    "description": "Zodiac sign description: Virgo"
+  },
+  "zodiacLibraName": "الميزان",
+  "@zodiacLibraName": {
+    "description": "Zodiac sign name: Libra"
+  },
+  "zodiacLibraDateRange": "23 سبتمبر – 22 أكتوبر",
+  "@zodiacLibraDateRange": {
+    "description": "Zodiac sign date range: Libra"
+  },
+  "zodiacLibraDescription": "ساحر ومتوازن، بطبيعة مسالمة وعادلة. يقدرون الانسجام ويفضلون بناء الروابط من خلال اللطف والفهم.",
+  "@zodiacLibraDescription": {
+    "description": "Zodiac sign description: Libra"
+  },
+  "zodiacScorpioName": "العقرب",
+  "@zodiacScorpioName": {
+    "description": "Zodiac sign name: Scorpio"
+  },
+  "zodiacScorpioDateRange": "23 أكتوبر – 21 نوفمبر",
+  "@zodiacScorpioDateRange": {
+    "description": "Zodiac sign date range: Scorpio"
+  },
+  "zodiacScorpioDescription": "شديد وعاطفي، بطبيعة قوية وغامضة. يقدرون الولاء ويفضلون روابط عميقة مبنية على الثقة والقوة.",
+  "@zodiacScorpioDescription": {
+    "description": "Zodiac sign description: Scorpio"
+  },
+  "zodiacSagittariusName": "القوس",
+  "@zodiacSagittariusName": {
+    "description": "Zodiac sign name: Sagittarius"
+  },
+  "zodiacSagittariusDateRange": "22 نوفمبر – 21 ديسمبر",
+  "@zodiacSagittariusDateRange": {
+    "description": "Zodiac sign date range: Sagittarius"
+  },
+  "zodiacSagittariusDescription": "مغامر ومتفائل، بطبيعة محبة للحرية وفضولية. يقدرون الاستكشاف ويفضلون مطاردة تجارب جديدة بحماس واستقلالية.",
+  "@zodiacSagittariusDescription": {
+    "description": "Zodiac sign description: Sagittarius"
+  },
+  "styleDragon": "التنين",
+  "@styleDragon": {
+    "description": "Tattoo style label: Dragon"
+  },
+  "styleUnicorn": "حصان وحيد القرن",
+  "@styleUnicorn": {
+    "description": "Tattoo style label: Unicorn"
+  },
+  "styleFloral": "Floral",
+  "@styleFloral": {
+    "description": "Tattoo style label: Floral"
+  },
+  "styleAbstract": "مجرد",
+  "@styleAbstract": {
+    "description": "Tattoo style label: Abstract"
+  },
+  "styleButterfly": "الفراشة",
+  "@styleButterfly": {
+    "description": "Tattoo style label: Butterfly"
+  },
+  "styleEagle": "النسر",
+  "@styleEagle": {
+    "description": "Tattoo style label: Eagle"
+  },
+  "styleLion": "الأسد",
+  "@styleLion": {
+    "description": "Tattoo style label: Lion"
+  },
+  "styleSpider": "العنكبوت",
+  "@styleSpider": {
+    "description": "Tattoo style label: Spider"
+  },
+  "styleWolf": "الذئب",
+  "@styleWolf": {
+    "description": "Tattoo style label: Wolf"
+  },
+  "onboardingStep": "الخطوة {currentStep}/5",
+  "@onboardingStep": {
+    "description": "Onboarding header: step indicator text",
+    "placeholders": {
+      "currentStep": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "onboardingGetStarted": "ابدأ",
+  "@onboardingGetStarted": {
+    "description": "Onboarding next button: text for final step"
+  },
+  "ad": "إعلان",
+  "@ad": {
+    "description": "Ad badge label in drawer menu"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Language name: English"
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Language name: Spanish"
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "Language name: French"
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "Language name: German"
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Language name: Italian"
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Language name: Portuguese"
+  },
+  "languageRussian": "Русский",
+  "@languageRussian": {
+    "description": "Language name: Russian"
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Language name: Chinese"
+  },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "Language name: Japanese"
+  },
+  "languageKorean": "한국어",
+  "@languageKorean": {
+    "description": "Language name: Korean"
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Language name: Arabic"
+  },
+  "exitAppTitle": "إنهاء التطبيق؟",
+  "@exitAppTitle": {
+    "description": "Exit confirmation dialog: title"
+  },
+  "exitAppMessage": "هل أنت متأكد أنك تريد الخروج؟",
+  "@exitAppMessage": {
+    "description": "Exit confirmation dialog: message"
+  },
+  "exit": "خروج",
+  "@exit": {
+    "description": "Exit confirmation dialog: exit button label"
+  }
+}
