@@ -76,7 +76,7 @@ class AppDrawer extends StatelessWidget {
                     context: context,
                     icon: Icons.language,
                     title: l10n.languages,
-                    trailingText: 'English',
+                    trailingText: _getCurrentLanguageName(context),
                     textColor: textColor,
                     iconColor: iconColor,
                     onTap: () {
@@ -180,11 +180,9 @@ class AppDrawer extends StatelessWidget {
                 color: const Color(0xFFFE8B3A),
                 borderRadius: BorderRadius.circular(4),
               ),
-              child: const Text(
-                // Intentionally not localized here; provided by caller where needed.
-                // (kept const for performance)
-                'Ad',
-                style: TextStyle(
+              child: Text(
+                AppLocalizations.of(context)!.ad,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -212,5 +210,38 @@ class AppDrawer extends StatelessWidget {
       ),
       onTap: onTap,
     );
+  }
+
+  /// Get the current language name based on the locale
+  String _getCurrentLanguageName(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final l10n = AppLocalizations.of(context)!;
+
+    switch (locale.languageCode) {
+      case 'en':
+        return l10n.languageEnglish;
+      case 'es':
+        return l10n.languageSpanish;
+      case 'fr':
+        return l10n.languageFrench;
+      case 'de':
+        return l10n.languageGerman;
+      case 'it':
+        return l10n.languageItalian;
+      case 'pt':
+        return l10n.languagePortuguese;
+      case 'ru':
+        return l10n.languageRussian;
+      case 'zh':
+        return l10n.languageChinese;
+      case 'ja':
+        return l10n.languageJapanese;
+      case 'ko':
+        return l10n.languageKorean;
+      case 'ar':
+        return l10n.languageArabic;
+      default:
+        return l10n.languageEnglish;
+    }
   }
 }

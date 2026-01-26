@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -39,7 +40,7 @@ class StepTattooIdeaPage extends StatelessWidget {
             SizedBox(height: 50.h),
             // Question
             Text(
-              "What your tattoo idea?",
+              AppLocalizations.of(context)!.stepTattooIdeaWhatYourTattooIdea,
               style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
@@ -71,7 +72,9 @@ class StepTattooIdeaPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'What your tattoo idea?',
+                            AppLocalizations.of(
+                              context,
+                            )!.stepTattooIdeaWhatYourTattooIdea,
                             style: TextStyle(
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
@@ -86,9 +89,14 @@ class StepTattooIdeaPage extends StatelessWidget {
                               controller: controller,
                               maxLength: maxCharacters,
                               maxLines: null,
-                              style: TextStyle(fontSize: 14.sp, color: textColor),
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: textColor,
+                              ),
                               decoration: InputDecoration(
-                                hintText: 'Describe your tattoo idea...',
+                                hintText: AppLocalizations.of(
+                                  context,
+                                )!.stepTattooIdeaHint,
                                 hintStyle: TextStyle(
                                   fontSize: 14.sp,
                                   color: AppColors.textGrey,

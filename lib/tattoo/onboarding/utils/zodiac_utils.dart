@@ -1,92 +1,105 @@
+import 'package:flutter/material.dart';
+import '../../../l10n/app_localizations.dart';
 import '../models/onboarding_models.dart';
 
-// Zodiac data
-final Map<String, ZodiacInfo> zodiacData = {
-  'Capricorn': ZodiacInfo(
-    name: 'Capricorn',
-    dateRange: 'December 22 – January 19',
-    description:
-        'Disciplined and ambitious, with a grounded and responsible nature. They value success and prefer building their future through patience and hard work.',
-    assetPath: 'assets/signs/capricorn.png',
-  ),
-  'Aquarius': ZodiacInfo(
-    name: 'Aquarius',
-    dateRange: 'January 20 – February 18',
-    description:
-        'Independent and creative, with a free-spirited and original nature. They value freedom and prefer expressing their individuality with unique ideas.',
-    assetPath: 'assets/signs/aquarius.png',
-  ),
-  'Pisces': ZodiacInfo(
-    name: 'Pisces',
-    dateRange: 'February 19 – March 20',
-    description:
-        'Gentle and dreamy, with a sensitive and compassionate nature. They value emotions and prefer living through imagination, kindness, and deep understanding.',
-    assetPath: 'assets/signs/pisces.png',
-  ),
-  'Aries': ZodiacInfo(
-    name: 'Aries',
-    dateRange: 'March 21 – April 19',
-    description:
-        'Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.',
-    assetPath: 'assets/signs/aries.png',
-  ),
-  'Taurus': ZodiacInfo(
-    name: 'Taurus',
-    dateRange: 'April 20 – May 20',
-    description:
-        'Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.',
-    assetPath: 'assets/signs/taurus.png',
-  ),
-  'Gemini': ZodiacInfo(
-    name: 'Gemini',
-    dateRange: 'May 21 – June 20',
-    description:
-        'Curious and lively, with a quick-minded and adaptable nature. They enjoy communication and prefer exploring new ideas with excitement.',
-    assetPath: 'assets/signs/gemini.png',
-  ),
-  'Cancer': ZodiacInfo(
-    name: 'Cancer',
-    dateRange: 'June 21 – July 22',
-    description:
-        'Sensitive and caring, with a deeply emotional and protective nature. They value close connections and prefer nurturing others with warmth and loyalty.',
-    assetPath: 'assets/signs/cancer.png',
-  ),
-  'Leo': ZodiacInfo(
-    name: 'Leo',
-    dateRange: 'July 23 – August 22',
-    description:
-        'Confident and charismatic, with a bold and generous nature. They enjoy being admired and prefer expressing themselves with creativity and pride.',
-    assetPath: 'assets/signs/leo.png',
-  ),
-  'Virgo': ZodiacInfo(
-    name: 'Virgo',
-    dateRange: 'August 23 – September 22',
-    description:
-        'Practical and thoughtful, with a detail-focused and hardworking nature. They value discipline and prefer bringing order and care into everything they do.',
-    assetPath: 'assets/signs/virgo.png',
-  ),
-  'Libra': ZodiacInfo(
-    name: 'Libra',
-    dateRange: 'September 23 – October 22',
-    description:
-        'Charming and balanced, with a peaceful and fair-minded nature. They value harmony and prefer building connections through kindness and understanding.',
-    assetPath: 'assets/signs/libra.png',
-  ),
-  'Scorpio': ZodiacInfo(
-    name: 'Scorpio',
-    dateRange: 'October 23 – November 21',
-    description:
-        'Intense and passionate, with a powerful and mysterious nature. They value loyalty and prefer deep connections built on trust and strength.',
-    assetPath: 'assets/signs/scorpio.png',
-  ),
-  'Sagittarius': ZodiacInfo(
-    name: 'Sagittarius',
-    dateRange: 'November 22 – December 21',
-    description:
-        'Adventurous and optimistic, with a free-loving and curious nature. They value exploration and prefer chasing new experiences with excitement and independence.',
-    assetPath: 'assets/signs/sagittarius.png',
-  ),
-};
+// Get localized zodiac data for a given zodiac sign key
+ZodiacInfo getZodiacData(BuildContext context, String zodiacKey) {
+  final l10n = AppLocalizations.of(context)!;
+
+  switch (zodiacKey) {
+    case 'Capricorn':
+      return ZodiacInfo(
+        name: l10n.zodiacCapricornName,
+        dateRange: l10n.zodiacCapricornDateRange,
+        description: l10n.zodiacCapricornDescription,
+        assetPath: 'assets/signs/capricorn.png',
+      );
+    case 'Aquarius':
+      return ZodiacInfo(
+        name: l10n.zodiacAquariusName,
+        dateRange: l10n.zodiacAquariusDateRange,
+        description: l10n.zodiacAquariusDescription,
+        assetPath: 'assets/signs/aquarius.png',
+      );
+    case 'Pisces':
+      return ZodiacInfo(
+        name: l10n.zodiacPiscesName,
+        dateRange: l10n.zodiacPiscesDateRange,
+        description: l10n.zodiacPiscesDescription,
+        assetPath: 'assets/signs/pisces.png',
+      );
+    case 'Aries':
+      return ZodiacInfo(
+        name: l10n.zodiacAriesName,
+        dateRange: l10n.zodiacAriesDateRange,
+        description: l10n.zodiacAriesDescription,
+        assetPath: 'assets/signs/aries.png',
+      );
+    case 'Taurus':
+      return ZodiacInfo(
+        name: l10n.zodiacTaurusName,
+        dateRange: l10n.zodiacTaurusDateRange,
+        description: l10n.zodiacTaurusDescription,
+        assetPath: 'assets/signs/taurus.png',
+      );
+    case 'Gemini':
+      return ZodiacInfo(
+        name: l10n.zodiacGeminiName,
+        dateRange: l10n.zodiacGeminiDateRange,
+        description: l10n.zodiacGeminiDescription,
+        assetPath: 'assets/signs/gemini.png',
+      );
+    case 'Cancer':
+      return ZodiacInfo(
+        name: l10n.zodiacCancerName,
+        dateRange: l10n.zodiacCancerDateRange,
+        description: l10n.zodiacCancerDescription,
+        assetPath: 'assets/signs/cancer.png',
+      );
+    case 'Leo':
+      return ZodiacInfo(
+        name: l10n.zodiacLeoName,
+        dateRange: l10n.zodiacLeoDateRange,
+        description: l10n.zodiacLeoDescription,
+        assetPath: 'assets/signs/leo.png',
+      );
+    case 'Virgo':
+      return ZodiacInfo(
+        name: l10n.zodiacVirgoName,
+        dateRange: l10n.zodiacVirgoDateRange,
+        description: l10n.zodiacVirgoDescription,
+        assetPath: 'assets/signs/virgo.png',
+      );
+    case 'Libra':
+      return ZodiacInfo(
+        name: l10n.zodiacLibraName,
+        dateRange: l10n.zodiacLibraDateRange,
+        description: l10n.zodiacLibraDescription,
+        assetPath: 'assets/signs/libra.png',
+      );
+    case 'Scorpio':
+      return ZodiacInfo(
+        name: l10n.zodiacScorpioName,
+        dateRange: l10n.zodiacScorpioDateRange,
+        description: l10n.zodiacScorpioDescription,
+        assetPath: 'assets/signs/scorpio.png',
+      );
+    case 'Sagittarius':
+      return ZodiacInfo(
+        name: l10n.zodiacSagittariusName,
+        dateRange: l10n.zodiacSagittariusDateRange,
+        description: l10n.zodiacSagittariusDescription,
+        assetPath: 'assets/signs/sagittarius.png',
+      );
+    default:
+      return ZodiacInfo(
+        name: l10n.zodiacCapricornName,
+        dateRange: l10n.zodiacCapricornDateRange,
+        description: l10n.zodiacCapricornDescription,
+        assetPath: 'assets/signs/capricorn.png',
+      );
+  }
+}
 
 // Calculate zodiac sign based on month and day
 String getZodiacSign(int month, int day) {
@@ -120,37 +133,39 @@ String getZodiacSign(int month, int day) {
 }
 
 // Get tattoo styles list
-List<TattooStyleItem> getTattooStyles(bool isDark) {
+List<TattooStyleItem> getTattooStyles(BuildContext context, bool isDark) {
+  final l10n = AppLocalizations.of(context)!;
+
   return [
-    const TattooStyleItem(label: 'Dragon', assetPath: 'assets/dragon.png'),
-    const TattooStyleItem(label: 'Unicorn', assetPath: 'assets/unicorn.png'),
-    const TattooStyleItem(label: 'Floral', assetPath: 'assets/floral.png'),
+    TattooStyleItem(label: l10n.styleDragon, assetPath: 'assets/dragon.png'),
+    TattooStyleItem(label: l10n.styleUnicorn, assetPath: 'assets/unicorn.png'),
+    TattooStyleItem(label: l10n.styleFloral, assetPath: 'assets/floral.png'),
     TattooStyleItem(
-      label: 'Abstract',
+      label: l10n.styleAbstract,
       assetPath: isDark
           ? 'assets/abstract_dark.png'
           : 'assets/abstract_light.png',
     ),
     TattooStyleItem(
-      label: 'Butterfly',
+      label: l10n.styleButterfly,
       assetPath: isDark
           ? 'assets/butterfly_dark.png'
           : 'assets/butterfly_light.png',
     ),
     TattooStyleItem(
-      label: 'Eagle',
+      label: l10n.styleEagle,
       assetPath: isDark ? 'assets/eagle_dark.png' : 'assets/eagle_light.png',
     ),
     TattooStyleItem(
-      label: 'Lion',
+      label: l10n.styleLion,
       assetPath: isDark ? 'assets/lion_dark.png' : 'assets/lion_light.png',
     ),
     TattooStyleItem(
-      label: 'Spider',
+      label: l10n.styleSpider,
       assetPath: isDark ? 'assets/spider_dark.png' : 'assets/spider_light.png',
     ),
     TattooStyleItem(
-      label: 'Wolf',
+      label: l10n.styleWolf,
       assetPath: isDark ? 'assets/wolf_dark.png' : 'assets/wolf_light.png',
     ),
   ];

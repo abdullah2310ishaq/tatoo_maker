@@ -1,198 +1,198 @@
 {
-  "@@locale": "en",
-  "skip": "Skip",
+  "@@locale": "ko",
+  "skip": "건너뛰기",
   "@skip": {
     "description": "Skip button text for onboarding screens"
   },
-  "continue_": "Continue",
+  "continue_": "계속",
   "@continue_": {
     "description": "Continue button text for onboarding screens"
   },
-  "start": "Start",
+  "start": "시작",
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "Tattoo Creation",
+  "tattooCreation": "타투 제작",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "Create unique tattoo designs and see how they look on your hand in real time.",
+  "tattooCreationDescription": "독특한 타투 디자인을 만들고 손에 실시간으로 어떻게 보이는지 확인하세요.",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "Custom Creation",
+  "customCreation": "커스텀 제작",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "Create custom designs and bring\nyour creative ideas to life.",
+  "customCreationDescription": "커스텀 디자인을 만들고\n창의적인 아이디어를 실현하세요.",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
-  "tattooMaker": "Tattoo Maker",
+  "tattooMaker": "타투 메이커",
   "@tattooMaker": {
     "description": "Title for third onboarding screen"
   },
-  "flowerCreation": "Flower Creation",
+  "flowerCreation": "꽃 제작",
   "@flowerCreation": {
     "description": "Feature title for third onboarding screen"
   },
-  "flowerCreationDescription": "Turn your name into a beautiful\nflower-inspired design.",
+  "flowerCreationDescription": "이름을 아름다운\n꽃 영감 디자인으로 바꾸세요.",
   "@flowerCreationDescription": {
     "description": "Description text for third onboarding screen"
   },
-  "chooseALanguage": "Choose a Language",
+  "chooseALanguage": "언어 선택",
   "@chooseALanguage": {
     "description": "Title for language selection screen"
   },
-  "next": "Next",
+  "next": "다음",
   "@next": {
     "description": "Next button text"
   },
-  "cameraPermissionRequired": "Camera Permission Required",
+  "cameraPermissionRequired": "카메라 권한 필요",
   "@cameraPermissionRequired": {
     "description": "Camera permission dialog title"
   },
-  "permissionRequired": "Permission Required",
+  "permissionRequired": "권한 필요",
   "@permissionRequired": {
     "description": "Generic permission dialog title"
   },
-  "cancel": "Cancel",
+  "cancel": "취소",
   "@cancel": {
     "description": "Dialog/CTA: Cancel"
   },
-  "openSettings": "Open Settings",
+  "openSettings": "설정 열기",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
   },
-  "retry": "Retry",
+  "retry": "다시 시도",
   "@retry": {
     "description": "Button label: Retry"
   },
-  "cameraPermissionIsRequiredToTakePhotos": "Camera permission is required to take photos.",
+  "cameraPermissionIsRequiredToTakePhotos": "사진을 찍으려면 카메라 권한이 필요합니다.",
   "@cameraPermissionIsRequiredToTakePhotos": {
     "description": "Camera permission required to take photos message"
   },
-  "cameraAccessNeededEnableInSettings": "This app needs camera access to take photos. Please enable it in settings.",
+  "cameraAccessNeededEnableInSettings": "이 앱은 사진을 찍기 위해 카메라 접근이 필요합니다. 설정에서 활성화해 주세요.",
   "@cameraAccessNeededEnableInSettings": {
     "description": "Camera access explanation for settings dialog"
   },
-  "noCamerasAvailableOnThisDevice": "No cameras available on this device.",
+  "noCamerasAvailableOnThisDevice": "이 기기에서 사용 가능한 카메라가 없습니다.",
   "@noCamerasAvailableOnThisDevice": {
     "description": "Error message shown when there are no cameras available"
   },
-  "failedToInitializeCameraTryAgain": "Failed to initialize camera. Please try again.",
+  "failedToInitializeCameraTryAgain": "카메라 초기화에 실패했습니다. 다시 시도해 주세요.",
   "@failedToInitializeCameraTryAgain": {
     "description": "Error message shown when camera fails to initialize"
   },
-  "cameraNotReadyPleaseWait": "Camera not ready. Please wait.",
+  "cameraNotReadyPleaseWait": "카메라가 준비되지 않았습니다. 잠시 기다려 주세요.",
   "@cameraNotReadyPleaseWait": {
     "description": "Error message shown when camera is not ready"
   },
-  "couldntCapturePhotoTryAgain": "Couldn't capture photo. Try again.",
+  "couldntCapturePhotoTryAgain": "사진을 촬영할 수 없습니다. 다시 시도해 주세요.",
   "@couldntCapturePhotoTryAgain": {
     "description": "Error message shown when photo capture fails"
   },
-  "cameraError": "Camera error",
+  "cameraError": "카메라 오류",
   "@cameraError": {
     "description": "Generic camera error label"
   },
-  "lightTheme": "Light Theme",
+  "lightTheme": "라이트 테마",
   "@lightTheme": {
     "description": "Light theme label"
   },
-  "darkTheme": "Dark Theme",
+  "darkTheme": "다크 테마",
   "@darkTheme": {
     "description": "Dark theme label"
   },
-  "languages": "Languages",
+  "languages": "언어",
   "@languages": {
     "description": "Drawer menu item: Languages"
   },
-  "favorites": "Favorites",
+  "favorites": "즐겨찾기",
   "@favorites": {
     "description": "Drawer menu item: Favorites"
   },
-  "rateUs": "Rate Us",
+  "rateUs": "평가하기",
   "@rateUs": {
     "description": "Drawer menu item: Rate Us"
   },
-  "privacyPolicy": "Privacy Policy",
+  "privacyPolicy": "개인정보 보호정책",
   "@privacyPolicy": {
     "description": "Drawer menu item: Privacy Policy"
   },
-  "shareApp": "Share App",
+  "shareApp": "앱 공유",
   "@shareApp": {
     "description": "Drawer menu item: Share App"
   },
-  "feedback": "Feedback",
+  "feedback": "피드백",
   "@feedback": {
     "description": "Drawer menu item: Feedback"
   },
-  "communityGuidelines": "Community Guidelines",
+  "communityGuidelines": "커뮤니티 가이드라인",
   "@communityGuidelines": {
     "description": "Drawer menu item: Community Guidelines"
   },
-  "moreApps": "More Apps",
+  "moreApps": "더 많은 앱",
   "@moreApps": {
     "description": "Drawer menu item: More Apps"
   },
-  "creation": "Creation",
+  "creation": "제작",
   "@creation": {
     "description": "Bottom navigation item: Creation"
   },
-  "tattoo": "Tattoo",
+  "tattoo": "타투",
   "@tattoo": {
     "description": "Bottom navigation item: Tattoo"
   },
-  "flower": "Flower",
+  "flower": "꽃",
   "@flower": {
     "description": "Bottom navigation item: Flower"
   },
-  "couldntShareImageTryAgain": "Couldn't share image. Try again.",
+  "couldntShareImageTryAgain": "이미지를 공유할 수 없습니다. 다시 시도해 주세요.",
   "@couldntShareImageTryAgain": {
     "description": "Generic message when sharing fails"
   },
-  "noImageToSave": "No image to save",
+  "noImageToSave": "저장할 이미지가 없습니다",
   "@noImageToSave": {
     "description": "SnackBar message shown when there is no image to save"
   },
-  "imageSavedToGalleryExcited": "Image saved to gallery!",
+  "imageSavedToGalleryExcited": "이미지가 갤러리에 저장되었습니다!",
   "@imageSavedToGalleryExcited": {
     "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
   },
-  "couldntSaveImageTryAgain": "Couldn't save image. Try again.",
+  "couldntSaveImageTryAgain": "이미지를 저장할 수 없습니다. 다시 시도해 주세요.",
   "@couldntSaveImageTryAgain": {
     "description": "Generic message when saving fails"
   },
-  "capturePhoto": "Capture Photo",
+  "capturePhoto": "사진 촬영",
   "@capturePhoto": {
     "description": "Virtual try-on: capture photo button label"
   },
-  "apply": "Apply",
+  "apply": "적용",
   "@apply": {
     "description": "Virtual try-on: apply button label"
   },
-  "download": "Download",
+  "download": "다운로드",
   "@download": {
     "description": "Virtual try-on: download button label"
   },
-  "virtualTryOn": "Virtual Try-On",
+  "virtualTryOn": "가상 체험",
   "@virtualTryOn": {
     "description": "Virtual try-on screen title"
   },
-  "virtualTryOnEmptyState": "Capture a photo of your hand\nor body part to try on the tattoo",
+  "virtualTryOnEmptyState": "손이나 신체 부위의 사진을 찍어\n타투를 체험해 보세요",
   "@virtualTryOnEmptyState": {
     "description": "Virtual try-on empty state message"
   },
-  "virtualTryOnProcessingTitle": "Processing tattoo on human skin...",
+  "virtualTryOnProcessingTitle": "인간 피부에 타투 처리 중...",
   "@virtualTryOnProcessingTitle": {
     "description": "Virtual try-on processing status line 1"
   },
-  "virtualTryOnProcessingSubtitle": "This may take a few moments",
+  "virtualTryOnProcessingSubtitle": "잠시만 기다려 주세요",
   "@virtualTryOnProcessingSubtitle": {
     "description": "Virtual try-on processing status line 2"
   },
-  "virtualTryOnProcessingFailedTryAgain": "Couldn't process image. Try again.",
+  "virtualTryOnProcessingFailedTryAgain": "이미지를 처리할 수 없습니다. 다시 시도해 주세요.",
   "@virtualTryOnProcessingFailedTryAgain": {
     "description": "Virtual try-on: processing failed message"
   },
@@ -200,134 +200,134 @@
   "@promptLabel": {
     "description": "Label for the prompt section in explore detail"
   },
-  "tryThis": "Try This",
+  "tryThis": "이것 시도하기",
   "@tryThis": {
     "description": "Button text for trying an explore preset"
   },
-  "tattooStylePromptWolf": "Minimal tribal wolf tattoo drawn with bold white lines , abstract sharp curves, clean line-art, tattoo flash style.",
+  "tattooStylePromptWolf": "굵은 흰색 선으로 그려진 미니멀 트라이벌 늑대 타투, 추상적인 날카로운 곡선, 깔끔한 라인 아트, 타투 플래시 스타일.",
   "@tattooStylePromptWolf": {
     "description": "Home: style prompt for Wolf"
   },
-  "tattooStylePromptAbstract": "Tribal abstract tattoo symbolizing inner strength and resilience, flowing sharp curves rising upward, bold confident line-art, powerful vertical composition, minimalist tribal style, solid white ink",
+  "tattooStylePromptAbstract": "내적 힘과 회복력을 상징하는 트라이벌 추상 타투, 위로 올라가는 흐르는 날카로운 곡선, 대담하고 자신감 있는 라인 아트, 강력한 수직 구성, 미니멀리스트 트라이벌 스타일, 솔리드 화이트 잉크",
   "@tattooStylePromptAbstract": {
     "description": "Home: style prompt for Abstract"
   },
-  "tattooStylePromptLion": "Majestic lion tattoo representing courage and leadership, calm powerful expression, detailed mane, strong shading, artistic tattoo design, solid white ink, high contrast",
+  "tattooStylePromptLion": "용기와 리더십을 나타내는 위엄 있는 사자 타투, 차분하고 강력한 표정, 상세한 갈기, 강한 음영, 예술적인 타투 디자인, 솔리드 화이트 잉크, 높은 대비",
   "@tattooStylePromptLion": {
     "description": "Home: style prompt for Lion"
   },
-  "tattooStylePromptEagle": "Eagle tattoo in mid-flight symbolizing freedom and vision, wide wings, sharp feather detail, dynamic motion, bold tattoo art, solid white ink, high contrast",
+  "tattooStylePromptEagle": "자유와 비전을 상징하는 비행 중인 독수리 타투, 넓은 날개, 날카로운 깃털 디테일, 역동적인 움직임, 대담한 타투 아트, 솔리드 화이트 잉크, 높은 대비",
   "@tattooStylePromptEagle": {
     "description": "Home: style prompt for Eagle"
   },
-  "tattooStylePromptSpider": "Detailed spider tattoo symbolizing patience and control, realistic anatomy, clean web elements, dark artistic tattoo style, solid white ink, high contrast",
+  "tattooStylePromptSpider": "인내와 통제를 상징하는 상세한 거미 타투, 사실적인 해부학, 깔끔한 거미줄 요소, 어두운 예술적 타투 스타일, 솔리드 화이트 잉크, 높은 대비",
   "@tattooStylePromptSpider": {
     "description": "Home: style prompt for Spider"
   },
-  "tattooStylePromptButterfly": "Delicate butterfly tattoo representing transformation and growth, detailed wings, soft shading, elegant tattoo illustration, solid white ink, high contrast.",
+  "tattooStylePromptButterfly": "변화와 성장을 나타내는 섬세한 나비 타투, 상세한 날개, 부드러운 음영, 우아한 타투 일러스트, 솔리드 화이트 잉크, 높은 대비.",
   "@tattooStylePromptButterfly": {
     "description": "Home: style prompt for Butterfly"
   },
-  "tattooStylePromptDragon": "Fantasy dragon tattoo design, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines",
+  "tattooStylePromptDragon": "판타지 드래곤 타투 디자인, 감긴 몸, 어두운 비늘, 빛나는 오렌지색 날개, 날카로운 뿔, 대담하고 깔끔한 선",
   "@tattooStylePromptDragon": {
     "description": "Home: style prompt for Dragon"
   },
-  "tattooStylePromptUnicorn": "Unicorn head tattoo design, golden horn, flowing rainbow mane, detailed fantasy illustration",
+  "tattooStylePromptUnicorn": "유니콘 머리 타투 디자인, 황금 뿔, 흐르는 무지개 갈기, 상세한 판타지 일러스트",
   "@tattooStylePromptUnicorn": {
     "description": "Home: style prompt for Unicorn"
   },
-  "tattooStylePromptFloral": "Pastel floral bouquet, peach & blush roses, wildflowers, golden foliage, cascading ribbons, asymmetrical teardrop, romantic vintage, soft lighting, high realism, dark background.",
+  "tattooStylePromptFloral": "파스텔 꽃다발, 복숭아 & 블러시 로즈, 야생화, 황금 잎사귀, 폭포처럼 흐르는 리본, 비대칭 눈물 방울, 로맨틱 빈티지, 부드러운 조명, 높은 사실감, 어두운 배경.",
   "@tattooStylePromptFloral": {
     "description": "Home: style prompt for Floral"
   },
-  "homeDescribeYourDreamInk": "Describe Your Dream Ink",
+  "homeDescribeYourDreamInk": "꿈의 타투를 설명하세요",
   "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
-  "homeDreamInkHint": "Tell us what you envision...",
+  "homeDreamInkHint": "상상하는 것을 알려주세요...",
   "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
-  "homeInspiration": "Inspiration",
+  "homeInspiration": "영감",
   "@homeInspiration": { "description": "Home: Inspiration label" },
-  "homeCharactersRemaining": "characters remaining",
+  "homeCharactersRemaining": "문자 남음",
   "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
-  "homeTattooStyle": "Tattoo Style",
+  "homeTattooStyle": "타투 스타일",
   "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
-  "homeExploreInspiration": "Explore Inspiration",
+  "homeExploreInspiration": "영감 탐색",
   "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
-  "homeGenerate": "Generate",
+  "homeGenerate": "생성",
   "@homeGenerate": { "description": "Home: Generate button label" },
-  "homeTutorialOverlayText": "Describe the tattoo you have in mind, or tap 'Inspiration' for ideas",
+  "homeTutorialOverlayText": "마음에 드는 타투를 설명하거나 '영감'을 탭하여 아이디어를 얻으세요",
   "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
 
   "exploreTitleGothqueen": "Gothqueen",
   "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
-  "explorePromptGothqueen": "Black and grey gothic queen tattoo, bald female face, ornate crown, geometric linework, realistic shading, symmetrical, high detail",
+  "explorePromptGothqueen": "검은색과 회색 고딕 퀸 타투, 대머리 여성 얼굴, 화려한 왕관, 기하학적 라인 작업, 사실적인 음영, 대칭, 높은 디테일",
   "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
 
   "exploreTitleFloral": "Floral",
   "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
-  "explorePromptFloral": "Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast",
+  "explorePromptFloral": "복잡한 꽃잎과 잎을 가진 아름다운 꽃 타투 디자인, 자연스러운 흐르는 곡선, 식물 타투 스타일, 상세한 라인 작업, 솔리드 화이트 잉크, 높은 대비",
   "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
 
-  "exploreTitleSkullWithFedoraAndPipe": "Skull with fedora and pipe",
+  "exploreTitleSkullWithFedoraAndPipe": "페도라와 파이프를 가진 해골",
   "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
-  "explorePromptSkullWithFedoraAndPipe": "Realistic black & grey skull tattoo, side-profile skull wearing a classic fedora, smoking a curved pipe with soft upward smoke, vintage noir style, detailed bone & teeth texture, smooth gradient shading with dotwork and soft realism, fine-needle detailing, high-contrast blacks, professional tattoo artwork.",
+  "explorePromptSkullWithFedoraAndPipe": "사실적인 검은색 & 회색 해골 타투, 클래식한 페도라를 쓴 측면 프로필 해골, 부드러운 위쪽 연기를 내뿜는 구부러진 파이프를 피우는, 빈티지 누아르 스타일, 상세한 뼈 & 치아 질감, 도트워크와 부드러운 사실주의로 부드러운 그라데이션 음영, 미세한 바늘 디테일, 높은 대비 검은색, 전문 타투 작품.",
   "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
 
-  "exploreTitleElegantSnakeTattoo": "Elegant snake tattoo",
+  "exploreTitleElegantSnakeTattoo": "우아한 뱀 타투",
   "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
-  "explorePromptElegantSnakeTattoo": "Ultra-detailed black & white aggressive snake tattoo, open mouth with long fangs and forked tongue, flowing coiled body, fine-line detailed scales, deep black shading, strong contrast, realistic depth, clean negative space, traditional engraving × modern realism, razor-sharp outlines, monochrome ink, no background, professional tattoo flash, forearm or sleeve ready.",
+  "explorePromptElegantSnakeTattoo": "초상세한 검은색 & 흰색 공격적인 뱀 타투, 긴 송곳니와 갈라진 혀를 가진 열린 입, 흐르는 감긴 몸, 미세한 라인 상세한 비늘, 깊은 검은색 음영, 강한 대비, 사실적인 깊이, 깔끔한 네거티브 스페이스, 전통적인 조각 × 현대적 사실주의, 날카로운 윤곽선, 단색 잉크, 배경 없음, 전문 타투 플래시, 팔뚝 또는 슬리브 준비 완료.",
   "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
 
-  "exploreTitleFeatherAndBirdsInFlight": "Feather and birds in flight",
+  "exploreTitleFeatherAndBirdsInFlight": "깃털과 비행 중인 새",
   "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
-  "explorePromptFeatherAndBirdsInFlight": "Ultra-detailed black & white feather tattoo, elegant realistic feather with fine linework, symmetrical barbs and sharp spine, smooth dotwork gradient shading, minimal premium fineline style, small bird silhouettes flowing upward, balanced composition, razor-sharp outlines, high-contrast black ink, modern tattoo realism, monochrome only, no background on white canvas, professional flash, stencil-ready.",
+  "explorePromptFeatherAndBirdsInFlight": "초상세한 검은색 & 흰색 깃털 타투, 미세한 라인 작업을 가진 우아하고 사실적인 깃털, 대칭적인 깃털 가지와 날카로운 척추, 부드러운 도트워크 그라데이션 음영, 미니멀 프리미엄 파인라인 스타일, 위로 흐르는 작은 새 실루엣, 균형 잡힌 구성, 날카로운 윤곽선, 높은 대비 검은색 잉크, 현대 타투 사실주의, 단색만, 흰색 캔버스에 배경 없음, 전문 플래시, 스텐실 준비 완료.",
   "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
 
-  "exploreTitleRainyBatWithCelestialStars": "Rainy bat with celestial stars",
+  "exploreTitleRainyBatWithCelestialStars": "천체 별을 가진 비 오는 박쥐",
   "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
-  "explorePromptRainyBatWithCelestialStars": "Symmetrical bat tattoo with fully spread wings, solid black body, wings filled with smooth rainbow gradient (purple to blue, green, yellow, orange), clean bold outlines with fine linework, subtle dotwork shading, surrounded by small stars and dots, two four-pointed stars above and below, mystical celestial vibe, modern neo-traditional style, high contrast, sharp detail.",
+  "explorePromptRainyBatWithCelestialStars": "완전히 펼쳐진 날개를 가진 대칭적인 박쥐 타투, 솔리드 검은색 몸체, 부드러운 무지개 그라데이션(보라색에서 파란색, 녹색, 노란색, 주황색)으로 채워진 날개, 미세한 라인 작업을 가진 깔끔하고 대담한 윤곽선, 미묘한 도트워크 음영, 작은 별과 점으로 둘러싸인, 위아래에 두 개의 네 모서리 별, 신비로운 천체 분위기, 현대 네오 트래디셔널 스타일, 높은 대비, 날카로운 디테일.",
   "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
 
-  "exploreTitleElegantBlackCatSilhouetteDesign": "Elegant black cat silhouette design",
+  "exploreTitleElegantBlackCatSilhouetteDesign": "우아한 검은 고양이 실루엣 디자인",
   "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
-  "explorePromptElegantBlackCatSilhouetteDesign": "A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art",
+  "explorePromptElegantBlackCatSilhouetteDesign": "우아한 추상 스타일의 미니멀리스트 검은 고양이 타투 디자인, 긴 흐르는 곡선 꼬리를 가진 측면 프로필 앉은 고양이, 부드러운 스위핑 라인과 날카로운 테이퍼 엣지, 깊이를 위한 미묘한 그라데이션 음영을 가진 솔리드 검은색 잉크, 몸을 형성하는 기하학적이고 유동적인 모양, 얼굴에서 뻗어 나오는 섬세한 수염 라인, 현대 파인라인 타투 스타일, 높은 대비, 깔끔한 네거티브 스페이스, 세련되고 예술적인 외관, 타투 플래시 아트",
   "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
 
-  "exploreTitleRedRoseTattooDesign": "Red rose tattoo design",
+  "exploreTitleRedRoseTattooDesign": "빨간 장미 타투 디자인",
   "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
-  "explorePromptRedRoseTattooDesign": "Realistic red rose tattoo, single blooming rose with layered petals, rich deep red color, fine detailed petal texture, subtle gradient shading, natural green stem with small thorns and two detailed leaves, clean crisp outlines, soft realism tattoo style, high contrast, smooth color blending, professional tattoo flash quality, isolated rose only",
+  "explorePromptRedRoseTattooDesign": "사실적인 빨간 장미 타투, 층층이 쌓인 꽃잎을 가진 단일 개화 장미, 풍부한 깊은 빨간색, 미세한 상세한 꽃잎 질감, 미묘한 그라데이션 음영, 작은 가시와 두 개의 상세한 잎을 가진 자연스러운 녹색 줄기, 깔끔하고 선명한 윤곽선, 부드러운 사실주의 타투 스타일, 높은 대비, 부드러운 색상 블렌딩, 전문 타투 플래시 품질, 격리된 장미만",
   "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
 
-  "exploreTitleBlackInfinityArrowTattoo": "Black infinity arrow tattoo",
+  "exploreTitleBlackInfinityArrowTattoo": "검은색 무한대 화살표 타투",
   "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
-  "explorePromptBlackInfinityArrowTattoo": "Realistic Minimalist black infinity arrow tattoo, smooth continuous loop with sharp arrow, clean bold linework, high-contrast solid black ink, modern minimal style, monochrome, stencil-ready.",
+  "explorePromptBlackInfinityArrowTattoo": "사실적인 미니멀리스트 검은색 무한대 화살표 타투, 날카로운 화살표를 가진 부드러운 연속 루프, 깔끔하고 대담한 라인 작업, 높은 대비 솔리드 검은색 잉크, 현대 미니멀 스타일, 단색, 스텐실 준비 완료.",
   "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
 
-  "exploreTitleBlackScorpionTattooDesign": "Black scorpion tattoo design",
+  "exploreTitleBlackScorpionTattooDesign": "검은색 전갈 타투 디자인",
   "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
-  "explorePromptBlackScorpionTattooDesign": "Realistic minimalist black scorpion tattoo design, bold solid black ink, sharp clean linework, symmetrical tribal-inspired detailing, high contrast, smooth curves, modern tattoo style, stencil-ready, isolated on plain background, ultra-detailed, professional tattoo flash",
+  "explorePromptBlackScorpionTattooDesign": "사실적인 미니멀리스트 검은색 전갈 타투 디자인, 대담한 솔리드 검은색 잉크, 날카롭고 깔끔한 라인 작업, 대칭적인 트라이벌 영감 디테일, 높은 대비, 부드러운 곡선, 현대 타투 스타일, 스텐실 준비 완료, 평면 배경에 격리, 초상세, 전문 타투 플래시",
   "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
 
-  "exploreTitleCrescentMoonAndStarTattoo": "Crescent moon and star tattoo",
+  "exploreTitleCrescentMoonAndStarTattoo": "초승달과 별 타투",
   "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
-  "explorePromptCrescentMoonAndStarTattoo": "Minimalist black ink tattoo, fine-line style, upward crescent moon with solid black fill, small four-point star above aligned vertically, subtle dot accents, celestial and mystical aesthetic, simple geometry, balanced spacing, clean background, precise linework, high contrast, timeless minimal tattoo design",
+  "explorePromptCrescentMoonAndStarTattoo": "미니멀리스트 검은색 잉크 타투, 파인라인 스타일, 솔리드 검은색 채움을 가진 위쪽 초승달, 위에 수직으로 정렬된 작은 네 모서리 별, 미묘한 도트 액센트, 천체적이고 신비로운 미학, 단순한 기하학, 균형 잡힌 간격, 깔끔한 배경, 정확한 라인 작업, 높은 대비, 시대를 초월한 미니멀 타투 디자인",
   "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
 
-  "exploreTitleSleepingPandaTattoo": "Sleeping panda tattoo",
+  "exploreTitleSleepingPandaTattoo": "자는 팬더 타투",
   "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
-  "explorePromptSleepingPandaTattoo": "Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.",
+  "explorePromptSleepingPandaTattoo": "미니멀리스트 귀여운 팬더 타투, 옆으로 누워 있는 작은 자는 팬더, 단순한 둥근 모양, 솔리드 검은색과 흰색 잉크, 부드럽고 매끄러운 채움, 최소한의 얼굴 디테일, 깔끔한 가장자리, 현대 미니멀리스트 타투 스타일, 단색, 배경 없음, 흰색 캔버스, 스텐실 준비 완료.",
   "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
 
-  "genericTattoo": "Tattoo",
+  "genericTattoo": "타투",
   "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
 
-  "loadingGeneratingYourTattoo": "Generating your tattoo..",
+  "loadingGeneratingYourTattoo": "타투 생성 중..",
   "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
 
-  "resultShare": "Share",
+  "resultShare": "공유",
   "@resultShare": { "description": "Result screen: Share button label" },
-  "resultNoImageToShare": "No image to share",
+  "resultNoImageToShare": "공유할 이미지가 없습니다",
   "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
-  "resultShareText": "Check out my {styleName} tattoo design!",
+  "resultShareText": "제 {styleName} 타투 디자인을 확인해 보세요!",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
     "placeholders": {
@@ -336,7 +336,7 @@
       }
     }
   },
-  "resultShareSubject": "{styleName} Tattoo Design",
+  "resultShareSubject": "{styleName} 타투 디자인",
   "@resultShareSubject": {
     "description": "Result screen: Share subject with style name",
     "placeholders": {
@@ -345,7 +345,7 @@
       }
     }
   },
-  "resultErrorSharing": "Error sharing: {error}",
+  "resultErrorSharing": "공유 오류: {error}",
   "@resultErrorSharing": {
     "description": "Result screen: Error sharing message",
     "placeholders": {
@@ -354,9 +354,9 @@
       }
     }
   },
-  "resultImageSavedToGallery": "Image saved to gallery",
+  "resultImageSavedToGallery": "이미지가 갤러리에 저장되었습니다",
   "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
-  "resultErrorSaving": "Error saving image: {error}",
+  "resultErrorSaving": "이미지 저장 오류: {error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
     "placeholders": {
@@ -365,27 +365,27 @@
       }
     }
   },
-  "flowerHomeTransformYourName": "Transform your name",
+  "flowerHomeTransformYourName": "이름을",
   "@flowerHomeTransformYourName": {
     "description": "Flower home: title line 1"
   },
-  "flowerHomeIntoABouquetTattoo": "into a bouquet tattoo",
+  "flowerHomeIntoABouquetTattoo": "꽃다발 타투로 바꾸세요",
   "@flowerHomeIntoABouquetTattoo": {
     "description": "Flower home: title line 2"
   },
-  "flowerHomeCreate": "Create",
+  "flowerHomeCreate": "만들기",
   "@flowerHomeCreate": {
     "description": "Flower home: create button label"
   },
-  "flowerInputEnterYourName": "Enter Your Name",
+  "flowerInputEnterYourName": "이름 입력",
   "@flowerInputEnterYourName": {
     "description": "Flower input screen: page title"
   },
-  "flowerLoadingCreatingYourFloralTattoo": "Creating your floral tattoo...",
+  "flowerLoadingCreatingYourFloralTattoo": "꽃 타투 생성 중...",
   "@flowerLoadingCreatingYourFloralTattoo": {
     "description": "Flower loading screen: main loading message"
   },
-  "flowerLoadingDesigningWithBeautifulFlowers": "Designing \"{name}\" with beautiful flowers",
+  "flowerLoadingDesigningWithBeautifulFlowers": "아름다운 꽃으로 \"{name}\" 디자인 중",
   "@flowerLoadingDesigningWithBeautifulFlowers": {
     "description": "Flower loading screen: subtitle with name placeholder",
     "placeholders": {
@@ -394,7 +394,7 @@
       }
     }
   },
-  "flowerResultFloralTattooFor": "Floral tattoo for \"{name}\"",
+  "flowerResultFloralTattooFor": "\"{name}\"을 위한 꽃 타투",
   "@flowerResultFloralTattooFor": {
     "description": "Flower result screen: placeholder text with name",
     "placeholders": {
@@ -403,7 +403,7 @@
       }
     }
   },
-  "flowerResultShareText": "Check out my floral tattoo design for \"{name}\"!",
+  "flowerResultShareText": "제 \"{name}\" 꽃 타투 디자인을 확인해 보세요!",
   "@flowerResultShareText": {
     "description": "Flower result screen: share text with name placeholder",
     "placeholders": {
@@ -412,7 +412,7 @@
       }
     }
   },
-  "flowerResultShareSubject": "Floral Tattoo: {name}",
+  "flowerResultShareSubject": "꽃 타투: {name}",
   "@flowerResultShareSubject": {
     "description": "Flower result screen: share subject with name placeholder",
     "placeholders": {
@@ -421,243 +421,243 @@
       }
     }
   },
-  "tattooPageTurnYourNameIntoA": "Turn your name into a",
+  "tattooPageTurnYourNameIntoA": "이름을",
   "@tattooPageTurnYourNameIntoA": {
     "description": "Tattoo page: welcome text line 1"
   },
-  "tattooPageOneOfAKindTattoo": "one-of-a-kind tattoo",
+  "tattooPageOneOfAKindTattoo": "독특한 타투로 바꾸세요",
   "@tattooPageOneOfAKindTattoo": {
     "description": "Tattoo page: welcome text line 2"
   },
-  "stepBirthdayWhatsYourBirthday": "What's your birthday?",
+  "stepBirthdayWhatsYourBirthday": "생일이 언제인가요?",
   "@stepBirthdayWhatsYourBirthday": {
     "description": "Step birthday page: question text"
   },
-  "monthJanuary": "January",
+  "monthJanuary": "1월",
   "@monthJanuary": {
     "description": "Month name: January"
   },
-  "monthFebruary": "February",
+  "monthFebruary": "2월",
   "@monthFebruary": {
     "description": "Month name: February"
   },
-  "monthMarch": "March",
+  "monthMarch": "3월",
   "@monthMarch": {
     "description": "Month name: March"
   },
-  "monthApril": "April",
+  "monthApril": "4월",
   "@monthApril": {
     "description": "Month name: April"
   },
-  "monthMay": "May",
+  "monthMay": "5월",
   "@monthMay": {
     "description": "Month name: May"
   },
-  "monthJune": "June",
+  "monthJune": "6월",
   "@monthJune": {
     "description": "Month name: June"
   },
-  "monthJuly": "July",
+  "monthJuly": "7월",
   "@monthJuly": {
     "description": "Month name: July"
   },
-  "monthAugust": "August",
+  "monthAugust": "8월",
   "@monthAugust": {
     "description": "Month name: August"
   },
-  "monthSeptember": "September",
+  "monthSeptember": "9월",
   "@monthSeptember": {
     "description": "Month name: September"
   },
-  "monthOctober": "October",
+  "monthOctober": "10월",
   "@monthOctober": {
     "description": "Month name: October"
   },
-  "monthNovember": "November",
+  "monthNovember": "11월",
   "@monthNovember": {
     "description": "Month name: November"
   },
-  "monthDecember": "December",
+  "monthDecember": "12월",
   "@monthDecember": {
     "description": "Month name: December"
   },
-  "stepNameWhatsYourName": "What's your name?",
+  "stepNameWhatsYourName": "이름이 무엇인가요?",
   "@stepNameWhatsYourName": {
     "description": "Step name page: question text"
   },
-  "stepNameHint": "Name",
+  "stepNameHint": "이름",
   "@stepNameHint": {
     "description": "Step name page: input hint text"
   },
-  "stepLocationWhereYouBorn": "Where you born?",
+  "stepLocationWhereYouBorn": "어디에서 태어나셨나요?",
   "@stepLocationWhereYouBorn": {
     "description": "Step location page: question text"
   },
-  "stepLocationHint": "Location",
+  "stepLocationHint": "위치",
   "@stepLocationHint": {
     "description": "Step location page: input hint text"
   },
-  "stepStylePickYourTitleStyle": "Pick your title style",
+  "stepStylePickYourTitleStyle": "제목 스타일 선택",
   "@stepStylePickYourTitleStyle": {
     "description": "Step style selection page: question text"
   },
-  "stepTattooIdeaWhatYourTattooIdea": "What your tattoo idea?",
+  "stepTattooIdeaWhatYourTattooIdea": "타투 아이디어가 무엇인가요?",
   "@stepTattooIdeaWhatYourTattooIdea": {
     "description": "Step tattoo idea page: question text"
   },
-  "stepTattooIdeaHint": "Describe your tattoo idea...",
+  "stepTattooIdeaHint": "타투 아이디어를 설명하세요...",
   "@stepTattooIdeaHint": {
     "description": "Step tattoo idea page: input hint text"
   },
-  "zodiacCapricornName": "Capricorn",
+  "zodiacCapricornName": "염소자리",
   "@zodiacCapricornName": {
     "description": "Zodiac sign name: Capricorn"
   },
-  "zodiacCapricornDateRange": "December 22 – January 19",
+  "zodiacCapricornDateRange": "12월 22일 – 1월 19일",
   "@zodiacCapricornDateRange": {
     "description": "Zodiac sign date range: Capricorn"
   },
-  "zodiacCapricornDescription": "Disciplined and ambitious, with a grounded and responsible nature. They value success and prefer building their future through patience and hard work.",
+  "zodiacCapricornDescription": "규율 있고 야심적이며, 현실적이고 책임감 있는 성격. 성공을 중시하며 인내와 노력을 통해 미래를 구축하는 것을 선호합니다.",
   "@zodiacCapricornDescription": {
     "description": "Zodiac sign description: Capricorn"
   },
-  "zodiacAquariusName": "Aquarius",
+  "zodiacAquariusName": "물병자리",
   "@zodiacAquariusName": {
     "description": "Zodiac sign name: Aquarius"
   },
-  "zodiacAquariusDateRange": "January 20 – February 18",
+  "zodiacAquariusDateRange": "1월 20일 – 2월 18일",
   "@zodiacAquariusDateRange": {
     "description": "Zodiac sign date range: Aquarius"
   },
-  "zodiacAquariusDescription": "Independent and creative, with a free-spirited and original nature. They value freedom and prefer expressing their individuality with unique ideas.",
+  "zodiacAquariusDescription": "독립적이고 창의적이며, 자유로운 정신과 독창적인 성격. 자유를 중시하며 독특한 아이디어로 개성을 표현하는 것을 선호합니다.",
   "@zodiacAquariusDescription": {
     "description": "Zodiac sign description: Aquarius"
   },
-  "zodiacPiscesName": "Pisces",
+  "zodiacPiscesName": "물고기자리",
   "@zodiacPiscesName": {
     "description": "Zodiac sign name: Pisces"
   },
-  "zodiacPiscesDateRange": "February 19 – March 20",
+  "zodiacPiscesDateRange": "2월 19일 – 3월 20일",
   "@zodiacPiscesDateRange": {
     "description": "Zodiac sign date range: Pisces"
   },
-  "zodiacPiscesDescription": "Gentle and dreamy, with a sensitive and compassionate nature. They value emotions and prefer living through imagination, kindness, and deep understanding.",
+  "zodiacPiscesDescription": "부드럽고 몽환적이며, 감성적이고 동정심 많은 성격. 감정을 중시하며 상상력, 친절함, 깊은 이해를 통해 살아가는 것을 선호합니다.",
   "@zodiacPiscesDescription": {
     "description": "Zodiac sign description: Pisces"
   },
-  "zodiacAriesName": "Aries",
+  "zodiacAriesName": "양자리",
   "@zodiacAriesName": {
     "description": "Zodiac sign name: Aries"
   },
-  "zodiacAriesDateRange": "March 21 – April 19",
+  "zodiacAriesDateRange": "3월 21일 – 4월 19일",
   "@zodiacAriesDateRange": {
     "description": "Zodiac sign date range: Aries"
   },
-  "zodiacAriesDescription": "Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.",
+  "zodiacAriesDescription": "대담하고 활기차며, 자신감 있고 두려움 없는 성격. 주도권을 잡는 것을 좋아하며 열정과 결단력으로 이끄는 것을 선호합니다.",
   "@zodiacAriesDescription": {
     "description": "Zodiac sign description: Aries"
   },
-  "zodiacTaurusName": "Taurus",
+  "zodiacTaurusName": "황소자리",
   "@zodiacTaurusName": {
     "description": "Zodiac sign name: Taurus"
   },
-  "zodiacTaurusDateRange": "April 20 – May 20",
+  "zodiacTaurusDateRange": "4월 20일 – 5월 20일",
   "@zodiacTaurusDateRange": {
     "description": "Zodiac sign date range: Taurus"
   },
-  "zodiacTaurusDescription": "Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.",
+  "zodiacTaurusDescription": "대담하고 활기차며, 자신감 있고 두려움 없는 성격. 주도권을 잡는 것을 좋아하며 열정과 결단력으로 이끄는 것을 선호합니다.",
   "@zodiacTaurusDescription": {
     "description": "Zodiac sign description: Taurus"
   },
-  "zodiacGeminiName": "Gemini",
+  "zodiacGeminiName": "쌍둥이자리",
   "@zodiacGeminiName": {
     "description": "Zodiac sign name: Gemini"
   },
-  "zodiacGeminiDateRange": "May 21 – June 20",
+  "zodiacGeminiDateRange": "5월 21일 – 6월 20일",
   "@zodiacGeminiDateRange": {
     "description": "Zodiac sign date range: Gemini"
   },
-  "zodiacGeminiDescription": "Curious and lively, with a quick-minded and adaptable nature. They enjoy communication and prefer exploring new ideas with excitement.",
+  "zodiacGeminiDescription": "호기심 많고 활발하며, 빠른 사고와 적응력 있는 성격. 소통을 즐기며 흥미진진하게 새로운 아이디어를 탐색하는 것을 선호합니다.",
   "@zodiacGeminiDescription": {
     "description": "Zodiac sign description: Gemini"
   },
-  "zodiacCancerName": "Cancer",
+  "zodiacCancerName": "게자리",
   "@zodiacCancerName": {
     "description": "Zodiac sign name: Cancer"
   },
-  "zodiacCancerDateRange": "June 21 – July 22",
+  "zodiacCancerDateRange": "6월 21일 – 7월 22일",
   "@zodiacCancerDateRange": {
     "description": "Zodiac sign date range: Cancer"
   },
-  "zodiacCancerDescription": "Sensitive and caring, with a deeply emotional and protective nature. They value close connections and prefer nurturing others with warmth and loyalty.",
+  "zodiacCancerDescription": "민감하고 배려심 많으며, 깊이 감정적이고 보호적인 성격. 가까운 관계를 중시하며 따뜻함과 충성심으로 다른 사람을 돌보는 것을 선호합니다.",
   "@zodiacCancerDescription": {
     "description": "Zodiac sign description: Cancer"
   },
-  "zodiacLeoName": "Leo",
+  "zodiacLeoName": "사자자리",
   "@zodiacLeoName": {
     "description": "Zodiac sign name: Leo"
   },
-  "zodiacLeoDateRange": "July 23 – August 22",
+  "zodiacLeoDateRange": "7월 23일 – 8월 22일",
   "@zodiacLeoDateRange": {
     "description": "Zodiac sign date range: Leo"
   },
-  "zodiacLeoDescription": "Confident and charismatic, with a bold and generous nature. They enjoy being admired and prefer expressing themselves with creativity and pride.",
+  "zodiacLeoDescription": "자신감 있고 카리스마적이며, 대담하고 관대한 성격. 존경받는 것을 즐기며 창의성과 자부심으로 자신을 표현하는 것을 선호합니다.",
   "@zodiacLeoDescription": {
     "description": "Zodiac sign description: Leo"
   },
-  "zodiacVirgoName": "Virgo",
+  "zodiacVirgoName": "처녀자리",
   "@zodiacVirgoName": {
     "description": "Zodiac sign name: Virgo"
   },
-  "zodiacVirgoDateRange": "August 23 – September 22",
+  "zodiacVirgoDateRange": "8월 23일 – 9월 22일",
   "@zodiacVirgoDateRange": {
     "description": "Zodiac sign date range: Virgo"
   },
-  "zodiacVirgoDescription": "Practical and thoughtful, with a detail-focused and hardworking nature. They value discipline and prefer bringing order and care into everything they do.",
+  "zodiacVirgoDescription": "실용적이고 사려 깊으며, 세부 사항에 집중하고 근면한 성격. 규율을 중시하며 하는 모든 일에 질서와 배려를 가져오는 것을 선호합니다.",
   "@zodiacVirgoDescription": {
     "description": "Zodiac sign description: Virgo"
   },
-  "zodiacLibraName": "Libra",
+  "zodiacLibraName": "천칭자리",
   "@zodiacLibraName": {
     "description": "Zodiac sign name: Libra"
   },
-  "zodiacLibraDateRange": "September 23 – October 22",
+  "zodiacLibraDateRange": "9월 23일 – 10월 22일",
   "@zodiacLibraDateRange": {
     "description": "Zodiac sign date range: Libra"
   },
-  "zodiacLibraDescription": "Charming and balanced, with a peaceful and fair-minded nature. They value harmony and prefer building connections through kindness and understanding.",
+  "zodiacLibraDescription": "매력적이고 균형 잡혀 있으며, 평화롭고 공정한 성격. 조화를 중시하며 친절함과 이해를 통해 관계를 구축하는 것을 선호합니다.",
   "@zodiacLibraDescription": {
     "description": "Zodiac sign description: Libra"
   },
-  "zodiacScorpioName": "Scorpio",
+  "zodiacScorpioName": "전갈자리",
   "@zodiacScorpioName": {
     "description": "Zodiac sign name: Scorpio"
   },
-  "zodiacScorpioDateRange": "October 23 – November 21",
+  "zodiacScorpioDateRange": "10월 23일 – 11월 21일",
   "@zodiacScorpioDateRange": {
     "description": "Zodiac sign date range: Scorpio"
   },
-  "zodiacScorpioDescription": "Intense and passionate, with a powerful and mysterious nature. They value loyalty and prefer deep connections built on trust and strength.",
+  "zodiacScorpioDescription": "강렬하고 열정적이며, 강력하고 신비로운 성격. 충성을 중시하며 신뢰와 힘에 기반한 깊은 관계를 구축하는 것을 선호합니다.",
   "@zodiacScorpioDescription": {
     "description": "Zodiac sign description: Scorpio"
   },
-  "zodiacSagittariusName": "Sagittarius",
+  "zodiacSagittariusName": "사수자리",
   "@zodiacSagittariusName": {
     "description": "Zodiac sign name: Sagittarius"
   },
-  "zodiacSagittariusDateRange": "November 22 – December 21",
+  "zodiacSagittariusDateRange": "11월 22일 – 12월 21일",
   "@zodiacSagittariusDateRange": {
     "description": "Zodiac sign date range: Sagittarius"
   },
-  "zodiacSagittariusDescription": "Adventurous and optimistic, with a free-loving and curious nature. They value exploration and prefer chasing new experiences with excitement and independence.",
+  "zodiacSagittariusDescription": "모험적이고 낙관적이며, 자유를 사랑하고 호기심 많은 성격. 탐험을 중시하며 흥미진진하고 독립적으로 새로운 경험을 추구하는 것을 선호합니다.",
   "@zodiacSagittariusDescription": {
     "description": "Zodiac sign description: Sagittarius"
   },
-  "styleDragon": "Dragon",
+  "styleDragon": "드래곤",
   "@styleDragon": {
     "description": "Tattoo style label: Dragon"
   },
-  "styleUnicorn": "Unicorn",
+  "styleUnicorn": "유니콘",
   "@styleUnicorn": {
     "description": "Tattoo style label: Unicorn"
   },
@@ -665,31 +665,31 @@
   "@styleFloral": {
     "description": "Tattoo style label: Floral"
   },
-  "styleAbstract": "Abstract",
+  "styleAbstract": "추상",
   "@styleAbstract": {
     "description": "Tattoo style label: Abstract"
   },
-  "styleButterfly": "Butterfly",
+  "styleButterfly": "나비",
   "@styleButterfly": {
     "description": "Tattoo style label: Butterfly"
   },
-  "styleEagle": "Eagle",
+  "styleEagle": "독수리",
   "@styleEagle": {
     "description": "Tattoo style label: Eagle"
   },
-  "styleLion": "Lion",
+  "styleLion": "사자",
   "@styleLion": {
     "description": "Tattoo style label: Lion"
   },
-  "styleSpider": "Spider",
+  "styleSpider": "거미",
   "@styleSpider": {
     "description": "Tattoo style label: Spider"
   },
-  "styleWolf": "Wolf",
+  "styleWolf": "늑대",
   "@styleWolf": {
     "description": "Tattoo style label: Wolf"
   },
-  "onboardingStep": "Step {currentStep}/5",
+  "onboardingStep": "단계 {currentStep}/5",
   "@onboardingStep": {
     "description": "Onboarding header: step indicator text",
     "placeholders": {
@@ -699,11 +699,11 @@
       }
     }
   },
-  "onboardingGetStarted": "Get Started",
+  "onboardingGetStarted": "시작하기",
   "@onboardingGetStarted": {
     "description": "Onboarding next button: text for final step"
   },
-  "ad": "Ad",
+  "ad": "광고",
   "@ad": {
     "description": "Ad badge label in drawer menu"
   },
@@ -751,17 +751,16 @@
   "@languageArabic": {
     "description": "Language name: Arabic"
   },
-  "exitAppTitle": "Exit App?",
+  "exitAppTitle": "앱을 종료하시겠습니까?",
   "@exitAppTitle": {
     "description": "Exit confirmation dialog: title"
   },
-  "exitAppMessage": "Are you sure you want to exit?",
+  "exitAppMessage": "종료하시겠습니까?",
   "@exitAppMessage": {
     "description": "Exit confirmation dialog: message"
   },
-  "exit": "Exit",
+  "exit": "종료",
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
-  }
   }
 }

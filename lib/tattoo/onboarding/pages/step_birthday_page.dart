@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -48,20 +49,21 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
     }
   }
 
-  String _getFormattedDate() {
+  String _getFormattedDate(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
+      l10n.monthJanuary,
+      l10n.monthFebruary,
+      l10n.monthMarch,
+      l10n.monthApril,
+      l10n.monthMay,
+      l10n.monthJune,
+      l10n.monthJuly,
+      l10n.monthAugust,
+      l10n.monthSeptember,
+      l10n.monthOctober,
+      l10n.monthNovember,
+      l10n.monthDecember,
     ];
     return '${months[widget.selectedMonth]} ${widget.selectedDay} ${widget.selectedYear}';
   }
@@ -81,7 +83,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "What's your birthday?",
+              AppLocalizations.of(context)!.stepBirthdayWhatsYourBirthday,
               style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
@@ -91,7 +93,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
             ),
             SizedBox(height: 12.h),
             Text(
-              _getFormattedDate(),
+              _getFormattedDate(context),
               style: TextStyle(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
@@ -122,19 +124,20 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
   }
 
   Widget _buildDatePicker(bool isDark) {
+    final l10n = AppLocalizations.of(context)!;
     final months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
+      l10n.monthJanuary,
+      l10n.monthFebruary,
+      l10n.monthMarch,
+      l10n.monthApril,
+      l10n.monthMay,
+      l10n.monthJune,
+      l10n.monthJuly,
+      l10n.monthAugust,
+      l10n.monthSeptember,
+      l10n.monthOctober,
+      l10n.monthNovember,
+      l10n.monthDecember,
     ];
     final days = List.generate(31, (i) => i + 1);
     final currentYear = DateTime.now().year;

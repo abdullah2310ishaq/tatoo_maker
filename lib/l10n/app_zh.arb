@@ -1,198 +1,198 @@
 {
-  "@@locale": "en",
-  "skip": "Skip",
+  "@@locale": "zh",
+  "skip": "跳过",
   "@skip": {
     "description": "Skip button text for onboarding screens"
   },
-  "continue_": "Continue",
+  "continue_": "继续",
   "@continue_": {
     "description": "Continue button text for onboarding screens"
   },
-  "start": "Start",
+  "start": "开始",
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "Tattoo Creation",
+  "tattooCreation": "纹身创作",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "Create unique tattoo designs and see how they look on your hand in real time.",
+  "tattooCreationDescription": "创建独特的纹身设计，实时查看它们在你手上的效果。",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "Custom Creation",
+  "customCreation": "自定义创作",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "Create custom designs and bring\nyour creative ideas to life.",
+  "customCreationDescription": "创建自定义设计，\n将您的创意想法变为现实。",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
-  "tattooMaker": "Tattoo Maker",
+  "tattooMaker": "纹身制作器",
   "@tattooMaker": {
     "description": "Title for third onboarding screen"
   },
-  "flowerCreation": "Flower Creation",
+  "flowerCreation": "花朵创作",
   "@flowerCreation": {
     "description": "Feature title for third onboarding screen"
   },
-  "flowerCreationDescription": "Turn your name into a beautiful\nflower-inspired design.",
+  "flowerCreationDescription": "将您的名字变成美丽的\n花朵灵感设计。",
   "@flowerCreationDescription": {
     "description": "Description text for third onboarding screen"
   },
-  "chooseALanguage": "Choose a Language",
+  "chooseALanguage": "选择语言",
   "@chooseALanguage": {
     "description": "Title for language selection screen"
   },
-  "next": "Next",
+  "next": "下一步",
   "@next": {
     "description": "Next button text"
   },
-  "cameraPermissionRequired": "Camera Permission Required",
+  "cameraPermissionRequired": "需要相机权限",
   "@cameraPermissionRequired": {
     "description": "Camera permission dialog title"
   },
-  "permissionRequired": "Permission Required",
+  "permissionRequired": "需要权限",
   "@permissionRequired": {
     "description": "Generic permission dialog title"
   },
-  "cancel": "Cancel",
+  "cancel": "取消",
   "@cancel": {
     "description": "Dialog/CTA: Cancel"
   },
-  "openSettings": "Open Settings",
+  "openSettings": "打开设置",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
   },
-  "retry": "Retry",
+  "retry": "重试",
   "@retry": {
     "description": "Button label: Retry"
   },
-  "cameraPermissionIsRequiredToTakePhotos": "Camera permission is required to take photos.",
+  "cameraPermissionIsRequiredToTakePhotos": "需要相机权限才能拍照。",
   "@cameraPermissionIsRequiredToTakePhotos": {
     "description": "Camera permission required to take photos message"
   },
-  "cameraAccessNeededEnableInSettings": "This app needs camera access to take photos. Please enable it in settings.",
+  "cameraAccessNeededEnableInSettings": "此应用需要相机访问权限才能拍照。请在设置中启用。",
   "@cameraAccessNeededEnableInSettings": {
     "description": "Camera access explanation for settings dialog"
   },
-  "noCamerasAvailableOnThisDevice": "No cameras available on this device.",
+  "noCamerasAvailableOnThisDevice": "此设备上没有可用的相机。",
   "@noCamerasAvailableOnThisDevice": {
     "description": "Error message shown when there are no cameras available"
   },
-  "failedToInitializeCameraTryAgain": "Failed to initialize camera. Please try again.",
+  "failedToInitializeCameraTryAgain": "初始化相机失败。请重试。",
   "@failedToInitializeCameraTryAgain": {
     "description": "Error message shown when camera fails to initialize"
   },
-  "cameraNotReadyPleaseWait": "Camera not ready. Please wait.",
+  "cameraNotReadyPleaseWait": "相机未就绪。请稍候。",
   "@cameraNotReadyPleaseWait": {
     "description": "Error message shown when camera is not ready"
   },
-  "couldntCapturePhotoTryAgain": "Couldn't capture photo. Try again.",
+  "couldntCapturePhotoTryAgain": "无法拍摄照片。请重试。",
   "@couldntCapturePhotoTryAgain": {
     "description": "Error message shown when photo capture fails"
   },
-  "cameraError": "Camera error",
+  "cameraError": "相机错误",
   "@cameraError": {
     "description": "Generic camera error label"
   },
-  "lightTheme": "Light Theme",
+  "lightTheme": "浅色主题",
   "@lightTheme": {
     "description": "Light theme label"
   },
-  "darkTheme": "Dark Theme",
+  "darkTheme": "深色主题",
   "@darkTheme": {
     "description": "Dark theme label"
   },
-  "languages": "Languages",
+  "languages": "语言",
   "@languages": {
     "description": "Drawer menu item: Languages"
   },
-  "favorites": "Favorites",
+  "favorites": "收藏",
   "@favorites": {
     "description": "Drawer menu item: Favorites"
   },
-  "rateUs": "Rate Us",
+  "rateUs": "评价我们",
   "@rateUs": {
     "description": "Drawer menu item: Rate Us"
   },
-  "privacyPolicy": "Privacy Policy",
+  "privacyPolicy": "隐私政策",
   "@privacyPolicy": {
     "description": "Drawer menu item: Privacy Policy"
   },
-  "shareApp": "Share App",
+  "shareApp": "分享应用",
   "@shareApp": {
     "description": "Drawer menu item: Share App"
   },
-  "feedback": "Feedback",
+  "feedback": "反馈",
   "@feedback": {
     "description": "Drawer menu item: Feedback"
   },
-  "communityGuidelines": "Community Guidelines",
+  "communityGuidelines": "社区准则",
   "@communityGuidelines": {
     "description": "Drawer menu item: Community Guidelines"
   },
-  "moreApps": "More Apps",
+  "moreApps": "更多应用",
   "@moreApps": {
     "description": "Drawer menu item: More Apps"
   },
-  "creation": "Creation",
+  "creation": "创作",
   "@creation": {
     "description": "Bottom navigation item: Creation"
   },
-  "tattoo": "Tattoo",
+  "tattoo": "纹身",
   "@tattoo": {
     "description": "Bottom navigation item: Tattoo"
   },
-  "flower": "Flower",
+  "flower": "花朵",
   "@flower": {
     "description": "Bottom navigation item: Flower"
   },
-  "couldntShareImageTryAgain": "Couldn't share image. Try again.",
+  "couldntShareImageTryAgain": "无法分享图片。请重试。",
   "@couldntShareImageTryAgain": {
     "description": "Generic message when sharing fails"
   },
-  "noImageToSave": "No image to save",
+  "noImageToSave": "没有可保存的图片",
   "@noImageToSave": {
     "description": "SnackBar message shown when there is no image to save"
   },
-  "imageSavedToGalleryExcited": "Image saved to gallery!",
+  "imageSavedToGalleryExcited": "图片已保存到相册！",
   "@imageSavedToGalleryExcited": {
     "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
   },
-  "couldntSaveImageTryAgain": "Couldn't save image. Try again.",
+  "couldntSaveImageTryAgain": "无法保存图片。请重试。",
   "@couldntSaveImageTryAgain": {
     "description": "Generic message when saving fails"
   },
-  "capturePhoto": "Capture Photo",
+  "capturePhoto": "拍摄照片",
   "@capturePhoto": {
     "description": "Virtual try-on: capture photo button label"
   },
-  "apply": "Apply",
+  "apply": "应用",
   "@apply": {
     "description": "Virtual try-on: apply button label"
   },
-  "download": "Download",
+  "download": "下载",
   "@download": {
     "description": "Virtual try-on: download button label"
   },
-  "virtualTryOn": "Virtual Try-On",
+  "virtualTryOn": "虚拟试穿",
   "@virtualTryOn": {
     "description": "Virtual try-on screen title"
   },
-  "virtualTryOnEmptyState": "Capture a photo of your hand\nor body part to try on the tattoo",
+  "virtualTryOnEmptyState": "拍摄您的手部\n或身体部位的照片来试穿纹身",
   "@virtualTryOnEmptyState": {
     "description": "Virtual try-on empty state message"
   },
-  "virtualTryOnProcessingTitle": "Processing tattoo on human skin...",
+  "virtualTryOnProcessingTitle": "正在处理人体皮肤上的纹身...",
   "@virtualTryOnProcessingTitle": {
     "description": "Virtual try-on processing status line 1"
   },
-  "virtualTryOnProcessingSubtitle": "This may take a few moments",
+  "virtualTryOnProcessingSubtitle": "这可能需要一些时间",
   "@virtualTryOnProcessingSubtitle": {
     "description": "Virtual try-on processing status line 2"
   },
-  "virtualTryOnProcessingFailedTryAgain": "Couldn't process image. Try again.",
+  "virtualTryOnProcessingFailedTryAgain": "无法处理图片。请重试。",
   "@virtualTryOnProcessingFailedTryAgain": {
     "description": "Virtual try-on: processing failed message"
   },
@@ -200,134 +200,134 @@
   "@promptLabel": {
     "description": "Label for the prompt section in explore detail"
   },
-  "tryThis": "Try This",
+  "tryThis": "试试这个",
   "@tryThis": {
     "description": "Button text for trying an explore preset"
   },
-  "tattooStylePromptWolf": "Minimal tribal wolf tattoo drawn with bold white lines , abstract sharp curves, clean line-art, tattoo flash style.",
+  "tattooStylePromptWolf": "极简部落狼纹身，用粗体白线绘制，抽象锐利曲线，干净线条艺术，纹身闪光风格。",
   "@tattooStylePromptWolf": {
     "description": "Home: style prompt for Wolf"
   },
-  "tattooStylePromptAbstract": "Tribal abstract tattoo symbolizing inner strength and resilience, flowing sharp curves rising upward, bold confident line-art, powerful vertical composition, minimalist tribal style, solid white ink",
+  "tattooStylePromptAbstract": "部落抽象纹身，象征内在力量和韧性，流动的锐利曲线向上，大胆自信的线条艺术，强大的垂直构图，极简部落风格，纯白墨水",
   "@tattooStylePromptAbstract": {
     "description": "Home: style prompt for Abstract"
   },
-  "tattooStylePromptLion": "Majestic lion tattoo representing courage and leadership, calm powerful expression, detailed mane, strong shading, artistic tattoo design, solid white ink, high contrast",
+  "tattooStylePromptLion": "雄伟的狮子纹身，代表勇气和领导力，平静有力的表情，详细的鬃毛，强烈的阴影，艺术纹身设计，纯白墨水，高对比度",
   "@tattooStylePromptLion": {
     "description": "Home: style prompt for Lion"
   },
-  "tattooStylePromptEagle": "Eagle tattoo in mid-flight symbolizing freedom and vision, wide wings, sharp feather detail, dynamic motion, bold tattoo art, solid white ink, high contrast",
+  "tattooStylePromptEagle": "飞行中的鹰纹身，象征自由和远见，宽大的翅膀，锐利的羽毛细节，动态运动，大胆的纹身艺术，纯白墨水，高对比度",
   "@tattooStylePromptEagle": {
     "description": "Home: style prompt for Eagle"
   },
-  "tattooStylePromptSpider": "Detailed spider tattoo symbolizing patience and control, realistic anatomy, clean web elements, dark artistic tattoo style, solid white ink, high contrast",
+  "tattooStylePromptSpider": "详细的蜘蛛纹身，象征耐心和控制，逼真的解剖结构，干净的网元素，深色艺术纹身风格，纯白墨水，高对比度",
   "@tattooStylePromptSpider": {
     "description": "Home: style prompt for Spider"
   },
-  "tattooStylePromptButterfly": "Delicate butterfly tattoo representing transformation and growth, detailed wings, soft shading, elegant tattoo illustration, solid white ink, high contrast.",
+  "tattooStylePromptButterfly": "精致的蝴蝶纹身，代表转变和成长，详细的翅膀，柔和的阴影，优雅的纹身插图，纯白墨水，高对比度。",
   "@tattooStylePromptButterfly": {
     "description": "Home: style prompt for Butterfly"
   },
-  "tattooStylePromptDragon": "Fantasy dragon tattoo design, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines",
+  "tattooStylePromptDragon": "奇幻龙纹身设计，盘绕的身体，深色鳞片，发光的橙色翅膀，锐利的角，大胆干净的线条",
   "@tattooStylePromptDragon": {
     "description": "Home: style prompt for Dragon"
   },
-  "tattooStylePromptUnicorn": "Unicorn head tattoo design, golden horn, flowing rainbow mane, detailed fantasy illustration",
+  "tattooStylePromptUnicorn": "独角兽头部纹身设计，金色角，流动的彩虹鬃毛，详细的奇幻插图",
   "@tattooStylePromptUnicorn": {
     "description": "Home: style prompt for Unicorn"
   },
-  "tattooStylePromptFloral": "Pastel floral bouquet, peach & blush roses, wildflowers, golden foliage, cascading ribbons, asymmetrical teardrop, romantic vintage, soft lighting, high realism, dark background.",
+  "tattooStylePromptFloral": "柔和的 floral 花束，桃色和腮红玫瑰，野花，金色叶子，层叠的丝带，不对称的泪滴，浪漫复古，柔和灯光，高真实感，深色背景。",
   "@tattooStylePromptFloral": {
     "description": "Home: style prompt for Floral"
   },
-  "homeDescribeYourDreamInk": "Describe Your Dream Ink",
+  "homeDescribeYourDreamInk": "描述您的梦想纹身",
   "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
-  "homeDreamInkHint": "Tell us what you envision...",
+  "homeDreamInkHint": "告诉我们您的想法...",
   "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
-  "homeInspiration": "Inspiration",
+  "homeInspiration": "灵感",
   "@homeInspiration": { "description": "Home: Inspiration label" },
-  "homeCharactersRemaining": "characters remaining",
+  "homeCharactersRemaining": "剩余字符",
   "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
-  "homeTattooStyle": "Tattoo Style",
+  "homeTattooStyle": "纹身风格",
   "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
-  "homeExploreInspiration": "Explore Inspiration",
+  "homeExploreInspiration": "探索灵感",
   "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
-  "homeGenerate": "Generate",
+  "homeGenerate": "生成",
   "@homeGenerate": { "description": "Home: Generate button label" },
-  "homeTutorialOverlayText": "Describe the tattoo you have in mind, or tap 'Inspiration' for ideas",
+  "homeTutorialOverlayText": "描述您心中的纹身，或点击'灵感'获取想法",
   "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
 
   "exploreTitleGothqueen": "Gothqueen",
   "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
-  "explorePromptGothqueen": "Black and grey gothic queen tattoo, bald female face, ornate crown, geometric linework, realistic shading, symmetrical, high detail",
+  "explorePromptGothqueen": "黑白哥特女王纹身，光头女性面孔，华丽的王冠，几何线条，逼真的阴影，对称，高细节",
   "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
 
   "exploreTitleFloral": "Floral",
   "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
-  "explorePromptFloral": "Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast",
+  "explorePromptFloral": "美丽的花卉纹身设计，复杂的花瓣和叶子，自然流动的曲线，植物纹身风格，详细的线条工作，纯白墨水，高对比度",
   "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
 
-  "exploreTitleSkullWithFedoraAndPipe": "Skull with fedora and pipe",
+  "exploreTitleSkullWithFedoraAndPipe": "带软呢帽和烟斗的骷髅",
   "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
-  "explorePromptSkullWithFedoraAndPipe": "Realistic black & grey skull tattoo, side-profile skull wearing a classic fedora, smoking a curved pipe with soft upward smoke, vintage noir style, detailed bone & teeth texture, smooth gradient shading with dotwork and soft realism, fine-needle detailing, high-contrast blacks, professional tattoo artwork.",
+  "explorePromptSkullWithFedoraAndPipe": "逼真的黑白骷髅纹身，侧面的骷髅戴着经典软呢帽，抽着弯曲的烟斗，柔和的向上烟雾，复古黑色风格，详细的骨骼和牙齿纹理，平滑的渐变阴影与点画和柔和现实主义，细针细节，高对比度黑色，专业纹身艺术品。",
   "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
 
-  "exploreTitleElegantSnakeTattoo": "Elegant snake tattoo",
+  "exploreTitleElegantSnakeTattoo": "优雅的蛇纹身",
   "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
-  "explorePromptElegantSnakeTattoo": "Ultra-detailed black & white aggressive snake tattoo, open mouth with long fangs and forked tongue, flowing coiled body, fine-line detailed scales, deep black shading, strong contrast, realistic depth, clean negative space, traditional engraving × modern realism, razor-sharp outlines, monochrome ink, no background, professional tattoo flash, forearm or sleeve ready.",
+  "explorePromptElegantSnakeTattoo": "超详细的黑白攻击性蛇纹身，张开的嘴巴，长牙和分叉的舌头，流动的盘绕身体，细线详细的鳞片，深黑色阴影，强对比度，逼真的深度，干净的负空间，传统雕刻 × 现代现实主义，锋利的轮廓，单色墨水，无背景，专业纹身闪光，前臂或袖子就绪。",
   "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
 
-  "exploreTitleFeatherAndBirdsInFlight": "Feather and birds in flight",
+  "exploreTitleFeatherAndBirdsInFlight": "羽毛和飞行中的鸟",
   "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
-  "explorePromptFeatherAndBirdsInFlight": "Ultra-detailed black & white feather tattoo, elegant realistic feather with fine linework, symmetrical barbs and sharp spine, smooth dotwork gradient shading, minimal premium fineline style, small bird silhouettes flowing upward, balanced composition, razor-sharp outlines, high-contrast black ink, modern tattoo realism, monochrome only, no background on white canvas, professional flash, stencil-ready.",
+  "explorePromptFeatherAndBirdsInFlight": "超详细的黑白羽毛纹身，优雅逼真的羽毛，细线条工作，对称的倒刺和锐利的脊柱，平滑的点画渐变阴影，极简高级细线风格，小鸟剪影向上流动，平衡的构图，锋利的轮廓，高对比度黑色墨水，现代纹身现实主义，仅单色，白色画布上无背景，专业闪光，模板就绪。",
   "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
 
-  "exploreTitleRainyBatWithCelestialStars": "Rainy bat with celestial stars",
+  "exploreTitleRainyBatWithCelestialStars": "带天体星星的雨天蝙蝠",
   "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
-  "explorePromptRainyBatWithCelestialStars": "Symmetrical bat tattoo with fully spread wings, solid black body, wings filled with smooth rainbow gradient (purple to blue, green, yellow, orange), clean bold outlines with fine linework, subtle dotwork shading, surrounded by small stars and dots, two four-pointed stars above and below, mystical celestial vibe, modern neo-traditional style, high contrast, sharp detail.",
+  "explorePromptRainyBatWithCelestialStars": "对称的蝙蝠纹身，完全展开的翅膀，实心黑色身体，翅膀填充平滑的彩虹渐变（紫色到蓝色，绿色，黄色，橙色），干净大胆的轮廓与细线条工作，微妙的点画阴影，周围环绕小星星和点，上下各有两个四角星，神秘的天体氛围，现代新传统风格，高对比度，锐利的细节。",
   "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
 
-  "exploreTitleElegantBlackCatSilhouetteDesign": "Elegant black cat silhouette design",
+  "exploreTitleElegantBlackCatSilhouetteDesign": "优雅的黑猫剪影设计",
   "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
-  "explorePromptElegantBlackCatSilhouetteDesign": "A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art",
+  "explorePromptElegantBlackCatSilhouetteDesign": "极简的黑猫纹身设计，优雅的抽象风格，侧面坐着的猫，长而流动的弯曲尾巴，平滑的扫掠线条和锐利的锥形边缘，实心黑色墨水，微妙的渐变阴影以增加深度，几何和流体形状形成身体，从面部延伸的精致胡须线条，现代细线纹身风格，高对比度，干净的负空间，精致和艺术的外观，纹身闪光艺术",
   "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
 
-  "exploreTitleRedRoseTattooDesign": "Red rose tattoo design",
+  "exploreTitleRedRoseTattooDesign": "红玫瑰纹身设计",
   "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
-  "explorePromptRedRoseTattooDesign": "Realistic red rose tattoo, single blooming rose with layered petals, rich deep red color, fine detailed petal texture, subtle gradient shading, natural green stem with small thorns and two detailed leaves, clean crisp outlines, soft realism tattoo style, high contrast, smooth color blending, professional tattoo flash quality, isolated rose only",
+  "explorePromptRedRoseTattooDesign": "逼真的红玫瑰纹身，单朵盛开的玫瑰，分层花瓣，丰富的深红色，精细详细的花瓣纹理，微妙的渐变阴影，自然的绿色茎，小刺和两片详细的叶子，干净清晰的轮廓，柔和现实主义纹身风格，高对比度，平滑的颜色混合，专业纹身闪光质量，仅隔离的玫瑰",
   "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
 
-  "exploreTitleBlackInfinityArrowTattoo": "Black infinity arrow tattoo",
+  "exploreTitleBlackInfinityArrowTattoo": "黑色无限箭头纹身",
   "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
-  "explorePromptBlackInfinityArrowTattoo": "Realistic Minimalist black infinity arrow tattoo, smooth continuous loop with sharp arrow, clean bold linework, high-contrast solid black ink, modern minimal style, monochrome, stencil-ready.",
+  "explorePromptBlackInfinityArrowTattoo": "逼真的极简黑色无限箭头纹身，平滑的连续循环与锐利的箭头，干净大胆的线条工作，高对比度实心黑色墨水，现代极简风格，单色，模板就绪。",
   "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
 
-  "exploreTitleBlackScorpionTattooDesign": "Black scorpion tattoo design",
+  "exploreTitleBlackScorpionTattooDesign": "黑蝎子纹身设计",
   "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
-  "explorePromptBlackScorpionTattooDesign": "Realistic minimalist black scorpion tattoo design, bold solid black ink, sharp clean linework, symmetrical tribal-inspired detailing, high contrast, smooth curves, modern tattoo style, stencil-ready, isolated on plain background, ultra-detailed, professional tattoo flash",
+  "explorePromptBlackScorpionTattooDesign": "逼真的极简黑色蝎子纹身设计，大胆的实心黑色墨水，锐利干净的线条工作，对称的部落风格细节，高对比度，平滑的曲线，现代纹身风格，模板就绪，在纯色背景上隔离，超详细，专业纹身闪光",
   "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
 
-  "exploreTitleCrescentMoonAndStarTattoo": "Crescent moon and star tattoo",
+  "exploreTitleCrescentMoonAndStarTattoo": "新月和星星纹身",
   "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
-  "explorePromptCrescentMoonAndStarTattoo": "Minimalist black ink tattoo, fine-line style, upward crescent moon with solid black fill, small four-point star above aligned vertically, subtle dot accents, celestial and mystical aesthetic, simple geometry, balanced spacing, clean background, precise linework, high contrast, timeless minimal tattoo design",
+  "explorePromptCrescentMoonAndStarTattoo": "极简黑色墨水纹身，细线风格，向上的新月，实心黑色填充，上方垂直对齐的小四角星，微妙的点状重音，天体神秘美学，简单几何，平衡间距，干净背景，精确的线条工作，高对比度，永恒的极简纹身设计",
   "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
 
-  "exploreTitleSleepingPandaTattoo": "Sleeping panda tattoo",
+  "exploreTitleSleepingPandaTattoo": "睡觉的熊猫纹身",
   "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
-  "explorePromptSleepingPandaTattoo": "Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.",
+  "explorePromptSleepingPandaTattoo": "极简可爱的熊猫纹身，小小的侧卧睡觉熊猫，简单的圆形形状，实心黑白墨水，柔和平滑的填充，最小的面部细节，干净的边缘，现代极简纹身风格，单色，无背景，白色画布，模板就绪。",
   "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
 
-  "genericTattoo": "Tattoo",
+  "genericTattoo": "纹身",
   "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
 
-  "loadingGeneratingYourTattoo": "Generating your tattoo..",
+  "loadingGeneratingYourTattoo": "正在生成您的纹身..",
   "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
 
-  "resultShare": "Share",
+  "resultShare": "分享",
   "@resultShare": { "description": "Result screen: Share button label" },
-  "resultNoImageToShare": "No image to share",
+  "resultNoImageToShare": "没有可分享的图片",
   "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
-  "resultShareText": "Check out my {styleName} tattoo design!",
+  "resultShareText": "看看我的 {styleName} 纹身设计！",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
     "placeholders": {
@@ -336,7 +336,7 @@
       }
     }
   },
-  "resultShareSubject": "{styleName} Tattoo Design",
+  "resultShareSubject": "{styleName} 纹身设计",
   "@resultShareSubject": {
     "description": "Result screen: Share subject with style name",
     "placeholders": {
@@ -345,7 +345,7 @@
       }
     }
   },
-  "resultErrorSharing": "Error sharing: {error}",
+  "resultErrorSharing": "分享错误：{error}",
   "@resultErrorSharing": {
     "description": "Result screen: Error sharing message",
     "placeholders": {
@@ -354,9 +354,9 @@
       }
     }
   },
-  "resultImageSavedToGallery": "Image saved to gallery",
+  "resultImageSavedToGallery": "图片已保存到相册",
   "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
-  "resultErrorSaving": "Error saving image: {error}",
+  "resultErrorSaving": "保存图片错误：{error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
     "placeholders": {
@@ -365,27 +365,27 @@
       }
     }
   },
-  "flowerHomeTransformYourName": "Transform your name",
+  "flowerHomeTransformYourName": "将您的名字",
   "@flowerHomeTransformYourName": {
     "description": "Flower home: title line 1"
   },
-  "flowerHomeIntoABouquetTattoo": "into a bouquet tattoo",
+  "flowerHomeIntoABouquetTattoo": "变成花束纹身",
   "@flowerHomeIntoABouquetTattoo": {
     "description": "Flower home: title line 2"
   },
-  "flowerHomeCreate": "Create",
+  "flowerHomeCreate": "创建",
   "@flowerHomeCreate": {
     "description": "Flower home: create button label"
   },
-  "flowerInputEnterYourName": "Enter Your Name",
+  "flowerInputEnterYourName": "输入您的名字",
   "@flowerInputEnterYourName": {
     "description": "Flower input screen: page title"
   },
-  "flowerLoadingCreatingYourFloralTattoo": "Creating your floral tattoo...",
+  "flowerLoadingCreatingYourFloralTattoo": "正在创建您的花卉纹身...",
   "@flowerLoadingCreatingYourFloralTattoo": {
     "description": "Flower loading screen: main loading message"
   },
-  "flowerLoadingDesigningWithBeautifulFlowers": "Designing \"{name}\" with beautiful flowers",
+  "flowerLoadingDesigningWithBeautifulFlowers": "用美丽的花朵设计 \"{name}\"",
   "@flowerLoadingDesigningWithBeautifulFlowers": {
     "description": "Flower loading screen: subtitle with name placeholder",
     "placeholders": {
@@ -394,7 +394,7 @@
       }
     }
   },
-  "flowerResultFloralTattooFor": "Floral tattoo for \"{name}\"",
+  "flowerResultFloralTattooFor": "为 \"{name}\" 设计的花卉纹身",
   "@flowerResultFloralTattooFor": {
     "description": "Flower result screen: placeholder text with name",
     "placeholders": {
@@ -403,7 +403,7 @@
       }
     }
   },
-  "flowerResultShareText": "Check out my floral tattoo design for \"{name}\"!",
+  "flowerResultShareText": "看看我为 \"{name}\" 设计的花卉纹身！",
   "@flowerResultShareText": {
     "description": "Flower result screen: share text with name placeholder",
     "placeholders": {
@@ -412,7 +412,7 @@
       }
     }
   },
-  "flowerResultShareSubject": "Floral Tattoo: {name}",
+  "flowerResultShareSubject": "花卉纹身：{name}",
   "@flowerResultShareSubject": {
     "description": "Flower result screen: share subject with name placeholder",
     "placeholders": {
@@ -421,243 +421,243 @@
       }
     }
   },
-  "tattooPageTurnYourNameIntoA": "Turn your name into a",
+  "tattooPageTurnYourNameIntoA": "将您的名字变成",
   "@tattooPageTurnYourNameIntoA": {
     "description": "Tattoo page: welcome text line 1"
   },
-  "tattooPageOneOfAKindTattoo": "one-of-a-kind tattoo",
+  "tattooPageOneOfAKindTattoo": "独一无二的纹身",
   "@tattooPageOneOfAKindTattoo": {
     "description": "Tattoo page: welcome text line 2"
   },
-  "stepBirthdayWhatsYourBirthday": "What's your birthday?",
+  "stepBirthdayWhatsYourBirthday": "您的生日是什么时候？",
   "@stepBirthdayWhatsYourBirthday": {
     "description": "Step birthday page: question text"
   },
-  "monthJanuary": "January",
+  "monthJanuary": "一月",
   "@monthJanuary": {
     "description": "Month name: January"
   },
-  "monthFebruary": "February",
+  "monthFebruary": "二月",
   "@monthFebruary": {
     "description": "Month name: February"
   },
-  "monthMarch": "March",
+  "monthMarch": "三月",
   "@monthMarch": {
     "description": "Month name: March"
   },
-  "monthApril": "April",
+  "monthApril": "四月",
   "@monthApril": {
     "description": "Month name: April"
   },
-  "monthMay": "May",
+  "monthMay": "五月",
   "@monthMay": {
     "description": "Month name: May"
   },
-  "monthJune": "June",
+  "monthJune": "六月",
   "@monthJune": {
     "description": "Month name: June"
   },
-  "monthJuly": "July",
+  "monthJuly": "七月",
   "@monthJuly": {
     "description": "Month name: July"
   },
-  "monthAugust": "August",
+  "monthAugust": "八月",
   "@monthAugust": {
     "description": "Month name: August"
   },
-  "monthSeptember": "September",
+  "monthSeptember": "九月",
   "@monthSeptember": {
     "description": "Month name: September"
   },
-  "monthOctober": "October",
+  "monthOctober": "十月",
   "@monthOctober": {
     "description": "Month name: October"
   },
-  "monthNovember": "November",
+  "monthNovember": "十一月",
   "@monthNovember": {
     "description": "Month name: November"
   },
-  "monthDecember": "December",
+  "monthDecember": "十二月",
   "@monthDecember": {
     "description": "Month name: December"
   },
-  "stepNameWhatsYourName": "What's your name?",
+  "stepNameWhatsYourName": "您叫什么名字？",
   "@stepNameWhatsYourName": {
     "description": "Step name page: question text"
   },
-  "stepNameHint": "Name",
+  "stepNameHint": "姓名",
   "@stepNameHint": {
     "description": "Step name page: input hint text"
   },
-  "stepLocationWhereYouBorn": "Where you born?",
+  "stepLocationWhereYouBorn": "您在哪里出生？",
   "@stepLocationWhereYouBorn": {
     "description": "Step location page: question text"
   },
-  "stepLocationHint": "Location",
+  "stepLocationHint": "位置",
   "@stepLocationHint": {
     "description": "Step location page: input hint text"
   },
-  "stepStylePickYourTitleStyle": "Pick your title style",
+  "stepStylePickYourTitleStyle": "选择您的标题风格",
   "@stepStylePickYourTitleStyle": {
     "description": "Step style selection page: question text"
   },
-  "stepTattooIdeaWhatYourTattooIdea": "What your tattoo idea?",
+  "stepTattooIdeaWhatYourTattooIdea": "您的纹身想法是什么？",
   "@stepTattooIdeaWhatYourTattooIdea": {
     "description": "Step tattoo idea page: question text"
   },
-  "stepTattooIdeaHint": "Describe your tattoo idea...",
+  "stepTattooIdeaHint": "描述您的纹身想法...",
   "@stepTattooIdeaHint": {
     "description": "Step tattoo idea page: input hint text"
   },
-  "zodiacCapricornName": "Capricorn",
+  "zodiacCapricornName": "摩羯座",
   "@zodiacCapricornName": {
     "description": "Zodiac sign name: Capricorn"
   },
-  "zodiacCapricornDateRange": "December 22 – January 19",
+  "zodiacCapricornDateRange": "12月22日 – 1月19日",
   "@zodiacCapricornDateRange": {
     "description": "Zodiac sign date range: Capricorn"
   },
-  "zodiacCapricornDescription": "Disciplined and ambitious, with a grounded and responsible nature. They value success and prefer building their future through patience and hard work.",
+  "zodiacCapricornDescription": "纪律严明且雄心勃勃，具有踏实和负责任的性格。他们重视成功，更喜欢通过耐心和努力工作来建设未来。",
   "@zodiacCapricornDescription": {
     "description": "Zodiac sign description: Capricorn"
   },
-  "zodiacAquariusName": "Aquarius",
+  "zodiacAquariusName": "水瓶座",
   "@zodiacAquariusName": {
     "description": "Zodiac sign name: Aquarius"
   },
-  "zodiacAquariusDateRange": "January 20 – February 18",
+  "zodiacAquariusDateRange": "1月20日 – 2月18日",
   "@zodiacAquariusDateRange": {
     "description": "Zodiac sign date range: Aquarius"
   },
-  "zodiacAquariusDescription": "Independent and creative, with a free-spirited and original nature. They value freedom and prefer expressing their individuality with unique ideas.",
+  "zodiacAquariusDescription": "独立且富有创造力，具有自由精神和原创性。他们重视自由，更喜欢用独特的想法表达个性。",
   "@zodiacAquariusDescription": {
     "description": "Zodiac sign description: Aquarius"
   },
-  "zodiacPiscesName": "Pisces",
+  "zodiacPiscesName": "双鱼座",
   "@zodiacPiscesName": {
     "description": "Zodiac sign name: Pisces"
   },
-  "zodiacPiscesDateRange": "February 19 – March 20",
+  "zodiacPiscesDateRange": "2月19日 – 3月20日",
   "@zodiacPiscesDateRange": {
     "description": "Zodiac sign date range: Pisces"
   },
-  "zodiacPiscesDescription": "Gentle and dreamy, with a sensitive and compassionate nature. They value emotions and prefer living through imagination, kindness, and deep understanding.",
+  "zodiacPiscesDescription": "温柔且梦幻，具有敏感和富有同情心的性格。他们重视情感，更喜欢通过想象力、善良和深刻的理解来生活。",
   "@zodiacPiscesDescription": {
     "description": "Zodiac sign description: Pisces"
   },
-  "zodiacAriesName": "Aries",
+  "zodiacAriesName": "白羊座",
   "@zodiacAriesName": {
     "description": "Zodiac sign name: Aries"
   },
-  "zodiacAriesDateRange": "March 21 – April 19",
+  "zodiacAriesDateRange": "3月21日 – 4月19日",
   "@zodiacAriesDateRange": {
     "description": "Zodiac sign date range: Aries"
   },
-  "zodiacAriesDescription": "Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.",
+  "zodiacAriesDescription": "大胆且充满活力，具有自信和无畏的性格。他们喜欢主动，更喜欢用激情和决心来领导。",
   "@zodiacAriesDescription": {
     "description": "Zodiac sign description: Aries"
   },
-  "zodiacTaurusName": "Taurus",
+  "zodiacTaurusName": "金牛座",
   "@zodiacTaurusName": {
     "description": "Zodiac sign name: Taurus"
   },
-  "zodiacTaurusDateRange": "April 20 – May 20",
+  "zodiacTaurusDateRange": "4月20日 – 5月20日",
   "@zodiacTaurusDateRange": {
     "description": "Zodiac sign date range: Taurus"
   },
-  "zodiacTaurusDescription": "Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.",
+  "zodiacTaurusDescription": "大胆且充满活力，具有自信和无畏的性格。他们喜欢主动，更喜欢用激情和决心来领导。",
   "@zodiacTaurusDescription": {
     "description": "Zodiac sign description: Taurus"
   },
-  "zodiacGeminiName": "Gemini",
+  "zodiacGeminiName": "双子座",
   "@zodiacGeminiName": {
     "description": "Zodiac sign name: Gemini"
   },
-  "zodiacGeminiDateRange": "May 21 – June 20",
+  "zodiacGeminiDateRange": "5月21日 – 6月20日",
   "@zodiacGeminiDateRange": {
     "description": "Zodiac sign date range: Gemini"
   },
-  "zodiacGeminiDescription": "Curious and lively, with a quick-minded and adaptable nature. They enjoy communication and prefer exploring new ideas with excitement.",
+  "zodiacGeminiDescription": "好奇且活泼，具有思维敏捷和适应性强的性格。他们喜欢交流，更喜欢以兴奋的心情探索新想法。",
   "@zodiacGeminiDescription": {
     "description": "Zodiac sign description: Gemini"
   },
-  "zodiacCancerName": "Cancer",
+  "zodiacCancerName": "巨蟹座",
   "@zodiacCancerName": {
     "description": "Zodiac sign name: Cancer"
   },
-  "zodiacCancerDateRange": "June 21 – July 22",
+  "zodiacCancerDateRange": "6月21日 – 7月22日",
   "@zodiacCancerDateRange": {
     "description": "Zodiac sign date range: Cancer"
   },
-  "zodiacCancerDescription": "Sensitive and caring, with a deeply emotional and protective nature. They value close connections and prefer nurturing others with warmth and loyalty.",
+  "zodiacCancerDescription": "敏感且关怀，具有深刻情感和保护性的性格。他们重视紧密的联系，更喜欢用温暖和忠诚来培养他人。",
   "@zodiacCancerDescription": {
     "description": "Zodiac sign description: Cancer"
   },
-  "zodiacLeoName": "Leo",
+  "zodiacLeoName": "狮子座",
   "@zodiacLeoName": {
     "description": "Zodiac sign name: Leo"
   },
-  "zodiacLeoDateRange": "July 23 – August 22",
+  "zodiacLeoDateRange": "7月23日 – 8月22日",
   "@zodiacLeoDateRange": {
     "description": "Zodiac sign date range: Leo"
   },
-  "zodiacLeoDescription": "Confident and charismatic, with a bold and generous nature. They enjoy being admired and prefer expressing themselves with creativity and pride.",
+  "zodiacLeoDescription": "自信且富有魅力，具有大胆和慷慨的性格。他们喜欢被钦佩，更喜欢用创造力和自豪来表达自己。",
   "@zodiacLeoDescription": {
     "description": "Zodiac sign description: Leo"
   },
-  "zodiacVirgoName": "Virgo",
+  "zodiacVirgoName": "处女座",
   "@zodiacVirgoName": {
     "description": "Zodiac sign name: Virgo"
   },
-  "zodiacVirgoDateRange": "August 23 – September 22",
+  "zodiacVirgoDateRange": "8月23日 – 9月22日",
   "@zodiacVirgoDateRange": {
     "description": "Zodiac sign date range: Virgo"
   },
-  "zodiacVirgoDescription": "Practical and thoughtful, with a detail-focused and hardworking nature. They value discipline and prefer bringing order and care into everything they do.",
+  "zodiacVirgoDescription": "实用且深思熟虑，具有注重细节和勤奋的性格。他们重视纪律，更喜欢在所做的一切中带来秩序和关怀。",
   "@zodiacVirgoDescription": {
     "description": "Zodiac sign description: Virgo"
   },
-  "zodiacLibraName": "Libra",
+  "zodiacLibraName": "天秤座",
   "@zodiacLibraName": {
     "description": "Zodiac sign name: Libra"
   },
-  "zodiacLibraDateRange": "September 23 – October 22",
+  "zodiacLibraDateRange": "9月23日 – 10月22日",
   "@zodiacLibraDateRange": {
     "description": "Zodiac sign date range: Libra"
   },
-  "zodiacLibraDescription": "Charming and balanced, with a peaceful and fair-minded nature. They value harmony and prefer building connections through kindness and understanding.",
+  "zodiacLibraDescription": "迷人且平衡，具有平和和公正的性格。他们重视和谐，更喜欢通过善良和理解来建立联系。",
   "@zodiacLibraDescription": {
     "description": "Zodiac sign description: Libra"
   },
-  "zodiacScorpioName": "Scorpio",
+  "zodiacScorpioName": "天蝎座",
   "@zodiacScorpioName": {
     "description": "Zodiac sign name: Scorpio"
   },
-  "zodiacScorpioDateRange": "October 23 – November 21",
+  "zodiacScorpioDateRange": "10月23日 – 11月21日",
   "@zodiacScorpioDateRange": {
     "description": "Zodiac sign date range: Scorpio"
   },
-  "zodiacScorpioDescription": "Intense and passionate, with a powerful and mysterious nature. They value loyalty and prefer deep connections built on trust and strength.",
+  "zodiacScorpioDescription": "强烈且充满激情，具有强大和神秘的性格。他们重视忠诚，更喜欢建立在信任和力量基础上的深厚联系。",
   "@zodiacScorpioDescription": {
     "description": "Zodiac sign description: Scorpio"
   },
-  "zodiacSagittariusName": "Sagittarius",
+  "zodiacSagittariusName": "射手座",
   "@zodiacSagittariusName": {
     "description": "Zodiac sign name: Sagittarius"
   },
-  "zodiacSagittariusDateRange": "November 22 – December 21",
+  "zodiacSagittariusDateRange": "11月22日 – 12月21日",
   "@zodiacSagittariusDateRange": {
     "description": "Zodiac sign date range: Sagittarius"
   },
-  "zodiacSagittariusDescription": "Adventurous and optimistic, with a free-loving and curious nature. They value exploration and prefer chasing new experiences with excitement and independence.",
+  "zodiacSagittariusDescription": "冒险且乐观，具有自由和好奇的性格。他们重视探索，更喜欢以兴奋和独立的方式追求新体验。",
   "@zodiacSagittariusDescription": {
     "description": "Zodiac sign description: Sagittarius"
   },
-  "styleDragon": "Dragon",
+  "styleDragon": "龙",
   "@styleDragon": {
     "description": "Tattoo style label: Dragon"
   },
-  "styleUnicorn": "Unicorn",
+  "styleUnicorn": "独角兽",
   "@styleUnicorn": {
     "description": "Tattoo style label: Unicorn"
   },
@@ -665,31 +665,31 @@
   "@styleFloral": {
     "description": "Tattoo style label: Floral"
   },
-  "styleAbstract": "Abstract",
+  "styleAbstract": "抽象",
   "@styleAbstract": {
     "description": "Tattoo style label: Abstract"
   },
-  "styleButterfly": "Butterfly",
+  "styleButterfly": "蝴蝶",
   "@styleButterfly": {
     "description": "Tattoo style label: Butterfly"
   },
-  "styleEagle": "Eagle",
+  "styleEagle": "鹰",
   "@styleEagle": {
     "description": "Tattoo style label: Eagle"
   },
-  "styleLion": "Lion",
+  "styleLion": "狮子",
   "@styleLion": {
     "description": "Tattoo style label: Lion"
   },
-  "styleSpider": "Spider",
+  "styleSpider": "蜘蛛",
   "@styleSpider": {
     "description": "Tattoo style label: Spider"
   },
-  "styleWolf": "Wolf",
+  "styleWolf": "狼",
   "@styleWolf": {
     "description": "Tattoo style label: Wolf"
   },
-  "onboardingStep": "Step {currentStep}/5",
+  "onboardingStep": "步骤 {currentStep}/5",
   "@onboardingStep": {
     "description": "Onboarding header: step indicator text",
     "placeholders": {
@@ -699,11 +699,11 @@
       }
     }
   },
-  "onboardingGetStarted": "Get Started",
+  "onboardingGetStarted": "开始",
   "@onboardingGetStarted": {
     "description": "Onboarding next button: text for final step"
   },
-  "ad": "Ad",
+  "ad": "广告",
   "@ad": {
     "description": "Ad badge label in drawer menu"
   },
@@ -751,17 +751,16 @@
   "@languageArabic": {
     "description": "Language name: Arabic"
   },
-  "exitAppTitle": "Exit App?",
+  "exitAppTitle": "退出应用？",
   "@exitAppTitle": {
     "description": "Exit confirmation dialog: title"
   },
-  "exitAppMessage": "Are you sure you want to exit?",
+  "exitAppMessage": "您确定要退出吗？",
   "@exitAppMessage": {
     "description": "Exit confirmation dialog: message"
   },
-  "exit": "Exit",
+  "exit": "退出",
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
-  }
   }
 }

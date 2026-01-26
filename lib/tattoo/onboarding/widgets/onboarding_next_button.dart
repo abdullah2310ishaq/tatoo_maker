@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 
 class OnboardingNextButton extends StatelessWidget {
@@ -34,7 +35,9 @@ class OnboardingNextButton extends StatelessWidget {
           elevation: enabled ? 4 : 0,
         ),
         child: Text(
-          isLastStep ? 'Get Started' : 'Next',
+          isLastStep
+              ? AppLocalizations.of(context)!.onboardingGetStarted
+              : AppLocalizations.of(context)!.next,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,

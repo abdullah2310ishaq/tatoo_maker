@@ -67,7 +67,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   Widget _buildCurrentPage() {
     if (_showZodiac) {
       final zodiacSign = getZodiacSign(_selectedMonth, _selectedDay);
-      final zodiacInfo = zodiacData[zodiacSign]!;
+      final zodiacInfo = getZodiacData(context, zodiacSign);
       return ZodiacDisplayPage(
         zodiacInfo: zodiacInfo,
         onBack: () {
@@ -136,6 +136,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     final tattooIdea = _controllers[3].text.trim(); // Tattoo idea from step 4
     final selectedStyle = _selectedStyleIndex != null
         ? getTattooStyles(
+            context,
             Theme.of(context).brightness == Brightness.dark,
           )[_selectedStyleIndex!]
         : null;

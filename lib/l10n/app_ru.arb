@@ -1,0 +1,766 @@
+{
+  "@@locale": "ru",
+  "skip": "Пропустить",
+  "@skip": {
+    "description": "Skip button text for onboarding screens"
+  },
+  "continue_": "Продолжить",
+  "@continue_": {
+    "description": "Continue button text for onboarding screens"
+  },
+  "start": "Начать",
+  "@start": {
+    "description": "Start button text for final onboarding screen"
+  },
+  "tattooCreation": "Создание Татуировки",
+  "@tattooCreation": {
+    "description": "Title for first onboarding screen"
+  },
+  "tattooCreationDescription": "Создавайте уникальные дизайны татуировок и смотрите, как они выглядят на вашей руке в реальном времени.",
+  "@tattooCreationDescription": {
+    "description": "Description text for first onboarding screen"
+  },
+  "customCreation": "Индивидуальное Создание",
+  "@customCreation": {
+    "description": "Title for second onboarding screen"
+  },
+  "customCreationDescription": "Создавайте индивидуальные дизайны и воплощайте\nв жизнь свои творческие идеи.",
+  "@customCreationDescription": {
+    "description": "Description text for second onboarding screen"
+  },
+  "tattooMaker": "Создатель Татуировок",
+  "@tattooMaker": {
+    "description": "Title for third onboarding screen"
+  },
+  "flowerCreation": "Создание Цветов",
+  "@flowerCreation": {
+    "description": "Feature title for third onboarding screen"
+  },
+  "flowerCreationDescription": "Превратите ваше имя в красивый\nдизайн, вдохновленный цветами.",
+  "@flowerCreationDescription": {
+    "description": "Description text for third onboarding screen"
+  },
+  "chooseALanguage": "Выберите Язык",
+  "@chooseALanguage": {
+    "description": "Title for language selection screen"
+  },
+  "next": "Далее",
+  "@next": {
+    "description": "Next button text"
+  },
+  "cameraPermissionRequired": "Требуется Разрешение Камеры",
+  "@cameraPermissionRequired": {
+    "description": "Camera permission dialog title"
+  },
+  "permissionRequired": "Требуется Разрешение",
+  "@permissionRequired": {
+    "description": "Generic permission dialog title"
+  },
+  "cancel": "Отмена",
+  "@cancel": {
+    "description": "Dialog/CTA: Cancel"
+  },
+  "openSettings": "Открыть Настройки",
+  "@openSettings": {
+    "description": "Dialog/CTA: Open Settings"
+  },
+  "retry": "Повторить",
+  "@retry": {
+    "description": "Button label: Retry"
+  },
+  "cameraPermissionIsRequiredToTakePhotos": "Для съемки фотографий требуется разрешение камеры.",
+  "@cameraPermissionIsRequiredToTakePhotos": {
+    "description": "Camera permission required to take photos message"
+  },
+  "cameraAccessNeededEnableInSettings": "Это приложение требует доступа к камере для съемки фотографий. Пожалуйста, включите его в настройках.",
+  "@cameraAccessNeededEnableInSettings": {
+    "description": "Camera access explanation for settings dialog"
+  },
+  "noCamerasAvailableOnThisDevice": "На этом устройстве нет доступных камер.",
+  "@noCamerasAvailableOnThisDevice": {
+    "description": "Error message shown when there are no cameras available"
+  },
+  "failedToInitializeCameraTryAgain": "Не удалось инициализировать камеру. Пожалуйста, попробуйте снова.",
+  "@failedToInitializeCameraTryAgain": {
+    "description": "Error message shown when camera fails to initialize"
+  },
+  "cameraNotReadyPleaseWait": "Камера не готова. Пожалуйста, подождите.",
+  "@cameraNotReadyPleaseWait": {
+    "description": "Error message shown when camera is not ready"
+  },
+  "couldntCapturePhotoTryAgain": "Не удалось сделать фото. Попробуйте снова.",
+  "@couldntCapturePhotoTryAgain": {
+    "description": "Error message shown when photo capture fails"
+  },
+  "cameraError": "Ошибка камеры",
+  "@cameraError": {
+    "description": "Generic camera error label"
+  },
+  "lightTheme": "Светлая Тема",
+  "@lightTheme": {
+    "description": "Light theme label"
+  },
+  "darkTheme": "Темная Тема",
+  "@darkTheme": {
+    "description": "Dark theme label"
+  },
+  "languages": "Языки",
+  "@languages": {
+    "description": "Drawer menu item: Languages"
+  },
+  "favorites": "Избранное",
+  "@favorites": {
+    "description": "Drawer menu item: Favorites"
+  },
+  "rateUs": "Оценить Нас",
+  "@rateUs": {
+    "description": "Drawer menu item: Rate Us"
+  },
+  "privacyPolicy": "Политика Конфиденциальности",
+  "@privacyPolicy": {
+    "description": "Drawer menu item: Privacy Policy"
+  },
+  "shareApp": "Поделиться Приложением",
+  "@shareApp": {
+    "description": "Drawer menu item: Share App"
+  },
+  "feedback": "Обратная Связь",
+  "@feedback": {
+    "description": "Drawer menu item: Feedback"
+  },
+  "communityGuidelines": "Правила Сообщества",
+  "@communityGuidelines": {
+    "description": "Drawer menu item: Community Guidelines"
+  },
+  "moreApps": "Больше Приложений",
+  "@moreApps": {
+    "description": "Drawer menu item: More Apps"
+  },
+  "creation": "Создание",
+  "@creation": {
+    "description": "Bottom navigation item: Creation"
+  },
+  "tattoo": "Татуировка",
+  "@tattoo": {
+    "description": "Bottom navigation item: Tattoo"
+  },
+  "flower": "Цветок",
+  "@flower": {
+    "description": "Bottom navigation item: Flower"
+  },
+  "couldntShareImageTryAgain": "Не удалось поделиться изображением. Попробуйте снова.",
+  "@couldntShareImageTryAgain": {
+    "description": "Generic message when sharing fails"
+  },
+  "noImageToSave": "Нет изображения для сохранения",
+  "@noImageToSave": {
+    "description": "SnackBar message shown when there is no image to save"
+  },
+  "imageSavedToGalleryExcited": "Изображение сохранено в галерею!",
+  "@imageSavedToGalleryExcited": {
+    "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
+  },
+  "couldntSaveImageTryAgain": "Не удалось сохранить изображение. Попробуйте снова.",
+  "@couldntSaveImageTryAgain": {
+    "description": "Generic message when saving fails"
+  },
+  "capturePhoto": "Сделать Фото",
+  "@capturePhoto": {
+    "description": "Virtual try-on: capture photo button label"
+  },
+  "apply": "Применить",
+  "@apply": {
+    "description": "Virtual try-on: apply button label"
+  },
+  "download": "Скачать",
+  "@download": {
+    "description": "Virtual try-on: download button label"
+  },
+  "virtualTryOn": "Виртуальная Примерка",
+  "@virtualTryOn": {
+    "description": "Virtual try-on screen title"
+  },
+  "virtualTryOnEmptyState": "Сделайте фото вашей руки\nили части тела, чтобы примерить татуировку",
+  "@virtualTryOnEmptyState": {
+    "description": "Virtual try-on empty state message"
+  },
+  "virtualTryOnProcessingTitle": "Обработка татуировки на человеческой коже...",
+  "@virtualTryOnProcessingTitle": {
+    "description": "Virtual try-on processing status line 1"
+  },
+  "virtualTryOnProcessingSubtitle": "Это может занять несколько моментов",
+  "@virtualTryOnProcessingSubtitle": {
+    "description": "Virtual try-on processing status line 2"
+  },
+  "virtualTryOnProcessingFailedTryAgain": "Не удалось обработать изображение. Попробуйте снова.",
+  "@virtualTryOnProcessingFailedTryAgain": {
+    "description": "Virtual try-on: processing failed message"
+  },
+  "promptLabel": "Prompt",
+  "@promptLabel": {
+    "description": "Label for the prompt section in explore detail"
+  },
+  "tryThis": "Попробовать Это",
+  "@tryThis": {
+    "description": "Button text for trying an explore preset"
+  },
+  "tattooStylePromptWolf": "Минималистичная племенная татуировка волка, нарисованная смелыми белыми линиями, абстрактные острые кривые, чистая линейная графика, стиль флеш-татуировки.",
+  "@tattooStylePromptWolf": {
+    "description": "Home: style prompt for Wolf"
+  },
+  "tattooStylePromptAbstract": "Племенная абстрактная татуировка, символизирующая внутреннюю силу и стойкость, плавные острые кривые, поднимающиеся вверх, смелая уверенная линейная графика, мощная вертикальная композиция, минималистичный племенной стиль, сплошная белая краска",
+  "@tattooStylePromptAbstract": {
+    "description": "Home: style prompt for Abstract"
+  },
+  "tattooStylePromptLion": "Величественная татуировка льва, представляющая мужество и лидерство, спокойное мощное выражение, детализированная грива, сильная штриховка, художественный дизайн татуировки, сплошная белая краска, высокий контраст",
+  "@tattooStylePromptLion": {
+    "description": "Home: style prompt for Lion"
+  },
+  "tattooStylePromptEagle": "Татуировка орла в полете, символизирующая свободу и видение, широкие крылья, острые детали перьев, динамичное движение, смелое искусство татуировки, сплошная белая краска, высокий контраст",
+  "@tattooStylePromptEagle": {
+    "description": "Home: style prompt for Eagle"
+  },
+  "tattooStylePromptSpider": "Детализированная татуировка паука, символизирующая терпение и контроль, реалистичная анатомия, чистые элементы паутины, темный художественный стиль татуировки, сплошная белая краска, высокий контраст",
+  "@tattooStylePromptSpider": {
+    "description": "Home: style prompt for Spider"
+  },
+  "tattooStylePromptButterfly": "Нежная татуировка бабочки, представляющая трансформацию и рост, детализированные крылья, мягкая штриховка, элегантная иллюстрация татуировки, сплошная белая краска, высокий контраст.",
+  "@tattooStylePromptButterfly": {
+    "description": "Home: style prompt for Butterfly"
+  },
+  "tattooStylePromptDragon": "Дизайн татуировки фантазийного дракона, свернутое тело, темная чешуя, светящиеся оранжевые крылья, острые рога, смелые чистые линии",
+  "@tattooStylePromptDragon": {
+    "description": "Home: style prompt for Dragon"
+  },
+  "tattooStylePromptUnicorn": "Дизайн татуировки головы единорога, золотой рог, струящаяся радужная грива, детализированная фантазийная иллюстрация",
+  "@tattooStylePromptUnicorn": {
+    "description": "Home: style prompt for Unicorn"
+  },
+  "tattooStylePromptFloral": "Пастельный цветочный букет, персиковые и румяные розы, полевые цветы, золотая листва, каскадные ленты, асимметричная слеза, романтичный винтаж, мягкое освещение, высокий реализм, темный фон.",
+  "@tattooStylePromptFloral": {
+    "description": "Home: style prompt for Floral"
+  },
+  "homeDescribeYourDreamInk": "Опишите Вашу Татуировку Мечты",
+  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "homeDreamInkHint": "Расскажите нам, что вы представляете...",
+  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "homeInspiration": "Вдохновение",
+  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "homeCharactersRemaining": "символов осталось",
+  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "homeTattooStyle": "Стиль Татуировки",
+  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "homeExploreInspiration": "Исследовать Вдохновение",
+  "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
+  "homeGenerate": "Создать",
+  "@homeGenerate": { "description": "Home: Generate button label" },
+  "homeTutorialOverlayText": "Опишите татуировку, которую вы имеете в виду, или нажмите 'Вдохновение' для идей",
+  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
+
+  "exploreTitleGothqueen": "Gothqueen",
+  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "explorePromptGothqueen": "Черно-серая готическая татуировка королевы, лысое женское лицо, украшенная корона, геометрическая линейная работа, реалистичная штриховка, симметричная, высокий уровень детализации",
+  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
+
+  "exploreTitleFloral": "Floral",
+  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "explorePromptFloral": "Красивый дизайн цветочной татуировки с замысловатыми лепестками и листьями, естественные плавные кривые, ботанический стиль татуировки, детализированная линейная работа, сплошная белая краска, высокий контраст",
+  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
+
+  "exploreTitleSkullWithFedoraAndPipe": "Череп с федорой и трубкой",
+  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "explorePromptSkullWithFedoraAndPipe": "Реалистичная черно-серая татуировка черепа, череп в профиль в классической федоре, курящий изогнутую трубку с мягким дымом вверх, винтажный нуар стиль, детализированная текстура костей и зубов, плавная градиентная штриховка с точечной работой и мягким реализмом, детализация тонкой иглой, высококонтрастные черные тона, профессиональное произведение татуировки.",
+  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
+
+  "exploreTitleElegantSnakeTattoo": "Элегантная татуировка змеи",
+  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "explorePromptElegantSnakeTattoo": "Ультра-детализированная черно-белая агрессивная татуировка змеи, открытая пасть с длинными клыками и раздвоенным языком, плавное свернутое тело, детализированная чешуя тонкими линиями, глубокая черная штриховка, сильный контраст, реалистичная глубина, чистое негативное пространство, традиционная гравюра × современный реализм, бритвенно-острые контуры, монохромная краска, без фона, профессиональный флеш татуировки, готово для предплечья или рукава.",
+  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
+
+  "exploreTitleFeatherAndBirdsInFlight": "Перо и птицы в полете",
+  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "explorePromptFeatherAndBirdsInFlight": "Ультра-детализированная черно-белая татуировка пера, элегантное реалистичное перо с тонкой линейной работой, симметричные зазубрины и острый стержень, плавная градиентная штриховка точечной работы, минималистичный премиум стиль тонких линий, маленькие силуэты птиц, струящиеся вверх, сбалансированная композиция, бритвенно-острые контуры, высококонтрастная черная краска, современный реализм татуировки, только монохром, без фона на белом холсте, профессиональный флеш, готово для трафарета.",
+  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
+
+  "exploreTitleRainyBatWithCelestialStars": "Дождливая летучая мышь с небесными звездами",
+  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "explorePromptRainyBatWithCelestialStars": "Симметричная татуировка летучей мыши с полностью расправленными крыльями, сплошное черное тело, крылья заполнены плавным радужным градиентом (от фиолетового к синему, зеленому, желтому, оранжевому), чистые смелые контуры с тонкой линейной работой, тонкая точечная штриховка, окруженная маленькими звездами и точками, две четырехконечные звезды сверху и снизу, мистическая небесная атмосфера, современный нео-традиционный стиль, высокий контраст, острый детали.",
+  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
+
+  "exploreTitleElegantBlackCatSilhouetteDesign": "Элегантный дизайн силуэта черной кошки",
+  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "explorePromptElegantBlackCatSilhouetteDesign": "Минималистичный дизайн татуировки черной кошки в элегантном абстрактном стиле, сидящая кошка в профиль с длинным струящимся изогнутым хвостом, плавные широкие линии и острые сужающиеся края, сплошная черная краска с тонкой градиентной штриховкой для глубины, геометрические и плавные формы, образующие тело, нежные линии усов, простирающиеся от морды, современный стиль татуировки тонких линий, высокий контраст, чистое негативное пространство, изысканный и художественный вид, флеш-арт татуировки",
+  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
+
+  "exploreTitleRedRoseTattooDesign": "Дизайн татуировки красной розы",
+  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "explorePromptRedRoseTattooDesign": "Реалистичная татуировка красной розы, одна цветущая роза со слоистыми лепестками, богатый глубокий красный цвет, тонкая детализированная текстура лепестков, тонкая градиентная штриховка, естественный зеленый стебель с маленькими шипами и двумя детализированными листьями, чистые четкие контуры, мягкий реалистичный стиль татуировки, высокий контраст, плавное смешивание цветов, профессиональное качество флеш татуировки, только изолированная роза",
+  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
+
+  "exploreTitleBlackInfinityArrowTattoo": "Черная татуировка бесконечной стрелы",
+  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "explorePromptBlackInfinityArrowTattoo": "Реалистичная минималистичная черная татуировка бесконечной стрелы, плавная непрерывная петля с острой стрелой, чистая смелая линейная работа, высококонтрастная сплошная черная краска, современный минималистичный стиль, монохром, готово для трафарета.",
+  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
+
+  "exploreTitleBlackScorpionTattooDesign": "Дизайн татуировки черного скорпиона",
+  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "explorePromptBlackScorpionTattooDesign": "Реалистичный минималистичный дизайн татуировки черного скорпиона, смелая сплошная черная краска, острая чистая линейная работа, симметричные детали, вдохновленные племенными мотивами, высокий контраст, плавные кривые, современный стиль татуировки, готово для трафарета, изолировано на простом фоне, ультра-детализировано, профессиональный флеш татуировки",
+  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
+
+  "exploreTitleCrescentMoonAndStarTattoo": "Татуировка полумесяца и звезды",
+  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "explorePromptCrescentMoonAndStarTattoo": "Минималистичная татуировка черной краской, стиль тонких линий, полумесяц вверх со сплошной черной заливкой, маленькая четырехконечная звезда сверху, выровненная вертикально, тонкие точечные акценты, небесная и мистическая эстетика, простая геометрия, сбалансированное расстояние, чистый фон, точная линейная работа, высокий контраст, вневременной минималистичный дизайн татуировки",
+  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
+
+  "exploreTitleSleepingPandaTattoo": "Татуировка спящей панды",
+  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "explorePromptSleepingPandaTattoo": "Минималистичная милая татуировка панды, крошечная спящая панда, лежащая на боку, простая округлая форма, сплошная черная и белая краска, мягкие плавные заливки, минимальные детали лица, чистые края, современный минималистичный стиль татуировки, монохром, без фона, белый холст, готово для трафарета.",
+  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
+
+  "genericTattoo": "Татуировка",
+  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
+
+  "loadingGeneratingYourTattoo": "Создание вашей татуировки..",
+  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
+
+  "resultShare": "Поделиться",
+  "@resultShare": { "description": "Result screen: Share button label" },
+  "resultNoImageToShare": "Нет изображения для обмена",
+  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "resultShareText": "Посмотрите мой дизайн татуировки {styleName}!",
+  "@resultShareText": {
+    "description": "Result screen: Share text with style name",
+    "placeholders": {
+      "styleName": {
+        "type": "String"
+      }
+    }
+  },
+  "resultShareSubject": "Дизайн Татуировки {styleName}",
+  "@resultShareSubject": {
+    "description": "Result screen: Share subject with style name",
+    "placeholders": {
+      "styleName": {
+        "type": "String"
+      }
+    }
+  },
+  "resultErrorSharing": "Ошибка при обмене: {error}",
+  "@resultErrorSharing": {
+    "description": "Result screen: Error sharing message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resultImageSavedToGallery": "Изображение сохранено в галерею",
+  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "resultErrorSaving": "Ошибка при сохранении изображения: {error}",
+  "@resultErrorSaving": {
+    "description": "Result screen: Error saving message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerHomeTransformYourName": "Превратите ваше имя",
+  "@flowerHomeTransformYourName": {
+    "description": "Flower home: title line 1"
+  },
+  "flowerHomeIntoABouquetTattoo": "в татуировку букета",
+  "@flowerHomeIntoABouquetTattoo": {
+    "description": "Flower home: title line 2"
+  },
+  "flowerHomeCreate": "Создать",
+  "@flowerHomeCreate": {
+    "description": "Flower home: create button label"
+  },
+  "flowerInputEnterYourName": "Введите Ваше Имя",
+  "@flowerInputEnterYourName": {
+    "description": "Flower input screen: page title"
+  },
+  "flowerLoadingCreatingYourFloralTattoo": "Создание вашей цветочной татуировки...",
+  "@flowerLoadingCreatingYourFloralTattoo": {
+    "description": "Flower loading screen: main loading message"
+  },
+  "flowerLoadingDesigningWithBeautifulFlowers": "Проектирование \"{name}\" с красивыми цветами",
+  "@flowerLoadingDesigningWithBeautifulFlowers": {
+    "description": "Flower loading screen: subtitle with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultFloralTattooFor": "Цветочная татуировка для \"{name}\"",
+  "@flowerResultFloralTattooFor": {
+    "description": "Flower result screen: placeholder text with name",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultShareText": "Посмотрите мой дизайн цветочной татуировки для \"{name}\"!",
+  "@flowerResultShareText": {
+    "description": "Flower result screen: share text with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultShareSubject": "Цветочная Татуировка: {name}",
+  "@flowerResultShareSubject": {
+    "description": "Flower result screen: share subject with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tattooPageTurnYourNameIntoA": "Превратите ваше имя в",
+  "@tattooPageTurnYourNameIntoA": {
+    "description": "Tattoo page: welcome text line 1"
+  },
+  "tattooPageOneOfAKindTattoo": "уникальную татуировку",
+  "@tattooPageOneOfAKindTattoo": {
+    "description": "Tattoo page: welcome text line 2"
+  },
+  "stepBirthdayWhatsYourBirthday": "Когда ваш день рождения?",
+  "@stepBirthdayWhatsYourBirthday": {
+    "description": "Step birthday page: question text"
+  },
+  "monthJanuary": "Январь",
+  "@monthJanuary": {
+    "description": "Month name: January"
+  },
+  "monthFebruary": "Февраль",
+  "@monthFebruary": {
+    "description": "Month name: February"
+  },
+  "monthMarch": "Март",
+  "@monthMarch": {
+    "description": "Month name: March"
+  },
+  "monthApril": "Апрель",
+  "@monthApril": {
+    "description": "Month name: April"
+  },
+  "monthMay": "Май",
+  "@monthMay": {
+    "description": "Month name: May"
+  },
+  "monthJune": "Июнь",
+  "@monthJune": {
+    "description": "Month name: June"
+  },
+  "monthJuly": "Июль",
+  "@monthJuly": {
+    "description": "Month name: July"
+  },
+  "monthAugust": "Август",
+  "@monthAugust": {
+    "description": "Month name: August"
+  },
+  "monthSeptember": "Сентябрь",
+  "@monthSeptember": {
+    "description": "Month name: September"
+  },
+  "monthOctober": "Октябрь",
+  "@monthOctober": {
+    "description": "Month name: October"
+  },
+  "monthNovember": "Ноябрь",
+  "@monthNovember": {
+    "description": "Month name: November"
+  },
+  "monthDecember": "Декабрь",
+  "@monthDecember": {
+    "description": "Month name: December"
+  },
+  "stepNameWhatsYourName": "Как вас зовут?",
+  "@stepNameWhatsYourName": {
+    "description": "Step name page: question text"
+  },
+  "stepNameHint": "Имя",
+  "@stepNameHint": {
+    "description": "Step name page: input hint text"
+  },
+  "stepLocationWhereYouBorn": "Где вы родились?",
+  "@stepLocationWhereYouBorn": {
+    "description": "Step location page: question text"
+  },
+  "stepLocationHint": "Местоположение",
+  "@stepLocationHint": {
+    "description": "Step location page: input hint text"
+  },
+  "stepStylePickYourTitleStyle": "Выберите стиль заголовка",
+  "@stepStylePickYourTitleStyle": {
+    "description": "Step style selection page: question text"
+  },
+  "stepTattooIdeaWhatYourTattooIdea": "Какая ваша идея татуировки?",
+  "@stepTattooIdeaWhatYourTattooIdea": {
+    "description": "Step tattoo idea page: question text"
+  },
+  "stepTattooIdeaHint": "Опишите вашу идею татуировки...",
+  "@stepTattooIdeaHint": {
+    "description": "Step tattoo idea page: input hint text"
+  },
+  "zodiacCapricornName": "Козерог",
+  "@zodiacCapricornName": {
+    "description": "Zodiac sign name: Capricorn"
+  },
+  "zodiacCapricornDateRange": "22 декабря – 19 января",
+  "@zodiacCapricornDateRange": {
+    "description": "Zodiac sign date range: Capricorn"
+  },
+  "zodiacCapricornDescription": "Дисциплинированный и амбициозный, с обоснованной и ответственной натурой. Они ценят успех и предпочитают строить свое будущее через терпение и упорный труд.",
+  "@zodiacCapricornDescription": {
+    "description": "Zodiac sign description: Capricorn"
+  },
+  "zodiacAquariusName": "Водолей",
+  "@zodiacAquariusName": {
+    "description": "Zodiac sign name: Aquarius"
+  },
+  "zodiacAquariusDateRange": "20 января – 18 февраля",
+  "@zodiacAquariusDateRange": {
+    "description": "Zodiac sign date range: Aquarius"
+  },
+  "zodiacAquariusDescription": "Независимый и творческий, со свободолюбивой и оригинальной натурой. Они ценят свободу и предпочитают выражать свою индивидуальность уникальными идеями.",
+  "@zodiacAquariusDescription": {
+    "description": "Zodiac sign description: Aquarius"
+  },
+  "zodiacPiscesName": "Рыбы",
+  "@zodiacPiscesName": {
+    "description": "Zodiac sign name: Pisces"
+  },
+  "zodiacPiscesDateRange": "19 февраля – 20 марта",
+  "@zodiacPiscesDateRange": {
+    "description": "Zodiac sign date range: Pisces"
+  },
+  "zodiacPiscesDescription": "Нежный и мечтательный, с чувствительной и сострадательной натурой. Они ценят эмоции и предпочитают жить через воображение, доброту и глубокое понимание.",
+  "@zodiacPiscesDescription": {
+    "description": "Zodiac sign description: Pisces"
+  },
+  "zodiacAriesName": "Овен",
+  "@zodiacAriesName": {
+    "description": "Zodiac sign name: Aries"
+  },
+  "zodiacAriesDateRange": "21 марта – 19 апреля",
+  "@zodiacAriesDateRange": {
+    "description": "Zodiac sign date range: Aries"
+  },
+  "zodiacAriesDescription": "Смелый и энергичный, с уверенной и бесстрашной натурой. Они любят брать инициативу и предпочитают вести со страстью и решимостью.",
+  "@zodiacAriesDescription": {
+    "description": "Zodiac sign description: Aries"
+  },
+  "zodiacTaurusName": "Телец",
+  "@zodiacTaurusName": {
+    "description": "Zodiac sign name: Taurus"
+  },
+  "zodiacTaurusDateRange": "20 апреля – 20 мая",
+  "@zodiacTaurusDateRange": {
+    "description": "Zodiac sign date range: Taurus"
+  },
+  "zodiacTaurusDescription": "Смелый и энергичный, с уверенной и бесстрашной натурой. Они любят брать инициативу и предпочитают вести со страстью и решимостью.",
+  "@zodiacTaurusDescription": {
+    "description": "Zodiac sign description: Taurus"
+  },
+  "zodiacGeminiName": "Близнецы",
+  "@zodiacGeminiName": {
+    "description": "Zodiac sign name: Gemini"
+  },
+  "zodiacGeminiDateRange": "21 мая – 20 июня",
+  "@zodiacGeminiDateRange": {
+    "description": "Zodiac sign date range: Gemini"
+  },
+  "zodiacGeminiDescription": "Любопытный и живой, с быстрым умом и адаптивной натурой. Они наслаждаются общением и предпочитают исследовать новые идеи с энтузиазмом.",
+  "@zodiacGeminiDescription": {
+    "description": "Zodiac sign description: Gemini"
+  },
+  "zodiacCancerName": "Рак",
+  "@zodiacCancerName": {
+    "description": "Zodiac sign name: Cancer"
+  },
+  "zodiacCancerDateRange": "21 июня – 22 июля",
+  "@zodiacCancerDateRange": {
+    "description": "Zodiac sign date range: Cancer"
+  },
+  "zodiacCancerDescription": "Чувствительный и заботливый, с глубоко эмоциональной и защитной натурой. Они ценят близкие связи и предпочитают заботиться о других с теплом и верностью.",
+  "@zodiacCancerDescription": {
+    "description": "Zodiac sign description: Cancer"
+  },
+  "zodiacLeoName": "Лев",
+  "@zodiacLeoName": {
+    "description": "Zodiac sign name: Leo"
+  },
+  "zodiacLeoDateRange": "23 июля – 22 августа",
+  "@zodiacLeoDateRange": {
+    "description": "Zodiac sign date range: Leo"
+  },
+  "zodiacLeoDescription": "Уверенный и харизматичный, со смелой и щедрой натурой. Они наслаждаются восхищением и предпочитают выражать себя с творчеством и гордостью.",
+  "@zodiacLeoDescription": {
+    "description": "Zodiac sign description: Leo"
+  },
+  "zodiacVirgoName": "Дева",
+  "@zodiacVirgoName": {
+    "description": "Zodiac sign name: Virgo"
+  },
+  "zodiacVirgoDateRange": "23 августа – 22 сентября",
+  "@zodiacVirgoDateRange": {
+    "description": "Zodiac sign date range: Virgo"
+  },
+  "zodiacVirgoDescription": "Практичный и вдумчивый, с детально-ориентированной и трудолюбивой натурой. Они ценят дисциплину и предпочитают привносить порядок и заботу во все, что делают.",
+  "@zodiacVirgoDescription": {
+    "description": "Zodiac sign description: Virgo"
+  },
+  "zodiacLibraName": "Весы",
+  "@zodiacLibraName": {
+    "description": "Zodiac sign name: Libra"
+  },
+  "zodiacLibraDateRange": "23 сентября – 22 октября",
+  "@zodiacLibraDateRange": {
+    "description": "Zodiac sign date range: Libra"
+  },
+  "zodiacLibraDescription": "Очаровательный и сбалансированный, с мирной и справедливой натурой. Они ценят гармонию и предпочитают строить связи через доброту и понимание.",
+  "@zodiacLibraDescription": {
+    "description": "Zodiac sign description: Libra"
+  },
+  "zodiacScorpioName": "Скорпион",
+  "@zodiacScorpioName": {
+    "description": "Zodiac sign name: Scorpio"
+  },
+  "zodiacScorpioDateRange": "23 октября – 21 ноября",
+  "@zodiacScorpioDateRange": {
+    "description": "Zodiac sign date range: Scorpio"
+  },
+  "zodiacScorpioDescription": "Интенсивный и страстный, с могущественной и загадочной натурой. Они ценят верность и предпочитают глубокие связи, построенные на доверии и силе.",
+  "@zodiacScorpioDescription": {
+    "description": "Zodiac sign description: Scorpio"
+  },
+  "zodiacSagittariusName": "Стрелец",
+  "@zodiacSagittariusName": {
+    "description": "Zodiac sign name: Sagittarius"
+  },
+  "zodiacSagittariusDateRange": "22 ноября – 21 декабря",
+  "@zodiacSagittariusDateRange": {
+    "description": "Zodiac sign date range: Sagittarius"
+  },
+  "zodiacSagittariusDescription": "Авантюрный и оптимистичный, со свободолюбивой и любопытной натурой. Они ценят исследование и предпочитают преследовать новые впечатления с энтузиазмом и независимостью.",
+  "@zodiacSagittariusDescription": {
+    "description": "Zodiac sign description: Sagittarius"
+  },
+  "styleDragon": "Дракон",
+  "@styleDragon": {
+    "description": "Tattoo style label: Dragon"
+  },
+  "styleUnicorn": "Единорог",
+  "@styleUnicorn": {
+    "description": "Tattoo style label: Unicorn"
+  },
+  "styleFloral": "Floral",
+  "@styleFloral": {
+    "description": "Tattoo style label: Floral"
+  },
+  "styleAbstract": "Абстрактный",
+  "@styleAbstract": {
+    "description": "Tattoo style label: Abstract"
+  },
+  "styleButterfly": "Бабочка",
+  "@styleButterfly": {
+    "description": "Tattoo style label: Butterfly"
+  },
+  "styleEagle": "Орел",
+  "@styleEagle": {
+    "description": "Tattoo style label: Eagle"
+  },
+  "styleLion": "Лев",
+  "@styleLion": {
+    "description": "Tattoo style label: Lion"
+  },
+  "styleSpider": "Паук",
+  "@styleSpider": {
+    "description": "Tattoo style label: Spider"
+  },
+  "styleWolf": "Волк",
+  "@styleWolf": {
+    "description": "Tattoo style label: Wolf"
+  },
+  "onboardingStep": "Шаг {currentStep}/5",
+  "@onboardingStep": {
+    "description": "Onboarding header: step indicator text",
+    "placeholders": {
+      "currentStep": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "onboardingGetStarted": "Начать",
+  "@onboardingGetStarted": {
+    "description": "Onboarding next button: text for final step"
+  },
+  "ad": "Реклама",
+  "@ad": {
+    "description": "Ad badge label in drawer menu"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Language name: English"
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Language name: Spanish"
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "Language name: French"
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "Language name: German"
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Language name: Italian"
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Language name: Portuguese"
+  },
+  "languageRussian": "Русский",
+  "@languageRussian": {
+    "description": "Language name: Russian"
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Language name: Chinese"
+  },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "Language name: Japanese"
+  },
+  "languageKorean": "한국어",
+  "@languageKorean": {
+    "description": "Language name: Korean"
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Language name: Arabic"
+  },
+  "exitAppTitle": "Выйти из Приложения?",
+  "@exitAppTitle": {
+    "description": "Exit confirmation dialog: title"
+  },
+  "exitAppMessage": "Вы уверены, что хотите выйти?",
+  "@exitAppMessage": {
+    "description": "Exit confirmation dialog: message"
+  },
+  "exit": "Выйти",
+  "@exit": {
+    "description": "Exit confirmation dialog: exit button label"
+  }
+}

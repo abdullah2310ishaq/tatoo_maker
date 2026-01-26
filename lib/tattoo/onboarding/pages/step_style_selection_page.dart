@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 import '../models/onboarding_models.dart';
 import '../utils/zodiac_utils.dart';
@@ -29,7 +30,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
-    final styles = getTattooStyles(isDark);
+    final styles = getTattooStyles(context, isDark);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
         SizedBox(height: 40.h),
         // Question
         Text(
-          "Pick your title style",
+          AppLocalizations.of(context)!.stepStylePickYourTitleStyle,
           style: TextStyle(
             fontSize: 24.sp,
             fontWeight: FontWeight.bold,

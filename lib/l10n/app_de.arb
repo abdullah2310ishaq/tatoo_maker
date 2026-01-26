@@ -1,10 +1,10 @@
 {
-  "@@locale": "en",
-  "skip": "Skip",
+  "@@locale": "de",
+  "skip": "Überspringen",
   "@skip": {
     "description": "Skip button text for onboarding screens"
   },
-  "continue_": "Continue",
+  "continue_": "Weiter",
   "@continue_": {
     "description": "Continue button text for onboarding screens"
   },
@@ -12,115 +12,115 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "Tattoo Creation",
+  "tattooCreation": "Tattoo-Erstellung",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "Create unique tattoo designs and see how they look on your hand in real time.",
+  "tattooCreationDescription": "Erstelle einzigartige Tattoo-Designs und sieh, wie sie auf deiner Hand in Echtzeit aussehen.",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "Custom Creation",
+  "customCreation": "Individuelle Erstellung",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "Create custom designs and bring\nyour creative ideas to life.",
+  "customCreationDescription": "Erstelle individuelle Designs und bringe\ndeine kreativen Ideen zum Leben.",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
-  "tattooMaker": "Tattoo Maker",
+  "tattooMaker": "Tattoo-Macher",
   "@tattooMaker": {
     "description": "Title for third onboarding screen"
   },
-  "flowerCreation": "Flower Creation",
+  "flowerCreation": "Blumen-Erstellung",
   "@flowerCreation": {
     "description": "Feature title for third onboarding screen"
   },
-  "flowerCreationDescription": "Turn your name into a beautiful\nflower-inspired design.",
+  "flowerCreationDescription": "Verwandle deinen Namen in ein wunderschönes\nblumeninspiriertes Design.",
   "@flowerCreationDescription": {
     "description": "Description text for third onboarding screen"
   },
-  "chooseALanguage": "Choose a Language",
+  "chooseALanguage": "Sprache wählen",
   "@chooseALanguage": {
     "description": "Title for language selection screen"
   },
-  "next": "Next",
+  "next": "Weiter",
   "@next": {
     "description": "Next button text"
   },
-  "cameraPermissionRequired": "Camera Permission Required",
+  "cameraPermissionRequired": "Kamera-Berechtigung erforderlich",
   "@cameraPermissionRequired": {
     "description": "Camera permission dialog title"
   },
-  "permissionRequired": "Permission Required",
+  "permissionRequired": "Berechtigung erforderlich",
   "@permissionRequired": {
     "description": "Generic permission dialog title"
   },
-  "cancel": "Cancel",
+  "cancel": "Abbrechen",
   "@cancel": {
     "description": "Dialog/CTA: Cancel"
   },
-  "openSettings": "Open Settings",
+  "openSettings": "Einstellungen öffnen",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
   },
-  "retry": "Retry",
+  "retry": "Wiederholen",
   "@retry": {
     "description": "Button label: Retry"
   },
-  "cameraPermissionIsRequiredToTakePhotos": "Camera permission is required to take photos.",
+  "cameraPermissionIsRequiredToTakePhotos": "Kamera-Berechtigung ist erforderlich, um Fotos aufzunehmen.",
   "@cameraPermissionIsRequiredToTakePhotos": {
     "description": "Camera permission required to take photos message"
   },
-  "cameraAccessNeededEnableInSettings": "This app needs camera access to take photos. Please enable it in settings.",
+  "cameraAccessNeededEnableInSettings": "Diese App benötigt Kamera-Zugriff, um Fotos aufzunehmen. Bitte aktiviere dies in den Einstellungen.",
   "@cameraAccessNeededEnableInSettings": {
     "description": "Camera access explanation for settings dialog"
   },
-  "noCamerasAvailableOnThisDevice": "No cameras available on this device.",
+  "noCamerasAvailableOnThisDevice": "Keine Kameras auf diesem Gerät verfügbar.",
   "@noCamerasAvailableOnThisDevice": {
     "description": "Error message shown when there are no cameras available"
   },
-  "failedToInitializeCameraTryAgain": "Failed to initialize camera. Please try again.",
+  "failedToInitializeCameraTryAgain": "Kamera konnte nicht initialisiert werden. Bitte versuche es erneut.",
   "@failedToInitializeCameraTryAgain": {
     "description": "Error message shown when camera fails to initialize"
   },
-  "cameraNotReadyPleaseWait": "Camera not ready. Please wait.",
+  "cameraNotReadyPleaseWait": "Kamera nicht bereit. Bitte warten.",
   "@cameraNotReadyPleaseWait": {
     "description": "Error message shown when camera is not ready"
   },
-  "couldntCapturePhotoTryAgain": "Couldn't capture photo. Try again.",
+  "couldntCapturePhotoTryAgain": "Foto konnte nicht aufgenommen werden. Versuche es erneut.",
   "@couldntCapturePhotoTryAgain": {
     "description": "Error message shown when photo capture fails"
   },
-  "cameraError": "Camera error",
+  "cameraError": "Kamera-Fehler",
   "@cameraError": {
     "description": "Generic camera error label"
   },
-  "lightTheme": "Light Theme",
+  "lightTheme": "Helles Theme",
   "@lightTheme": {
     "description": "Light theme label"
   },
-  "darkTheme": "Dark Theme",
+  "darkTheme": "Dunkles Theme",
   "@darkTheme": {
     "description": "Dark theme label"
   },
-  "languages": "Languages",
+  "languages": "Sprachen",
   "@languages": {
     "description": "Drawer menu item: Languages"
   },
-  "favorites": "Favorites",
+  "favorites": "Favoriten",
   "@favorites": {
     "description": "Drawer menu item: Favorites"
   },
-  "rateUs": "Rate Us",
+  "rateUs": "Bewerte uns",
   "@rateUs": {
     "description": "Drawer menu item: Rate Us"
   },
-  "privacyPolicy": "Privacy Policy",
+  "privacyPolicy": "Datenschutzrichtlinie",
   "@privacyPolicy": {
     "description": "Drawer menu item: Privacy Policy"
   },
-  "shareApp": "Share App",
+  "shareApp": "App teilen",
   "@shareApp": {
     "description": "Drawer menu item: Share App"
   },
@@ -128,15 +128,15 @@
   "@feedback": {
     "description": "Drawer menu item: Feedback"
   },
-  "communityGuidelines": "Community Guidelines",
+  "communityGuidelines": "Community-Richtlinien",
   "@communityGuidelines": {
     "description": "Drawer menu item: Community Guidelines"
   },
-  "moreApps": "More Apps",
+  "moreApps": "Weitere Apps",
   "@moreApps": {
     "description": "Drawer menu item: More Apps"
   },
-  "creation": "Creation",
+  "creation": "Erstellung",
   "@creation": {
     "description": "Bottom navigation item: Creation"
   },
@@ -144,55 +144,55 @@
   "@tattoo": {
     "description": "Bottom navigation item: Tattoo"
   },
-  "flower": "Flower",
+  "flower": "Blume",
   "@flower": {
     "description": "Bottom navigation item: Flower"
   },
-  "couldntShareImageTryAgain": "Couldn't share image. Try again.",
+  "couldntShareImageTryAgain": "Bild konnte nicht geteilt werden. Versuche es erneut.",
   "@couldntShareImageTryAgain": {
     "description": "Generic message when sharing fails"
   },
-  "noImageToSave": "No image to save",
+  "noImageToSave": "Kein Bild zum Speichern",
   "@noImageToSave": {
     "description": "SnackBar message shown when there is no image to save"
   },
-  "imageSavedToGalleryExcited": "Image saved to gallery!",
+  "imageSavedToGalleryExcited": "Bild in Galerie gespeichert!",
   "@imageSavedToGalleryExcited": {
     "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
   },
-  "couldntSaveImageTryAgain": "Couldn't save image. Try again.",
+  "couldntSaveImageTryAgain": "Bild konnte nicht gespeichert werden. Versuche es erneut.",
   "@couldntSaveImageTryAgain": {
     "description": "Generic message when saving fails"
   },
-  "capturePhoto": "Capture Photo",
+  "capturePhoto": "Foto aufnehmen",
   "@capturePhoto": {
     "description": "Virtual try-on: capture photo button label"
   },
-  "apply": "Apply",
+  "apply": "Anwenden",
   "@apply": {
     "description": "Virtual try-on: apply button label"
   },
-  "download": "Download",
+  "download": "Herunterladen",
   "@download": {
     "description": "Virtual try-on: download button label"
   },
-  "virtualTryOn": "Virtual Try-On",
+  "virtualTryOn": "Virtuelles Anprobieren",
   "@virtualTryOn": {
     "description": "Virtual try-on screen title"
   },
-  "virtualTryOnEmptyState": "Capture a photo of your hand\nor body part to try on the tattoo",
+  "virtualTryOnEmptyState": "Mache ein Foto von deiner Hand\noder einem Körperteil, um das Tattoo anzupassen",
   "@virtualTryOnEmptyState": {
     "description": "Virtual try-on empty state message"
   },
-  "virtualTryOnProcessingTitle": "Processing tattoo on human skin...",
+  "virtualTryOnProcessingTitle": "Tattoo auf menschlicher Haut wird verarbeitet...",
   "@virtualTryOnProcessingTitle": {
     "description": "Virtual try-on processing status line 1"
   },
-  "virtualTryOnProcessingSubtitle": "This may take a few moments",
+  "virtualTryOnProcessingSubtitle": "Dies kann einen Moment dauern",
   "@virtualTryOnProcessingSubtitle": {
     "description": "Virtual try-on processing status line 2"
   },
-  "virtualTryOnProcessingFailedTryAgain": "Couldn't process image. Try again.",
+  "virtualTryOnProcessingFailedTryAgain": "Bild konnte nicht verarbeitet werden. Versuche es erneut.",
   "@virtualTryOnProcessingFailedTryAgain": {
     "description": "Virtual try-on: processing failed message"
   },
@@ -200,134 +200,134 @@
   "@promptLabel": {
     "description": "Label for the prompt section in explore detail"
   },
-  "tryThis": "Try This",
+  "tryThis": "Dies ausprobieren",
   "@tryThis": {
     "description": "Button text for trying an explore preset"
   },
-  "tattooStylePromptWolf": "Minimal tribal wolf tattoo drawn with bold white lines , abstract sharp curves, clean line-art, tattoo flash style.",
+  "tattooStylePromptWolf": "Minimales tribales Wolfs-Tattoo gezeichnet mit kräftigen weißen Linien, abstrakte scharfe Kurven, saubere Line-Art, Tattoo-Flash-Stil.",
   "@tattooStylePromptWolf": {
     "description": "Home: style prompt for Wolf"
   },
-  "tattooStylePromptAbstract": "Tribal abstract tattoo symbolizing inner strength and resilience, flowing sharp curves rising upward, bold confident line-art, powerful vertical composition, minimalist tribal style, solid white ink",
+  "tattooStylePromptAbstract": "Tribales abstraktes Tattoo, das innere Stärke und Widerstandsfähigkeit symbolisiert, fließende scharfe Kurven, die nach oben steigen, kräftige selbstbewusste Line-Art, kraftvolle vertikale Komposition, minimalistischer tribal Stil, feste weiße Tinte",
   "@tattooStylePromptAbstract": {
     "description": "Home: style prompt for Abstract"
   },
-  "tattooStylePromptLion": "Majestic lion tattoo representing courage and leadership, calm powerful expression, detailed mane, strong shading, artistic tattoo design, solid white ink, high contrast",
+  "tattooStylePromptLion": "Majestätisches Löwen-Tattoo, das Mut und Führung repräsentiert, ruhiger kraftvoller Ausdruck, detaillierte Mähne, starke Schattierung, künstlerisches Tattoo-Design, feste weiße Tinte, hoher Kontrast",
   "@tattooStylePromptLion": {
     "description": "Home: style prompt for Lion"
   },
-  "tattooStylePromptEagle": "Eagle tattoo in mid-flight symbolizing freedom and vision, wide wings, sharp feather detail, dynamic motion, bold tattoo art, solid white ink, high contrast",
+  "tattooStylePromptEagle": "Adler-Tattoo im Flug, das Freiheit und Vision symbolisiert, breite Flügel, scharfe Federn-Details, dynamische Bewegung, kräftige Tattoo-Kunst, feste weiße Tinte, hoher Kontrast",
   "@tattooStylePromptEagle": {
     "description": "Home: style prompt for Eagle"
   },
-  "tattooStylePromptSpider": "Detailed spider tattoo symbolizing patience and control, realistic anatomy, clean web elements, dark artistic tattoo style, solid white ink, high contrast",
+  "tattooStylePromptSpider": "Detailliertes Spinnen-Tattoo, das Geduld und Kontrolle symbolisiert, realistische Anatomie, saubere Netzelemente, dunkler künstlerischer Tattoo-Stil, feste weiße Tinte, hoher Kontrast",
   "@tattooStylePromptSpider": {
     "description": "Home: style prompt for Spider"
   },
-  "tattooStylePromptButterfly": "Delicate butterfly tattoo representing transformation and growth, detailed wings, soft shading, elegant tattoo illustration, solid white ink, high contrast.",
+  "tattooStylePromptButterfly": "Zartes Schmetterlings-Tattoo, das Transformation und Wachstum repräsentiert, detaillierte Flügel, weiche Schattierung, elegante Tattoo-Illustration, feste weiße Tinte, hoher Kontrast.",
   "@tattooStylePromptButterfly": {
     "description": "Home: style prompt for Butterfly"
   },
-  "tattooStylePromptDragon": "Fantasy dragon tattoo design, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines",
+  "tattooStylePromptDragon": "Fantasy-Drachen-Tattoo-Design, gewundener Körper, dunkle Schuppen, leuchtende orange Flügel, scharfe Hörner, kräftige saubere Linien",
   "@tattooStylePromptDragon": {
     "description": "Home: style prompt for Dragon"
   },
-  "tattooStylePromptUnicorn": "Unicorn head tattoo design, golden horn, flowing rainbow mane, detailed fantasy illustration",
+  "tattooStylePromptUnicorn": "Einhorn-Kopf-Tattoo-Design, goldene Hörner, fließende Regenbogen-Mähne, detaillierte Fantasy-Illustration",
   "@tattooStylePromptUnicorn": {
     "description": "Home: style prompt for Unicorn"
   },
-  "tattooStylePromptFloral": "Pastel floral bouquet, peach & blush roses, wildflowers, golden foliage, cascading ribbons, asymmetrical teardrop, romantic vintage, soft lighting, high realism, dark background.",
+  "tattooStylePromptFloral": "Pastell-Blumenstrauß, Pfirsich- und Blush-Rosen, Wildblumen, goldenes Laub, kaskadierende Bänder, asymmetrische Träne, romantisches Vintage, weiches Licht, hoher Realismus, dunkler Hintergrund.",
   "@tattooStylePromptFloral": {
     "description": "Home: style prompt for Floral"
   },
-  "homeDescribeYourDreamInk": "Describe Your Dream Ink",
+  "homeDescribeYourDreamInk": "Beschreibe dein Traum-Tattoo",
   "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
-  "homeDreamInkHint": "Tell us what you envision...",
+  "homeDreamInkHint": "Erzähle uns, was du dir vorstellst...",
   "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
   "homeInspiration": "Inspiration",
   "@homeInspiration": { "description": "Home: Inspiration label" },
-  "homeCharactersRemaining": "characters remaining",
+  "homeCharactersRemaining": "Zeichen verbleibend",
   "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
-  "homeTattooStyle": "Tattoo Style",
+  "homeTattooStyle": "Tattoo-Stil",
   "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
-  "homeExploreInspiration": "Explore Inspiration",
+  "homeExploreInspiration": "Inspiration erkunden",
   "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
-  "homeGenerate": "Generate",
+  "homeGenerate": "Generieren",
   "@homeGenerate": { "description": "Home: Generate button label" },
-  "homeTutorialOverlayText": "Describe the tattoo you have in mind, or tap 'Inspiration' for ideas",
+  "homeTutorialOverlayText": "Beschreibe das Tattoo, das du dir vorstellst, oder tippe auf 'Inspiration' für Ideen",
   "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
 
   "exploreTitleGothqueen": "Gothqueen",
   "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
-  "explorePromptGothqueen": "Black and grey gothic queen tattoo, bald female face, ornate crown, geometric linework, realistic shading, symmetrical, high detail",
+  "explorePromptGothqueen": "Schwarz-weißes gotisches Königin-Tattoo, kahles weibliches Gesicht, verzierte Krone, geometrische Linienarbeit, realistische Schattierung, symmetrisch, hohes Detail",
   "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
 
   "exploreTitleFloral": "Floral",
   "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
-  "explorePromptFloral": "Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast",
+  "explorePromptFloral": "Schönes Blumen-Tattoo-Design mit komplexen Blütenblättern und Blättern, natürliche fließende Kurven, botanischer Tattoo-Stil, detaillierte Linienarbeit, feste weiße Tinte, hoher Kontrast",
   "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
 
-  "exploreTitleSkullWithFedoraAndPipe": "Skull with fedora and pipe",
+  "exploreTitleSkullWithFedoraAndPipe": "Totenkopf mit Fedora und Pfeife",
   "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
-  "explorePromptSkullWithFedoraAndPipe": "Realistic black & grey skull tattoo, side-profile skull wearing a classic fedora, smoking a curved pipe with soft upward smoke, vintage noir style, detailed bone & teeth texture, smooth gradient shading with dotwork and soft realism, fine-needle detailing, high-contrast blacks, professional tattoo artwork.",
+  "explorePromptSkullWithFedoraAndPipe": "Realistisches Schwarz-Weiß-Totenkopf-Tattoo, Seitenprofil-Totenkopf mit klassischem Fedora, rauchend eine gebogene Pfeife mit weichem aufsteigendem Rauch, Vintage-Noir-Stil, detaillierte Knochen- und Zahn-Textur, sanfte Verlaufsschattierung mit Punktarbeit und weichem Realismus, Fein-Nadel-Details, hoher Kontrast-Schwarz, professionelle Tattoo-Kunst.",
   "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
 
-  "exploreTitleElegantSnakeTattoo": "Elegant snake tattoo",
+  "exploreTitleElegantSnakeTattoo": "Elegantes Schlangen-Tattoo",
   "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
-  "explorePromptElegantSnakeTattoo": "Ultra-detailed black & white aggressive snake tattoo, open mouth with long fangs and forked tongue, flowing coiled body, fine-line detailed scales, deep black shading, strong contrast, realistic depth, clean negative space, traditional engraving × modern realism, razor-sharp outlines, monochrome ink, no background, professional tattoo flash, forearm or sleeve ready.",
+  "explorePromptElegantSnakeTattoo": "Ultra-detailliertes Schwarz-Weiß-aggressives Schlangen-Tattoo, offenes Maul mit langen Reißzähnen und gespaltener Zunge, fließender gewundener Körper, feine Linien-detaillierte Schuppen, tiefe schwarze Schattierung, starker Kontrast, realistische Tiefe, sauberer Negativraum, traditionelle Gravur × moderner Realismus, rasiermesserscharfe Umrisse, monochrome Tinte, kein Hintergrund, professioneller Tattoo-Flash, Unterarm oder Ärmel bereit.",
   "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
 
-  "exploreTitleFeatherAndBirdsInFlight": "Feather and birds in flight",
+  "exploreTitleFeatherAndBirdsInFlight": "Feder und Vögel im Flug",
   "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
-  "explorePromptFeatherAndBirdsInFlight": "Ultra-detailed black & white feather tattoo, elegant realistic feather with fine linework, symmetrical barbs and sharp spine, smooth dotwork gradient shading, minimal premium fineline style, small bird silhouettes flowing upward, balanced composition, razor-sharp outlines, high-contrast black ink, modern tattoo realism, monochrome only, no background on white canvas, professional flash, stencil-ready.",
+  "explorePromptFeatherAndBirdsInFlight": "Ultra-detailliertes Schwarz-Weiß-Feder-Tattoo, elegante realistische Feder mit feiner Linienarbeit, symmetrische Strahlen und scharfe Spitze, sanfte Punktarbeit-Verlaufsschattierung, minimaler Premium-Fineline-Stil, kleine Vogelsilhouetten, die nach oben fließen, ausgewogene Komposition, rasiermesserscharfe Umrisse, hoher Kontrast-Schwarz-Tinte, moderner Tattoo-Realismus, nur monochrom, kein Hintergrund auf weißer Leinwand, professioneller Flash, Schablone bereit.",
   "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
 
-  "exploreTitleRainyBatWithCelestialStars": "Rainy bat with celestial stars",
+  "exploreTitleRainyBatWithCelestialStars": "Regnerische Fledermaus mit himmlischen Sternen",
   "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
-  "explorePromptRainyBatWithCelestialStars": "Symmetrical bat tattoo with fully spread wings, solid black body, wings filled with smooth rainbow gradient (purple to blue, green, yellow, orange), clean bold outlines with fine linework, subtle dotwork shading, surrounded by small stars and dots, two four-pointed stars above and below, mystical celestial vibe, modern neo-traditional style, high contrast, sharp detail.",
+  "explorePromptRainyBatWithCelestialStars": "Symmetrisches Fledermaus-Tattoo mit vollständig ausgebreiteten Flügeln, fester schwarzer Körper, Flügel gefüllt mit sanftem Regenbogen-Verlauf (lila zu blau, grün, gelb, orange), saubere kräftige Umrisse mit feiner Linienarbeit, subtile Punktarbeit-Schattierung, umgeben von kleinen Sternen und Punkten, zwei vierzackige Sterne oben und unten, mystische himmlische Atmosphäre, moderner Neo-Traditional-Stil, hoher Kontrast, scharfes Detail.",
   "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
 
-  "exploreTitleElegantBlackCatSilhouetteDesign": "Elegant black cat silhouette design",
+  "exploreTitleElegantBlackCatSilhouetteDesign": "Elegantes schwarzes Katzen-Silhouetten-Design",
   "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
-  "explorePromptElegantBlackCatSilhouetteDesign": "A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art",
+  "explorePromptElegantBlackCatSilhouetteDesign": "Ein minimalistisches schwarzes Katzen-Tattoo-Design im eleganten abstrakten Stil, Seitenprofil sitzende Katze mit langem fließendem gebogenem Schwanz, sanfte schwingende Linien und scharfe verjüngte Kanten, feste schwarze Tinte mit subtiler Verlaufsschattierung für Tiefe, geometrische und fließende Formen, die den Körper bilden, zarte Schnurrhaar-Linien, die vom Gesicht ausgehen, moderner Feinlinien-Tattoo-Stil, hoher Kontrast, sauberer Negativraum, sophistizierter und künstlerischer Look, Tattoo-Flash-Kunst",
   "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
 
-  "exploreTitleRedRoseTattooDesign": "Red rose tattoo design",
+  "exploreTitleRedRoseTattooDesign": "Rotes Rosen-Tattoo-Design",
   "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
-  "explorePromptRedRoseTattooDesign": "Realistic red rose tattoo, single blooming rose with layered petals, rich deep red color, fine detailed petal texture, subtle gradient shading, natural green stem with small thorns and two detailed leaves, clean crisp outlines, soft realism tattoo style, high contrast, smooth color blending, professional tattoo flash quality, isolated rose only",
+  "explorePromptRedRoseTattooDesign": "Realistisches rotes Rosen-Tattoo, einzelne blühende Rose mit geschichteten Blütenblättern, reiche tiefrote Farbe, feine detaillierte Blütenblatt-Textur, subtile Verlaufsschattierung, natürlicher grüner Stiel mit kleinen Dornen und zwei detaillierten Blättern, saubere knusprige Umrisse, weicher Realismus-Tattoo-Stil, hoher Kontrast, sanfte Farbmischung, professionelle Tattoo-Flash-Qualität, isolierte Rose nur",
   "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
 
-  "exploreTitleBlackInfinityArrowTattoo": "Black infinity arrow tattoo",
+  "exploreTitleBlackInfinityArrowTattoo": "Schwarzes Unendlichkeits-Pfeil-Tattoo",
   "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
-  "explorePromptBlackInfinityArrowTattoo": "Realistic Minimalist black infinity arrow tattoo, smooth continuous loop with sharp arrow, clean bold linework, high-contrast solid black ink, modern minimal style, monochrome, stencil-ready.",
+  "explorePromptBlackInfinityArrowTattoo": "Realistisches minimalistisches schwarzes Unendlichkeits-Pfeil-Tattoo, sanfte kontinuierliche Schleife mit scharfem Pfeil, saubere kräftige Linienarbeit, hoher Kontrast feste schwarze Tinte, moderner minimaler Stil, monochrom, Schablone bereit.",
   "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
 
-  "exploreTitleBlackScorpionTattooDesign": "Black scorpion tattoo design",
+  "exploreTitleBlackScorpionTattooDesign": "Schwarzes Skorpion-Tattoo-Design",
   "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
-  "explorePromptBlackScorpionTattooDesign": "Realistic minimalist black scorpion tattoo design, bold solid black ink, sharp clean linework, symmetrical tribal-inspired detailing, high contrast, smooth curves, modern tattoo style, stencil-ready, isolated on plain background, ultra-detailed, professional tattoo flash",
+  "explorePromptBlackScorpionTattooDesign": "Realistisches minimalistisches schwarzes Skorpion-Tattoo-Design, kräftige feste schwarze Tinte, scharfe saubere Linienarbeit, symmetrische tribal-inspirierte Details, hoher Kontrast, sanfte Kurven, moderner Tattoo-Stil, Schablone bereit, isoliert auf einfachem Hintergrund, ultra-detailliert, professioneller Tattoo-Flash",
   "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
 
-  "exploreTitleCrescentMoonAndStarTattoo": "Crescent moon and star tattoo",
+  "exploreTitleCrescentMoonAndStarTattoo": "Halbmond und Stern Tattoo",
   "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
-  "explorePromptCrescentMoonAndStarTattoo": "Minimalist black ink tattoo, fine-line style, upward crescent moon with solid black fill, small four-point star above aligned vertically, subtle dot accents, celestial and mystical aesthetic, simple geometry, balanced spacing, clean background, precise linework, high contrast, timeless minimal tattoo design",
+  "explorePromptCrescentMoonAndStarTattoo": "Minimalistisches schwarzes Tinten-Tattoo, Feinlinien-Stil, aufwärts gerichteter Halbmond mit festem schwarzem Füllung, kleiner vierzackiger Stern oben vertikal ausgerichtet, subtile Punkt-Akzente, himmlische und mystische Ästhetik, einfache Geometrie, ausgewogene Abstände, sauberer Hintergrund, präzise Linienarbeit, hoher Kontrast, zeitloses minimales Tattoo-Design",
   "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
 
-  "exploreTitleSleepingPandaTattoo": "Sleeping panda tattoo",
+  "exploreTitleSleepingPandaTattoo": "Schlafendes Panda-Tattoo",
   "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
-  "explorePromptSleepingPandaTattoo": "Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.",
+  "explorePromptSleepingPandaTattoo": "Minimalistisches süßes Panda-Tattoo, winziges schlafendes Panda auf der Seite liegend, einfache abgerundete Form, feste schwarze und weiße Tinte, weiche sanfte Füllungen, minimale Gesichtsdetails, saubere Kanten, moderner minimalistischer Tattoo-Stil, monochrom, kein Hintergrund, weiße Leinwand, Schablone bereit.",
   "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
 
   "genericTattoo": "Tattoo",
   "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
 
-  "loadingGeneratingYourTattoo": "Generating your tattoo..",
+  "loadingGeneratingYourTattoo": "Dein Tattoo wird generiert..",
   "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
 
-  "resultShare": "Share",
+  "resultShare": "Teilen",
   "@resultShare": { "description": "Result screen: Share button label" },
-  "resultNoImageToShare": "No image to share",
+  "resultNoImageToShare": "Kein Bild zum Teilen",
   "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
-  "resultShareText": "Check out my {styleName} tattoo design!",
+  "resultShareText": "Schau dir mein {styleName} Tattoo-Design an!",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
     "placeholders": {
@@ -336,7 +336,7 @@
       }
     }
   },
-  "resultShareSubject": "{styleName} Tattoo Design",
+  "resultShareSubject": "{styleName} Tattoo-Design",
   "@resultShareSubject": {
     "description": "Result screen: Share subject with style name",
     "placeholders": {
@@ -345,7 +345,7 @@
       }
     }
   },
-  "resultErrorSharing": "Error sharing: {error}",
+  "resultErrorSharing": "Fehler beim Teilen: {error}",
   "@resultErrorSharing": {
     "description": "Result screen: Error sharing message",
     "placeholders": {
@@ -354,9 +354,9 @@
       }
     }
   },
-  "resultImageSavedToGallery": "Image saved to gallery",
+  "resultImageSavedToGallery": "Bild in Galerie gespeichert",
   "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
-  "resultErrorSaving": "Error saving image: {error}",
+  "resultErrorSaving": "Fehler beim Speichern des Bildes: {error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
     "placeholders": {
@@ -365,27 +365,27 @@
       }
     }
   },
-  "flowerHomeTransformYourName": "Transform your name",
+  "flowerHomeTransformYourName": "Verwandle deinen Namen",
   "@flowerHomeTransformYourName": {
     "description": "Flower home: title line 1"
   },
-  "flowerHomeIntoABouquetTattoo": "into a bouquet tattoo",
+  "flowerHomeIntoABouquetTattoo": "in ein Blumenstrauß-Tattoo",
   "@flowerHomeIntoABouquetTattoo": {
     "description": "Flower home: title line 2"
   },
-  "flowerHomeCreate": "Create",
+  "flowerHomeCreate": "Erstellen",
   "@flowerHomeCreate": {
     "description": "Flower home: create button label"
   },
-  "flowerInputEnterYourName": "Enter Your Name",
+  "flowerInputEnterYourName": "Gib deinen Namen ein",
   "@flowerInputEnterYourName": {
     "description": "Flower input screen: page title"
   },
-  "flowerLoadingCreatingYourFloralTattoo": "Creating your floral tattoo...",
+  "flowerLoadingCreatingYourFloralTattoo": "Dein Blumen-Tattoo wird erstellt...",
   "@flowerLoadingCreatingYourFloralTattoo": {
     "description": "Flower loading screen: main loading message"
   },
-  "flowerLoadingDesigningWithBeautifulFlowers": "Designing \"{name}\" with beautiful flowers",
+  "flowerLoadingDesigningWithBeautifulFlowers": "Gestalte \"{name}\" mit wunderschönen Blumen",
   "@flowerLoadingDesigningWithBeautifulFlowers": {
     "description": "Flower loading screen: subtitle with name placeholder",
     "placeholders": {
@@ -394,7 +394,7 @@
       }
     }
   },
-  "flowerResultFloralTattooFor": "Floral tattoo for \"{name}\"",
+  "flowerResultFloralTattooFor": "Blumen-Tattoo für \"{name}\"",
   "@flowerResultFloralTattooFor": {
     "description": "Flower result screen: placeholder text with name",
     "placeholders": {
@@ -403,7 +403,7 @@
       }
     }
   },
-  "flowerResultShareText": "Check out my floral tattoo design for \"{name}\"!",
+  "flowerResultShareText": "Schau dir mein Blumen-Tattoo-Design für \"{name}\" an!",
   "@flowerResultShareText": {
     "description": "Flower result screen: share text with name placeholder",
     "placeholders": {
@@ -412,7 +412,7 @@
       }
     }
   },
-  "flowerResultShareSubject": "Floral Tattoo: {name}",
+  "flowerResultShareSubject": "Blumen-Tattoo: {name}",
   "@flowerResultShareSubject": {
     "description": "Flower result screen: share subject with name placeholder",
     "placeholders": {
@@ -421,27 +421,27 @@
       }
     }
   },
-  "tattooPageTurnYourNameIntoA": "Turn your name into a",
+  "tattooPageTurnYourNameIntoA": "Verwandle deinen Namen in ein",
   "@tattooPageTurnYourNameIntoA": {
     "description": "Tattoo page: welcome text line 1"
   },
-  "tattooPageOneOfAKindTattoo": "one-of-a-kind tattoo",
+  "tattooPageOneOfAKindTattoo": "einzigartiges Tattoo",
   "@tattooPageOneOfAKindTattoo": {
     "description": "Tattoo page: welcome text line 2"
   },
-  "stepBirthdayWhatsYourBirthday": "What's your birthday?",
+  "stepBirthdayWhatsYourBirthday": "Wann hast du Geburtstag?",
   "@stepBirthdayWhatsYourBirthday": {
     "description": "Step birthday page: question text"
   },
-  "monthJanuary": "January",
+  "monthJanuary": "Januar",
   "@monthJanuary": {
     "description": "Month name: January"
   },
-  "monthFebruary": "February",
+  "monthFebruary": "Februar",
   "@monthFebruary": {
     "description": "Month name: February"
   },
-  "monthMarch": "March",
+  "monthMarch": "März",
   "@monthMarch": {
     "description": "Month name: March"
   },
@@ -449,15 +449,15 @@
   "@monthApril": {
     "description": "Month name: April"
   },
-  "monthMay": "May",
+  "monthMay": "Mai",
   "@monthMay": {
     "description": "Month name: May"
   },
-  "monthJune": "June",
+  "monthJune": "Juni",
   "@monthJune": {
     "description": "Month name: June"
   },
-  "monthJuly": "July",
+  "monthJuly": "Juli",
   "@monthJuly": {
     "description": "Month name: July"
   },
@@ -469,7 +469,7 @@
   "@monthSeptember": {
     "description": "Month name: September"
   },
-  "monthOctober": "October",
+  "monthOctober": "Oktober",
   "@monthOctober": {
     "description": "Month name: October"
   },
@@ -477,11 +477,11 @@
   "@monthNovember": {
     "description": "Month name: November"
   },
-  "monthDecember": "December",
+  "monthDecember": "Dezember",
   "@monthDecember": {
     "description": "Month name: December"
   },
-  "stepNameWhatsYourName": "What's your name?",
+  "stepNameWhatsYourName": "Wie heißt du?",
   "@stepNameWhatsYourName": {
     "description": "Step name page: question text"
   },
@@ -489,175 +489,175 @@
   "@stepNameHint": {
     "description": "Step name page: input hint text"
   },
-  "stepLocationWhereYouBorn": "Where you born?",
+  "stepLocationWhereYouBorn": "Wo wurdest du geboren?",
   "@stepLocationWhereYouBorn": {
     "description": "Step location page: question text"
   },
-  "stepLocationHint": "Location",
+  "stepLocationHint": "Ort",
   "@stepLocationHint": {
     "description": "Step location page: input hint text"
   },
-  "stepStylePickYourTitleStyle": "Pick your title style",
+  "stepStylePickYourTitleStyle": "Wähle deinen Titel-Stil",
   "@stepStylePickYourTitleStyle": {
     "description": "Step style selection page: question text"
   },
-  "stepTattooIdeaWhatYourTattooIdea": "What your tattoo idea?",
+  "stepTattooIdeaWhatYourTattooIdea": "Was ist deine Tattoo-Idee?",
   "@stepTattooIdeaWhatYourTattooIdea": {
     "description": "Step tattoo idea page: question text"
   },
-  "stepTattooIdeaHint": "Describe your tattoo idea...",
+  "stepTattooIdeaHint": "Beschreibe deine Tattoo-Idee...",
   "@stepTattooIdeaHint": {
     "description": "Step tattoo idea page: input hint text"
   },
-  "zodiacCapricornName": "Capricorn",
+  "zodiacCapricornName": "Steinbock",
   "@zodiacCapricornName": {
     "description": "Zodiac sign name: Capricorn"
   },
-  "zodiacCapricornDateRange": "December 22 – January 19",
+  "zodiacCapricornDateRange": "22. Dezember – 19. Januar",
   "@zodiacCapricornDateRange": {
     "description": "Zodiac sign date range: Capricorn"
   },
-  "zodiacCapricornDescription": "Disciplined and ambitious, with a grounded and responsible nature. They value success and prefer building their future through patience and hard work.",
+  "zodiacCapricornDescription": "Diszipliniert und ehrgeizig, mit einer geerdeten und verantwortungsvollen Natur. Sie schätzen Erfolg und bevorzugen es, ihre Zukunft durch Geduld und harte Arbeit aufzubauen.",
   "@zodiacCapricornDescription": {
     "description": "Zodiac sign description: Capricorn"
   },
-  "zodiacAquariusName": "Aquarius",
+  "zodiacAquariusName": "Wassermann",
   "@zodiacAquariusName": {
     "description": "Zodiac sign name: Aquarius"
   },
-  "zodiacAquariusDateRange": "January 20 – February 18",
+  "zodiacAquariusDateRange": "20. Januar – 18. Februar",
   "@zodiacAquariusDateRange": {
     "description": "Zodiac sign date range: Aquarius"
   },
-  "zodiacAquariusDescription": "Independent and creative, with a free-spirited and original nature. They value freedom and prefer expressing their individuality with unique ideas.",
+  "zodiacAquariusDescription": "Unabhängig und kreativ, mit einer freiheitsliebenden und originellen Natur. Sie schätzen Freiheit und bevorzugen es, ihre Individualität mit einzigartigen Ideen auszudrücken.",
   "@zodiacAquariusDescription": {
     "description": "Zodiac sign description: Aquarius"
   },
-  "zodiacPiscesName": "Pisces",
+  "zodiacPiscesName": "Fische",
   "@zodiacPiscesName": {
     "description": "Zodiac sign name: Pisces"
   },
-  "zodiacPiscesDateRange": "February 19 – March 20",
+  "zodiacPiscesDateRange": "19. Februar – 20. März",
   "@zodiacPiscesDateRange": {
     "description": "Zodiac sign date range: Pisces"
   },
-  "zodiacPiscesDescription": "Gentle and dreamy, with a sensitive and compassionate nature. They value emotions and prefer living through imagination, kindness, and deep understanding.",
+  "zodiacPiscesDescription": "Sanft und verträumt, mit einer sensiblen und mitfühlenden Natur. Sie schätzen Emotionen und bevorzugen es, durch Vorstellungskraft, Freundlichkeit und tiefes Verständnis zu leben.",
   "@zodiacPiscesDescription": {
     "description": "Zodiac sign description: Pisces"
   },
-  "zodiacAriesName": "Aries",
+  "zodiacAriesName": "Widder",
   "@zodiacAriesName": {
     "description": "Zodiac sign name: Aries"
   },
-  "zodiacAriesDateRange": "March 21 – April 19",
+  "zodiacAriesDateRange": "21. März – 19. April",
   "@zodiacAriesDateRange": {
     "description": "Zodiac sign date range: Aries"
   },
-  "zodiacAriesDescription": "Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.",
+  "zodiacAriesDescription": "Mutig und energisch, mit einer selbstbewussten und furchtlosen Natur. Sie lieben es, die Initiative zu ergreifen und bevorzugen es, mit Leidenschaft und Entschlossenheit zu führen.",
   "@zodiacAriesDescription": {
     "description": "Zodiac sign description: Aries"
   },
-  "zodiacTaurusName": "Taurus",
+  "zodiacTaurusName": "Stier",
   "@zodiacTaurusName": {
     "description": "Zodiac sign name: Taurus"
   },
-  "zodiacTaurusDateRange": "April 20 – May 20",
+  "zodiacTaurusDateRange": "20. April – 20. Mai",
   "@zodiacTaurusDateRange": {
     "description": "Zodiac sign date range: Taurus"
   },
-  "zodiacTaurusDescription": "Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.",
+  "zodiacTaurusDescription": "Mutig und energisch, mit einer selbstbewussten und furchtlosen Natur. Sie lieben es, die Initiative zu ergreifen und bevorzugen es, mit Leidenschaft und Entschlossenheit zu führen.",
   "@zodiacTaurusDescription": {
     "description": "Zodiac sign description: Taurus"
   },
-  "zodiacGeminiName": "Gemini",
+  "zodiacGeminiName": "Zwillinge",
   "@zodiacGeminiName": {
     "description": "Zodiac sign name: Gemini"
   },
-  "zodiacGeminiDateRange": "May 21 – June 20",
+  "zodiacGeminiDateRange": "21. Mai – 20. Juni",
   "@zodiacGeminiDateRange": {
     "description": "Zodiac sign date range: Gemini"
   },
-  "zodiacGeminiDescription": "Curious and lively, with a quick-minded and adaptable nature. They enjoy communication and prefer exploring new ideas with excitement.",
+  "zodiacGeminiDescription": "Neugierig und lebhaft, mit einer schnell denkenden und anpassungsfähigen Natur. Sie genießen Kommunikation und bevorzugen es, neue Ideen mit Begeisterung zu erkunden.",
   "@zodiacGeminiDescription": {
     "description": "Zodiac sign description: Gemini"
   },
-  "zodiacCancerName": "Cancer",
+  "zodiacCancerName": "Krebs",
   "@zodiacCancerName": {
     "description": "Zodiac sign name: Cancer"
   },
-  "zodiacCancerDateRange": "June 21 – July 22",
+  "zodiacCancerDateRange": "21. Juni – 22. Juli",
   "@zodiacCancerDateRange": {
     "description": "Zodiac sign date range: Cancer"
   },
-  "zodiacCancerDescription": "Sensitive and caring, with a deeply emotional and protective nature. They value close connections and prefer nurturing others with warmth and loyalty.",
+  "zodiacCancerDescription": "Sensibel und fürsorglich, mit einer tief emotionalen und schützenden Natur. Sie schätzen enge Verbindungen und bevorzugen es, andere mit Wärme und Loyalität zu pflegen.",
   "@zodiacCancerDescription": {
     "description": "Zodiac sign description: Cancer"
   },
-  "zodiacLeoName": "Leo",
+  "zodiacLeoName": "Löwe",
   "@zodiacLeoName": {
     "description": "Zodiac sign name: Leo"
   },
-  "zodiacLeoDateRange": "July 23 – August 22",
+  "zodiacLeoDateRange": "23. Juli – 22. August",
   "@zodiacLeoDateRange": {
     "description": "Zodiac sign date range: Leo"
   },
-  "zodiacLeoDescription": "Confident and charismatic, with a bold and generous nature. They enjoy being admired and prefer expressing themselves with creativity and pride.",
+  "zodiacLeoDescription": "Selbstbewusst und charismatisch, mit einer mutigen und großzügigen Natur. Sie genießen es, bewundert zu werden und bevorzugen es, sich mit Kreativität und Stolz auszudrücken.",
   "@zodiacLeoDescription": {
     "description": "Zodiac sign description: Leo"
   },
-  "zodiacVirgoName": "Virgo",
+  "zodiacVirgoName": "Jungfrau",
   "@zodiacVirgoName": {
     "description": "Zodiac sign name: Virgo"
   },
-  "zodiacVirgoDateRange": "August 23 – September 22",
+  "zodiacVirgoDateRange": "23. August – 22. September",
   "@zodiacVirgoDateRange": {
     "description": "Zodiac sign date range: Virgo"
   },
-  "zodiacVirgoDescription": "Practical and thoughtful, with a detail-focused and hardworking nature. They value discipline and prefer bringing order and care into everything they do.",
+  "zodiacVirgoDescription": "Praktisch und nachdenklich, mit einer detailorientierten und fleißigen Natur. Sie schätzen Disziplin und bevorzugen es, Ordnung und Sorgfalt in alles zu bringen, was sie tun.",
   "@zodiacVirgoDescription": {
     "description": "Zodiac sign description: Virgo"
   },
-  "zodiacLibraName": "Libra",
+  "zodiacLibraName": "Waage",
   "@zodiacLibraName": {
     "description": "Zodiac sign name: Libra"
   },
-  "zodiacLibraDateRange": "September 23 – October 22",
+  "zodiacLibraDateRange": "23. September – 22. Oktober",
   "@zodiacLibraDateRange": {
     "description": "Zodiac sign date range: Libra"
   },
-  "zodiacLibraDescription": "Charming and balanced, with a peaceful and fair-minded nature. They value harmony and prefer building connections through kindness and understanding.",
+  "zodiacLibraDescription": "Charmant und ausgeglichen, mit einer friedlichen und gerecht denkenden Natur. Sie schätzen Harmonie und bevorzugen es, Verbindungen durch Freundlichkeit und Verständnis aufzubauen.",
   "@zodiacLibraDescription": {
     "description": "Zodiac sign description: Libra"
   },
-  "zodiacScorpioName": "Scorpio",
+  "zodiacScorpioName": "Skorpion",
   "@zodiacScorpioName": {
     "description": "Zodiac sign name: Scorpio"
   },
-  "zodiacScorpioDateRange": "October 23 – November 21",
+  "zodiacScorpioDateRange": "23. Oktober – 21. November",
   "@zodiacScorpioDateRange": {
     "description": "Zodiac sign date range: Scorpio"
   },
-  "zodiacScorpioDescription": "Intense and passionate, with a powerful and mysterious nature. They value loyalty and prefer deep connections built on trust and strength.",
+  "zodiacScorpioDescription": "Intensiv und leidenschaftlich, mit einer kraftvollen und mysteriösen Natur. Sie schätzen Loyalität und bevorzugen tiefe Verbindungen, die auf Vertrauen und Stärke aufgebaut sind.",
   "@zodiacScorpioDescription": {
     "description": "Zodiac sign description: Scorpio"
   },
-  "zodiacSagittariusName": "Sagittarius",
+  "zodiacSagittariusName": "Schütze",
   "@zodiacSagittariusName": {
     "description": "Zodiac sign name: Sagittarius"
   },
-  "zodiacSagittariusDateRange": "November 22 – December 21",
+  "zodiacSagittariusDateRange": "22. November – 21. Dezember",
   "@zodiacSagittariusDateRange": {
     "description": "Zodiac sign date range: Sagittarius"
   },
-  "zodiacSagittariusDescription": "Adventurous and optimistic, with a free-loving and curious nature. They value exploration and prefer chasing new experiences with excitement and independence.",
+  "zodiacSagittariusDescription": "Abenteuerlustig und optimistisch, mit einer freiheitsliebenden und neugierigen Natur. Sie schätzen Erkundung und bevorzugen es, neuen Erfahrungen mit Begeisterung und Unabhängigkeit nachzujagen.",
   "@zodiacSagittariusDescription": {
     "description": "Zodiac sign description: Sagittarius"
   },
-  "styleDragon": "Dragon",
+  "styleDragon": "Drache",
   "@styleDragon": {
     "description": "Tattoo style label: Dragon"
   },
-  "styleUnicorn": "Unicorn",
+  "styleUnicorn": "Einhorn",
   "@styleUnicorn": {
     "description": "Tattoo style label: Unicorn"
   },
@@ -665,23 +665,23 @@
   "@styleFloral": {
     "description": "Tattoo style label: Floral"
   },
-  "styleAbstract": "Abstract",
+  "styleAbstract": "Abstrakt",
   "@styleAbstract": {
     "description": "Tattoo style label: Abstract"
   },
-  "styleButterfly": "Butterfly",
+  "styleButterfly": "Schmetterling",
   "@styleButterfly": {
     "description": "Tattoo style label: Butterfly"
   },
-  "styleEagle": "Eagle",
+  "styleEagle": "Adler",
   "@styleEagle": {
     "description": "Tattoo style label: Eagle"
   },
-  "styleLion": "Lion",
+  "styleLion": "Löwe",
   "@styleLion": {
     "description": "Tattoo style label: Lion"
   },
-  "styleSpider": "Spider",
+  "styleSpider": "Spinne",
   "@styleSpider": {
     "description": "Tattoo style label: Spider"
   },
@@ -689,7 +689,7 @@
   "@styleWolf": {
     "description": "Tattoo style label: Wolf"
   },
-  "onboardingStep": "Step {currentStep}/5",
+  "onboardingStep": "Schritt {currentStep}/5",
   "@onboardingStep": {
     "description": "Onboarding header: step indicator text",
     "placeholders": {
@@ -699,11 +699,11 @@
       }
     }
   },
-  "onboardingGetStarted": "Get Started",
+  "onboardingGetStarted": "Loslegen",
   "@onboardingGetStarted": {
     "description": "Onboarding next button: text for final step"
   },
-  "ad": "Ad",
+  "ad": "Werbung",
   "@ad": {
     "description": "Ad badge label in drawer menu"
   },
@@ -751,17 +751,16 @@
   "@languageArabic": {
     "description": "Language name: Arabic"
   },
-  "exitAppTitle": "Exit App?",
+  "exitAppTitle": "App beenden?",
   "@exitAppTitle": {
     "description": "Exit confirmation dialog: title"
   },
-  "exitAppMessage": "Are you sure you want to exit?",
+  "exitAppMessage": "Möchtest du die App wirklich beenden?",
   "@exitAppMessage": {
     "description": "Exit confirmation dialog: message"
   },
-  "exit": "Exit",
+  "exit": "Beenden",
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
-  }
   }
 }

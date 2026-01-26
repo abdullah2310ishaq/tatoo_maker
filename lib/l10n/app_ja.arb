@@ -1,0 +1,766 @@
+{
+  "@@locale": "ja",
+  "skip": "スキップ",
+  "@skip": {
+    "description": "Skip button text for onboarding screens"
+  },
+  "continue_": "続ける",
+  "@continue_": {
+    "description": "Continue button text for onboarding screens"
+  },
+  "start": "開始",
+  "@start": {
+    "description": "Start button text for final onboarding screen"
+  },
+  "tattooCreation": "タトゥー作成",
+  "@tattooCreation": {
+    "description": "Title for first onboarding screen"
+  },
+  "tattooCreationDescription": "ユニークなタトゥーデザインを作成し、手の上でリアルタイムにどのように見えるかを確認できます。",
+  "@tattooCreationDescription": {
+    "description": "Description text for first onboarding screen"
+  },
+  "customCreation": "カスタム作成",
+  "@customCreation": {
+    "description": "Title for second onboarding screen"
+  },
+  "customCreationDescription": "カスタムデザインを作成し、\n創造的なアイデアを実現します。",
+  "@customCreationDescription": {
+    "description": "Description text for second onboarding screen"
+  },
+  "tattooMaker": "タトゥーメーカー",
+  "@tattooMaker": {
+    "description": "Title for third onboarding screen"
+  },
+  "flowerCreation": "フラワー作成",
+  "@flowerCreation": {
+    "description": "Feature title for third onboarding screen"
+  },
+  "flowerCreationDescription": "あなたの名前を美しい\n花をモチーフにしたデザインに変えます。",
+  "@flowerCreationDescription": {
+    "description": "Description text for third onboarding screen"
+  },
+  "chooseALanguage": "言語を選択",
+  "@chooseALanguage": {
+    "description": "Title for language selection screen"
+  },
+  "next": "次へ",
+  "@next": {
+    "description": "Next button text"
+  },
+  "cameraPermissionRequired": "カメラの許可が必要です",
+  "@cameraPermissionRequired": {
+    "description": "Camera permission dialog title"
+  },
+  "permissionRequired": "許可が必要です",
+  "@permissionRequired": {
+    "description": "Generic permission dialog title"
+  },
+  "cancel": "キャンセル",
+  "@cancel": {
+    "description": "Dialog/CTA: Cancel"
+  },
+  "openSettings": "設定を開く",
+  "@openSettings": {
+    "description": "Dialog/CTA: Open Settings"
+  },
+  "retry": "再試行",
+  "@retry": {
+    "description": "Button label: Retry"
+  },
+  "cameraPermissionIsRequiredToTakePhotos": "写真を撮るにはカメラの許可が必要です。",
+  "@cameraPermissionIsRequiredToTakePhotos": {
+    "description": "Camera permission required to take photos message"
+  },
+  "cameraAccessNeededEnableInSettings": "このアプリは写真を撮るためにカメラへのアクセスが必要です。設定で有効にしてください。",
+  "@cameraAccessNeededEnableInSettings": {
+    "description": "Camera access explanation for settings dialog"
+  },
+  "noCamerasAvailableOnThisDevice": "このデバイスで利用可能なカメラがありません。",
+  "@noCamerasAvailableOnThisDevice": {
+    "description": "Error message shown when there are no cameras available"
+  },
+  "failedToInitializeCameraTryAgain": "カメラの初期化に失敗しました。もう一度お試しください。",
+  "@failedToInitializeCameraTryAgain": {
+    "description": "Error message shown when camera fails to initialize"
+  },
+  "cameraNotReadyPleaseWait": "カメラの準備ができていません。お待ちください。",
+  "@cameraNotReadyPleaseWait": {
+    "description": "Error message shown when camera is not ready"
+  },
+  "couldntCapturePhotoTryAgain": "写真を撮影できませんでした。もう一度お試しください。",
+  "@couldntCapturePhotoTryAgain": {
+    "description": "Error message shown when photo capture fails"
+  },
+  "cameraError": "カメラエラー",
+  "@cameraError": {
+    "description": "Generic camera error label"
+  },
+  "lightTheme": "ライトテーマ",
+  "@lightTheme": {
+    "description": "Light theme label"
+  },
+  "darkTheme": "ダークテーマ",
+  "@darkTheme": {
+    "description": "Dark theme label"
+  },
+  "languages": "言語",
+  "@languages": {
+    "description": "Drawer menu item: Languages"
+  },
+  "favorites": "お気に入り",
+  "@favorites": {
+    "description": "Drawer menu item: Favorites"
+  },
+  "rateUs": "評価する",
+  "@rateUs": {
+    "description": "Drawer menu item: Rate Us"
+  },
+  "privacyPolicy": "プライバシーポリシー",
+  "@privacyPolicy": {
+    "description": "Drawer menu item: Privacy Policy"
+  },
+  "shareApp": "アプリを共有",
+  "@shareApp": {
+    "description": "Drawer menu item: Share App"
+  },
+  "feedback": "フィードバック",
+  "@feedback": {
+    "description": "Drawer menu item: Feedback"
+  },
+  "communityGuidelines": "コミュニティガイドライン",
+  "@communityGuidelines": {
+    "description": "Drawer menu item: Community Guidelines"
+  },
+  "moreApps": "その他のアプリ",
+  "@moreApps": {
+    "description": "Drawer menu item: More Apps"
+  },
+  "creation": "作成",
+  "@creation": {
+    "description": "Bottom navigation item: Creation"
+  },
+  "tattoo": "タトゥー",
+  "@tattoo": {
+    "description": "Bottom navigation item: Tattoo"
+  },
+  "flower": "フラワー",
+  "@flower": {
+    "description": "Bottom navigation item: Flower"
+  },
+  "couldntShareImageTryAgain": "画像を共有できませんでした。もう一度お試しください。",
+  "@couldntShareImageTryAgain": {
+    "description": "Generic message when sharing fails"
+  },
+  "noImageToSave": "保存する画像がありません",
+  "@noImageToSave": {
+    "description": "SnackBar message shown when there is no image to save"
+  },
+  "imageSavedToGalleryExcited": "画像がギャラリーに保存されました！",
+  "@imageSavedToGalleryExcited": {
+    "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
+  },
+  "couldntSaveImageTryAgain": "画像を保存できませんでした。もう一度お試しください。",
+  "@couldntSaveImageTryAgain": {
+    "description": "Generic message when saving fails"
+  },
+  "capturePhoto": "写真を撮る",
+  "@capturePhoto": {
+    "description": "Virtual try-on: capture photo button label"
+  },
+  "apply": "適用",
+  "@apply": {
+    "description": "Virtual try-on: apply button label"
+  },
+  "download": "ダウンロード",
+  "@download": {
+    "description": "Virtual try-on: download button label"
+  },
+  "virtualTryOn": "バーチャルトライオン",
+  "@virtualTryOn": {
+    "description": "Virtual try-on screen title"
+  },
+  "virtualTryOnEmptyState": "手または体の一部の写真を撮って\nタトゥーを試着してください",
+  "@virtualTryOnEmptyState": {
+    "description": "Virtual try-on empty state message"
+  },
+  "virtualTryOnProcessingTitle": "人間の肌にタトゥーを処理中...",
+  "@virtualTryOnProcessingTitle": {
+    "description": "Virtual try-on processing status line 1"
+  },
+  "virtualTryOnProcessingSubtitle": "しばらくお待ちください",
+  "@virtualTryOnProcessingSubtitle": {
+    "description": "Virtual try-on processing status line 2"
+  },
+  "virtualTryOnProcessingFailedTryAgain": "画像を処理できませんでした。もう一度お試しください。",
+  "@virtualTryOnProcessingFailedTryAgain": {
+    "description": "Virtual try-on: processing failed message"
+  },
+  "promptLabel": "Prompt",
+  "@promptLabel": {
+    "description": "Label for the prompt section in explore detail"
+  },
+  "tryThis": "これを試す",
+  "@tryThis": {
+    "description": "Button text for trying an explore preset"
+  },
+  "tattooStylePromptWolf": "太い白い線で描かれたミニマルなトライバルウルフタトゥー、抽象的な鋭い曲線、クリーンなラインアート、タトゥーフラッシュスタイル。",
+  "@tattooStylePromptWolf": {
+    "description": "Home: style prompt for Wolf"
+  },
+  "tattooStylePromptAbstract": "内なる強さと回復力を象徴するトライバル抽象タトゥー、上昇する流れる鋭い曲線、大胆で自信のあるラインアート、力強い垂直構図、ミニマリストトライバルスタイル、ソリッドホワイトインク",
+  "@tattooStylePromptAbstract": {
+    "description": "Home: style prompt for Abstract"
+  },
+  "tattooStylePromptLion": "勇気とリーダーシップを表す雄大なライオンタトゥー、落ち着いた力強い表情、詳細なたてがみ、強いシェーディング、芸術的なタトゥーデザイン、ソリッドホワイトインク、高コントラスト",
+  "@tattooStylePromptLion": {
+    "description": "Home: style prompt for Lion"
+  },
+  "tattooStylePromptEagle": "自由とビジョンを象徴する飛行中のワシタトゥー、広い翼、鋭い羽のディテール、動的な動き、大胆なタトゥーアート、ソリッドホワイトインク、高コントラスト",
+  "@tattooStylePromptEagle": {
+    "description": "Home: style prompt for Eagle"
+  },
+  "tattooStylePromptSpider": "忍耐とコントロールを象徴する詳細なクモタトゥー、リアルな解剖学、クリーンなウェブ要素、ダークアーティスティックタトゥースタイル、ソリッドホワイトインク、高コントラスト",
+  "@tattooStylePromptSpider": {
+    "description": "Home: style prompt for Spider"
+  },
+  "tattooStylePromptButterfly": "変容と成長を表す繊細な蝶タトゥー、詳細な翼、柔らかいシェーディング、エレガントなタトゥーイラスト、ソリッドホワイトインク、高コントラスト。",
+  "@tattooStylePromptButterfly": {
+    "description": "Home: style prompt for Butterfly"
+  },
+  "tattooStylePromptDragon": "ファンタジードラゴンタトゥーデザイン、巻きついた体、ダークスケール、輝くオレンジの翼、鋭い角、大胆でクリーンな線",
+  "@tattooStylePromptDragon": {
+    "description": "Home: style prompt for Dragon"
+  },
+  "tattooStylePromptUnicorn": "ユニコーンの頭のタトゥーデザイン、金色の角、流れる虹色のたてがみ、詳細なファンタジーイラスト",
+  "@tattooStylePromptUnicorn": {
+    "description": "Home: style prompt for Unicorn"
+  },
+  "tattooStylePromptFloral": "パステルフラワーブーケ、ピーチ＆ブラッシュローズ、ワイルドフラワー、ゴールデンフォリッジ、カスケードリボン、非対称の涙滴、ロマンチックビンテージ、柔らかい照明、高リアリズム、ダークバックグラウンド。",
+  "@tattooStylePromptFloral": {
+    "description": "Home: style prompt for Floral"
+  },
+  "homeDescribeYourDreamInk": "あなたの夢のタトゥーを説明してください",
+  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "homeDreamInkHint": "あなたが思い描くものを教えてください...",
+  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "homeInspiration": "インスピレーション",
+  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "homeCharactersRemaining": "文字残り",
+  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "homeTattooStyle": "タトゥースタイル",
+  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "homeExploreInspiration": "インスピレーションを探索",
+  "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
+  "homeGenerate": "生成",
+  "@homeGenerate": { "description": "Home: Generate button label" },
+  "homeTutorialOverlayText": "心に描いているタトゥーを説明するか、「インスピレーション」をタップしてアイデアを取得してください",
+  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
+
+  "exploreTitleGothqueen": "Gothqueen",
+  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "explorePromptGothqueen": "黒とグレーのゴシッククイーンタトゥー、ハゲた女性の顔、華やかな王冠、幾何学的なライン作業、リアルなシェーディング、対称、高詳細",
+  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
+
+  "exploreTitleFloral": "Floral",
+  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "explorePromptFloral": "複雑な花びらと葉を持つ美しいフラワータトゥーデザイン、自然な流れる曲線、植物タトゥースタイル、詳細なライン作業、ソリッドホワイトインク、高コントラスト",
+  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
+
+  "exploreTitleSkullWithFedoraAndPipe": "フェドラとパイプを持つ頭蓋骨",
+  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "explorePromptSkullWithFedoraAndPipe": "リアルな黒とグレーの頭蓋骨タトゥー、クラシックなフェドラをかぶった横顔の頭蓋骨、柔らかい上向きの煙を出す曲がったパイプを吸う、ビンテージノワールスタイル、詳細な骨と歯のテクスチャ、ドットワークと柔らかいリアリズムによる滑らかなグラデーションシェーディング、細い針のディテール、高コントラストブラック、プロフェッショナルタトゥーアートワーク。",
+  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
+
+  "exploreTitleElegantSnakeTattoo": "エレガントなヘビタトゥー",
+  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "explorePromptElegantSnakeTattoo": "超詳細な黒と白の攻撃的なヘビタトゥー、長い牙と二股の舌を持つ開いた口、流れる巻きついた体、細いラインの詳細な鱗、深い黒のシェーディング、強いコントラスト、リアルな深み、クリーンなネガティブスペース、伝統的な彫刻×モダンリアリズム、鋭い輪郭、モノクロインク、背景なし、プロフェッショナルタトゥーフラッシュ、前腕またはスリーブ対応。",
+  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
+
+  "exploreTitleFeatherAndBirdsInFlight": "羽と飛行中の鳥",
+  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "explorePromptFeatherAndBirdsInFlight": "超詳細な黒と白の羽タトゥー、細いライン作業を持つエレガントでリアルな羽、対称的な羽枝と鋭い脊柱、滑らかなドットワークグラデーションシェーディング、ミニマルプレミアムファインラインスタイル、上向きに流れる小さな鳥のシルエット、バランスの取れた構図、鋭い輪郭、高コントラストブラックインク、モダンタトゥーリアリズム、モノクロのみ、白いキャンバス上に背景なし、プロフェッショナルフラッシュ、ステンシル対応。",
+  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
+
+  "exploreTitleRainyBatWithCelestialStars": "天体の星を持つ雨のコウモリ",
+  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "explorePromptRainyBatWithCelestialStars": "完全に広げた翼を持つ対称的なコウモリタトゥー、ソリッドブラックボディ、滑らかな虹のグラデーション（紫から青、緑、黄、オレンジ）で満たされた翼、細いライン作業を持つクリーンで大胆な輪郭、微妙なドットワークシェーディング、小さな星と点に囲まれた、上下に2つの四角い星、神秘的な天体の雰囲気、モダンネオトラディショナルスタイル、高コントラスト、鋭いディテール。",
+  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
+
+  "exploreTitleElegantBlackCatSilhouetteDesign": "エレガントな黒猫シルエットデザイン",
+  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "explorePromptElegantBlackCatSilhouetteDesign": "エレガントな抽象スタイルのミニマリスト黒猫タトゥーデザイン、長い流れる曲がった尾を持つ横顔の座った猫、滑らかな掃引線と鋭いテーパーエッジ、深みのための微妙なグラデーションシェーディングを持つソリッドブラックインク、体を形成する幾何学的で流動的な形状、顔から伸びる繊細なひげの線、モダンファインラインタトゥースタイル、高コントラスト、クリーンなネガティブスペース、洗練された芸術的な外観、タトゥーフラッシュアート",
+  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
+
+  "exploreTitleRedRoseTattooDesign": "赤いバラタトゥーデザイン",
+  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "explorePromptRedRoseTattooDesign": "リアルな赤いバラタトゥー、層状の花びらを持つ単一の開花バラ、豊かな深い赤色、細かい詳細な花びらのテクスチャ、微妙なグラデーションシェーディング、小さな棘と2つの詳細な葉を持つ自然な緑の茎、クリーンで鮮明な輪郭、柔らかいリアリズムタトゥースタイル、高コントラスト、滑らかな色のブレンディング、プロフェッショナルタトゥーフラッシュ品質、分離されたバラのみ",
+  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
+
+  "exploreTitleBlackInfinityArrowTattoo": "黒い無限矢印タトゥー",
+  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "explorePromptBlackInfinityArrowTattoo": "リアルなミニマリスト黒い無限矢印タトゥー、鋭い矢印を持つ滑らかな連続ループ、クリーンで大胆なライン作業、高コントラストソリッドブラックインク、モダンミニマルスタイル、モノクロ、ステンシル対応。",
+  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
+
+  "exploreTitleBlackScorpionTattooDesign": "黒いサソリタトゥーデザイン",
+  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "explorePromptBlackScorpionTattooDesign": "リアルなミニマリスト黒いサソリタトゥーデザイン、大胆なソリッドブラックインク、鋭いクリーンなライン作業、対称的なトライバル風のディテール、高コントラスト、滑らかな曲線、モダンタトゥースタイル、ステンシル対応、プレーンな背景上に分離、超詳細、プロフェッショナルタトゥーフラッシュ",
+  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
+
+  "exploreTitleCrescentMoonAndStarTattoo": "三日月と星のタトゥー",
+  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "explorePromptCrescentMoonAndStarTattoo": "ミニマリストブラックインクタトゥー、ファインラインスタイル、ソリッドブラックフィルを持つ上向きの三日月、垂直に整列した上の小さな四角い星、微妙なドットアクセント、天体的で神秘的な美学、シンプルな幾何学、バランスの取れた間隔、クリーンな背景、正確なライン作業、高コントラスト、時代を超えたミニマルタトゥーデザイン",
+  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
+
+  "exploreTitleSleepingPandaTattoo": "眠っているパンダタトゥー",
+  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "explorePromptSleepingPandaTattoo": "ミニマリストかわいいパンダタトゥー、横に寝ている小さな眠っているパンダ、シンプルな丸い形状、ソリッドブラックアンドホワイトインク、柔らかく滑らかなフィル、最小限の顔のディテール、クリーンなエッジ、モダンミニマリストタトゥースタイル、モノクロ、背景なし、白いキャンバス、ステンシル対応。",
+  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
+
+  "genericTattoo": "タトゥー",
+  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
+
+  "loadingGeneratingYourTattoo": "タトゥーを生成中..",
+  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
+
+  "resultShare": "共有",
+  "@resultShare": { "description": "Result screen: Share button label" },
+  "resultNoImageToShare": "共有する画像がありません",
+  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "resultShareText": "私の {styleName} タトゥーデザインをチェックしてください！",
+  "@resultShareText": {
+    "description": "Result screen: Share text with style name",
+    "placeholders": {
+      "styleName": {
+        "type": "String"
+      }
+    }
+  },
+  "resultShareSubject": "{styleName} タトゥーデザイン",
+  "@resultShareSubject": {
+    "description": "Result screen: Share subject with style name",
+    "placeholders": {
+      "styleName": {
+        "type": "String"
+      }
+    }
+  },
+  "resultErrorSharing": "共有エラー：{error}",
+  "@resultErrorSharing": {
+    "description": "Result screen: Error sharing message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resultImageSavedToGallery": "画像がギャラリーに保存されました",
+  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "resultErrorSaving": "画像保存エラー：{error}",
+  "@resultErrorSaving": {
+    "description": "Result screen: Error saving message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerHomeTransformYourName": "あなたの名前を",
+  "@flowerHomeTransformYourName": {
+    "description": "Flower home: title line 1"
+  },
+  "flowerHomeIntoABouquetTattoo": "ブーケタトゥーに変える",
+  "@flowerHomeIntoABouquetTattoo": {
+    "description": "Flower home: title line 2"
+  },
+  "flowerHomeCreate": "作成",
+  "@flowerHomeCreate": {
+    "description": "Flower home: create button label"
+  },
+  "flowerInputEnterYourName": "お名前を入力",
+  "@flowerInputEnterYourName": {
+    "description": "Flower input screen: page title"
+  },
+  "flowerLoadingCreatingYourFloralTattoo": "フラワータトゥーを作成中...",
+  "@flowerLoadingCreatingYourFloralTattoo": {
+    "description": "Flower loading screen: main loading message"
+  },
+  "flowerLoadingDesigningWithBeautifulFlowers": "美しい花で \"{name}\" をデザイン中",
+  "@flowerLoadingDesigningWithBeautifulFlowers": {
+    "description": "Flower loading screen: subtitle with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultFloralTattooFor": "\"{name}\" のフラワータトゥー",
+  "@flowerResultFloralTattooFor": {
+    "description": "Flower result screen: placeholder text with name",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultShareText": "私の \"{name}\" のフラワータトゥーデザインをチェックしてください！",
+  "@flowerResultShareText": {
+    "description": "Flower result screen: share text with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultShareSubject": "フラワータトゥー：{name}",
+  "@flowerResultShareSubject": {
+    "description": "Flower result screen: share subject with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tattooPageTurnYourNameIntoA": "あなたの名前を",
+  "@tattooPageTurnYourNameIntoA": {
+    "description": "Tattoo page: welcome text line 1"
+  },
+  "tattooPageOneOfAKindTattoo": "唯一無二のタトゥーに変える",
+  "@tattooPageOneOfAKindTattoo": {
+    "description": "Tattoo page: welcome text line 2"
+  },
+  "stepBirthdayWhatsYourBirthday": "あなたの誕生日はいつですか？",
+  "@stepBirthdayWhatsYourBirthday": {
+    "description": "Step birthday page: question text"
+  },
+  "monthJanuary": "1月",
+  "@monthJanuary": {
+    "description": "Month name: January"
+  },
+  "monthFebruary": "2月",
+  "@monthFebruary": {
+    "description": "Month name: February"
+  },
+  "monthMarch": "3月",
+  "@monthMarch": {
+    "description": "Month name: March"
+  },
+  "monthApril": "4月",
+  "@monthApril": {
+    "description": "Month name: April"
+  },
+  "monthMay": "5月",
+  "@monthMay": {
+    "description": "Month name: May"
+  },
+  "monthJune": "6月",
+  "@monthJune": {
+    "description": "Month name: June"
+  },
+  "monthJuly": "7月",
+  "@monthJuly": {
+    "description": "Month name: July"
+  },
+  "monthAugust": "8月",
+  "@monthAugust": {
+    "description": "Month name: August"
+  },
+  "monthSeptember": "9月",
+  "@monthSeptember": {
+    "description": "Month name: September"
+  },
+  "monthOctober": "10月",
+  "@monthOctober": {
+    "description": "Month name: October"
+  },
+  "monthNovember": "11月",
+  "@monthNovember": {
+    "description": "Month name: November"
+  },
+  "monthDecember": "12月",
+  "@monthDecember": {
+    "description": "Month name: December"
+  },
+  "stepNameWhatsYourName": "お名前は何ですか？",
+  "@stepNameWhatsYourName": {
+    "description": "Step name page: question text"
+  },
+  "stepNameHint": "名前",
+  "@stepNameHint": {
+    "description": "Step name page: input hint text"
+  },
+  "stepLocationWhereYouBorn": "どこで生まれましたか？",
+  "@stepLocationWhereYouBorn": {
+    "description": "Step location page: question text"
+  },
+  "stepLocationHint": "場所",
+  "@stepLocationHint": {
+    "description": "Step location page: input hint text"
+  },
+  "stepStylePickYourTitleStyle": "タイトルスタイルを選択",
+  "@stepStylePickYourTitleStyle": {
+    "description": "Step style selection page: question text"
+  },
+  "stepTattooIdeaWhatYourTattooIdea": "あなたのタトゥーのアイデアは何ですか？",
+  "@stepTattooIdeaWhatYourTattooIdea": {
+    "description": "Step tattoo idea page: question text"
+  },
+  "stepTattooIdeaHint": "タトゥーのアイデアを説明してください...",
+  "@stepTattooIdeaHint": {
+    "description": "Step tattoo idea page: input hint text"
+  },
+  "zodiacCapricornName": "山羊座",
+  "@zodiacCapricornName": {
+    "description": "Zodiac sign name: Capricorn"
+  },
+  "zodiacCapricornDateRange": "12月22日 – 1月19日",
+  "@zodiacCapricornDateRange": {
+    "description": "Zodiac sign date range: Capricorn"
+  },
+  "zodiacCapricornDescription": "規律正しく野心的で、地に足がついた責任感のある性格。成功を重視し、忍耐と努力を通じて未来を築くことを好みます。",
+  "@zodiacCapricornDescription": {
+    "description": "Zodiac sign description: Capricorn"
+  },
+  "zodiacAquariusName": "水瓶座",
+  "@zodiacAquariusName": {
+    "description": "Zodiac sign name: Aquarius"
+  },
+  "zodiacAquariusDateRange": "1月20日 – 2月18日",
+  "@zodiacAquariusDateRange": {
+    "description": "Zodiac sign date range: Aquarius"
+  },
+  "zodiacAquariusDescription": "独立心が強く創造的で、自由な精神と独創的な性格。自由を重視し、ユニークなアイデアで個性を表現することを好みます。",
+  "@zodiacAquariusDescription": {
+    "description": "Zodiac sign description: Aquarius"
+  },
+  "zodiacPiscesName": "魚座",
+  "@zodiacPiscesName": {
+    "description": "Zodiac sign name: Pisces"
+  },
+  "zodiacPiscesDateRange": "2月19日 – 3月20日",
+  "@zodiacPiscesDateRange": {
+    "description": "Zodiac sign date range: Pisces"
+  },
+  "zodiacPiscesDescription": "優しく夢想的で、敏感で思いやりのある性格。感情を重視し、想像力、優しさ、深い理解を通じて生きることを好みます。",
+  "@zodiacPiscesDescription": {
+    "description": "Zodiac sign description: Pisces"
+  },
+  "zodiacAriesName": "牡羊座",
+  "@zodiacAriesName": {
+    "description": "Zodiac sign name: Aries"
+  },
+  "zodiacAriesDateRange": "3月21日 – 4月19日",
+  "@zodiacAriesDateRange": {
+    "description": "Zodiac sign date range: Aries"
+  },
+  "zodiacAriesDescription": "大胆でエネルギッシュ、自信に満ちた恐れ知らずの性格。率先して行動することを好み、情熱と決意でリードすることを好みます。",
+  "@zodiacAriesDescription": {
+    "description": "Zodiac sign description: Aries"
+  },
+  "zodiacTaurusName": "牡牛座",
+  "@zodiacTaurusName": {
+    "description": "Zodiac sign name: Taurus"
+  },
+  "zodiacTaurusDateRange": "4月20日 – 5月20日",
+  "@zodiacTaurusDateRange": {
+    "description": "Zodiac sign date range: Taurus"
+  },
+  "zodiacTaurusDescription": "大胆でエネルギッシュ、自信に満ちた恐れ知らずの性格。率先して行動することを好み、情熱と決意でリードすることを好みます。",
+  "@zodiacTaurusDescription": {
+    "description": "Zodiac sign description: Taurus"
+  },
+  "zodiacGeminiName": "双子座",
+  "@zodiacGeminiName": {
+    "description": "Zodiac sign name: Gemini"
+  },
+  "zodiacGeminiDateRange": "5月21日 – 6月20日",
+  "@zodiacGeminiDateRange": {
+    "description": "Zodiac sign date range: Gemini"
+  },
+  "zodiacGeminiDescription": "好奇心旺盛で活発、頭の回転が速く適応力のある性格。コミュニケーションを楽しみ、興奮して新しいアイデアを探索することを好みます。",
+  "@zodiacGeminiDescription": {
+    "description": "Zodiac sign description: Gemini"
+  },
+  "zodiacCancerName": "蟹座",
+  "@zodiacCancerName": {
+    "description": "Zodiac sign name: Cancer"
+  },
+  "zodiacCancerDateRange": "6月21日 – 7月22日",
+  "@zodiacCancerDateRange": {
+    "description": "Zodiac sign date range: Cancer"
+  },
+  "zodiacCancerDescription": "敏感で思いやりがあり、深く感情的で保護的な性格。密接なつながりを重視し、温かさと忠誠心で他の人を育てることを好みます。",
+  "@zodiacCancerDescription": {
+    "description": "Zodiac sign description: Cancer"
+  },
+  "zodiacLeoName": "獅子座",
+  "@zodiacLeoName": {
+    "description": "Zodiac sign name: Leo"
+  },
+  "zodiacLeoDateRange": "7月23日 – 8月22日",
+  "@zodiacLeoDateRange": {
+    "description": "Zodiac sign date range: Leo"
+  },
+  "zodiacLeoDescription": "自信に満ちカリスマ的で、大胆で寛大な性格。賞賛されることを楽しみ、創造性と誇りで自分を表現することを好みます。",
+  "@zodiacLeoDescription": {
+    "description": "Zodiac sign description: Leo"
+  },
+  "zodiacVirgoName": "乙女座",
+  "@zodiacVirgoName": {
+    "description": "Zodiac sign name: Virgo"
+  },
+  "zodiacVirgoDateRange": "8月23日 – 9月22日",
+  "@zodiacVirgoDateRange": {
+    "description": "Zodiac sign date range: Virgo"
+  },
+  "zodiacVirgoDescription": "実用的で思慮深く、細部に焦点を当てた勤勉な性格。規律を重視し、行うすべてに秩序と配慮をもたらすことを好みます。",
+  "@zodiacVirgoDescription": {
+    "description": "Zodiac sign description: Virgo"
+  },
+  "zodiacLibraName": "天秤座",
+  "@zodiacLibraName": {
+    "description": "Zodiac sign name: Libra"
+  },
+  "zodiacLibraDateRange": "9月23日 – 10月22日",
+  "@zodiacLibraDateRange": {
+    "description": "Zodiac sign date range: Libra"
+  },
+  "zodiacLibraDescription": "魅力的でバランスが取れており、平和で公正な性格。調和を重視し、優しさと理解を通じてつながりを築くことを好みます。",
+  "@zodiacLibraDescription": {
+    "description": "Zodiac sign description: Libra"
+  },
+  "zodiacScorpioName": "蠍座",
+  "@zodiacScorpioName": {
+    "description": "Zodiac sign name: Scorpio"
+  },
+  "zodiacScorpioDateRange": "10月23日 – 11月21日",
+  "@zodiacScorpioDateRange": {
+    "description": "Zodiac sign date range: Scorpio"
+  },
+  "zodiacScorpioDescription": "強烈で情熱的、強力で神秘的な性格。忠誠を重視し、信頼と強さに基づいて深いつながりを築くことを好みます。",
+  "@zodiacScorpioDescription": {
+    "description": "Zodiac sign description: Scorpio"
+  },
+  "zodiacSagittariusName": "射手座",
+  "@zodiacSagittariusName": {
+    "description": "Zodiac sign name: Sagittarius"
+  },
+  "zodiacSagittariusDateRange": "11月22日 – 12月21日",
+  "@zodiacSagittariusDateRange": {
+    "description": "Zodiac sign date range: Sagittarius"
+  },
+  "zodiacSagittariusDescription": "冒険的で楽観的、自由を愛し好奇心旺盛な性格。探索を重視し、興奮と独立心で新しい体験を追い求めることを好みます。",
+  "@zodiacSagittariusDescription": {
+    "description": "Zodiac sign description: Sagittarius"
+  },
+  "styleDragon": "ドラゴン",
+  "@styleDragon": {
+    "description": "Tattoo style label: Dragon"
+  },
+  "styleUnicorn": "ユニコーン",
+  "@styleUnicorn": {
+    "description": "Tattoo style label: Unicorn"
+  },
+  "styleFloral": "Floral",
+  "@styleFloral": {
+    "description": "Tattoo style label: Floral"
+  },
+  "styleAbstract": "抽象",
+  "@styleAbstract": {
+    "description": "Tattoo style label: Abstract"
+  },
+  "styleButterfly": "蝶",
+  "@styleButterfly": {
+    "description": "Tattoo style label: Butterfly"
+  },
+  "styleEagle": "ワシ",
+  "@styleEagle": {
+    "description": "Tattoo style label: Eagle"
+  },
+  "styleLion": "ライオン",
+  "@styleLion": {
+    "description": "Tattoo style label: Lion"
+  },
+  "styleSpider": "クモ",
+  "@styleSpider": {
+    "description": "Tattoo style label: Spider"
+  },
+  "styleWolf": "狼",
+  "@styleWolf": {
+    "description": "Tattoo style label: Wolf"
+  },
+  "onboardingStep": "ステップ {currentStep}/5",
+  "@onboardingStep": {
+    "description": "Onboarding header: step indicator text",
+    "placeholders": {
+      "currentStep": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "onboardingGetStarted": "始める",
+  "@onboardingGetStarted": {
+    "description": "Onboarding next button: text for final step"
+  },
+  "ad": "広告",
+  "@ad": {
+    "description": "Ad badge label in drawer menu"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Language name: English"
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Language name: Spanish"
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "Language name: French"
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "Language name: German"
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Language name: Italian"
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Language name: Portuguese"
+  },
+  "languageRussian": "Русский",
+  "@languageRussian": {
+    "description": "Language name: Russian"
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Language name: Chinese"
+  },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "Language name: Japanese"
+  },
+  "languageKorean": "한국어",
+  "@languageKorean": {
+    "description": "Language name: Korean"
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Language name: Arabic"
+  },
+  "exitAppTitle": "アプリを終了しますか？",
+  "@exitAppTitle": {
+    "description": "Exit confirmation dialog: title"
+  },
+  "exitAppMessage": "終了してもよろしいですか？",
+  "@exitAppMessage": {
+    "description": "Exit confirmation dialog: message"
+  },
+  "exit": "終了",
+  "@exit": {
+    "description": "Exit confirmation dialog: exit button label"
+  }
+}

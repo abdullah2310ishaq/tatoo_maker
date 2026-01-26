@@ -627,6 +627,513 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Floral Tattoo: {name}'**
   String flowerResultShareSubject(String name);
+
+  /// Tattoo page: welcome text line 1
+  ///
+  /// In en, this message translates to:
+  /// **'Turn your name into a'**
+  String get tattooPageTurnYourNameIntoA;
+
+  /// Tattoo page: welcome text line 2
+  ///
+  /// In en, this message translates to:
+  /// **'one-of-a-kind tattoo'**
+  String get tattooPageOneOfAKindTattoo;
+
+  /// Step birthday page: question text
+  ///
+  /// In en, this message translates to:
+  /// **'What's your birthday?'**
+  String get stepBirthdayWhatsYourBirthday;
+
+  /// Month name: January
+  ///
+  /// In en, this message translates to:
+  /// **'January'**
+  String get monthJanuary;
+
+  /// Month name: February
+  ///
+  /// In en, this message translates to:
+  /// **'February'**
+  String get monthFebruary;
+
+  /// Month name: March
+  ///
+  /// In en, this message translates to:
+  /// **'March'**
+  String get monthMarch;
+
+  /// Month name: April
+  ///
+  /// In en, this message translates to:
+  /// **'April'**
+  String get monthApril;
+
+  /// Month name: May
+  ///
+  /// In en, this message translates to:
+  /// **'May'**
+  String get monthMay;
+
+  /// Month name: June
+  ///
+  /// In en, this message translates to:
+  /// **'June'**
+  String get monthJune;
+
+  /// Month name: July
+  ///
+  /// In en, this message translates to:
+  /// **'July'**
+  String get monthJuly;
+
+  /// Month name: August
+  ///
+  /// In en, this message translates to:
+  /// **'August'**
+  String get monthAugust;
+
+  /// Month name: September
+  ///
+  /// In en, this message translates to:
+  /// **'September'**
+  String get monthSeptember;
+
+  /// Month name: October
+  ///
+  /// In en, this message translates to:
+  /// **'October'**
+  String get monthOctober;
+
+  /// Month name: November
+  ///
+  /// In en, this message translates to:
+  /// **'November'**
+  String get monthNovember;
+
+  /// Month name: December
+  ///
+  /// In en, this message translates to:
+  /// **'December'**
+  String get monthDecember;
+
+  /// Step name page: question text
+  ///
+  /// In en, this message translates to:
+  /// **'What's your name?'**
+  String get stepNameWhatsYourName;
+
+  /// Step name page: input hint text
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get stepNameHint;
+
+  /// Step location page: question text
+  ///
+  /// In en, this message translates to:
+  /// **'Where you born?'**
+  String get stepLocationWhereYouBorn;
+
+  /// Step location page: input hint text
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get stepLocationHint;
+
+  /// Step style selection page: question text
+  ///
+  /// In en, this message translates to:
+  /// **'Pick your title style'**
+  String get stepStylePickYourTitleStyle;
+
+  /// Step tattoo idea page: question text
+  ///
+  /// In en, this message translates to:
+  /// **'What your tattoo idea?'**
+  String get stepTattooIdeaWhatYourTattooIdea;
+
+  /// Step tattoo idea page: input hint text
+  ///
+  /// In en, this message translates to:
+  /// **'Describe your tattoo idea...'**
+  String get stepTattooIdeaHint;
+
+  /// Zodiac sign name: Capricorn
+  ///
+  /// In en, this message translates to:
+  /// **'Capricorn'**
+  String get zodiacCapricornName;
+
+  /// Zodiac sign date range: Capricorn
+  ///
+  /// In en, this message translates to:
+  /// **'December 22 – January 19'**
+  String get zodiacCapricornDateRange;
+
+  /// Zodiac sign description: Capricorn
+  ///
+  /// In en, this message translates to:
+  /// **'Disciplined and ambitious, with a grounded and responsible nature. They value success and prefer building their future through patience and hard work.'**
+  String get zodiacCapricornDescription;
+
+  /// Zodiac sign name: Aquarius
+  ///
+  /// In en, this message translates to:
+  /// **'Aquarius'**
+  String get zodiacAquariusName;
+
+  /// Zodiac sign date range: Aquarius
+  ///
+  /// In en, this message translates to:
+  /// **'January 20 – February 18'**
+  String get zodiacAquariusDateRange;
+
+  /// Zodiac sign description: Aquarius
+  ///
+  /// In en, this message translates to:
+  /// **'Independent and creative, with a free-spirited and original nature. They value freedom and prefer expressing their individuality with unique ideas.'**
+  String get zodiacAquariusDescription;
+
+  /// Zodiac sign name: Pisces
+  ///
+  /// In en, this message translates to:
+  /// **'Pisces'**
+  String get zodiacPiscesName;
+
+  /// Zodiac sign date range: Pisces
+  ///
+  /// In en, this message translates to:
+  /// **'February 19 – March 20'**
+  String get zodiacPiscesDateRange;
+
+  /// Zodiac sign description: Pisces
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle and dreamy, with a sensitive and compassionate nature. They value emotions and prefer living through imagination, kindness, and deep understanding.'**
+  String get zodiacPiscesDescription;
+
+  /// Zodiac sign name: Aries
+  ///
+  /// In en, this message translates to:
+  /// **'Aries'**
+  String get zodiacAriesName;
+
+  /// Zodiac sign date range: Aries
+  ///
+  /// In en, this message translates to:
+  /// **'March 21 – April 19'**
+  String get zodiacAriesDateRange;
+
+  /// Zodiac sign description: Aries
+  ///
+  /// In en, this message translates to:
+  /// **'Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.'**
+  String get zodiacAriesDescription;
+
+  /// Zodiac sign name: Taurus
+  ///
+  /// In en, this message translates to:
+  /// **'Taurus'**
+  String get zodiacTaurusName;
+
+  /// Zodiac sign date range: Taurus
+  ///
+  /// In en, this message translates to:
+  /// **'April 20 – May 20'**
+  String get zodiacTaurusDateRange;
+
+  /// Zodiac sign description: Taurus
+  ///
+  /// In en, this message translates to:
+  /// **'Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.'**
+  String get zodiacTaurusDescription;
+
+  /// Zodiac sign name: Gemini
+  ///
+  /// In en, this message translates to:
+  /// **'Gemini'**
+  String get zodiacGeminiName;
+
+  /// Zodiac sign date range: Gemini
+  ///
+  /// In en, this message translates to:
+  /// **'May 21 – June 20'**
+  String get zodiacGeminiDateRange;
+
+  /// Zodiac sign description: Gemini
+  ///
+  /// In en, this message translates to:
+  /// **'Curious and lively, with a quick-minded and adaptable nature. They enjoy communication and prefer exploring new ideas with excitement.'**
+  String get zodiacGeminiDescription;
+
+  /// Zodiac sign name: Cancer
+  ///
+  /// In en, this message translates to:
+  /// **'Cancer'**
+  String get zodiacCancerName;
+
+  /// Zodiac sign date range: Cancer
+  ///
+  /// In en, this message translates to:
+  /// **'June 21 – July 22'**
+  String get zodiacCancerDateRange;
+
+  /// Zodiac sign description: Cancer
+  ///
+  /// In en, this message translates to:
+  /// **'Sensitive and caring, with a deeply emotional and protective nature. They value close connections and prefer nurturing others with warmth and loyalty.'**
+  String get zodiacCancerDescription;
+
+  /// Zodiac sign name: Leo
+  ///
+  /// In en, this message translates to:
+  /// **'Leo'**
+  String get zodiacLeoName;
+
+  /// Zodiac sign date range: Leo
+  ///
+  /// In en, this message translates to:
+  /// **'July 23 – August 22'**
+  String get zodiacLeoDateRange;
+
+  /// Zodiac sign description: Leo
+  ///
+  /// In en, this message translates to:
+  /// **'Confident and charismatic, with a bold and generous nature. They enjoy being admired and prefer expressing themselves with creativity and pride.'**
+  String get zodiacLeoDescription;
+
+  /// Zodiac sign name: Virgo
+  ///
+  /// In en, this message translates to:
+  /// **'Virgo'**
+  String get zodiacVirgoName;
+
+  /// Zodiac sign date range: Virgo
+  ///
+  /// In en, this message translates to:
+  /// **'August 23 – September 22'**
+  String get zodiacVirgoDateRange;
+
+  /// Zodiac sign description: Virgo
+  ///
+  /// In en, this message translates to:
+  /// **'Practical and thoughtful, with a detail-focused and hardworking nature. They value discipline and prefer bringing order and care into everything they do.'**
+  String get zodiacVirgoDescription;
+
+  /// Zodiac sign name: Libra
+  ///
+  /// In en, this message translates to:
+  /// **'Libra'**
+  String get zodiacLibraName;
+
+  /// Zodiac sign date range: Libra
+  ///
+  /// In en, this message translates to:
+  /// **'September 23 – October 22'**
+  String get zodiacLibraDateRange;
+
+  /// Zodiac sign description: Libra
+  ///
+  /// In en, this message translates to:
+  /// **'Charming and balanced, with a peaceful and fair-minded nature. They value harmony and prefer building connections through kindness and understanding.'**
+  String get zodiacLibraDescription;
+
+  /// Zodiac sign name: Scorpio
+  ///
+  /// In en, this message translates to:
+  /// **'Scorpio'**
+  String get zodiacScorpioName;
+
+  /// Zodiac sign date range: Scorpio
+  ///
+  /// In en, this message translates to:
+  /// **'October 23 – November 21'**
+  String get zodiacScorpioDateRange;
+
+  /// Zodiac sign description: Scorpio
+  ///
+  /// In en, this message translates to:
+  /// **'Intense and passionate, with a powerful and mysterious nature. They value loyalty and prefer deep connections built on trust and strength.'**
+  String get zodiacScorpioDescription;
+
+  /// Zodiac sign name: Sagittarius
+  ///
+  /// In en, this message translates to:
+  /// **'Sagittarius'**
+  String get zodiacSagittariusName;
+
+  /// Zodiac sign date range: Sagittarius
+  ///
+  /// In en, this message translates to:
+  /// **'November 22 – December 21'**
+  String get zodiacSagittariusDateRange;
+
+  /// Zodiac sign description: Sagittarius
+  ///
+  /// In en, this message translates to:
+  /// **'Adventurous and optimistic, with a free-loving and curious nature. They value exploration and prefer chasing new experiences with excitement and independence.'**
+  String get zodiacSagittariusDescription;
+
+  /// Tattoo style label: Dragon
+  ///
+  /// In en, this message translates to:
+  /// **'Dragon'**
+  String get styleDragon;
+
+  /// Tattoo style label: Unicorn
+  ///
+  /// In en, this message translates to:
+  /// **'Unicorn'**
+  String get styleUnicorn;
+
+  /// Tattoo style label: Floral
+  ///
+  /// In en, this message translates to:
+  /// **'Floral'**
+  String get styleFloral;
+
+  /// Tattoo style label: Abstract
+  ///
+  /// In en, this message translates to:
+  /// **'Abstract'**
+  String get styleAbstract;
+
+  /// Tattoo style label: Butterfly
+  ///
+  /// In en, this message translates to:
+  /// **'Butterfly'**
+  String get styleButterfly;
+
+  /// Tattoo style label: Eagle
+  ///
+  /// In en, this message translates to:
+  /// **'Eagle'**
+  String get styleEagle;
+
+  /// Tattoo style label: Lion
+  ///
+  /// In en, this message translates to:
+  /// **'Lion'**
+  String get styleLion;
+
+  /// Tattoo style label: Spider
+  ///
+  /// In en, this message translates to:
+  /// **'Spider'**
+  String get styleSpider;
+
+  /// Tattoo style label: Wolf
+  ///
+  /// In en, this message translates to:
+  /// **'Wolf'**
+  String get styleWolf;
+
+  /// Onboarding header: step indicator text
+  ///
+  /// In en, this message translates to:
+  /// **'Step {currentStep}/5'**
+  ///
+  /// Parameters:
+  /// - [currentStep]: The current step number
+  String onboardingStep(int currentStep);
+
+  /// Onboarding next button: text for final step
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get onboardingGetStarted;
+
+  /// Ad badge label in drawer menu
+  ///
+  /// In en, this message translates to:
+  /// **'Ad'**
+  String get ad;
+
+  /// Language name: English
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEnglish;
+
+  /// Language name: Spanish
+  ///
+  /// In en, this message translates to:
+  /// **'Español'**
+  String get languageSpanish;
+
+  /// Language name: French
+  ///
+  /// In en, this message translates to:
+  /// **'Français'**
+  String get languageFrench;
+
+  /// Language name: German
+  ///
+  /// In en, this message translates to:
+  /// **'Deutsch'**
+  String get languageGerman;
+
+  /// Language name: Italian
+  ///
+  /// In en, this message translates to:
+  /// **'Italiano'**
+  String get languageItalian;
+
+  /// Language name: Portuguese
+  ///
+  /// In en, this message translates to:
+  /// **'Português'**
+  String get languagePortuguese;
+
+  /// Language name: Russian
+  ///
+  /// In en, this message translates to:
+  /// **'Русский'**
+  String get languageRussian;
+
+  /// Language name: Chinese
+  ///
+  /// In en, this message translates to:
+  /// **'中文'**
+  String get languageChinese;
+
+  /// Language name: Japanese
+  ///
+  /// In en, this message translates to:
+  /// **'日本語'**
+  String get languageJapanese;
+
+  /// Language name: Korean
+  ///
+  /// In en, this message translates to:
+  /// **'한국어'**
+  String get languageKorean;
+
+  /// Language name: Arabic
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get languageArabic;
+
+  /// Exit confirmation dialog: title
+  ///
+  /// In en, this message translates to:
+  /// **'Exit App?'**
+  String get exitAppTitle;
+
+  /// Exit confirmation dialog: message
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to exit?'**
+  String get exitAppMessage;
+
+  /// Exit confirmation dialog: exit button label
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exit;
 }
 
 class _AppLocalizationsDelegate

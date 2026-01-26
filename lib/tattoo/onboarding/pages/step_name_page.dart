@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -31,7 +32,7 @@ class StepNamePage extends StatelessWidget {
             SizedBox(height: 40.h),
             // Question
             Text(
-              "What's your name?",
+              AppLocalizations.of(context)!.stepNameWhatsYourName,
               style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
@@ -57,7 +58,7 @@ class StepNamePage extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
                 decoration: InputDecoration(
-                  hintText: "Name",
+                  hintText: AppLocalizations.of(context)!.stepNameHint,
                   hintStyle: TextStyle(
                     fontSize: 16.sp,
                     color: AppColors.textGrey,

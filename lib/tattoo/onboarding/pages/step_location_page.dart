@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -31,7 +32,7 @@ class StepLocationPage extends StatelessWidget {
             SizedBox(height: 40.h),
             // Question
             Text(
-              "Where you born?",
+              AppLocalizations.of(context)!.stepLocationWhereYouBorn,
               style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
@@ -57,7 +58,7 @@ class StepLocationPage extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
                 decoration: InputDecoration(
-                  hintText: "Location",
+                  hintText: AppLocalizations.of(context)!.stepLocationHint,
                   hintStyle: TextStyle(
                     fontSize: 16.sp,
                     color: AppColors.textGrey,

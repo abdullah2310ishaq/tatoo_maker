@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/inkvision_underline.dart';
@@ -37,7 +38,7 @@ class TattooPage extends StatelessWidget {
                     _buildUnicornImage(),
                     SizedBox(height: 40.h),
                     // Welcome text
-                    _buildWelcomeText(isDark),
+                    _buildWelcomeText(context, isDark),
                   ],
                 ),
               ),
@@ -155,12 +156,14 @@ class TattooPage extends StatelessWidget {
     );
   }
 
-  Widget _buildWelcomeText(bool isDark) {
+  Widget _buildWelcomeText(BuildContext context, bool isDark) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          'Turn your name into a',
+          l10n.tattooPageTurnYourNameIntoA,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20.sp,
@@ -171,7 +174,7 @@ class TattooPage extends StatelessWidget {
         ),
         SizedBox(height: 4.h),
         Text(
-          'one-of-a-kind tattoo',
+          l10n.tattooPageOneOfAKindTattoo,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20.sp,
@@ -201,7 +204,7 @@ class TattooPage extends StatelessWidget {
           ),
         ),
         child: Text(
-          'Continue',
+          AppLocalizations.of(context)!.continue_,
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,

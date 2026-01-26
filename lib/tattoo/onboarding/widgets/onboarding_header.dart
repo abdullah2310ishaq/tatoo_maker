@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 
 class OnboardingHeader extends StatelessWidget {
@@ -45,7 +46,7 @@ class OnboardingHeader extends StatelessWidget {
           const SizedBox(height: 20),
           // Step indicator
           Text(
-            'Step $currentStep/5',
+            AppLocalizations.of(context)!.onboardingStep(currentStep),
             style: TextStyle(
               fontSize: 14,
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,

@@ -369,4 +369,268 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String flowerResultShareSubject(String name) => 'Floral Tattoo: $name';
+
+  @override
+  String get tattooPageTurnYourNameIntoA => 'Turn your name into a';
+
+  @override
+  String get tattooPageOneOfAKindTattoo => 'one-of-a-kind tattoo';
+
+  @override
+  String get stepBirthdayWhatsYourBirthday => 'What\'s your birthday?';
+
+  @override
+  String get monthJanuary => 'January';
+
+  @override
+  String get monthFebruary => 'February';
+
+  @override
+  String get monthMarch => 'March';
+
+  @override
+  String get monthApril => 'April';
+
+  @override
+  String get monthMay => 'May';
+
+  @override
+  String get monthJune => 'June';
+
+  @override
+  String get monthJuly => 'July';
+
+  @override
+  String get monthAugust => 'August';
+
+  @override
+  String get monthSeptember => 'September';
+
+  @override
+  String get monthOctober => 'October';
+
+  @override
+  String get monthNovember => 'November';
+
+  @override
+  String get monthDecember => 'December';
+
+  @override
+  String get stepNameWhatsYourName => 'What\'s your name?';
+
+  @override
+  String get stepNameHint => 'Name';
+
+  @override
+  String get stepLocationWhereYouBorn => 'Where you born?';
+
+  @override
+  String get stepLocationHint => 'Location';
+
+  @override
+  String get stepStylePickYourTitleStyle => 'Pick your title style';
+
+  @override
+  String get stepTattooIdeaWhatYourTattooIdea => 'What your tattoo idea?';
+
+  @override
+  String get stepTattooIdeaHint => 'Describe your tattoo idea...';
+
+  @override
+  String get zodiacCapricornName => 'Capricorn';
+
+  @override
+  String get zodiacCapricornDateRange => 'December 22 – January 19';
+
+  @override
+  String get zodiacCapricornDescription =>
+      'Disciplined and ambitious, with a grounded and responsible nature. They value success and prefer building their future through patience and hard work.';
+
+  @override
+  String get zodiacAquariusName => 'Aquarius';
+
+  @override
+  String get zodiacAquariusDateRange => 'January 20 – February 18';
+
+  @override
+  String get zodiacAquariusDescription =>
+      'Independent and creative, with a free-spirited and original nature. They value freedom and prefer expressing their individuality with unique ideas.';
+
+  @override
+  String get zodiacPiscesName => 'Pisces';
+
+  @override
+  String get zodiacPiscesDateRange => 'February 19 – March 20';
+
+  @override
+  String get zodiacPiscesDescription =>
+      'Gentle and dreamy, with a sensitive and compassionate nature. They value emotions and prefer living through imagination, kindness, and deep understanding.';
+
+  @override
+  String get zodiacAriesName => 'Aries';
+
+  @override
+  String get zodiacAriesDateRange => 'March 21 – April 19';
+
+  @override
+  String get zodiacAriesDescription =>
+      'Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.';
+
+  @override
+  String get zodiacTaurusName => 'Taurus';
+
+  @override
+  String get zodiacTaurusDateRange => 'April 20 – May 20';
+
+  @override
+  String get zodiacTaurusDescription =>
+      'Bold and energetic, with a confident and fearless nature. They love taking initiative and prefer leading with passion and determination.';
+
+  @override
+  String get zodiacGeminiName => 'Gemini';
+
+  @override
+  String get zodiacGeminiDateRange => 'May 21 – June 20';
+
+  @override
+  String get zodiacGeminiDescription =>
+      'Curious and lively, with a quick-minded and adaptable nature. They enjoy communication and prefer exploring new ideas with excitement.';
+
+  @override
+  String get zodiacCancerName => 'Cancer';
+
+  @override
+  String get zodiacCancerDateRange => 'June 21 – July 22';
+
+  @override
+  String get zodiacCancerDescription =>
+      'Sensitive and caring, with a deeply emotional and protective nature. They value close connections and prefer nurturing others with warmth and loyalty.';
+
+  @override
+  String get zodiacLeoName => 'Leo';
+
+  @override
+  String get zodiacLeoDateRange => 'July 23 – August 22';
+
+  @override
+  String get zodiacLeoDescription =>
+      'Confident and charismatic, with a bold and generous nature. They enjoy being admired and prefer expressing themselves with creativity and pride.';
+
+  @override
+  String get zodiacVirgoName => 'Virgo';
+
+  @override
+  String get zodiacVirgoDateRange => 'August 23 – September 22';
+
+  @override
+  String get zodiacVirgoDescription =>
+      'Practical and thoughtful, with a detail-focused and hardworking nature. They value discipline and prefer bringing order and care into everything they do.';
+
+  @override
+  String get zodiacLibraName => 'Libra';
+
+  @override
+  String get zodiacLibraDateRange => 'September 23 – October 22';
+
+  @override
+  String get zodiacLibraDescription =>
+      'Charming and balanced, with a peaceful and fair-minded nature. They value harmony and prefer building connections through kindness and understanding.';
+
+  @override
+  String get zodiacScorpioName => 'Scorpio';
+
+  @override
+  String get zodiacScorpioDateRange => 'October 23 – November 21';
+
+  @override
+  String get zodiacScorpioDescription =>
+      'Intense and passionate, with a powerful and mysterious nature. They value loyalty and prefer deep connections built on trust and strength.';
+
+  @override
+  String get zodiacSagittariusName => 'Sagittarius';
+
+  @override
+  String get zodiacSagittariusDateRange => 'November 22 – December 21';
+
+  @override
+  String get zodiacSagittariusDescription =>
+      'Adventurous and optimistic, with a free-loving and curious nature. They value exploration and prefer chasing new experiences with excitement and independence.';
+
+  @override
+  String get styleDragon => 'Dragon';
+
+  @override
+  String get styleUnicorn => 'Unicorn';
+
+  @override
+  String get styleFloral => 'Floral';
+
+  @override
+  String get styleAbstract => 'Abstract';
+
+  @override
+  String get styleButterfly => 'Butterfly';
+
+  @override
+  String get styleEagle => 'Eagle';
+
+  @override
+  String get styleLion => 'Lion';
+
+  @override
+  String get styleSpider => 'Spider';
+
+  @override
+  String get styleWolf => 'Wolf';
+
+  @override
+  String onboardingStep(int currentStep) => 'Step $currentStep/5';
+
+  @override
+  String get onboardingGetStarted => 'Get Started';
+
+  @override
+  String get ad => 'Ad';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageSpanish => 'Español';
+
+  @override
+  String get languageFrench => 'Français';
+
+  @override
+  String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageItalian => 'Italiano';
+
+  @override
+  String get languagePortuguese => 'Português';
+
+  @override
+  String get languageRussian => 'Русский';
+
+  @override
+  String get languageChinese => '中文';
+
+  @override
+  String get languageJapanese => '日本語';
+
+  @override
+  String get languageKorean => '한국어';
+
+  @override
+  String get languageArabic => 'العربية';
+
+  @override
+  String get exitAppTitle => 'Exit App?';
+
+  @override
+  String get exitAppMessage => 'Are you sure you want to exit?';
+
+  @override
+  String get exit => 'Exit';
 }

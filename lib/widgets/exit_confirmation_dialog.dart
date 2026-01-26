@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 
 class ExitConfirmationDialog extends StatelessWidget {
@@ -16,6 +17,7 @@ class ExitConfirmationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final backgroundColor = isDark
         ? AppColors.buttonBackground
@@ -48,7 +50,7 @@ class ExitConfirmationDialog extends StatelessWidget {
             const SizedBox(height: 16),
             // Title
             Text(
-              'Exit App?',
+              l10n.exitAppTitle,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -59,7 +61,7 @@ class ExitConfirmationDialog extends StatelessWidget {
             const SizedBox(height: 12),
             // Message
             Text(
-              'Are you sure you want to exit?',
+              l10n.exitAppMessage,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
@@ -88,7 +90,7 @@ class ExitConfirmationDialog extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Cancel',
+                      l10n.cancel,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -112,9 +114,9 @@ class ExitConfirmationDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: const Text(
-                      'Exit',
-                      style: TextStyle(
+                    child: Text(
+                      l10n.exit,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
