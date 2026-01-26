@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import 'widgets/flower_header.dart';
@@ -61,10 +62,10 @@ class _FlowerInputScreenState extends State<FlowerInputScreen> {
             children: [
               // Header
               FlowerHeader(onBack: () => Navigator.of(context).pop()),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               // Name display
               NameDisplay(name: _nameController.text),
-              if (_nameController.text.isNotEmpty) const SizedBox(height: 20),
+              if (_nameController.text.isNotEmpty) SizedBox(height: 20.h),
               // Scrollable area: Character boxes
               Expanded(
                 child: _nameController.text.isEmpty
@@ -78,7 +79,7 @@ class _FlowerInputScreenState extends State<FlowerInputScreen> {
                               name: _nameController.text,
                               isDark: isDark,
                             ),
-                            const SizedBox(height: 20),
+                            SizedBox(height: 20.h),
                           ],
                         ),
                       ),
@@ -101,11 +102,11 @@ class _FlowerInputScreenState extends State<FlowerInputScreen> {
                   });
                 },
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               // Generate button
               if (_nameController.text.isNotEmpty)
                 GenerateButton(name: _nameController.text),
-              if (_nameController.text.isNotEmpty) const SizedBox(height: 20),
+              if (_nameController.text.isNotEmpty) SizedBox(height: 20.h),
             ],
           ),
         ),

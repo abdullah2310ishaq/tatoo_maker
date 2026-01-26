@@ -34,9 +34,31 @@ class ResultViewWidget extends StatefulWidget {
 }
 
 class _ResultViewWidgetState extends State<ResultViewWidget> {
-  // Gesture tracking variables
+  // Gesture tracking variables for smooth interaction
   double _lastScale = 1.0;
   double _lastRotation = 0.0;
+  Offset _lastFocalPoint = Offset.zero;
+  Offset _lastPosition = Offset.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    _lastPosition = widget.tattooPosition;
+  }
+
+  @override
+  void didUpdateWidget(ResultViewWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.tattooPosition != widget.tattooPosition) {
+      _lastPosition = widget.tattooPosition;
+    }
+    if (oldWidget.tattooScale != widget.tattooScale) {
+      _lastScale = widget.tattooScale;
+    }
+    if (oldWidget.tattooRotation != widget.tattooRotation) {
+      _lastRotation = widget.tattooRotation;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,29 +107,35 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
       );
     }
 
-    // Show preview with tattoo overlay (before processing)
+    // Show preview with tattoo overlay (before processing) - smooth gesture handling
     return GestureDetector(
       onScaleStart: (details) {
         _lastScale = widget.tattooScale;
         _lastRotation = widget.tattooRotation;
+        _lastFocalPoint = details.focalPoint;
+        _lastPosition = widget.tattooPosition;
       },
       onScaleUpdate: (details) {
-        double newScale = _lastScale;
-        double newRotation = _lastRotation;
-        Offset newPosition = widget.tattooPosition;
+        // Calculate new values with smooth interpolation
+        double newScale = _lastScale * details.scale;
+        double newRotation = _lastRotation + details.rotation;
 
-        // Handle scale
-        if (details.scale != 1.0) {
-          newScale = _lastScale * details.scale;
-        }
-        // Handle rotation
-        if (details.rotation != 0.0) {
-          newRotation = _lastRotation + details.rotation;
-        }
-        // Handle pan (translation)
-        newPosition = widget.tattooPosition + details.focalPointDelta;
+        // Calculate position change relative to focal point for smooth panning
+        // Apply sensitivity reduction (0.1 = 90% less sensitive for more controlled movement)
+        final delta = (details.focalPoint - _lastFocalPoint) * 0.1;
+        Offset newPosition = _lastPosition + delta;
 
+        // Clamp scale to reasonable bounds
+        newScale = newScale.clamp(0.5, 3.0);
+
+        // Update immediately for smooth interaction
         widget.onTattooTransform(newPosition, newScale, newRotation);
+      },
+      onScaleEnd: (details) {
+        // Reset tracking on gesture end
+        _lastScale = widget.tattooScale;
+        _lastRotation = widget.tattooRotation;
+        _lastPosition = widget.tattooPosition;
       },
       child: RepaintBoundary(
         key: widget.previewRepaintKey,
@@ -117,7 +145,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
             Center(
               child: Image.file(widget.bodyPartImage!, fit: BoxFit.contain),
             ),
-            // Tattoo overlay (draggable)
+            // Tattoo overlay (draggable) - smooth gesture handling
             if (widget.tattooImageBytes != null)
               Positioned(
                 left: widget.tattooPosition.dx,

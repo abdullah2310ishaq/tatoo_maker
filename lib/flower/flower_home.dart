@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
@@ -20,21 +21,21 @@ class FlowerHome extends StatelessWidget {
             ? ThemeManager.darkModeBackgroundGradient
             : ThemeManager.lightModeBackground,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               // Header: menu + InkVision + notification
               _buildHeader(context, isDark: isDark),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     // Input image centered
                     _buildInputImage(),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     // Welcome text
                     _buildWelcomeText(isDark),
                   ],
@@ -42,7 +43,7 @@ class FlowerHome extends StatelessWidget {
               ),
               // Create button - little above navbar
               _buildCreateButton(context, isDark),
-              const SizedBox(height: 120),
+              SizedBox(height: 130.h),
             ],
           ),
         ),
@@ -61,20 +62,20 @@ class FlowerHome extends StatelessWidget {
       children: [
         // Menu button
         Container(
-          width: 48,
-          height: 48,
+          width: 48.w,
+          height: 48.h,
           decoration: BoxDecoration(
             color: buttonBgColor,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: IconButton(
             icon: SvgPicture.asset(
               'assets/one.svg',
-              width: 24,
-              height: 24,
+              width: 24.w,
+              height: 24.h,
               colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
               placeholderBuilder: (context) =>
-                  Icon(Icons.menu, color: iconColor),
+                  Icon(Icons.menu, color: iconColor, size: 24.sp),
             ),
             onPressed: onMenuTap,
           ),
@@ -86,7 +87,7 @@ class FlowerHome extends StatelessWidget {
               Text(
                 'InkVision',
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 32.sp,
                   fontWeight: FontWeight.bold,
                   color: isDark
                       ? AppColors.textWhite
@@ -94,27 +95,30 @@ class FlowerHome extends StatelessWidget {
                   fontFamily: 'Amaranth',
                 ),
               ),
-              const SizedBox(height: 6),
-              const InkVisionUnderline(width: 120, height: 3),
+              SizedBox(height: 6.h),
+              InkVisionUnderline(width: 120.w, height: 3.h),
             ],
           ),
         ),
         // Notification button
         Container(
-          width: 48,
-          height: 48,
+          width: 48.w,
+          height: 48.h,
           decoration: BoxDecoration(
             color: buttonBgColor,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: IconButton(
             icon: SvgPicture.asset(
               'assets/two.svg',
-              width: 24,
-              height: 24,
+              width: 24.w,
+              height: 24.h,
               colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-              placeholderBuilder: (context) =>
-                  Icon(Icons.notifications_outlined, color: iconColor),
+              placeholderBuilder: (context) => Icon(
+                Icons.notifications_outlined,
+                color: iconColor,
+                size: 24.sp,
+              ),
             ),
             onPressed: () {},
           ),
@@ -125,24 +129,24 @@ class FlowerHome extends StatelessWidget {
 
   Widget _buildInputImage() {
     return SizedBox(
-      height: 350,
+      height: 350.h,
       width: double.infinity,
       child: Image.asset(
         'assets/flower/input.png',
         fit: BoxFit.contain,
         errorBuilder: (context, error, stackTrace) {
           return Container(
-            height: 330,
+            height: 330.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: AppColors.cardGradientStart.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
             ),
-            child: const Center(
+            child: Center(
               child: Icon(
                 Icons.image_not_supported,
                 color: AppColors.textGrey,
-                size: 48,
+                size: 48.sp,
               ),
             ),
           );
@@ -159,18 +163,18 @@ class FlowerHome extends StatelessWidget {
           'Transform your name',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w500,
             color: isDark ? AppColors.textWhite : AppColors.textPrimary,
             fontFamily: 'Amaranth',
           ),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4.h),
         Text(
           'into a bouquet tattoo',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w500,
             color: isDark ? AppColors.textWhite : AppColors.textPrimary,
             fontFamily: 'Amaranth',
@@ -183,7 +187,7 @@ class FlowerHome extends StatelessWidget {
   Widget _buildCreateButton(BuildContext context, bool isDark) {
     return SizedBox(
       width: double.infinity,
-      height: 56,
+      height: 56.h,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -193,14 +197,13 @@ class FlowerHome extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFA6541D), // Burnt orange
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
-          elevation: 4,
         ),
-        child: const Text(
+        child: Text(
           'Create',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 18.sp,
             fontWeight: FontWeight.w600,
             color: Colors.white,
             fontFamily: 'Amaranth',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// Custom keyboard widget for flower input screen
 class FlowerKeyboard extends StatelessWidget {
@@ -21,24 +22,25 @@ class FlowerKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Calculate key size based on available width
+        // Calculate key size based on available width - made bigger
         const maxKeysInRow = 10; // First row has 10 keys
-        const containerPadding = 32.0; // 16 on each side
-        const keyPadding = 6.0; // 3 on each side of key
-        const safetyMargin = 8.0;
+        final containerPadding = 32.w; // 16 on each side
+        final keyPadding = 6.w; // 3 on each side of key
+        final safetyMargin = 8.w;
         final availableWidth =
             constraints.maxWidth - containerPadding - safetyMargin;
         final keyWidth =
             (availableWidth - (maxKeysInRow * keyPadding)) / maxKeysInRow;
-        final keyHeight = keyWidth * 1.33; // Maintain aspect ratio
+        // Increased height multiplier from 1.33 to 1.5 for bigger keys
+        final keyHeight = keyWidth * 1.5;
 
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: keyboardLayout.map((row) {
               return Padding(
-                padding: const EdgeInsets.only(bottom: 6),
+                padding: EdgeInsets.only(bottom: 6.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
@@ -84,7 +86,7 @@ class _KeyboardKey extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+      padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 3.h),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -92,18 +94,18 @@ class _KeyboardKey extends StatelessWidget {
           height: height,
           decoration: BoxDecoration(
             color: const Color(0xFF121212), // Deep dark background
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
               color: const Color(0xFFFF9800), // Orange/amber border
-              width: 1.5,
+              width: 1.5.w,
             ),
             boxShadow: [
               // Inner glow effect at bottom
               BoxShadow(
                 color: const Color(0xFFFF9800).withValues(alpha: 0.3),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
-                spreadRadius: -2,
+                blurRadius: 4.r,
+                offset: Offset(0, 2.h),
+                spreadRadius: -2.w,
               ),
             ],
           ),
@@ -112,7 +114,8 @@ class _KeyboardKey extends StatelessWidget {
               letter,
               style: TextStyle(
                 color: const Color(0xFFFF9800), // Orange/amber text
-                fontSize: width * 0.55,
+                fontSize:
+                    width * 0.75, // Increased from 0.55 to 0.65 for bigger text
                 fontWeight: FontWeight.w600,
                 fontFamily: 'Amaranth',
               ),
@@ -139,7 +142,7 @@ class _BackspaceKey extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+      padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 3.h),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -147,18 +150,18 @@ class _BackspaceKey extends StatelessWidget {
           height: height,
           decoration: BoxDecoration(
             color: const Color(0xFF121212), // Deep dark background
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
               color: const Color(0xFFFF9800), // Orange/amber border
-              width: 1.5,
+              width: 1.5.w,
             ),
             boxShadow: [
               // Inner glow effect at bottom
               BoxShadow(
                 color: const Color(0xFFFF9800).withValues(alpha: 0.3),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
-                spreadRadius: -2,
+                blurRadius: 4.r,
+                offset: Offset(0, 2.h),
+                spreadRadius: -2.w,
               ),
             ],
           ),
@@ -166,7 +169,7 @@ class _BackspaceKey extends StatelessWidget {
             child: Icon(
               Icons.backspace,
               color: const Color(0xFFFF9800), // Orange/amber icon
-              size: width * 0.55,
+              size: width * 0.65, // Increased from 0.55 to 0.65 for bigger icon
             ),
           ),
         ),

@@ -26,11 +26,27 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   void initState() {
     super.initState();
     _lockOrientation();
+    _setSystemUIOverlay();
     _initializeCamera();
   }
 
   void _lockOrientation() {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
+
+  void _setSystemUIOverlay() {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+    );
+  }
+
+  void _resetSystemUIOverlay() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
   }
 
   void _unlockOrientation() {
@@ -179,6 +195,7 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   @override
   void dispose() {
     _unlockOrientation();
+    _resetSystemUIOverlay();
     _controller?.dispose();
     super.dispose();
   }
@@ -192,23 +209,17 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
       );
     }
 
-    final size = MediaQuery.of(context).size;
     final previewSize = _controller!.value.previewSize!;
 
-    // Camera preview is rotated on Android - calculate correct aspect ratio
-    final previewAspectRatio = previewSize.height / previewSize.width;
-
     // Industry-standard: Fill screen and crop excess (no stretching)
-    return OverflowBox(
-      maxHeight: size.width / previewAspectRatio,
-      maxWidth: size.width,
-      child: FittedBox(
-        fit: BoxFit.cover,
-        child: SizedBox(
-          width: previewSize.height,
-          height: previewSize.width,
-          child: CameraPreview(_controller!),
-        ),
+    // Use FittedBox with BoxFit.cover for reliable full-screen preview
+    return FittedBox(
+      fit: BoxFit.cover,
+      clipBehavior: Clip.hardEdge,
+      child: SizedBox(
+        width: previewSize.height,
+        height: previewSize.width,
+        child: CameraPreview(_controller!),
       ),
     );
   }
@@ -251,6 +262,8 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
 
     return Scaffold(
       backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
+      extendBody: true,
       body: Stack(
         children: [
           // Camera preview or captured image

@@ -1,11 +1,40 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ImagePreviewScreen extends StatelessWidget {
+class ImagePreviewScreen extends StatefulWidget {
   final File imageFile;
 
   const ImagePreviewScreen({super.key, required this.imageFile});
+
+  @override
+  State<ImagePreviewScreen> createState() => _ImagePreviewScreenState();
+}
+
+class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _setSystemUIOverlay();
+  }
+
+  void _setSystemUIOverlay() {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +42,14 @@ class ImagePreviewScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
+      extendBody: true,
       body: Stack(
         children: [
           // Image preview
           Positioned.fill(
             child: Image.file(
-              imageFile,
+              widget.imageFile,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Center(
@@ -65,7 +96,7 @@ class ImagePreviewScreen extends StatelessWidget {
                 SizedBox(width: 40.w),
                 // Tick button - confirm
                 GestureDetector(
-                  onTap: () => Navigator.pop(context, imageFile),
+                  onTap: () => Navigator.pop(context, widget.imageFile),
                   child: Container(
                     width: 60.w,
                     height: 60.h,

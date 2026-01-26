@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
@@ -42,23 +43,23 @@ class FlowerResultScreen extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: _buildMainImage(isDark),
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               // Action buttons
               Padding(
                 padding: EdgeInsets.only(
-                  left: 20.0,
-                  right: 20.0,
-                  bottom: bottomPadding > 0 ? bottomPadding : 20.0,
+                  left: 20.w,
+                  right: 20.w,
+                  bottom: bottomPadding > 0 ? bottomPadding : 20.h,
                 ),
                 child: Column(
                   children: [
                     _buildVirtualTryOnButton(context, isDark),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     _buildSecondaryButtons(context, isDark),
                   ],
                 ),
@@ -72,7 +73,7 @@ class FlowerResultScreen extends StatelessWidget {
 
   Widget _buildHeader(BuildContext context, bool isDark) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -81,7 +82,7 @@ class FlowerResultScreen extends StatelessWidget {
             icon: Icon(
               Icons.close,
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-              size: 28,
+              size: 28.sp,
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -91,7 +92,7 @@ class FlowerResultScreen extends StatelessWidget {
               name,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 24.sp,
                 fontWeight: FontWeight.w700,
                 color: isDark ? AppColors.textWhite : AppColors.textPrimary,
                 fontFamily: 'Amaranth',
@@ -99,7 +100,7 @@ class FlowerResultScreen extends StatelessWidget {
             ),
           ),
           // Spacer to balance the close button
-          const SizedBox(width: 48),
+          SizedBox(width: 48.w),
         ],
       ),
     );
@@ -121,12 +122,12 @@ class FlowerResultScreen extends StatelessWidget {
   Widget _buildPlaceholder(bool isDark) {
     return Container(
       width: double.infinity,
-      height: 400,
+      height: 400.h,
       decoration: BoxDecoration(
         color: isDark
             ? AppColors.buttonBackground
             : AppColors.textGrey.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: Center(
         child: Column(
@@ -135,13 +136,13 @@ class FlowerResultScreen extends StatelessWidget {
             Icon(
               Icons.image_not_supported,
               color: AppColors.textGrey,
-              size: 64,
+              size: 64.sp,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Text(
               'Floral tattoo for "$name"',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 color: AppColors.textGrey,
                 fontFamily: 'Amaranth',
               ),
@@ -155,7 +156,7 @@ class FlowerResultScreen extends StatelessWidget {
   Widget _buildVirtualTryOnButton(BuildContext context, bool isDark) {
     return SizedBox(
       width: double.infinity,
-      height: 56,
+      height: 56.h,
       child: ElevatedButton(
         onPressed: generatedImageBytes != null
             ? () {
@@ -172,13 +173,15 @@ class FlowerResultScreen extends StatelessWidget {
             : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFA6541D), // Burnt orange
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.r),
+          ),
           elevation: 0,
         ),
         child: Text(
           'Virtual Try-On',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 18.sp,
             fontWeight: FontWeight.w600,
             color: Colors.white,
             fontFamily: 'Amaranth',
@@ -199,7 +202,7 @@ class FlowerResultScreen extends StatelessWidget {
             onTap: () => _shareImage(context),
           ),
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12.w),
         Expanded(
           child: _buildSecondaryButton(
             label: 'Download',
@@ -221,22 +224,22 @@ class FlowerResultScreen extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 48,
+        height: 48.h,
         decoration: BoxDecoration(
           color: isDark
               ? AppColors.buttonBackground
               : AppColors.textGrey.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           border: Border.all(
             color: AppColors.textGrey.withOpacity(0.2),
-            width: 1,
+            width: 1.w,
           ),
         ),
         child: Center(
           child: Text(
             label,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 16.sp,
               fontWeight: FontWeight.w600,
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,
               fontFamily: 'Amaranth',
@@ -270,10 +273,14 @@ class FlowerResultScreen extends StatelessWidget {
         subject: 'Floral Tattoo: $name',
       );
     } catch (e) {
+      debugPrint('Error sharing image: $e');
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error sharing: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Couldn\'t share image. Try again.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     }
   }
@@ -300,10 +307,14 @@ class FlowerResultScreen extends StatelessWidget {
         ).showSnackBar(const SnackBar(content: Text('Image saved to gallery')));
       }
     } catch (e) {
+      debugPrint('Error saving image: $e');
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error saving image: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Couldn\'t save image. Try again.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     }
   }
