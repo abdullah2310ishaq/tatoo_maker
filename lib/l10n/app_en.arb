@@ -1,0 +1,35 @@
+{
+  "@@locale": "en",
+  "skip": "Skip",
+  "@skip": {
+    "description": "Skip button text for onboarding screens"
+  },
+  "continue_": "Continue",
+  "@continue_": {
+    "description": "Continue button text for onboarding screens"
+  },
+  "start": "Start",
+  "@start": {
+    "description": "Start button text for final onboarding screen"
+  },
+  "customCreation": "Custom Creation",
+  "@customCreation": {
+    "description": "Title for second onboarding screen"
+  },
+  "customCreationDescription": "Create custom designs and bring\nyour creative ideas to life.",
+  "@customCreationDescription": {
+    "description": "Description text for second onboarding screen"
+  },
+  "tattooMaker": "Tattoo Maker",
+  "@tattooMaker": {
+    "description": "Title for third onboarding screen"
+  },
+  "flowerCreation": "Flower Creation",
+  "@flowerCreation": {
+    "description": "Feature title for third onboarding screen"
+  },
+  "flowerCreationDescription": "Turn your name into a beautiful\nflower-inspired design.",
+  "@flowerCreationDescription": {
+    "description": "Description text for third onboarding screen"
+  }
+}

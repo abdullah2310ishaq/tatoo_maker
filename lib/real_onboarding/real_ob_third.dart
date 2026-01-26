@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 
 class RealOnboardingThirdScreen extends StatelessWidget {
@@ -33,7 +34,7 @@ class RealOnboardingThirdScreen extends StatelessWidget {
 
                 // ---------- TITLE ----------
                 Text(
-                  'Tattoo Maker',
+                  AppLocalizations.of(context)!.tattooMaker,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 35,
@@ -58,7 +59,7 @@ class RealOnboardingThirdScreen extends StatelessWidget {
 
                 // ---------- FEATURE TITLE ----------
                 Text(
-                  'Flower Creation',
+                  AppLocalizations.of(context)!.flowerCreation,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 42,
@@ -74,7 +75,7 @@ class RealOnboardingThirdScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: Text(
-                    'Turn your name into a beautiful\nflower-inspired design.',
+                    AppLocalizations.of(context)!.flowerCreationDescription,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,

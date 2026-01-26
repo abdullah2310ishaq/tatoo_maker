@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import 'loading_screen.dart';
@@ -46,11 +47,7 @@ class ExploreDetailScreen extends StatelessWidget {
             children: [
               // Header: X icon on left, title centered
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 8.0,
-                  right: 8.0,
-                  top: 16.0,
-                ),
+                padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 16.h),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -58,7 +55,7 @@ class ExploreDetailScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: IconButton(
-                        icon: Icon(Icons.close, color: iconColor, size: 28),
+                        icon: Icon(Icons.close, color: iconColor, size: 28.sp),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ),
@@ -67,7 +64,7 @@ class ExploreDetailScreen extends StatelessWidget {
                       child: Text(
                         title,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
                           color: textColor,
                           fontFamily: 'Amaranth',
@@ -81,7 +78,7 @@ class ExploreDetailScreen extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: SizedBox(
                       width:
                           MediaQuery.of(context).size.width *
@@ -99,7 +96,7 @@ class ExploreDetailScreen extends StatelessWidget {
               ),
               // Prompt Detail Card (styled like homepage input card) - Bigger
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -107,13 +104,13 @@ class ExploreDetailScreen extends StatelessWidget {
                     Text(
                       'Prompt',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
                         color: textColor,
                         fontFamily: 'Amaranth',
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     // Prompt card with orange glow - Bigger
                     Container(
                       width: double.infinity,
@@ -122,12 +119,12 @@ class ExploreDetailScreen extends StatelessWidget {
                             MediaQuery.of(context).size.height *
                             0.25, // At least 25% of screen height
                       ),
-                      padding: const EdgeInsets.all(24),
+                      padding: EdgeInsets.all(24.w),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(16.r),
                         border: Border.all(
                           color: AppColors.titleGradientStart,
-                          width: 1,
+                          width: 1.w,
                         ),
                         color: cardBgColor,
                         gradient: cardGradient,
@@ -137,12 +134,12 @@ class ExploreDetailScreen extends StatelessWidget {
                           // Orange glow in top-right corner (only in dark mode)
                           if (isDark)
                             Positioned(
-                              top: -60,
-                              right: -60,
+                              top: -60.h,
+                              right: -60.w,
                               child: IgnorePointer(
                                 child: Container(
-                                  width: 180,
-                                  height: 180,
+                                  width: 180.w,
+                                  height: 180.h,
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     gradient: RadialGradient(
@@ -161,7 +158,7 @@ class ExploreDetailScreen extends StatelessWidget {
                           Text(
                             prompt,
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 15.sp,
                               color: promptTextColor,
                               fontFamily: 'Amaranth',
                               height: 1.6,
@@ -174,17 +171,17 @@ class ExploreDetailScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               // "Try This" button
               Padding(
                 padding: EdgeInsets.only(
-                  left: 20.0,
-                  right: 20.0,
-                  bottom: bottomPadding > 0 ? bottomPadding : 20.0,
+                  left: 20.w,
+                  right: 20.w,
+                  bottom: bottomPadding > 0 ? bottomPadding : 20.h,
                 ),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 56,
+                  height: 56.h,
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
@@ -200,13 +197,15 @@ class ExploreDetailScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFA6541D), // Burnt orange
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8), // Stadium shape
+                        borderRadius: BorderRadius.circular(
+                          8.r,
+                        ), // Stadium shape
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Try This',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 25.sp,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                         fontFamily: 'Amaranth',

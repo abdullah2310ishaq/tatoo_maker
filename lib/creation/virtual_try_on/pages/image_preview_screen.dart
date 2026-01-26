@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImagePreviewScreen extends StatelessWidget {
   final File imageFile;
@@ -8,28 +9,40 @@ class ImagePreviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final padding = MediaQuery.of(context).padding;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         children: [
           // Image preview
-          SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Image.file(imageFile, fit: BoxFit.cover),
+          Positioned.fill(
+            child: Image.file(
+              imageFile,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Center(
+                  child: Icon(
+                    Icons.image_not_supported,
+                    color: Colors.white70,
+                    size: 64.sp,
+                  ),
+                );
+              },
+            ),
           ),
-          // Close button (top left)
+          // Close button (safe-area aware)
           Positioned(
-            top: 40,
-            left: 20,
+            top: padding.top + 8.h,
+            left: 16.w,
             child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.white, size: 32),
+              icon: Icon(Icons.close, color: Colors.white, size: 32.sp),
               onPressed: () => Navigator.pop(context),
             ),
           ),
-          // Bottom buttons: Cross and Tick
+          // Bottom buttons: Cross and Tick (safe-area aware)
           Positioned(
-            bottom: 120,
+            bottom: padding.bottom + 32.h,
             left: 0,
             right: 0,
             child: Row(
@@ -39,37 +52,29 @@ class ImagePreviewScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Container(
-                    width: 60,
-                    height: 60,
+                    width: 60.w,
+                    height: 60.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.red.withValues(alpha: 0.8),
-                      border: Border.all(color: Colors.white, width: 3),
+                      border: Border.all(color: Colors.white, width: 3.w),
                     ),
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: 30,
-                    ),
+                    child: Icon(Icons.close, color: Colors.white, size: 30.sp),
                   ),
                 ),
-                const SizedBox(width: 40),
+                SizedBox(width: 40.w),
                 // Tick button - confirm
                 GestureDetector(
                   onTap: () => Navigator.pop(context, imageFile),
                   child: Container(
-                    width: 60,
-                    height: 60,
+                    width: 60.w,
+                    height: 60.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.green.withValues(alpha: 0.8),
-                      border: Border.all(color: Colors.white, width: 3),
+                      border: Border.all(color: Colors.white, width: 3.w),
                     ),
-                    child: const Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 30,
-                    ),
+                    child: Icon(Icons.check, color: Colors.white, size: 30.sp),
                   ),
                 ),
               ],

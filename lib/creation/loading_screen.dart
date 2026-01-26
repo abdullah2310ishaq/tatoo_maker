@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
@@ -192,22 +193,22 @@ class _LoadingScreenState extends State<LoadingScreen>
               flex: 3,
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  padding: EdgeInsets.symmetric(horizontal: 40.w),
                   child: Image.asset(
                     assetPath,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
-                        width: 200,
-                        height: 200,
+                        width: 200.w,
+                        height: 200.h,
                         decoration: BoxDecoration(
                           color: AppColors.buttonBackground,
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(16.r),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.image_not_supported,
                           color: AppColors.textGrey,
-                          size: 48,
+                          size: 48.sp,
                         ),
                       );
                     },
@@ -225,7 +226,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                   Text(
                     'Generating your tattoo..',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
                       color: isDark
                           ? AppColors.textWhite
@@ -234,27 +235,27 @@ class _LoadingScreenState extends State<LoadingScreen>
                       decoration: TextDecoration.none,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   // Animated progress bar with moving effect (sized to match text)
                   SizedBox(
-                    width:
-                        178, // Approximate width of "Generating your tattoo.." text
+                    width: 178
+                        .w, // Approximate width of "Generating your tattoo.." text
                     child: LayoutBuilder(
                       builder: (context, constraints) {
                         return AnimatedBuilder(
                           animation: _progressAnimation,
                           builder: (context, child) {
                             // Calculate position for moving bar (left to right and back)
-                            final barWidth = 80.0;
+                            final barWidth = 80.w;
                             final maxPosition = constraints.maxWidth - barWidth;
                             final position =
                                 _progressAnimation.value * maxPosition;
 
                             return Container(
-                              height: 2,
+                              height: 2.h,
                               decoration: BoxDecoration(
                                 color: AppColors.textGrey.withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(1),
+                                borderRadius: BorderRadius.circular(1.r),
                               ),
                               child: Stack(
                                 children: [
@@ -263,7 +264,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                                     left: position,
                                     child: Container(
                                       width: barWidth,
-                                      height: 2,
+                                      height: 2.h,
                                       decoration: BoxDecoration(
                                         gradient: LinearGradient(
                                           colors: [
@@ -277,7 +278,9 @@ class _LoadingScreenState extends State<LoadingScreen>
                                           ],
                                           stops: const [0.0, 0.5, 1.0],
                                         ),
-                                        borderRadius: BorderRadius.circular(1),
+                                        borderRadius: BorderRadius.circular(
+                                          1.r,
+                                        ),
                                       ),
                                     ),
                                   ),

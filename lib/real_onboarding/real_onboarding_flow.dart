@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../home_shell.dart';
 import 'real_ob.dart';
@@ -91,7 +92,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
                   child: TextButton(
                     onPressed: _onSkip,
                     child: Text(
-                      'Skip',
+                      AppLocalizations.of(context)!.skip,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -130,7 +131,9 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
                 elevation: 4,
               ),
               child: Text(
-                _currentPage == 2 ? 'Start' : 'Continue',
+                _currentPage == 2
+                    ? AppLocalizations.of(context)!.start
+                    : AppLocalizations.of(context)!.continue_,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,

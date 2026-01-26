@@ -1,16 +1,13 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:gal/gal.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import 'virtual_try_on/pages/camera_preview_screen.dart';
-import 'virtual_try_on/pages/image_preview_screen.dart';
 import 'virtual_try_on/widgets/empty_state_widget.dart';
 import 'virtual_try_on/widgets/result_view_widget.dart';
 import 'virtual_try_on/widgets/virtual_try_on_header.dart';
@@ -38,64 +35,61 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   Offset _tattooPosition = const Offset(200, 300);
   double _tattooScale = 1.0;
   double _tattooRotation = 0.0;
-  CameraController? _cameraController;
-  List<CameraDescription>? _cameras;
-  bool _isCameraInitialized = false;
   final GlobalKey _previewRepaintKey = GlobalKey();
 
-  @override
-  void initState() {
-    super.initState();
-    _initializeCamera();
-  }
+  Future<void> _requestPermissions() async {
+    final cameraStatus = await Permission.camera.status;
+    final photosStatus = await Permission.photos.status;
 
-  Future<void> _initializeCamera() async {
-    try {
-      _cameras = await availableCameras();
-      if (_cameras != null && _cameras!.isNotEmpty) {
-        _cameraController = CameraController(
-          _cameras![0],
-          ResolutionPreset.high,
-        );
-        await _cameraController!.initialize();
-        setState(() {
-          _isCameraInitialized = true;
-        });
+    if (!cameraStatus.isGranted) {
+      final cameraResult = await Permission.camera.request();
+      if (!cameraResult.isGranted) {
+        if (mounted) {
+          _showPermissionDialog(
+            'Camera permission is required to take photos.',
+          );
+        }
+        return;
       }
-    } catch (e) {
-      debugPrint('Error initializing camera: $e');
+    }
+
+    if (!photosStatus.isGranted) {
+      await Permission.photos.request();
+      // Photos permission is not critical - continue anyway
     }
   }
 
-  @override
-  void dispose() {
-    _cameraController?.dispose();
-    super.dispose();
-  }
-
-  Future<void> _requestPermissions() async {
-    await [Permission.camera, Permission.photos].request();
+  void _showPermissionDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Permission Required'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              openAppSettings();
+            },
+            child: const Text('Open Settings'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _openCamera() async {
     await _requestPermissions();
     if (!mounted) return;
 
-    if (!_isCameraInitialized || _cameraController == null) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Camera not available')));
-      return;
-    }
-
-    // Navigate to camera preview - returns confirmed image or null
-    if (!mounted) return;
+    // Camera screen is now self-contained - no need to pass controller
     final confirmedImage = await Navigator.push<File>(
       context,
-      MaterialPageRoute(
-        builder: (context) =>
-            CameraPreviewScreen(cameraController: _cameraController!),
-      ),
+      MaterialPageRoute(builder: (context) => const CameraPreviewScreen()),
     );
     if (!mounted) return;
 
@@ -107,37 +101,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
         _tattooScale = 1.0;
         _tattooRotation = 0.0;
       });
-    }
-  }
-
-  Future<void> _pickImageFromGallery() async {
-    await _requestPermissions();
-    if (!mounted) return;
-
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    if (!mounted) return;
-
-    if (image != null) {
-      // Show preview screen with tick/cross buttons
-      if (!mounted) return;
-      final confirmedImage = await Navigator.push<File>(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ImagePreviewScreen(imageFile: File(image.path)),
-        ),
-      );
-      if (!mounted) return;
-
-      if (confirmedImage != null) {
-        setState(() {
-          _bodyPartImage = confirmedImage;
-          _processedTryOnBytes = null;
-          _tattooPosition = const Offset(200, 300);
-          _tattooScale = 1.0;
-          _tattooRotation = 0.0;
-        });
-      }
     }
   }
 
@@ -163,7 +126,12 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
         throw Exception('Preview not ready');
       }
 
-      final uiImage = await boundary.toImage(pixelRatio: 2.0);
+      // Adaptive pixel ratio based on device capabilities
+      // Lower on low-end devices to prevent OOM
+      final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
+      final pixelRatio = devicePixelRatio > 2.0 ? 2.0 : devicePixelRatio;
+
+      final uiImage = await boundary.toImage(pixelRatio: pixelRatio);
       final byteData = await uiImage.toByteData(format: ui.ImageByteFormat.png);
       if (byteData == null) {
         throw Exception('Failed to encode preview');
@@ -179,9 +147,12 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     } catch (e) {
       debugPrint('VirtualTryOn: Error processing image: $e');
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Processing failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Couldn\'t process image. Try again.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     } finally {
       if (mounted) {
@@ -190,47 +161,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
         });
       }
     }
-  }
-
-  Future<void> _showImageSourceDialog() async {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.buttonBackground
-            : AppColors.lightBackground,
-        title: Text(
-          'Select Image Source',
-          style: TextStyle(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? AppColors.textWhite
-                : AppColors.textPrimary,
-            fontFamily: 'Amaranth',
-          ),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.camera_alt),
-              title: const Text('Camera'),
-              onTap: () {
-                Navigator.pop(context);
-                _openCamera();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.photo_library),
-              title: const Text('Gallery'),
-              onTap: () {
-                Navigator.pop(context);
-                _pickImageFromGallery();
-              },
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   Future<void> _saveToGallery() async {
@@ -259,10 +189,14 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
         );
       }
     } catch (e) {
+      debugPrint('Error saving image: $e');
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error saving image: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Couldn\'t save image. Try again.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     } finally {
       if (mounted) {
@@ -331,7 +265,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                       isProcessing: _isProcessing,
                       isSaving: _isSaving,
                       processedTryOnBytes: _processedTryOnBytes,
-                      onCapturePhoto: _showImageSourceDialog,
+                      onCapturePhoto: _openCamera,
                       onApply: () async {
                         if (_bodyPartImage == null) {
                           return;

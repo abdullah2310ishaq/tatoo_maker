@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
@@ -98,7 +99,7 @@ class _HomePageState extends State<HomePage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     // Add padding for floating navbar (approximately 80px height + spacing)
-    final navbarHeight = 80.0 + bottomPadding;
+    final navbarHeight = 80.h + bottomPadding;
 
     return SafeArea(
       child: Stack(
@@ -109,26 +110,26 @@ class _HomePageState extends State<HomePage> {
                 : ThemeManager.lightModeBackground,
             child: SingleChildScrollView(
               padding: EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
+                left: 20.w,
+                right: 20.w,
                 bottom: navbarHeight, // Ensure content scrolls above navbar
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   // Header: menu + InkVision + notification (single line)
                   _buildHeader(isDark: isDark),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30.h),
                   // Describe Your Dream Ink card
                   _buildDreamInkCard(),
-                  const SizedBox(height: 32),
+                  SizedBox(height: 32.h),
                   // Tattoo style selector section (includes Generate button)
                   _buildTattooStyleSection(),
-                  const SizedBox(height: 32),
+                  SizedBox(height: 32.h),
                   // Explore Inspiration section
                   _buildExploreInspirationSection(),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                 ],
               ),
             ),
@@ -151,20 +152,20 @@ class _HomePageState extends State<HomePage> {
       children: [
         // Menu button
         Container(
-          width: 48,
-          height: 48,
+          width: 48.w,
+          height: 48.h,
           decoration: BoxDecoration(
             color: buttonBgColor,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: IconButton(
             icon: SvgPicture.asset(
               'assets/one.svg',
-              width: 24,
-              height: 24,
+              width: 24.w,
+              height: 24.h,
               colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
               placeholderBuilder: (context) =>
-                  Icon(Icons.menu, color: iconColor),
+                  Icon(Icons.menu, color: iconColor, size: 24.sp),
             ),
             onPressed: widget.onMenuTap,
           ),
@@ -176,7 +177,7 @@ class _HomePageState extends State<HomePage> {
               Text(
                 'InkVision',
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 32.sp,
                   fontWeight: FontWeight.bold,
                   color: isDark
                       ? AppColors.textWhite
@@ -184,27 +185,30 @@ class _HomePageState extends State<HomePage> {
                   fontFamily: 'Amaranth',
                 ),
               ),
-              const SizedBox(height: 6),
-              const InkVisionUnderline(width: 120, height: 3),
+              SizedBox(height: 6.h),
+              InkVisionUnderline(width: 120.w, height: 3.h),
             ],
           ),
         ),
         // Notification button
         Container(
-          width: 48,
-          height: 48,
+          width: 48.w,
+          height: 48.h,
           decoration: BoxDecoration(
             color: buttonBgColor,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: IconButton(
             icon: SvgPicture.asset(
               'assets/two.svg',
-              width: 24,
-              height: 24,
+              width: 24.w,
+              height: 24.h,
               colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-              placeholderBuilder: (context) =>
-                  Icon(Icons.notifications_outlined, color: iconColor),
+              placeholderBuilder: (context) => Icon(
+                Icons.notifications_outlined,
+                color: iconColor,
+                size: 24.sp,
+              ),
             ),
             onPressed: () {},
           ),
@@ -227,30 +231,30 @@ class _HomePageState extends State<HomePage> {
 
     return SizedBox(
       key: _dreamInkCardKey,
-      height: 280,
+      height: 280.h,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.titleGradientStart, width: 1),
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(color: AppColors.titleGradientStart, width: 1.w),
           color: cardBgColor,
           gradient: cardGradient,
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20.w),
             child: Stack(
               children: [
                 // Orange glow: clipped to the same border radius, anchored to corner
                 if (isDark)
                   Positioned(
                     // Push slightly outside so it visually starts from the corner.
-                    top: -60,
-                    right: -60,
+                    top: -60.h,
+                    right: -60.w,
                     child: IgnorePointer(
                       child: Container(
-                        width: 180,
-                        height: 180,
+                        width: 180.w,
+                        height: 180.h,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           gradient: RadialGradient(
@@ -272,24 +276,24 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       'Describe Your Dream Ink',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         color: textColor,
                         fontFamily: 'Amaranth',
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     // Scrollable text input
                     Expanded(
                       child: TextField(
                         controller: _dreamInkController,
                         maxLength: _maxCharacters,
                         maxLines: null,
-                        style: TextStyle(fontSize: 14, color: textColor),
+                        style: TextStyle(fontSize: 14.sp, color: textColor),
                         decoration: InputDecoration(
                           hintText: 'Tell us what you envision...',
                           hintStyle: TextStyle(
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             color: AppColors.textGrey,
                           ),
                           border: InputBorder.none,
@@ -299,13 +303,13 @@ class _HomePageState extends State<HomePage> {
                         onChanged: (_) => setState(() {}),
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     // Divider
                     Divider(
                       color: AppColors.textGrey.withOpacity(0.3),
-                      thickness: 1,
+                      thickness: 1.h,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     // Footer with Inspiration and character count
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -320,26 +324,26 @@ class _HomePageState extends State<HomePage> {
                                 if (snapshot.hasData && snapshot.data == true) {
                                   return SvgPicture.asset(
                                     'assets/inspiration.svg',
-                                    width: 22,
-                                    height: 22,
+                                    width: 22.w,
+                                    height: 22.h,
                                     colorFilter: const ColorFilter.mode(
                                       AppColors.textGrey,
                                       BlendMode.srcIn,
                                     ),
                                   );
                                 }
-                                return const Icon(
+                                return Icon(
                                   Icons.casino_outlined,
-                                  size: 22,
+                                  size: 22.sp,
                                   color: AppColors.textGrey,
                                 );
                               },
                             ),
-                            const SizedBox(width: 8),
+                            SizedBox(width: 8.w),
                             Text(
                               'Inspiration',
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 color: AppColors.textGrey,
                               ),
                             ),
@@ -348,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           '${_maxCharacters - _dreamInkController.text.length} characters remaining',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             color: AppColors.textGrey,
                           ),
                         ),
@@ -374,19 +378,19 @@ class _HomePageState extends State<HomePage> {
         Text(
           'Tattoo Style',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w600,
             color: textColor,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         SizedBox(
-          height: 190,
+          height: 190.h,
           child: ListView.separated(
             key: ValueKey(ThemeProvider.of(context)?.isDarkTheme ?? false),
             scrollDirection: Axis.horizontal,
             itemCount: _styles.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 16),
+            separatorBuilder: (_, __) => SizedBox(width: 16.w),
             itemBuilder: (context, index) {
               final item = _styles[index];
               final bool isSelected = _selectedStyleIndex == index;
@@ -394,7 +398,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24.h),
         // Generate button always visible in tattoo style section
         _buildGenerateButton(),
       ],
@@ -403,7 +407,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildStyleCard(_TattooStyleItem item, int index, bool isSelected) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final double width = isSelected ? 150 : 130;
+    final double width = isSelected ? 150.w : 130.w;
     final Color borderColor = isSelected
         ? AppColors.navBarActive
         : AppColors.cardGradientEnd;
@@ -417,11 +421,11 @@ class _HomePageState extends State<HomePage> {
       width: width,
       decoration: BoxDecoration(
         color: cardBgColor,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: borderColor, width: 1.4),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: borderColor, width: 1.4.w),
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         onTap: () {
           setState(() {
             // Toggle selection: tap again to unselect
@@ -449,22 +453,22 @@ class _HomePageState extends State<HomePage> {
           });
         },
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(12.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                   child: Image.asset(item.assetPath, fit: BoxFit.contain),
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Text(
                 item.label,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
                   color: textColor,
                 ),
@@ -573,19 +577,19 @@ class _HomePageState extends State<HomePage> {
         Text(
           'Explore Inspiration',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w600,
             color: textColor,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
+            mainAxisSpacing: 16.h,
+            crossAxisSpacing: 16.w,
             childAspectRatio: 0.65,
           ),
           itemCount: inspirationItems.length,
@@ -624,11 +628,11 @@ class _HomePageState extends State<HomePage> {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xFFFE8B3A), width: 2),
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: const Color(0xFFFE8B3A), width: 2.w),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           child: Image.asset(
             bigImagePath,
             width: double.infinity,
@@ -636,10 +640,11 @@ class _HomePageState extends State<HomePage> {
             errorBuilder: (context, error, stackTrace) {
               return Container(
                 color: AppColors.cardGradientStart,
-                child: const Center(
+                child: Center(
                   child: Icon(
                     Icons.image_not_supported,
                     color: AppColors.textGrey,
+                    size: 24.sp,
                   ),
                 ),
               );
@@ -688,18 +693,18 @@ class _HomePageState extends State<HomePage> {
           : null,
       child: Container(
         width: double.infinity,
-        height: 56,
+        height: 56.h,
         decoration: BoxDecoration(
           color: enabled
               ? const Color(0xFFA6541D) // Burnt orange when enabled
               : const Color(0xFF2A2A2A), // Dark grey when disabled
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           boxShadow: enabled
               ? [
                   BoxShadow(
                     color: const Color(0xFFA6541D).withOpacity(0.3),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
+                    blurRadius: 8.r,
+                    offset: Offset(0, 4.h),
                   ),
                 ]
               : null,
@@ -708,7 +713,7 @@ class _HomePageState extends State<HomePage> {
           child: Text(
             'Generate',
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 25.sp,
               fontWeight: FontWeight.w600,
               color: enabled ? Colors.white : AppColors.textGrey,
               fontFamily: 'Amaranth',
@@ -716,8 +721,8 @@ class _HomePageState extends State<HomePage> {
                   ? [
                       Shadow(
                         color: Colors.black.withOpacity(0.3),
-                        offset: const Offset(0, 2),
-                        blurRadius: 4,
+                        offset: Offset(0, 2.h),
+                        blurRadius: 4.r,
                       ),
                     ]
                   : null,
@@ -742,10 +747,10 @@ class _HomePageState extends State<HomePage> {
             // Arrow and text in a bordered container positioned below the card
             Positioned(
               top: MediaQuery.of(context).size.height * 0.34,
-              left: 20,
-              right: 20,
+              left: 20.w,
+              right: 20.w,
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.all(20.w),
                 decoration: BoxDecoration(color: Colors.transparent),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -757,28 +762,28 @@ class _HomePageState extends State<HomePage> {
                         if (snapshot.hasData && snapshot.data == true) {
                           return SvgPicture.asset(
                             'assets/arrow.svg',
-                            width: 60,
-                            height: 60,
+                            width: 60.w,
+                            height: 60.h,
                             colorFilter: const ColorFilter.mode(
                               AppColors.titleGradientStart,
                               BlendMode.srcIn,
                             ),
                           );
                         }
-                        return const Icon(
+                        return Icon(
                           Icons.arrow_upward_rounded,
-                          size: 60,
+                          size: 60.sp,
                           color: AppColors.titleGradientStart,
                         );
                       },
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
                     // Text
                     Text(
                       'Describe the tattoo you have in mind, or tap \'Inspiration\' for ideas',
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: TextStyle(
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                         fontFamily: 'Amaranth',

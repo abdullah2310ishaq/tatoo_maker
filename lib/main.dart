@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'splash_screen.dart';
 import 'utils/theme_manager.dart';
 import 'providers/theme_provider.dart';
@@ -75,13 +78,29 @@ class _MyAppState extends State<MyApp> {
     return ThemeProvider(
       isDarkTheme: _isDarkTheme,
       toggleTheme: toggleTheme,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'InkVision - Tattoo Maker',
-        theme: ThemeManager.lightTheme,
-        darkTheme: ThemeManager.darkTheme,
-        themeMode: _isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-        home: SplashScreen(isDarkTheme: _isDarkTheme),
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812), // iPhone X design size
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'InkVision - Tattoo Maker',
+            theme: ThemeManager.lightTheme,
+            darkTheme: ThemeManager.darkTheme,
+            themeMode: _isDarkTheme ? ThemeMode.dark : ThemeMode.light,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en'), // English
+            ],
+            home: SplashScreen(isDarkTheme: _isDarkTheme),
+          );
+        },
       ),
     );
   }

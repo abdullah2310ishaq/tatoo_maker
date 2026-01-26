@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 
 /// Real onboarding screen - Second screen
@@ -22,7 +24,7 @@ class RealOnboardingScreen extends StatelessWidget {
             child: Column(
               children: [
                 // Main content - starting from top
-                Expanded(child: _buildContent(isDark)),
+                Expanded(child: _buildContent(context, isDark)),
               ],
             ),
           ),
@@ -75,7 +77,7 @@ class RealOnboardingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildContent(bool isDark) {
+  Widget _buildContent(BuildContext context, bool isDark) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -83,13 +85,13 @@ class RealOnboardingScreen extends StatelessWidget {
         const Spacer(flex: 3),
         // Title
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          padding: EdgeInsets.symmetric(horizontal: 40.w),
           child: Center(
             child: Text(
-              'Custom Creation',
+              AppLocalizations.of(context)!.customCreation,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 42,
+                fontSize: 42.sp,
                 fontWeight: FontWeight.bold,
                 color: isDark ? AppColors.textWhite : AppColors.textPrimary,
                 fontFamily: 'Amaranth',
@@ -97,15 +99,15 @@ class RealOnboardingScreen extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         // Description
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          padding: EdgeInsets.symmetric(horizontal: 40.w),
           child: Text(
-            'Create custom designs and bring\nyour creative ideas to life.',
+            AppLocalizations.of(context)!.customCreationDescription,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 20.sp,
               fontWeight: FontWeight.w400,
               color: isDark ? AppColors.textGrey : AppColors.textPrimary,
               fontFamily: 'Amaranth',
@@ -114,7 +116,7 @@ class RealOnboardingScreen extends StatelessWidget {
           ),
         ),
         // Small gap before Continue button
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
       ],
     );
   }
