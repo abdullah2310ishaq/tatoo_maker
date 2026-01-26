@@ -531,6 +531,90 @@ abstract class AppLocalizations {
 
   /// Home: Explore item prompt - Sleeping panda tattoo
   String get explorePromptSleepingPandaTattoo;
+
+  /// Generic: Tattoo label (fallback style name)
+  String get genericTattoo;
+
+  /// Loading screen: generating message
+  String get loadingGeneratingYourTattoo;
+
+  /// Virtual try-on: processing failed message
+  String get virtualTryOnProcessingFailedTryAgain;
+
+  /// Result screen: Share button label
+  String get resultShare;
+
+  /// Result screen: No image to share message
+  String get resultNoImageToShare;
+
+  /// Result screen: Share text with style name
+  String resultShareText(String styleName);
+
+  /// Result screen: Share subject with style name
+  String resultShareSubject(String styleName);
+
+  /// Result screen: Error sharing message
+  String resultErrorSharing(String error);
+
+  /// Result screen: Image saved to gallery message
+  String get resultImageSavedToGallery;
+
+  /// Result screen: Error saving message
+  String resultErrorSaving(String error);
+
+  /// Flower home: title line 1
+  ///
+  /// In en, this message translates to:
+  /// **'Transform your name'**
+  String get flowerHomeTransformYourName;
+
+  /// Flower home: title line 2
+  ///
+  /// In en, this message translates to:
+  /// **'into a bouquet tattoo'**
+  String get flowerHomeIntoABouquetTattoo;
+
+  /// Flower home: create button label
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get flowerHomeCreate;
+
+  /// Flower input screen: page title
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Name'**
+  String get flowerInputEnterYourName;
+
+  /// Flower loading screen: main loading message
+  ///
+  /// In en, this message translates to:
+  /// **'Creating your floral tattoo...'**
+  String get flowerLoadingCreatingYourFloralTattoo;
+
+  /// Flower loading screen: subtitle with name placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Designing "{name}" with beautiful flowers'**
+  String flowerLoadingDesigningWithBeautifulFlowers(String name);
+
+  /// Flower result screen: placeholder text with name
+  ///
+  /// In en, this message translates to:
+  /// **'Floral tattoo for "{name}"'**
+  String flowerResultFloralTattooFor(String name);
+
+  /// Flower result screen: share text with name placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Check out my floral tattoo design for "{name}"!'**
+  String flowerResultShareText(String name);
+
+  /// Flower result screen: share subject with name placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Floral Tattoo: {name}'**
+  String flowerResultShareSubject(String name);
 }
 
 class _AppLocalizationsDelegate

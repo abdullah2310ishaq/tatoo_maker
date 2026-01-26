@@ -112,6 +112,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       return;
     }
 
+    final l10n = AppLocalizations.of(context)!;
     setState(() {
       _isProcessing = true;
     });
@@ -150,9 +151,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              AppLocalizations.of(context)!.couldntShareImageTryAgain,
-            ),
+            content: Text(l10n.virtualTryOnProcessingFailedTryAgain),
             duration: const Duration(seconds: 3),
           ),
         );

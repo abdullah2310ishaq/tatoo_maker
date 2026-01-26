@@ -184,6 +184,10 @@
   "@virtualTryOnProcessingSubtitle": {
     "description": "Virtual try-on processing status line 2"
   },
+  "virtualTryOnProcessingFailedTryAgain": "Couldn't process image. Try again.",
+  "@virtualTryOnProcessingFailedTryAgain": {
+    "description": "Virtual try-on: processing failed message"
+  },
   "promptLabel": "Prompt",
   "@promptLabel": {
     "description": "Label for the prompt section in explore detail"
@@ -303,6 +307,111 @@
   "exploreTitleSleepingPandaTattoo": "Sleeping panda tattoo",
   "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
   "explorePromptSleepingPandaTattoo": "Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.",
-  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" }
+  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
+
+  "genericTattoo": "Tattoo",
+  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
+
+  "loadingGeneratingYourTattoo": "Generating your tattoo..",
+  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
+
+  "resultShare": "Share",
+  "@resultShare": { "description": "Result screen: Share button label" },
+  "resultNoImageToShare": "No image to share",
+  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "resultShareText": "Check out my {styleName} tattoo design!",
+  "@resultShareText": {
+    "description": "Result screen: Share text with style name",
+    "placeholders": {
+      "styleName": {
+        "type": "String"
+      }
+    }
+  },
+  "resultShareSubject": "{styleName} Tattoo Design",
+  "@resultShareSubject": {
+    "description": "Result screen: Share subject with style name",
+    "placeholders": {
+      "styleName": {
+        "type": "String"
+      }
+    }
+  },
+  "resultErrorSharing": "Error sharing: {error}",
+  "@resultErrorSharing": {
+    "description": "Result screen: Error sharing message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resultImageSavedToGallery": "Image saved to gallery",
+  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "resultErrorSaving": "Error saving image: {error}",
+  "@resultErrorSaving": {
+    "description": "Result screen: Error saving message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerHomeTransformYourName": "Transform your name",
+  "@flowerHomeTransformYourName": {
+    "description": "Flower home: title line 1"
+  },
+  "flowerHomeIntoABouquetTattoo": "into a bouquet tattoo",
+  "@flowerHomeIntoABouquetTattoo": {
+    "description": "Flower home: title line 2"
+  },
+  "flowerHomeCreate": "Create",
+  "@flowerHomeCreate": {
+    "description": "Flower home: create button label"
+  },
+  "flowerInputEnterYourName": "Enter Your Name",
+  "@flowerInputEnterYourName": {
+    "description": "Flower input screen: page title"
+  },
+  "flowerLoadingCreatingYourFloralTattoo": "Creating your floral tattoo...",
+  "@flowerLoadingCreatingYourFloralTattoo": {
+    "description": "Flower loading screen: main loading message"
+  },
+  "flowerLoadingDesigningWithBeautifulFlowers": "Designing \"{name}\" with beautiful flowers",
+  "@flowerLoadingDesigningWithBeautifulFlowers": {
+    "description": "Flower loading screen: subtitle with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultFloralTattooFor": "Floral tattoo for \"{name}\"",
+  "@flowerResultFloralTattooFor": {
+    "description": "Flower result screen: placeholder text with name",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultShareText": "Check out my floral tattoo design for \"{name}\"!",
+  "@flowerResultShareText": {
+    "description": "Flower result screen: share text with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "flowerResultShareSubject": "Floral Tattoo: {name}",
+  "@flowerResultShareSubject": {
+    "description": "Flower result screen: share subject with name placeholder",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
   }
 }

@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/image_processing_isolates.dart';
@@ -165,6 +166,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: isDark
@@ -191,7 +193,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Creating your floral tattoo...',
+                  l10n.flowerLoadingCreatingYourFloralTattoo,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -201,7 +203,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Designing "${widget.name}" with beautiful flowers',
+                  l10n.flowerLoadingDesigningWithBeautifulFlowers(widget.name),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,

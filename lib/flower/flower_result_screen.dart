@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cross_file/cross_file.dart';
+import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../creation/virtual_try_on.dart';
@@ -25,6 +26,7 @@ class FlowerResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
+    final l10n = AppLocalizations.of(context)!;
 
     return SafeArea(
       child: Scaffold(
@@ -44,7 +46,7 @@ class FlowerResultScreen extends StatelessWidget {
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: _buildMainImage(isDark),
+                    child: _buildMainImage(isDark, l10n),
                   ),
                 ),
               ),
@@ -58,9 +60,9 @@ class FlowerResultScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    _buildVirtualTryOnButton(context, isDark),
+                    _buildVirtualTryOnButton(context, isDark, l10n),
                     SizedBox(height: 12.h),
-                    _buildSecondaryButtons(context, isDark),
+                    _buildSecondaryButtons(context, isDark, l10n),
                   ],
                 ),
               ),
@@ -106,20 +108,20 @@ class FlowerResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMainImage(bool isDark) {
+  Widget _buildMainImage(bool isDark, AppLocalizations l10n) {
     if (generatedImageBytes != null) {
       return Image.memory(
         generatedImageBytes!,
         fit: BoxFit.contain,
         errorBuilder: (context, error, stackTrace) {
-          return _buildPlaceholder(isDark);
+          return _buildPlaceholder(isDark, l10n);
         },
       );
     }
-    return _buildPlaceholder(isDark);
+    return _buildPlaceholder(isDark, l10n);
   }
 
-  Widget _buildPlaceholder(bool isDark) {
+  Widget _buildPlaceholder(bool isDark, AppLocalizations l10n) {
     return Container(
       width: double.infinity,
       height: 400.h,
@@ -140,7 +142,7 @@ class FlowerResultScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Text(
-              'Floral tattoo for "$name"',
+              l10n.flowerResultFloralTattooFor(name),
               style: TextStyle(
                 fontSize: 16.sp,
                 color: AppColors.textGrey,
@@ -153,7 +155,11 @@ class FlowerResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildVirtualTryOnButton(BuildContext context, bool isDark) {
+  Widget _buildVirtualTryOnButton(
+    BuildContext context,
+    bool isDark,
+    AppLocalizations l10n,
+  ) {
     return SizedBox(
       width: double.infinity,
       height: 56.h,
@@ -179,7 +185,7 @@ class FlowerResultScreen extends StatelessWidget {
           elevation: 0,
         ),
         child: Text(
-          'Virtual Try-On',
+          l10n.virtualTryOn,
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,
@@ -191,12 +197,16 @@ class FlowerResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSecondaryButtons(BuildContext context, bool isDark) {
+  Widget _buildSecondaryButtons(
+    BuildContext context,
+    bool isDark,
+    AppLocalizations l10n,
+  ) {
     return Row(
       children: [
         Expanded(
           child: _buildSecondaryButton(
-            label: 'Share',
+            label: l10n.resultShare,
             icon: Icons.share,
             isDark: isDark,
             onTap: () => _shareImage(context),
@@ -205,7 +215,7 @@ class FlowerResultScreen extends StatelessWidget {
         SizedBox(width: 12.w),
         Expanded(
           child: _buildSecondaryButton(
-            label: 'Download',
+            label: l10n.download,
             icon: Icons.download,
             isDark: isDark,
             onTap: () => _saveImageToGallery(context),
@@ -251,11 +261,13 @@ class FlowerResultScreen extends StatelessWidget {
   }
 
   Future<void> _shareImage(BuildContext context) async {
+    final l10n = AppLocalizations.of(context)!;
+
     if (generatedImageBytes == null) {
       if (context.mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('No image to share')));
+        ).showSnackBar(SnackBar(content: Text(l10n.resultNoImageToShare)));
       }
       return;
     }
@@ -269,16 +281,16 @@ class FlowerResultScreen extends StatelessWidget {
 
       await Share.shareXFiles(
         [XFile(file.path)],
-        text: 'Check out my floral tattoo design for "$name"!',
-        subject: 'Floral Tattoo: $name',
+        text: l10n.flowerResultShareText(name),
+        subject: l10n.flowerResultShareSubject(name),
       );
     } catch (e) {
       debugPrint('Error sharing image: $e');
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Couldn\'t share image. Try again.'),
-            duration: Duration(seconds: 3),
+          SnackBar(
+            content: Text(l10n.couldntShareImageTryAgain),
+            duration: const Duration(seconds: 3),
           ),
         );
       }
@@ -286,11 +298,13 @@ class FlowerResultScreen extends StatelessWidget {
   }
 
   Future<void> _saveImageToGallery(BuildContext context) async {
+    final l10n = AppLocalizations.of(context)!;
+
     if (generatedImageBytes == null) {
       if (context.mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('No image to save')));
+        ).showSnackBar(SnackBar(content: Text(l10n.noImageToSave)));
       }
       return;
     }
@@ -304,15 +318,15 @@ class FlowerResultScreen extends StatelessWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Image saved to gallery')));
+        ).showSnackBar(SnackBar(content: Text(l10n.resultImageSavedToGallery)));
       }
     } catch (e) {
       debugPrint('Error saving image: $e');
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Couldn\'t save image. Try again.'),
-            duration: Duration(seconds: 3),
+          SnackBar(
+            content: Text(l10n.couldntSaveImageTryAgain),
+            duration: const Duration(seconds: 3),
           ),
         );
       }

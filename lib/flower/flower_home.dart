@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/inkvision_underline.dart';
@@ -37,7 +38,7 @@ class FlowerHome extends StatelessWidget {
                     _buildInputImage(),
                     SizedBox(height: 20.h),
                     // Welcome text
-                    _buildWelcomeText(isDark),
+                    _buildWelcomeText(context, isDark),
                   ],
                 ),
               ),
@@ -155,12 +156,14 @@ class FlowerHome extends StatelessWidget {
     );
   }
 
-  Widget _buildWelcomeText(bool isDark) {
+  Widget _buildWelcomeText(BuildContext context, bool isDark) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          'Transform your name',
+          l10n.flowerHomeTransformYourName,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20.sp,
@@ -171,7 +174,7 @@ class FlowerHome extends StatelessWidget {
         ),
         SizedBox(height: 4.h),
         Text(
-          'into a bouquet tattoo',
+          l10n.flowerHomeIntoABouquetTattoo,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20.sp,
@@ -201,7 +204,7 @@ class FlowerHome extends StatelessWidget {
           ),
         ),
         child: Text(
-          'Create',
+          AppLocalizations.of(context)!.flowerHomeCreate,
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,

@@ -299,4 +299,67 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get explorePromptSleepingPandaTattoo =>
       'Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.';
+
+  @override
+  String get genericTattoo => 'Tattoo';
+
+  @override
+  String get loadingGeneratingYourTattoo => 'Generating your tattoo..';
+
+  @override
+  String get virtualTryOnProcessingFailedTryAgain =>
+      'Couldn\'t process image. Try again.';
+
+  @override
+  String get resultShare => 'Share';
+
+  @override
+  String get resultNoImageToShare => 'No image to share';
+
+  @override
+  String resultShareText(String styleName) =>
+      'Check out my $styleName tattoo design!';
+
+  @override
+  String resultShareSubject(String styleName) => '$styleName Tattoo Design';
+
+  @override
+  String resultErrorSharing(String error) => 'Error sharing: $error';
+
+  @override
+  String get resultImageSavedToGallery => 'Image saved to gallery';
+
+  @override
+  String resultErrorSaving(String error) => 'Error saving image: $error';
+
+  @override
+  String get flowerHomeTransformYourName => 'Transform your name';
+
+  @override
+  String get flowerHomeIntoABouquetTattoo => 'into a bouquet tattoo';
+
+  @override
+  String get flowerHomeCreate => 'Create';
+
+  @override
+  String get flowerInputEnterYourName => 'Enter Your Name';
+
+  @override
+  String get flowerLoadingCreatingYourFloralTattoo =>
+      'Creating your floral tattoo...';
+
+  @override
+  String flowerLoadingDesigningWithBeautifulFlowers(String name) =>
+      'Designing "$name" with beautiful flowers';
+
+  @override
+  String flowerResultFloralTattooFor(String name) =>
+      'Floral tattoo for "$name"';
+
+  @override
+  String flowerResultShareText(String name) =>
+      'Check out my floral tattoo design for "$name"!';
+
+  @override
+  String flowerResultShareSubject(String name) => 'Floral Tattoo: $name';
 }

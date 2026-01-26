@@ -8,6 +8,7 @@ import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/image_processing_isolates.dart';
 import '../services/prodia_api_service.dart';
+import '../l10n/app_localizations.dart';
 import 'result_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -192,10 +193,11 @@ class _LoadingScreenState extends State<LoadingScreen>
 
   void _navigateToResult() {
     if (mounted) {
+      final l10n = AppLocalizations.of(context)!;
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => ResultScreen(
-            styleName: widget.styleName ?? 'Tattoo',
+            styleName: widget.styleName ?? l10n.genericTattoo,
             generatedImageBytes: _generatedImageBytes,
           ),
         ),
@@ -213,6 +215,7 @@ class _LoadingScreenState extends State<LoadingScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     final assetPath = widget.selectedStyleAsset ?? 'assets/unicorn.png';
 
     return SafeArea(
@@ -259,7 +262,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                 children: [
                   // "Generating your tattoo.." text
                   Text(
-                    'Generating your tattoo..',
+                    l10n.loadingGeneratingYourTattoo,
                     style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w600,

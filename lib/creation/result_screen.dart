@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:cross_file/cross_file.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../l10n/app_localizations.dart';
 import 'virtual_try_on.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -24,6 +25,7 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
@@ -59,9 +61,9 @@ class ResultScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    _buildVirtualTryOnButton(context, isDark),
+                    _buildVirtualTryOnButton(context, isDark, l10n),
                     SizedBox(height: 12.h),
-                    _buildSecondaryButtons(context, isDark),
+                    _buildSecondaryButtons(context, isDark, l10n),
                   ],
                 ),
               ),
@@ -252,7 +254,11 @@ class ResultScreen extends StatelessWidget {
   //   );
   // }
 
-  Widget _buildVirtualTryOnButton(BuildContext context, bool isDark) {
+  Widget _buildVirtualTryOnButton(
+    BuildContext context,
+    bool isDark,
+    AppLocalizations l10n,
+  ) {
     return SizedBox(
       width: double.infinity,
       height: 56.h,
@@ -270,11 +276,13 @@ class ResultScreen extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFA6541D), // Burnt orange
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.r),
+          ),
           elevation: 0,
         ),
         child: Text(
-          'Virtual Try-On',
+          l10n.virtualTryOn,
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,
@@ -286,27 +294,31 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSecondaryButtons(BuildContext context, bool isDark) {
+  Widget _buildSecondaryButtons(
+    BuildContext context,
+    bool isDark,
+    AppLocalizations l10n,
+  ) {
     return Row(
       children: [
         Expanded(
           child: _buildSecondaryButton(
-            label: 'Share',
+            label: l10n.resultShare,
             icon: Icons.share,
             isDark: isDark,
             onTap: () {
-              _shareImage(context); // Direct share, no bottom sheet
+              _shareImage(context, l10n); // Direct share, no bottom sheet
             },
           ),
         ),
         SizedBox(width: 12.w),
         Expanded(
           child: _buildSecondaryButton(
-            label: 'Download',
+            label: l10n.download,
             icon: Icons.download,
             isDark: isDark,
             onTap: () {
-              _saveImageToGallery(context);
+              _saveImageToGallery(context, l10n);
             },
           ),
         ),
@@ -349,11 +361,11 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _shareImage(BuildContext context) async {
+  Future<void> _shareImage(BuildContext context, AppLocalizations l10n) async {
     if (generatedImageBytes == null) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('No image to share')));
+      ).showSnackBar(SnackBar(content: Text(l10n.resultNoImageToShare)));
       return;
     }
 
@@ -368,23 +380,26 @@ class ResultScreen extends StatelessWidget {
       // Share the image file
       await Share.shareXFiles(
         [XFile(file.path)],
-        text: 'Check out my ${styleName} tattoo design!',
-        subject: '$styleName Tattoo Design',
+        text: l10n.resultShareText(styleName),
+        subject: l10n.resultShareSubject(styleName),
       );
     } catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error sharing: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.resultErrorSharing(e.toString()))),
+        );
       }
     }
   }
 
-  Future<void> _saveImageToGallery(BuildContext context) async {
+  Future<void> _saveImageToGallery(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) async {
     if (generatedImageBytes == null) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('No image to save')));
+      ).showSnackBar(SnackBar(content: Text(l10n.noImageToSave)));
       return;
     }
 
@@ -397,13 +412,13 @@ class ResultScreen extends StatelessWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Image saved to gallery')));
+        ).showSnackBar(SnackBar(content: Text(l10n.resultImageSavedToGallery)));
       }
     } catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error saving image: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.resultErrorSaving(e.toString()))),
+        );
       }
     }
   }
