@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
+import '../../../utils/toast.dart';
 
 /// Production-grade, self-contained camera preview screen.
 /// Owns camera controller lifecycle, handles all camera operations safely.
@@ -165,12 +166,11 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   }
 
   void _showError(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 3),
-        backgroundColor: Colors.red.shade700,
-      ),
+    AppToast.show(
+      context,
+      message: message,
+      isSuccess: false,
+      duration: const Duration(seconds: 3),
     );
   }
 

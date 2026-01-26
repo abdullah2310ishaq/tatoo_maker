@@ -566,7 +566,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get styleUnicorn => '独角兽';
 
   @override
-  String get styleFloral => 'Floral';
+  String get styleFloral => '花卉';
 
   @override
   String get styleAbstract => '抽象';

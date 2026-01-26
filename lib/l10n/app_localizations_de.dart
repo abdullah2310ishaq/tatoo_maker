@@ -589,7 +589,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get styleUnicorn => 'Einhorn';
 
   @override
-  String get styleFloral => 'Floral';
+  String get styleFloral => 'Blumig';
 
   @override
   String get styleAbstract => 'Abstrakt';

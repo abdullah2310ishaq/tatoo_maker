@@ -591,7 +591,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get styleUnicorn => 'Единорог';
 
   @override
-  String get styleFloral => 'Floral';
+  String get styleFloral => 'Цветочный';
 
   @override
   String get styleAbstract => 'Абстрактный';

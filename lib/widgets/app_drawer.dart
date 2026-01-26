@@ -168,9 +168,13 @@ class AppDrawer extends StatelessWidget {
       leading: Icon(icon, color: iconColor),
       title: Row(
         children: [
-          Text(
-            title,
-            style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
+          Expanded(
+            child: Text(
+              title,
+              style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
           ),
           if (showAdBadge) ...[
             const SizedBox(width: 8),

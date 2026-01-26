@@ -574,7 +574,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get styleUnicorn => '유니콘';
 
   @override
-  String get styleFloral => 'Floral';
+  String get styleFloral => '꽃';
 
   @override
   String get styleAbstract => '추상';

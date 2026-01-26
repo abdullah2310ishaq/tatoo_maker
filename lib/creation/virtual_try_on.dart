@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../utils/toast.dart';
 import 'virtual_try_on/pages/camera_preview_screen.dart';
 import 'virtual_try_on/widgets/empty_state_widget.dart';
 import 'virtual_try_on/widgets/result_view_widget.dart';
@@ -149,11 +150,11 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     } catch (e) {
       debugPrint('VirtualTryOn: Error processing image: $e');
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.virtualTryOnProcessingFailedTryAgain),
-            duration: const Duration(seconds: 3),
-          ),
+        AppToast.show(
+          context,
+          message: l10n.virtualTryOnProcessingFailedTryAgain,
+          isSuccess: false,
+          duration: const Duration(seconds: 3),
         );
       }
     } finally {
@@ -170,11 +171,11 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     try {
       if (_processedTryOnBytes == null) {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.noImageToSave),
-            duration: const Duration(seconds: 2),
-          ),
+        AppToast.show(
+          context,
+          message: l10n.noImageToSave,
+          isSuccess: false,
+          duration: const Duration(seconds: 2),
         );
         return;
       }
@@ -187,18 +188,20 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       );
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.imageSavedToGalleryExcited)),
+        AppToast.show(
+          context,
+          message: l10n.imageSavedToGalleryExcited,
+          isSuccess: true,
         );
       }
     } catch (e) {
       debugPrint('Error saving image: $e');
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.couldntSaveImageTryAgain),
-            duration: const Duration(seconds: 3),
-          ),
+        AppToast.show(
+          context,
+          message: l10n.couldntSaveImageTryAgain,
+          isSuccess: false,
+          duration: const Duration(seconds: 3),
         );
       }
     } finally {

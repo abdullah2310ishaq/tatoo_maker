@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../utils/toast.dart';
 import '../creation/virtual_try_on.dart';
 
 /// Result screen for displaying generated floral tattoo
@@ -264,9 +265,11 @@ class FlowerResultScreen extends StatelessWidget {
 
     if (generatedImageBytes == null) {
       if (context.mounted) {
-        ScaffoldMessenger.of(
+        AppToast.show(
           context,
-        ).showSnackBar(SnackBar(content: Text(l10n.resultNoImageToShare)));
+          message: l10n.resultNoImageToShare,
+          isSuccess: false,
+        );
       }
       return;
     }
@@ -286,11 +289,11 @@ class FlowerResultScreen extends StatelessWidget {
     } catch (e) {
       debugPrint('Error sharing image: $e');
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.couldntShareImageTryAgain),
-            duration: const Duration(seconds: 3),
-          ),
+        AppToast.show(
+          context,
+          message: l10n.couldntShareImageTryAgain,
+          isSuccess: false,
+          duration: const Duration(seconds: 3),
         );
       }
     }
@@ -301,9 +304,11 @@ class FlowerResultScreen extends StatelessWidget {
 
     if (generatedImageBytes == null) {
       if (context.mounted) {
-        ScaffoldMessenger.of(
+        AppToast.show(
           context,
-        ).showSnackBar(SnackBar(content: Text(l10n.noImageToSave)));
+          message: l10n.noImageToSave,
+          isSuccess: false,
+        );
       }
       return;
     }
@@ -315,18 +320,20 @@ class FlowerResultScreen extends StatelessWidget {
       );
 
       if (context.mounted) {
-        ScaffoldMessenger.of(
+        AppToast.show(
           context,
-        ).showSnackBar(SnackBar(content: Text(l10n.resultImageSavedToGallery)));
+          message: l10n.resultImageSavedToGallery,
+          isSuccess: true,
+        );
       }
     } catch (e) {
       debugPrint('Error saving image: $e');
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.couldntSaveImageTryAgain),
-            duration: const Duration(seconds: 3),
-          ),
+        AppToast.show(
+          context,
+          message: l10n.couldntSaveImageTryAgain,
+          isSuccess: false,
+          duration: const Duration(seconds: 3),
         );
       }
     }

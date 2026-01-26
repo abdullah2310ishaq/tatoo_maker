@@ -584,7 +584,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get styleUnicorn => 'حصان وحيد القرن';
 
   @override
-  String get styleFloral => 'Floral';
+  String get styleFloral => 'زهرة';
 
   @override
   String get styleAbstract => 'مجرد';

@@ -572,7 +572,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get styleUnicorn => 'ユニコーン';
 
   @override
-  String get styleFloral => 'Floral';
+  String get styleFloral => '花';
 
   @override
   String get styleAbstract => '抽象';

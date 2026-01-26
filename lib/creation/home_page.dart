@@ -111,8 +111,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
-    // Add padding for floating navbar (approximately 80px height + spacing)
-    final navbarHeight = 80.h + bottomPadding;
+    // Add padding for floating navbar (navbar height ~80px + bottom padding + extra spacing for visibility)
+    final navbarHeight = 80.h + bottomPadding + 20.h;
 
     return SafeArea(
       child: Stack(
@@ -142,7 +142,9 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 32.h),
                   // Explore Inspiration section
                   _buildExploreInspirationSection(),
-                  SizedBox(height: 16.h),
+                  SizedBox(
+                    height: 40.h,
+                  ), // Extra spacing to ensure last cards are fully visible
                 ],
               ),
             ),
@@ -420,6 +422,31 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  String _getLocalizedStyleLabel(String key, AppLocalizations l10n) {
+    switch (key) {
+      case 'Dragon':
+        return l10n.styleDragon;
+      case 'Unicorn':
+        return l10n.styleUnicorn;
+      case 'Floral':
+        return l10n.styleFloral;
+      case 'Abstract':
+        return l10n.styleAbstract;
+      case 'Butterfly':
+        return l10n.styleButterfly;
+      case 'Eagle':
+        return l10n.styleEagle;
+      case 'Lion':
+        return l10n.styleLion;
+      case 'Spider':
+        return l10n.styleSpider;
+      case 'Wolf':
+        return l10n.styleWolf;
+      default:
+        return key;
+    }
+  }
+
   Widget _buildStyleCard(_TattooStyleItem item, int index, bool isSelected) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
@@ -432,6 +459,7 @@ class _HomePageState extends State<HomePage> {
         ? const Color(0xFF151411)
         : AppColors.lightCardBackground;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
+    final localizedLabel = _getLocalizedStyleLabel(item.label, l10n);
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -481,7 +509,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(height: 12.h),
               Text(
-                item.label,
+                localizedLabel,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14.sp,

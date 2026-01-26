@@ -594,7 +594,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get styleUnicorn => 'Licorne';
 
   @override
-  String get styleFloral => 'Floral';
+  String get styleFloral => 'Fleuri';
 
   @override
   String get styleAbstract => 'Abstrait';

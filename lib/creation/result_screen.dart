@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:cross_file/cross_file.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../utils/toast.dart';
 import '../l10n/app_localizations.dart';
 import 'virtual_try_on.dart';
 
@@ -363,9 +364,11 @@ class ResultScreen extends StatelessWidget {
 
   Future<void> _shareImage(BuildContext context, AppLocalizations l10n) async {
     if (generatedImageBytes == null) {
-      ScaffoldMessenger.of(
+      AppToast.show(
         context,
-      ).showSnackBar(SnackBar(content: Text(l10n.resultNoImageToShare)));
+        message: l10n.resultNoImageToShare,
+        isSuccess: false,
+      );
       return;
     }
 
@@ -385,8 +388,10 @@ class ResultScreen extends StatelessWidget {
       );
     } catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.resultErrorSharing(e.toString()))),
+        AppToast.show(
+          context,
+          message: l10n.resultErrorSharing(e.toString()),
+          isSuccess: false,
         );
       }
     }
@@ -397,9 +402,11 @@ class ResultScreen extends StatelessWidget {
     AppLocalizations l10n,
   ) async {
     if (generatedImageBytes == null) {
-      ScaffoldMessenger.of(
+      AppToast.show(
         context,
-      ).showSnackBar(SnackBar(content: Text(l10n.noImageToSave)));
+        message: l10n.noImageToSave,
+        isSuccess: false,
+      );
       return;
     }
 
@@ -410,14 +417,18 @@ class ResultScreen extends StatelessWidget {
       );
 
       if (context.mounted) {
-        ScaffoldMessenger.of(
+        AppToast.show(
           context,
-        ).showSnackBar(SnackBar(content: Text(l10n.resultImageSavedToGallery)));
+          message: l10n.resultImageSavedToGallery,
+          isSuccess: true,
+        );
       }
     } catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.resultErrorSaving(e.toString()))),
+        AppToast.show(
+          context,
+          message: l10n.resultErrorSaving(e.toString()),
+          isSuccess: false,
         );
       }
     }
