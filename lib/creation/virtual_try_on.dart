@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gal/gal.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import 'virtual_try_on/pages/camera_preview_screen.dart';
@@ -38,6 +39,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   final GlobalKey _previewRepaintKey = GlobalKey();
 
   Future<void> _requestPermissions() async {
+    final l10n = AppLocalizations.of(context)!;
     final cameraStatus = await Permission.camera.status;
     final photosStatus = await Permission.photos.status;
 
@@ -45,9 +47,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       final cameraResult = await Permission.camera.request();
       if (!cameraResult.isGranted) {
         if (mounted) {
-          _showPermissionDialog(
-            'Camera permission is required to take photos.',
-          );
+          _showPermissionDialog(l10n.cameraPermissionIsRequiredToTakePhotos);
         }
         return;
       }
@@ -60,22 +60,23 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   }
 
   void _showPermissionDialog(String message) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Permission Required'),
+        title: Text(l10n.permissionRequired),
         content: Text(message),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               openAppSettings();
             },
-            child: const Text('Open Settings'),
+            child: Text(l10n.openSettings),
           ),
         ],
       ),
@@ -148,9 +149,11 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       debugPrint('VirtualTryOn: Error processing image: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Couldn\'t process image. Try again.'),
-            duration: Duration(seconds: 3),
+          SnackBar(
+            content: Text(
+              AppLocalizations.of(context)!.couldntShareImageTryAgain,
+            ),
+            duration: const Duration(seconds: 3),
           ),
         );
       }
@@ -164,13 +167,14 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   }
 
   Future<void> _saveToGallery() async {
+    final l10n = AppLocalizations.of(context)!;
     try {
       if (_processedTryOnBytes == null) {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('No processed image to save'),
-            duration: Duration(seconds: 2),
+          SnackBar(
+            content: Text(l10n.noImageToSave),
+            duration: const Duration(seconds: 2),
           ),
         );
         return;
@@ -185,16 +189,16 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Image saved to gallery!')),
+          SnackBar(content: Text(l10n.imageSavedToGalleryExcited)),
         );
       }
     } catch (e) {
       debugPrint('Error saving image: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Couldn\'t save image. Try again.'),
-            duration: Duration(seconds: 3),
+          SnackBar(
+            content: Text(l10n.couldntSaveImageTryAgain),
+            duration: const Duration(seconds: 3),
           ),
         );
       }

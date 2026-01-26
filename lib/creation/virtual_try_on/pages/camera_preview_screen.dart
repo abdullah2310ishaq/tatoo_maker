@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 
 /// Production-grade, self-contained camera preview screen.
 /// Owns camera controller lifecycle, handles all camera operations safely.
@@ -21,6 +22,7 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   bool _isInitializing = false;
   File? _capturedImage;
   String? _errorMessage;
+  bool _isPermissionError = false;
 
   @override
   void initState() {
@@ -59,6 +61,7 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
     setState(() {
       _isInitializing = true;
       _errorMessage = null;
+      _isPermissionError = false;
     });
 
     try {
@@ -69,7 +72,9 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
         if (!result.isGranted) {
           if (mounted) {
             setState(() {
-              _errorMessage = 'Camera permission is required to take photos.';
+              _errorMessage = AppLocalizations.of(context)!
+                  .cameraPermissionIsRequiredToTakePhotos;
+              _isPermissionError = true;
               _isInitializing = false;
             });
           }
@@ -82,7 +87,8 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
       if (_cameras == null || _cameras!.isEmpty) {
         if (mounted) {
           setState(() {
-            _errorMessage = 'No cameras available on this device.';
+            _errorMessage =
+                AppLocalizations.of(context)!.noCamerasAvailableOnThisDevice;
             _isInitializing = false;
           });
         }
@@ -108,7 +114,8 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
       debugPrint('Camera initialization error: $e');
       if (mounted) {
         setState(() {
-          _errorMessage = 'Failed to initialize camera. Please try again.';
+          _errorMessage =
+              AppLocalizations.of(context)!.failedToInitializeCameraTryAgain;
           _isInitializing = false;
         });
       }
@@ -119,7 +126,7 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
     if (_controller == null ||
         !_isInitialized ||
         !_controller!.value.isInitialized) {
-      _showError('Camera not ready. Please wait.');
+      _showError(AppLocalizations.of(context)!.cameraNotReadyPleaseWait);
       return;
     }
 
@@ -133,7 +140,7 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
     } catch (e) {
       debugPrint('Photo capture error: $e');
       if (mounted) {
-        _showError('Couldn\'t capture photo. Try again.');
+        _showError(AppLocalizations.of(context)!.couldntCapturePhotoTryAgain);
       }
     }
   }
@@ -168,24 +175,23 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   }
 
   void _handlePermissionDenied() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Camera Permission Required'),
-        content: const Text(
-          'This app needs camera access to take photos. Please enable it in settings.',
-        ),
+        title: Text(l10n.cameraPermissionRequired),
+        content: Text(l10n.cameraAccessNeededEnableInSettings),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               openAppSettings();
             },
-            child: const Text('Open Settings'),
+            child: Text(l10n.openSettings),
           ),
         ],
       ),
@@ -225,6 +231,7 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   }
 
   Widget _buildErrorState() {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: EdgeInsets.all(24.w),
@@ -234,20 +241,20 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
             Icon(Icons.camera_alt_outlined, size: 64.sp, color: Colors.white70),
             SizedBox(height: 16.h),
             Text(
-              _errorMessage ?? 'Camera error',
+              _errorMessage ?? l10n.cameraError,
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 16.sp),
             ),
             SizedBox(height: 24.h),
             ElevatedButton(
               onPressed: _initializeCamera,
-              child: const Text('Retry'),
+              child: Text(l10n.retry),
             ),
-            if (_errorMessage?.contains('permission') ?? false) ...[
+            if (_isPermissionError) ...[
               SizedBox(height: 12.h),
               TextButton(
                 onPressed: _handlePermissionDenied,
-                child: const Text('Open Settings'),
+                child: Text(l10n.openSettings),
               ),
             ],
           ],

@@ -163,11 +163,14 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                               context,
                               listen: false,
                             );
-                            await localeService.setLocaleByCode(_selectedLanguage!);
+                            await localeService.setLocaleByCode(
+                              _selectedLanguage!,
+                            );
                             if (context.mounted) {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => const RealOnboardingFlow(),
+                                  builder: (context) =>
+                                      const RealOnboardingFlow(),
                                 ),
                               );
                             }
@@ -259,7 +262,8 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                         width: 32.w,
                         height: 32.h,
                         fit: BoxFit.contain,
-                        placeholderBuilder: (context) => const SizedBox.shrink(),
+                        placeholderBuilder: (context) =>
+                            const SizedBox.shrink(),
                         errorBuilder: (context, _, __) => Text(
                           language['name'] as String,
                           style: TextStyle(
@@ -277,8 +281,9 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                   language['nativeName'] as String,
                   style: TextStyle(
                     fontSize: 16.sp,
-                    fontWeight:
-                        isSelected ? FontWeight.w600 : FontWeight.normal,
+                    fontWeight: isSelected
+                        ? FontWeight.w600
+                        : FontWeight.normal,
                     color: isSelected
                         ? const Color(0xFFA6541D) // Burnt orange
                         : AppColors.textPrimary,

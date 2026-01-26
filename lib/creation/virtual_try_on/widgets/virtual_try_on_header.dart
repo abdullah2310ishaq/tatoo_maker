@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 
 class VirtualTryOnHeader extends StatelessWidget {
@@ -13,6 +14,7 @@ class VirtualTryOnHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Positioned(
       top: 16,
       left: 20,
@@ -29,7 +31,7 @@ class VirtualTryOnHeader extends StatelessWidget {
             onPressed: onClose,
           ),
           Text(
-            'Virtual Try-On',
+            l10n.virtualTryOn,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,

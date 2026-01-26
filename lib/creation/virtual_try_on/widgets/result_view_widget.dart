@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 
 class ResultViewWidget extends StatefulWidget {
@@ -63,6 +64,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
   @override
   Widget build(BuildContext context) {
     if (widget.isProcessing) {
+      final l10n = AppLocalizations.of(context)!;
       return Container(
         color: Colors.black54,
         child: Center(
@@ -71,18 +73,18 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
             children: [
               const CircularProgressIndicator(color: AppColors.cardGlowStart),
               const SizedBox(height: 16),
-              const Text(
-                'Processing tattoo on human skin...',
-                style: TextStyle(
+              Text(
+                l10n.virtualTryOnProcessingTitle,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                   fontFamily: 'Amaranth',
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'This may take a few moments',
-                style: TextStyle(
+              Text(
+                l10n.virtualTryOnProcessingSubtitle,
+                style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 14,
                   fontFamily: 'Amaranth',

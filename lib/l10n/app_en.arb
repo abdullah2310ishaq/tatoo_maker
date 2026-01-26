@@ -39,5 +39,157 @@
   "next": "Next",
   "@next": {
     "description": "Next button text"
+  },
+  "cameraPermissionRequired": "Camera Permission Required",
+  "@cameraPermissionRequired": {
+    "description": "Camera permission dialog title"
+  },
+  "permissionRequired": "Permission Required",
+  "@permissionRequired": {
+    "description": "Generic permission dialog title"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Dialog/CTA: Cancel"
+  },
+  "openSettings": "Open Settings",
+  "@openSettings": {
+    "description": "Dialog/CTA: Open Settings"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Button label: Retry"
+  },
+  "cameraPermissionIsRequiredToTakePhotos": "Camera permission is required to take photos.",
+  "@cameraPermissionIsRequiredToTakePhotos": {
+    "description": "Camera permission required to take photos message"
+  },
+  "cameraAccessNeededEnableInSettings": "This app needs camera access to take photos. Please enable it in settings.",
+  "@cameraAccessNeededEnableInSettings": {
+    "description": "Camera access explanation for settings dialog"
+  },
+  "noCamerasAvailableOnThisDevice": "No cameras available on this device.",
+  "@noCamerasAvailableOnThisDevice": {
+    "description": "Error message shown when there are no cameras available"
+  },
+  "failedToInitializeCameraTryAgain": "Failed to initialize camera. Please try again.",
+  "@failedToInitializeCameraTryAgain": {
+    "description": "Error message shown when camera fails to initialize"
+  },
+  "cameraNotReadyPleaseWait": "Camera not ready. Please wait.",
+  "@cameraNotReadyPleaseWait": {
+    "description": "Error message shown when camera is not ready"
+  },
+  "couldntCapturePhotoTryAgain": "Couldn't capture photo. Try again.",
+  "@couldntCapturePhotoTryAgain": {
+    "description": "Error message shown when photo capture fails"
+  },
+  "cameraError": "Camera error",
+  "@cameraError": {
+    "description": "Generic camera error label"
+  },
+  "lightTheme": "Light Theme",
+  "@lightTheme": {
+    "description": "Light theme label"
+  },
+  "darkTheme": "Dark Theme",
+  "@darkTheme": {
+    "description": "Dark theme label"
+  },
+  "languages": "Languages",
+  "@languages": {
+    "description": "Drawer menu item: Languages"
+  },
+  "favorites": "Favorites",
+  "@favorites": {
+    "description": "Drawer menu item: Favorites"
+  },
+  "rateUs": "Rate Us",
+  "@rateUs": {
+    "description": "Drawer menu item: Rate Us"
+  },
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Drawer menu item: Privacy Policy"
+  },
+  "shareApp": "Share App",
+  "@shareApp": {
+    "description": "Drawer menu item: Share App"
+  },
+  "feedback": "Feedback",
+  "@feedback": {
+    "description": "Drawer menu item: Feedback"
+  },
+  "communityGuidelines": "Community Guidelines",
+  "@communityGuidelines": {
+    "description": "Drawer menu item: Community Guidelines"
+  },
+  "moreApps": "More Apps",
+  "@moreApps": {
+    "description": "Drawer menu item: More Apps"
+  },
+  "creation": "Creation",
+  "@creation": {
+    "description": "Bottom navigation item: Creation"
+  },
+  "tattoo": "Tattoo",
+  "@tattoo": {
+    "description": "Bottom navigation item: Tattoo"
+  },
+  "flower": "Flower",
+  "@flower": {
+    "description": "Bottom navigation item: Flower"
+  },
+  "couldntShareImageTryAgain": "Couldn't share image. Try again.",
+  "@couldntShareImageTryAgain": {
+    "description": "Generic message when sharing fails"
+  },
+  "noImageToSave": "No image to save",
+  "@noImageToSave": {
+    "description": "SnackBar message shown when there is no image to save"
+  },
+  "imageSavedToGalleryExcited": "Image saved to gallery!",
+  "@imageSavedToGalleryExcited": {
+    "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
+  },
+  "couldntSaveImageTryAgain": "Couldn't save image. Try again.",
+  "@couldntSaveImageTryAgain": {
+    "description": "Generic message when saving fails"
+  },
+  "capturePhoto": "Capture Photo",
+  "@capturePhoto": {
+    "description": "Virtual try-on: capture photo button label"
+  },
+  "apply": "Apply",
+  "@apply": {
+    "description": "Virtual try-on: apply button label"
+  },
+  "download": "Download",
+  "@download": {
+    "description": "Virtual try-on: download button label"
+  },
+  "virtualTryOn": "Virtual Try-On",
+  "@virtualTryOn": {
+    "description": "Virtual try-on screen title"
+  },
+  "virtualTryOnEmptyState": "Capture a photo of your hand\nor body part to try on the tattoo",
+  "@virtualTryOnEmptyState": {
+    "description": "Virtual try-on empty state message"
+  },
+  "virtualTryOnProcessingTitle": "Processing tattoo on human skin...",
+  "@virtualTryOnProcessingTitle": {
+    "description": "Virtual try-on processing status line 1"
+  },
+  "virtualTryOnProcessingSubtitle": "This may take a few moments",
+  "@virtualTryOnProcessingSubtitle": {
+    "description": "Virtual try-on processing status line 2"
+  },
+  "promptLabel": "Prompt",
+  "@promptLabel": {
+    "description": "Label for the prompt section in explore detail"
+  },
+  "tryThis": "Try This",
+  "@tryThis": {
+    "description": "Button text for trying an explore preset"
   }
 }

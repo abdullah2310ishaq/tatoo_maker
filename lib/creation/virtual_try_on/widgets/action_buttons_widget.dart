@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 
 class ActionButtonsWidget extends StatelessWidget {
   final File? bodyPartImage;
@@ -26,6 +27,7 @@ class ActionButtonsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.only(
         left: 20.0,
@@ -47,9 +49,9 @@ class ActionButtonsWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text(
-                  'Capture Photo',
-                  style: TextStyle(
+                child: Text(
+                  l10n.capturePhoto,
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
@@ -86,9 +88,9 @@ class ActionButtonsWidget extends StatelessWidget {
                                 ),
                               ),
                             )
-                          : const Text(
-                              'Apply',
-                              style: TextStyle(
+                          : Text(
+                              l10n.apply,
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
@@ -125,9 +127,9 @@ class ActionButtonsWidget extends StatelessWidget {
                               ),
                             ),
                           )
-                        : const Text(
-                            'Download',
-                            style: TextStyle(
+                        : Text(
+                            l10n.download,
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,

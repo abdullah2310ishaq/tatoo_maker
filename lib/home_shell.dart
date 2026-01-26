@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'utils/colors.dart';
 import 'creation/home_page.dart';
 import 'tattoo/tattoo_page.dart';
@@ -94,6 +95,7 @@ class _HomeShellState extends State<HomeShell> {
 
   Widget _buildFloatingNavBar() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     final navBarBgColor = isDark
         ? AppColors.navBarBackground
         : AppColors.lightBackground;
@@ -123,17 +125,17 @@ class _HomeShellState extends State<HomeShell> {
         children: [
           _buildNavItem(
             iconPath: 'assets/creation.svg',
-            label: 'Creation',
+            label: l10n.creation,
             index: 0,
           ),
           _buildNavItem(
             iconPath: 'assets/tatoo.svg',
-            label: 'Tattoo',
+            label: l10n.tattoo,
             index: 1,
           ),
           _buildNavItem(
             iconPath: 'assets/flower.svg',
-            label: 'Flower',
+            label: l10n.flower,
             index: 2,
           ),
         ],

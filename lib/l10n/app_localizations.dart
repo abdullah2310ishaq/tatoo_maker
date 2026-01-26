@@ -141,6 +141,246 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Turn your name into a beautiful\nflower-inspired design.'**
   String get flowerCreationDescription;
+
+  /// Title for language selection screen
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a Language'**
+  String get chooseALanguage;
+
+  /// Next button text
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// Camera permission dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Camera Permission Required'**
+  String get cameraPermissionRequired;
+
+  /// Generic permission dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Permission Required'**
+  String get permissionRequired;
+
+  /// Dialog/CTA: Cancel
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Dialog/CTA: Open Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get openSettings;
+
+  /// Button label: Retry
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// Camera permission required to take photos message
+  ///
+  /// In en, this message translates to:
+  /// **'Camera permission is required to take photos.'**
+  String get cameraPermissionIsRequiredToTakePhotos;
+
+  /// Camera access explanation for settings dialog
+  ///
+  /// In en, this message translates to:
+  /// **'This app needs camera access to take photos. Please enable it in settings.'**
+  String get cameraAccessNeededEnableInSettings;
+
+  /// Error message shown when there are no cameras available
+  ///
+  /// In en, this message translates to:
+  /// **'No cameras available on this device.'**
+  String get noCamerasAvailableOnThisDevice;
+
+  /// Error message shown when camera fails to initialize
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to initialize camera. Please try again.'**
+  String get failedToInitializeCameraTryAgain;
+
+  /// Error message shown when camera is not ready
+  ///
+  /// In en, this message translates to:
+  /// **'Camera not ready. Please wait.'**
+  String get cameraNotReadyPleaseWait;
+
+  /// Error message shown when photo capture fails
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t capture photo. Try again.'**
+  String get couldntCapturePhotoTryAgain;
+
+  /// Generic camera error label
+  ///
+  /// In en, this message translates to:
+  /// **'Camera error'**
+  String get cameraError;
+
+  /// Light theme label
+  ///
+  /// In en, this message translates to:
+  /// **'Light Theme'**
+  String get lightTheme;
+
+  /// Dark theme label
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Theme'**
+  String get darkTheme;
+
+  /// Drawer menu item: Languages
+  ///
+  /// In en, this message translates to:
+  /// **'Languages'**
+  String get languages;
+
+  /// Drawer menu item: Favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get favorites;
+
+  /// Drawer menu item: Rate Us
+  ///
+  /// In en, this message translates to:
+  /// **'Rate Us'**
+  String get rateUs;
+
+  /// Drawer menu item: Privacy Policy
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// Drawer menu item: Share App
+  ///
+  /// In en, this message translates to:
+  /// **'Share App'**
+  String get shareApp;
+
+  /// Drawer menu item: Feedback
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get feedback;
+
+  /// Drawer menu item: Community Guidelines
+  ///
+  /// In en, this message translates to:
+  /// **'Community Guidelines'**
+  String get communityGuidelines;
+
+  /// Drawer menu item: More Apps
+  ///
+  /// In en, this message translates to:
+  /// **'More Apps'**
+  String get moreApps;
+
+  /// Bottom navigation item: Creation
+  ///
+  /// In en, this message translates to:
+  /// **'Creation'**
+  String get creation;
+
+  /// Bottom navigation item: Tattoo
+  ///
+  /// In en, this message translates to:
+  /// **'Tattoo'**
+  String get tattoo;
+
+  /// Bottom navigation item: Flower
+  ///
+  /// In en, this message translates to:
+  /// **'Flower'**
+  String get flower;
+
+  /// Generic message when sharing fails
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t share image. Try again.'**
+  String get couldntShareImageTryAgain;
+
+  /// SnackBar message shown when there is no image to save
+  ///
+  /// In en, this message translates to:
+  /// **'No image to save'**
+  String get noImageToSave;
+
+  /// SnackBar message shown when an image is saved to gallery (with emphasis)
+  ///
+  /// In en, this message translates to:
+  /// **'Image saved to gallery!'**
+  String get imageSavedToGalleryExcited;
+
+  /// Generic message when saving fails
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save image. Try again.'**
+  String get couldntSaveImageTryAgain;
+
+  /// Virtual try-on: capture photo button label
+  ///
+  /// In en, this message translates to:
+  /// **'Capture Photo'**
+  String get capturePhoto;
+
+  /// Virtual try-on: apply button label
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
+  /// Virtual try-on: download button label
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get download;
+
+  /// Virtual try-on screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Virtual Try-On'**
+  String get virtualTryOn;
+
+  /// Virtual try-on empty state message
+  ///
+  /// In en, this message translates to:
+  /// **'Capture a photo of your hand\nor body part to try on the tattoo'**
+  String get virtualTryOnEmptyState;
+
+  /// Virtual try-on processing status line 1
+  ///
+  /// In en, this message translates to:
+  /// **'Processing tattoo on human skin...'**
+  String get virtualTryOnProcessingTitle;
+
+  /// Virtual try-on processing status line 2
+  ///
+  /// In en, this message translates to:
+  /// **'This may take a few moments'**
+  String get virtualTryOnProcessingSubtitle;
+
+  /// Label for the prompt section in explore detail
+  ///
+  /// In en, this message translates to:
+  /// **'Prompt'**
+  String get promptLabel;
+
+  /// Button text for trying an explore preset
+  ///
+  /// In en, this message translates to:
+  /// **'Try This'**
+  String get tryThis;
 }
 
 class _AppLocalizationsDelegate

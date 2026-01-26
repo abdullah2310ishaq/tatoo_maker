@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
+import 'package:tatoo_maker/language/language_screen.dart';
 import '../utils/colors.dart';
 import 'inkvision_underline.dart';
 
@@ -16,6 +18,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     final textColor = isDark ? AppColors.textWhite : AppColors.buttonBackground;
     final backgroundColor = isDark
         ? AppColors.drawerDarkBackground
@@ -54,11 +57,8 @@ class AppDrawer extends StatelessWidget {
                 color: iconColor,
               ),
               title: Text(
-                isDark ? 'Dark Theme' : 'Light Theme',
-                style: TextStyle(
-                  color: textColor,
-                  fontWeight: FontWeight.w500,
-                ),
+                isDark ? l10n.darkTheme : l10n.lightTheme,
+                style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
               ),
               trailing: Switch(
                 value: isDark,
@@ -75,16 +75,23 @@ class AppDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context: context,
                     icon: Icons.language,
-                    title: 'Languages',
+                    title: l10n.languages,
                     trailingText: 'English',
                     textColor: textColor,
                     iconColor: iconColor,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pop(); // close drawer
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LanguageSelectionScreen(),
+                        ),
+                      );
+                    },
                   ),
                   _buildMenuItem(
                     context: context,
                     icon: Icons.favorite,
-                    title: 'Favorites',
+                    title: l10n.favorites,
                     textColor: textColor,
                     iconColor: iconColor,
                     onTap: () {},
@@ -92,7 +99,7 @@ class AppDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context: context,
                     icon: Icons.star,
-                    title: 'Rate Us',
+                    title: l10n.rateUs,
                     textColor: textColor,
                     iconColor: iconColor,
                     onTap: () {},
@@ -100,7 +107,7 @@ class AppDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context: context,
                     icon: Icons.privacy_tip,
-                    title: 'Privacy Policy',
+                    title: l10n.privacyPolicy,
                     textColor: textColor,
                     iconColor: iconColor,
                     onTap: () {},
@@ -108,7 +115,7 @@ class AppDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context: context,
                     icon: Icons.share,
-                    title: 'Share App',
+                    title: l10n.shareApp,
                     textColor: textColor,
                     iconColor: iconColor,
                     onTap: () {},
@@ -116,7 +123,7 @@ class AppDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context: context,
                     icon: Icons.feedback,
-                    title: 'Feedback',
+                    title: l10n.feedback,
                     textColor: textColor,
                     iconColor: iconColor,
                     onTap: () {},
@@ -124,7 +131,7 @@ class AppDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context: context,
                     icon: Icons.people,
-                    title: 'Community Guidelines',
+                    title: l10n.communityGuidelines,
                     textColor: textColor,
                     iconColor: iconColor,
                     onTap: () {},
@@ -132,7 +139,7 @@ class AppDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context: context,
                     icon: Icons.apps,
-                    title: 'More Apps',
+                    title: l10n.moreApps,
                     textColor: textColor,
                     iconColor: iconColor,
                     showAdBadge: true,
@@ -163,10 +170,7 @@ class AppDrawer extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.w500,
-            ),
+            style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
           ),
           if (showAdBadge) ...[
             const SizedBox(width: 8),
@@ -177,6 +181,8 @@ class AppDrawer extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: const Text(
+                // Intentionally not localized here; provided by caller where needed.
+                // (kept const for performance)
                 'Ad',
                 style: TextStyle(
                   color: Colors.white,
@@ -194,10 +200,7 @@ class AppDrawer extends StatelessWidget {
           if (trailingText != null)
             Text(
               trailingText,
-              style: TextStyle(
-                color: AppColors.textGrey,
-                fontSize: 14,
-              ),
+              style: TextStyle(color: AppColors.textGrey, fontSize: 14),
             ),
           if (trailingText != null) const SizedBox(width: 8),
           Icon(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import 'loading_screen.dart';
@@ -20,6 +21,7 @@ class ExploreDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final iconColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
@@ -102,7 +104,7 @@ class ExploreDetailScreen extends StatelessWidget {
                   children: [
                     // "Prompt" label
                     Text(
-                      'Prompt',
+                      l10n.promptLabel,
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
@@ -203,7 +205,7 @@ class ExploreDetailScreen extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Try This',
+                      l10n.tryThis,
                       style: TextStyle(
                         fontSize: 25.sp,
                         fontWeight: FontWeight.w600,
