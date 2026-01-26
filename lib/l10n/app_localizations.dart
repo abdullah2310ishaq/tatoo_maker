@@ -112,6 +112,18 @@ abstract class AppLocalizations {
   /// **'Start'**
   String get start;
 
+  /// Title for first onboarding screen
+  ///
+  /// In en, this message translates to:
+  /// **'Tattoo Creation'**
+  String get tattooCreation;
+
+  /// Description text for first onboarding screen
+  ///
+  /// In en, this message translates to:
+  /// **'Create unique tattoo designs and see how they look on your hand in real time.'**
+  String get tattooCreationDescription;
+
   /// Title for second onboarding screen
   ///
   /// In en, this message translates to:

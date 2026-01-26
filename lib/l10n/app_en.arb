@@ -12,6 +12,14 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
+  "tattooCreation": "Tattoo Creation",
+  "@tattooCreation": {
+    "description": "Title for first onboarding screen"
+  },
+  "tattooCreationDescription": "Create unique tattoo designs and see how they look on your hand in real time.",
+  "@tattooCreationDescription": {
+    "description": "Description text for first onboarding screen"
+  },
   "customCreation": "Custom Creation",
   "@customCreation": {
     "description": "Title for second onboarding screen"

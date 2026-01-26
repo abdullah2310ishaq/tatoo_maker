@@ -18,6 +18,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get start => 'Start';
 
   @override
+  String get tattooCreation => 'Tattoo Creation';
+
+  @override
+  String get tattooCreationDescription =>
+      'Create unique tattoo designs and see how they look on your hand in real time.';
+
+  @override
   String get customCreation => 'Custom Creation';
 
   @override

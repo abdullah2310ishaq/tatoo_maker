@@ -247,7 +247,7 @@ class _FirstOnboardingScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 40.w),
                   child: Center(
                     child: Text(
-                      'Tattoo Creation',
+                      AppLocalizations.of(context)!.tattooCreation,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 42.sp,
@@ -263,7 +263,7 @@ class _FirstOnboardingScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40.w),
                   child: Text(
-                    'Create unique tattoo designs and see how they look on your hand in real time.',
+                    AppLocalizations.of(context)!.tattooCreationDescription,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20.sp,
