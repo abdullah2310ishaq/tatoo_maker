@@ -75,7 +75,6 @@ class FlowerSvgLoader {
     return path;
   }
 
-  /// Builds an SVG widget for a floral sprig
   ///
   /// [letter] - The letter to get the SVG for
   /// [isDark] - Whether the app is in dark theme

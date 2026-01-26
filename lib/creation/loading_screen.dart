@@ -2,57 +2,12 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../utils/image_processing_isolates.dart';
 import '../services/prodia_api_service.dart';
 import 'result_screen.dart';
-
-/// Run in isolate: apply a grayscale alpha mask to an RGB image and return PNG.
-Uint8List applyAlphaMaskToImageIsolate(Map<String, dynamic> args) {
-  final Uint8List inputImageBytes = args['inputImageBytes'] as Uint8List;
-  final Uint8List maskBytes = args['maskBytes'] as Uint8List;
-
-  final inputImage = img.decodeImage(inputImageBytes);
-  final alphaMask = img.decodeImage(maskBytes);
-
-  if (inputImage == null || alphaMask == null) {
-    throw Exception('Failed to decode input or mask image');
-  }
-
-  // Resize mask to match input if needed.
-  final mask =
-      (alphaMask.width != inputImage.width ||
-          alphaMask.height != inputImage.height)
-      ? img.copyResize(
-          alphaMask,
-          width: inputImage.width,
-          height: inputImage.height,
-        )
-      : alphaMask;
-
-  final outputImage = img.Image(
-    width: inputImage.width,
-    height: inputImage.height,
-    format: img.Format.uint8,
-    numChannels: 4,
-  );
-
-  for (var y = 0; y < inputImage.height; y++) {
-    for (var x = 0; x < inputImage.width; x++) {
-      final pixel = inputImage.getPixel(x, y);
-      final maskPixel = mask.getPixel(x, y);
-      final r = pixel.r.toInt();
-      final g = pixel.g.toInt();
-      final b = pixel.b.toInt();
-      final a = maskPixel.r.toInt(); // use red channel as alpha
-      outputImage.setPixelRgba(x, y, r, g, b, a);
-    }
-  }
-
-  return Uint8List.fromList(img.encodePng(outputImage));
-}
 
 class LoadingScreen extends StatefulWidget {
   final String?

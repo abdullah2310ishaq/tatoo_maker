@@ -151,7 +151,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
                 selectedIndex: years.contains(widget.selectedYear)
                     ? years.indexOf(widget.selectedYear)
                     : 0,
-                onChanged: widget.onYearChanged,
+                onChanged: (index) => widget.onYearChanged(years[index]),
                 isDark: isDark,
               ),
             ),

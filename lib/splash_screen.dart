@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'utils/colors.dart';
 import 'home_shell.dart';
+import 'real_onboarding/real_onboarding_flow.dart';
 
 class SplashScreen extends StatefulWidget {
   final bool isDarkTheme;
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeShell()),
+          MaterialPageRoute(builder: (context) => const RealOnboardingFlow()),
         );
       }
     });
