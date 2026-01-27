@@ -5,12 +5,18 @@ import '../../utils/colors.dart';
 /// Header widget for flower input screen with back button and title
 class FlowerHeader extends StatelessWidget {
   final VoidCallback onBack;
+  final bool isRTL;
 
-  const FlowerHeader({super.key, required this.onBack});
+  const FlowerHeader({
+    super.key,
+    required this.onBack,
+    this.isRTL = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    // Always use English localization for this screen
     final l10n = AppLocalizations.of(context)!;
 
     return Padding(
@@ -18,9 +24,9 @@ class FlowerHeader extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Back button (positioned on the left)
+          // Back button (positioned based on RTL)
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: isRTL ? Alignment.centerRight : Alignment.centerLeft,
             child: GestureDetector(
               onTap: onBack,
               child: Container(
@@ -33,14 +39,14 @@ class FlowerHeader extends StatelessWidget {
                       : AppColors.textGrey.withOpacity(0.1),
                 ),
                 child: Icon(
-                  Icons.arrow_back,
+                  isRTL ? Icons.arrow_forward : Icons.arrow_back,
                   color: AppColors.titleGradientStart,
                   size: 24,
                 ),
               ),
             ),
           ),
-          // "Enter Your Name" text (centered)
+          // "Enter Your Name" text (centered) - always in English
           Text(
             l10n.flowerInputEnterYourName,
             style: TextStyle(

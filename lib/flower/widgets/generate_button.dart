@@ -31,7 +31,7 @@ class GenerateButton extends StatelessWidget {
             elevation: 4,
           ),
           child: const Text(
-            'Generate',
+            'Generate', // Always English, not localized
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,

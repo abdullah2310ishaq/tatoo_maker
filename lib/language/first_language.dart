@@ -58,7 +58,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
       'code': 'pt',
       'name': 'Portuguese',
       'nativeName': 'Português',
-      'imageAsset': 'assets/portugal.png',
+      'imageAsset': 'assets/language/portugal.png',
       'isPng': true,
     },
     {

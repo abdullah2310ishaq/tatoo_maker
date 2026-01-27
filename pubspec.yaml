@@ -131,3 +131,7 @@ flutter:
           weight: 400
         - asset: assets/fonts/Amaranth-Bold.ttf
           weight: 700
+    - family: Tomorrow
+      fonts:
+        - asset: assets/fonts/Tomorrow-Regular.ttf
+          weight: 400

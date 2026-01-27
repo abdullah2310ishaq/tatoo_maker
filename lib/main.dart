@@ -20,7 +20,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isDarkTheme = true; // Default to dark theme
+  bool _isDarkTheme = false; // Default to light theme
   bool _isLoading = true;
 
   @override
@@ -39,15 +39,21 @@ class _MyAppState extends State<MyApp> {
           _isLoading = false;
         });
       } else {
+        // No saved preference, use default (light theme)
         setState(() {
+          _isDarkTheme = false;
           _isLoading = false;
         });
+        // Save the default theme preference
+        await prefs.setBool('isDarkTheme', false);
       }
     } catch (e) {
-      // If there's an error, use default theme
+      // If there's an error, use default theme (light)
       setState(() {
+        _isDarkTheme = false;
         _isLoading = false;
       });
+      debugPrint('Error loading theme preference: $e');
     }
   }
 
@@ -73,6 +79,13 @@ class _MyAppState extends State<MyApp> {
     if (_isLoading) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
+        builder: (context, child) {
+          return MediaQuery(
+            // Lock text scale factor to 1.0 to prevent system font size changes
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: child!,
+          );
+        },
         home: Scaffold(body: Center(child: CircularProgressIndicator())),
       );
     }
@@ -102,6 +115,13 @@ class _MyAppState extends State<MyApp> {
                 GlobalCupertinoLocalizations.delegate,
               ],
               supportedLocales: AppLocalizations.supportedLocales,
+              builder: (context, child) {
+                return MediaQuery(
+                  // Lock text scale factor to 1.0 to prevent system font size changes
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  child: child!,
+                );
+              },
               home: SplashScreen(isDarkTheme: _isDarkTheme),
             );
           },

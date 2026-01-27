@@ -93,7 +93,7 @@ class FlowerHome extends StatelessWidget {
                   color: isDark
                       ? AppColors.textWhite
                       : AppColors.darkBackground,
-                  fontFamily: 'Amaranth',
+                  fontFamily: 'Tomorrow',
                 ),
               ),
               SizedBox(height: 6.h),

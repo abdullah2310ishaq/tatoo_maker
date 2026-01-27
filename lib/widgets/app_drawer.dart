@@ -5,7 +5,7 @@ import 'package:tatoo_maker/language/language_screen.dart';
 import '../utils/colors.dart';
 import 'inkvision_underline.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
   final bool isDarkTheme;
   final VoidCallback onThemeToggle;
 
@@ -14,6 +14,32 @@ class AppDrawer extends StatelessWidget {
     required this.isDarkTheme,
     required this.onThemeToggle,
   });
+
+  @override
+  State<AppDrawer> createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  bool _isProcessing = false;
+
+  void _handleTap(VoidCallback onTap) {
+    if (_isProcessing) return;
+
+    setState(() {
+      _isProcessing = true;
+    });
+
+    onTap();
+
+    // Reset after a short delay to prevent multiple taps
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,128 +53,147 @@ class AppDrawer extends StatelessWidget {
 
     return Drawer(
       backgroundColor: backgroundColor,
-      child: SafeArea(
-        child: Column(
-          children: [
-            // Header with InkVision title and underline
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Text(
-                    'InkVision',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                      fontFamily: 'Amaranth',
+      child: Theme(
+        data: Theme.of(context).copyWith(splashFactory: NoSplash.splashFactory),
+        child: SafeArea(
+          child: Column(
+            children: [
+              // Header with InkVision title and underline
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'InkVision',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                        fontFamily: 'Tomorrow',
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  const InkVisionUnderline(width: 120, height: 3),
-                ],
+                    const SizedBox(height: 8),
+                    const InkVisionUnderline(width: 120, height: 3),
+                  ],
+                ),
               ),
-            ),
-            const Divider(height: 1),
-            // Theme Toggle
-            ListTile(
-              leading: Icon(
-                isDark ? Icons.dark_mode : Icons.light_mode,
-                color: iconColor,
+              const Divider(height: 1),
+              // Theme Toggle
+              ListTile(
+                leading: Icon(
+                  widget.isDarkTheme ? Icons.dark_mode : Icons.light_mode,
+                  color: iconColor,
+                ),
+                title: Text(
+                  widget.isDarkTheme ? l10n.darkTheme : l10n.lightTheme,
+                  style: TextStyle(
+                    color: textColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                trailing: Switch(
+                  value: widget.isDarkTheme,
+                  onChanged: _isProcessing
+                      ? null
+                      : (_) {
+                          _handleTap(() => widget.onThemeToggle());
+                        },
+                  activeColor: const Color(0xFFFE8B3A),
+                  activeTrackColor: const Color(0xFFFE8B3A).withOpacity(0.5),
+                ),
               ),
-              title: Text(
-                isDark ? l10n.darkTheme : l10n.lightTheme,
-                style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
+              const Divider(height: 1),
+              // Menu Items
+              Expanded(
+                child: ListView(
+                  children: [
+                    _buildMenuItem(
+                      context: context,
+                      icon: Icons.language,
+                      title: l10n.languages,
+                      trailingText: _getCurrentLanguageName(context),
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      isEnabled: !_isProcessing,
+                      onTap: () {
+                        Navigator.of(context).pop(); // close drawer
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const LanguageSelectionScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    _buildMenuItem(
+                      context: context,
+                      icon: Icons.favorite,
+                      title: l10n.favorites,
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      isEnabled: !_isProcessing,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      context: context,
+                      icon: Icons.star,
+                      title: l10n.rateUs,
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      isEnabled: !_isProcessing,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      context: context,
+                      icon: Icons.privacy_tip,
+                      title: l10n.privacyPolicy,
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      isEnabled: !_isProcessing,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      context: context,
+                      icon: Icons.share,
+                      title: l10n.shareApp,
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      isEnabled: !_isProcessing,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      context: context,
+                      icon: Icons.feedback,
+                      title: l10n.feedback,
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      isEnabled: !_isProcessing,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      context: context,
+                      icon: Icons.people,
+                      title: l10n.communityGuidelines,
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      isEnabled: !_isProcessing,
+                      onTap: () {},
+                    ),
+                    _buildMenuItem(
+                      context: context,
+                      icon: Icons.apps,
+                      title: l10n.moreApps,
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      showAdBadge: true,
+                      isEnabled: !_isProcessing,
+                      onTap: () {},
+                    ),
+                  ],
+                ),
               ),
-              trailing: Switch(
-                value: isDark,
-                onChanged: (_) => onThemeToggle(),
-                activeColor: const Color(0xFFFE8B3A),
-                activeTrackColor: const Color(0xFFFE8B3A).withOpacity(0.5),
-              ),
-            ),
-            const Divider(height: 1),
-            // Menu Items
-            Expanded(
-              child: ListView(
-                children: [
-                  _buildMenuItem(
-                    context: context,
-                    icon: Icons.language,
-                    title: l10n.languages,
-                    trailingText: _getCurrentLanguageName(context),
-                    textColor: textColor,
-                    iconColor: iconColor,
-                    onTap: () {
-                      Navigator.of(context).pop(); // close drawer
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const LanguageSelectionScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  _buildMenuItem(
-                    context: context,
-                    icon: Icons.favorite,
-                    title: l10n.favorites,
-                    textColor: textColor,
-                    iconColor: iconColor,
-                    onTap: () {},
-                  ),
-                  _buildMenuItem(
-                    context: context,
-                    icon: Icons.star,
-                    title: l10n.rateUs,
-                    textColor: textColor,
-                    iconColor: iconColor,
-                    onTap: () {},
-                  ),
-                  _buildMenuItem(
-                    context: context,
-                    icon: Icons.privacy_tip,
-                    title: l10n.privacyPolicy,
-                    textColor: textColor,
-                    iconColor: iconColor,
-                    onTap: () {},
-                  ),
-                  _buildMenuItem(
-                    context: context,
-                    icon: Icons.share,
-                    title: l10n.shareApp,
-                    textColor: textColor,
-                    iconColor: iconColor,
-                    onTap: () {},
-                  ),
-                  _buildMenuItem(
-                    context: context,
-                    icon: Icons.feedback,
-                    title: l10n.feedback,
-                    textColor: textColor,
-                    iconColor: iconColor,
-                    onTap: () {},
-                  ),
-                  _buildMenuItem(
-                    context: context,
-                    icon: Icons.people,
-                    title: l10n.communityGuidelines,
-                    textColor: textColor,
-                    iconColor: iconColor,
-                    onTap: () {},
-                  ),
-                  _buildMenuItem(
-                    context: context,
-                    icon: Icons.apps,
-                    title: l10n.moreApps,
-                    textColor: textColor,
-                    iconColor: iconColor,
-                    showAdBadge: true,
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -162,16 +207,24 @@ class AppDrawer extends StatelessWidget {
     required Color textColor,
     required Color iconColor,
     bool showAdBadge = false,
+    bool isEnabled = true,
     required VoidCallback onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: iconColor),
+      enabled: isEnabled,
+      leading: Icon(
+        icon,
+        color: isEnabled ? iconColor : iconColor.withOpacity(0.5),
+      ),
       title: Row(
         children: [
           Expanded(
             child: Text(
               title,
-              style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: isEnabled ? textColor : textColor.withOpacity(0.5),
+                fontWeight: FontWeight.w500,
+              ),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),
@@ -202,17 +255,20 @@ class AppDrawer extends StatelessWidget {
           if (trailingText != null)
             Text(
               trailingText,
-              style: TextStyle(color: AppColors.textGrey, fontSize: 14),
+              style: TextStyle(
+                color: AppColors.textGrey.withOpacity(isEnabled ? 1.0 : 0.5),
+                fontSize: 14,
+              ),
             ),
           if (trailingText != null) const SizedBox(width: 8),
           Icon(
             CupertinoIcons.chevron_right,
             size: 16,
-            color: AppColors.textGrey,
+            color: AppColors.textGrey.withOpacity(isEnabled ? 1.0 : 0.5),
           ),
         ],
       ),
-      onTap: onTap,
+      onTap: isEnabled ? () => _handleTap(onTap) : null,
     );
   }
 
