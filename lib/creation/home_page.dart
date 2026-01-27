@@ -179,10 +179,12 @@ class _HomePageState extends State<HomePage> {
           ),
           // Tutorial Overlay
           if (_showTutorialOverlay)
-            TutorialOverlay(
-              highlightKey: _dreamInkCardKey,
-              checkAssetExists: _checkAssetExists,
-              onDismiss: _dismissTutorialOverlay,
+            Positioned.fill(
+              child: TutorialOverlay(
+                highlightKey: _dreamInkCardKey,
+                checkAssetExists: _checkAssetExists,
+                onDismiss: _dismissTutorialOverlay,
+              ),
             ),
         ],
       ),

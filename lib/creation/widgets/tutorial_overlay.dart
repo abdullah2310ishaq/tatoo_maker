@@ -62,9 +62,9 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
 
     final cardRect = Rect.fromLTWH(
       cardPosition.dx,
-      cardPosition.dy - 40.h,
+      cardPosition.dy - 34.h,
       cardSize.width,
-      cardSize.height + 1.h,
+      cardSize.height,
     );
 
     return GestureDetector(
