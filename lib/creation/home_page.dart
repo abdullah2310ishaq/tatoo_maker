@@ -42,26 +42,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _checkTutorialStatus() async {
-    // TODO: For testing - always show overlay. Remove this for production.
-    if (mounted) {
-      setState(() {
-        _showTutorialOverlay = true;
-      });
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final tutorialShown = prefs.getBool('home_tutorial_shown') ?? false;
+      if (!tutorialShown && mounted) {
+        setState(() {
+          _showTutorialOverlay = true;
+        });
+      }
+    } catch (e) {
+      // On error, don't show tutorial
+      debugPrint('Error checking tutorial status: $e');
     }
-
-    // Original code (commented for testing):
-    // try {
-    //   final prefs = await SharedPreferences.getInstance();
-    //   final tutorialShown = prefs.getBool('home_tutorial_shown') ?? false;
-    //   if (!tutorialShown && mounted) {
-    //     setState(() {
-    //       _showTutorialOverlay = true;
-    //     });
-    //   }
-    // } catch (e) {
-    //   // On error, don't show tutorial
-    //   debugPrint('Error checking tutorial status: $e');
-    // }
   }
 
   Map<String, String> _stylePrompts(AppLocalizations l10n) => {
