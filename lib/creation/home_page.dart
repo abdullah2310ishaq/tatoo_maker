@@ -31,21 +31,37 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _checkTutorialStatus();
+    // Wait for layout to complete before showing overlay
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _showTutorialOverlay) {
+        setState(() {
+          // Trigger rebuild to get card position
+        });
+      }
+    });
   }
 
   Future<void> _checkTutorialStatus() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final tutorialShown = prefs.getBool('home_tutorial_shown') ?? false;
-      if (!tutorialShown && mounted) {
-        setState(() {
-          _showTutorialOverlay = true;
-        });
-      }
-    } catch (e) {
-      // On error, don't show tutorial
-      debugPrint('Error checking tutorial status: $e');
+    // TODO: For testing - always show overlay. Remove this for production.
+    if (mounted) {
+      setState(() {
+        _showTutorialOverlay = true;
+      });
     }
+
+    // Original code (commented for testing):
+    // try {
+    //   final prefs = await SharedPreferences.getInstance();
+    //   final tutorialShown = prefs.getBool('home_tutorial_shown') ?? false;
+    //   if (!tutorialShown && mounted) {
+    //     setState(() {
+    //       _showTutorialOverlay = true;
+    //     });
+    //   }
+    // } catch (e) {
+    //   // On error, don't show tutorial
+    //   debugPrint('Error checking tutorial status: $e');
+    // }
   }
 
   Map<String, String> _stylePrompts(AppLocalizations l10n) => {
@@ -771,16 +787,25 @@ class _HomePageState extends State<HomePage> {
   Widget _buildTutorialOverlay() {
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    // Get the position of the Dream Ink card
+    final mediaQuery = MediaQuery.of(context);
+    final screenSize = mediaQuery.size;
+    final safeAreaTop = mediaQuery.padding.top;
+
+    // Get the position of the Dream Ink card relative to screen
     final RenderBox? cardBox =
         _dreamInkCardKey.currentContext?.findRenderObject() as RenderBox?;
-    final Offset? cardPosition = cardBox?.localToGlobal(Offset.zero);
+    final Offset? cardScreenPosition = cardBox?.localToGlobal(Offset.zero);
     final Size? cardSize = cardBox?.size;
-    final screenSize = MediaQuery.of(context).size;
 
-    if (cardPosition == null || cardSize == null) {
-      // Card not yet laid out, show simple overlay
+    // If card not laid out yet, show full overlay and retry
+    if (cardScreenPosition == null || cardSize == null) {
+      // Retry after frame
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _showTutorialOverlay) {
+          setState(() {});
+        }
+      });
+
       return GestureDetector(
         onTap: () async {
           await _markTutorialAsShown();
@@ -794,18 +819,27 @@ class _HomePageState extends State<HomePage> {
           filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
           child: Container(
             color: isDark
-                ? Colors.black.withOpacity(0.7)
-                : Colors.black.withOpacity(0.5),
+                ? Colors.black.withOpacity(0.8)
+                : Colors.black.withOpacity(0.7),
           ),
         ),
       );
     }
 
+    // Convert screen coordinates to SafeArea-relative coordinates
+    // Since overlay Stack is inside SafeArea, we need to adjust
+    final cardPosition = Offset(
+      cardScreenPosition.dx,
+      cardScreenPosition.dy - safeAreaTop,
+    );
+
+    // Card rect in SafeArea-relative coordinates - add much more margin to move overlay up
     final cardRect = Rect.fromLTWH(
-      cardPosition.dx - 20.w,
-      cardPosition.dy,
-      cardSize.width + 40.w,
-      cardSize.height,
+      cardPosition.dx,
+      cardPosition.dy -
+          40.h, // Move overlay up much more by adding larger margin at top
+      cardSize.width,
+      cardSize.height + 1.h, // Extend height to compensate
     );
 
     return GestureDetector(
@@ -819,32 +853,34 @@ class _HomePageState extends State<HomePage> {
       },
       child: Stack(
         children: [
-          // Blurred background overlay with hole for card
+          // Blur overlay with hole for card (exempt container from blur)
           ClipPath(
             clipper: _TutorialOverlayClipper(cardRect: cardRect),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-              child: Container(
-                color: Colors.transparent,
-              ),
+              child: Container(color: Colors.transparent),
             ),
           ),
           // Semi-transparent overlay with hole for card
-          CustomPaint(
-            size: screenSize,
-            painter: _TutorialOverlayPainter(
-              cardRect: cardRect,
-              overlayColor: isDark
-                  ? Colors.black.withOpacity(0.7)
-                  : Colors.black.withOpacity(0.5),
+          Positioned.fill(
+            child: CustomPaint(
+              size: screenSize,
+              painter: _TutorialOverlayPainter(
+                cardRect: cardRect,
+                overlayColor: isDark
+                    ? Colors.black.withOpacity(0.7)
+                    : Colors.black.withOpacity(0.5),
+              ),
             ),
           ),
-          // Arrow and text positioned below the card
+          // Arrow and text positioned below the card (moved up)
           Positioned(
-            top: cardPosition.dy + cardSize.height + 20.h,
-            left: 20.w,
-            right: 20.w,
-            child: IgnorePointer(
+            top: cardPosition.dy + cardSize.height - 38.h,
+            left: 0,
+            right: 0,
+            bottom: 100.h,
+            child: Padding(
+              padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -870,16 +906,12 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   ),
-                  SizedBox(height: 16.h),
-                  // Text container with white background
-                  Container(
+                  SizedBox(height: 10.h),
+                  // Text with transparent background (moved up)
+                  Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 20.w,
-                      vertical: 16.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
+                      vertical: 8.h,
                     ),
                     child: Text(
                       l10n.homeTutorialOverlayText,
@@ -887,7 +919,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                        color: Colors.white,
                         fontFamily: 'Amaranth',
                         height: 1.4,
                       ),
@@ -913,15 +945,38 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+/// Custom clipper to exclude card area from blur
+class _TutorialOverlayClipper extends CustomClipper<Path> {
+  final Rect cardRect;
+
+  _TutorialOverlayClipper({required this.cardRect});
+
+  @override
+  Path getClip(Size size) {
+    // Create a path covering the entire screen
+    final overlayPath = Path()
+      ..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
+
+    // Create a path for the card area (hole)
+    final cardPath = Path()
+      ..addRRect(RRect.fromRectAndRadius(cardRect, const Radius.circular(16)));
+
+    // Combine paths: overlay - card = overlay with hole
+    return Path.combine(PathOperation.difference, overlayPath, cardPath);
+  }
+
+  @override
+  bool shouldReclip(_TutorialOverlayClipper oldClipper) {
+    return oldClipper.cardRect != cardRect;
+  }
+}
+
 /// Custom painter for tutorial overlay that creates a "hole" for the card
 class _TutorialOverlayPainter extends CustomPainter {
   final Rect cardRect;
   final Color overlayColor;
 
-  _TutorialOverlayPainter({
-    required this.cardRect,
-    required this.overlayColor,
-  });
+  _TutorialOverlayPainter({required this.cardRect, required this.overlayColor});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -929,14 +984,9 @@ class _TutorialOverlayPainter extends CustomPainter {
     final overlayPath = Path()
       ..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
 
-    // Create a path for the card area (hole)
+    // Create a path for the card area (hole) - match card's border radius (16.r)
     final cardPath = Path()
-      ..addRRect(
-        RRect.fromRectAndRadius(
-          cardRect,
-          const Radius.circular(16),
-        ),
-      );
+      ..addRRect(RRect.fromRectAndRadius(cardRect, const Radius.circular(16)));
 
     // Combine paths: overlay - card = overlay with hole
     final combinedPath = Path.combine(
