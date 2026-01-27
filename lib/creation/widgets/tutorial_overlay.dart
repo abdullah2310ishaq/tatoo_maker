@@ -28,16 +28,24 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final mediaQuery = MediaQuery.of(context);
-    final screenSize = mediaQuery.size;
-    final safeAreaTop = mediaQuery.padding.top;
 
+    final RenderBox? overlayBox = context.findRenderObject() as RenderBox?;
     final RenderBox? cardBox =
         widget.highlightKey.currentContext?.findRenderObject() as RenderBox?;
-    final Offset? cardScreenPosition = cardBox?.localToGlobal(Offset.zero);
-    final Size? cardSize = cardBox?.size;
 
-    if (cardScreenPosition == null || cardSize == null) {
+    Offset? cardLocalPosition;
+    Size? cardSize;
+
+    if (overlayBox != null &&
+        overlayBox.hasSize &&
+        cardBox != null &&
+        cardBox.hasSize) {
+      final Offset cardGlobal = cardBox.localToGlobal(Offset.zero);
+      cardLocalPosition = overlayBox.globalToLocal(cardGlobal);
+      cardSize = cardBox.size;
+    }
+
+    if (cardLocalPosition == null || cardSize == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) setState(() {});
       });
@@ -48,21 +56,16 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
           filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
           child: Container(
             color: isDark
-                ? Colors.black.withOpacity(0.9)
-                : Colors.black.withOpacity(0.9),
+                ? Colors.black.withValues(alpha: 0.9)
+                : Colors.black.withValues(alpha: 0.9),
           ),
         ),
       );
     }
 
-    final cardPosition = Offset(
-      cardScreenPosition.dx,
-      cardScreenPosition.dy - safeAreaTop,
-    );
-
     final cardRect = Rect.fromLTWH(
-      cardPosition.dx,
-      cardPosition.dy - 34.h,
+      cardLocalPosition.dx,
+      cardLocalPosition.dy,
       cardSize.width,
       cardSize.height,
     );
@@ -80,17 +83,16 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
           ),
           Positioned.fill(
             child: CustomPaint(
-              size: screenSize,
               painter: TutorialOverlayPainter(
                 cardRect: cardRect,
                 overlayColor: isDark
-                    ? Colors.black.withOpacity(0.7)
-                    : Colors.black.withOpacity(0.5),
+                    ? Colors.black.withValues(alpha: 0.7)
+                    : Colors.black.withValues(alpha: 0.6),
               ),
             ),
           ),
           Positioned(
-            top: cardPosition.dy + cardSize.height - 38.h,
+            top: cardLocalPosition.dy + cardSize.height - 10.h,
             left: 0,
             right: 0,
             bottom: 100.h,
