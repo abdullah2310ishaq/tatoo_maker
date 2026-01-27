@@ -196,7 +196,7 @@
   "@virtualTryOnProcessingFailedTryAgain": {
     "description": "Virtual try-on: processing failed message"
   },
-  "promptLabel": "Prompt",
+  "promptLabel": "Descrizione",
   "@promptLabel": {
     "description": "Label for the prompt section in explore detail"
   },

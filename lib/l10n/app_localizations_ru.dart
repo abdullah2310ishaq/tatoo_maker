@@ -171,7 +171,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось обработать изображение. Попробуйте снова.';
 
   @override
-  String get promptLabel => 'Prompt';
+  String get promptLabel => 'Описание';
 
   @override
   String get tryThis => 'Попробовать Это';

@@ -7,16 +7,11 @@ class FlowerHeader extends StatelessWidget {
   final VoidCallback onBack;
   final bool isRTL;
 
-  const FlowerHeader({
-    super.key,
-    required this.onBack,
-    this.isRTL = false,
-  });
+  const FlowerHeader({super.key, required this.onBack, this.isRTL = false});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    // Always use English localization for this screen
     final l10n = AppLocalizations.of(context)!;
 
     return Padding(
@@ -24,29 +19,30 @@ class FlowerHeader extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Back button (positioned based on RTL)
+          // Back button (positioned based on RTL) - same as OnboardingHeader
           Align(
             alignment: isRTL ? Alignment.centerRight : Alignment.centerLeft,
-            child: GestureDetector(
-              onTap: onBack,
-              child: Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isDark
-                      ? AppColors.buttonBackground
-                      : AppColors.textGrey.withOpacity(0.1),
-                ),
-                child: Icon(
-                  isRTL ? Icons.arrow_forward : Icons.arrow_back,
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isDark
+                    ? AppColors.buttonBackground
+                    : AppColors.textGrey.withOpacity(0.1),
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
                   color: AppColors.titleGradientStart,
                   size: 24,
                 ),
+                onPressed: onBack,
+                padding: EdgeInsets.zero,
               ),
             ),
           ),
-          // "Enter Your Name" text (centered) - always in English
+          // "Enter Your Name" text (centered) - localized
           Text(
             l10n.flowerInputEnterYourName,
             style: TextStyle(

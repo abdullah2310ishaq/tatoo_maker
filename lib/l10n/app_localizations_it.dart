@@ -171,7 +171,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Impossibile elaborare l\'immagine. Riprova.';
 
   @override
-  String get promptLabel => 'Prompt';
+  String get promptLabel => 'Descrizione';
 
   @override
   String get tryThis => 'Prova Questo';

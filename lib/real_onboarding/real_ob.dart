@@ -80,7 +80,7 @@ class RealOnboardingScreen extends StatelessWidget {
               AppLocalizations.of(context)!.customCreation,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 42.sp,
+                fontSize: 40.sp,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
                 fontFamily: 'Amaranth',

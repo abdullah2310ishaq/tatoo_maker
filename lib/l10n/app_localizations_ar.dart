@@ -167,7 +167,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'تعذر معالجة الصورة. حاول مرة أخرى.';
 
   @override
-  String get promptLabel => 'Prompt';
+  String get promptLabel => 'الوصف';
 
   @override
   String get tryThis => 'جرب هذا';

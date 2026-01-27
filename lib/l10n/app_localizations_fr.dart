@@ -172,7 +172,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Impossible de traiter l\'image. Réessayez.';
 
   @override
-  String get promptLabel => 'Prompt';
+  String get promptLabel => 'Description';
 
   @override
   String get tryThis => 'Essayer Ceci';

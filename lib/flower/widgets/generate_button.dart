@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../l10n/app_localizations.dart';
 import '../flower_loading_screen.dart';
 
 /// Generate button widget
@@ -9,6 +10,7 @@ class GenerateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SizedBox(
@@ -30,9 +32,9 @@ class GenerateButton extends StatelessWidget {
             ),
             elevation: 4,
           ),
-          child: const Text(
-            'Generate', // Always English, not localized
-            style: TextStyle(
+          child: Text(
+            l10n.homeGenerate,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Colors.white,

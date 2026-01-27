@@ -156,7 +156,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get virtualTryOnProcessingFailedTryAgain => '无法处理图片。请重试。';
 
   @override
-  String get promptLabel => 'Prompt';
+  String get promptLabel => '描述';
 
   @override
   String get tryThis => '试试这个';

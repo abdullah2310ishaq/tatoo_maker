@@ -160,7 +160,7 @@ class AppLocalizationsKo extends AppLocalizations {
       '이미지를 처리할 수 없습니다. 다시 시도해 주세요.';
 
   @override
-  String get promptLabel => 'Prompt';
+  String get promptLabel => '설명';
 
   @override
   String get tryThis => '이것 시도하기';

@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -396,7 +397,7 @@ class _HomePageState extends State<HomePage> {
           l10n.homeTattooStyle,
           style: TextStyle(
             fontSize: 20.sp,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w300,
             color: textColor,
           ),
         ),
@@ -611,7 +612,7 @@ class _HomePageState extends State<HomePage> {
           l10n.homeExploreInspiration,
           style: TextStyle(
             fontSize: 20.sp,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w300,
             color: textColor,
           ),
         ),
@@ -769,6 +770,44 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildTutorialOverlay() {
     final l10n = AppLocalizations.of(context)!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    // Get the position of the Dream Ink card
+    final RenderBox? cardBox =
+        _dreamInkCardKey.currentContext?.findRenderObject() as RenderBox?;
+    final Offset? cardPosition = cardBox?.localToGlobal(Offset.zero);
+    final Size? cardSize = cardBox?.size;
+    final screenSize = MediaQuery.of(context).size;
+
+    if (cardPosition == null || cardSize == null) {
+      // Card not yet laid out, show simple overlay
+      return GestureDetector(
+        onTap: () async {
+          await _markTutorialAsShown();
+          if (mounted) {
+            setState(() {
+              _showTutorialOverlay = false;
+            });
+          }
+        },
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: Container(
+            color: isDark
+                ? Colors.black.withOpacity(0.7)
+                : Colors.black.withOpacity(0.5),
+          ),
+        ),
+      );
+    }
+
+    final cardRect = Rect.fromLTWH(
+      cardPosition.dx - 20.w,
+      cardPosition.dy,
+      cardSize.width + 40.w,
+      cardSize.height,
+    );
+
     return GestureDetector(
       onTap: () async {
         await _markTutorialAsShown();
@@ -778,62 +817,87 @@ class _HomePageState extends State<HomePage> {
           });
         }
       },
-      child: Container(
-        color: Colors.black.withOpacity(0.5),
-        child: Stack(
-          children: [
-            // Arrow and text in a bordered container positioned below the card
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.33,
-              left: 20.w,
-              right: 20.w,
+      child: Stack(
+        children: [
+          // Blurred background overlay with hole for card
+          ClipPath(
+            clipper: _TutorialOverlayClipper(cardRect: cardRect),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
               child: Container(
-                padding: EdgeInsets.all(20.w),
-                decoration: BoxDecoration(color: Colors.transparent),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Arrow pointing up
-                    FutureBuilder<bool>(
-                      future: _checkAssetExists('assets/arrow.svg'),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData && snapshot.data == true) {
-                          return SvgPicture.asset(
-                            'assets/arrow.svg',
-                            width: 60.w,
-                            height: 60.h,
-                            colorFilter: const ColorFilter.mode(
-                              AppColors.titleGradientStart,
-                              BlendMode.srcIn,
-                            ),
-                          );
-                        }
-                        return Icon(
-                          Icons.arrow_upward_rounded,
-                          size: 60.sp,
-                          color: AppColors.titleGradientStart,
+                color: Colors.transparent,
+              ),
+            ),
+          ),
+          // Semi-transparent overlay with hole for card
+          CustomPaint(
+            size: screenSize,
+            painter: _TutorialOverlayPainter(
+              cardRect: cardRect,
+              overlayColor: isDark
+                  ? Colors.black.withOpacity(0.7)
+                  : Colors.black.withOpacity(0.5),
+            ),
+          ),
+          // Arrow and text positioned below the card
+          Positioned(
+            top: cardPosition.dy + cardSize.height + 20.h,
+            left: 20.w,
+            right: 20.w,
+            child: IgnorePointer(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Arrow pointing up
+                  FutureBuilder<bool>(
+                    future: _checkAssetExists('assets/arrow.svg'),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData && snapshot.data == true) {
+                        return SvgPicture.asset(
+                          'assets/arrow.svg',
+                          width: 60.w,
+                          height: 60.h,
+                          colorFilter: const ColorFilter.mode(
+                            AppColors.titleGradientStart,
+                            BlendMode.srcIn,
+                          ),
                         );
-                      },
+                      }
+                      return Icon(
+                        Icons.arrow_upward_rounded,
+                        size: 60.sp,
+                        color: AppColors.titleGradientStart,
+                      );
+                    },
+                  ),
+                  SizedBox(height: 16.h),
+                  // Text container with white background
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 16.h,
                     ),
-                    SizedBox(height: 16.h),
-                    // Text
-                    Text(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Text(
                       l10n.homeTutorialOverlayText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontFamily: 'Amaranth',
                         height: 1.4,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -846,6 +910,50 @@ class _HomePageState extends State<HomePage> {
       // Handle error silently
       debugPrint('Error saving tutorial status: $e');
     }
+  }
+}
+
+/// Custom painter for tutorial overlay that creates a "hole" for the card
+class _TutorialOverlayPainter extends CustomPainter {
+  final Rect cardRect;
+  final Color overlayColor;
+
+  _TutorialOverlayPainter({
+    required this.cardRect,
+    required this.overlayColor,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Create a path covering the entire screen
+    final overlayPath = Path()
+      ..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
+
+    // Create a path for the card area (hole)
+    final cardPath = Path()
+      ..addRRect(
+        RRect.fromRectAndRadius(
+          cardRect,
+          const Radius.circular(16),
+        ),
+      );
+
+    // Combine paths: overlay - card = overlay with hole
+    final combinedPath = Path.combine(
+      PathOperation.difference,
+      overlayPath,
+      cardPath,
+    );
+
+    // Draw the overlay with the hole
+    final paint = Paint()..color = overlayColor;
+    canvas.drawPath(combinedPath, paint);
+  }
+
+  @override
+  bool shouldRepaint(_TutorialOverlayPainter oldDelegate) {
+    return oldDelegate.cardRect != cardRect ||
+        oldDelegate.overlayColor != overlayColor;
   }
 }
 

@@ -38,8 +38,12 @@ class AppColors {
   ); // Drawer dark background
   static const Color textWhite = Colors.white;
   static const Color textGrey = Color(0xFF8E8E8E);
-  static const Color textPrimary = Color(0xFF565656); // #565656 for text in both themes
-  static const Color lightCardBackground = Color(0xFFF5F5F5); // Light gray for cards in light theme
+  static const Color textPrimary = Color(
+    0xFF565656,
+  ); // #565656 for text in both themes
+  static const Color lightCardBackground = Color(
+    0xFFF5F5F5,
+  ); // Light gray for cards in light theme
 
   // Background gradient colors
   static const Color gradientTop = Color(0xFF353A40); // #353A40

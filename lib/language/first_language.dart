@@ -177,8 +177,8 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA6541D), // Burnt orange
-                      foregroundColor: Colors.white,
+                      backgroundColor: AppColors.lightPrimary,
+                      foregroundColor: AppColors.textWhite,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),
                       ),
@@ -216,18 +216,18 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
       borderRadius: BorderRadius.circular(12.r),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.lightBackground,
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(
             color: isSelected
-                ? const Color(0xFFA6541D) // Burnt orange
-                : Colors.grey[300]!,
+                ? AppColors.lightPrimary
+                : AppColors.textGrey.withOpacity(0.3),
             width: isSelected ? 2.w : 1.w,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: const Color(0xFFA6541D).withOpacity(0.2),
+                    color: AppColors.lightPrimary.withOpacity(0.2),
                     blurRadius: 8.r,
                     offset: Offset(0, 2.h),
                   ),
@@ -252,7 +252,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                           language['name'] as String,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.black54,
+                            color: AppColors.textPrimary.withOpacity(0.6),
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -268,7 +268,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                           language['name'] as String,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.black54,
+                            color: AppColors.textPrimary.withOpacity(0.6),
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -285,7 +285,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                         ? FontWeight.w600
                         : FontWeight.normal,
                     color: isSelected
-                        ? const Color(0xFFA6541D) // Burnt orange
+                        ? AppColors.lightPrimary
                         : AppColors.textPrimary,
                     fontFamily: 'Amaranth',
                   ),
@@ -295,7 +295,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
               if (isSelected)
                 Icon(
                   Icons.check_circle,
-                  color: const Color(0xFFA6541D), // Burnt orange
+                  color: AppColors.lightPrimary,
                   size: 20.sp,
                 ),
             ],

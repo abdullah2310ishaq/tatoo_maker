@@ -53,108 +53,120 @@ class _FlowerInputScreenState extends State<FlowerInputScreen> {
     final currentLocale = Localizations.localeOf(context);
     final isArabic = currentLocale.languageCode == 'ar';
 
-    // Force English locale for this screen when Arabic is selected
-    final locale = isArabic ? const Locale('en') : currentLocale;
-
-    return Localizations.override(
-      context: context,
-      locale: locale,
-      child: Scaffold(
-        backgroundColor: isDark
-            ? AppColors.darkBackground
-            : AppColors.lightBackground,
-        body: Container(
-          decoration: isDark
-              ? ThemeManager.darkModeBackgroundGradient
-              : ThemeManager.lightModeBackground,
-          child: SafeArea(
-            child: Column(
-              children: [
-                // Header
-                FlowerHeader(
-                  onBack: () => Navigator.of(context).pop(),
-                  isRTL: isArabic,
-                ),
-                SizedBox(height: 20.h),
-                // Name display - use ValueListenableBuilder to rebuild only this part
-                ValueListenableBuilder<TextEditingValue>(
-                  valueListenable: _nameController,
-                  builder: (context, value, child) {
-                    return NameDisplay(name: value.text);
-                  },
-                ),
-                // Conditional spacing and character boxes - rebuild only when text changes
-                ValueListenableBuilder<TextEditingValue>(
-                  valueListenable: _nameController,
-                  builder: (context, value, child) {
-                    final name = value.text;
-                    if (name.isEmpty) return const SizedBox.shrink();
-                    return SizedBox(height: 20.h);
-                  },
-                ),
-                // Scrollable area: Character boxes - rebuild only when text changes
-                Expanded(
-                  child: ValueListenableBuilder<TextEditingValue>(
-                    valueListenable: _nameController,
-                    builder: (context, value, child) {
-                      final name = value.text;
-                      if (name.isEmpty) return const SizedBox.shrink();
-                      return SingleChildScrollView(
-                        controller: _scrollController,
-                        physics: const BouncingScrollPhysics(),
-                        child: Column(
-                          children: [
-                            CharacterBoxesGrid(
-                              key: ValueKey(name), // Use key to optimize rebuilds
-                              name: name,
-                              isDark: isDark,
-                            ),
-                            SizedBox(height: 20.h),
-                          ],
+    return Scaffold(
+      backgroundColor: isDark
+          ? AppColors.darkBackground
+          : AppColors.lightBackground,
+      body: Container(
+        decoration: isDark
+            ? ThemeManager.darkModeBackgroundGradient
+            : ThemeManager.lightModeBackground,
+        child: SafeArea(
+          child: Column(
+            children: [
+              // Header - localized (can show Arabic)
+              FlowerHeader(
+                onBack: () => Navigator.of(context).pop(),
+                isRTL: isArabic,
+              ),
+              SizedBox(height: 20.h),
+              // Everything else forced to English locale
+              Expanded(
+                child: Localizations.override(
+                  context: context,
+                  locale: const Locale(
+                    'en',
+                  ), // Force English for name display, character boxes, and keyboard
+                  child: Column(
+                    children: [
+                      // Name display - use ValueListenableBuilder to rebuild only this part
+                      ValueListenableBuilder<TextEditingValue>(
+                        valueListenable: _nameController,
+                        builder: (context, value, child) {
+                          return NameDisplay(name: value.text);
+                        },
+                      ),
+                      // Conditional spacing and character boxes - rebuild only when text changes
+                      ValueListenableBuilder<TextEditingValue>(
+                        valueListenable: _nameController,
+                        builder: (context, value, child) {
+                          final name = value.text;
+                          if (name.isEmpty) return const SizedBox.shrink();
+                          return SizedBox(height: 20.h);
+                        },
+                      ),
+                      // Scrollable area: Character boxes - rebuild only when text changes
+                      Expanded(
+                        child: ValueListenableBuilder<TextEditingValue>(
+                          valueListenable: _nameController,
+                          builder: (context, value, child) {
+                            final name = value.text;
+                            if (name.isEmpty) return const SizedBox.shrink();
+                            return SingleChildScrollView(
+                              controller: _scrollController,
+                              physics: const BouncingScrollPhysics(),
+                              child: Column(
+                                children: [
+                                  CharacterBoxesGrid(
+                                    key: ValueKey(
+                                      name,
+                                    ), // Use key to optimize rebuilds
+                                    name: name,
+                                    isDark: isDark,
+                                  ),
+                                  SizedBox(height: 20.h),
+                                ],
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
+                      ),
+                      SizedBox(height: 20.h),
+                      // Custom keyboard - always English (hardcoded QWERTY layout)
+                      FlowerKeyboard(
+                        onKeyPressed: (letter) {
+                          final newText = _nameController.text + letter;
+                          _nameController.value = TextEditingValue(
+                            text: newText,
+                            selection: TextSelection.collapsed(
+                              offset: newText.length,
+                            ),
+                          );
+                        },
+                        onBackspace: () {
+                          if (_nameController.text.isNotEmpty) {
+                            final newText = _nameController.text.substring(
+                              0,
+                              _nameController.text.length - 1,
+                            );
+                            _nameController.value = TextEditingValue(
+                              text: newText,
+                              selection: TextSelection.collapsed(
+                                offset: newText.length,
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 20.h),
-                // Generate button - rebuild only when text changes
-                ValueListenableBuilder<TextEditingValue>(
-                  valueListenable: _nameController,
-                  builder: (context, value, child) {
-                    final name = value.text;
-                    if (name.isEmpty) return const SizedBox.shrink();
-                    return Column(
-                      children: [
-                        GenerateButton(name: name),
-                        SizedBox(height: 20.h),
-                      ],
-                    );
-                  },
-                ),
-                // Custom keyboard - no rebuild needed when text changes
-                FlowerKeyboard(
-                  onKeyPressed: (letter) {
-                    final newText = _nameController.text + letter;
-                    _nameController.value = TextEditingValue(
-                      text: newText,
-                      selection: TextSelection.collapsed(offset: newText.length),
-                    );
-                  },
-                  onBackspace: () {
-                    if (_nameController.text.isNotEmpty) {
-                      final newText = _nameController.text.substring(
-                        0,
-                        _nameController.text.length - 1,
-                      );
-                      _nameController.value = TextEditingValue(
-                        text: newText,
-                        selection: TextSelection.collapsed(offset: newText.length),
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
+              ),
+              // Generate button - localized (can show Arabic), outside English override
+              ValueListenableBuilder<TextEditingValue>(
+                valueListenable: _nameController,
+                builder: (context, value, child) {
+                  final name = value.text;
+                  if (name.isEmpty) return const SizedBox.shrink();
+                  return Column(
+                    children: [
+                      GenerateButton(name: name),
+                      SizedBox(height: 20.h),
+                    ],
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),

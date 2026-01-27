@@ -159,7 +159,7 @@ class AppLocalizationsJa extends AppLocalizations {
       '画像を処理できませんでした。もう一度お試しください。';
 
   @override
-  String get promptLabel => 'Prompt';
+  String get promptLabel => '説明';
 
   @override
   String get tryThis => 'これを試す';

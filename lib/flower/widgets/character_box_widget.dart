@@ -48,7 +48,7 @@ class CharacterBoxWidget extends StatelessWidget {
               child: Text(
                 letter,
                 style: TextStyle(
-                  color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                  color: AppColors.textWhite, // Always white for both themes
                   fontSize: boxSize * 0.5,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Amaranth',
