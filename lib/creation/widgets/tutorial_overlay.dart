@@ -48,8 +48,8 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
           filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
           child: Container(
             color: isDark
-                ? Colors.black.withOpacity(0.8)
-                : Colors.black.withOpacity(0.7),
+                ? Colors.black.withOpacity(0.9)
+                : Colors.black.withOpacity(0.9),
           ),
         ),
       );

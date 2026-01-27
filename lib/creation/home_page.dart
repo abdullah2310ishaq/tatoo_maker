@@ -15,8 +15,13 @@ import 'widgets/tutorial_overlay.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
+  final bool alwaysShowTutorialOverlay;
 
-  const HomePage({super.key, this.onMenuTap});
+  const HomePage({
+    super.key,
+    this.onMenuTap,
+    this.alwaysShowTutorialOverlay = false,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -45,6 +50,15 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _checkTutorialStatus() async {
     try {
+      if (widget.alwaysShowTutorialOverlay) {
+        if (mounted) {
+          setState(() {
+            _showTutorialOverlay = true;
+          });
+        }
+        return;
+      }
+
       final prefs = await SharedPreferences.getInstance();
       final tutorialShown = prefs.getBool('home_tutorial_shown') ?? false;
       if (kDebugMode) {

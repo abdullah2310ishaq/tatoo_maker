@@ -83,13 +83,13 @@ class _HomeShellState extends State<HomeShell> {
   Widget _buildCurrentPage(VoidCallback openDrawer) {
     switch (_selectedIndex) {
       case 0:
-        return HomePage(onMenuTap: openDrawer);
+        return HomePage(onMenuTap: openDrawer, alwaysShowTutorialOverlay: true);
       case 1:
         return TattooPage(onMenuTap: openDrawer);
       case 2:
         return FlowerHome(onMenuTap: openDrawer);
       default:
-        return HomePage(onMenuTap: openDrawer);
+        return HomePage(onMenuTap: openDrawer, alwaysShowTutorialOverlay: true);
     }
   }
 
