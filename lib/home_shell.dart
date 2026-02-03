@@ -71,7 +71,7 @@ class _HomeShellState extends State<HomeShell> {
                 child: _buildCurrentPage(openDrawer),
               ),
             ),
-            // Bottom area: hide when keyboard is open so they don't show with keyboard
+            // Static bottom area: fixed layout so navbar never moves when changing tabs
             if (!keyboardVisible)
               Positioned(
                 left: 0,
@@ -83,7 +83,10 @@ class _HomeShellState extends State<HomeShell> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      if (_selectedIndex == 0) _buildGenerateButtonSeparate(),
+                      if (_selectedIndex == 0)
+                        _buildGenerateButtonSeparate()
+                      else
+                        SizedBox(height: 66.h + 30.h),
                       _buildFloatingNavBar(),
                     ],
                   ),
@@ -210,8 +213,8 @@ class _HomeShellState extends State<HomeShell> {
 
     return Container(
       width: double.infinity,
-
       margin: EdgeInsets.only(bottom: 30.h),
+      padding: EdgeInsets.symmetric(horizontal: 5.w),
       child: GestureDetector(
         onTap: enabled ? _onGenerateTap : null,
         child: Container(
