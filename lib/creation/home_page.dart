@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,12 +17,19 @@ import 'widgets/tutorial_overlay.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
+  final VoidCallback? onHistoryTap;
   final bool alwaysShowTutorialOverlay;
+
+  /// Notifies the shell when generate state changes (enabled + tap callback for navbar).
+  final void Function(bool enabled, VoidCallback onGenerateTap)?
+  onRegisterGenerateAction;
 
   const HomePage({
     super.key,
     this.onMenuTap,
+    this.onHistoryTap,
     this.alwaysShowTutorialOverlay = false,
+    this.onRegisterGenerateAction,
   });
 
   @override
@@ -141,8 +150,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
-    // Add padding for floating navbar (navbar height ~80px + bottom padding + extra spacing for visibility)
-    final navbarHeight = 80.h + bottomPadding + 20.h;
+    // Defer so we don't call setState on parent during build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      widget.onRegisterGenerateAction?.call(_canGenerate, _onGenerateTap);
+    });
+    // Bottom area: separate Generate button (56 + 8 margin) + navbar + safe area
+    final bottomAreaHeight = 56.h + 8.h + 88.h + bottomPadding + 20.h;
 
     return SafeArea(
       child: Stack(
@@ -155,14 +169,18 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.only(
                 left: 20.w,
                 right: 20.w,
-                bottom: navbarHeight, // Ensure content scrolls above navbar
+                bottom: bottomAreaHeight, // Clear Generate button + navbar
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.h),
                   // Header: menu + InkVision + notification (single line)
-                  HomeHeader(isDark: isDark, onMenuTap: widget.onMenuTap),
+                  HomeHeader(
+                    isDark: isDark,
+                    onMenuTap: widget.onMenuTap,
+                    onHistoryTap: widget.onHistoryTap,
+                  ),
                   SizedBox(height: 30.h),
                   // Describe Your Dream Ink card
                   DreamInkCard(
@@ -171,15 +189,14 @@ class _HomePageState extends State<HomePage> {
                     maxCharacters: _maxCharacters,
                     onChanged: (_) => setState(() {}),
                     checkAssetExists: _checkAssetExists,
+                    onInspirationTap: _onInspirationTap,
                   ),
                   SizedBox(height: 32.h),
-                  // Tattoo style selector section (includes Generate button)
+                  // Tattoo style selector section (Generate is in bottom navbar)
                   TattooStyleSection(
                     styles: _styles,
                     selectedIndex: _selectedStyleIndex,
                     onStyleTap: _onStyleTap,
-                    onGenerateTap: _onGenerateTap,
-                    generateEnabled: _canGenerate,
                   ),
                   SizedBox(height: 32.h),
                   // Explore Inspiration section
@@ -207,6 +224,13 @@ class _HomePageState extends State<HomePage> {
 
   bool get _canGenerate =>
       _selectedStyleIndex != null && _dreamInkController.text.trim().isNotEmpty;
+
+  void _onInspirationTap() {
+    final styles = _styles;
+    if (styles.isEmpty) return;
+    final randomIndex = Random().nextInt(styles.length);
+    _onStyleTap(randomIndex);
+  }
 
   void _onStyleTap(int index) {
     final l10n = AppLocalizations.of(context)!;

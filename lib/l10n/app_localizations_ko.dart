@@ -55,6 +55,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get cancel => '취소';
 
   @override
+  String get history => 'History';
+
+  @override
+  String get noHistoryYet => 'No history yet';
+
+  @override
   String get openSettings => '설정 열기';
 
   @override
@@ -136,6 +142,12 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get capturePhoto => '사진 촬영';
+
+  @override
+  String get choosePhotoSource => 'Choose photo source';
+
+  @override
+  String get chooseFromGallery => 'Choose from gallery';
 
   @override
   String get apply => '적용';

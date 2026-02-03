@@ -55,6 +55,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get cancel => 'キャンセル';
 
   @override
+  String get history => 'History';
+
+  @override
+  String get noHistoryYet => 'No history yet';
+
+  @override
   String get openSettings => '設定を開く';
 
   @override
@@ -135,6 +141,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get capturePhoto => '写真を撮る';
+
+  @override
+  String get choosePhotoSource => 'Choose photo source';
+
+  @override
+  String get chooseFromGallery => 'Choose from gallery';
 
   @override
   String get apply => '適用';

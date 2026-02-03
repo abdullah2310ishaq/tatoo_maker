@@ -35,31 +35,19 @@ class ResultViewWidget extends StatefulWidget {
 }
 
 class _ResultViewWidgetState extends State<ResultViewWidget> {
-  // Gesture tracking variables for smooth interaction
-  double _lastScale = 1.0;
-  double _lastRotation = 0.0;
-  Offset _lastFocalPoint = Offset.zero;
-  Offset _lastPosition = Offset.zero;
   final GlobalKey _bodyImageKey = GlobalKey();
-
-  @override
-  void initState() {
-    super.initState();
-    _lastPosition = widget.tattooPosition;
-  }
+  // Pan (single finger): anchor so drag is 1:1 with finger
+  Offset? _panStartPosition;
+  Offset? _panStartLocal;
+  // Scale (two fingers): cumulative from gesture start
+  double _scaleStart = 1.0;
+  double _rotationStart = 0.0;
+  Offset _focalStart = Offset.zero;
+  Offset _positionStart = Offset.zero;
 
   @override
   void didUpdateWidget(ResultViewWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.tattooPosition != widget.tattooPosition) {
-      _lastPosition = widget.tattooPosition;
-    }
-    if (oldWidget.tattooScale != widget.tattooScale) {
-      _lastScale = widget.tattooScale;
-    }
-    if (oldWidget.tattooRotation != widget.tattooRotation) {
-      _lastRotation = widget.tattooRotation;
-    }
   }
 
   @override
@@ -67,7 +55,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
     if (widget.isProcessing) {
       final l10n = AppLocalizations.of(context)!;
       return Container(
-        color: Colors.black54,
+        color: AppColors.gradientBlack.withValues(alpha: 0.5),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -76,8 +64,8 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
               const SizedBox(height: 16),
               Text(
                 l10n.virtualTryOnProcessingTitle,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: AppColors.textWhite,
                   fontSize: 16,
                   fontFamily: 'Amaranth',
                 ),
@@ -85,8 +73,8 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
               const SizedBox(height: 8),
               Text(
                 l10n.virtualTryOnProcessingSubtitle,
-                style: const TextStyle(
-                  color: Colors.white70,
+                style: TextStyle(
+                  color: AppColors.textWhite.withValues(alpha: 0.7),
                   fontSize: 14,
                   fontFamily: 'Amaranth',
                 ),
@@ -110,87 +98,60 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
       );
     }
 
-    // Show preview with tattoo overlay (before processing) - smooth gesture handling
+    // Use only scale gesture: 1 finger = pan (position), 2+ fingers = scale + rotate
+    const double baseTattooSize = 200.0;
+
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onScaleStart: (details) {
-        _lastScale = widget.tattooScale;
-        _lastRotation = widget.tattooRotation;
-        _lastFocalPoint = details.focalPoint;
-        _lastPosition = widget.tattooPosition;
+        if (details.pointerCount == 1) {
+          _panStartPosition = widget.tattooPosition;
+          _panStartLocal = details.focalPoint;
+        } else if (details.pointerCount >= 2) {
+          _scaleStart = widget.tattooScale;
+          _rotationStart = widget.tattooRotation;
+          _focalStart = details.focalPoint;
+          _positionStart = widget.tattooPosition;
+        }
       },
       onScaleUpdate: (details) {
-        // Calculate new values with more direct, less "floaty" response
-        
-        double newScale = _lastScale * details.scale;
-        double newRotation = _lastRotation + details.rotation;
-
-        // Use incremental focal point delta for snappier dragging.
-        final Offset focalDelta = details.focalPoint - _lastFocalPoint;
-        Offset newPosition = _lastPosition + focalDelta;
-        _lastFocalPoint = details.focalPoint;
-
-        // Clamp scale to reasonable bounds
-        newScale = newScale.clamp(0.5, 3.0);
-
-        // Clamp tattoo position so it stays within the body image bounds
-        final RenderBox? stackBox = context.findRenderObject() as RenderBox?;
-        final RenderBox? imageBox =
-            _bodyImageKey.currentContext?.findRenderObject() as RenderBox?;
-
-        if (stackBox != null &&
-            stackBox.hasSize &&
-            imageBox != null &&
-            imageBox.hasSize) {
-          final Offset imageTopLeftInStack = stackBox.globalToLocal(
-            imageBox.localToGlobal(Offset.zero),
+        if (details.pointerCount == 1) {
+          if (_panStartPosition == null || _panStartLocal == null) return;
+          Offset newPosition =
+              _panStartPosition! + (details.focalPoint - _panStartLocal!);
+          newPosition = _clampPositionToImage(
+            context,
+            newPosition,
+            widget.tattooScale,
+            baseTattooSize,
           );
-          final Size imageSize = imageBox.size;
-          final Rect imageRect = imageTopLeftInStack & imageSize;
-
-          // Approximate tattoo size as a square scaled from base size.
-          const double baseTattooSize = 200;
-          final double tattooSide = baseTattooSize * newScale;
-          final Size tattooSize = Size(tattooSide, tattooSide);
-
-          final double minX = imageRect.left;
-          final double maxX = imageRect.right - tattooSize.width;
-          final double minY = imageRect.top;
-          final double maxY = imageRect.bottom - tattooSize.height;
-
-          double clampedDx = newPosition.dx;
-          double clampedDy = newPosition.dy;
-
-          if (maxX >= minX) {
-            clampedDx = clampedDx.clamp(minX, maxX);
-          } else {
-            // Tattoo wider than image: keep horizontally centered over image.
-            clampedDx = imageRect.left +
-                (imageRect.width - tattooSize.width) / 2.0;
-          }
-
-          if (maxY >= minY) {
-            clampedDy = clampedDy.clamp(minY, maxY);
-          } else {
-            // Tattoo taller than image: keep vertically centered over image.
-            clampedDy = imageRect.top +
-                (imageRect.height - tattooSize.height) / 2.0;
-          }
-
-          newPosition = Offset(clampedDx, clampedDy);
+          widget.onTattooTransform(
+            newPosition,
+            widget.tattooScale,
+            widget.tattooRotation,
+          );
+        } else if (details.pointerCount >= 2) {
+          double newScale = (_scaleStart * details.scale).clamp(0.25, 3.0);
+          double newRotation = _rotationStart + details.rotation;
+          Offset newPosition =
+              _positionStart + (details.focalPoint - _focalStart);
+          newPosition = _clampPositionToImage(
+            context,
+            newPosition,
+            newScale,
+            baseTattooSize,
+          );
+          widget.onTattooTransform(newPosition, newScale, newRotation);
         }
-
-        // Update immediately for smooth interaction
-        widget.onTattooTransform(newPosition, newScale, newRotation);
       },
-      onScaleEnd: (details) {
-        // Reset tracking on gesture end
-        _lastScale = widget.tattooScale;
-        _lastRotation = widget.tattooRotation;
-        _lastPosition = widget.tattooPosition;
+      onScaleEnd: (_) {
+        _panStartPosition = null;
+        _panStartLocal = null;
       },
       child: RepaintBoundary(
         key: widget.previewRepaintKey,
         child: Stack(
+          clipBehavior: Clip.none,
           children: [
             // Body part image
             Center(
@@ -200,7 +161,6 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
                 fit: BoxFit.contain,
               ),
             ),
-            // Tattoo overlay (draggable) - smooth gesture handling
             if (widget.tattooImageBytes != null)
               Positioned(
                 left: widget.tattooPosition.dx,
@@ -211,8 +171,8 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
                     angle: widget.tattooRotation,
                     child: Image.memory(
                       widget.tattooImageBytes!,
-                      width: 200,
-                      height: 200,
+                      width: baseTattooSize,
+                      height: baseTattooSize,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -222,5 +182,16 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
         ),
       ),
     );
+  }
+
+  /// Allow full range so tattoo reaches all edges (left, right, top, bottom). No clamping.
+  Offset _clampPositionToImage(
+    BuildContext context,
+    Offset position,
+    double scale,
+    double baseTattooSize,
+  ) {
+    // Don't clamp: let position go anywhere so left/right/top/bottom all work.
+    return position;
   }
 }

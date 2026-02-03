@@ -1,43 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../l10n/app_localizations.dart';
+import '../../utils/colors.dart';
 import '../flower_loading_screen.dart';
 
-/// Generate button widget
+/// Generate button widget. Disabled when [enabled] is false (e.g. empty name).
 class GenerateButton extends StatelessWidget {
   final String name;
+  final bool enabled;
 
-  const GenerateButton({super.key, required this.name});
+  const GenerateButton({super.key, required this.name, this.enabled = true});
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: SizedBox(
         width: double.infinity,
-        height: 56,
+        height: 56.h,
         child: ElevatedButton(
-          onPressed: () {
-            // Navigate to loading screen which will generate and show result
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => FlowerLoadingScreen(name: name),
-              ),
-            );
-          },
+          onPressed: enabled && name.isNotEmpty
+              ? () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FlowerLoadingScreen(name: name),
+                    ),
+                  );
+                }
+              : null,
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFA6541D), // Burnt orange
+            backgroundColor: enabled
+                ? const Color(0xFFA6541D) // Burnt orange
+                : AppColors.textGrey.withValues(alpha: 0.4),
+            disabledBackgroundColor: AppColors.textGrey.withValues(alpha: 0.4),
+            foregroundColor: AppColors.textWhite,
+            disabledForegroundColor: AppColors.textGrey,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
             ),
-            elevation: 4,
+            elevation: enabled ? 4 : 0,
           ),
           child: Text(
             l10n.homeGenerate,
-            style: const TextStyle(
-              fontSize: 18,
+            style: TextStyle(
+              fontSize: 18.sp,
               fontWeight: FontWeight.w600,
-              color: Colors.white,
               fontFamily: 'Amaranth',
             ),
           ),

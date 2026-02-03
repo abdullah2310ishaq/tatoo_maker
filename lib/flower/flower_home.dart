@@ -9,8 +9,9 @@ import 'flower_input_screen.dart';
 
 class FlowerHome extends StatelessWidget {
   final VoidCallback? onMenuTap;
+  final VoidCallback? onHistoryTap;
 
-  const FlowerHome({super.key, this.onMenuTap});
+  const FlowerHome({super.key, this.onMenuTap, this.onHistoryTap});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +102,7 @@ class FlowerHome extends StatelessWidget {
             ],
           ),
         ),
-        // Notification button
+        // History button
         Container(
           width: 48.w,
           height: 48.h,
@@ -110,18 +111,8 @@ class FlowerHome extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.r),
           ),
           child: IconButton(
-            icon: SvgPicture.asset(
-              'assets/two.svg',
-              width: 24.w,
-              height: 24.h,
-              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-              placeholderBuilder: (context) => Icon(
-                Icons.notifications_outlined,
-                color: iconColor,
-                size: 24.sp,
-              ),
-            ),
-            onPressed: () {},
+            icon: Icon(Icons.history, color: iconColor, size: 24.sp),
+            onPressed: onHistoryTap,
           ),
         ),
       ],

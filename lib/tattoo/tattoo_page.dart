@@ -9,8 +9,9 @@ import 'onboarding_flow.dart';
 
 class TattooPage extends StatelessWidget {
   final VoidCallback? onMenuTap;
+  final VoidCallback? onHistoryTap;
 
-  const TattooPage({super.key, this.onMenuTap});
+  const TattooPage({super.key, this.onMenuTap, this.onHistoryTap});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +102,7 @@ class TattooPage extends StatelessWidget {
             ],
           ),
         ),
-        // Notification button
+        // History button
         Container(
           width: 48.w,
           height: 48.h,
@@ -110,18 +111,8 @@ class TattooPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.r),
           ),
           child: IconButton(
-            icon: SvgPicture.asset(
-              'assets/two.svg',
-              width: 24.w,
-              height: 24.h,
-              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-              placeholderBuilder: (context) => Icon(
-                Icons.notifications_outlined,
-                color: iconColor,
-                size: 24.sp,
-              ),
-            ),
-            onPressed: () {},
+            icon: Icon(Icons.history, color: iconColor, size: 24.sp),
+            onPressed: onHistoryTap,
           ),
         ),
       ],

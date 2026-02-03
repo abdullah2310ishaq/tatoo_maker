@@ -57,6 +57,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cancel => 'إلغاء';
 
   @override
+  String get history => 'History';
+
+  @override
+  String get noHistoryYet => 'No history yet';
+
+  @override
   String get openSettings => 'فتح الإعدادات';
 
   @override
@@ -141,6 +147,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get capturePhoto => 'التقاط صورة';
+
+  @override
+  String get choosePhotoSource => 'Choose photo source';
+
+  @override
+  String get chooseFromGallery => 'Choose from gallery';
 
   @override
   String get apply => 'تطبيق';

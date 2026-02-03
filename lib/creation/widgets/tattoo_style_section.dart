@@ -10,16 +10,12 @@ class TattooStyleSection extends StatelessWidget {
   final List<TattooStyleItem> styles;
   final int? selectedIndex;
   final ValueChanged<int> onStyleTap;
-  final VoidCallback onGenerateTap;
-  final bool generateEnabled;
 
   const TattooStyleSection({
     super.key,
     required this.styles,
     required this.selectedIndex,
     required this.onStyleTap,
-    required this.onGenerateTap,
-    required this.generateEnabled,
   });
 
   @override
@@ -46,7 +42,7 @@ class TattooStyleSection extends StatelessWidget {
             key: ValueKey(ThemeProvider.of(context)?.isDarkTheme ?? false),
             scrollDirection: Axis.horizontal,
             itemCount: styles.length,
-            separatorBuilder: (_, __) => SizedBox(width: 16.w),
+            separatorBuilder: (_, __) => SizedBox(width: 2.w),
             itemBuilder: (context, index) {
               final item = styles[index];
               final bool isSelected = selectedIndex == index;
@@ -58,8 +54,6 @@ class TattooStyleSection extends StatelessWidget {
             },
           ),
         ),
-        SizedBox(height: 24.h),
-        _GenerateButton(enabled: generateEnabled, onTap: onGenerateTap),
       ],
     );
   }
@@ -106,106 +100,69 @@ class _StyleCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
 
-    final double width = isSelected ? 150.w : 130.w;
-    final Color borderColor =
-        isSelected ? AppColors.navBarActive : AppColors.cardGradientEnd;
-    final cardBgColor =
-        isDark ? const Color(0xFF151411) : AppColors.lightCardBackground;
+    final double width = isSelected ? 118.w : 102.w;
+    final Color borderColor = isSelected
+        ? AppColors.navBarActive
+        : AppColors.cardGradientEnd;
+    final cardBgColor = isDark
+        ? const Color(0xFF151411)
+        : AppColors.lightCardBackground;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final localizedLabel = _localizedLabel(item.label, l10n);
 
-    return AnimatedContainer(
+    return AnimatedScale(
+      scale: isSelected ? 1.0 : 0.96,
       duration: const Duration(milliseconds: 200),
-      width: width,
-      decoration: BoxDecoration(
-        color: cardBgColor,
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: borderColor, width: 1.4.w),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16.r),
-        onTap: onTap,
-        child: Padding(
-          padding: EdgeInsets.all(12.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12.r),
-                  child: Image.asset(item.assetPath, fit: BoxFit.contain),
-                ),
-              ),
-              SizedBox(height: 12.h),
-              Flexible(
-                child: Text(
-                  localizedLabel,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: textColor,
-                  ),
-                  softWrap: true,
-                  overflow: TextOverflow.visible,
-                  maxLines: null,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _GenerateButton extends StatelessWidget {
-  final bool enabled;
-  final VoidCallback onTap;
-
-  const _GenerateButton({required this.enabled, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
-    return GestureDetector(
-      onTap: enabled ? onTap : null,
-      child: Container(
-        width: double.infinity,
-        height: 56.h,
+      curve: Curves.easeOut,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: width,
         decoration: BoxDecoration(
-          color: enabled
-              ? const Color(0xFFA6541D) // Burnt orange when enabled
-              : const Color(0xFF2A2A2A), // Dark grey when disabled
-          borderRadius: BorderRadius.circular(12.r),
-          boxShadow: enabled
+          color: cardBgColor,
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(color: borderColor, width: 1.4.w),
+          boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: const Color(0xFFA6541D).withOpacity(0.3),
-                    blurRadius: 8.r,
+                    color: AppColors.navBarActive.withValues(alpha: 0.35),
+                    blurRadius: 12.r,
+                    spreadRadius: 1,
                     offset: Offset(0, 4.h),
                   ),
                 ]
               : null,
         ),
-        child: Center(
-          child: Text(
-            l10n.homeGenerate,
-            style: TextStyle(
-              fontSize: 25.sp,
-              fontWeight: FontWeight.w600,
-              color: enabled ? Colors.white : AppColors.textGrey,
-              fontFamily: 'Amaranth',
-              shadows: enabled
-                  ? [
-                      Shadow(
-                        color: Colors.black.withOpacity(0.3),
-                        offset: Offset(0, 2.h),
-                        blurRadius: 4.r,
-                      ),
-                    ]
-                  : null,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16.r),
+          onTap: onTap,
+          child: Padding(
+            padding: EdgeInsets.all(8.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Center(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: Image.asset(item.assetPath, fit: BoxFit.contain),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  localizedLabel,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                    color: textColor,
+                  ),
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ],
             ),
           ),
         ),
@@ -213,4 +170,3 @@ class _GenerateButton extends StatelessWidget {
     );
   }
 }
-

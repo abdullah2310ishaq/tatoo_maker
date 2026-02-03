@@ -206,6 +206,18 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// History page title and header button
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// Empty state when no history items
+  ///
+  /// In en, this message translates to:
+  /// **'No history yet'**
+  String get noHistoryYet;
+
   /// Dialog/CTA: Open Settings
   ///
   /// In en, this message translates to:
@@ -367,6 +379,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Capture Photo'**
   String get capturePhoto;
+
+  /// Virtual try-on: dialog title for camera vs gallery
+  ///
+  /// In en, this message translates to:
+  /// **'Choose photo source'**
+  String get choosePhotoSource;
+
+  /// Virtual try-on: pick image from gallery option
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get chooseFromGallery;
 
   /// Virtual try-on: apply button label
   ///

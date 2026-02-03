@@ -121,48 +121,51 @@ class _FlowerInputScreenState extends State<FlowerInputScreen> {
                           },
                         ),
                       ),
-                      SizedBox(height: 20.h),
-                      // Custom keyboard - always English (hardcoded QWERTY layout)
-                      FlowerKeyboard(
-                        onKeyPressed: (letter) {
-                          final newText = _nameController.text + letter;
-                          _nameController.value = TextEditingValue(
-                            text: newText,
-                            selection: TextSelection.collapsed(
-                              offset: newText.length,
-                            ),
-                          );
-                        },
-                        onBackspace: () {
-                          if (_nameController.text.isNotEmpty) {
-                            final newText = _nameController.text.substring(
-                              0,
-                              _nameController.text.length - 1,
-                            );
+                      SizedBox(height: 12.h),
+                      // Custom keyboard - always English (hardcoded QWERTY layout), pushed up a bit
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 16.h),
+                        child: FlowerKeyboard(
+                          onKeyPressed: (letter) {
+                            final newText = _nameController.text + letter;
                             _nameController.value = TextEditingValue(
                               text: newText,
                               selection: TextSelection.collapsed(
                                 offset: newText.length,
                               ),
                             );
-                          }
-                        },
+                          },
+                          onBackspace: () {
+                            if (_nameController.text.isNotEmpty) {
+                              final newText = _nameController.text.substring(
+                                0,
+                                _nameController.text.length - 1,
+                              );
+                              _nameController.value = TextEditingValue(
+                                text: newText,
+                                selection: TextSelection.collapsed(
+                                  offset: newText.length,
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              // Generate button - localized (can show Arabic), outside English override
+              // Generate button - always visible, disabled when empty
               ValueListenableBuilder<TextEditingValue>(
                 valueListenable: _nameController,
                 builder: (context, value, child) {
                   final name = value.text;
-                  if (name.isEmpty) return const SizedBox.shrink();
-                  return Column(
-                    children: [
-                      GenerateButton(name: name),
-                      SizedBox(height: 20.h),
-                    ],
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: 20.h),
+                    child: GenerateButton(
+                      name: name,
+                      enabled: name.trim().isNotEmpty,
+                    ),
                   );
                 },
               ),

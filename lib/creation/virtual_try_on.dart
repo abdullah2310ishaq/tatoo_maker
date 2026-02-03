@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gal/gal.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
@@ -84,11 +85,48 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     );
   }
 
+  void _showPhotoSourceDialog() {
+    final l10n = AppLocalizations.of(context)!;
+    showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.choosePhotoSource),
+        contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: Text(l10n.capturePhoto),
+              onTap: () {
+                Navigator.of(context).pop();
+                _openCamera();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text(l10n.chooseFromGallery),
+              onTap: () {
+                Navigator.of(context).pop();
+                _pickFromGallery();
+              },
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.cancel),
+          ),
+        ],
+      ),
+    );
+  }
+
   Future<void> _openCamera() async {
     await _requestPermissions();
     if (!mounted) return;
 
-    // Camera screen is now self-contained - no need to pass controller
     final confirmedImage = await Navigator.push<File>(
       context,
       MaterialPageRoute(builder: (context) => const CameraPreviewScreen()),
@@ -104,6 +142,27 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
         _tattooRotation = 0.0;
       });
     }
+  }
+
+  Future<void> _pickFromGallery() async {
+    await _requestPermissions();
+    if (!mounted) return;
+
+    final picker = ImagePicker();
+    final xFile = await picker.pickImage(source: ImageSource.gallery);
+    if (!mounted) return;
+    if (xFile == null) return;
+
+    final file = File(xFile.path);
+    if (!file.existsSync()) return;
+
+    setState(() {
+      _bodyPartImage = file;
+      _processedTryOnBytes = null;
+      _tattooPosition = const Offset(200, 300);
+      _tattooScale = 1.0;
+      _tattooRotation = 0.0;
+    });
   }
 
   /// Automatically process image: combine body image + tattoo overlay and send to API
@@ -271,7 +330,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
                       isProcessing: _isProcessing,
                       isSaving: _isSaving,
                       processedTryOnBytes: _processedTryOnBytes,
-                      onCapturePhoto: _openCamera,
+                      onCapturePhoto: _showPhotoSourceDialog,
                       onApply: () async {
                         if (_bodyPartImage == null) {
                           return;

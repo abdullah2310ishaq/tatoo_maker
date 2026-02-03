@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'utils/colors.dart';
 import 'creation/home_page.dart';
+import 'history/history_page.dart';
 import 'tattoo/tattoo_page.dart';
 import 'flower/flower_home.dart';
 import 'widgets/app_drawer.dart';
@@ -20,6 +22,8 @@ class HomeShell extends StatefulWidget {
 class _HomeShellState extends State<HomeShell> {
   int _selectedIndex = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _generateEnabled = false;
+  VoidCallback? _onGenerateTap;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -33,9 +37,9 @@ class _HomeShellState extends State<HomeShell> {
 
   @override
   Widget build(BuildContext context) {
-    final bottomPadding = MediaQuery.of(context).padding.bottom;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final themeProvider = ThemeProvider.of(context);
+    final keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
 
     return PopScope(
       canPop: false,
@@ -67,13 +71,24 @@ class _HomeShellState extends State<HomeShell> {
                 child: _buildCurrentPage(openDrawer),
               ),
             ),
-            // Floating bottom navigation bar - positioned above safe area
-            Positioned(
-              left: 20,
-              right: 20,
-              bottom: bottomPadding > 0 ? bottomPadding + 10 : 20,
-              child: _buildFloatingNavBar(),
-            ),
+            // Bottom area: hide when keyboard is open so they don't show with keyboard
+            if (!keyboardVisible)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: SafeArea(
+                  top: false,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (_selectedIndex == 0) _buildGenerateButtonSeparate(),
+                      _buildFloatingNavBar(),
+                    ],
+                  ),
+                ),
+              ),
           ],
         ),
       ),
@@ -83,13 +98,55 @@ class _HomeShellState extends State<HomeShell> {
   Widget _buildCurrentPage(VoidCallback openDrawer) {
     switch (_selectedIndex) {
       case 0:
-        return HomePage(onMenuTap: openDrawer);
+        return HomePage(
+          onMenuTap: openDrawer,
+          onHistoryTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => HistoryPage(tabIndex: _selectedIndex),
+              ),
+            );
+          },
+          onRegisterGenerateAction: (enabled, onTap) {
+            _onGenerateTap = onTap;
+            if (_generateEnabled != enabled) {
+              setState(() => _generateEnabled = enabled);
+            }
+          },
+        );
       case 1:
-        return TattooPage(onMenuTap: openDrawer);
+        return TattooPage(
+          onMenuTap: openDrawer,
+          onHistoryTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => HistoryPage(tabIndex: _selectedIndex),
+              ),
+            );
+          },
+        );
       case 2:
-        return FlowerHome(onMenuTap: openDrawer);
+        return FlowerHome(
+          onMenuTap: openDrawer,
+          onHistoryTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => HistoryPage(tabIndex: _selectedIndex),
+              ),
+            );
+          },
+        );
       default:
-        return HomePage(onMenuTap: openDrawer);
+        return HomePage(
+          onMenuTap: openDrawer,
+          onHistoryTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => HistoryPage(tabIndex: _selectedIndex),
+              ),
+            );
+          },
+        );
     }
   }
 
@@ -101,9 +158,10 @@ class _HomeShellState extends State<HomeShell> {
         : AppColors.lightBackground;
 
     return Container(
+      margin: EdgeInsets.only(top: 8.h),
       decoration: BoxDecoration(
         color: navBarBgColor,
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
         border: isDark
             ? null
             : Border.all(
@@ -119,7 +177,7 @@ class _HomeShellState extends State<HomeShell> {
           ),
         ],
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -143,6 +201,58 @@ class _HomeShellState extends State<HomeShell> {
     );
   }
 
+  /// Generate button above the navbar (Creation tab only) — original pill style.
+  Widget _buildGenerateButtonSeparate() {
+    final l10n = AppLocalizations.of(context)!;
+    final enabled = _generateEnabled && _onGenerateTap != null;
+    const Color enabledColor = Color(0xFFA6541D); // Burnt orange (original)
+    const Color disabledColor = Color(0xFF2A2A2A);
+
+    return Container(
+      width: double.infinity,
+
+      margin: EdgeInsets.only(bottom: 30.h),
+      child: GestureDetector(
+        onTap: enabled ? _onGenerateTap : null,
+        child: Container(
+          height: 66.h,
+          decoration: BoxDecoration(
+            color: enabled ? enabledColor : disabledColor,
+            borderRadius: BorderRadius.circular(12.r),
+            boxShadow: enabled
+                ? [
+                    BoxShadow(
+                      color: enabledColor.withValues(alpha: 0.3),
+                      blurRadius: 8.r,
+                      offset: Offset(0, 4.h),
+                    ),
+                  ]
+                : null,
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            l10n.homeGenerate,
+            style: TextStyle(
+              fontSize: 25.sp,
+              fontWeight: FontWeight.w600,
+              color: enabled ? AppColors.textWhite : AppColors.textGrey,
+              fontFamily: 'Amaranth',
+              shadows: enabled
+                  ? [
+                      Shadow(
+                        color: AppColors.gradientBlack.withValues(alpha: 0.3),
+                        offset: Offset(0, 2.h),
+                        blurRadius: 4.r,
+                      ),
+                    ]
+                  : null,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildNavItem({
     required String iconPath,
     required String label,
@@ -161,18 +271,18 @@ class _HomeShellState extends State<HomeShell> {
         onTap: () => _onItemTapped(index),
         behavior: HitTestBehavior.opaque,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+          padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 12.w),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildSvgIcon(iconPath, itemColor, index),
-              const SizedBox(height: 4),
+              SizedBox(height: 2.h),
               Text(
                 label,
                 style: TextStyle(
                   color: itemColor,
-                  fontSize: 12,
+                  fontSize: 11.sp,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                 ),
               ),
@@ -190,14 +300,14 @@ class _HomeShellState extends State<HomeShell> {
         if (snapshot.hasData && snapshot.data == true) {
           return SvgPicture.asset(
             iconPath,
-            width: 24,
-            height: 27,
+            width: 26.w,
+            height: 36.h,
             colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             placeholderBuilder: (context) =>
-                Icon(_getIconData(index), size: 24, color: color),
+                Icon(_getIconData(index), size: 22, color: color),
           );
         }
-        return Icon(_getIconData(index), size: 24, color: color);
+        return Icon(_getIconData(index), size: 22, color: color);
       },
     );
   }

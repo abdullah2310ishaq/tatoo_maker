@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../utils/colors.dart';
+
 /// Custom keyboard widget for flower input screen
 class FlowerKeyboard extends StatelessWidget {
   final ValueChanged<String> onKeyPressed;
@@ -113,7 +115,7 @@ class _KeyboardKey extends StatelessWidget {
             child: Text(
               letter,
               style: TextStyle(
-                color: const Color(0xFFFF9800), // Orange/amber text
+                color: AppColors.textWhite,
                 fontSize:
                     width * 0.75, // Increased from 0.55 to 0.65 for bigger text
                 fontWeight: FontWeight.w600,
@@ -168,8 +170,8 @@ class _BackspaceKey extends StatelessWidget {
           child: Center(
             child: Icon(
               Icons.backspace,
-              color: const Color(0xFFFF9800), // Orange/amber icon
-              size: width * 0.65, // Increased from 0.55 to 0.65 for bigger icon
+              color: AppColors.textWhite,
+              size: width * 0.65,
             ),
           ),
         ),

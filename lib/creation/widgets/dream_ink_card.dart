@@ -12,6 +12,9 @@ class DreamInkCard extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final Future<bool> Function(String assetPath) checkAssetExists;
 
+  /// When set, tapping the Inspiration label/icon triggers this (e.g. random style selection).
+  final VoidCallback? onInspirationTap;
+
   const DreamInkCard({
     super.key,
     required this.cardKey,
@@ -19,6 +22,7 @@ class DreamInkCard extends StatelessWidget {
     required this.maxCharacters,
     required this.onChanged,
     required this.checkAssetExists,
+    this.onInspirationTap,
   });
 
   @override
@@ -37,29 +41,29 @@ class DreamInkCard extends StatelessWidget {
 
     return SizedBox(
       key: cardKey,
-      height: 280.h,
+      height: 220.h,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(14.r),
           border: Border.all(color: AppColors.titleGradientStart, width: 1.w),
           color: cardBgColor,
           gradient: cardGradient,
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(14.r),
           child: Container(
-            padding: EdgeInsets.all(20.w),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             child: Stack(
               children: [
                 // Orange glow: clipped to the same border radius, anchored to corner
                 if (isDark)
                   Positioned(
-                    top: -50.h,
-                    right: -50.w,
+                    top: -40.h,
+                    right: -40.w,
                     child: IgnorePointer(
                       child: Container(
-                        width: 180.w,
-                        height: 180.h,
+                        width: 140.w,
+                        height: 140.h,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           gradient: RadialGradient(
@@ -81,23 +85,23 @@ class DreamInkCard extends StatelessWidget {
                     Text(
                       l10n.homeDescribeYourDreamInk,
                       style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                         color: textColor,
                         fontFamily: 'Amaranth',
                       ),
                     ),
-                    SizedBox(height: 12.h),
+                    SizedBox(height: 8.h),
                     Expanded(
                       child: TextField(
                         controller: controller,
                         maxLength: maxCharacters,
                         maxLines: null,
-                        style: TextStyle(fontSize: 14.sp, color: textColor),
+                        style: TextStyle(fontSize: 13.sp, color: textColor),
                         decoration: InputDecoration(
                           hintText: l10n.homeDreamInkHint,
                           hintStyle: TextStyle(
-                            fontSize: 14.sp,
+                            fontSize: 13.sp,
                             color: AppColors.textGrey,
                           ),
                           border: InputBorder.none,
@@ -107,47 +111,54 @@ class DreamInkCard extends StatelessWidget {
                         onChanged: onChanged,
                       ),
                     ),
-                    SizedBox(height: 12.h),
+                    SizedBox(height: 6.h),
                     Divider(
                       color: AppColors.textGrey.withOpacity(0.3),
                       thickness: 1.h,
                     ),
-                    SizedBox(height: 12.h),
+                    SizedBox(height: 6.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            FutureBuilder<bool>(
-                              future: checkAssetExists('assets/inspiration.svg'),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData && snapshot.data == true) {
-                                  return SvgPicture.asset(
-                                    'assets/inspiration.svg',
-                                    width: 22.w,
-                                    height: 22.h,
-                                    colorFilter: const ColorFilter.mode(
-                                      AppColors.textGrey,
-                                      BlendMode.srcIn,
-                                    ),
+                        GestureDetector(
+                          onTap: onInspirationTap,
+                          behavior: HitTestBehavior.opaque,
+                          child: Row(
+                            children: [
+                              FutureBuilder<bool>(
+                                future: checkAssetExists(
+                                  'assets/inspiration.svg',
+                                ),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData &&
+                                      snapshot.data == true) {
+                                    return SvgPicture.asset(
+                                      'assets/inspiration.svg',
+                                      width: 20.w,
+                                      height: 20.h,
+                                      colorFilter: const ColorFilter.mode(
+                                        AppColors.textGrey,
+                                        BlendMode.srcIn,
+                                      ),
+                                    );
+                                  }
+                                  return Icon(
+                                    Icons.casino_outlined,
+                                    size: 20.sp,
+                                    color: AppColors.textGrey,
                                   );
-                                }
-                                return Icon(
-                                  Icons.casino_outlined,
-                                  size: 22.sp,
-                                  color: AppColors.textGrey,
-                                );
-                              },
-                            ),
-                            SizedBox(width: 8.w),
-                            Text(
-                              l10n.homeInspiration,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: AppColors.textGrey,
+                                },
                               ),
-                            ),
-                          ],
+                              SizedBox(width: 8.w),
+                              Text(
+                                l10n.homeInspiration,
+                                style: TextStyle(
+                                  fontSize: 13.sp,
+                                  color: AppColors.textGrey,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         Text(
                           '${maxCharacters - controller.text.length} ${l10n.homeCharactersRemaining}',
@@ -168,4 +179,3 @@ class DreamInkCard extends StatelessWidget {
     );
   }
 }
-

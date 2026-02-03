@@ -8,6 +8,7 @@ import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/image_processing_isolates.dart';
 import '../services/prodia_api_service.dart';
+import '../services/history_service.dart';
 import '../l10n/app_localizations.dart';
 import 'result_screen.dart';
 
@@ -192,12 +193,31 @@ class _LoadingScreenState extends State<LoadingScreen>
   }
 
   void _navigateToResult() {
+    if (!mounted) return;
+    final l10n = AppLocalizations.of(context)!;
+    final styleName = widget.styleName ?? l10n.genericTattoo;
+    if (_generatedImageBytes != null) {
+      final name = widget.name?.trim() ?? '';
+      if (name.isNotEmpty) {
+        HistoryService.addTattooEntry(
+          styleName: styleName,
+          promptText: widget.promptText,
+          name: name,
+          imageBytes: _generatedImageBytes!,
+        );
+      } else {
+        HistoryService.addCreationEntry(
+          styleName: styleName,
+          promptText: widget.promptText,
+          imageBytes: _generatedImageBytes!,
+        );
+      }
+    }
     if (mounted) {
-      final l10n = AppLocalizations.of(context)!;
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => ResultScreen(
-            styleName: widget.styleName ?? l10n.genericTattoo,
+            styleName: styleName,
             generatedImageBytes: _generatedImageBytes,
           ),
         ),

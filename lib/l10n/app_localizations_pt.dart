@@ -57,6 +57,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get cancel => 'Cancelar';
 
   @override
+  String get history => 'History';
+
+  @override
+  String get noHistoryYet => 'No history yet';
+
+  @override
   String get openSettings => 'Abrir Configurações';
 
   @override
@@ -144,6 +150,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get capturePhoto => 'Capturar Foto';
+
+  @override
+  String get choosePhotoSource => 'Choose photo source';
+
+  @override
+  String get chooseFromGallery => 'Choose from gallery';
 
   @override
   String get apply => 'Aplicar';

@@ -54,6 +54,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cancel => '取消';
 
   @override
+  String get history => 'History';
+
+  @override
+  String get noHistoryYet => 'No history yet';
+
+  @override
   String get openSettings => '打开设置';
 
   @override
@@ -133,6 +139,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get capturePhoto => '拍摄照片';
+
+  @override
+  String get choosePhotoSource => 'Choose photo source';
+
+  @override
+  String get chooseFromGallery => 'Choose from gallery';
 
   @override
   String get apply => '应用';

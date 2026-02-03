@@ -60,6 +60,14 @@
   "@cancel": {
     "description": "Dialog/CTA: Cancel"
   },
+  "history": "History",
+  "@history": {
+    "description": "History page title and header button"
+  },
+  "noHistoryYet": "No history yet",
+  "@noHistoryYet": {
+    "description": "Empty state when no history items"
+  },
   "openSettings": "Open Settings",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
@@ -167,6 +175,14 @@
   "capturePhoto": "Capture Photo",
   "@capturePhoto": {
     "description": "Virtual try-on: capture photo button label"
+  },
+  "choosePhotoSource": "Choose photo source",
+  "@choosePhotoSource": {
+    "description": "Virtual try-on: dialog title for camera vs gallery"
+  },
+  "chooseFromGallery": "Choose from gallery",
+  "@chooseFromGallery": {
+    "description": "Virtual try-on: pick image from gallery option"
   },
   "apply": "Apply",
   "@apply": {

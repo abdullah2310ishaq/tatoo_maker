@@ -106,9 +106,9 @@ class ExploreInspirationSection extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisSpacing: 16.h,
-            crossAxisSpacing: 16.w,
-            childAspectRatio: 0.65,
+            mainAxisSpacing: 12.h,
+            crossAxisSpacing: 12.w,
+            childAspectRatio: 1,
           ),
           itemCount: inspirationItems.length,
           itemBuilder: (context, index) {
@@ -156,11 +156,11 @@ class _InspirationCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: const Color(0xFFFE8B3A), width: 2.w),
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(color: const Color(0xFFFE8B3A), width: 1.5.w),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(10.r),
           child: Image.asset(
             bigImagePath,
             width: double.infinity,
@@ -183,4 +183,3 @@ class _InspirationCard extends StatelessWidget {
     );
   }
 }
-

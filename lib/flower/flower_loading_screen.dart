@@ -8,6 +8,7 @@ import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/image_processing_isolates.dart';
 import '../services/prodia_api_service.dart';
+import '../services/history_service.dart';
 import 'flower_result_screen.dart';
 
 /// Loading screen for generating floral tattoo based on name
@@ -144,15 +145,22 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
 
   void _navigateToResult() {
     if (!mounted) return;
-
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => FlowerResultScreen(
-          name: widget.name,
-          generatedImageBytes: _generatedImageBytes,
+    if (_generatedImageBytes != null) {
+      HistoryService.addFlowerEntry(
+        name: widget.name,
+        imageBytes: _generatedImageBytes!,
+      );
+    }
+    if (mounted) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => FlowerResultScreen(
+            name: widget.name,
+            generatedImageBytes: _generatedImageBytes,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override
