@@ -91,34 +91,6 @@ class _HistoryPageState extends State<HistoryPage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/folder.svg',
-                      width: 24.w,
-                      height: 24.w,
-                    ),
-                    SizedBox(width: 8.w),
-                    Text(
-                      widget.tabIndex == 0
-                          ? l10n.history
-                          : widget.tabIndex == 1
-                          ? l10n.tattoo
-                          : l10n.flower,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 12.h),
               if (_loading)
                 Expanded(
                   child: Center(
@@ -279,6 +251,8 @@ class _SectionCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           child: Row(
             children: [
+              SvgPicture.asset('assets/folder.svg', width: 24.w, height: 24.w),
+              SizedBox(width: 12.w),
               Expanded(
                 child: Text(
                   title,
@@ -360,30 +334,6 @@ class _HistoryListPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/folder.svg',
-                      width: 24.w,
-                      height: 24.w,
-                    ),
-                    SizedBox(width: 8.w),
-                    Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 12.h),
               Expanded(
                 child: items.isEmpty
                     ? Center(
