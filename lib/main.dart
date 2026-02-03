@@ -8,6 +8,7 @@ import 'package:tatoo_maker/services/locale_service.dart';
 import 'splash_screen.dart';
 import 'utils/theme_manager.dart';
 import 'providers/theme_provider.dart';
+import 'providers/favorites_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -82,7 +83,9 @@ class _MyAppState extends State<MyApp> {
         builder: (context, child) {
           return MediaQuery(
             // Lock text scale factor to 1.0 to prevent system font size changes
-            data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+            data: MediaQuery.of(
+              context,
+            ).copyWith(textScaler: TextScaler.linear(1.0)),
             child: child!,
           );
         },
@@ -90,8 +93,13 @@ class _MyAppState extends State<MyApp> {
       );
     }
 
-    return ChangeNotifierProvider(
-      create: (_) => LocaleService(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LocaleService()),
+        ChangeNotifierProvider(
+          create: (_) => FavoritesProvider()..loadFavorites(),
+        ),
+      ],
       child: ThemeProvider(
         isDarkTheme: _isDarkTheme,
         toggleTheme: toggleTheme,
@@ -118,7 +126,9 @@ class _MyAppState extends State<MyApp> {
               builder: (context, child) {
                 return MediaQuery(
                   // Lock text scale factor to 1.0 to prevent system font size changes
-                  data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+                  data: MediaQuery.of(
+                    context,
+                  ).copyWith(textScaler: TextScaler.linear(1.0)),
                   child: child!,
                 );
               },

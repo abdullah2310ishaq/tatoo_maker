@@ -8,6 +8,9 @@ import '../l10n/app_localizations.dart';
 import '../services/history_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../utils/toast.dart';
+import '../providers/favorites_provider.dart';
+import 'package:provider/provider.dart';
 
 /// [tabIndex] 0 = show 3 options (Creation, Tattoo, Flower); 1 = Tattoo only; 2 = Flower only.
 class HistoryPage extends StatefulWidget {
@@ -23,6 +26,7 @@ class _HistoryPageState extends State<HistoryPage> {
   List<Map<String, dynamic>> _creation = [];
   List<Map<String, dynamic>> _tattoo = [];
   List<Map<String, dynamic>> _flower = [];
+  List<Map<String, dynamic>> _favorites = [];
   bool _loading = true;
 
   @override
@@ -35,11 +39,21 @@ class _HistoryPageState extends State<HistoryPage> {
     final creation = await HistoryService.getCreationHistory();
     final tattoo = await HistoryService.getTattooHistory();
     final flower = await HistoryService.getFlowerHistory();
+
+    // Load favorites from provider
+    final favoritesProvider = Provider.of<FavoritesProvider>(
+      context,
+      listen: false,
+    );
+    await favoritesProvider.loadFavorites();
+    final favorites = await HistoryService.getFavorites();
+
     if (mounted) {
       setState(() {
         _creation = creation;
         _tattoo = tattoo;
         _flower = flower;
+        _favorites = favorites;
         _loading = false;
       });
     }
@@ -102,7 +116,7 @@ class _HistoryPageState extends State<HistoryPage> {
               else
                 Expanded(
                   child: widget.tabIndex == 0
-                      ? _buildThreeOptions(context, isDark, l10n)
+                      ? _buildFourOptions(context, isDark, l10n)
                       : widget.tabIndex == 1
                       ? _buildList(context, isDark, l10n, _tattoo, 'tattoo')
                       : _buildList(context, isDark, l10n, _flower, 'flower'),
@@ -114,7 +128,7 @@ class _HistoryPageState extends State<HistoryPage> {
     );
   }
 
-  Widget _buildThreeOptions(
+  Widget _buildFourOptions(
     BuildContext context,
     bool isDark,
     AppLocalizations l10n,
@@ -144,8 +158,31 @@ class _HistoryPageState extends State<HistoryPage> {
             isDark: isDark,
             onTap: () => _openListPage(context, 2, l10n.flower),
           ),
+          SizedBox(height: 12.h),
+          _SectionCard(
+            title: 'Favorites',
+            count: _favorites.length,
+            isDark: isDark,
+            onTap: () => _openFavoritesPage(context, isDark, l10n),
+          ),
           SizedBox(height: 24.h),
         ],
+      ),
+    );
+  }
+
+  void _openFavoritesPage(
+    BuildContext context,
+    bool isDark,
+    AppLocalizations l10n,
+  ) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => _HistoryListPage(
+          title: 'Favorites',
+          items: _favorites,
+          type: 'favorites',
+        ),
       ),
     );
   }
@@ -193,6 +230,7 @@ class _HistoryPageState extends State<HistoryPage> {
           type: type,
           isDark: isDark,
           onTap: () => _openResult(context, items[index], type, l10n),
+          onFavoriteChanged: type == 'favorites' ? () => _load() : null,
         );
       },
     );
@@ -206,7 +244,14 @@ class _HistoryPageState extends State<HistoryPage> {
   ) {
     final bytes = HistoryService.imageBytesFromEntry(entry);
     if (bytes == null) return;
-    if (type == 'flower') {
+
+    // Determine actual type from entry (for favorites)
+    final hasName =
+        entry['name'] != null && (entry['name'] as String).isNotEmpty;
+    final hasStyleName =
+        entry['styleName'] != null && (entry['styleName'] as String).isNotEmpty;
+
+    if (type == 'flower' || (type == 'favorites' && hasName && !hasStyleName)) {
       final name = entry['name'] as String? ?? '';
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -218,8 +263,11 @@ class _HistoryPageState extends State<HistoryPage> {
       final styleName = entry['styleName'] as String? ?? l10n.genericTattoo;
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) =>
-              ResultScreen(styleName: styleName, generatedImageBytes: bytes),
+          builder: (context) => ResultScreen(
+            styleName: styleName,
+            promptText: entry['promptText'] as String?,
+            generatedImageBytes: bytes,
+          ),
         ),
       );
     }
@@ -277,7 +325,7 @@ class _SectionCard extends StatelessWidget {
   }
 }
 
-class _HistoryListPage extends StatelessWidget {
+class _HistoryListPage extends StatefulWidget {
   final String title;
   final List<Map<String, dynamic>> items;
   final String type;
@@ -287,6 +335,28 @@ class _HistoryListPage extends StatelessWidget {
     required this.items,
     required this.type,
   });
+
+  @override
+  State<_HistoryListPage> createState() => _HistoryListPageState();
+}
+
+class _HistoryListPageState extends State<_HistoryListPage> {
+  late List<Map<String, dynamic>> _items;
+
+  @override
+  void initState() {
+    super.initState();
+    _items = widget.items;
+  }
+
+  Future<void> _reloadFavorites() async {
+    if (widget.type == 'favorites') {
+      final favs = await HistoryService.getFavorites();
+      if (mounted) {
+        setState(() => _items = favs);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -321,7 +391,7 @@ class _HistoryListPage extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
                     Text(
-                      title,
+                      widget.title,
                       style: TextStyle(
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
@@ -335,7 +405,7 @@ class _HistoryListPage extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: items.isEmpty
+                child: _items.isEmpty
                     ? Center(
                         child: Text(
                           l10n.noHistoryYet,
@@ -347,19 +417,33 @@ class _HistoryListPage extends StatelessWidget {
                       )
                     : ListView.builder(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        itemCount: items.length,
+                        itemCount: _items.length,
                         itemBuilder: (context, index) {
-                          final entry = items[index];
+                          final entry = _items[index];
                           return _HistoryTile(
                             entry: entry,
-                            type: type,
+                            type: widget.type,
                             isDark: isDark,
+                            onFavoriteChanged: widget.type == 'favorites'
+                                ? _reloadFavorites
+                                : null,
                             onTap: () {
                               final bytes = HistoryService.imageBytesFromEntry(
                                 entry,
                               );
                               if (bytes == null) return;
-                              if (type == 'flower') {
+
+                              final hasName =
+                                  entry['name'] != null &&
+                                  (entry['name'] as String).isNotEmpty;
+                              final hasStyleName =
+                                  entry['styleName'] != null &&
+                                  (entry['styleName'] as String).isNotEmpty;
+
+                              if (widget.type == 'flower' ||
+                                  (widget.type == 'favorites' &&
+                                      hasName &&
+                                      !hasStyleName)) {
                                 final name = entry['name'] as String? ?? '';
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
@@ -377,6 +461,8 @@ class _HistoryListPage extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) => ResultScreen(
                                       styleName: styleName,
+                                      promptText:
+                                          entry['promptText'] as String?,
                                       generatedImageBytes: bytes,
                                     ),
                                   ),
@@ -395,34 +481,64 @@ class _HistoryListPage extends StatelessWidget {
   }
 }
 
-class _HistoryTile extends StatelessWidget {
+class _HistoryTile extends StatefulWidget {
   final Map<String, dynamic> entry;
   final String type;
   final bool isDark;
   final VoidCallback onTap;
+  final VoidCallback? onFavoriteChanged;
 
   const _HistoryTile({
     required this.entry,
     required this.type,
     required this.isDark,
     required this.onTap,
+    this.onFavoriteChanged,
   });
 
   @override
+  State<_HistoryTile> createState() => _HistoryTileState();
+}
+
+class _HistoryTileState extends State<_HistoryTile> {
+  Future<void> _toggleFavorite(BuildContext context) async {
+    final favoritesProvider = Provider.of<FavoritesProvider>(
+      context,
+      listen: false,
+    );
+    final wasFavorited = favoritesProvider.isFavorited(widget.entry);
+
+    final success = await favoritesProvider.toggleFavorite(widget.entry);
+    if (!mounted || !success) return;
+
+    AppToast.show(
+      context,
+      message: wasFavorited ? 'Removed from favorites' : 'Added to favorites',
+      isSuccess: true,
+    );
+    widget.onFavoriteChanged?.call();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final bytes = HistoryService.imageBytesFromEntry(entry);
-    final label = type == 'flower'
-        ? (entry['name'] as String? ?? '')
-        : (entry['styleName'] as String? ?? '');
+    final favoritesProvider = Provider.of<FavoritesProvider>(context);
+    final bytes = HistoryService.imageBytesFromEntry(widget.entry);
+    final label = widget.type == 'flower'
+        ? (widget.entry['name'] as String? ?? '')
+        : (widget.entry['styleName'] as String? ?? '');
+    final isFavorited = favoritesProvider.isFavorited(widget.entry);
+    final isLoadingFavorite = favoritesProvider.isLoading;
 
     return Padding(
       padding: EdgeInsets.only(bottom: 12.h),
       child: Material(
-        color: isDark ? const Color(0xFF151411) : AppColors.lightCardBackground,
+        color: widget.isDark
+            ? const Color(0xFF151411)
+            : AppColors.lightCardBackground,
         borderRadius: BorderRadius.circular(12.r),
         child: InkWell(
           borderRadius: BorderRadius.circular(12.r),
-          onTap: onTap,
+          onTap: widget.onTap,
           child: Padding(
             padding: EdgeInsets.all(12.w),
             child: Row(
@@ -457,13 +573,37 @@ class _HistoryTile extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
-                      color: isDark
+                      color: widget.isDark
                           ? AppColors.textWhite
                           : AppColors.textPrimary,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
+                ),
+                // Favorite button
+                IconButton(
+                  icon: isLoadingFavorite
+                      ? SizedBox(
+                          width: 20.w,
+                          height: 20.w,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: widget.isDark
+                                ? AppColors.textWhite
+                                : AppColors.textPrimary,
+                          ),
+                        )
+                      : Icon(
+                          isFavorited ? Icons.favorite : Icons.favorite_border,
+                          color: isFavorited
+                              ? Colors.red
+                              : (widget.isDark
+                                    ? AppColors.textGrey
+                                    : AppColors.textGrey),
+                          size: 24.sp,
+                        ),
+                  onPressed: () => _toggleFavorite(context),
                 ),
                 Icon(
                   Icons.chevron_right,

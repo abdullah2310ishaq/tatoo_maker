@@ -262,6 +262,7 @@ class _LoadingScreenState extends State<LoadingScreen>
         MaterialPageRoute(
           builder: (context) => ResultScreen(
             styleName: styleName,
+            promptText: widget.promptText,
             generatedImageBytes: _generatedImageBytes,
           ),
         ),

@@ -189,6 +189,7 @@ class _HomeShellState extends State<HomeShell> {
             label: l10n.creation,
             index: 0,
           ),
+          
           _buildNavItem(
             iconPath: 'assets/tatoo.svg',
             label: l10n.tattoo,

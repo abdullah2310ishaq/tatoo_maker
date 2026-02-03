@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'dart:io';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
@@ -9,25 +10,69 @@ import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/favorites_provider.dart';
+import 'package:provider/provider.dart';
 import 'virtual_try_on.dart';
 
-class ResultScreen extends StatelessWidget {
+class ResultScreen extends StatefulWidget {
   final String styleName;
   final Uint8List? generatedImageBytes;
   final List<Uint8List>? variationImages;
+  final String? promptText;
 
   const ResultScreen({
     super.key,
     required this.styleName,
     this.generatedImageBytes,
     this.variationImages,
+    this.promptText,
   });
+
+  @override
+  State<ResultScreen> createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
+  Map<String, dynamic> _buildEntry() {
+    return {
+      'styleName': widget.styleName,
+      'promptText': widget.promptText ?? '',
+      'imageBase64': widget.generatedImageBytes != null
+          ? base64Encode(widget.generatedImageBytes!)
+          : '',
+      'ts': DateTime.now().millisecondsSinceEpoch,
+    };
+  }
+
+  Future<void> _toggleFavorite(BuildContext context) async {
+    if (widget.generatedImageBytes == null) return;
+
+    final favoritesProvider = Provider.of<FavoritesProvider>(
+      context,
+      listen: false,
+    );
+    final entry = _buildEntry();
+    final wasFavorited = favoritesProvider.isFavorited(entry);
+
+    final success = await favoritesProvider.toggleFavorite(entry);
+    if (!mounted || !success) return;
+
+    AppToast.show(
+      context,
+      message: wasFavorited ? 'Removed from favorites' : 'Added to favorites',
+      isSuccess: true,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
+    final favoritesProvider = Provider.of<FavoritesProvider>(context);
+    final entry = _buildEntry();
+    final isFavorited = favoritesProvider.isFavorited(entry);
+    final isLoadingFavorite = favoritesProvider.isLoading;
 
     return SafeArea(
       child: Scaffold(
@@ -40,8 +85,8 @@ class ResultScreen extends StatelessWidget {
               : ThemeManager.lightModeBackground,
           child: Column(
             children: [
-              // Header: Close button + Title
-              _buildHeader(context, isDark),
+              // Header: Close button + Title + Favorite
+              _buildHeader(context, isDark, isFavorited, isLoadingFavorite),
               // Main image display - only one big image in center
               Expanded(
                 child: Center(
@@ -74,7 +119,12 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(
+    BuildContext context,
+    bool isDark,
+    bool isFavorited,
+    bool isLoadingFavorite,
+  ) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       child: Row(
@@ -92,7 +142,7 @@ class ResultScreen extends StatelessWidget {
           // Title (centered)
           Expanded(
             child: Text(
-              styleName,
+              widget.styleName,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24.sp,
@@ -102,18 +152,40 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
           ),
-          // Spacer to balance the close button
-          SizedBox(width: 48.w),
+          // Favorite button
+          IconButton(
+            icon: isLoadingFavorite
+                ? SizedBox(
+                    width: 28.w,
+                    height: 28.w,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: isDark
+                          ? AppColors.textWhite
+                          : AppColors.textPrimary,
+                    ),
+                  )
+                : Icon(
+                    isFavorited ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorited
+                        ? Colors.red
+                        : (isDark
+                              ? AppColors.textWhite
+                              : AppColors.textPrimary),
+                    size: 28.sp,
+                  ),
+            onPressed: () => _toggleFavorite(context),
+          ),
         ],
       ),
     );
   }
 
   Widget _buildMainImage(bool isDark) {
-    if (generatedImageBytes != null) {
+    if (widget.generatedImageBytes != null) {
       // Show image directly on background (transparent background)
       return Image.memory(
-        generatedImageBytes!,
+        widget.generatedImageBytes!,
         fit: BoxFit.contain,
         errorBuilder: (context, error, stackTrace) {
           return _buildPlaceholder(isDark);
@@ -268,8 +340,8 @@ class ResultScreen extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => VirtualTryOnScreen(
-                tattooImageBytes: generatedImageBytes,
-                styleName: styleName,
+                tattooImageBytes: widget.generatedImageBytes,
+                styleName: widget.styleName,
               ),
             ),
           );
@@ -362,7 +434,7 @@ class ResultScreen extends StatelessWidget {
   }
 
   Future<void> _shareImage(BuildContext context, AppLocalizations l10n) async {
-    if (generatedImageBytes == null) {
+    if (widget.generatedImageBytes == null) {
       AppToast.show(
         context,
         message: l10n.resultNoImageToShare,
@@ -375,15 +447,15 @@ class ResultScreen extends StatelessWidget {
       // Save image to temporary file
       final tempDir = await getTemporaryDirectory();
       final file = File(
-        '${tempDir.path}/inkvision_${styleName}_${DateTime.now().millisecondsSinceEpoch}.png',
+        '${tempDir.path}/inkvision_${widget.styleName}_${DateTime.now().millisecondsSinceEpoch}.png',
       );
-      await file.writeAsBytes(generatedImageBytes!);
+      await file.writeAsBytes(widget.generatedImageBytes!);
 
       // Share the image file
       await Share.shareXFiles(
         [XFile(file.path)],
-        text: l10n.resultShareText(styleName),
-        subject: l10n.resultShareSubject(styleName),
+        text: l10n.resultShareText(widget.styleName),
+        subject: l10n.resultShareSubject(widget.styleName),
       );
     } catch (e) {
       if (context.mounted) {
@@ -400,19 +472,16 @@ class ResultScreen extends StatelessWidget {
     BuildContext context,
     AppLocalizations l10n,
   ) async {
-    if (generatedImageBytes == null) {
-      AppToast.show(
-        context,
-        message: l10n.noImageToSave,
-        isSuccess: false,
-      );
+    if (widget.generatedImageBytes == null) {
+      AppToast.show(context, message: l10n.noImageToSave, isSuccess: false);
       return;
     }
 
     try {
       await Gal.putImageBytes(
-        generatedImageBytes!,
-        name: 'inkvision_${styleName}_${DateTime.now().millisecondsSinceEpoch}',
+        widget.generatedImageBytes!,
+        name:
+            'inkvision_${widget.styleName}_${DateTime.now().millisecondsSinceEpoch}',
       );
 
       if (context.mounted) {
