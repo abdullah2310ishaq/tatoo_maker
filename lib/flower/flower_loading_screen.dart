@@ -59,9 +59,15 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     print('FlowerLoadingScreen: Name: ${widget.name}');
 
     try {
-      // Create prompt for floral tattoo generation
+      // Prompt based on person's name and florals (one per letter in the name)
+      final letters = widget.name.toUpperCase().split('');
+      final lettersDesc = letters.join(', ');
       final prompt =
-          'floral tattoo design with "${widget.name}" in elegant calligraphy, botanical illustration, delicate flowers and leaves, line art style, black and white, minimalist tattoo design, intricate floral patterns, beautiful typography integrated with nature';
+          'floral tattoo design based on the person\'s name "${widget.name}" '
+          'and the florals for each letter ($lettersDesc), '
+          'elegant calligraphy, botanical illustration, delicate flowers and leaves, '
+          'line art style, black and white, minimalist tattoo design, '
+          'intricate floral patterns, beautiful typography integrated with nature';
 
       final imageBytes = await _apiService.textToImage(
         prompt: prompt,

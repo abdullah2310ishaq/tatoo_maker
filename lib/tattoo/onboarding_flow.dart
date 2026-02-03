@@ -131,9 +131,29 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     }
   }
 
+  static const List<String> _monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
   void _startGenerationFlow(BuildContext context) {
-    final name = _controllers[0].text.trim(); // Name from step 1
-    final tattooIdea = _controllers[3].text.trim(); // Tattoo idea from step 4
+    final name = _controllers[0].text.trim();
+    final tattooIdea = _controllers[3].text.trim();
+    final placeOfBirth = _controllers[2].text.trim();
+    final zodiacSign = getZodiacSign(_selectedMonth, _selectedDay);
+    final dobFormatted =
+        '${_monthNames[_selectedMonth - 1]} $_selectedDay, $_selectedYear';
+
     final selectedStyle = _selectedStyleIndex != null
         ? getTattooStyles(
             context,
@@ -148,7 +168,10 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
             selectedStyleAsset: selectedStyle.assetPath,
             styleName: selectedStyle.label,
             promptText: tattooIdea,
-            name: name, // Pass the name to LoadingScreen
+            name: name,
+            dobFormatted: dobFormatted,
+            zodiacSign: zodiacSign,
+            placeOfBirth: placeOfBirth.isEmpty ? null : placeOfBirth,
           ),
         ),
       );

@@ -19,12 +19,24 @@ class LoadingScreen extends StatefulWidget {
   final String? promptText; // The text prompt for image generation
   final String? name; // User's name for tattoo generation
 
+  /// Tattoo module only: date of birth (e.g. "January 4, 2000")
+  final String? dobFormatted;
+
+  /// Tattoo module only: zodiac/star sign (e.g. "Capricorn")
+  final String? zodiacSign;
+
+  /// Tattoo module only: place of birth
+  final String? placeOfBirth;
+
   const LoadingScreen({
     super.key,
     this.selectedStyleAsset,
     this.styleName,
     this.promptText,
     this.name,
+    this.dobFormatted,
+    this.zodiacSign,
+    this.placeOfBirth,
   });
 
   @override
@@ -61,43 +73,70 @@ class _LoadingScreenState extends State<LoadingScreen>
   }
 
   Future<void> _generateImage() async {
-    // Construct prompt from name, style, and tattoo idea
     final name = widget.name?.trim() ?? '';
     final style = widget.styleName?.trim() ?? '';
     final idea = widget.promptText?.trim() ?? '';
+    final dob = widget.dobFormatted?.trim() ?? '';
+    final zodiac = widget.zodiacSign?.trim() ?? '';
+    final place = widget.placeOfBirth?.trim() ?? '';
 
-    if (name.isEmpty && idea.isEmpty) {
+    final isTattooModule =
+        dob.isNotEmpty || zodiac.isNotEmpty || place.isNotEmpty;
+
+    if (name.isEmpty && idea.isEmpty && !isTattooModule) {
       print(
         'LoadingScreen: No name or prompt text provided, using placeholder',
       );
-      // Navigate after 3 seconds even without prompt
       _navigationTimer = Timer(const Duration(seconds: 3), () {
-        if (mounted) {
-          _navigateToResult();
-        }
+        if (mounted) _navigateToResult();
       });
       return;
     }
 
-    // Build comprehensive prompt combining name, style, and idea
     final List<String> promptParts = [];
 
-    if (name.isNotEmpty) {
-      promptParts.add('tattoo design with "$name"');
+    if (isTattooModule) {
+      // Tattoo module: tattoo based on name, DOB, star, place of birth, and idea. Style = inspiration only.
+      if (idea.isNotEmpty) {
+        promptParts.add('$idea, tattoo design');
+      } else {
+        promptParts.add('personalized tattoo design');
+      }
+      if (name.isNotEmpty) {
+        promptParts.add('for the name "$name"');
+      }
+      if (dob.isNotEmpty) {
+        promptParts.add('date of birth $dob');
+      }
+      if (zodiac.isNotEmpty) {
+        promptParts.add('zodiac star sign $zodiac');
+      }
+      if (place.isNotEmpty) {
+        promptParts.add('place of birth $place');
+      }
+      if (style.isNotEmpty) {
+        promptParts.add(
+          'inspired by ${style.toLowerCase()} style, aesthetic only',
+        );
+      }
+    } else {
+      // Creation / other: user idea = main subject, style = inspiration only
+      if (idea.isNotEmpty) {
+        promptParts.add('$idea, tattoo design');
+      } else {
+        promptParts.add('tattoo design');
+      }
+      if (name.isNotEmpty) {
+        promptParts.add('incorporating the name "$name"');
+      }
+      if (style.isNotEmpty) {
+        promptParts.add(
+          'inspired by ${style.toLowerCase()} style, aesthetic only',
+        );
+      }
     }
 
-    if (style.isNotEmpty) {
-      promptParts.add('in ${style.toLowerCase()} style');
-    }
-
-    if (idea.isNotEmpty) {
-      promptParts.add(idea);
-    }
-
-    // Add style descriptors
-    promptParts.add(
-      'tattoo design, black and white, line art, minimalist, intricate details',
-    );
+    promptParts.add('black and white, line art, minimalist, intricate details');
 
     final finalPrompt = promptParts.join(', ');
 
@@ -105,6 +144,11 @@ class _LoadingScreenState extends State<LoadingScreen>
     print('LoadingScreen: Name: $name');
     print('LoadingScreen: Style: $style');
     print('LoadingScreen: Idea: $idea');
+    if (isTattooModule) {
+      print('LoadingScreen: DOB: $dob');
+      print('LoadingScreen: Zodiac: $zodiac');
+      print('LoadingScreen: Place: $place');
+    }
     print('LoadingScreen: Final Prompt: $finalPrompt');
 
     try {

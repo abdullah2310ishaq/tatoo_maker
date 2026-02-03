@@ -122,9 +122,9 @@ class _FlowerInputScreenState extends State<FlowerInputScreen> {
                         ),
                       ),
                       SizedBox(height: 12.h),
-                      // Custom keyboard - always English (hardcoded QWERTY layout), pushed up a bit
+                      // Custom keyboard - positioned higher from bottom
                       Padding(
-                        padding: EdgeInsets.only(bottom: 16.h),
+                        padding: EdgeInsets.only(bottom: 28.h),
                         child: FlowerKeyboard(
                           onKeyPressed: (letter) {
                             final newText = _nameController.text + letter;
