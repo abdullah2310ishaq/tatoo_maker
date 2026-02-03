@@ -1,9 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../l10n/app_localizations.dart';
 import '../../utils/colors.dart';
 
@@ -12,6 +10,7 @@ class TutorialOverlay extends StatefulWidget {
   final Future<void> Function() onDismiss;
   final Future<bool> Function(String assetPath) checkAssetExists;
 
+// 
   const TutorialOverlay({
     super.key,
     required this.highlightKey,

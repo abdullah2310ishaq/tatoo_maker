@@ -61,12 +61,10 @@ class ExploreDetailScreen extends StatelessWidget {
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ),
-                    // Title centered with overflow handling
+                    // Title centered - full text, no truncation, wraps dynamically
                     Center(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 48.w,
-                        ), // Padding to avoid overlap with close button
+                        padding: EdgeInsets.symmetric(horizontal: 48.w),
                         child: Text(
                           title,
                           style: TextStyle(
@@ -76,8 +74,9 @@ class ExploreDetailScreen extends StatelessWidget {
                             fontFamily: 'Amaranth',
                           ),
                           textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
+                          softWrap: true,
+                          overflow: TextOverflow.visible,
+                          maxLines: null,
                         ),
                       ),
                     ),

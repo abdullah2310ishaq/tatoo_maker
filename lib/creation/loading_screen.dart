@@ -82,7 +82,7 @@ class _LoadingScreenState extends State<LoadingScreen>
     final List<String> promptParts = [];
 
     if (name.isNotEmpty) {
-      promptParts.add('tattoo design with "${name}"');
+      promptParts.add('tattoo design with "$name"');
     }
 
     if (style.isNotEmpty) {
@@ -166,7 +166,7 @@ class _LoadingScreenState extends State<LoadingScreen>
       final remainingTime = 3 - elapsed.inSeconds;
 
       if (remainingTime > 0) {
-        print('LoadingScreen: Waiting ${remainingTime} more seconds...');
+        print('LoadingScreen: Waiting $remainingTime more seconds...');
         await Future.delayed(Duration(seconds: remainingTime));
       }
 

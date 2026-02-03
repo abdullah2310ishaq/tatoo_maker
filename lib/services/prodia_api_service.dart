@@ -29,7 +29,7 @@ class ProdiaApiService {
     try {
       print('ProdiaApiService: Starting text-to-image API call...');
       print('ProdiaApiService: Prompt: $prompt');
-      print('ProdiaApiService: Dimensions: ${width}x${height}, Steps: $steps');
+      print('ProdiaApiService: Dimensions: ${width}x$height, Steps: $steps');
 
       final job = {
         'type': 'inference.flux-fast.schnell.txt2img.v2',

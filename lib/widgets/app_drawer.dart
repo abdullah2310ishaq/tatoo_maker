@@ -98,7 +98,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       : (_) {
                           _handleTap(() => widget.onThemeToggle());
                         },
-                  activeColor: const Color(0xFFFE8B3A),
+                  activeThumbColor: const Color(0xFFFE8B3A),
                   activeTrackColor: const Color(0xFFFE8B3A).withOpacity(0.5),
                 ),
               ),
@@ -225,8 +225,9 @@ class _AppDrawerState extends State<AppDrawer> {
                 color: isEnabled ? textColor : textColor.withOpacity(0.5),
                 fontWeight: FontWeight.w500,
               ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
+              softWrap: true,
+              overflow: TextOverflow.visible,
+              maxLines: null,
             ),
           ),
           if (showAdBadge) ...[

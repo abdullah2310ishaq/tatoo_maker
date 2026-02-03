@@ -137,13 +137,18 @@ class _StyleCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 12.h),
-              Text(
-                localizedLabel,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: textColor,
+              Flexible(
+                child: Text(
+                  localizedLabel,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    color: textColor,
+                  ),
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
+                  maxLines: null,
                 ),
               ),
             ],

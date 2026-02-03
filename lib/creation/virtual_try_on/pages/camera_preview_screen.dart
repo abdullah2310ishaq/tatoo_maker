@@ -19,6 +19,7 @@ class CameraPreviewScreen extends StatefulWidget {
 class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
+  int _selectedCameraIndex = 0;
   bool _isInitialized = false;
   bool _isInitializing = false;
   File? _capturedImage;
@@ -96,9 +97,14 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
         return;
       }
 
+      if (_selectedCameraIndex < 0 ||
+          _selectedCameraIndex >= _cameras!.length) {
+        _selectedCameraIndex = 0;
+      }
+
       // Create and initialize controller
       _controller = CameraController(
-        _cameras![0], // Use first available camera (usually back camera)
+        _cameras![_selectedCameraIndex],
         ResolutionPreset.high,
         enableAudio: false, // No audio needed for photos
       );
@@ -121,6 +127,41 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
         });
       }
     }
+  }
+
+  Future<void> _switchCamera() async {
+    if (_isInitializing) return;
+    if (_cameras == null || _cameras!.isEmpty) return;
+    if (_capturedImage != null) return;
+
+    // Prefer switching between back/front if available, otherwise just cycle.
+    int nextIndex = (_selectedCameraIndex + 1) % _cameras!.length;
+
+    final int frontIndex = _cameras!.indexWhere(
+      (c) => c.lensDirection == CameraLensDirection.front,
+    );
+    final int backIndex = _cameras!.indexWhere(
+      (c) => c.lensDirection == CameraLensDirection.back,
+    );
+
+    if (frontIndex != -1 && backIndex != -1) {
+      nextIndex = _selectedCameraIndex == backIndex ? frontIndex : backIndex;
+    }
+
+    setState(() {
+      _selectedCameraIndex = nextIndex;
+      _isInitialized = false;
+      _errorMessage = null;
+    });
+
+    try {
+      await _controller?.dispose();
+    } catch (_) {
+      // ignore dispose errors
+    }
+
+    _controller = null;
+    await _initializeCamera();
   }
 
   Future<void> _capturePhoto() async {
@@ -293,6 +334,23 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
             child: IconButton(
               icon: Icon(Icons.close, color: Colors.white, size: 32.sp),
               onPressed: () => Navigator.pop(context),
+            ),
+          ),
+
+          // Camera switch button (safe-area aware)
+          Positioned(
+            top: padding.top + 8.h,
+            right: 16.w,
+            child: IconButton(
+              icon: Icon(
+                Icons.cameraswitch_rounded,
+                color: Colors.white,
+                size: 32.sp,
+              ),
+              onPressed:
+                  (_cameras == null || (_cameras?.length ?? 0) < 2 || _isInitializing || _capturedImage != null)
+                      ? null
+                      : _switchCamera,
             ),
           ),
 
