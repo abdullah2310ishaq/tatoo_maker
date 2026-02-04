@@ -60,6 +60,22 @@
   "@cancel": {
     "description": "Dialog/CTA: Cancel"
   },
+  "history": "기록",
+  "@history": {
+    "description": "History page title and header button"
+  },
+  "noHistoryYet": "기록이 없습니다",
+  "@noHistoryYet": {
+    "description": "Empty state when no history items"
+  },
+  "choosePhotoSource": "사진 소스 선택",
+  "@choosePhotoSource": {
+    "description": "Virtual try-on: dialog title for camera vs gallery"
+  },
+  "chooseFromGallery": "갤러리에서 선택",
+  "@chooseFromGallery": {
+    "description": "Virtual try-on: pick image from gallery option"
+  },
   "openSettings": "설정 열기",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
@@ -111,6 +127,14 @@
   "favorites": "즐겨찾기",
   "@favorites": {
     "description": "Drawer menu item: Favorites"
+  },
+  "favoritesAdded": "즐겨찾기에 추가됨",
+  "@favoritesAdded": {
+    "description": "Toast: item added to favorites"
+  },
+  "favoritesRemoved": "즐겨찾기에서 제거됨",
+  "@favoritesRemoved": {
+    "description": "Toast: item removed from favorites"
   },
   "rateUs": "평가하기",
   "@rateUs": {

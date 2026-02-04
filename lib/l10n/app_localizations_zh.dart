@@ -54,10 +54,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cancel => '取消';
 
   @override
-  String get history => 'History';
+  String get history => '历史记录';
 
   @override
-  String get noHistoryYet => 'No history yet';
+  String get noHistoryYet => '暂无历史记录';
 
   @override
   String get openSettings => '打开设置';
@@ -97,6 +97,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get favorites => '收藏';
+
+  @override
+  String get favoritesAdded => '已添加到收藏';
+
+  @override
+  String get favoritesRemoved => '已从收藏中移除';
 
   @override
   String get rateUs => '评价我们';
@@ -141,10 +147,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get capturePhoto => '拍摄照片';
 
   @override
-  String get choosePhotoSource => 'Choose photo source';
+  String get choosePhotoSource => '选择照片来源';
 
   @override
-  String get chooseFromGallery => 'Choose from gallery';
+  String get chooseFromGallery => '从相册选择';
 
   @override
   String get apply => '应用';

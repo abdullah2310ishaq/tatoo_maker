@@ -60,6 +60,22 @@
   "@cancel": {
     "description": "Dialog/CTA: Cancel"
   },
+  "history": "السجل",
+  "@history": {
+    "description": "History page title and header button"
+  },
+  "noHistoryYet": "لا يوجد سجل بعد",
+  "@noHistoryYet": {
+    "description": "Empty state when no history items"
+  },
+  "choosePhotoSource": "اختر مصدر الصورة",
+  "@choosePhotoSource": {
+    "description": "Virtual try-on: dialog title for camera vs gallery"
+  },
+  "chooseFromGallery": "اختر من المعرض",
+  "@chooseFromGallery": {
+    "description": "Virtual try-on: pick image from gallery option"
+  },
   "openSettings": "فتح الإعدادات",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
@@ -111,6 +127,14 @@
   "favorites": "المفضلة",
   "@favorites": {
     "description": "Drawer menu item: Favorites"
+  },
+  "favoritesAdded": "تمت الإضافة إلى المفضلة",
+  "@favoritesAdded": {
+    "description": "Toast: item added to favorites"
+  },
+  "favoritesRemoved": "تمت الإزالة من المفضلة",
+  "@favoritesRemoved": {
+    "description": "Toast: item removed from favorites"
   },
   "rateUs": "قيمنا",
   "@rateUs": {

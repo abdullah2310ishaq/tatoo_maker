@@ -29,15 +29,14 @@ class DreamInkCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
-    final cardBgColor = isDark ? null : AppColors.lightBackground;
-    final cardGradient = isDark
-        ? const LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [AppColors.cardGradientStart, AppColors.cardGradientEnd],
-          )
-        : null;
+    final textColor = isDark
+        ? AppColors.inputCardDarkText
+        : AppColors.textPrimary;
+    final hintColor = isDark ? AppColors.inputCardDarkHint : AppColors.textGrey;
+    final cardBgColor = isDark
+        ? AppColors.inputCardDarkBackground
+        : AppColors.lightBackground;
+    final cardGradient = null;
 
     return SizedBox(
       key: cardKey,
@@ -55,29 +54,6 @@ class DreamInkCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             child: Stack(
               children: [
-                // Orange glow: clipped to the same border radius, anchored to corner
-                if (isDark)
-                  Positioned(
-                    top: -40.h,
-                    right: -40.w,
-                    child: IgnorePointer(
-                      child: Container(
-                        width: 140.w,
-                        height: 140.h,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: RadialGradient(
-                            center: Alignment.topRight,
-                            radius: 0.9,
-                            colors: [
-                              AppColors.cardGlowStart,
-                              AppColors.cardGlowEnd,
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
                 // Content
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +78,7 @@ class DreamInkCard extends StatelessWidget {
                           hintText: l10n.homeDreamInkHint,
                           hintStyle: TextStyle(
                             fontSize: 13.sp,
-                            color: AppColors.textGrey,
+                            color: hintColor,
                           ),
                           border: InputBorder.none,
                           counterText: '',
@@ -112,10 +88,7 @@ class DreamInkCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 6.h),
-                    Divider(
-                      color: AppColors.textGrey.withOpacity(0.3),
-                      thickness: 1.h,
-                    ),
+                    Divider(color: hintColor.withOpacity(0.5), thickness: 1.h),
                     SizedBox(height: 6.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -136,8 +109,8 @@ class DreamInkCard extends StatelessWidget {
                                       'assets/inspiration.svg',
                                       width: 20.w,
                                       height: 20.h,
-                                      colorFilter: const ColorFilter.mode(
-                                        AppColors.textGrey,
+                                      colorFilter: ColorFilter.mode(
+                                        hintColor,
                                         BlendMode.srcIn,
                                       ),
                                     );
@@ -145,7 +118,7 @@ class DreamInkCard extends StatelessWidget {
                                   return Icon(
                                     Icons.casino_outlined,
                                     size: 20.sp,
-                                    color: AppColors.textGrey,
+                                    color: hintColor,
                                   );
                                 },
                               ),
@@ -154,7 +127,7 @@ class DreamInkCard extends StatelessWidget {
                                 l10n.homeInspiration,
                                 style: TextStyle(
                                   fontSize: 13.sp,
-                                  color: AppColors.textGrey,
+                                  color: hintColor,
                                 ),
                               ),
                             ],
@@ -162,10 +135,7 @@ class DreamInkCard extends StatelessWidget {
                         ),
                         Text(
                           '${maxCharacters - controller.text.length} ${l10n.homeCharactersRemaining}',
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color: AppColors.textGrey,
-                          ),
+                          style: TextStyle(fontSize: 12.sp, color: hintColor),
                         ),
                       ],
                     ),

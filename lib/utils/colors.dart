@@ -45,6 +45,11 @@ class AppColors {
     0xFFF5F5F5,
   ); // Light gray for cards in light theme
 
+  // Dark theme: "Describe your dream ink" input card (white container, dark text)
+  static const Color inputCardDarkBackground = Color(0xFFFFFFFF);
+  static const Color inputCardDarkText = Color(0xFF1A1A1A);
+  static const Color inputCardDarkHint = Color(0xFF6B6B6B);
+
   // Background gradient colors
   static const Color gradientTop = Color(0xFF353A40); // #353A40
   static const Color gradientBottom = Color(0xFF121416); // #121416

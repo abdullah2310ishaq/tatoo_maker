@@ -160,7 +160,7 @@ class _HistoryPageState extends State<HistoryPage> {
           ),
           SizedBox(height: 12.h),
           _SectionCard(
-            title: 'Favorites',
+            title: l10n.favorites,
             count: _favorites.length,
             isDark: isDark,
             onTap: () => _openFavoritesPage(context, isDark, l10n),
@@ -179,7 +179,7 @@ class _HistoryPageState extends State<HistoryPage> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => _HistoryListPage(
-          title: 'Favorites',
+          title: l10n.favorites,
           items: _favorites,
           type: 'favorites',
         ),
@@ -511,9 +511,10 @@ class _HistoryTileState extends State<_HistoryTile> {
     final success = await favoritesProvider.toggleFavorite(widget.entry);
     if (!mounted || !success) return;
 
+    final l10n = AppLocalizations.of(context)!;
     AppToast.show(
       context,
-      message: wasFavorited ? 'Removed from favorites' : 'Added to favorites',
+      message: wasFavorited ? l10n.favoritesRemoved : l10n.favoritesAdded,
       isSuccess: true,
     );
     widget.onFavoriteChanged?.call();

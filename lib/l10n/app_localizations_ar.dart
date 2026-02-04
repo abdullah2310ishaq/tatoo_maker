@@ -57,10 +57,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cancel => 'إلغاء';
 
   @override
-  String get history => 'History';
+  String get history => 'السجل';
 
   @override
-  String get noHistoryYet => 'No history yet';
+  String get noHistoryYet => 'لا يوجد سجل بعد';
 
   @override
   String get openSettings => 'فتح الإعدادات';
@@ -107,6 +107,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get favorites => 'المفضلة';
 
   @override
+  String get favoritesAdded => 'تمت الإضافة إلى المفضلة';
+
+  @override
+  String get favoritesRemoved => 'تمت الإزالة من المفضلة';
+
+  @override
   String get rateUs => 'قيمنا';
 
   @override
@@ -149,10 +155,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get capturePhoto => 'التقاط صورة';
 
   @override
-  String get choosePhotoSource => 'Choose photo source';
+  String get choosePhotoSource => 'اختر مصدر الصورة';
 
   @override
-  String get chooseFromGallery => 'Choose from gallery';
+  String get chooseFromGallery => 'اختر من المعرض';
 
   @override
   String get apply => 'تطبيق';

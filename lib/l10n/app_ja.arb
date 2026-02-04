@@ -60,6 +60,22 @@
   "@cancel": {
     "description": "Dialog/CTA: Cancel"
   },
+  "history": "履歴",
+  "@history": {
+    "description": "History page title and header button"
+  },
+  "noHistoryYet": "履歴はまだありません",
+  "@noHistoryYet": {
+    "description": "Empty state when no history items"
+  },
+  "choosePhotoSource": "写真の取得方法を選択",
+  "@choosePhotoSource": {
+    "description": "Virtual try-on: dialog title for camera vs gallery"
+  },
+  "chooseFromGallery": "ギャラリーから選択",
+  "@chooseFromGallery": {
+    "description": "Virtual try-on: pick image from gallery option"
+  },
   "openSettings": "設定を開く",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
@@ -111,6 +127,14 @@
   "favorites": "お気に入り",
   "@favorites": {
     "description": "Drawer menu item: Favorites"
+  },
+  "favoritesAdded": "お気に入りに追加しました",
+  "@favoritesAdded": {
+    "description": "Toast: item added to favorites"
+  },
+  "favoritesRemoved": "お気に入りから削除しました",
+  "@favoritesRemoved": {
+    "description": "Toast: item removed from favorites"
   },
   "rateUs": "評価する",
   "@rateUs": {

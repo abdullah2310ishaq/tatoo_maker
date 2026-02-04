@@ -60,6 +60,22 @@
   "@cancel": {
     "description": "Dialog/CTA: Cancel"
   },
+  "history": "Historique",
+  "@history": {
+    "description": "History page title and header button"
+  },
+  "noHistoryYet": "Aucun historique pour le moment",
+  "@noHistoryYet": {
+    "description": "Empty state when no history items"
+  },
+  "choosePhotoSource": "Choisir la source de la photo",
+  "@choosePhotoSource": {
+    "description": "Virtual try-on: dialog title for camera vs gallery"
+  },
+  "chooseFromGallery": "Choisir dans la galerie",
+  "@chooseFromGallery": {
+    "description": "Virtual try-on: pick image from gallery option"
+  },
   "openSettings": "Ouvrir les Paramètres",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
@@ -111,6 +127,14 @@
   "favorites": "Favoris",
   "@favorites": {
     "description": "Drawer menu item: Favorites"
+  },
+  "favoritesAdded": "Ajouté aux favoris",
+  "@favoritesAdded": {
+    "description": "Toast: item added to favorites"
+  },
+  "favoritesRemoved": "Retiré des favoris",
+  "@favoritesRemoved": {
+    "description": "Toast: item removed from favorites"
   },
   "rateUs": "Notez-nous",
   "@rateUs": {

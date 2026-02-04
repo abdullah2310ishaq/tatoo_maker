@@ -55,10 +55,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get cancel => 'キャンセル';
 
   @override
-  String get history => 'History';
+  String get history => '履歴';
 
   @override
-  String get noHistoryYet => 'No history yet';
+  String get noHistoryYet => '履歴はまだありません';
 
   @override
   String get openSettings => '設定を開く';
@@ -99,6 +99,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get favorites => 'お気に入り';
+
+  @override
+  String get favoritesAdded => 'お気に入りに追加しました';
+
+  @override
+  String get favoritesRemoved => 'お気に入りから削除しました';
 
   @override
   String get rateUs => '評価する';
@@ -143,10 +149,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get capturePhoto => '写真を撮る';
 
   @override
-  String get choosePhotoSource => 'Choose photo source';
+  String get choosePhotoSource => '写真の取得方法を選択';
 
   @override
-  String get chooseFromGallery => 'Choose from gallery';
+  String get chooseFromGallery => 'ギャラリーから選択';
 
   @override
   String get apply => '適用';

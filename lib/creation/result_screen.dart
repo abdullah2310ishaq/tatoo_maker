@@ -57,9 +57,10 @@ class _ResultScreenState extends State<ResultScreen> {
     final success = await favoritesProvider.toggleFavorite(entry);
     if (!mounted || !success) return;
 
+    final l10n = AppLocalizations.of(context)!;
     AppToast.show(
       context,
-      message: wasFavorited ? 'Removed from favorites' : 'Added to favorites',
+      message: wasFavorited ? l10n.favoritesRemoved : l10n.favoritesAdded,
       isSuccess: true,
     );
   }

@@ -36,6 +36,7 @@ class ResultViewWidget extends StatefulWidget {
 
 class _ResultViewWidgetState extends State<ResultViewWidget> {
   final GlobalKey _bodyImageKey = GlobalKey();
+  bool _didAutoCenter = false;
   // Pan (single finger): anchor so drag is 1:1 with finger
   Offset? _panStartPosition;
   Offset? _panStartLocal;
@@ -48,6 +49,11 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
   @override
   void didUpdateWidget(ResultViewWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
+    final oldPath = oldWidget.bodyPartImage?.path;
+    final newPath = widget.bodyPartImage?.path;
+    if (oldPath != newPath) {
+      _didAutoCenter = false;
+    }
   }
 
   @override
@@ -100,98 +106,108 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
 
     // Use only scale gesture: 1 finger = pan (position), 2+ fingers = scale + rotate
     const double baseTattooSize = 200.0;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final viewportSize = Size(constraints.maxWidth, constraints.maxHeight);
 
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onScaleStart: (details) {
-        if (details.pointerCount == 1) {
-          _panStartPosition = widget.tattooPosition;
-          _panStartLocal = details.focalPoint;
-        } else if (details.pointerCount >= 2) {
-          _scaleStart = widget.tattooScale;
-          _rotationStart = widget.tattooRotation;
-          _focalStart = details.focalPoint;
-          _positionStart = widget.tattooPosition;
+        // Auto-center once when a new image is loaded (or when position was reset).
+        if (!_didAutoCenter &&
+            viewportSize.width > 0 &&
+            viewportSize.height > 0 &&
+            widget.tattooImageBytes != null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted || _didAutoCenter) return;
+            final centered = Offset(
+              (viewportSize.width - (baseTattooSize * widget.tattooScale)) / 2,
+              (viewportSize.height - (baseTattooSize * widget.tattooScale)) / 2,
+            );
+            widget.onTattooTransform(
+              centered,
+              widget.tattooScale,
+              widget.tattooRotation,
+            );
+            if (mounted) {
+              setState(() => _didAutoCenter = true);
+            }
+          });
         }
-      },
-      onScaleUpdate: (details) {
-        if (details.pointerCount == 1) {
-          if (_panStartPosition == null || _panStartLocal == null) return;
-          Offset newPosition =
-              _panStartPosition! + (details.focalPoint - _panStartLocal!);
-          newPosition = _clampPositionToImage(
-            context,
-            newPosition,
-            widget.tattooScale,
-            baseTattooSize,
-          );
-          widget.onTattooTransform(
-            newPosition,
-            widget.tattooScale,
-            widget.tattooRotation,
-          );
-        } else if (details.pointerCount >= 2) {
-          double newScale = (_scaleStart * details.scale).clamp(0.25, 3.0);
-          double newRotation = _rotationStart + details.rotation;
-          Offset newPosition =
-              _positionStart + (details.focalPoint - _focalStart);
-          newPosition = _clampPositionToImage(
-            context,
-            newPosition,
-            newScale,
-            baseTattooSize,
-          );
-          widget.onTattooTransform(newPosition, newScale, newRotation);
-        }
-      },
-      onScaleEnd: (_) {
-        _panStartPosition = null;
-        _panStartLocal = null;
-      },
-      child: RepaintBoundary(
-        key: widget.previewRepaintKey,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            // Body part image
-            Center(
-              child: Image.file(
-                widget.bodyPartImage!,
-                key: _bodyImageKey,
-                fit: BoxFit.contain,
-              ),
-            ),
-            if (widget.tattooImageBytes != null)
-              Positioned(
-                left: widget.tattooPosition.dx,
-                top: widget.tattooPosition.dy,
-                child: Transform.scale(
-                  scale: widget.tattooScale,
-                  child: Transform.rotate(
-                    angle: widget.tattooRotation,
-                    child: Image.memory(
-                      widget.tattooImageBytes!,
-                      width: baseTattooSize,
-                      height: baseTattooSize,
-                      fit: BoxFit.contain,
+
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onScaleStart: (details) {
+            if (details.pointerCount == 1) {
+              _panStartPosition = widget.tattooPosition;
+              _panStartLocal = details.focalPoint;
+            } else if (details.pointerCount >= 2) {
+              _scaleStart = widget.tattooScale;
+              _rotationStart = widget.tattooRotation;
+              _focalStart = details.focalPoint;
+              _positionStart = widget.tattooPosition;
+            }
+          },
+          onScaleUpdate: (details) {
+            if (details.pointerCount == 1) {
+              if (_panStartPosition == null || _panStartLocal == null) return;
+              final newPosition =
+                  _panStartPosition! + (details.focalPoint - _panStartLocal!);
+              widget.onTattooTransform(
+                newPosition,
+                widget.tattooScale,
+                widget.tattooRotation,
+              );
+            } else if (details.pointerCount >= 2) {
+              final newScale = (_scaleStart * details.scale).clamp(0.25, 3.0);
+              final newRotation = _rotationStart + details.rotation;
+              final newPosition =
+                  _positionStart + (details.focalPoint - _focalStart);
+              widget.onTattooTransform(newPosition, newScale, newRotation);
+            }
+          },
+          onScaleEnd: (_) {
+            _panStartPosition = null;
+            _panStartLocal = null;
+          },
+          child: RepaintBoundary(
+            key: widget.previewRepaintKey,
+            child: SizedBox.expand(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  // Make the body photo fill the available area for a more
+                  // "professional" try-on look (bigger image on screen).
+                  Positioned.fill(
+                    child: ClipRect(
+                      child: Image.file(
+                        widget.bodyPartImage!,
+                        key: _bodyImageKey,
+                        fit: BoxFit.cover,
+                        alignment: Alignment.center,
+                      ),
                     ),
                   ),
-                ),
+                  if (widget.tattooImageBytes != null)
+                    Positioned(
+                      left: widget.tattooPosition.dx,
+                      top: widget.tattooPosition.dy,
+                      child: Transform.scale(
+                        scale: widget.tattooScale,
+                        child: Transform.rotate(
+                          angle: widget.tattooRotation,
+                          child: Image.memory(
+                            widget.tattooImageBytes!,
+                            width: baseTattooSize,
+                            height: baseTattooSize,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
-          ],
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
-  }
-
-  /// Allow full range so tattoo reaches all edges (left, right, top, bottom). No clamping.
-  Offset _clampPositionToImage(
-    BuildContext context,
-    Offset position,
-    double scale,
-    double baseTattooSize,
-  ) {
-    // Don't clamp: let position go anywhere so left/right/top/bottom all work.
-    return position;
   }
 }

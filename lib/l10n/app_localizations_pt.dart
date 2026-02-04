@@ -57,10 +57,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get cancel => 'Cancelar';
 
   @override
-  String get history => 'History';
+  String get history => 'Histórico';
 
   @override
-  String get noHistoryYet => 'No history yet';
+  String get noHistoryYet => 'Ainda não há histórico';
 
   @override
   String get openSettings => 'Abrir Configurações';
@@ -108,6 +108,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get favorites => 'Favoritos';
 
   @override
+  String get favoritesAdded => 'Adicionado aos favoritos';
+
+  @override
+  String get favoritesRemoved => 'Removido dos favoritos';
+
+  @override
   String get rateUs => 'Avalie-nos';
 
   @override
@@ -152,10 +158,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get capturePhoto => 'Capturar Foto';
 
   @override
-  String get choosePhotoSource => 'Choose photo source';
+  String get choosePhotoSource => 'Escolher a fonte da foto';
 
   @override
-  String get chooseFromGallery => 'Choose from gallery';
+  String get chooseFromGallery => 'Escolher da galeria';
 
   @override
   String get apply => 'Aplicar';

@@ -120,6 +120,14 @@
   "@favorites": {
     "description": "Drawer menu item: Favorites"
   },
+  "favoritesAdded": "Added to favorites",
+  "@favoritesAdded": {
+    "description": "Toast: item added to favorites"
+  },
+  "favoritesRemoved": "Removed from favorites",
+  "@favoritesRemoved": {
+    "description": "Toast: item removed from favorites"
+  },
   "rateUs": "Rate Us",
   "@rateUs": {
     "description": "Drawer menu item: Rate Us"

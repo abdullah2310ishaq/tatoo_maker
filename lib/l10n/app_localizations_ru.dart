@@ -57,10 +57,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cancel => 'Отмена';
 
   @override
-  String get history => 'History';
+  String get history => 'История';
 
   @override
-  String get noHistoryYet => 'No history yet';
+  String get noHistoryYet => 'Истории пока нет';
 
   @override
   String get openSettings => 'Открыть Настройки';
@@ -108,6 +108,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get favorites => 'Избранное';
 
   @override
+  String get favoritesAdded => 'Добавлено в избранное';
+
+  @override
+  String get favoritesRemoved => 'Удалено из избранного';
+
+  @override
   String get rateUs => 'Оценить Нас';
 
   @override
@@ -152,10 +158,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get capturePhoto => 'Сделать Фото';
 
   @override
-  String get choosePhotoSource => 'Choose photo source';
+  String get choosePhotoSource => 'Выберите источник фото';
 
   @override
-  String get chooseFromGallery => 'Choose from gallery';
+  String get chooseFromGallery => 'Выбрать из галереи';
 
   @override
   String get apply => 'Применить';

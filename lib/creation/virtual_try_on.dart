@@ -137,7 +137,8 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       setState(() {
         _bodyPartImage = confirmedImage;
         _processedTryOnBytes = null;
-        _tattooPosition = const Offset(200, 300);
+        // Let ResultViewWidget auto-center after layout.
+        _tattooPosition = Offset.zero;
         _tattooScale = 1.0;
         _tattooRotation = 0.0;
       });
@@ -159,7 +160,8 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     setState(() {
       _bodyPartImage = file;
       _processedTryOnBytes = null;
-      _tattooPosition = const Offset(200, 300);
+      // Let ResultViewWidget auto-center after layout.
+      _tattooPosition = Offset.zero;
       _tattooScale = 1.0;
       _tattooRotation = 0.0;
     });

@@ -296,6 +296,18 @@ abstract class AppLocalizations {
   /// **'Favorites'**
   String get favorites;
 
+  /// Toast: item added to favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Added to favorites'**
+  String get favoritesAdded;
+
+  /// Toast: item removed from favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from favorites'**
+  String get favoritesRemoved;
+
   /// Drawer menu item: Rate Us
   ///
   /// In en, this message translates to:

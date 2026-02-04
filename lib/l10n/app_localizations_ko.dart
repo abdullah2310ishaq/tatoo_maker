@@ -55,10 +55,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get cancel => '취소';
 
   @override
-  String get history => 'History';
+  String get history => '기록';
 
   @override
-  String get noHistoryYet => 'No history yet';
+  String get noHistoryYet => '기록이 없습니다';
 
   @override
   String get openSettings => '설정 열기';
@@ -100,6 +100,12 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get favorites => '즐겨찾기';
+
+  @override
+  String get favoritesAdded => '즐겨찾기에 추가됨';
+
+  @override
+  String get favoritesRemoved => '즐겨찾기에서 제거됨';
 
   @override
   String get rateUs => '평가하기';
@@ -144,10 +150,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get capturePhoto => '사진 촬영';
 
   @override
-  String get choosePhotoSource => 'Choose photo source';
+  String get choosePhotoSource => '사진 소스 선택';
 
   @override
-  String get chooseFromGallery => 'Choose from gallery';
+  String get chooseFromGallery => '갤러리에서 선택';
 
   @override
   String get apply => '적용';
