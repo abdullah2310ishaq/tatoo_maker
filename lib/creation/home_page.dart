@@ -44,6 +44,8 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey _dreamInkCardKey = GlobalKey();
   final GlobalKey _tattooStyleSectionKey = GlobalKey();
   final ScrollController _styleRowScrollController = ScrollController();
+  String? _lastAutoFilledPrompt;
+  bool _isSettingDreamInkText = false;
 
   @override
   void initState() {
@@ -107,8 +109,7 @@ class _HomePageState extends State<HomePage> {
         Theme.of(context).brightness == Brightness.dark;
     return [
       const TattooStyleItem(label: 'Dragon', assetPath: 'assets/dragon.png'),
-      const TattooStyleItem(label: 'Unicorn', assetPath: 'assets/unicorn.png'),
-      const TattooStyleItem(label: 'Floral', assetPath: 'assets/floral.png'),
+
       TattooStyleItem(
         label: 'Abstract',
         assetPath: isDark
@@ -125,6 +126,7 @@ class _HomePageState extends State<HomePage> {
         label: 'Eagle',
         assetPath: isDark ? 'assets/eagle_dark.png' : 'assets/eagle_light.png',
       ),
+      const TattooStyleItem(label: 'Unicorn', assetPath: 'assets/unicorn.png'),
       TattooStyleItem(
         label: 'Lion',
         assetPath: isDark ? 'assets/lion_dark.png' : 'assets/lion_light.png',
@@ -135,6 +137,7 @@ class _HomePageState extends State<HomePage> {
             ? 'assets/spider_dark.png'
             : 'assets/spider_light.png',
       ),
+      const TattooStyleItem(label: 'Floral', assetPath: 'assets/floral.png'),
       TattooStyleItem(
         label: 'Wolf',
         assetPath: isDark ? 'assets/wolf_dark.png' : 'assets/wolf_light.png',
@@ -147,6 +150,13 @@ class _HomePageState extends State<HomePage> {
     _dreamInkController.dispose();
     _styleRowScrollController.dispose();
     super.dispose();
+  }
+
+  void _onDreamInkChanged(String _) {
+    // If user edits the text manually, stop treating it as auto-filled.
+    if (_isSettingDreamInkText) return;
+    _lastAutoFilledPrompt = null;
+    setState(() {});
   }
 
   @override
@@ -197,7 +207,7 @@ class _HomePageState extends State<HomePage> {
                       cardKey: _dreamInkCardKey,
                       controller: _dreamInkController,
                       maxCharacters: _maxCharacters,
-                      onChanged: (_) => setState(() {}),
+                      onChanged: _onDreamInkChanged,
                       checkAssetExists: _checkAssetExists,
                       onInspirationTap: _onInspirationTap,
                     ),
@@ -246,8 +256,35 @@ class _HomePageState extends State<HomePage> {
   void _onInspirationTap() {
     final styles = _styles;
     if (styles.isEmpty) return;
-    final randomIndex = Random().nextInt(styles.length);
-    _onStyleTap(randomIndex);
+    // Pick a random style (prefer different from current selection)
+    int randomIndex = Random().nextInt(styles.length);
+    if (_selectedStyleIndex != null && styles.length > 1) {
+      var attempts = 0;
+      while (randomIndex == _selectedStyleIndex && attempts < 5) {
+        randomIndex = Random().nextInt(styles.length);
+        attempts++;
+      }
+    }
+
+    // Inspiration = "random idea": always update the text to match the random style prompt.
+    final l10n = AppLocalizations.of(context)!;
+    final stylePrompts = _stylePrompts(l10n);
+    final selectedStyle = styles[randomIndex];
+    final prompt = stylePrompts[selectedStyle.label];
+
+    setState(() {
+      _selectedStyleIndex = randomIndex;
+      if (prompt != null) {
+        final nextText = prompt.length > _maxCharacters
+            ? prompt.substring(0, _maxCharacters)
+            : prompt;
+        _isSettingDreamInkText = true;
+        _dreamInkController.text = nextText;
+        _isSettingDreamInkText = false;
+        _lastAutoFilledPrompt = nextText.trim();
+      }
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       if (_styleRowScrollController.hasClients) {
@@ -283,22 +320,33 @@ class _HomePageState extends State<HomePage> {
       if (_selectedStyleIndex == index) {
         _selectedStyleIndex = null;
         _dreamInkController.clear();
+        _lastAutoFilledPrompt = null;
         return;
       }
 
       _selectedStyleIndex = index;
 
-      // Auto-fill with style prompt only when dream ink is empty.
-      // If user already wrote something, keep their prompt; style is reference/inspiration.
+      // Auto-fill/update prompt when:
+      // - dream ink is empty, OR
+      // - dream ink currently equals the last auto-filled prompt (meaning user didn't customize)
       final selectedStyle = _styles[index];
       final prompt = stylePrompts[selectedStyle.label];
       if (prompt == null) return;
 
       final currentText = _dreamInkController.text.trim();
-      if (currentText.isEmpty) {
-        _dreamInkController.text = prompt.length > _maxCharacters
+      final bool shouldReplace =
+          currentText.isEmpty ||
+          (_lastAutoFilledPrompt != null &&
+              currentText == _lastAutoFilledPrompt!.trim());
+
+      if (shouldReplace) {
+        final nextText = prompt.length > _maxCharacters
             ? prompt.substring(0, _maxCharacters)
             : prompt;
+        _isSettingDreamInkText = true;
+        _dreamInkController.text = nextText;
+        _isSettingDreamInkText = false;
+        _lastAutoFilledPrompt = nextText.trim();
       }
     });
   }

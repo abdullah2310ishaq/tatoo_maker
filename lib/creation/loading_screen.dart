@@ -145,6 +145,12 @@ class _LoadingScreenState extends State<LoadingScreen>
             'incorporate subject with soft flowing lines, magical accents stars sparkles, graceful gentle curves, whimsical highlights, ethereal magical quality, pastel pinks blues purples silvers, lightness and enchantment, fantasy and dreams',
           );
         }
+        // Floral: reinforce delicate organic floral aesthetic when user provided a subject
+        if (style.toLowerCase() == 'floral' && idea.isNotEmpty) {
+          promptParts.add(
+            'incorporate subject with soft floral details, delicate petals and leaves subtly woven in, flowing graceful curves, muted natural blush pink soft white earthy green, gentle shading, realistic textures, elegant organic serenity, light highlights',
+          );
+        }
       }
     }
 
