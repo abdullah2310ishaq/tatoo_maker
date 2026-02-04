@@ -39,9 +39,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int? _selectedStyleIndex;
   final TextEditingController _dreamInkController = TextEditingController();
-  static const int _maxCharacters = 250;
+  static const int _maxCharacters = 600;
   bool _showTutorialOverlay = false;
   final GlobalKey _dreamInkCardKey = GlobalKey();
+  final GlobalKey _tattooStyleSectionKey = GlobalKey();
+  final ScrollController _styleRowScrollController = ScrollController();
 
   @override
   void initState() {
@@ -143,6 +145,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _dreamInkController.dispose();
+    _styleRowScrollController.dispose();
     super.dispose();
   }
 
@@ -168,7 +171,9 @@ class _HomePageState extends State<HomePage> {
             child: SingleChildScrollView(
               padding: EdgeInsets.only(
                 left: 20.w,
-                right: 20.w,
+                // Keep left padding globally, but allow specific sections
+                // (like the tattoo style row) to reach the right edge.
+                right: 0,
                 bottom: bottomAreaHeight, // Clear Generate button + navbar
               ),
               child: Column(
@@ -176,31 +181,44 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   SizedBox(height: 20.h),
                   // Header: menu + InkVision + notification (single line)
-                  HomeHeader(
-                    isDark: isDark,
-                    onMenuTap: widget.onMenuTap,
-                    onHistoryTap: widget.onHistoryTap,
+                  Padding(
+                    padding: EdgeInsets.only(right: 20.w),
+                    child: HomeHeader(
+                      isDark: isDark,
+                      onMenuTap: widget.onMenuTap,
+                      onHistoryTap: widget.onHistoryTap,
+                    ),
                   ),
                   SizedBox(height: 30.h),
                   // Describe Your Dream Ink card
-                  DreamInkCard(
-                    cardKey: _dreamInkCardKey,
-                    controller: _dreamInkController,
-                    maxCharacters: _maxCharacters,
-                    onChanged: (_) => setState(() {}),
-                    checkAssetExists: _checkAssetExists,
-                    onInspirationTap: _onInspirationTap,
+                  Padding(
+                    padding: EdgeInsets.only(right: 20.w),
+                    child: DreamInkCard(
+                      cardKey: _dreamInkCardKey,
+                      controller: _dreamInkController,
+                      maxCharacters: _maxCharacters,
+                      onChanged: (_) => setState(() {}),
+                      checkAssetExists: _checkAssetExists,
+                      onInspirationTap: _onInspirationTap,
+                    ),
                   ),
                   SizedBox(height: 32.h),
                   // Tattoo style selector section (Generate is in bottom navbar)
-                  TattooStyleSection(
-                    styles: _styles,
-                    selectedIndex: _selectedStyleIndex,
-                    onStyleTap: _onStyleTap,
+                  SizedBox(
+                    key: _tattooStyleSectionKey,
+                    child: TattooStyleSection(
+                      styles: _styles,
+                      selectedIndex: _selectedStyleIndex,
+                      onStyleTap: _onStyleTap,
+                      scrollController: _styleRowScrollController,
+                    ),
                   ),
                   SizedBox(height: 32.h),
                   // Explore Inspiration section
-                  const ExploreInspirationSection(),
+                  Padding(
+                    padding: EdgeInsets.only(right: 20.w),
+                    child: const ExploreInspirationSection(),
+                  ),
                   SizedBox(
                     height: 40.h,
                   ), // Extra spacing to ensure last cards are fully visible
@@ -230,6 +248,30 @@ class _HomePageState extends State<HomePage> {
     if (styles.isEmpty) return;
     final randomIndex = Random().nextInt(styles.length);
     _onStyleTap(randomIndex);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (_styleRowScrollController.hasClients) {
+        // Scroll horizontal row so the selected card is fully visible.
+        // Matches `TattooStyleSection` card widths.
+        final double itemWidth = 92.w;
+        final double selectedWidth = 108.w;
+        final double gap = 2.w;
+
+        final viewport = _styleRowScrollController.position.viewportDimension;
+        final rawOffset =
+            (randomIndex * (itemWidth + gap)) - (viewport - selectedWidth) / 2;
+        final targetOffset = rawOffset.clamp(
+          0.0,
+          _styleRowScrollController.position.maxScrollExtent,
+        );
+
+        _styleRowScrollController.animateTo(
+          targetOffset.toDouble(),
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
   }
 
   void _onStyleTap(int index) {
@@ -237,27 +279,26 @@ class _HomePageState extends State<HomePage> {
     final stylePrompts = _stylePrompts(l10n);
 
     setState(() {
-      // Toggle selection: tap again to unselect
+      // Toggle selection: tap again to unselect — clear dream ink text too
       if (_selectedStyleIndex == index) {
         _selectedStyleIndex = null;
+        _dreamInkController.clear();
         return;
       }
 
       _selectedStyleIndex = index;
 
-      // Auto-fill text only if empty or if current text matches a prompt
+      // Auto-fill with style prompt only when dream ink is empty.
+      // If user already wrote something, keep their prompt; style is reference/inspiration.
       final selectedStyle = _styles[index];
       final prompt = stylePrompts[selectedStyle.label];
       if (prompt == null) return;
 
       final currentText = _dreamInkController.text.trim();
-      final isEmpty = currentText.isEmpty;
-      final isPromptText = stylePrompts.values.any(
-        (p) => p.trim() == currentText,
-      );
-
-      if (isEmpty || isPromptText) {
-        _dreamInkController.text = prompt;
+      if (currentText.isEmpty) {
+        _dreamInkController.text = prompt.length > _maxCharacters
+            ? prompt.substring(0, _maxCharacters)
+            : prompt;
       }
     });
   }

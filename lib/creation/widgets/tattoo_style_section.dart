@@ -10,12 +10,14 @@ class TattooStyleSection extends StatelessWidget {
   final List<TattooStyleItem> styles;
   final int? selectedIndex;
   final ValueChanged<int> onStyleTap;
+  final ScrollController? scrollController;
 
   const TattooStyleSection({
     super.key,
     required this.styles,
     required this.selectedIndex,
     required this.onStyleTap,
+    this.scrollController,
   });
 
   @override
@@ -38,7 +40,9 @@ class TattooStyleSection extends StatelessWidget {
         SizedBox(height: 16.h),
         SizedBox(
           height: 190.h,
+
           child: ListView.separated(
+            controller: scrollController,
             key: ValueKey(ThemeProvider.of(context)?.isDarkTheme ?? false),
             scrollDirection: Axis.horizontal,
             itemCount: styles.length,
@@ -74,18 +78,19 @@ class _StyleCard extends StatelessWidget {
     switch (key) {
       case 'Dragon':
         return l10n.styleDragon;
-      case 'Unicorn':
-        return l10n.styleUnicorn;
-      case 'Floral':
-        return l10n.styleFloral;
+
       case 'Abstract':
         return l10n.styleAbstract;
       case 'Butterfly':
         return l10n.styleButterfly;
+      case 'Unicorn':
+        return l10n.styleUnicorn;
       case 'Eagle':
         return l10n.styleEagle;
       case 'Lion':
         return l10n.styleLion;
+      case 'Floral':
+        return l10n.styleFloral;
       case 'Spider':
         return l10n.styleSpider;
       case 'Wolf':
@@ -100,7 +105,8 @@ class _StyleCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
 
-    final double width = isSelected ? 118.w : 102.w;
+    // Narrower cards so more styles fit on screen
+    final double width = isSelected ? 100.w : 82.w;
     final Color borderColor = isSelected
         ? AppColors.navBarActive
         : AppColors.cardGradientEnd;

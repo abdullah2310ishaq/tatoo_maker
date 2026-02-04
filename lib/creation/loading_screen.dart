@@ -133,6 +133,18 @@ class _LoadingScreenState extends State<LoadingScreen>
         promptParts.add(
           'inspired by ${style.toLowerCase()} style, aesthetic only',
         );
+        // Dragon: reinforce Eastern fiery dragon aesthetic when user provided a subject
+        if (style.toLowerCase() == 'dragon' && idea.isNotEmpty) {
+          promptParts.add(
+            'incorporate subject with fiery dragon-like details, scales, sharp fierce lines, dramatic shading, flowing powerful design, as if breathing fire, mythical elements, bold red orange gold, Eastern-inspired',
+          );
+        }
+        // Unicorn: reinforce pastel magical whimsical aesthetic when user provided a subject
+        if (style.toLowerCase() == 'unicorn' && idea.isNotEmpty) {
+          promptParts.add(
+            'incorporate subject with soft flowing lines, magical accents stars sparkles, graceful gentle curves, whimsical highlights, ethereal magical quality, pastel pinks blues purples silvers, lightness and enchantment, fantasy and dreams',
+          );
+        }
       }
     }
 

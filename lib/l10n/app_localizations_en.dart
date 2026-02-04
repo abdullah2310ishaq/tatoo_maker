@@ -216,11 +216,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tattooStylePromptDragon =>
-      'Fantasy dragon tattoo design, coiled body, dark scales, glowing orange wings, sharp horns, bold clean lines';
+      'Create a tattoo design based on the Dragon Style. Use bold, fiery colors like red, orange, and gold, incorporating intricate scales and fierce lines. Focus on sharp, textured details with dramatic shadows for a dynamic, powerful look. Eastern-inspired aesthetic, emphasizing movement and strength. The subject should have fiery, dragon-like details, scales embedded in the design, sharp fierce lines, and dramatic shading. Flowing, powerful forms that evoke strength and energy, as if breathing fire, with aggressive and mythical elements.';
 
   @override
   String get tattooStylePromptUnicorn =>
-      'Unicorn head tattoo design, golden horn, flowing rainbow mane, detailed fantasy illustration';
+      'Create a tattoo design based on the Unicorn Style. Use pastel colors such as soft pinks, blues, purples, and silvers. Smooth, flowing lines, sparkles and glows for a magical, whimsical feeling. Soft, airy textures, subtle highlights, whimsical details like stars and light reflections. Dreamlike, emphasizing elegance, grace, and fantasy. The subject should have soft flowing lines, magical accents like stars or sparkles, graceful gentle curves, whimsical highlights, ethereal magical quality, bathed in pastel colors, lightness and enchantment evoking fantasy and dreams.';
 
   @override
   String get tattooStylePromptFloral =>

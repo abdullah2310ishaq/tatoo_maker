@@ -29,101 +29,98 @@ class StepTattooIdeaPage extends StatelessWidget {
             colors: [AppColors.cardGradientStart, AppColors.cardGradientEnd],
           )
         : null;
-    final maxCharacters = 500;
+    const int maxCharacters = 500;
 
     return StatefulBuilder(
       builder: (context, setState) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            OnboardingHeader(currentStep: 4, onBack: onBack),
-            SizedBox(height: 50.h),
-            // Question
-            Text(
-              AppLocalizations.of(context)!.stepTattooIdeaWhatYourTattooIdea,
-              style: TextStyle(
-                fontSize: 24.sp,
-                fontWeight: FontWeight.bold,
-                color: textColor,
-                fontFamily: 'Amaranth',
-              ),
-            ),
-            SizedBox(height: 30.h),
-            // Big input container like homepage
+            // Scrollable content — prevents overflow when keyboard opens
             Flexible(
-              child: SizedBox(
-                height: 200.h,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.r),
-                    border: Border.all(
-                      color: AppColors.titleGradientStart,
-                      width: 1.w,
-                    ),
-                    color: cardBgColor,
-                    gradient: cardGradient,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.r),
-                    child: Padding(
-                      padding: EdgeInsets.all(16.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            AppLocalizations.of(
-                              context,
-                            )!.stepTattooIdeaWhatYourTattooIdea,
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                              color: textColor,
-                              fontFamily: 'Amaranth',
-                            ),
-                          ),
-                          SizedBox(height: 8.h),
-                          Flexible(
-                            fit: FlexFit.loose,
-                            child: TextField(
-                              controller: controller,
-                              maxLength: maxCharacters,
-                              maxLines: null,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: textColor,
-                              ),
-                              decoration: InputDecoration(
-                                hintText: AppLocalizations.of(
-                                  context,
-                                )!.stepTattooIdeaHint,
-                                hintStyle: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: AppColors.textGrey,
-                                ),
-                                border: InputBorder.none,
-                                counterText: '',
-                                contentPadding: EdgeInsets.zero,
-                              ),
-                              onChanged: (_) => setState(() {}),
-                            ),
-                          ),
-                        ],
+              child: SingleChildScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    OnboardingHeader(currentStep: 4, onBack: onBack),
+                    SizedBox(height: 28.h),
+                    Text(
+                      AppLocalizations.of(
+                        context,
+                      )!.stepTattooIdeaWhatYourTattooIdea,
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                        fontFamily: 'Amaranth',
                       ),
                     ),
-                  ),
+                    SizedBox(height: 20.h),
+                    SizedBox(
+                      height: 150.h,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.r),
+                          border: Border.all(
+                            color: AppColors.titleGradientStart,
+                            width: 1.w,
+                          ),
+                          color: cardBgColor,
+                          gradient: cardGradient,
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16.r),
+                          child: Padding(
+                            padding: EdgeInsets.all(16.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  child: TextField(
+                                    controller: controller,
+                                    maxLength: maxCharacters,
+                                    maxLines: null,
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: textColor,
+                                    ),
+                                    decoration: InputDecoration(
+                                      hintText: AppLocalizations.of(
+                                        context,
+                                      )!.stepTattooIdeaHint,
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: AppColors.textGrey,
+                                      ),
+                                      border: InputBorder.none,
+                                      counterText: '',
+                                      contentPadding: EdgeInsets.zero,
+                                    ),
+                                    onChanged: (_) => setState(() {}),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 265.h),
+                  ],
                 ),
               ),
             ),
-            // Spacer - pushes button to bottom (like other pages)
-            const Spacer(),
-            // Next button
+            SizedBox(height: 24.h),
             OnboardingNextButton(
               enabled: controller.text.trim().isNotEmpty,
               isLastStep: false,
               onPressed: onNext,
             ),
-            SizedBox(height: 40.h),
+            SizedBox(height: 35.h),
           ],
         );
       },

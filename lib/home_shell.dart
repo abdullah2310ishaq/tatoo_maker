@@ -86,7 +86,7 @@ class _HomeShellState extends State<HomeShell> {
                       if (_selectedIndex == 0)
                         _buildGenerateButtonSeparate()
                       else
-                        SizedBox(height: 66.h + 30.h),
+                        SizedBox(height: 66.h + 8.h),
                       _buildFloatingNavBar(),
                     ],
                   ),
@@ -161,10 +161,11 @@ class _HomeShellState extends State<HomeShell> {
         : AppColors.lightBackground;
 
     return Container(
-      margin: EdgeInsets.only(top: 8.h),
+      margin: EdgeInsets.only(top: 4.h),
       decoration: BoxDecoration(
         color: navBarBgColor,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
+        // Normal (non-circular) navbar shape
+        borderRadius: BorderRadius.zero,
         border: isDark
             ? null
             : Border.all(
@@ -180,7 +181,7 @@ class _HomeShellState extends State<HomeShell> {
           ),
         ],
       ),
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -189,7 +190,7 @@ class _HomeShellState extends State<HomeShell> {
             label: l10n.creation,
             index: 0,
           ),
-          
+
           _buildNavItem(
             iconPath: 'assets/tatoo.svg',
             label: l10n.tattoo,
@@ -212,44 +213,46 @@ class _HomeShellState extends State<HomeShell> {
     const Color enabledColor = Color(0xFFA6541D); // Burnt orange (original)
     const Color disabledColor = Color(0xFF2A2A2A);
 
-    return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(bottom: 30.h),
-      padding: EdgeInsets.symmetric(horizontal: 5.w),
-      child: GestureDetector(
-        onTap: enabled ? _onGenerateTap : null,
-        child: Container(
-          height: 66.h,
-          decoration: BoxDecoration(
-            color: enabled ? enabledColor : disabledColor,
-            borderRadius: BorderRadius.circular(12.r),
-            boxShadow: enabled
-                ? [
-                    BoxShadow(
-                      color: enabledColor.withValues(alpha: 0.3),
-                      blurRadius: 8.r,
-                      offset: Offset(0, 4.h),
-                    ),
-                  ]
-                : null,
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            l10n.homeGenerate,
-            style: TextStyle(
-              fontSize: 25.sp,
-              fontWeight: FontWeight.w600,
-              color: enabled ? AppColors.textWhite : AppColors.textGrey,
-              fontFamily: 'Amaranth',
-              shadows: enabled
+    return Center(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.85,
+        margin: EdgeInsets.only(bottom: 12.h),
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        child: GestureDetector(
+          onTap: enabled ? _onGenerateTap : null,
+          child: Container(
+            height: 66.h,
+            decoration: BoxDecoration(
+              color: enabled ? enabledColor : disabledColor,
+              borderRadius: BorderRadius.circular(6.r),
+              boxShadow: enabled
                   ? [
-                      Shadow(
-                        color: AppColors.gradientBlack.withValues(alpha: 0.3),
-                        offset: Offset(0, 2.h),
-                        blurRadius: 4.r,
+                      BoxShadow(
+                        color: enabledColor.withValues(alpha: 0.3),
+                        blurRadius: 8.r,
+                        offset: Offset(0, 4.h),
                       ),
                     ]
                   : null,
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              l10n.homeGenerate,
+              style: TextStyle(
+                fontSize: 23.sp,
+                fontWeight: FontWeight.w600,
+                color: enabled ? AppColors.textWhite : AppColors.textGrey,
+                fontFamily: 'Amaranth',
+                shadows: enabled
+                    ? [
+                        Shadow(
+                          color: AppColors.gradientBlack.withValues(alpha: 0.3),
+                          offset: Offset(0, 2.h),
+                          blurRadius: 4.r,
+                        ),
+                      ]
+                    : null,
+              ),
             ),
           ),
         ),
@@ -304,8 +307,8 @@ class _HomeShellState extends State<HomeShell> {
         if (snapshot.hasData && snapshot.data == true) {
           return SvgPicture.asset(
             iconPath,
-            width: 26.w,
-            height: 36.h,
+            width: 30.w,
+            height: 35.h,
             colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             placeholderBuilder: (context) =>
                 Icon(_getIconData(index), size: 22, color: color),
