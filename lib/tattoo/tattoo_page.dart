@@ -7,6 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/inkvision_underline.dart';
+import '../widgets/asset_video_controller_cache.dart';
 import 'onboarding_flow.dart';
 
 /// Adjust these to change the video section size on the tattoo page (dark mode).
@@ -228,12 +229,15 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
   bool _initError = false;
   bool _hadValidSize = false;
   String _currentAssetPath = '';
+  bool _showLoadingPlaceholder = false;
+  bool _disposed = false;
 
   @override
   void initState() {
     super.initState();
     _currentAssetPath = widget.assetPath;
     _initController();
+    _scheduleLoadingPlaceholder();
   }
 
   @override
@@ -241,25 +245,21 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.assetPath != widget.assetPath) {
       _controller.removeListener(_onControllerUpdate);
-      _controller.dispose();
       _currentAssetPath = widget.assetPath;
       _initError = false;
       _hadValidSize = false;
+      _showLoadingPlaceholder = false;
       _initController();
+      _scheduleLoadingPlaceholder();
     }
   }
 
   void _initController() {
-    _controller = VideoPlayerController.asset(_currentAssetPath);
+    _controller = AssetVideoControllerCache.controllerFor(_currentAssetPath);
     _controller.addListener(_onControllerUpdate);
-    _controller
-        .initialize()
+    AssetVideoControllerCache.ensureInitialized(_currentAssetPath)
         .then((_) {
-          if (mounted && !_initError) {
-            _controller.setLooping(true);
-            _controller.play();
-            setState(() {});
-          }
+          if (mounted && !_initError) setState(() {});
         })
         .catchError((Object e) {
           if (kDebugMode) {
@@ -269,6 +269,15 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
             setState(() => _initError = true);
           }
         });
+  }
+
+  void _scheduleLoadingPlaceholder() {
+    Future.delayed(const Duration(seconds: 1), () {
+      if (!mounted || _disposed) return;
+      if (!_initError && !_controller.value.isInitialized) {
+        setState(() => _showLoadingPlaceholder = true);
+      }
+    });
   }
 
   void _onControllerUpdate() {
@@ -282,8 +291,8 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
 
   @override
   void dispose() {
+    _disposed = true;
     _controller.removeListener(_onControllerUpdate);
-    _controller.dispose();
     super.dispose();
   }
 
@@ -294,7 +303,7 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
         ? double.infinity
         : widget.sectionWidth!.w;
 
-    if (_initError || !_controller.value.isInitialized) {
+    if (_initError) {
       return Container(
         height: h,
         width: w,
@@ -304,10 +313,27 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
         ),
         child: Center(
           child: Icon(
-            _initError ? Icons.broken_image : Icons.videocam_off,
+            Icons.broken_image,
             color: AppColors.textGrey,
             size: 48.sp,
           ),
+        ),
+      );
+    }
+
+    if (!_controller.value.isInitialized) {
+      // No fallback while loading: keep it transparent for 1 second to avoid flicker.
+      if (!_showLoadingPlaceholder) {
+        return SizedBox(height: h, width: w);
+      }
+
+      // After 1s, show a subtle placeholder only if it still isn't ready.
+      return Container(
+        height: h,
+        width: w,
+        decoration: BoxDecoration(
+          color: AppColors.cardGradientStart.withOpacity(0.08),
+          borderRadius: BorderRadius.circular(16.r),
         ),
       );
     }
