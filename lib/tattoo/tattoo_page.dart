@@ -1,11 +1,19 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:video_player/video_player.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/inkvision_underline.dart';
 import 'onboarding_flow.dart';
+
+/// Adjust these to change the video section size on the tattoo page (dark mode).
+/// Height is in logical pixels (scaled with ScreenUtil).
+/// Width: null = full width; set a number (e.g. 350) for a fixed width.
+const double kTattooVideoSectionHeight = 350;
+const double? kTattooVideoSectionWidth = 400;
 
 class TattooPage extends StatelessWidget {
   final VoidCallback? onMenuTap;
@@ -20,7 +28,7 @@ class TattooPage extends StatelessWidget {
     return SafeArea(
       child: Container(
         decoration: isDark
-            ? ThemeManager.darkModeBackgroundGradient
+            ? BoxDecoration(color: AppColors.darkBackground)
             : ThemeManager.lightModeBackground,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -34,9 +42,14 @@ class TattooPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 80.h),
-                    // Unicorn image centered
-                    _buildUnicornImage(),
+                    SizedBox(height: 10.h),
+                    // Dark: video.mp4; light: video_light.mp4
+                    _buildVideoArea(
+                      context,
+                      assetPath: isDark
+                          ? 'assets/video.mp4'
+                          : 'assets/video_light.mp4',
+                    ),
                     SizedBox(height: 40.h),
                     // Welcome text
                     _buildWelcomeText(context, isDark),
@@ -45,10 +58,24 @@ class TattooPage extends StatelessWidget {
               ),
               // Continue button - little above navbar
               _buildContinueButton(context, isDark),
-              SizedBox(height: 140.h),
+              SizedBox(height: 80.h),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildVideoArea(BuildContext context, {required String assetPath}) {
+    return SizedBox(
+      height: kTattooVideoSectionHeight.h,
+      width: kTattooVideoSectionWidth == null
+          ? double.infinity
+          : kTattooVideoSectionWidth!.w,
+      child: _TattooPageVideo(
+        assetPath: assetPath,
+        sectionHeight: kTattooVideoSectionHeight,
+        sectionWidth: kTattooVideoSectionWidth,
       ),
     );
   }
@@ -119,34 +146,6 @@ class TattooPage extends StatelessWidget {
     );
   }
 
-  Widget _buildUnicornImage() {
-    return SizedBox(
-      height: 200.h,
-      width: double.infinity,
-      child: Image.asset(
-        'assets/unicorn.png',
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return Container(
-            height: 200.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColors.cardGradientStart.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: Center(
-              child: Icon(
-                Icons.image_not_supported,
-                color: AppColors.textGrey,
-                size: 48.sp,
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   Widget _buildWelcomeText(BuildContext context, bool isDark) {
     final l10n = AppLocalizations.of(context)!;
 
@@ -201,6 +200,114 @@ class TattooPage extends StatelessWidget {
             fontWeight: FontWeight.w600,
             color: Colors.white,
             fontFamily: 'Amaranth',
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Plays an asset video in a loop. Used on tattoo page in dark mode.
+class _TattooPageVideo extends StatefulWidget {
+  final String assetPath;
+  final double sectionHeight;
+  final double? sectionWidth;
+
+  const _TattooPageVideo({
+    required this.assetPath,
+    this.sectionHeight = 200,
+    this.sectionWidth,
+  });
+
+  @override
+  State<_TattooPageVideo> createState() => _TattooPageVideoState();
+}
+
+class _TattooPageVideoState extends State<_TattooPageVideo> {
+  late VideoPlayerController _controller;
+  bool _initError = false;
+  bool _hadValidSize = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset(widget.assetPath);
+    _controller.addListener(_onControllerUpdate);
+    _controller
+        .initialize()
+        .then((_) {
+          if (mounted && !_initError) {
+            _controller.setLooping(true);
+            _controller.play();
+            setState(() {});
+          }
+        })
+        .catchError((Object e) {
+          if (kDebugMode) {
+            debugPrint('TattooPage video failed to load: $e');
+          }
+          if (mounted) {
+            setState(() => _initError = true);
+          }
+        });
+  }
+
+  void _onControllerUpdate() {
+    if (!mounted || !_controller.value.isInitialized) return;
+    final size = _controller.value.size;
+    if (!_hadValidSize && size.width > 0 && size.height > 0) {
+      _hadValidSize = true;
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_onControllerUpdate);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final h = widget.sectionHeight.h;
+    final w = widget.sectionWidth == null
+        ? double.infinity
+        : widget.sectionWidth!.w;
+
+    if (_initError || !_controller.value.isInitialized) {
+      return Container(
+        height: h,
+        width: w,
+        decoration: BoxDecoration(
+          color: AppColors.cardGradientStart.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        child: Center(
+          child: Icon(
+            _initError ? Icons.broken_image : Icons.videocam_off,
+            color: AppColors.textGrey,
+            size: 48.sp,
+          ),
+        ),
+      );
+    }
+    final size = _controller.value.size;
+    final ratio = (size.width > 0 && size.height > 0)
+        ? (size.width / size.height)
+        : 16 / 9;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16.r),
+      child: SizedBox(
+        width: w,
+        height: h,
+        child: FittedBox(
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+          child: SizedBox(
+            width: 160,
+            height: 160 / ratio,
+            child: VideoPlayer(_controller),
           ),
         ),
       ),

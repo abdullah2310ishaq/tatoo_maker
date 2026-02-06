@@ -1,11 +1,17 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:video_player/video_player.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/inkvision_underline.dart';
 import 'flower_input_screen.dart';
+
+/// Video section size on flower home. Adjust to change player area.
+const double kFlowerVideoSectionHeight = 350;
+const double? kFlowerVideoSectionWidth = null;
 
 class FlowerHome extends StatelessWidget {
   final VoidCallback? onMenuTap;
@@ -20,7 +26,7 @@ class FlowerHome extends StatelessWidget {
     return SafeArea(
       child: Container(
         decoration: isDark
-            ? ThemeManager.darkModeBackgroundGradient
+            ? BoxDecoration(color: AppColors.darkBackground)
             : ThemeManager.lightModeBackground,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -34,10 +40,15 @@ class FlowerHome extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 20.h),
-                    // Input image centered
-                    _buildInputImage(),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 10.h),
+                    // Dark: one_dark.mp4; light: one_light.mp4
+                    _buildVideoArea(
+                      context,
+                      assetPath: isDark
+                          ? 'assets/one_dark.mp4'
+                          : 'assets/one_light.mp4',
+                    ),
+                    SizedBox(height: 40.h),
                     // Welcome text
                     _buildWelcomeText(context, isDark),
                   ],
@@ -45,10 +56,25 @@ class FlowerHome extends StatelessWidget {
               ),
               // Create button - little above navbar
               _buildCreateButton(context, isDark),
-              SizedBox(height: 130.h),
+              SizedBox(height: 80.h),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildVideoArea(BuildContext context, {required String assetPath}) {
+    return SizedBox(
+      height: kFlowerVideoSectionHeight.h,
+      width: kFlowerVideoSectionWidth == null
+          ? double.infinity
+          : kFlowerVideoSectionWidth!.w,
+      child: _FlowerHomeVideo(
+        assetPath: assetPath,
+        sectionHeight: kFlowerVideoSectionHeight,
+        sectionWidth: kFlowerVideoSectionWidth,
+        fallbackImagePath: 'assets/flower/input.png',
       ),
     );
   }
@@ -119,34 +145,6 @@ class FlowerHome extends StatelessWidget {
     );
   }
 
-  Widget _buildInputImage() {
-    return SizedBox(
-      height: 350.h,
-      width: double.infinity,
-      child: Image.asset(
-        'assets/flower/input.png',
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return Container(
-            height: 330.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColors.cardGradientStart.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: Center(
-              child: Icon(
-                Icons.image_not_supported,
-                color: AppColors.textGrey,
-                size: 48.sp,
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   Widget _buildWelcomeText(BuildContext context, bool isDark) {
     final l10n = AppLocalizations.of(context)!;
 
@@ -201,6 +199,137 @@ class FlowerHome extends StatelessWidget {
             fontWeight: FontWeight.w600,
             color: Colors.white,
             fontFamily: 'Amaranth',
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Plays an asset video in a loop. Used on flower home for light/dark theme.
+/// If video fails (e.g. codec/format), shows [fallbackImagePath] when set.
+class _FlowerHomeVideo extends StatefulWidget {
+  final String assetPath;
+  final double sectionHeight;
+  final double? sectionWidth;
+  final String? fallbackImagePath;
+
+  const _FlowerHomeVideo({
+    required this.assetPath,
+    this.sectionHeight = 350,
+    this.sectionWidth,
+    this.fallbackImagePath,
+  });
+
+  @override
+  State<_FlowerHomeVideo> createState() => _FlowerHomeVideoState();
+}
+
+class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
+  late VideoPlayerController _controller;
+  bool _initError = false;
+  bool _hadValidSize = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset(widget.assetPath);
+    _controller.addListener(_onControllerUpdate);
+    _controller
+        .initialize()
+        .then((_) {
+          if (mounted && !_initError) {
+            _controller.setLooping(true);
+            _controller.play();
+            setState(() {});
+          }
+        })
+        .catchError((Object e) {
+          if (kDebugMode) {
+            debugPrint('FlowerHome video failed to load: $e');
+          }
+          if (mounted) {
+            setState(() => _initError = true);
+          }
+        });
+  }
+
+  void _onControllerUpdate() {
+    if (!mounted || !_controller.value.isInitialized) return;
+    final size = _controller.value.size;
+    if (!_hadValidSize && size.width > 0 && size.height > 0) {
+      _hadValidSize = true;
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_onControllerUpdate);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Widget _buildErrorPlaceholder(double h, double w) {
+    return Container(
+      height: h,
+      width: w,
+      decoration: BoxDecoration(
+        color: AppColors.cardGradientStart.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(16.r),
+      ),
+      child: Center(
+        child: Icon(
+          _initError ? Icons.broken_image : Icons.videocam_off,
+          color: AppColors.textGrey,
+          size: 48.sp,
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final h = widget.sectionHeight.h;
+    final w = widget.sectionWidth == null
+        ? double.infinity
+        : widget.sectionWidth!.w;
+
+    if (_initError || !_controller.value.isInitialized) {
+      if (_initError &&
+          widget.fallbackImagePath != null &&
+          widget.fallbackImagePath!.isNotEmpty) {
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(16.r),
+          child: SizedBox(
+            height: h,
+            width: w,
+            child: Image.asset(
+              widget.fallbackImagePath!,
+              fit: BoxFit.contain,
+              errorBuilder: (_, __, ___) => _buildErrorPlaceholder(h, w),
+            ),
+          ),
+        );
+      }
+      return _buildErrorPlaceholder(h, w);
+    }
+    final size = _controller.value.size;
+    final ratio = (size.width > 0 && size.height > 0)
+        ? (size.width / size.height)
+        : 16 / 9;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16.r),
+      child: SizedBox(
+        width: w,
+        height: h,
+        child: FittedBox(
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+          child: SizedBox(
+            width: 160,
+            height: 160 / ratio,
+            child: VideoPlayer(_controller),
           ),
         ),
       ),

@@ -53,6 +53,7 @@ dependencies:
   shared_preferences: ^2.2.2
   flutter_gen: ^5.12.0
   provider: ^6.1.5+1
+  video_player: ^2.9.2
 
 dev_dependencies:
   flutter_test:
@@ -113,6 +114,10 @@ flutter:
     - assets/arrow.svg
     - assets/one.svg
     - assets/two.svg
+    - assets/video.mp4
+    - assets/video_light.mp4
+    - assets/one_light.mp4
+    - assets/one_dark.mp4
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

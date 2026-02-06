@@ -24,8 +24,9 @@ class ExploreInspirationSection extends StatelessWidget {
       {
         'title': l10n.exploreTitleFloral,
         'prompt': l10n.explorePromptFloral,
+        // Floral: only `floralsmall.png` exists; use it for both slots.
         'bigImage': 'assets/explore/floralbig.png',
-        'smallImage': null,
+        'smallImage': 'assets/explore/floralsmall.png',
       },
       {
         'title': l10n.exploreTitleSkullWithFedoraAndPipe,

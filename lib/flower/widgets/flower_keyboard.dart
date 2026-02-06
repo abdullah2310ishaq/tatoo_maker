@@ -98,7 +98,7 @@ class _KeyboardKey extends StatelessWidget {
             color: const Color(0xFF121212), // Deep dark background
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
-              color: const Color(0xFFFF9800), // Orange/amber border
+              color: Colors.white, // Orange/amber border
               width: 1.5.w,
             ),
             boxShadow: [
@@ -154,7 +154,7 @@ class _BackspaceKey extends StatelessWidget {
             color: const Color(0xFF121212), // Deep dark background
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
-              color: const Color(0xFFFF9800), // Orange/amber border
+              color: Colors.white, // Orange/amber border
               width: 1.5.w,
             ),
             boxShadow: [
