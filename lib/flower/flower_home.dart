@@ -48,7 +48,7 @@ class FlowerHome extends StatelessWidget {
                           ? 'assets/one_dark.mp4'
                           : 'assets/one_light.mp4',
                     ),
-                    SizedBox(height: 4 0.h),
+                    SizedBox(height: 40.h),
                     // Welcome text
                     _buildWelcomeText(context, isDark),
                   ],

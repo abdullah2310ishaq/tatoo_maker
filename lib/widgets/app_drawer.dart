@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/language/language_screen.dart';
+import 'package:tatoo_maker/history/history_page.dart';
 import '../utils/colors.dart';
 import 'inkvision_underline.dart';
 
@@ -132,7 +133,17 @@ class _AppDrawerState extends State<AppDrawer> {
                       textColor: textColor,
                       iconColor: iconColor,
                       isEnabled: !_isProcessing,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pop(); // close drawer
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const HistoryPage(
+                              tabIndex: 0,
+                              openFavorites: true,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     _buildMenuItem(
                       context: context,

@@ -15,8 +15,13 @@ import 'package:provider/provider.dart';
 /// [tabIndex] 0 = show 3 options (Creation, Tattoo, Flower); 1 = Tattoo only; 2 = Flower only.
 class HistoryPage extends StatefulWidget {
   final int tabIndex;
+  final bool openFavorites;
 
-  const HistoryPage({super.key, required this.tabIndex});
+  const HistoryPage({
+    super.key,
+    required this.tabIndex,
+    this.openFavorites = false,
+  });
 
   @override
   State<HistoryPage> createState() => _HistoryPageState();
@@ -28,6 +33,7 @@ class _HistoryPageState extends State<HistoryPage> {
   List<Map<String, dynamic>> _flower = [];
   List<Map<String, dynamic>> _favorites = [];
   bool _loading = true;
+  bool _openedFavoritesOnce = false;
 
   @override
   void initState() {
@@ -55,6 +61,16 @@ class _HistoryPageState extends State<HistoryPage> {
         _flower = flower;
         _favorites = favorites;
         _loading = false;
+      });
+    }
+
+    if (mounted && widget.openFavorites && !_openedFavoritesOnce) {
+      _openedFavoritesOnce = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        final l10n = AppLocalizations.of(context)!;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+        _openFavoritesPage(context, isDark, l10n);
       });
     }
   }
