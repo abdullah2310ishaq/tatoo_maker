@@ -227,11 +227,30 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
   late VideoPlayerController _controller;
   bool _initError = false;
   bool _hadValidSize = false;
+  String _currentAssetPath = '';
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset(widget.assetPath);
+    _currentAssetPath = widget.assetPath;
+    _initController();
+  }
+
+  @override
+  void didUpdateWidget(covariant _TattooPageVideo oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.assetPath != widget.assetPath) {
+      _controller.removeListener(_onControllerUpdate);
+      _controller.dispose();
+      _currentAssetPath = widget.assetPath;
+      _initError = false;
+      _hadValidSize = false;
+      _initController();
+    }
+  }
+
+  void _initController() {
+    _controller = VideoPlayerController.asset(_currentAssetPath);
     _controller.addListener(_onControllerUpdate);
     _controller
         .initialize()
