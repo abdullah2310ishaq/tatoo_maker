@@ -69,7 +69,7 @@ class FlowerHome extends StatelessWidget {
     return SizedBox(
       height: kFlowerVideoSectionHeight.h,
       width: kFlowerVideoSectionWidth == null
-          ? double.infinity
+          ? double.infinity 
           : kFlowerVideoSectionWidth!.w,
       child: _FlowerHomeVideo(
         assetPath: assetPath,
@@ -294,6 +294,13 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
   @override
   void dispose() {
     _disposed = true;
+    try {
+      if (_controller.value.isPlaying) {
+        _controller.pause();
+      }
+    } catch (_) {
+      // Ignore pause errors.
+    }
     _controller.removeListener(_onControllerUpdate);
     super.dispose();
   }
@@ -357,6 +364,22 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
           borderRadius: BorderRadius.circular(16.r),
         ),
       );
+    }
+
+    // If the controller is initialized but not currently playing (for example,
+    // after switching tabs or returning to this page), ensure it resumes.
+    if (!_controller.value.isPlaying) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        if (!mounted || !_controller.value.isInitialized) return;
+        try {
+          if (!_controller.value.isLooping) {
+            await _controller.setLooping(true);
+          }
+          await _controller.play();
+        } catch (_) {
+          // Ignore playback errors; UI will still show the last frame.
+        }
+      });
     }
     final size = _controller.value.size;
     final ratio = (size.width > 0 && size.height > 0)

@@ -14,7 +14,7 @@ import 'onboarding_flow.dart';
 /// Height is in logical pixels (scaled with ScreenUtil).
 /// Width: null = full width; set a number (e.g. 350) for a fixed width.
 const double kTattooVideoSectionHeight = 350;
-const double? kTattooVideoSectionWidth = 400;
+const double kTattooVideoSectionWidth = 400;
 
 class TattooPage extends StatelessWidget {
   final VoidCallback? onMenuTap;
@@ -70,9 +70,7 @@ class TattooPage extends StatelessWidget {
   Widget _buildVideoArea(BuildContext context, {required String assetPath}) {
     return SizedBox(
       height: kTattooVideoSectionHeight.h,
-      width: kTattooVideoSectionWidth == null
-          ? double.infinity
-          : kTattooVideoSectionWidth!.w,
+      width: kTattooVideoSectionWidth.w,
       child: _TattooPageVideo(
         assetPath: assetPath,
         sectionHeight: kTattooVideoSectionHeight,
@@ -292,6 +290,13 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
   @override
   void dispose() {
     _disposed = true;
+    try {
+      if (_controller.value.isPlaying) {
+        _controller.pause();
+      }
+    } catch (_) {
+      // Ignore pause errors.
+    }
     _controller.removeListener(_onControllerUpdate);
     super.dispose();
   }
@@ -336,6 +341,22 @@ class _TattooPageVideoState extends State<_TattooPageVideo> {
           borderRadius: BorderRadius.circular(16.r),
         ),
       );
+    }
+
+    // If the controller is initialized but not currently playing (for example,
+    // after switching tabs or returning to this page), ensure it resumes.
+    if (!_controller.value.isPlaying) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        if (!mounted || !_controller.value.isInitialized) return;
+        try {
+          if (!_controller.value.isLooping) {
+            await _controller.setLooping(true);
+          }
+          await _controller.play();
+        } catch (_) {
+          // Ignore playback errors; UI will still show the last frame.
+        }
+      });
     }
     final size = _controller.value.size;
     final ratio = (size.width > 0 && size.height > 0)

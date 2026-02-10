@@ -22,13 +22,34 @@ class AssetVideoControllerCache {
     );
   }
 
-  static Future<void> ensureInitialized(String assetPath) {
-    return _initializations.putIfAbsent(assetPath, () async {
+  static Future<void> ensureInitialized(String assetPath) async {
+    // If we already have an initialization in progress/completed, wait for it
+    // and then restart playback from the beginning. This ensures that when a
+    // tab/page is re-opened, the video starts from the start again.
+    final existingInit = _initializations[assetPath];
+    if (existingInit != null) {
+      await existingInit;
+      final controller = controllerFor(assetPath);
+      try {
+        if (!controller.value.isInitialized) return;
+        await controller.seekTo(Duration.zero);
+        if (!controller.value.isLooping) {
+          await controller.setLooping(true);
+        }
+        await controller.play();
+      } catch (_) {
+        // Safely ignore playback errors.
+      }
+      return;
+    }
+
+    final initFuture = () async {
       final controller = controllerFor(assetPath);
       if (!controller.value.isInitialized) {
         await controller.initialize();
       }
       await controller.setLooping(true);
+      await controller.seekTo(Duration.zero);
       await controller.play();
 
       // Persist "initialized once" flag (cannot persist the controller itself).
@@ -40,7 +61,10 @@ class AssetVideoControllerCache {
           debugPrint('AssetVideoControllerCache prefs write failed: $e');
         }
       }
-    });
+    }();
+
+    _initializations[assetPath] = initFuture;
+    await initFuture;
   }
 
   static String _prefsKey(String assetPath) =>
