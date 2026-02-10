@@ -163,6 +163,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
+    final l10n = AppLocalizations.of(context)!;
+
+    // If the user has a style selected and is still using the last auto-filled
+    // prompt (i.e. they didn't customize the text), update the prompt when
+    // the app language changes so the text matches the new locale.
+    _maybeUpdatePromptForLocale(l10n);
     // Defer so we don't call setState on parent during build
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -252,6 +258,47 @@ class _HomePageState extends State<HomePage> {
 
   bool get _canGenerate =>
       _selectedStyleIndex != null && _dreamInkController.text.trim().isNotEmpty;
+
+  void _maybeUpdatePromptForLocale(AppLocalizations l10n) {
+    if (_selectedStyleIndex == null) return;
+    if (_lastAutoFilledPrompt == null) return;
+
+    final currentText = _dreamInkController.text.trim();
+    // If user has edited the text since the last auto-fill, don't override it.
+    if (currentText.isEmpty ||
+        currentText != _lastAutoFilledPrompt!.trim()) {
+      return;
+    }
+
+    final styles = _styles;
+    if (_selectedStyleIndex! < 0 || _selectedStyleIndex! >= styles.length) {
+      return;
+    }
+
+    final stylePrompts = _stylePrompts(l10n);
+    final selectedStyle = styles[_selectedStyleIndex!];
+    final newPrompt = stylePrompts[selectedStyle.label];
+    if (newPrompt == null) return;
+
+    final nextText = newPrompt.length > _maxCharacters
+        ? newPrompt.substring(0, _maxCharacters)
+        : newPrompt;
+
+    // If the new localized text is effectively the same, just refresh the marker.
+    if (nextText.trim() == currentText) {
+      _lastAutoFilledPrompt = nextText.trim();
+      return;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _isSettingDreamInkText = true;
+      _dreamInkController.text = nextText;
+      _isSettingDreamInkText = false;
+      _lastAutoFilledPrompt = nextText.trim();
+      setState(() {});
+    });
+  }
 
   void _onInspirationTap() {
     final styles = _styles;
