@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
+import '../utils/style_localization.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/favorites_provider.dart';
 import 'package:provider/provider.dart';
@@ -140,10 +141,13 @@ class _ResultScreenState extends State<ResultScreen> {
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          // Title (centered)
+          // Title (centered) – localized so it updates when app language changes
           Expanded(
             child: Text(
-              widget.styleName,
+              getLocalizedStyleName(
+                AppLocalizations.of(context)!,
+                widget.styleName,
+              ),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24.sp,

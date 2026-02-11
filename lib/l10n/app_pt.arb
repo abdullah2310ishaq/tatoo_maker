@@ -786,5 +786,7 @@
   "exit": "Sair",
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
-  }
+  },
+  "noInternetConnectionSomeFeatures": "Sem conexão com a Internet. Alguns recursos podem não funcionar.",
+  "noInternetConnectionPleaseCheckNetwork": "Sem conexão com a Internet. Verifique sua rede."
 }

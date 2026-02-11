@@ -260,9 +260,10 @@ class _LoadingScreenState extends State<LoadingScreen>
       if (mounted && isNetworkError) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
+          final l10n = AppLocalizations.of(context)!;
           AppToast.show(
             context,
-            message: 'No internet connection. Please check your network.',
+            message: l10n.noInternetConnectionPleaseCheckNetwork,
             isSuccess: false,
             duration: const Duration(seconds: 3),
           );
@@ -280,8 +281,8 @@ class _LoadingScreenState extends State<LoadingScreen>
 
   void _navigateToResult() {
     if (!mounted) return;
-    final l10n = AppLocalizations.of(context)!;
-    final styleName = widget.styleName ?? l10n.genericTattoo;
+    // Use key 'generic' when no style so history/result can show localized title
+    final styleName = widget.styleName ?? 'generic';
     if (_generatedImageBytes != null) {
       final name = widget.name?.trim() ?? '';
       if (name.isNotEmpty) {

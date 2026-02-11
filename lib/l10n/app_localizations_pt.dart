@@ -690,4 +690,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get exit => 'Sair';
+
+  @override
+  String get noInternetConnectionSomeFeatures =>
+      'Sem conexão com a Internet. Alguns recursos podem não funcionar.';
+
+  @override
+  String get noInternetConnectionPleaseCheckNetwork =>
+      'Sem conexão com a Internet. Verifique sua rede.';
 }

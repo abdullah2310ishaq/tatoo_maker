@@ -786,5 +786,7 @@
   "exit": "終了",
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
-  }
+  },
+  "noInternetConnectionSomeFeatures": "インターネットに接続されていません。一部の機能は使用できない場合があります。",
+  "noInternetConnectionPleaseCheckNetwork": "インターネットに接続されていません。ネットワークを確認してください。"
 }

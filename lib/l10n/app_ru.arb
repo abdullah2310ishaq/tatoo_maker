@@ -786,5 +786,7 @@
   "exit": "Выйти",
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
-  }
+  },
+  "noInternetConnectionSomeFeatures": "Нет подключения к интернету. Некоторые функции могут быть недоступны.",
+  "noInternetConnectionPleaseCheckNetwork": "Нет подключения к интернету. Проверьте сеть."
 }

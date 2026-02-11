@@ -684,4 +684,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exit => 'Exit';
+
+  @override
+  String get noInternetConnectionSomeFeatures =>
+      'No internet connection. Some features may not work.';
+
+  @override
+  String get noInternetConnectionPleaseCheckNetwork =>
+      'No internet connection. Please check your network.';
 }

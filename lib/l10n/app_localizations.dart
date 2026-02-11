@@ -1315,6 +1315,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exit'**
   String get exit;
+
+  /// Toast on home when device has no internet
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Some features may not work.'**
+  String get noInternetConnectionSomeFeatures;
+
+  /// Toast during generation when network fails
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Please check your network.'**
+  String get noInternetConnectionPleaseCheckNetwork;
 }
 
 class _AppLocalizationsDelegate

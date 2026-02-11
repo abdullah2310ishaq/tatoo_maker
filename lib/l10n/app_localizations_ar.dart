@@ -681,4 +681,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exit => 'خروج';
+
+  @override
+  String get noInternetConnectionSomeFeatures =>
+      'لا يوجد اتصال بالإنترنت. قد لا تعمل بعض الميزات.';
+
+  @override
+  String get noInternetConnectionPleaseCheckNetwork =>
+      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة.';
 }

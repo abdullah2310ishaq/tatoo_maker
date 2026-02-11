@@ -65,9 +65,10 @@ class _HomeShellState extends State<HomeShell> {
       if (!mounted) return;
       Future.delayed(const Duration(milliseconds: 400), () {
         if (!mounted) return;
+        final l10n = AppLocalizations.of(context)!;
         AppToast.show(
           context,
-          message: 'No internet connection. Some features may not work.',
+          message: l10n.noInternetConnectionSomeFeatures,
           isSuccess: false,
           duration: const Duration(seconds: 3),
         );

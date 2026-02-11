@@ -786,5 +786,13 @@
   "exit": "Exit",
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
+  },
+  "noInternetConnectionSomeFeatures": "No internet connection. Some features may not work.",
+  "@noInternetConnectionSomeFeatures": {
+    "description": "Toast on home when device has no internet"
+  },
+  "noInternetConnectionPleaseCheckNetwork": "No internet connection. Please check your network.",
+  "@noInternetConnectionPleaseCheckNetwork": {
+    "description": "Toast during generation when network fails"
   }
 }

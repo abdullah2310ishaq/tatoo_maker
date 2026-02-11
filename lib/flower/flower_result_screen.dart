@@ -1,18 +1,21 @@
-import 'dart:typed_data';
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/favorites_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import '../creation/virtual_try_on.dart';
 
 /// Result screen for displaying generated floral tattoo
-class FlowerResultScreen extends StatelessWidget {
+class FlowerResultScreen extends StatefulWidget {
   final String name;
   final Uint8List? generatedImageBytes;
 
@@ -23,10 +26,51 @@ class FlowerResultScreen extends StatelessWidget {
   });
 
   @override
+  State<FlowerResultScreen> createState() => _FlowerResultScreenState();
+}
+
+class _FlowerResultScreenState extends State<FlowerResultScreen> {
+  Map<String, dynamic> _buildEntry() {
+    return {
+      'name': widget.name,
+      'styleName': '',
+      'imageBase64': widget.generatedImageBytes != null
+          ? base64Encode(widget.generatedImageBytes!)
+          : '',
+      'ts': DateTime.now().millisecondsSinceEpoch,
+    };
+  }
+
+  Future<void> _toggleFavorite(BuildContext context) async {
+    if (widget.generatedImageBytes == null) return;
+
+    final favoritesProvider = Provider.of<FavoritesProvider>(
+      context,
+      listen: false,
+    );
+    final entry = _buildEntry();
+    final wasFavorited = favoritesProvider.isFavorited(entry);
+
+    final success = await favoritesProvider.toggleFavorite(entry);
+    if (!mounted || !success) return;
+
+    final l10n = AppLocalizations.of(context)!;
+    AppToast.show(
+      context,
+      message: wasFavorited ? l10n.favoritesRemoved : l10n.favoritesAdded,
+      isSuccess: true,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final l10n = AppLocalizations.of(context)!;
+    final favoritesProvider = Provider.of<FavoritesProvider>(context);
+    final entry = _buildEntry();
+    final isFavorited = favoritesProvider.isFavorited(entry);
+    final isLoadingFavorite = favoritesProvider.isLoading;
 
     return SafeArea(
       child: Scaffold(
@@ -39,14 +83,19 @@ class FlowerResultScreen extends StatelessWidget {
               : ThemeManager.lightModeBackground,
           child: Column(
             children: [
-              // Header: Close button + Title
-              _buildHeader(context, isDark),
+              // Header: Close button + Title + Favorite
+              _buildHeader(
+                context,
+                isDark,
+                isFavorited,
+                isLoadingFavorite,
+              ),
               // Main image display
               Expanded(
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: _buildMainImage(isDark, l10n),
+                    child: _buildMainImage(context, isDark, l10n),
                   ),
                 ),
               ),
@@ -73,13 +122,17 @@ class FlowerResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(
+    BuildContext context,
+    bool isDark,
+    bool isFavorited,
+    bool isLoadingFavorite,
+  ) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Close button
           IconButton(
             icon: Icon(
               Icons.close,
@@ -88,10 +141,9 @@ class FlowerResultScreen extends StatelessWidget {
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          // Title (centered) - show the name
           Expanded(
             child: Text(
-              name,
+              widget.name,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24.sp,
@@ -101,17 +153,42 @@ class FlowerResultScreen extends StatelessWidget {
               ),
             ),
           ),
-          // Spacer to balance the close button
-          SizedBox(width: 48.w),
+          IconButton(
+            icon: isLoadingFavorite
+                ? SizedBox(
+                    width: 28.w,
+                    height: 28.w,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: isDark
+                          ? AppColors.textWhite
+                          : AppColors.textPrimary,
+                    ),
+                  )
+                : Icon(
+                    isFavorited ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorited
+                        ? Colors.red
+                        : (isDark
+                            ? AppColors.textWhite
+                            : AppColors.textPrimary),
+                    size: 28.sp,
+                  ),
+            onPressed: () => _toggleFavorite(context),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildMainImage(bool isDark, AppLocalizations l10n) {
-    if (generatedImageBytes != null) {
+  Widget _buildMainImage(
+    BuildContext context,
+    bool isDark,
+    AppLocalizations l10n,
+  ) {
+    if (widget.generatedImageBytes != null) {
       return Image.memory(
-        generatedImageBytes!,
+        widget.generatedImageBytes!,
         fit: BoxFit.contain,
         errorBuilder: (context, error, stackTrace) {
           return _buildPlaceholder(isDark, l10n);
@@ -142,7 +219,7 @@ class FlowerResultScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Text(
-              l10n.flowerResultFloralTattooFor(name),
+              l10n.flowerResultFloralTattooFor(widget.name),
               style: TextStyle(
                 fontSize: 16.sp,
                 color: AppColors.textGrey,
@@ -164,14 +241,14 @@ class FlowerResultScreen extends StatelessWidget {
       width: double.infinity,
       height: 56.h,
       child: ElevatedButton(
-        onPressed: generatedImageBytes != null
+        onPressed: widget.generatedImageBytes != null
             ? () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => VirtualTryOnScreen(
-                      tattooImageBytes: generatedImageBytes,
-                      styleName: 'Floral: $name',
+                      tattooImageBytes: widget.generatedImageBytes,
+                      styleName: 'Floral: ${widget.name}',
                     ),
                   ),
                 );
@@ -263,7 +340,7 @@ class FlowerResultScreen extends StatelessWidget {
   Future<void> _shareImage(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
 
-    if (generatedImageBytes == null) {
+    if (widget.generatedImageBytes == null) {
       if (context.mounted) {
         AppToast.show(
           context,
@@ -277,14 +354,14 @@ class FlowerResultScreen extends StatelessWidget {
     try {
       final tempDir = await getTemporaryDirectory();
       final file = File(
-        '${tempDir.path}/floral_tattoo_${name}_${DateTime.now().millisecondsSinceEpoch}.png',
+        '${tempDir.path}/floral_tattoo_${widget.name}_${DateTime.now().millisecondsSinceEpoch}.png',
       );
-      await file.writeAsBytes(generatedImageBytes!);
+      await file.writeAsBytes(widget.generatedImageBytes!);
 
       await Share.shareXFiles(
         [XFile(file.path)],
-        text: l10n.flowerResultShareText(name),
-        subject: l10n.flowerResultShareSubject(name),
+        text: l10n.flowerResultShareText(widget.name),
+        subject: l10n.flowerResultShareSubject(widget.name),
       );
     } catch (e) {
       debugPrint('Error sharing image: $e');
@@ -302,7 +379,7 @@ class FlowerResultScreen extends StatelessWidget {
   Future<void> _saveImageToGallery(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
 
-    if (generatedImageBytes == null) {
+    if (widget.generatedImageBytes == null) {
       if (context.mounted) {
         AppToast.show(
           context,
@@ -315,8 +392,9 @@ class FlowerResultScreen extends StatelessWidget {
 
     try {
       await Gal.putImageBytes(
-        generatedImageBytes!,
-        name: 'floral_tattoo_${name}_${DateTime.now().millisecondsSinceEpoch}',
+        widget.generatedImageBytes!,
+        name:
+            'floral_tattoo_${widget.name}_${DateTime.now().millisecondsSinceEpoch}',
       );
 
       if (context.mounted) {

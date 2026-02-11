@@ -688,4 +688,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get exit => 'Выйти';
+
+  @override
+  String get noInternetConnectionSomeFeatures =>
+      'Нет подключения к интернету. Некоторые функции могут быть недоступны.';
+
+  @override
+  String get noInternetConnectionPleaseCheckNetwork =>
+      'Нет подключения к интернету. Проверьте сеть.';
 }

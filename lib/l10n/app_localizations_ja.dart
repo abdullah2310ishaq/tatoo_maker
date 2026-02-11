@@ -669,4 +669,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get exit => '終了';
+
+  @override
+  String get noInternetConnectionSomeFeatures =>
+      'インターネットに接続されていません。一部の機能は使用できない場合があります。';
+
+  @override
+  String get noInternetConnectionPleaseCheckNetwork =>
+      'インターネットに接続されていません。ネットワークを確認してください。';
 }

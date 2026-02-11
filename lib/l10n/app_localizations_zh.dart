@@ -663,4 +663,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get exit => '退出';
+
+  @override
+  String get noInternetConnectionSomeFeatures => '未连接互联网。部分功能可能无法使用。';
+
+  @override
+  String get noInternetConnectionPleaseCheckNetwork => '未连接互联网。请检查网络连接。';
 }

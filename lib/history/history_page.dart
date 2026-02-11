@@ -9,6 +9,7 @@ import '../services/history_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
+import '../utils/style_localization.dart';
 import '../providers/favorites_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -462,8 +463,11 @@ class _HistoryListPageState extends State<_HistoryListPage> {
                             type: widget.type,
                             isDark: isDark,
                             onFavoriteChanged: widget.type == 'favorites'
-                              ? _reloadFavorites
-                              : () => _removeEntryLocally(entry),
+                                ? _reloadFavorites
+                                : null,
+                            onDeleted: widget.type == 'favorites'
+                                ? null
+                                : () => _removeEntryLocally(entry),
                             onTap: () {
                               final bytes = HistoryService.imageBytesFromEntry(
                                 entry,
@@ -524,6 +528,8 @@ class _HistoryTile extends StatefulWidget {
   final bool isDark;
   final VoidCallback onTap;
   final VoidCallback? onFavoriteChanged;
+  /// Called after entry is deleted (remove from list). Favorite toggle does not call this.
+  final VoidCallback? onDeleted;
 
   const _HistoryTile({
     required this.entry,
@@ -531,6 +537,7 @@ class _HistoryTile extends StatefulWidget {
     required this.isDark,
     required this.onTap,
     this.onFavoriteChanged,
+    this.onDeleted,
   });
 
   @override
@@ -553,7 +560,7 @@ class _HistoryTileState extends State<_HistoryTile> {
     await HistoryService.deleteEntry(widget.type, widget.entry);
     if (!mounted) return;
 
-    // Reload lists/counts via callback from parent.
+    widget.onDeleted?.call();
     widget.onFavoriteChanged?.call();
   }
   Future<void> _toggleFavorite(BuildContext context) async {
@@ -577,11 +584,15 @@ class _HistoryTileState extends State<_HistoryTile> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final favoritesProvider = Provider.of<FavoritesProvider>(context);
     final bytes = HistoryService.imageBytesFromEntry(widget.entry);
     final label = widget.type == 'flower'
         ? (widget.entry['name'] as String? ?? '')
-        : (widget.entry['styleName'] as String? ?? '');
+        : getLocalizedStyleName(
+            l10n,
+            widget.entry['styleName'] as String?,
+          );
     final isFavorited = favoritesProvider.isFavorited(widget.entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
 

@@ -671,4 +671,12 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get exit => '종료';
+
+  @override
+  String get noInternetConnectionSomeFeatures =>
+      '인터넷에 연결되어 있지 않습니다. 일부 기능이 작동하지 않을 수 있습니다.';
+
+  @override
+  String get noInternetConnectionPleaseCheckNetwork =>
+      '인터넷에 연결되어 있지 않습니다. 네트워크를 확인해 주세요.';
 }
