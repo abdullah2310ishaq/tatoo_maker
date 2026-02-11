@@ -100,6 +100,39 @@ class HistoryService {
     return _getList(prefs, _keyFlower);
   }
 
+  /// Delete a single entry from the specified history type.
+  ///
+  /// [type] can be 'creation', 'tattoo', 'flower', or 'favorites'.
+  static Future<void> deleteEntry(
+    String type,
+    Map<String, dynamic> entry,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    String key;
+    switch (type) {
+      case 'creation':
+        key = _keyCreation;
+        break;
+      case 'tattoo':
+        key = _keyTattoo;
+        break;
+      case 'flower':
+        key = _keyFlower;
+        break;
+      case 'favorites':
+        key = _keyFavorites;
+        break;
+      default:
+        return;
+    }
+
+    final list = _getList(prefs, key);
+    final entryId = _generateEntryId(entry);
+    list.removeWhere((e) => _generateEntryId(e) == entryId);
+    await _saveList(prefs, key, list);
+  }
+
   static Uint8List? imageBytesFromEntry(Map<String, dynamic> entry) {
     final b64 = entry['imageBase64'] as String?;
     if (b64 == null || b64.isEmpty) return null;

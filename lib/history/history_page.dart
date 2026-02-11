@@ -192,15 +192,21 @@ class _HistoryPageState extends State<HistoryPage> {
     bool isDark,
     AppLocalizations l10n,
   ) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => _HistoryListPage(
-          title: l10n.favorites,
-          items: _favorites,
-          type: 'favorites',
-        ),
-      ),
-    );
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (context) => _HistoryListPage(
+              title: l10n.favorites,
+              items: _favorites,
+              type: 'favorites',
+            ),
+          ),
+        )
+        .then((_) {
+          // When returning from favorites list, reload all history sections
+          // so counts and favorites stay in sync.
+          if (mounted) _load();
+        });
   }
 
   void _openListPage(BuildContext context, int type, String title) {
@@ -214,12 +220,18 @@ class _HistoryPageState extends State<HistoryPage> {
         : type == 1
         ? 'tattoo'
         : 'flower';
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) =>
-            _HistoryListPage(title: title, items: list, type: typeStr),
-      ),
-    );
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (context) =>
+                _HistoryListPage(title: title, items: list, type: typeStr),
+          ),
+        )
+        .then((_) {
+          // When returning from any list page, reload data so counts and
+          // favorites status are up to date on the main history screen.
+          if (mounted) _load();
+        });
   }
 
   Widget _buildList(
@@ -246,7 +258,9 @@ class _HistoryPageState extends State<HistoryPage> {
           type: type,
           isDark: isDark,
           onTap: () => _openResult(context, items[index], type, l10n),
-          onFavoriteChanged: type == 'favorites' ? () => _load() : null,
+          // Always reload history data when a favorite is toggled so counts
+          // and the favorites section stay in sync across the whole app.
+          onFavoriteChanged: () => _load(),
         );
       },
     );
@@ -374,6 +388,13 @@ class _HistoryListPageState extends State<_HistoryListPage> {
     }
   }
 
+  void _removeEntryLocally(Map<String, dynamic> entry) {
+    if (!mounted) return;
+    setState(() {
+      _items.remove(entry);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -441,8 +462,8 @@ class _HistoryListPageState extends State<_HistoryListPage> {
                             type: widget.type,
                             isDark: isDark,
                             onFavoriteChanged: widget.type == 'favorites'
-                                ? _reloadFavorites
-                                : null,
+                              ? _reloadFavorites
+                              : () => _removeEntryLocally(entry),
                             onTap: () {
                               final bytes = HistoryService.imageBytesFromEntry(
                                 entry,
@@ -517,6 +538,24 @@ class _HistoryTile extends StatefulWidget {
 }
 
 class _HistoryTileState extends State<_HistoryTile> {
+  Future<void> _deleteEntry(BuildContext context) async {
+    final favoritesProvider = Provider.of<FavoritesProvider>(
+      context,
+      listen: false,
+    );
+
+    // For favorites list, also update the global favorites provider so icons
+    // across the app stay in sync.
+    if (widget.type == 'favorites') {
+      await favoritesProvider.removeFromFavorites(widget.entry);
+    }
+
+    await HistoryService.deleteEntry(widget.type, widget.entry);
+    if (!mounted) return;
+
+    // Reload lists/counts via callback from parent.
+    widget.onFavoriteChanged?.call();
+  }
   Future<void> _toggleFavorite(BuildContext context) async {
     final favoritesProvider = Provider.of<FavoritesProvider>(
       context,
@@ -621,6 +660,15 @@ class _HistoryTileState extends State<_HistoryTile> {
                           size: 24.sp,
                         ),
                   onPressed: () => _toggleFavorite(context),
+                ),
+                // Delete button
+                IconButton(
+                  icon: Icon(
+                    Icons.delete_outline,
+                    color: AppColors.textGrey,
+                    size: 22.sp,
+                  ),
+                  onPressed: () => _deleteEntry(context),
                 ),
                 Icon(
                   Icons.chevron_right,

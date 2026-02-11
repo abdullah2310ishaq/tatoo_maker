@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../utils/toast.dart';
 import '../utils/image_processing_isolates.dart';
 import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
@@ -154,7 +155,11 @@ class _LoadingScreenState extends State<LoadingScreen>
       }
     }
 
-    promptParts.add('black and white, line art, minimalist, intricate details');
+    // Global style so the model generates a clean standalone tattoo design,
+    // not on a body part.
+    promptParts.add(
+      'black and white, line art, minimalist, intricate details, standalone tattoo design, no human body, no arm, no hand, plain background, just the tattoo design',
+    );
 
     final finalPrompt = promptParts.join(', ');
 
@@ -245,6 +250,25 @@ class _LoadingScreenState extends State<LoadingScreen>
       }
     } catch (e) {
       print('LoadingScreen: Error generating image: $e');
+
+      // If this looks like a connectivity issue (no host / no internet),
+      // show a clear toast. Covers SocketException and ClientException wrapping it.
+      final isNetworkError = e is SocketException ||
+          e.toString().contains('SocketException') ||
+          e.toString().contains('host lookup') ||
+          e.toString().contains('Failed host lookup');
+      if (mounted && isNetworkError) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          AppToast.show(
+            context,
+            message: 'No internet connection. Please check your network.',
+            isSuccess: false,
+            duration: const Duration(seconds: 3),
+          );
+        });
+      }
+
       // Still navigate after 3 seconds even on error
       _navigationTimer = Timer(const Duration(seconds: 3), () {
         if (mounted) {

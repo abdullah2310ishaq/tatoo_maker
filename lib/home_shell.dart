@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'utils/colors.dart';
+import 'utils/toast.dart';
 import 'creation/home_page.dart';
 import 'history/history_page.dart';
 import 'tattoo/tattoo_page.dart';
@@ -24,10 +27,60 @@ class _HomeShellState extends State<HomeShell> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _generateEnabled = false;
   VoidCallback? _onGenerateTap;
+  bool _hasShownConnectivityToast = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkConnectivityOnce();
+  }
+
+  Future<void> _checkConnectivityOnce() async {
+    if (_hasShownConnectivityToast) return;
+    bool isOffline = false;
+    try {
+      final client = HttpClient()
+        ..connectionTimeout = const Duration(seconds: 4);
+      final request = await client.getUrl(
+        Uri.parse('https://www.google.com'),
+      );
+      final response = await request.close();
+      client.close(force: true);
+      if (response.statusCode >= 200 && response.statusCode < 500) {
+        return;
+      }
+      isOffline = true;
+    } on SocketException {
+      isOffline = true;
+    } on Exception {
+      isOffline = true;
+    } on Object {
+      // Any other error (e.g. OSError, TimeoutException) → treat as offline
+      isOffline = true;
+    }
+
+    if (!isOffline || !mounted) return;
+    _hasShownConnectivityToast = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      Future.delayed(const Duration(milliseconds: 400), () {
+        if (!mounted) return;
+        AppToast.show(
+          context,
+          message: 'No internet connection. Some features may not work.',
+          isSuccess: false,
+          duration: const Duration(seconds: 3),
+        );
+      });
+    });
+  }
 
   void _onItemTapped(int index) {
+      // When switching tabs, remove focus from any text fields so the keyboard
+    // does not automatically open when returning to the home screen.
+    FocusScope.of(context).unfocus();
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = index; 
     });
   }
 

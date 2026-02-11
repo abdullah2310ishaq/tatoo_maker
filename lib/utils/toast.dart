@@ -100,11 +100,11 @@ class _AppToastWidget extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: backgroundColor,
-                    borderRadius: BorderRadius.circular(18.r),
+                    borderRadius: BorderRadius.circular(8.r),
                     border: Border.all(color: accentColor, width: 1.5.w),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
+                        color: Colors.black.withValues(alpha: 0.2),
                         blurRadius: 8.r,
                         offset: Offset(0, 2.h),
                       ),
