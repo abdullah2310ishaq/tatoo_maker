@@ -199,21 +199,24 @@ class _HomePageState extends State<HomePage> {
             decoration: isDark
                 ? ThemeManager.darkModeBackgroundGradient
                 : ThemeManager.lightModeBackground,
-            child: SingleChildScrollView(
-              padding: EdgeInsets.only(
-                left: 20.w,
-                // Keep left padding globally, but allow specific sections
-                // (like the tattoo style row) to reach the right edge.
-                right: 0,
-                bottom: bottomAreaHeight, // Clear Generate button + navbar
-              ),
-              child: Column(
+            child: Builder(
+              builder: (context) {
+                final isRtl = _isRtlLocale(Localizations.localeOf(context));
+                // LTR: start=left 20, end=right 0. RTL: start=right 20, end=left 0 (scroll side no padding)
+                final scrollChild = SingleChildScrollView(
+                  padding: EdgeInsetsDirectional.only(
+                    start: 20.w,
+                    bottom: bottomAreaHeight,
+                  ),
+                  child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.h),
-                  // Header: menu + InkVision + notification (single line)
+                  // Header: menu + InkVision + notification. In RTL add end padding to shift right
                   Padding(
-                    padding: EdgeInsets.only(right: 20.w),
+                    padding: _isRtlLocale(Localizations.localeOf(context))
+                        ? EdgeInsetsDirectional.only(end: 16.w)
+                        : EdgeInsets.only(right: 20.w),
                     child: HomeHeader(
                       isDark: isDark,
                       onMenuTap: widget.onMenuTap,
@@ -250,21 +253,24 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(height: 32.h),
-                  // Explore Inspiration section (RTL in Arabic, start padding only)
+                  // Explore Inspiration section (parent provides start padding in both LTR/RTL)
                   _wrapWithRtlIfNeeded(
                     context,
-                    child: Padding(
-                      padding: _isRtlLocale(Localizations.localeOf(context))
-                          ? EdgeInsetsDirectional.only(start: 20.w)
-                          : EdgeInsets.zero,
-                      child: const ExploreInspirationSection(),
-                    ),
+                    child: const ExploreInspirationSection(),
                   ),
                   SizedBox(
                     height: 40.h,
                   ), // Extra spacing to ensure last cards are fully visible
                 ],
-              ),
+                  ),
+                );
+                return isRtl
+                    ? Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: scrollChild,
+                      )
+                    : scrollChild;
+              },
             ),
           ),
           // Tutorial Overlay

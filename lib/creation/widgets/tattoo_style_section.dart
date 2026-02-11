@@ -33,8 +33,8 @@ class TattooStyleSection extends StatelessWidget {
     final locale = Localizations.localeOf(context);
     final isRtl = _isRtlLocale(locale);
 
-    // Start padding only, no end padding. LTR: parent gives left; RTL: we add start (right) for title + list
-    final sectionPadding = isRtl ? EdgeInsetsDirectional.only(start: 20.w) : EdgeInsets.zero;
+    // Parent provides start padding (LTR=left, RTL=right). Scroll side has no padding.
+    final sectionPadding = EdgeInsets.zero;
     final content = Padding(
       padding: sectionPadding,
       child: Column(
@@ -72,10 +72,7 @@ class TattooStyleSection extends StatelessWidget {
       ),
     );
     if (!isRtl) return content;
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: content,
-    );
+    return Directionality(textDirection: TextDirection.rtl, child: content);
   }
 }
 
