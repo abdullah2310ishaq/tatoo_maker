@@ -90,11 +90,12 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final themeProvider = ThemeProvider.of(context);
     final keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
 
+    // Force LTR so drawer, navbar and layout match English in Arabic/RTL
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) async {
@@ -105,12 +106,14 @@ class _HomeShellState extends State<HomeShell> {
           }
         }
       },
-      child: Scaffold(
-        key: _scaffoldKey,
-        backgroundColor: isDark
-            ? AppColors.darkBackground
-            : AppColors.lightBackground,
-        drawer: AppDrawer(
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          key: _scaffoldKey,
+          backgroundColor: isDark
+              ? AppColors.darkBackground
+              : AppColors.lightBackground,
+          drawer: AppDrawer(
           isDarkTheme: themeProvider?.isDarkTheme ?? false,
           onThemeToggle: themeProvider?.toggleTheme ?? () {},
         ),
@@ -125,30 +128,34 @@ class _HomeShellState extends State<HomeShell> {
                 child: _buildCurrentPage(openDrawer),
               ),
             ),
-            // Static bottom area: fixed layout so navbar never moves when changing tabs
+            // Static bottom area: LTR so navbar + button always English-style (Creation | Tattoo | Flower)
             if (!keyboardVisible)
               Positioned(
                 left: 0,
                 right: 0,
                 bottom: 0,
-                child: SafeArea(
-                  top: false,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      if (_selectedIndex == 0)
-                        _buildGenerateButtonSeparate()
-                      else
-                        SizedBox(height: 66.h + 8.h),
-                      _buildFloatingNavBar(),
-                    ],
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: SafeArea(
+                    top: false,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        if (_selectedIndex == 0)
+                          _buildGenerateButtonSeparate()
+                        else
+                          SizedBox(height: 66.h + 8.h),
+                        _buildFloatingNavBar(),
+                      ],
+                    ),
                   ),
                 ),
               ),
           ],
         ),
       ),
+        ),
     );
   }
 
@@ -214,48 +221,49 @@ class _HomeShellState extends State<HomeShell> {
         ? AppColors.navBarBackground
         : AppColors.lightBackground;
 
-    return Container(
-      margin: EdgeInsets.only(top: 4.h),
-      decoration: BoxDecoration(
-        color: navBarBgColor,
-        // Normal (non-circular) navbar shape
-        borderRadius: BorderRadius.zero,
-        border: isDark
-            ? null
-            : Border.all(
-                color: AppColors.textGrey.withValues(alpha: 0.2),
-                width: 1,
-              ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.navBarActive.withValues(alpha: 0.3),
-            blurRadius: 20,
-            spreadRadius: 2,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(
-            iconPath: 'assets/creation.svg',
-            label: l10n.creation,
-            index: 0,
-          ),
-
-          _buildNavItem(
-            iconPath: 'assets/tatoo.svg',
-            label: l10n.tattoo,
-            index: 1,
-          ),
-          _buildNavItem(
-            iconPath: 'assets/flower.svg',
-            label: l10n.flower,
-            index: 2,
-          ),
-        ],
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Container(
+        margin: EdgeInsets.only(top: 4.h),
+        decoration: BoxDecoration(
+          color: navBarBgColor,
+          borderRadius: BorderRadius.zero,
+          border: isDark
+              ? null
+              : Border.all(
+                  color: AppColors.textGrey.withValues(alpha: 0.2),
+                  width: 1,
+                ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.navBarActive.withValues(alpha: 0.3),
+              blurRadius: 20,
+              spreadRadius: 2,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildNavItem(
+              iconPath: 'assets/creation.svg',
+              label: l10n.creation,
+              index: 0,
+            ),
+            _buildNavItem(
+              iconPath: 'assets/tatoo.svg',
+              label: l10n.tattoo,
+              index: 1,
+            ),
+            _buildNavItem(
+              iconPath: 'assets/flower.svg',
+              label: l10n.flower,
+              index: 2,
+            ),
+          ],
+        ),
       ),
     );
   }

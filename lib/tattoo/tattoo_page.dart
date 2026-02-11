@@ -85,11 +85,14 @@ class TattooPage extends StatelessWidget {
         ? AppColors.buttonBackground
         : AppColors.textGrey.withOpacity(0.1);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        // Menu button
-        Container(
+    // LTR so menu stays left and history right (same as English) in Arabic
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // Menu button (left)
+          Container(
           width: 48.w,
           height: 48.h,
           decoration: BoxDecoration(
@@ -128,20 +131,21 @@ class TattooPage extends StatelessWidget {
             ],
           ),
         ),
-        // History button
-        Container(
-          width: 48.w,
-          height: 48.h,
-          decoration: BoxDecoration(
-            color: buttonBgColor,
-            borderRadius: BorderRadius.circular(12.r),
+          // History button (right)
+          Container(
+            width: 48.w,
+            height: 48.h,
+            decoration: BoxDecoration(
+              color: buttonBgColor,
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.history, color: iconColor, size: 24.sp),
+              onPressed: onHistoryTap,
+            ),
           ),
-          child: IconButton(
-            icon: Icon(Icons.history, color: iconColor, size: 24.sp),
-            onPressed: onHistoryTap,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

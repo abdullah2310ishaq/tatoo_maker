@@ -20,45 +20,61 @@ class TattooStyleSection extends StatelessWidget {
     this.scrollController,
   });
 
+  static bool _isRtlLocale(Locale locale) {
+    const rtlCodes = ['ar', 'he', 'fa', 'ur'];
+    return rtlCodes.contains(locale.languageCode);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
+    final locale = Localizations.localeOf(context);
+    final isRtl = _isRtlLocale(locale);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.homeTattooStyle,
-          style: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w300,
-            color: textColor,
+    // Start padding only, no end padding. LTR: parent gives left; RTL: we add start (right) for title + list
+    final sectionPadding = isRtl ? EdgeInsetsDirectional.only(start: 20.w) : EdgeInsets.zero;
+    final content = Padding(
+      padding: sectionPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.homeTattooStyle,
+            style: TextStyle(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w300,
+              color: textColor,
+            ),
           ),
-        ),
-        SizedBox(height: 16.h),
-        SizedBox(
-          height: 190.h,
-
-          child: ListView.separated(
-            controller: scrollController,
-            key: ValueKey(ThemeProvider.of(context)?.isDarkTheme ?? false),
-            scrollDirection: Axis.horizontal,
-            itemCount: styles.length,
-            separatorBuilder: (_, __) => SizedBox(width: 2.w),
-            itemBuilder: (context, index) {
-              final item = styles[index];
-              final bool isSelected = selectedIndex == index;
-              return _StyleCard(
-                item: item,
-                isSelected: isSelected,
-                onTap: () => onStyleTap(index),
-              );
-            },
+          SizedBox(height: 16.h),
+          SizedBox(
+            height: 190.h,
+            child: ListView.separated(
+              controller: scrollController,
+              key: ValueKey(ThemeProvider.of(context)?.isDarkTheme ?? false),
+              scrollDirection: Axis.horizontal,
+              itemCount: styles.length,
+              separatorBuilder: (_, __) => SizedBox(width: 2.w),
+              itemBuilder: (context, index) {
+                final item = styles[index];
+                final bool isSelected = selectedIndex == index;
+                return _StyleCard(
+                  item: item,
+                  isSelected: isSelected,
+                  onTap: () => onStyleTap(index),
+                );
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
+    );
+    if (!isRtl) return content;
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: content,
     );
   }
 }

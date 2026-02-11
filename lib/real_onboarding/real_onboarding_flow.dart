@@ -69,11 +69,14 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   @override
   Widget build(BuildContext context) {
     // Force light theme for onboarding (one-time flow)
+    // Force LTR so swipe direction is same as English in Arabic/RTL locales
     return Theme(
       data: ThemeData.light(),
-      child: Scaffold(
-        backgroundColor: AppColors.lightBackground,
-        body: Stack(
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          backgroundColor: AppColors.lightBackground,
+          body: Stack(
           children: [
             // PageView for swiping
             SafeArea(
@@ -152,6 +155,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
           ],
         ),
       ),
+        ),
     );
   }
 

@@ -90,6 +90,21 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  static bool _isRtlLocale(Locale locale) {
+    const rtlCodes = ['ar', 'he', 'fa', 'ur'];
+    return rtlCodes.contains(locale.languageCode);
+  }
+
+  /// Wraps [child] in RTL Directionality when locale is RTL (e.g. Arabic). Navbar/drawer stay LTR.
+  Widget _wrapWithRtlIfNeeded(BuildContext context, {required Widget child}) {
+    final isRtl = _isRtlLocale(Localizations.localeOf(context));
+    if (!isRtl) return child;
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: child,
+    );
+  }
+
   Map<String, String> _stylePrompts(AppLocalizations l10n) => {
     'Wolf': l10n.tattooStylePromptWolf,
     'Abstract': l10n.tattooStylePromptAbstract,
@@ -206,16 +221,21 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(height: 30.h),
-                  // Describe Your Dream Ink card
-                  Padding(
-                    padding: EdgeInsets.only(right: 20.w),
-                    child: DreamInkCard(
-                      cardKey: _dreamInkCardKey,
-                      controller: _dreamInkController,
-                      maxCharacters: _maxCharacters,
-                      onChanged: _onDreamInkChanged,
-                      checkAssetExists: _checkAssetExists,
-                      onInspirationTap: _onInspirationTap,
+                  // Describe Your Dream Ink card (RTL in Arabic, centered like English)
+                  _wrapWithRtlIfNeeded(
+                    context,
+                    child: Padding(
+                      padding: _isRtlLocale(Localizations.localeOf(context))
+                          ? EdgeInsetsDirectional.symmetric(horizontal: 20.w)
+                          : EdgeInsetsDirectional.only(end: 20.w),
+                      child: DreamInkCard(
+                        cardKey: _dreamInkCardKey,
+                        controller: _dreamInkController,
+                        maxCharacters: _maxCharacters,
+                        onChanged: _onDreamInkChanged,
+                        checkAssetExists: _checkAssetExists,
+                        onInspirationTap: _onInspirationTap,
+                      ),
                     ),
                   ),
                   SizedBox(height: 32.h),
@@ -230,10 +250,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(height: 32.h),
-                  // Explore Inspiration section
-                  Padding(
-                    padding: EdgeInsets.only(right: 20.w),
-                    child: const ExploreInspirationSection(),
+                  // Explore Inspiration section (RTL in Arabic, start padding only)
+                  _wrapWithRtlIfNeeded(
+                    context,
+                    child: Padding(
+                      padding: _isRtlLocale(Localizations.localeOf(context))
+                          ? EdgeInsetsDirectional.only(start: 20.w)
+                          : EdgeInsets.zero,
+                      child: const ExploreInspirationSection(),
+                    ),
                   ),
                   SizedBox(
                     height: 40.h,
