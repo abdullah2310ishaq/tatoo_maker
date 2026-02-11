@@ -10,9 +10,6 @@ import '../widgets/inkvision_underline.dart';
 import '../widgets/asset_video_controller_cache.dart';
 import 'onboarding_flow.dart';
 
-/// Adjust these to change the video section size on the tattoo page (dark mode).
-/// Height is in logical pixels (scaled with ScreenUtil).
-/// Width: null = full width; set a number (e.g. 350) for a fixed width.
 const double kTattooVideoSectionHeight = 350;
 const double kTattooVideoSectionWidth = 400;
 
