@@ -242,7 +242,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeTattooStyle => 'أسلوب الوشم';
 
   @override
-  String get homeExploreInspiration => 'استكشف الإلهام';
+  String get homeExploreInspiration => 'أي فئة';
+
+  @override
+  String get homeSeeAll => 'عرض الكل';
 
   @override
   String get homeGenerate => 'إنشاء';

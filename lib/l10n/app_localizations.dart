@@ -542,11 +542,17 @@ abstract class AppLocalizations {
   /// **'Tattoo Style'**
   String get homeTattooStyle;
 
-  /// Home: Explore Inspiration section title
+  /// Home: Any Category section title
   ///
   /// In en, this message translates to:
-  /// **'Explore Inspiration'**
+  /// **'Any Category'**
   String get homeExploreInspiration;
+
+  /// Home: See all link for category row
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get homeSeeAll;
 
   /// Home: Generate button label
   ///

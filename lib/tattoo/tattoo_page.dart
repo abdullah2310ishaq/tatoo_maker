@@ -93,44 +93,44 @@ class TattooPage extends StatelessWidget {
         children: [
           // Menu button (left)
           Container(
-          width: 48.w,
-          height: 48.h,
-          decoration: BoxDecoration(
-            color: buttonBgColor,
-            borderRadius: BorderRadius.circular(12.r),
-          ),
-          child: IconButton(
-            icon: SvgPicture.asset(
-              'assets/one.svg',
-              width: 24.w,
-              height: 24.h,
-              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-              placeholderBuilder: (context) =>
-                  Icon(Icons.menu, color: iconColor, size: 24.sp),
+            width: 48.w,
+            height: 48.h,
+            decoration: BoxDecoration(
+              color: buttonBgColor,
+              borderRadius: BorderRadius.circular(12.r),
             ),
-            onPressed: onMenuTap,
-          ),
-        ),
-        Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'InkVision',
-                style: TextStyle(
-                  fontSize: 32.sp,
-                  fontWeight: FontWeight.bold,
-                  color: isDark
-                      ? AppColors.textWhite
-                      : AppColors.darkBackground,
-                  fontFamily: 'Tomorrow',
-                ),
+            child: IconButton(
+              icon: SvgPicture.asset(
+                'assets/one.svg',
+                width: 24.w,
+                height: 24.h,
+                colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+                placeholderBuilder: (context) =>
+                    Icon(Icons.menu, color: iconColor, size: 24.sp),
               ),
-              SizedBox(height: 6.h),
-              InkVisionUnderline(width: 120.w, height: 3.h),
-            ],
+              onPressed: onMenuTap,
+            ),
           ),
-        ),
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'InkVision',
+                  style: TextStyle(
+                    fontSize: 32.sp,
+                    fontWeight: FontWeight.bold,
+                    color: isDark
+                        ? AppColors.textWhite
+                        : AppColors.darkBackground,
+                    fontFamily: 'Tomorrow',
+                  ),
+                ),
+                SizedBox(height: 6.h),
+                InkVisionUnderline(width: 120.w, height: 3.h),
+              ],
+            ),
+          ),
           // History button (right)
           Container(
             width: 48.w,

@@ -253,7 +253,8 @@ class _LoadingScreenState extends State<LoadingScreen>
 
       // If this looks like a connectivity issue (no host / no internet),
       // show a clear toast. Covers SocketException and ClientException wrapping it.
-      final isNetworkError = e is SocketException ||
+      final isNetworkError =
+          e is SocketException ||
           e.toString().contains('SocketException') ||
           e.toString().contains('host lookup') ||
           e.toString().contains('Failed host lookup');

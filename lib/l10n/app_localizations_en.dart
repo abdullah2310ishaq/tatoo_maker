@@ -242,7 +242,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeTattooStyle => 'Tattoo Style';
 
   @override
-  String get homeExploreInspiration => 'Explore Inspiration';
+  String get homeExploreInspiration => 'Any Category';
+
+  @override
+  String get homeSeeAll => 'See all';
 
   @override
   String get homeGenerate => 'Generate';

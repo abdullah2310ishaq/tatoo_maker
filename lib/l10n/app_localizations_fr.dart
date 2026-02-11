@@ -250,6 +250,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeExploreInspiration => 'Explorer l\'Inspiration';
 
   @override
+  String get homeSeeAll => 'See all';
+
+  @override
   String get homeGenerate => 'Générer';
 
   @override

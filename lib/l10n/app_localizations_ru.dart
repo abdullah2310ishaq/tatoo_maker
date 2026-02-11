@@ -249,6 +249,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get homeExploreInspiration => 'Исследовать Вдохновение';
 
   @override
+  String get homeSeeAll => 'See all';
+
+  @override
   String get homeGenerate => 'Создать';
 
   @override

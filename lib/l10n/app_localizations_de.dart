@@ -247,6 +247,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get homeExploreInspiration => 'Inspiration erkunden';
 
   @override
+  String get homeSeeAll => 'See all';
+
+  @override
   String get homeGenerate => 'Generieren';
 
   @override

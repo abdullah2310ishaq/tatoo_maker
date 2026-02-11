@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../creation/explore_detail_screen.dart';
+import '../../creation/explore_category_screen.dart';
 import '../../l10n/app_localizations.dart';
 import '../../utils/colors.dart';
 
@@ -90,63 +90,55 @@ class ExploreInspirationSection extends StatelessWidget {
       },
     ];
 
+    // Use the first 10 items as "categories", each showing 2 images.
+    final categories = inspirationItems.take(10).toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          l10n.homeExploreInspiration,
-          style: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w300,
-            color: textColor,
-          ),
-        ),
-        SizedBox(height: 16.h),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 12.h,
-            crossAxisSpacing: 12.w,
-            childAspectRatio: 1,
-          ),
-          itemCount: inspirationItems.length,
-          itemBuilder: (context, index) {
-            final item = inspirationItems[index];
-            return _InspirationCard(
-              title: item['title']!,
-              prompt: item['prompt']!,
-              bigImagePath: item['bigImage']!,
-              smallImagePath: item['smallImage'],
+        Column(
+          children: List.generate(categories.length, (index) {
+            final item = categories[index];
+            return Padding(
+              padding: EdgeInsets.only(bottom: 16.h),
+              child: _CategoryRow(
+                title: item['title']!,
+                prompt: item['prompt']!,
+                bigImagePath: item['bigImage']!,
+                smallImagePath: item['smallImage'],
+                textColor: textColor,
+              ),
             );
-          },
+          }),
         ),
       ],
     );
   }
 }
 
-class _InspirationCard extends StatelessWidget {
+class _CategoryRow extends StatelessWidget {
   final String title;
   final String prompt;
   final String bigImagePath;
   final String? smallImagePath;
+  final Color textColor;
 
-  const _InspirationCard({
+  const _CategoryRow({
     required this.title,
     required this.prompt,
     required this.bigImagePath,
     required this.smallImagePath,
+    required this.textColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => ExploreDetailScreen(
+            builder: (context) => ExploreCategoryScreen(
               title: title,
               prompt: prompt,
               bigImagePath: bigImagePath,
@@ -155,6 +147,71 @@ class _InspirationCard extends StatelessWidget {
           ),
         );
       },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Row 1: category label (left) + "See all" text (right), with outer padding
+          Padding(
+            padding: EdgeInsetsDirectional.only(end: 8.w),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: textColor,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                Text(
+                  l10n.homeSeeAll,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                    color: textColor.withOpacity(0.8),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 8.h),
+          // Row 2: two equal cards, slightly narrower with side padding
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
+            child: Row(
+              children: [
+                Expanded(child: _CategoryImage(imagePath: bigImagePath)),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: _CategoryImage(
+                    imagePath: smallImagePath ?? bigImagePath,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CategoryImage extends StatelessWidget {
+  final String imagePath;
+
+  const _CategoryImage({required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    // Force both cards to have the same width:height ratio so their
+    // visual size matches exactly on each row.
+    return AspectRatio(
+      aspectRatio: 1.0, // square cards, same size for both
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
@@ -163,7 +220,7 @@ class _InspirationCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.r),
           child: Image.asset(
-            bigImagePath,
+            imagePath,
             width: double.infinity,
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {

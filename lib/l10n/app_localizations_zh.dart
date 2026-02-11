@@ -232,6 +232,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeExploreInspiration => '探索灵感';
 
   @override
+  String get homeSeeAll => 'See all';
+
+  @override
   String get homeGenerate => '生成';
 
   @override

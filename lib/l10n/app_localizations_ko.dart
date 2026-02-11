@@ -238,6 +238,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get homeExploreInspiration => '영감 탐색';
 
   @override
+  String get homeSeeAll => 'See all';
+
+  @override
   String get homeGenerate => '생성';
 
   @override
