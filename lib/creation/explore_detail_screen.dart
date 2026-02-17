@@ -83,27 +83,23 @@ class ExploreDetailScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // Asset image centered below X (smaller size)
-              Expanded(
+              // Asset image centered below X (fixed smaller size)
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                 child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: SizedBox(
-                      width:
-                          MediaQuery.of(context).size.width *
-                          0.6, // 60% of screen width
-                      height: MediaQuery.of(context).size.width * 0.6,
-                      child: _buildImageAsset(
-                        context,
-                        smallImagePath,
-                        bigImagePath,
-                        isDark,
-                      ),
+                  child: SizedBox(
+                    width: 265.w, // Fixed width
+                    height: 265.w, // Fixed height (square)
+                    child: _buildImageAsset(
+                      context,
+                      smallImagePath,
+                      bigImagePath,
+                      isDark,
                     ),
                   ),
                 ),
               ),
-              // Prompt Detail Card (styled like homepage input card) - Bigger
+              // Prompt Detail Card (styled like homepage input card) - Fixed height with scrollable content
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
@@ -120,14 +116,10 @@ class ExploreDetailScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 12.h),
-                    // Prompt card with orange glow - Bigger
+                    // Prompt card with orange glow - Fixed height with scrollable content
                     Container(
                       width: double.infinity,
-                      constraints: BoxConstraints(
-                        minHeight:
-                            MediaQuery.of(context).size.height *
-                            0.25, // At least 25% of screen height
-                      ),
+                      height: 220.h, // Fixed height
                       padding: EdgeInsets.all(24.w),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16.r),
@@ -163,18 +155,20 @@ class ExploreDetailScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          // Prompt text
-                          Text(
-                            prompt,
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: promptTextColor,
-                              fontFamily: 'Amaranth',
-                              height: 1.6,
-                              fontWeight: FontWeight.w300,
+                          // Scrollable prompt text
+                          SingleChildScrollView(
+                            child: Text(
+                              prompt,
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: promptTextColor,
+                                fontFamily: 'Amaranth',
+                                height: 1.6,
+                                fontWeight: FontWeight.w300,
+                              ),
+                              overflow: TextOverflow.visible,
+                              softWrap: true,
                             ),
-                            overflow: TextOverflow.visible,
-                            softWrap: true,
                           ),
                         ],
                       ),
