@@ -95,6 +95,7 @@ flutter:
     - assets/myths/
     - assets/geometrical/
     - assets/minimal/
+    - assets/oldschool/
     - assets/splash_black.png
     - assets/splash_white.png
     - assets/creation.svg

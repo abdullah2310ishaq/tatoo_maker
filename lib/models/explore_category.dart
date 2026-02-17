@@ -649,18 +649,18 @@ class ExploreData {
       title: 'Floral & Nature',
       prompt:
           'Flowers, plants, and natural elements in beautiful compositions.',
-      bigImagePath: 'assets/floral/Minimalistfourleafclover withheartbig.png',
+      bigImagePath: 'assets/floral/Minimalistfourleafcloverwithheartbig.png',
       smallImagePath:
-          'assets/floral/Minimalistfourleafclover withheartsmall.png',
+          'assets/floral/Minimalistfourleafcloverwithheartsmall.png',
       items: [
         ExploreCategoryItem(
           title: 'Minimalist Four-Leaf Clover',
           prompt:
               'Minimal fine-line four-leaf clover tattoo design, cute and delicate style, soft pastel green leaves with smooth gradient, thin black stem and clean outlines, small red heart detail inside one leaf, symmetrical composition, feminine minimalist tattoo flash, high contrast linework, subtle color fill, crisp vector-style edges, professional tattoo stencil design, centered composition.',
           bigImagePath:
-              'assets/floral/Minimalist fourleafclover withheartbig.png',
+              'assets/floral/Minimalistfourleafcloverwithheartbig.png',
           smallImagePath:
-              'assets/floral/Minimalist fourleafclover withheartsmall.png',
+              'assets/floral/Minimalistfourleafcloverwithheartsmall.png',
         ),
         ExploreCategoryItem(
           title: 'Cherry Blossom Branch',
