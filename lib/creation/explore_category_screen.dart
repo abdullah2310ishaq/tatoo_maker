@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../models/explore_category.dart';
 import '../utils/colors.dart';
 import 'explore_detail_screen.dart';
 
@@ -23,15 +24,11 @@ class ExploreCategoryScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
 
-    // For now, use 4 repeated cards based on the current item.
-    final items = List.generate(4, (index) {
-      return {
-        'title': title,
-        'prompt': prompt,
-        'bigImage': bigImagePath,
-        'smallImage': smallImagePath ?? bigImagePath,
-      };
-    });
+    // Find the matching category from ExploreData to get all items
+    final category = ExploreData.categories.firstWhere(
+      (cat) => cat.title == title,
+      orElse: () => ExploreData.categories.first,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -61,14 +58,14 @@ class ExploreCategoryScreen extends StatelessWidget {
             crossAxisSpacing: 12.w,
             childAspectRatio: 0.8,
           ),
-          itemCount: items.length,
+          itemCount: category.items.length,
           itemBuilder: (context, index) {
-            final item = items[index];
+            final item = category.items[index];
             return _CategoryDetailCard(
-              title: item['title']!,
-              prompt: item['prompt']!,
-              bigImagePath: item['bigImage']!,
-              smallImagePath: item['smallImage'],
+              title: item.title,
+              prompt: item.prompt,
+              bigImagePath: item.bigImagePath,
+              smallImagePath: item.smallImagePath,
             );
           },
         ),

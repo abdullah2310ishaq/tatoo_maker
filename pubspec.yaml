@@ -88,6 +88,7 @@ flutter:
     - assets/flower/dark/
     - assets/signs/
     - assets/explore/
+    - assets/realism_and_portrait/
     - assets/splash_black.png
     - assets/splash_white.png
     - assets/creation.svg
