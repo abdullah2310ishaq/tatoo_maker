@@ -149,57 +149,64 @@ class ExploreData {
       title: 'Traditional & Old School',
       prompt:
           'Bold lines, vibrant colors, and classic American traditional style.',
-      bigImagePath: 'assets/explore/traditional_big.png',
-      smallImagePath: 'assets/explore/traditional_small.png',
+      bigImagePath: 'assets/oldschool/swallowbird.png',
+      smallImagePath: 'assets/oldschool/swallowbird.png',
       items: [
         ExploreCategoryItem(
-          title: 'Classic Anchor',
+          title: 'Swallow Bird',
           prompt:
-              'Traditional American style anchor with bold lines and vibrant colors',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+              'Old school swallow tattoo, wings spread, bold outlines, blue and red classic palette, vintage sailor tattoo flash, simple shading, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/swallowbird.png',
+          smallImagePath: 'assets/oldschool/swallowbird.png',
         ),
         ExploreCategoryItem(
-          title: 'Old School Rose',
-          prompt: 'Vintage rose tattoo with traditional bold outlines',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+          title: 'Dagger Through Heart',
+          prompt:
+              'Traditional dagger through heart tattoo, bold outlines, red heart pierced by steel dagger, classic old school flash, strong shading, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/daggerheart.png',
+          smallImagePath: 'assets/oldschool/daggerheart.png',
         ),
         ExploreCategoryItem(
-          title: 'Sailor Swallow',
-          prompt: 'Classic swallow bird in traditional American style',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+          title: 'Skull Classic',
+          prompt:
+              'Old school skull tattoo, bold black outlines, simple shading, vintage flash design, traditional tattoo style, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/skullclassic.png',
+          smallImagePath: 'assets/oldschool/skullclassic.png',
         ),
         ExploreCategoryItem(
-          title: 'Pin-Up Girl',
-          prompt: 'Vintage pin-up girl with bold colors',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+          title: 'Eagle Spread',
+          prompt:
+              'Traditional eagle tattoo, wings spread wide, bold outlines, red yellow blue palette, vintage American traditional style, strong shading, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/eaglespread.png',
+          smallImagePath: 'assets/oldschool/eaglespread.png',
         ),
         ExploreCategoryItem(
-          title: 'Dagger & Snake',
-          prompt: 'Traditional dagger with snake wrapped around it',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+          title: 'Snake Coiled',
+          prompt:
+              'Old school snake tattoo, coiled serpent, bold outlines, green and red palette, vintage flash style, strong simple shading, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/snakecoiled.png',
+          smallImagePath: 'assets/oldschool/snakecoiled.png',
         ),
         ExploreCategoryItem(
-          title: 'Eagle Head',
-          prompt: 'Bold American eagle head in traditional style',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+          title: 'Ship Wheel',
+          prompt:
+              'Traditional ship wheel tattoo, nautical theme, bold outlines, brown and gold tones, classic sailor tattoo flash, simple shading, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/shipwheel.png',
+          smallImagePath: 'assets/oldschool/shipwheel.png',
         ),
         ExploreCategoryItem(
-          title: 'Nautical Star',
-          prompt: 'Classic nautical star with bold outlines',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+          title: 'Cowboy Revolver',
+          prompt:
+              'Traditional old school cowboy revolver tattoo, classic western pistol, bold thick black outlines, vintage tattoo flash style, simple red and gold accents, strong shading, clean vector look, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/cowboy.png',
+          smallImagePath: 'assets/oldschool/cowboy.png',
         ),
         ExploreCategoryItem(
-          title: 'Lucky Horseshoe',
-          prompt: 'Traditional horseshoe with vintage styling',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+          title: 'Panther Head',
+          prompt:
+              'Old school panther head tattoo, roaring panther, bold black outlines, yellow eyes, red mouth, vintage traditional flash style, strong shading, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/panther.png',
+          smallImagePath: 'assets/oldschool/panther.png',
         ),
       ],
     ),
@@ -902,11 +909,11 @@ class ExploreData {
         ),
         // Random item 8: From Traditional
         ExploreCategoryItem(
-          title: 'Traditional Anchor',
+          title: 'Swallow Bird',
           prompt:
-              'Classic American traditional anchor with bold lines, vibrant colors, and nautical theme. Old school tattoo style with clean outlines.',
-          bigImagePath: 'assets/explore/traditional_big.png',
-          smallImagePath: 'assets/explore/traditional_small.png',
+              'Old school swallow tattoo, wings spread, bold outlines, blue and red classic palette, vintage sailor tattoo flash, simple shading, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/oldschool/swallowbird.png',
+          smallImagePath: 'assets/oldschool/swallowbird.png',
         ),
         // Random item 9: From Tribal
         ExploreCategoryItem(
