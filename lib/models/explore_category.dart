@@ -156,56 +156,78 @@ class ExploreData {
       title: 'Japanese Style',
       prompt:
           'Traditional Japanese irezumi with dragons, koi fish, and cherry blossoms.',
-      bigImagePath: 'assets/explore/japanese_big.png',
-      smallImagePath: 'assets/explore/japanese_small.png',
+      bigImagePath: 'assets/japanese/koi_fish.png',
+      smallImagePath: 'assets/japanese/koi_fish.png',
       items: [
         ExploreCategoryItem(
-          title: 'Dragon Sleeve',
-          prompt: 'Japanese style dragon with flowing clouds and waves',
-          bigImagePath: 'assets/explore/japanese_big.png',
-          smallImagePath: 'assets/explore/japanese_small.png',
-        ),
-        ExploreCategoryItem(
           title: 'Koi Fish',
-          prompt: 'Traditional Japanese koi fish swimming upstream',
-          bigImagePath: 'assets/explore/japanese_big.png',
-          smallImagePath: 'assets/explore/japanese_small.png',
+          prompt:
+              'Japanese style koi fish tattoo, traditional irezumi design, flowing koi with curved body, bold outlines, red orange palette, water waves around fish, clean vector look, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/koi_fish.png',
+          smallImagePath: 'assets/japanese/koi_fish.png',
         ),
         ExploreCategoryItem(
-          title: 'Cherry Blossom',
-          prompt: 'Delicate cherry blossoms in Japanese style',
-          bigImagePath: 'assets/explore/japanese_big.png',
-          smallImagePath: 'assets/explore/japanese_small.png',
+          title: 'Hannya Mask',
+          prompt:
+              'Japanese hannya mask tattoo, traditional irezumi style, demon mask with horns, bold black outlines, red and white tones, dramatic expression, clean vector style, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/hannyamask.png',
+          smallImagePath: 'assets/japanese/hannyamask.png',
         ),
         ExploreCategoryItem(
-          title: 'Samurai Warrior',
-          prompt: 'Traditional Japanese samurai in full armor',
-          bigImagePath: 'assets/explore/japanese_big.png',
-          smallImagePath: 'assets/explore/japanese_small.png',
+          title: 'Samurai Helmet',
+          prompt:
+              'Japanese samurai helmet tattoo, kabuto helmet front view, traditional irezumi style, bold outlines, gold and red accents, clean vector look, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/samuraihelmet.png',
+          smallImagePath: 'assets/japanese/samuraihelmet.png',
         ),
         ExploreCategoryItem(
-          title: 'Geisha Portrait',
-          prompt: 'Beautiful geisha with traditional makeup and kimono',
-          bigImagePath: 'assets/explore/japanese_big.png',
-          smallImagePath: 'assets/explore/japanese_small.png',
+          title: 'Cherry Blossom Branch',
+          prompt:
+              'Japanese cherry blossom tattoo, sakura branch with flowers, traditional irezumi style, soft pink blossoms, bold outlines, elegant composition, centered design, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/cherryblossombranch.png',
+          smallImagePath: 'assets/japanese/cherryblossombranch.png',
         ),
         ExploreCategoryItem(
-          title: 'Phoenix Bird',
-          prompt: 'Japanese phoenix rising with detailed feathers',
-          bigImagePath: 'assets/explore/japanese_big.png',
-          smallImagePath: 'assets/explore/japanese_small.png',
+          title: 'Japanese Dragon',
+          prompt:
+              'Japanese dragon tattoo, traditional irezumi dragon, long flowing body, clouds around dragon, bold outlines, green red palette, dynamic pose, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/japanesedragon.png',
+          smallImagePath: 'assets/japanese/japanesedragon.png',
         ),
         ExploreCategoryItem(
-          title: 'Tiger & Bamboo',
-          prompt: 'Fierce tiger among bamboo stalks',
-          bigImagePath: 'assets/explore/japanese_big.png',
-          smallImagePath: 'assets/explore/japanese_small.png',
+          title: 'Oni Mask',
+          prompt:
+              'Japanese oni mask tattoo, traditional demon mask, bold outlines, red and black palette, fierce expression, irezumi style, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/onimask.png',
+          smallImagePath: 'assets/japanese/onimask.png',
         ),
         ExploreCategoryItem(
-          title: 'Wave Pattern',
-          prompt: 'Traditional Japanese wave pattern with foam',
-          bigImagePath: 'assets/explore/japanese_big.png',
-          smallImagePath: 'assets/explore/japanese_small.png',
+          title: 'Wave (Hokusai Style)',
+          prompt:
+              'Japanese wave tattoo, traditional irezumi ocean wave, bold outlines, blue tones, classic Japanese wave style, clean vector look, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/wave.png',
+          smallImagePath: 'assets/japanese/wave.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Tiger',
+          prompt:
+              'Japanese tiger tattoo, traditional irezumi tiger, roaring tiger head, bold outlines, orange black palette, dynamic style, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/tiger.png',
+          smallImagePath: 'assets/japanese/tiger.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Lotus Flower',
+          prompt:
+              'Japanese lotus tattoo, traditional irezumi lotus flower, bold outlines, pink and red tones, water elements, clean vector look, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/lotus.png',
+          smallImagePath: 'assets/japanese/lotus.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Phoenix',
+          prompt:
+              'Japanese phoenix tattoo, traditional irezumi phoenix bird, wings spread, bold outlines, red orange yellow palette, flames around bird, centered composition, transparent background PNG, high resolution.',
+          bigImagePath: 'assets/japanese/phoenix.png',
+          smallImagePath: 'assets/japanese/phoenix.png',
         ),
       ],
     ),
@@ -527,56 +549,95 @@ class ExploreData {
       title: 'Floral & Nature',
       prompt:
           'Flowers, plants, and natural elements in beautiful compositions.',
-      bigImagePath: 'assets/explore/floral_big.png',
-      smallImagePath: 'assets/explore/floral_small.png',
+      bigImagePath: 'assets/floral/Minimalistfourleafclover withheartbig.png',
+      smallImagePath:
+          'assets/floral/Minimalistfourleafclover withheartsmall.png',
       items: [
         ExploreCategoryItem(
-          title: 'Rose Bouquet',
-          prompt: 'Delicate roses with leaves and natural shading',
-          bigImagePath: 'assets/explore/floral_big.png',
-          smallImagePath: 'assets/explore/floral_small.png',
+          title: 'Minimalist Four-Leaf Clover',
+          prompt:
+              'Minimal fine-line four-leaf clover tattoo design, cute and delicate style, soft pastel green leaves with smooth gradient, thin black stem and clean outlines, small red heart detail inside one leaf, symmetrical composition, feminine minimalist tattoo flash, high contrast linework, subtle color fill, crisp vector-style edges, professional tattoo stencil design, centered composition.',
+          bigImagePath:
+              'assets/floral/Minimalist fourleafclover withheartbig.png',
+          smallImagePath:
+              'assets/floral/Minimalist fourleafclover withheartsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Wildflowers',
-          prompt: 'Collection of wildflowers in a natural arrangement',
-          bigImagePath: 'assets/explore/floral_big.png',
-          smallImagePath: 'assets/explore/floral_small.png',
+          title: 'Cherry Blossom Branch',
+          prompt:
+              'Elegant cherry blossom branch tattoo design, fine-line botanical style, flowing sakura branch with multiple pink blossoms and small buds, gradient pink petals with delicate shading, thin black branch and clean outlines, subtle petal fall details, feminine composition, high-detail floral tattoo flash, balanced vertical layout, professional tattoo stencil design, minimal background, high contrast, centered composition.',
+          bigImagePath: 'assets/floral/Cherryblossombranchbig.png',
+          smallImagePath: 'assets/floral/Cherryblossombranchsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Lotus Flower',
-          prompt: 'Sacred lotus flower with detailed petals',
-          bigImagePath: 'assets/explore/floral_big.png',
-          smallImagePath: 'assets/explore/floral_small.png',
+          title: 'Mountain Landscape',
+          prompt:
+              'Minimal fine-line mountain landscape tattoo design, small centered composition, detailed mountain peaks with pine trees, flowing waterfall descending from the center, circular moon above the mountains, delicate dotwork shading and stippling, clean black ink linework, geometric balance, subtle texture, high contrast, professional tattoo flash style, crisp outlines, minimalist nature scene, transparent background.',
+          bigImagePath: 'assets/floral/mountainlandscapebig.png',
+          smallImagePath: 'assets/floral/mountainlandscapesmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Sunflower',
-          prompt: 'Bright sunflower with detailed center',
-          bigImagePath: 'assets/explore/floral_big.png',
-          smallImagePath: 'assets/explore/floral_small.png',
+          title: 'Heart-Shaped Sunset',
+          prompt:
+              'Small heart-shaped sunset tattoo design, vibrant warm color palette, glowing orange and red sunset inside a clean heart outline, ocean horizon with soft reflections, painterly clouds with subtle splatter details, minimal black base shadow under the heart, fine-line and micro-realism style, smooth gradient color blending, high contrast, centered composition, professional tattoo flash design, crisp edges, no text, transparent background.',
+          bigImagePath: 'assets/floral/Heartshaped sunsetbig.png',
+          smallImagePath: 'assets/floral/Heartshaped sunsetsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Peony Blossom',
-          prompt: 'Lush peony flower with layered petals',
-          bigImagePath: 'assets/explore/floral_big.png',
-          smallImagePath: 'assets/explore/floral_small.png',
+          title: 'Sea Turtle',
+          prompt:
+              'Vibrant geometric sea turtle tattoo design, two sea turtles swimming side by side, faceted crystal-style shells with rainbow prism colors, polygonal pattern texture, high-detail scales and flippers, glossy gemstone effect, bold saturation with deep blues, purples, greens and warm highlights, micro-realism meets geometric style, clean sharp outlines, subtle shadow under figures, high contrast, centered composition, professional tattoo flash design, isolated artwork, transparent background.',
+          bigImagePath: 'assets/floral/seaturtlebig.png',
+          smallImagePath: 'assets/floral/seaturtlesmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Vine & Leaves',
-          prompt: 'Flowing vine with detailed leaves',
-          bigImagePath: 'assets/explore/floral_big.png',
-          smallImagePath: 'assets/explore/floral_small.png',
+          title: 'Hibiscus Flower',
+          prompt:
+              'Vibrant hibiscus flower tattoo design, bold tropical floral composition, large detailed hibiscus bloom with warm red, orange and yellow gradient petals, smooth color blending, clean black outlines, soft shading for depth, surrounding green leaves with fine vein detail, small decorative ink splatter dots, modern neo-traditional tattoo style, high contrast, centered composition, crisp edges, professional tattoo flash, isolated artwork, transparent background.',
+          bigImagePath: 'assets/floral/Hibiscusflowerbig.png',
+          smallImagePath: 'assets/floral/Hibiscusflowersmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Orchid Branch',
-          prompt: 'Elegant orchid branch with multiple blooms',
-          bigImagePath: 'assets/explore/floral_big.png',
-          smallImagePath: 'assets/explore/floral_small.png',
+          title: 'Butterfly and Lily',
+          prompt:
+              'Realistic monarch butterfly and lily flower tattoo design, vibrant orange and black butterfly with detailed wing patterns, perched beside a large yellow lily bloom, smooth color gradients and soft realistic shading, crisp black outlines with subtle depth, rich green leaves with fine vein detail, neo-traditional realism style, high contrast colors, balanced composition, professional tattoo flash design, clean edges, isolated artwork, transparent background.',
+          bigImagePath: 'assets/floral/butterflyandlilyflowersbig.png',
+          smallImagePath: 'assets/floral/butterflyandlilyflowersmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Fern Leaves',
-          prompt: 'Delicate fern leaves with natural curves',
-          bigImagePath: 'assets/explore/floral_big.png',
-          smallImagePath: 'assets/explore/floral_small.png',
+          title: 'Butterfly',
+          prompt:
+              'Realistic monarch butterfly tattoo design, vibrant orange wings with deep black borders and white dot accents, symmetrical open-wing pose, smooth gradient color blending, glossy highlights and soft shadow for depth, clean bold outlines, high-detail wing texture, neo-traditional realism style, high contrast, centered composition, professional tattoo flash, crisp edges, isolated artwork, transparent background.',
+          bigImagePath: 'assets/floral/Butterfly_big.png',
+          smallImagePath: 'assets/floral/Butterfly_small.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Hummingbird and Cherry Blossom',
+          prompt:
+              'Delicate hummingbird and cherry blossom tattoo design, fine-line realism style, small hummingbird in mid-flight with detailed feathers and soft shading, thin curved branch with pink cherry blossoms and tiny buds, elegant botanical composition, subtle color accents on flowers with mostly black ink bird, clean crisp outlines, micro-realism tattoo flash style, high detail, balanced composition, high contrast, professional tattoo design, isolated artwork, transparent background.',
+          bigImagePath: 'assets/floral/Hummingbirdandcherryblossombig.png',
+          smallImagePath: 'assets/floral/Hummingbirdandcherryblossomsmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Butterfly Bracelet',
+          prompt:
+              'Elegant blue butterfly bracelet tattoo design, delicate chain-style composition wrapping in a flowing curve, two detailed blue butterflies with gradient wings and fine line texture, small star charms and tiny floral accents connected by thin ornamental chains, feminine micro-realism style, crisp black outlines with vibrant blue highlights, subtle dotwork details, light and airy composition, high contrast, professional tattoo flash design, centered and balanced layout, isolated artwork, transparent background.',
+          bigImagePath: 'assets/floral/Butterflybraceletbig.png',
+          smallImagePath: 'assets/floral/Butterflybraceletsmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Baby Panda',
+          prompt:
+              'Cute baby panda tattoo design, sitting panda holding a small bamboo stick, soft rounded cartoon style with semi-realistic fur texture, gentle blush on cheeks, big expressive eyes and friendly smile, black and white panda with subtle grey shading, small bamboo leaves around the character, light watercolor splash background in pastel tones, clean bold outlines with soft shading, kawaii tattoo style, high contrast, centered composition, professional tattoo flash design, isolated artwork, transparent background.',
+          bigImagePath: 'assets/floral/babypandabig.png',
+          smallImagePath: 'assets/floral/babypandasmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Sun Moon',
+          prompt:
+              'Sun and crescent moon watercolor tattoo design, vibrant celestial composition, glowing orange sun with flowing rays surrounding a large crescent moon, moon filled with galaxy-style colors in blue, purple and pink, soft watercolor splashes and ink drips, delicate star details and sparkles, fine clean outlines with smooth color gradients, modern celestial tattoo style, high contrast, balanced centered composition, professional tattoo flash design, isolated artwork, transparent background.',
+          bigImagePath: 'assets/floral/sunmoonbig.png',
+          smallImagePath: 'assets/floral/sunmoonsmall.png',
         ),
       ],
     ),
@@ -584,56 +645,92 @@ class ExploreData {
       id: 'mythology',
       title: 'Mythology & Fantasy',
       prompt: 'Mythical creatures, gods, and fantasy-inspired designs.',
-      bigImagePath: 'assets/explore/mythology_big.png',
-      smallImagePath: 'assets/explore/mythology_small.png',
+      bigImagePath: 'assets/myths/warriorandserpentsbig.png',
+      smallImagePath: 'assets/myths/warriorandserpentsmall.png',
       items: [
         ExploreCategoryItem(
+          title: 'Warrior and Serpents',
+          prompt:
+              'A muscular classical Greek statue-style male warrior wrapped tightly by multiple serpents, one snake coiling around torso and arms, another rising with open mouth, warrior holding a dagger downward in one hand, dramatic mythological struggle pose, inspired by ancient sculpture and renaissance engraving, highly detailed black ink tattoo design, fine line engraving style, cross-hatching shading, clean linework, centered vertical composition, high contrast, white background, parchment texture, realistic anatomy, dark fantasy tattoo flash, symmetrical balanced layout.',
+          bigImagePath: 'assets/myths/warriorandserpentsbig.png',
+          smallImagePath: 'assets/myths/warriorandserpentsmall.png',
+        ),
+        ExploreCategoryItem(
           title: 'Phoenix Rising',
-          prompt: 'Majestic phoenix with flames and detailed feathers',
-          bigImagePath: 'assets/explore/mythology_big.png',
-          smallImagePath: 'assets/explore/mythology_small.png',
+          prompt:
+              'Vibrant phoenix tattoo design, wings fully spread upward, long flowing tail feathers, dynamic rising pose, fiery color palette with red, orange, yellow and hints of blue, ultra detailed feathers, clean bold outlines, modern neo-traditional tattoo style, high contrast, glowing ember effects, subtle ink splatter accents, symmetrical composition, sharp linework, rich gradient coloring, dramatic lighting, professional tattoo flash illustration, centered composition, plain background.',
+          bigImagePath: 'assets/myths/phoenixrisingbig.png',
+          smallImagePath: 'assets/myths/phoenixrisingsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Greek Gods',
-          prompt: 'Classical Greek mythology inspired design',
-          bigImagePath: 'assets/explore/mythology_big.png',
-          smallImagePath: 'assets/explore/mythology_small.png',
+          title: 'Medusa',
+          prompt:
+              'Medusa inspired tattoo design, mysterious female face with multiple serpents coiling and intertwining through the hair, several snake heads facing different directions, one snake with open mouth and fangs visible, intense glowing eyes, cracked marble skin texture, mythological dark fantasy theme, ultra detailed scales and hair strands, bold clean linework, neo-traditional tattoo style, rich green and earthy tones, high contrast shading, smooth gradients, dramatic composition, centered tattoo flash illustration, sharp outlines, professional tattoo design.',
+          bigImagePath: 'assets/myths/medusabig.png',
+          smallImagePath: 'assets/myths/medusasmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Dragon Guardian',
-          prompt: 'Mythical dragon protecting ancient treasure',
-          bigImagePath: 'assets/explore/mythology_big.png',
-          smallImagePath: 'assets/explore/mythology_small.png',
+          title: 'Dragon Coiled Around Sword',
+          prompt:
+              'Dark fantasy dragon wrapped around an ornate medieval sword, dragon body coiling tightly along the blade, detailed scales and sharp claws, fierce dragon head with open mouth and visible fangs near the hilt, gothic engraved sword design, symmetrical vertical composition, black and grey tattoo style, ultra detailed linework, high contrast shading, fine line engraving technique, dramatic shadows, sharp clean outlines, fantasy tattoo flash, centered composition, minimal plain background, professional tattoo illustration.',
+          bigImagePath: 'assets/myths/dragoncoiledlarge.png',
+          smallImagePath: 'assets/myths/dragoncoiledsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Medusa Head',
-          prompt: 'Medusa with snake hair in Greek mythology style',
-          bigImagePath: 'assets/explore/mythology_big.png',
-          smallImagePath: 'assets/explore/mythology_small.png',
+          title: 'Three-Headed Hydra',
+          prompt:
+              'Three-headed hydra dragon tattoo design, massive serpentine dragon body with three fierce dragon heads emerging from one neck, mouths open with sharp fangs, aggressive expressions, overlapping scales and armored plates, dark fantasy creature, ultra detailed black and grey tattoo style, heavy shading, high contrast lighting, intricate scale texture, sharp horns and spikes, smoke drifting from mouths, dramatic vertical composition, clean bold outlines, professional tattoo flash illustration, centered composition.',
+          bigImagePath: 'assets/myths/hydrabig.png',
+          smallImagePath: 'assets/myths/hydrasmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Valkyrie Warrior',
-          prompt: 'Norse Valkyrie with wings and armor',
-          bigImagePath: 'assets/explore/mythology_big.png',
-          smallImagePath: 'assets/explore/mythology_small.png',
+          title: 'Octopus',
+          prompt:
+              'Detailed octopus tattoo design, large octopus with curling tentacles spreading outward in a balanced composition, tentacles twisting and overlapping with visible suction cups, intense eyes and textured head, dark ocean creature theme, black and grey tattoo style, ultra fine linework, engraving and dotwork shading, high contrast shadows, realistic texture, symmetrical centered layout, bold clean outlines, professional tattoo flash illustration.',
+          bigImagePath: 'assets/myths/octopusbig.png',
+          smallImagePath: 'assets/myths/octopussmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Unicorn Magic',
-          prompt: 'Mystical unicorn with magical elements',
-          bigImagePath: 'assets/explore/mythology_big.png',
-          smallImagePath: 'assets/explore/mythology_small.png',
+          title: 'Japanese Style Dragon',
+          prompt:
+              'Japanese style dragon tattoo design, powerful eastern dragon with long serpentine body coiling in an S-shaped composition, detailed layered scales, sharp horns and whiskers, fierce open mouth with fangs, claws extended, flowing mane and tail, surrounded by stylized clouds and flame elements, vibrant red, orange and gold color palette, bold clean outlines, neo-traditional japanese tattoo style, smooth gradient shading, high contrast, dynamic movement, professional tattoo flash illustration.',
+          bigImagePath: 'assets/myths/japanesedragonbig.png',
+          smallImagePath: 'assets/myths/japanesedragonsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Anubis God',
-          prompt: 'Egyptian god Anubis with hieroglyphics',
-          bigImagePath: 'assets/explore/mythology_big.png',
-          smallImagePath: 'assets/explore/mythology_small.png',
+          title: 'Dark Fantasy Eye',
+          prompt:
+              'Dark fantasy tattoo design featuring a central eye surrounded by multiple smaller eyes, all radiating a glowing red energy, large detailed wings extending from the center, with sharp feather tips and deep shadows, veins of red lightning running through the design, high contrast black and grey shading with fiery accents, intricate and symmetrical composition, modern gothic style, fine line detailing, powerful and intense mystical theme, dramatic atmosphere, professional tattoo flash illustration, minimal background with focus on the design.',
+          bigImagePath: 'assets/myths/darkfantasyeyesbig.png',
+          smallImagePath: 'assets/myths/darkfantasyeyesmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Kraken Beast',
-          prompt: 'Legendary kraken sea monster with tentacles',
-          bigImagePath: 'assets/explore/mythology_big.png',
-          smallImagePath: 'assets/explore/mythology_small.png',
+          title: 'Mermaid',
+          prompt:
+              'Vibrant, horror-themed mermaid tattoo design, grotesque mermaid with a skeletal, gnarled face, long wild hair in dark shades of black and deep purple, sharp claws, and twisted, muscular body, transitioning from human form to a fish tail with iridescent scales in shades of teal, blue, and green, eerie underwater creature vibe with glowing elements, fiery orange and red highlights on the tail and eyes, dramatic shading with contrasting dark tones, high detail, horror fantasy tattoo style with rich colors, professional flash tattoo, clean bold outlines, vivid contrasts.',
+          bigImagePath: 'assets/myths/mermaidbig.png',
+          smallImagePath: 'assets/myths/mermaidsmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Dynamic Dragon',
+          prompt:
+              'Vibrant and dynamic dragon tattoo design, serpent-like body with smooth scales transitioning from deep green to teal, fiery orange and golden wings stretching outward, feathered wings with a gradient of warm tones from orange to light yellow, sleek sinuous tail with fiery accents, detailed head with sharp features and subtle horns, dragon exuding energy and motion, dramatic shading to highlight the curves and texture of the body, fantasy style with vivid color palette, high contrast, professional tattoo illustration with clean bold outlines.',
+          bigImagePath: 'assets/myths/dynamicdragonbig.png',
+          smallImagePath: 'assets/myths/dynamicdragonsmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Trident',
+          prompt:
+              'Gothic trident tattoo design with sharp, intricate details, the trident head adorned with dark, thorn-like spines and elegant curves, a serpent wrapping around the trident shaft, the body of the serpent with smooth scales and subtle shading, floral vine elements twisting around the trident, delicate yet powerful, dark and eerie black and grey shading with high contrast, dramatic shadow play, sharp outlines, and fine detail, professional tattoo flash, minimal background with focus on the weapon and serpent, symmetrical design.',
+          bigImagePath: 'assets/myths/tridentbig.png',
+          smallImagePath: 'assets/myths/tridentsmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Warrior',
+          prompt:
+              'Powerful fantasy warrior tattoo design, dragon-like figure with scales covering the face and neck, glowing blue eyes, long, detailed beard and sharp features, fiery orange and blue flame accents swirling around the character, sharp spiked armor and fins protruding from the back, holding a trident in one hand, dramatic shading with high contrast, detailed textures on the skin and weapon, vivid colors of fire and ice, strong mythical atmosphere, bold clean outlines, professional tattoo flash illustration, minimal background with focus on the character and flames.',
+          bigImagePath: 'assets/myths/warriorbig.png',
+          smallImagePath: 'assets/myths/warriorsmall.png',
         ),
       ],
     ),

@@ -90,6 +90,9 @@ flutter:
     - assets/explore/
     - assets/realism_and_portrait/
     - assets/letters/
+    - assets/floral/
+    - assets/japanese/
+    - assets/myths/
     - assets/splash_black.png
     - assets/splash_white.png
     - assets/creation.svg
