@@ -94,6 +94,7 @@ flutter:
     - assets/japanese/
     - assets/myths/
     - assets/geometrical/
+    - assets/minimal/
     - assets/splash_black.png
     - assets/splash_white.png
     - assets/creation.svg

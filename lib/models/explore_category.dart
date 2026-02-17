@@ -42,57 +42,105 @@ class ExploreData {
       title: 'Minimal Tattoos',
       prompt:
           'Simple, clean lines with minimalist aesthetic. Perfect for subtle, elegant designs.',
-      bigImagePath: 'assets/explore/minimal_big.png',
-      smallImagePath: 'assets/explore/minimal_small.png',
+      bigImagePath: 'assets/minimal/pandabig.png',
+      smallImagePath: 'assets/minimal/pandasmalllight.png',
+      smallImagePathDark: 'assets/minimal/pandamalldark.png',
       items: [
         ExploreCategoryItem(
-          title: 'Minimal Line Art',
+          title: 'Minimalist Panda',
           prompt:
-              'Create a minimalist tattoo with simple, clean lines and geometric shapes',
-          bigImagePath: 'assets/explore/minimal_big.png',
-          smallImagePath: 'assets/explore/minimal_small.png',
+              'A tiny minimalist ankle tattoo of a cute panda sitting upright, facing slightly right, drawn with clean black lines and soft micro-shading. The panda holds a thin green stem with small purple lavender flowers, with subtle botanical detail and glossy black ears and arms. The design is centered on ankle skin, photographed in natural light with shallow depth of field and a minimal, professional tattoo reference style in a 1:1 composition.',
+          bigImagePath: 'assets/minimal/pandabig.png',
+          smallImagePath: 'assets/minimal/pandasmalllight.png',
+          smallImagePathDark: 'assets/minimal/pandamalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Tiny Symbols',
-          prompt: 'Design a small, meaningful symbol with minimal detail',
-          bigImagePath: 'assets/explore/minimal_big.png',
-          smallImagePath: 'assets/explore/minimal_small.png',
+          title: 'Fine-Line Bow',
+          prompt:
+              'A tiny minimalist inner-wrist tattoo of a delicate ribbon bow, drawn with thin black linework and a small center knot. The design is symmetrical, clean, and micro-tattoo style, placed on smooth pale wrist skin. Shot in soft natural light with shallow depth of field, it has a modern minimalist aesthetic and professional tattoo reference look.',
+          bigImagePath: 'assets/minimal/bowbig.png',
+          smallImagePath: 'assets/minimal/bowsmalllight.png',
+          smallImagePathDark: 'assets/minimal/bowdarksmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Simple Wave',
-          prompt: 'Minimalist wave design with flowing single line',
-          bigImagePath: 'assets/explore/minimal_big.png',
-          smallImagePath: 'assets/explore/minimal_small.png',
+          title: 'Micro Realism Finger Tattoos',
+          prompt:
+              'An ultra-realistic macro shot of a middle finger showing two tiny micro tattoos above the knuckle: a small sitting cat facing right and a delicate butterfly with fine linework and subtle shading. The scene features natural skin texture, warm neutral lighting, shallow depth of field, and a clean beige background, styled like a high-detail professional tattoo reference photo.',
+          bigImagePath: 'assets/minimal/microrealsimbig.png',
+          smallImagePath: 'assets/minimal/microrealsimsmalllight.png',
+          smallImagePathDark: 'assets/minimal/microrealsimsmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Dot Work',
-          prompt: 'Delicate dotwork pattern in minimalist style',
-          bigImagePath: 'assets/explore/minimal_big.png',
-          smallImagePath: 'assets/explore/minimal_small.png',
+          title: 'Fine-Line Cat in Circle',
+          prompt:
+              'A minimalist upper-back tattoo below the neck showing a small black silhouette cat sitting and facing away, with a long curved tail. It\'s encircled by a thin, delicate incomplete circle with tiny leaves and a small flower, done in ultra-clean fine-line black ink. The scene features realistic skin texture, soft natural lighting, shallow depth of field, and a modern, photorealistic tattoo reference style.',
+          bigImagePath: 'assets/minimal/catbig.png',
+          smallImagePath: 'assets/minimal/catsmalllight.png',
+          smallImagePathDark: 'assets/minimal/catsmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Abstract Shape',
-          prompt: 'Simple abstract geometric shape with clean edges',
-          bigImagePath: 'assets/explore/minimal_big.png',
-          smallImagePath: 'assets/explore/minimal_small.png',
+          title: 'Fine-Line Lotus Flower',
+          prompt:
+              'A minimalist fine-line lotus flower tattoo with delicate layered petals and a thin stem with small leaves and buds, done in clean black ink. Beside it sits a small solid black heart with two tiny dots, all in a micro-tattoo style. The design is centered on smooth skin, photographed in warm natural light with shallow depth of field and a modern, photorealistic tattoo reference aesthetic.',
+          bigImagePath: 'assets/minimal/finrlinelotusbig.png',
+          smallImagePath: 'assets/minimal/finrlinelotussmalllight.png',
+          smallImagePathDark: 'assets/minimal/finelinelotussmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Thin Arrow',
-          prompt: 'Minimalist arrow with fine line work',
-          bigImagePath: 'assets/explore/minimal_big.png',
-          smallImagePath: 'assets/explore/minimal_small.png',
+          title: 'Sleeping Cat in Crescent Moon',
+          prompt:
+              'A tiny minimalist micro tattoo of a sleeping kitten curled inside a thin crescent moon, with soft black-and-grey shading and delicate sparkles around it. The design features clean fine-line work and subtle fur detail, placed on wrist or forearm skin and photographed in warm natural light with a shallow depth of field for a high-detail, photorealistic tattoo reference look.',
+          bigImagePath: 'assets/minimal/sleepingcatbig.png',
+          smallImagePath: 'assets/minimal/sleepingcatsmalllight.png',
+          smallImagePathDark: 'assets/minimal/sleepingcatdarksmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Small Heart',
-          prompt: 'Tiny heart outline with minimal design',
-          bigImagePath: 'assets/explore/minimal_big.png',
-          smallImagePath: 'assets/explore/minimal_small.png',
+          title: 'Fine-Line Heart and Stars',
+          prompt:
+              'A minimalist geometric forearm tattoo featuring a solid black heart with sharp edges, flanked by thin four-point star sparkles above and below. Small black dots and tiny outlined circles form a symmetrical vertical layout around it. Done in clean fine-line black ink on smooth skin, photographed in soft natural light with a modern, high-detail tattoo reference style.',
+          bigImagePath: 'assets/minimal/finelineheartbig.png',
+          smallImagePath: 'assets/minimal/finelineheartsmalllight.png',
+          smallImagePathDark: 'assets/minimal/finelineheartsmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Mountain Line',
-          prompt: 'Simple mountain range in single line style',
-          bigImagePath: 'assets/explore/minimal_big.png',
-          smallImagePath: 'assets/explore/minimal_small.png',
+          title: 'Fine-Line Compass Star',
+          prompt:
+              'A minimalist inner-forearm micro tattoo featuring a centered geometric compass-style 8-point star with sharp, clean black lines and four tiny dots around it. A small outline heart sits directly below the star. The design is ultra-clean and symmetrical, photographed on smooth skin with soft natural lighting and a modern, photorealistic tattoo reference style.',
+          bigImagePath: 'assets/minimal/compassbig.png',
+          smallImagePath: 'assets/minimal/compasslightsmall.png',
+          smallImagePathDark: 'assets/minimal/compasssmalldark.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Minimal Treble Clef Neck',
+          prompt:
+              'A small glossy black treble clef tattoo with three tiny music notes, placed behind the ear on the side of the neck. Done in bold, clean lines, it\'s photographed in soft warm lighting with realistic skin texture, a visible ear with a silver stud earring, and a shallow depth of field for a detailed, minimal tattoo reference look.',
+          bigImagePath: 'assets/minimal/clefneckbig.png',
+          smallImagePath: 'assets/minimal/clefnecklightsmall.png',
+          smallImagePathDark: 'assets/minimal/clefnecksmalldark.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Starry Heart',
+          prompt:
+              'A minimalist fine-line inner-forearm tattoo featuring a medium outlined heart with tiny dotted details inside, surrounded by small stars and solid dots. Done in clean black micro-tattoo style, it\'s photographed on realistic skin in soft outdoor light, with a white sleeve, light blue jeans, and a subtle bracelet visible against a softly blurred street background.',
+          bigImagePath: 'assets/minimal/staryyheartbig.png',
+          smallImagePath: 'assets/minimal/staryyheartsmalllight.png',
+          smallImagePathDark: 'assets/minimal/staryyheartsmalldark.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Valknut Triangle',
+          prompt:
+              'Photorealistic close-up of a hand near a jeans pocket with a small minimalist geometric Valknut-style tattoo made of three interlocking triangles in thin black ink. Visible skin texture and veins, black sleeve and silver ring, denim background, soft natural lighting, and shallow depth of field.',
+          bigImagePath: 'assets/minimal/valknutbig.png',
+          smallImagePath: 'assets/minimal/valknutsmalllight.png',
+          smallImagePathDark: 'assets/minimal/valknutsmalldark.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Minimalist Mountain',
+          prompt:
+              'Ultra-realistic close-up of an inner wrist with a tiny fine-line mountain tattoo in clean black ink. Small minimalist design centered on the wrist, visible skin texture and veins, sleeve slightly rolled up, soft natural lighting, neutral background, and shallow depth of field.',
+          bigImagePath: 'assets/minimal/mountainbig.png',
+          smallImagePath: 'assets/minimal/mountainsmalllight.png',
+          smallImagePathDark: 'assets/minimal/mountainsmalldark.png',
         ),
       ],
     ),
@@ -790,56 +838,83 @@ class ExploreData {
       id: 'custom_ai',
       title: 'Custom AI Designs',
       prompt: 'Unique AI-generated designs combining multiple styles.',
-      bigImagePath: 'assets/explore/custom_big.png',
-      smallImagePath: 'assets/explore/custom_small.png',
+      bigImagePath: 'assets/minimal/pandabig.png',
+      smallImagePath: 'assets/minimal/pandasmalllight.png',
+      smallImagePathDark: 'assets/minimal/pandamalldark.png',
       items: [
+        // Random item 1: From Minimal
         ExploreCategoryItem(
-          title: 'AI Fusion',
-          prompt: 'Blend of multiple tattoo styles created by AI',
-          bigImagePath: 'assets/explore/custom_big.png',
-          smallImagePath: 'assets/explore/custom_small.png',
+          title: 'Minimalist Panda',
+          prompt:
+              'A tiny minimalist ankle tattoo of a cute panda sitting upright, facing slightly right, drawn with clean black lines and soft micro-shading. The panda holds a thin green stem with small purple lavender flowers, with subtle botanical detail and glossy black ears and arms. The design is centered on ankle skin, photographed in natural light with shallow depth of field and a minimal, professional tattoo reference style in a 1:1 composition.',
+          bigImagePath: 'assets/minimal/pandabig.png',
+          smallImagePath: 'assets/minimal/pandasmalllight.png',
+          smallImagePathDark: 'assets/minimal/pandamalldark.png',
         ),
+        // Random item 2: From Geometric
         ExploreCategoryItem(
-          title: 'Unique Creation',
-          prompt: 'One-of-a-kind design generated by artificial intelligence',
-          bigImagePath: 'assets/explore/custom_big.png',
-          smallImagePath: 'assets/explore/custom_small.png',
+          title: 'Tree of Life',
+          prompt:
+              'Ultra-realistic vertical photo of an inner forearm with a black-and-grey nature tattoo featuring a central pine tree, circular mountain landscape, crescent moons, and ornamental roots. Clean fine-line and blackwork style, smooth shading, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.',
+          bigImagePath: 'assets/geometrical/treeoflifebig.png',
+          smallImagePath: 'assets/geometrical/treeoflifelight.png',
+          smallImagePathDark: 'assets/geometrical/treeoflifesmalldark.png',
         ),
+        // Random item 3: From Realism
         ExploreCategoryItem(
-          title: 'Abstract AI',
-          prompt: 'AI-generated abstract pattern with unique flow',
-          bigImagePath: 'assets/explore/custom_big.png',
-          smallImagePath: 'assets/explore/custom_small.png',
+          title: 'Realistic Lion Portrait',
+          prompt:
+              'Ultra-realistic black-and-grey lion head tattoo with detailed fur texture, intense eyes, and powerful expression. Photorealistic shading, high contrast, and fine detail work.',
+          bigImagePath: 'assets/realism_and_portrait/lionbig.png',
+          smallImagePath: 'assets/realism_and_portrait/lionsmall.png',
         ),
+        // Random item 4: From Lettering
         ExploreCategoryItem(
-          title: 'Cyber Organic',
-          prompt: 'Blend of cyberpunk and organic elements',
-          bigImagePath: 'assets/explore/custom_big.png',
-          smallImagePath: 'assets/explore/custom_small.png',
+          title: 'Elegant Script Quote',
+          prompt:
+              'Beautiful flowing script lettering with elegant curves and flourishes. Delicate line work with ornamental details and perfect spacing.',
+          bigImagePath: 'assets/letters/scriptbig.png',
+          smallImagePath: 'assets/letters/scriptsmall.png',
         ),
+        // Random item 5: From Floral
         ExploreCategoryItem(
-          title: 'DreamScape',
-          prompt: 'Surreal dreamlike design created by AI',
-          bigImagePath: 'assets/explore/custom_big.png',
-          smallImagePath: 'assets/explore/custom_small.png',
+          title: 'Delicate Rose',
+          prompt:
+              'Detailed rose tattoo with soft petals, natural shading, and botanical accuracy. Fine line work with realistic depth and texture.',
+          bigImagePath: 'assets/floral/rosebig.png',
+          smallImagePath: 'assets/floral/rosesmall.png',
         ),
+        // Random item 6: From Japanese
         ExploreCategoryItem(
-          title: 'Neural Art',
-          prompt: 'Artistic pattern inspired by neural networks',
-          bigImagePath: 'assets/explore/custom_big.png',
-          smallImagePath: 'assets/explore/custom_small.png',
+          title: 'Koi Fish',
+          prompt:
+              'Traditional Japanese koi fish with flowing water, cherry blossoms, and wave patterns. Bold colors and classic irezumi style.',
+          bigImagePath: 'assets/japanese/koibig.png',
+          smallImagePath: 'assets/japanese/koismall.png',
         ),
+        // Random item 7: From Mythology
         ExploreCategoryItem(
-          title: 'Hybrid Style',
-          prompt: 'Unique combination of traditional and modern styles',
-          bigImagePath: 'assets/explore/custom_big.png',
-          smallImagePath: 'assets/explore/custom_small.png',
+          title: 'Phoenix Rising',
+          prompt:
+              'Majestic phoenix bird rising from flames, wings spread wide with detailed feathers, surrounded by fire and smoke. Powerful mythological creature in black and grey with dramatic shading.',
+          bigImagePath: 'assets/myths/phoenixbig.png',
+          smallImagePath: 'assets/myths/phoenixsmall.png',
         ),
+        // Random item 8: From Traditional
         ExploreCategoryItem(
-          title: 'AI Masterpiece',
-          prompt: 'Complex AI-generated design with intricate details',
-          bigImagePath: 'assets/explore/custom_big.png',
-          smallImagePath: 'assets/explore/custom_small.png',
+          title: 'Traditional Anchor',
+          prompt:
+              'Classic American traditional anchor with bold lines, vibrant colors, and nautical theme. Old school tattoo style with clean outlines.',
+          bigImagePath: 'assets/explore/traditional_big.png',
+          smallImagePath: 'assets/explore/traditional_small.png',
+        ),
+        // Random item 9: From Tribal
+        ExploreCategoryItem(
+          title: 'Tribal Pattern',
+          prompt:
+              'Bold tribal design with thick black lines and traditional Polynesian patterns. Strong geometric shapes with cultural significance.',
+          bigImagePath: 'assets/explore/tribal_big.png',
+          smallImagePath: 'assets/explore/tribal_small.png',
         ),
       ],
     ),
