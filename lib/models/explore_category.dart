@@ -4,6 +4,7 @@ class ExploreCategory {
   final String prompt;
   final String bigImagePath;
   final String? smallImagePath;
+  final String? smallImagePathDark;
   final List<ExploreCategoryItem> items;
 
   const ExploreCategory({
@@ -12,6 +13,7 @@ class ExploreCategory {
     required this.prompt,
     required this.bigImagePath,
     this.smallImagePath,
+    this.smallImagePathDark,
     required this.items,
   });
 }
@@ -21,12 +23,14 @@ class ExploreCategoryItem {
   final String prompt;
   final String bigImagePath;
   final String? smallImagePath;
+  final String? smallImagePathDark;
 
   const ExploreCategoryItem({
     required this.title,
     required this.prompt,
     required this.bigImagePath,
     this.smallImagePath,
+    this.smallImagePathDark,
   });
 }
 
@@ -292,57 +296,105 @@ class ExploreData {
       id: 'geometric',
       title: 'Geometric Tattoos',
       prompt: 'Sacred geometry, mandalas, and precise geometric patterns.',
-      bigImagePath: 'assets/explore/geometric_big.png',
-      smallImagePath: 'assets/explore/geometric_small.png',
+      bigImagePath: 'assets/geometrical/mindbodybig.png',
+      smallImagePath: 'assets/geometrical/mindbodysmalllight.png',
+      smallImagePathDark: 'assets/geometrical/mindbodysmalldark.png',
       items: [
         ExploreCategoryItem(
-          title: 'Mandala Circle',
+          title: 'Mind–Body–Soul',
           prompt:
-              'Intricate mandala with perfect symmetry and geometric patterns',
-          bigImagePath: 'assets/explore/geometric_big.png',
-          smallImagePath: 'assets/explore/geometric_small.png',
+              'Highly detailed black-and-grey sacred geometry forearm tattoo with a vertical design: a brain transforming into a tree at the top, a meditating figure within geometric mandala shapes in the center, and an anatomical heart with ornamental elements at the bottom. Clean linework, dotwork shading, high contrast, and photorealistic studio presentation.',
+          bigImagePath: 'assets/geometrical/mindbodybig.png',
+          smallImagePath: 'assets/geometrical/mindbodysmalllight.png',
+          smallImagePathDark: 'assets/geometrical/mindbodysmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Sacred Geometry',
-          prompt: 'Flower of life and sacred geometric shapes',
-          bigImagePath: 'assets/explore/geometric_big.png',
-          smallImagePath: 'assets/explore/geometric_small.png',
+          title: 'Geometric Blackout Honeycomb Sleeve',
+          prompt:
+              'Ultra-realistic studio photo of a shirtless athletic man showing a full black geometric sleeve tattoo, with a honeycomb hexagon pattern on the shoulder and sacred-geometry mandala designs down the arm. Clean high-contrast ink, natural skin texture, neutral background, soft lighting, and shallow depth of field.',
+          bigImagePath: 'assets/geometrical/honeycombbig.png',
+          smallImagePath: 'assets/geometrical/honeycomblightsmall.png',
+          smallImagePathDark: 'assets/geometrical/honeycombsmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Hexagon Pattern',
-          prompt: 'Interconnected hexagons in geometric arrangement',
-          bigImagePath: 'assets/explore/geometric_big.png',
-          smallImagePath: 'assets/explore/geometric_small.png',
+          title: 'Geometric + Illustrative Blackwork',
+          prompt:
+              'Ultra-realistic photo of a shirtless man with a black-and-grey geometric shoulder and upper-arm tattoo featuring honeycomb hexagons containing detailed forest and mountain scenes. High-contrast ink with shading and dotwork, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.',
+          bigImagePath: 'assets/geometrical/blackworkbig.png',
+          smallImagePath: 'assets/geometrical/blackworksmalllight.png',
+          smallImagePathDark: 'assets/geometrical/blackworksmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Triangle Design',
-          prompt: 'Overlapping triangles with precise angles',
-          bigImagePath: 'assets/explore/geometric_big.png',
-          smallImagePath: 'assets/explore/geometric_small.png',
+          title: 'Geometric Cube Sleeve',
+          prompt:
+              'Ultra-realistic photo of an extended male forearm with a geometric blackwork tattoo featuring 3D cube and hexagon optical-illusion patterns, fading into a solid black wrist band. Precise linework, high-contrast ink, visible skin texture and veins, neutral studio background, soft lighting, and shallow depth of field.',
+          bigImagePath: 'assets/geometrical/cubesleevebig.png',
+          smallImagePath: 'assets/geometrical/cubesleevesmallight.png',
+          smallImagePathDark: 'assets/geometrical/cubesleevesmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Dotwork Mandala',
-          prompt: 'Geometric mandala created with dotwork technique',
-          bigImagePath: 'assets/explore/geometric_big.png',
-          smallImagePath: 'assets/explore/geometric_small.png',
+          title: '3D Cube Geometric Sleeve',
+          prompt:
+              'Ultra-realistic photo of a forearm with a full geometric blackwork sleeve featuring interlocking 3D cube optical-illusion patterns that transition into a dense sacred-geometry star design near the wrist. High-contrast ink, clean sharp linework, dotwork shading, white rolled-up shirt, soft studio lighting, and shallow depth of field.',
+          bigImagePath: 'assets/geometrical/geometricsleevebig.png',
+          smallImagePath: 'assets/geometrical/geometricsleevesmalllight.png',
+          smallImagePathDark: 'assets/geometrical/geometricsleevesmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Cube Illusion',
-          prompt: '3D cube optical illusion with geometric lines',
-          bigImagePath: 'assets/explore/geometric_big.png',
-          smallImagePath: 'assets/explore/geometric_small.png',
+          title: 'Tree of Life',
+          prompt:
+              'Ultra-realistic vertical photo of an inner forearm with a black-and-grey nature tattoo featuring a central pine tree, circular mountain landscape, crescent moons, and ornamental roots. Clean fine-line and blackwork style, smooth shading, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.',
+          bigImagePath: 'assets/geometrical/treeoflifebig.png',
+          smallImagePath: 'assets/geometrical/treeoflifelight.png',
+          smallImagePathDark: 'assets/geometrical/treeoflifesmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Metatron Cube',
-          prompt: 'Sacred Metatrons cube with all platonic solids',
-          bigImagePath: 'assets/explore/geometric_big.png',
-          smallImagePath: 'assets/explore/geometric_small.png',
+          title: 'Atlas Bearing the World',
+          prompt:
+              'Black-and-grey fine-line and dotwork tattoo of Atlas kneeling and carrying a globe, rendered like a classical Renaissance sculpture with realistic anatomy and shading. The Earth shows continents and a geometric grid, with sacred-geometry patterns and a sun symbol above. Clean, high-contrast, stencil-ready vertical design for an upper-arm tattoo, ultra-detailed and minimalistic.',
+          bigImagePath: 'assets/geometrical/atlasbig.png',
+          smallImagePath: 'assets/geometrical/atlassmalllight.png',
+          smallImagePathDark: 'assets/geometrical/atlassmalldark.png',
         ),
         ExploreCategoryItem(
-          title: 'Spiral Pattern',
-          prompt: 'Golden ratio spiral in geometric form',
-          bigImagePath: 'assets/explore/geometric_big.png',
-          smallImagePath: 'assets/explore/geometric_small.png',
+          title: 'Triad of Travel',
+          prompt:
+              'Minimalist blackwork forearm tattoo in fine-line and dotwork style, featuring a compass rose with geometric orbit lines, a small airplane on a dotted path, mountains, and an ocean wave, all arranged inside an inverted triangle frame with symmetrical sacred-geometry accents. Clean, high-contrast, stencil-ready vertical design with modern travel theme and ultra-detailed linework.',
+          bigImagePath: 'assets/geometrical/triadbig.png',
+          smallImagePath: 'assets/geometrical/triadsmalllight.png',
+          smallImagePathDark: 'assets/geometrical/triadsmalldark.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Cycle of Horizons',
+          prompt:
+              'Minimalist geometric forearm tattoo in fine-line blackwork and dotwork, featuring a vertical column of connected hexagons. The top shows sun and sky, the center a mountain landscape with trees, and the bottom an ocean wave, with smaller surrounding hexagons and sacred-geometry accents linked by thin lines and dotted paths. Clean, symmetrical, high-contrast, stencil-ready nature-themed design.',
+          bigImagePath: 'assets/geometrical/horizonsbig.png',
+          smallImagePath: 'assets/geometrical/horizonssmalllight.png',
+          smallImagePathDark: 'assets/geometrical/horizonssmalldark.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Aligned Triad',
+          prompt:
+              'Tiny minimalist finger tattoo in fine-line blackwork, featuring an abstract vertical triangle composition with layered geometric shapes, small diamond and polygon details, and subtle dotwork shading. Modern sacred-geometry style with thin precise lines, clean ornamental accents, and a stencil-ready professional look.',
+          bigImagePath: 'assets/geometrical/alignedtriadbig.png',
+          smallImagePath: 'assets/geometrical/alignedtriadsmalllight.png',
+          smallImagePathDark: 'assets/geometrical/alignedsmalldark.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Abstract Geometric Sigi',
+          prompt:
+              'Ultra-minimalist geometric finger tattoo in fine-line black ink, featuring a small vertical symbol of overlapping triangles, diamonds, and sharp polygon shapes with subtle dotwork shading and clean negative space. Modern sacred-geometry style with precise thin lines, high-contrast blackwork, and a stencil-ready professional design.',
+          bigImagePath: 'assets/geometrical/sigibig.png',
+          smallImagePath: 'assets/geometrical/sigismalllight.png',
+          smallImagePathDark: 'assets/geometrical/sigismalldark.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Duality Nature Geometry',
+          prompt:
+              'Minimalist blackwork forearm tattoo in fine-line and dotwork style, featuring two stacked triangles: the top with a mountain scene and rising sun or moon, and the bottom inverted with a large ocean wave. Clean geometric framing, subtle sacred-geometry accents, and dotted motion lines create a balanced, modern nature-themed design that\'s high-contrast, ultra-detailed, and stencil-ready.',
+          bigImagePath: 'assets/geometrical/dualitynaturebig.png',
+          smallImagePath: 'assets/geometrical/dualitynaturesmalllight.png',
+          smallImagePathDark: 'assets/geometrical/dualitynaturesmalldark.png',
         ),
       ],
     ),

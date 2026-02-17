@@ -66,6 +66,7 @@ class ExploreCategoryScreen extends StatelessWidget {
               prompt: item.prompt,
               bigImagePath: item.bigImagePath,
               smallImagePath: item.smallImagePath,
+              smallImagePathDark: item.smallImagePathDark,
             );
           },
         ),
@@ -79,12 +80,14 @@ class _CategoryDetailCard extends StatelessWidget {
   final String prompt;
   final String bigImagePath;
   final String? smallImagePath;
+  final String? smallImagePathDark;
 
   const _CategoryDetailCard({
     required this.title,
     required this.prompt,
     required this.bigImagePath,
     required this.smallImagePath,
+    required this.smallImagePathDark,
   });
 
   @override
@@ -100,6 +103,7 @@ class _CategoryDetailCard extends StatelessWidget {
               prompt: prompt,
               bigImagePath: bigImagePath,
               smallImagePath: smallImagePath,
+              smallImagePathDark: smallImagePathDark,
             ),
           ),
         );

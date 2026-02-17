@@ -106,6 +106,8 @@ class _CategoryRow extends StatelessWidget {
                               prompt: category.items[0].prompt,
                               bigImagePath: category.items[0].bigImagePath,
                               smallImagePath: category.items[0].smallImagePath,
+                              smallImagePathDark:
+                                  category.items[0].smallImagePathDark,
                             ),
                           ),
                         );
@@ -130,6 +132,8 @@ class _CategoryRow extends StatelessWidget {
                               prompt: category.items[1].prompt,
                               bigImagePath: category.items[1].bigImagePath,
                               smallImagePath: category.items[1].smallImagePath,
+                              smallImagePathDark:
+                                  category.items[1].smallImagePathDark,
                             ),
                           ),
                         );
