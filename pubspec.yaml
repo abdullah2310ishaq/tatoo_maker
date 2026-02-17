@@ -89,6 +89,7 @@ flutter:
     - assets/signs/
     - assets/explore/
     - assets/realism_and_portrait/
+    - assets/letters/
     - assets/splash_black.png
     - assets/splash_white.png
     - assets/creation.svg

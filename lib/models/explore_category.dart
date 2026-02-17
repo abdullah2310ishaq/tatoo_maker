@@ -433,56 +433,92 @@ class ExploreData {
       id: 'lettering',
       title: 'Lettering & Script',
       prompt: 'Beautiful typography, calligraphy, and meaningful quotes.',
-      bigImagePath: 'assets/explore/lettering_big.png',
-      smallImagePath: 'assets/explore/lettering_small.png',
+      bigImagePath: 'assets/letters/trutnoonebig.png',
+      smallImagePath: 'assets/letters/trustnoone_small.png',
       items: [
         ExploreCategoryItem(
-          title: 'Script Quote',
-          prompt: 'Elegant script lettering with flowing calligraphy',
-          bigImagePath: 'assets/explore/lettering_big.png',
-          smallImagePath: 'assets/explore/lettering_small.png',
+          title: 'Trust No One',
+          prompt:
+              'Create a detailed gothic-style tattoo design with the phrase \'Trust no One\'. The text should be bold and dramatic, with sharp, angular edges. Add shading effects to give the text a three-dimensional look, and incorporate some ink splatter or shadow around the text for a gritty, intense vibe. The font should evoke a dark, mysterious atmosphere with an edgy, rebellious tone.',
+          bigImagePath: 'assets/letters/trutnoonebig.png',
+          smallImagePath: 'assets/letters/trustnoone_small.png',
         ),
         ExploreCategoryItem(
-          title: 'Gothic Letters',
-          prompt: 'Bold gothic lettering with ornate details',
-          bigImagePath: 'assets/explore/lettering_big.png',
-          smallImagePath: 'assets/explore/lettering_small.png',
+          title: 'Blessed',
+          prompt:
+              'High-contrast black and white graffiti tattoo design, word "Blessed" in bold hand-lettering calligraphy, smooth flowing script with thick strokes, subtle halo above letter, street-style spray paint glow around text, paint drips and ink splatter, clean vector lines, centered composition, stencil-ready tattoo flash, minimal background, sharp edges, professional tattoo design, black ink only.',
+          bigImagePath: 'assets/letters/blessedbig.png',
+          smallImagePath: 'assets/letters/blessedsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Cursive Name',
-          prompt: 'Beautiful cursive name in flowing script',
-          bigImagePath: 'assets/explore/lettering_big.png',
-          smallImagePath: 'assets/explore/lettering_small.png',
+          title: 'Hakuna Matata',
+          prompt:
+              'Bold black and white graffiti tattoo design with the words "Hakuna Matata", strong street-style block lettering, rough dry-brush strokes, high contrast ink, paint splatter and subtle drip details, urban graffiti wall aesthetic, thick clean outlines, centered composition, professional tattoo flash, stencil-ready, vector style, monochrome, white background, highly detailed, sharp edges.',
+          bigImagePath: 'assets/letters/hakunamatatabig.png',
+          smallImagePath: 'assets/letters/hakunamatatasmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Roman Numerals',
-          prompt: 'Classic Roman numerals with decorative elements',
-          bigImagePath: 'assets/explore/lettering_big.png',
-          smallImagePath: 'assets/explore/lettering_small.png',
+          title: 'Dream',
+          prompt:
+              'Vibrant graffiti tattoo design with the word "DREAM", bold 3D street lettering, thick black outlines, colorful paint splashes and ink drips, urban spray-paint style, high contrast, layered graffiti wall aesthetic, dynamic composition, clean sharp edges, professional tattoo flash, stencil-ready, highly detailed, vector style.',
+          bigImagePath: 'assets/letters/dreambig.png',
+          smallImagePath: 'assets/letters/dreamsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Arabic Calligraphy',
-          prompt: 'Traditional Arabic calligraphy with elegant curves',
-          bigImagePath: 'assets/explore/lettering_big.png',
-          smallImagePath: 'assets/explore/lettering_small.png',
+          title: 'Boom',
+          prompt:
+              'Comic pop-art tattoo design with the word "BOOM", bold cartoon lettering, thick black outlines, vibrant pink and yellow colors, explosive comic burst background, glossy highlights, playful graffiti style, high contrast, clean smooth edges, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.',
+          bigImagePath: 'assets/letters/boombig.png',
+          smallImagePath: 'assets/letters/boomsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Old English Text',
-          prompt: 'Traditional Old English lettering style',
-          bigImagePath: 'assets/explore/lettering_big.png',
-          smallImagePath: 'assets/explore/lettering_small.png',
+          title: 'Work Hard Dream Big',
+          prompt:
+              'Bold colorful graffiti tattoo design with the phrase "Work Hard Dream Big", dynamic street lettering, 3D layered typography, thick black outlines, vibrant gradient colors (orange, red, yellow), paint drips and ink splatter, urban graffiti wall style, high contrast, glossy highlights, centered composition, professional tattoo flash, stencil-ready, highly detailed, vector style, clean background.',
+          bigImagePath: 'assets/letters/workhardbig.png',
+          smallImagePath: 'assets/letters/workhardsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Typewriter Font',
-          prompt: 'Vintage typewriter style lettering',
-          bigImagePath: 'assets/explore/lettering_big.png',
-          smallImagePath: 'assets/explore/lettering_small.png',
+          title: 'Letter RN',
+          prompt:
+              'Dark gothic tattoo design, stylized monogram letters "RN", sharp aggressive calligraphy with horned and spiked edges, black ink only, high contrast, heavy shadowing, grunge ink splatter, ornamental gothic typography, symmetrical composition, tattoo flash style, clean stencil-ready lines, monochrome, white background, highly detailed, professional tattoo design.',
+          bigImagePath: 'assets/letters/rnbig.png',
+          smallImagePath: 'assets/letters/rnsmall.png',
         ),
         ExploreCategoryItem(
-          title: 'Banner Ribbon',
-          prompt: 'Text on decorative ribbon banner',
-          bigImagePath: 'assets/explore/lettering_big.png',
-          smallImagePath: 'assets/explore/lettering_small.png',
+          title: 'Letter C',
+          prompt:
+              'Dark gothic tattoo design featuring the letter "C" with a detailed royal crown on top, bold curved lettering with sharp edges, black and grey realism, high contrast shading, subtle ink splatter and drip effects, luxury gothic style, strong depth and shadow, centered composition, clean stencil-ready outlines, professional tattoo flash, monochrome, highly detailed vector tattoo style.',
+          bigImagePath: 'assets/letters/cbig.png',
+          smallImagePath: 'assets/letters/csmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Peace & Positivity',
+          prompt:
+              'Bold colorful graffiti tattoo design with the phrase "Peace & Positivity", dynamic street-style lettering, large 3D typography, thick black outlines, vibrant gradient colors (yellow, orange, blue, green), paint splashes and dripping ink, urban spray-paint graffiti aesthetic, high contrast, glossy highlights, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.',
+          bigImagePath: 'assets/letters/peacebig.png',
+          smallImagePath: 'assets/letters/peacesmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Dream Big',
+          prompt:
+              'Colorful dreamy tattoo design with the words "Dream Big", soft bubble calligraphy lettering, glossy 3D gradient colors (rainbow tones), smooth rounded strokes, cute celestial elements like stars, sparkles and glowing sun, vibrant fantasy aesthetic, high contrast, clean bold outlines, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.',
+          bigImagePath: 'assets/letters/dreambig_big.png',
+          smallImagePath: 'assets/letters/dreambig_small.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Desire',
+          prompt:
+              'Dark gothic tattoo design with the word "Desire", sharp aggressive black metal calligraphy, spiked thorn-like lettering, symmetrical composition, black and grey realism, metallic dark texture, high contrast shading, sinister ornamental details, clean stencil-ready outlines, professional tattoo flash, monochrome, ultra detailed, edgy gothic style.',
+          bigImagePath: 'assets/letters/desirebig.png',
+          smallImagePath: 'assets/letters/desiresmall.png',
+        ),
+        ExploreCategoryItem(
+          title: 'Beautiful',
+          prompt:
+              'Stylish colorful tattoo design with the word "Beautiful", smooth flowing script lettering, bold modern calligraphy, glossy 3D gradient colors (pink, orange, yellow), thick black outline, soft highlights and depth, feminine elegant style, clean curves and swashes, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.',
+          bigImagePath: 'assets/letters/beautifullarge.png',
+          smallImagePath: 'assets/letters/beautifulsmall.png',
         ),
       ],
     ),
