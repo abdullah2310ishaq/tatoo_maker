@@ -4,9 +4,11 @@ import '../services/history_service.dart';
 /// Provider for managing favorites state across the app
 class FavoritesProvider extends ChangeNotifier {
   Set<String> _favoriteIds = {};
+  List<Map<String, dynamic>> _favoritesList = [];
   bool _isLoading = false;
 
   Set<String> get favoriteIds => _favoriteIds;
+  List<Map<String, dynamic>> get favorites => _favoritesList;
   bool get isLoading => _isLoading;
 
   /// Check if an entry is favorited
@@ -21,8 +23,9 @@ class FavoritesProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final favorites = await HistoryService.getFavorites();
-      _favoriteIds = favorites.map((e) => _generateEntryId(e)).toSet();
+      final favs = await HistoryService.getFavorites();
+      _favoritesList = favs;
+      _favoriteIds = favs.map((e) => _generateEntryId(e)).toSet();
     } catch (e) {
       debugPrint('Error loading favorites: $e');
     } finally {
@@ -37,6 +40,7 @@ class FavoritesProvider extends ChangeNotifier {
       await HistoryService.addToFavorites(entry);
       final entryId = _generateEntryId(entry);
       _favoriteIds.add(entryId);
+      _favoritesList.add(entry); // Add to local list
       notifyListeners();
       return true;
     } catch (e) {
@@ -51,6 +55,10 @@ class FavoritesProvider extends ChangeNotifier {
       await HistoryService.removeFromFavorites(entry);
       final entryId = _generateEntryId(entry);
       _favoriteIds.remove(entryId);
+
+      // Remove from local list based on ID match to be safe
+      _favoritesList.removeWhere((e) => _generateEntryId(e) == entryId);
+
       notifyListeners();
       return true;
     } catch (e) {
