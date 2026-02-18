@@ -309,6 +309,16 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ein minimalistisches schwarzes Katzen-Tattoo-Design im eleganten abstrakten Stil, Seitenprofil sitzende Katze mit langem fließendem gebogenem Schwanz, sanfte schwingende Linien und scharfe verjüngte Kanten, feste schwarze Tinte mit subtiler Verlaufsschattierung für Tiefe, geometrische und fließende Formen, die den Körper bilden, zarte Schnurrhaar-Linien, die vom Gesicht ausgehen, moderner Feinlinien-Tattoo-Stil, hoher Kontrast, sauberer Negativraum, sophistizierter und künstlerischer Look, Tattoo-Flash-Kunst';
 
   @override
+  String get deleteConfirmationTitle => 'Delete Entry';
+
+  @override
+  String get deleteConfirmationContent =>
+      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get exploreTitleRedRoseTattooDesign => 'Rotes Rosen-Tattoo-Design';
 
   @override

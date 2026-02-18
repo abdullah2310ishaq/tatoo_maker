@@ -298,6 +298,16 @@ class AppLocalizationsKo extends AppLocalizations {
       '우아한 추상 스타일의 미니멀리스트 검은 고양이 타투 디자인, 긴 흐르는 곡선 꼬리를 가진 측면 프로필 앉은 고양이, 부드러운 스위핑 라인과 날카로운 테이퍼 엣지, 깊이를 위한 미묘한 그라데이션 음영을 가진 솔리드 검은색 잉크, 몸을 형성하는 기하학적이고 유동적인 모양, 얼굴에서 뻗어 나오는 섬세한 수염 라인, 현대 파인라인 타투 스타일, 높은 대비, 깔끔한 네거티브 스페이스, 세련되고 예술적인 외관, 타투 플래시 아트';
 
   @override
+  String get deleteConfirmationTitle => 'Delete Entry';
+
+  @override
+  String get deleteConfirmationContent =>
+      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get exploreTitleRedRoseTattooDesign => '빨간 장미 타투 디자인';
 
   @override

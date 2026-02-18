@@ -528,6 +528,7 @@ class _HistoryTile extends StatefulWidget {
   final bool isDark;
   final VoidCallback onTap;
   final VoidCallback? onFavoriteChanged;
+
   /// Called after entry is deleted (remove from list). Favorite toggle does not call this.
   final VoidCallback? onDeleted;
 
@@ -551,18 +552,59 @@ class _HistoryTileState extends State<_HistoryTile> {
       listen: false,
     );
 
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        final l10n = AppLocalizations.of(context)!;
+        return AlertDialog(
+          backgroundColor: Theme.of(context).cardColor,
+          title: Text(l10n.deleteConfirmationTitle),
+          content: Text(l10n.deleteConfirmationContent),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(
+                l10n.cancel,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(l10n.delete, style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed != true) return;
+
     // For favorites list, also update the global favorites provider so icons
     // across the app stay in sync.
     if (widget.type == 'favorites') {
       await favoritesProvider.removeFromFavorites(widget.entry);
     }
 
-    await HistoryService.deleteEntry(widget.type, widget.entry);
-    if (!mounted) return;
+    try {
+      await HistoryService.deleteEntry(widget.type, widget.entry);
+      if (!mounted) return;
 
-    widget.onDeleted?.call();
-    widget.onFavoriteChanged?.call();
+      widget.onDeleted?.call();
+      widget.onFavoriteChanged?.call();
+    } catch (e) {
+      debugPrint('Error deleting entry: $e');
+      if (mounted) {
+        AppToast.show(
+          context,
+          message: 'Error deleting entry',
+          isSuccess: false,
+        );
+      }
+    }
   }
+
   Future<void> _toggleFavorite(BuildContext context) async {
     final favoritesProvider = Provider.of<FavoritesProvider>(
       context,
@@ -589,10 +631,7 @@ class _HistoryTileState extends State<_HistoryTile> {
     final bytes = HistoryService.imageBytesFromEntry(widget.entry);
     final label = widget.type == 'flower'
         ? (widget.entry['name'] as String? ?? '')
-        : getLocalizedStyleName(
-            l10n,
-            widget.entry['styleName'] as String?,
-          );
+        : getLocalizedStyleName(l10n, widget.entry['styleName'] as String?);
     final isFavorited = favoritesProvider.isFavorited(widget.entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
 

@@ -311,6 +311,16 @@ class AppLocalizationsPt extends AppLocalizations {
       'Um design de tatuagem de gato preto minimalista em estilo abstrato elegante, gato sentado de perfil com uma cauda curva longa e fluente, linhas suaves e amplas e bordas afiadas e afuniladas, tinta preta sólida com sombreamento de gradiente sutil para profundidade, formas geométricas e fluidas formando o corpo, linhas delicadas de bigodes se estendendo do rosto, estilo de tatuagem de linha fina moderno, alto contraste, espaço negativo limpo, visual sofisticado e artístico, arte flash de tatuagem';
 
   @override
+  String get deleteConfirmationTitle => 'Delete Entry';
+
+  @override
+  String get deleteConfirmationContent =>
+      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get exploreTitleRedRoseTattooDesign =>
       'Design de tatuagem de rosa vermelha';
 

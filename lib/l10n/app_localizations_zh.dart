@@ -290,6 +290,15 @@ class AppLocalizationsZh extends AppLocalizations {
       '极简的黑猫纹身设计，优雅的抽象风格，侧面坐着的猫，长而流动的弯曲尾巴，平滑的扫掠线条和锐利的锥形边缘，实心黑色墨水，微妙的渐变阴影以增加深度，几何和流体形状形成身体，从面部延伸的精致胡须线条，现代细线纹身风格，高对比度，干净的负空间，精致和艺术的外观，纹身闪光艺术';
 
   @override
+  String get deleteConfirmationTitle => '删除条目';
+
+  @override
+  String get deleteConfirmationContent => '您确定要从历史记录中删除此设计吗？此操作无法撤消。';
+
+  @override
+  String get delete => '删除';
+
+  @override
   String get exploreTitleRedRoseTattooDesign => '红玫瑰纹身设计';
 
   @override

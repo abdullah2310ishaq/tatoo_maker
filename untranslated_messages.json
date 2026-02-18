@@ -1,30 +1,57 @@
 {
+  "ar": [
+    "deleteConfirmationTitle",
+    "deleteConfirmationContent",
+    "delete"
+  ],
+
   "de": [
-    "homeSeeAll"
+    "homeSeeAll",
+    "deleteConfirmationTitle",
+    "deleteConfirmationContent",
+    "delete"
   ],
 
   "es": [
-    "homeSeeAll"
+    "homeSeeAll",
+    "deleteConfirmationTitle",
+    "deleteConfirmationContent",
+    "delete"
   ],
 
   "fr": [
-    "homeSeeAll"
+    "homeSeeAll",
+    "deleteConfirmationTitle",
+    "deleteConfirmationContent",
+    "delete"
   ],
 
   "it": [
-    "homeSeeAll"
+    "homeSeeAll",
+    "deleteConfirmationTitle",
+    "deleteConfirmationContent",
+    "delete"
   ],
 
   "ja": [
-    "homeSeeAll"
+    "homeSeeAll",
+    "deleteConfirmationTitle",
+    "deleteConfirmationContent",
+    "delete"
   ],
 
   "ko": [
-    "homeSeeAll"
+    "homeSeeAll",
+    "deleteConfirmationTitle",
+    "deleteConfirmationContent",
+    "delete"
   ],
 
   "pt": [
-    "homeSeeAll"
+    "homeSeeAll",
+    "deleteConfirmationTitle",
+    "deleteConfirmationContent",
+    "delete"
   ],
 
   "ru": [

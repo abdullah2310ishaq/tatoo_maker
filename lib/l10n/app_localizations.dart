@@ -650,6 +650,24 @@ abstract class AppLocalizations {
   /// **'A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art'**
   String get explorePromptElegantBlackCatSilhouetteDesign;
 
+  /// No description provided for @deleteConfirmationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Entry'**
+  String get deleteConfirmationTitle;
+
+  /// No description provided for @deleteConfirmationContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this design from your history? This action cannot be undone.'**
+  String get deleteConfirmationContent;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
   /// Home: Explore item title - Red rose tattoo design
   ///
   /// In en, this message translates to:

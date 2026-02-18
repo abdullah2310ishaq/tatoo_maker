@@ -296,6 +296,16 @@ class AppLocalizationsJa extends AppLocalizations {
       'エレガントな抽象スタイルのミニマリスト黒猫タトゥーデザイン、長い流れる曲がった尾を持つ横顔の座った猫、滑らかな掃引線と鋭いテーパーエッジ、深みのための微妙なグラデーションシェーディングを持つソリッドブラックインク、体を形成する幾何学的で流動的な形状、顔から伸びる繊細なひげの線、モダンファインラインタトゥースタイル、高コントラスト、クリーンなネガティブスペース、洗練された芸術的な外観、タトゥーフラッシュアート';
 
   @override
+  String get deleteConfirmationTitle => 'Delete Entry';
+
+  @override
+  String get deleteConfirmationContent =>
+      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get exploreTitleRedRoseTattooDesign => '赤いバラタトゥーデザイン';
 
   @override

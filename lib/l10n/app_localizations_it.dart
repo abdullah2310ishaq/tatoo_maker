@@ -310,6 +310,16 @@ class AppLocalizationsIt extends AppLocalizations {
       'Un design tatuaggio gatto nero minimalista in stile astratto elegante, gatto seduto di profilo con coda curva lunga e fluente, linee morbide e ampie e bordi affilati e affusolati, inchiostro nero solido con ombreggiatura gradiente sottile per profondità, forme geometriche e fluide che formano il corpo, linee delicate baffi che si estendono dal viso, stile tatuaggio linea fine moderno, alto contrasto, spazio negativo pulito, aspetto sofisticato e artistico, arte flash tatuaggio';
 
   @override
+  String get deleteConfirmationTitle => 'Delete Entry';
+
+  @override
+  String get deleteConfirmationContent =>
+      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get exploreTitleRedRoseTattooDesign => 'Design tatuaggio rosa rossa';
 
   @override

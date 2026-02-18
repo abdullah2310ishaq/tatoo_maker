@@ -311,6 +311,16 @@ class AppLocalizationsFr extends AppLocalizations {
       'Un design de tatouage de chat noir minimaliste en style abstrait élégant, chat assis de profil avec une queue courbe longue et fluide, lignes douces et balayées et bords nets et effilés, encre noire solide avec ombrage de dégradé subtil pour la profondeur, formes géométriques et fluides formant le corps, lignes délicates de moustaches s\'étendant du visage, style de tatouage à ligne fine moderne, contraste élevé, espace négatif propre, look sophistiqué et artistique, art flash de tatouage';
 
   @override
+  String get deleteConfirmationTitle => 'Delete Entry';
+
+  @override
+  String get deleteConfirmationContent =>
+      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get exploreTitleRedRoseTattooDesign =>
       'Design de tatouage de rose rouge';
 

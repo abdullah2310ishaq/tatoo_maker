@@ -308,6 +308,16 @@ class AppLocalizationsEs extends AppLocalizations {
       'Un diseño de tatuaje de gato negro minimalista en estilo abstracto elegante, gato sentado de perfil con una cola curva larga y fluida, líneas suaves y barridas y bordes afilados y cónicos, tinta negra sólida con sombreado de gradiente sutil para profundidad, formas geométricas y fluidas formando el cuerpo, líneas delicadas de bigotes que se extienden desde la cara, estilo de tatuaje de línea fina moderno, alto contraste, espacio negativo limpio, aspecto sofisticado y artístico, arte flash de tatuaje';
 
   @override
+  String get deleteConfirmationTitle => 'Delete Entry';
+
+  @override
+  String get deleteConfirmationContent =>
+      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get exploreTitleRedRoseTattooDesign =>
       'Diseño de tatuaje de rosa roja';
 

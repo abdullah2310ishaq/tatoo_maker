@@ -283,6 +283,11 @@
 
   "exploreTitleGothqueen": "Gothqueen",
   "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "exploreItemMythologyGriffinPrompt": "Величественный грифон, часть лев часть орел, золотые и коричневые перья, горная вершина, высокая детализация",
+  "deleteConfirmationTitle": "Удалить запись",
+  "deleteConfirmationContent": "Вы уверены, что хотите удалить этот дизайн из истории? Это действие нельзя отменить.",
+  "cancel": "Отмена",
+  "delete": "Удалить",
   "explorePromptGothqueen": "Черно-серая готическая татуировка королевы, лысое женское лицо, украшенная корона, геометрическая линейная работа, реалистичная штриховка, симметричная, высокий уровень детализации",
   "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
 

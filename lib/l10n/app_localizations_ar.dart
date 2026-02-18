@@ -307,6 +307,16 @@ class AppLocalizationsAr extends AppLocalizations {
       'تصميم وشم قطة سوداء بسيط بأسلوب مجرد أنيق، قطة جانبية جالسة بذيل منحني طويل متدفق، خطوط كنس ناعمة وحواف مدببة حادة، حبر أسود صلب مع تظليل متدرج خفيف للعمق، أشكال هندسية وسائلة تشكل الجسم، خطوط شوارب رقيقة تمتد من الوجه، أسلوب وشم خط دقيق حديث، تباين عالي، مساحة سلبية نظيفة، مظهر متطور وفني، فن وشم فلاش';
 
   @override
+  String get deleteConfirmationTitle => 'Delete Entry';
+
+  @override
+  String get deleteConfirmationContent =>
+      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get exploreTitleRedRoseTattooDesign => 'تصميم وشم وردة حمراء';
 
   @override
