@@ -36,7 +36,7 @@ class ExploreCategoryItem {
 
 // Dummy data for 10 categories
 class ExploreData {
-  static const List<ExploreCategory> categories = [
+  static const List<ExploreCategory> _baseCategories = [
     ExploreCategory(
       id: 'minimal',
       title: 'Minimal Tattoos',
@@ -891,89 +891,31 @@ class ExploreData {
         ),
       ],
     ),
-    ExploreCategory(
+  ];
+
+  static List<ExploreCategory> get categories {
+    // Aggregating all items from base categories
+    final List<ExploreCategoryItem> allItems = [];
+    for (final category in _baseCategories) {
+      allItems.addAll(category.items);
+    }
+
+    // Shuffle to show random order each time
+    allItems.shuffle();
+
+    final customAi = ExploreCategory(
       id: 'custom_ai',
       title: 'Custom AI Designs',
       prompt: 'Unique AI-generated designs combining multiple styles.',
+      // Use the image of the first item as the cover, or a fixed one.
+      // Keeping fixed one for consistency or maybe random?
+      // Let's keep the fixed panda one to avoid broken paths if random item doesn't have one.
       bigImagePath: 'assets/minimal/pandabig.png',
       smallImagePath: 'assets/minimal/pandasmalllight.png',
       smallImagePathDark: 'assets/minimal/pandamalldark.png',
-      items: [
-        // Random item 1: From Minimal
-        ExploreCategoryItem(
-          title: 'Minimalist Panda',
-          prompt:
-              'A tiny minimalist ankle tattoo of a cute panda sitting upright, facing slightly right, drawn with clean black lines and soft micro-shading. The panda holds a thin green stem with small purple lavender flowers, with subtle botanical detail and glossy black ears and arms. The design is centered on ankle skin, photographed in natural light with shallow depth of field and a minimal, professional tattoo reference style in a 1:1 composition.',
-          bigImagePath: 'assets/minimal/pandabig.png',
-          smallImagePath: 'assets/minimal/pandasmalllight.png',
-          smallImagePathDark: 'assets/minimal/pandamalldark.png',
-        ),
-        // Random item 2: From Geometric
-        ExploreCategoryItem(
-          title: 'Tree of Life',
-          prompt:
-              'Ultra-realistic vertical photo of an inner forearm with a black-and-grey nature tattoo featuring a central pine tree, circular mountain landscape, crescent moons, and ornamental roots. Clean fine-line and blackwork style, smooth shading, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.',
-          bigImagePath: 'assets/geometrical/treeoflifebig.png',
-          smallImagePath: 'assets/geometrical/treeoflifelight.png',
-          smallImagePathDark: 'assets/geometrical/treeoflifesmalldark.png',
-        ),
-        // Random item 3: From Realism
-        ExploreCategoryItem(
-          title: 'Realistic Lion Portrait',
-          prompt:
-              'Ultra-realistic black-and-grey lion head tattoo with detailed fur texture, intense eyes, and powerful expression. Photorealistic shading, high contrast, and fine detail work.',
-          bigImagePath: 'assets/realism_and_portrait/lionbig.png',
-          smallImagePath: 'assets/realism_and_portrait/lionsmall.png',
-        ),
-        // Random item 4: From Lettering
-        ExploreCategoryItem(
-          title: 'Elegant Script Quote',
-          prompt:
-              'Beautiful flowing script lettering with elegant curves and flourishes. Delicate line work with ornamental details and perfect spacing.',
-          bigImagePath: 'assets/letters/scriptbig.png',
-          smallImagePath: 'assets/letters/scriptsmall.png',
-        ),
-        // Random item 5: From Floral
-        ExploreCategoryItem(
-          title: 'Delicate Rose',
-          prompt:
-              'Detailed rose tattoo with soft petals, natural shading, and botanical accuracy. Fine line work with realistic depth and texture.',
-          bigImagePath: 'assets/floral/rosebig.png',
-          smallImagePath: 'assets/floral/rosesmall.png',
-        ),
-        // Random item 6: From Japanese
-        ExploreCategoryItem(
-          title: 'Koi Fish',
-          prompt:
-              'Traditional Japanese koi fish with flowing water, cherry blossoms, and wave patterns. Bold colors and classic irezumi style.',
-          bigImagePath: 'assets/japanese/koibig.png',
-          smallImagePath: 'assets/japanese/koismall.png',
-        ),
-        // Random item 7: From Mythology
-        ExploreCategoryItem(
-          title: 'Phoenix Rising',
-          prompt:
-              'Majestic phoenix bird rising from flames, wings spread wide with detailed feathers, surrounded by fire and smoke. Powerful mythological creature in black and grey with dramatic shading.',
-          bigImagePath: 'assets/myths/phoenixbig.png',
-          smallImagePath: 'assets/myths/phoenixsmall.png',
-        ),
-        // Random item 8: From Traditional
-        ExploreCategoryItem(
-          title: 'Swallow Bird',
-          prompt:
-              'Old school swallow tattoo, wings spread, bold outlines, blue and red classic palette, vintage sailor tattoo flash, simple shading, centered composition, transparent background PNG, high resolution.',
-          bigImagePath: 'assets/oldschool/swallowbird.png',
-          smallImagePath: 'assets/oldschool/swallowbird.png',
-        ),
-        // Random item 9: From Tribal
-        ExploreCategoryItem(
-          title: 'Tribal Pattern',
-          prompt:
-              'Bold tribal design with thick black lines and traditional Polynesian patterns. Strong geometric shapes with cultural significance.',
-          bigImagePath: 'assets/explore/tribal_big.png',
-          smallImagePath: 'assets/explore/tribal_small.png',
-        ),
-      ],
-    ),
-  ];
+      items: allItems,
+    );
+
+    return [..._baseCategories, customAi];
+  }
 }

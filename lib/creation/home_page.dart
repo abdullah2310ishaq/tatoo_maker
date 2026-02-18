@@ -99,10 +99,7 @@ class _HomePageState extends State<HomePage> {
   Widget _wrapWithRtlIfNeeded(BuildContext context, {required Widget child}) {
     final isRtl = _isRtlLocale(Localizations.localeOf(context));
     if (!isRtl) return child;
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: child,
-    );
+    return Directionality(textDirection: TextDirection.rtl, child: child);
   }
 
   Map<String, String> _stylePrompts(AppLocalizations l10n) => {
@@ -209,59 +206,57 @@ class _HomePageState extends State<HomePage> {
                     bottom: bottomAreaHeight,
                   ),
                   child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 20.h),
-                  // Header: menu + InkVision + notification. In RTL add end padding to shift right
-                  Padding(
-                    padding: _isRtlLocale(Localizations.localeOf(context))
-                        ? EdgeInsetsDirectional.only(end: 16.w)
-                        : EdgeInsets.only(right: 20.w),
-                    child: HomeHeader(
-                      isDark: isDark,
-                      onMenuTap: widget.onMenuTap,
-                      onHistoryTap: widget.onHistoryTap,
-                    ),
-                  ),
-                  SizedBox(height: 30.h),
-                  // Describe Your Dream Ink card (RTL in Arabic, centered like English)
-                  _wrapWithRtlIfNeeded(
-                    context,
-                    child: Padding(
-                      padding: _isRtlLocale(Localizations.localeOf(context))
-                          ? EdgeInsetsDirectional.symmetric(horizontal: 20.w)
-                          : EdgeInsetsDirectional.only(end: 20.w),
-                      child: DreamInkCard(
-                        cardKey: _dreamInkCardKey,
-                        controller: _dreamInkController,
-                        maxCharacters: _maxCharacters,
-                        onChanged: _onDreamInkChanged,
-                        checkAssetExists: _checkAssetExists,
-                        onInspirationTap: _onInspirationTap,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20.h),
+                      // Header: menu + InkVision + notification. In RTL add end padding to shift right
+                      Padding(
+                        padding: _isRtlLocale(Localizations.localeOf(context))
+                            ? EdgeInsetsDirectional.only(end: 16.w)
+                            : EdgeInsets.only(right: 20.w),
+                        child: HomeHeader(
+                          isDark: isDark,
+                          onMenuTap: widget.onMenuTap,
+                          onHistoryTap: widget.onHistoryTap,
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(height: 32.h),
-                  // Tattoo style selector section (Generate is in bottom navbar)
-                  SizedBox(
-                    key: _tattooStyleSectionKey,
-                    child: TattooStyleSection(
-                      styles: _styles,
-                      selectedIndex: _selectedStyleIndex,
-                      onStyleTap: _onStyleTap,
-                      scrollController: _styleRowScrollController,
-                    ),
-                  ),
-                  SizedBox(height: 32.h),
-                  // Explore Inspiration section (parent provides start padding in both LTR/RTL)
-                  _wrapWithRtlIfNeeded(
-                    context,
-                    child: const ExploreInspirationSection(),
-                  ),
-                  SizedBox(
-                    height: 40.h,
-                  ), // Extra spacing to ensure last cards are fully visible
-                ],
+                      SizedBox(height: 30.h),
+                      // Describe Your Dream Ink card (RTL in Arabic, centered like English)
+                      _wrapWithRtlIfNeeded(
+                        context,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.only(end: 20.w),
+                          child: DreamInkCard(
+                            cardKey: _dreamInkCardKey,
+                            controller: _dreamInkController,
+                            maxCharacters: _maxCharacters,
+                            onChanged: _onDreamInkChanged,
+                            checkAssetExists: _checkAssetExists,
+                            onInspirationTap: _onInspirationTap,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 32.h),
+                      // Tattoo style selector section (Generate is in bottom navbar)
+                      SizedBox(
+                        key: _tattooStyleSectionKey,
+                        child: TattooStyleSection(
+                          styles: _styles,
+                          selectedIndex: _selectedStyleIndex,
+                          onStyleTap: _onStyleTap,
+                          scrollController: _styleRowScrollController,
+                        ),
+                      ),
+                      SizedBox(height: 32.h),
+                      // Explore Inspiration section (parent provides start padding in both LTR/RTL)
+                      _wrapWithRtlIfNeeded(
+                        context,
+                        child: const ExploreInspirationSection(),
+                      ),
+                      SizedBox(
+                        height: 40.h,
+                      ), // Extra spacing to ensure last cards are fully visible
+                    ],
                   ),
                 );
                 return isRtl
@@ -296,8 +291,7 @@ class _HomePageState extends State<HomePage> {
 
     final currentText = _dreamInkController.text.trim();
     // If user has edited the text since the last auto-fill, don't override it.
-    if (currentText.isEmpty ||
-        currentText != _lastAutoFilledPrompt!.trim()) {
+    if (currentText.isEmpty || currentText != _lastAutoFilledPrompt!.trim()) {
       return;
     }
 
