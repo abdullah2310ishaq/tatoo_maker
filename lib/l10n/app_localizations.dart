@@ -1865,7 +1865,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Polynesian Tribal Tattoo
   ///
   /// In en, this message translates to:
-  /// **'A bold Polynesian tribal tattoo on the back of a hand, featuring sharp black lines, swirling patterns, and geometric designs. The tattoo combines smooth curves and sharp angles, wrapping around the hand with a symmetric flow, extending from the palm to the wrist with a pointed tail. The deep black ink contrasts sharply, showcasing traditional Polynesian style, with realistic skin texture and soft lighting.'**
+  /// **'A bold Polynesian tribal tattoo design featuring sharp black lines, swirling patterns, and geometric elements with smooth curves and sharp angles arranged in a symmetrical flow extending into a pointed tail, deep black ink in traditional Polynesian style, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork..'**
   String get exploreItemPolynesianTribalPrompt;
 
   /// Explore item title: Tribal Spine Spear Tattoo
@@ -1877,7 +1877,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Tribal Spine Spear Tattoo
   ///
   /// In en, this message translates to:
-  /// **'Ultra-realistic photo of a male upper back with a centered, symmetrical black tribal tattoo combining Celtic knotwork and sharp Polynesian-style lines. The design forms an elongated spear-like shape along the spine with bold clean ink, crisp edges, natural skin texture, outdoor lighting, and shallow depth of field.'**
+  /// **'Centered symmetrical tribal spine tattoo design combining Celtic knotwork and sharp Polynesian-style lines, forming an elongated spear-like shape with bold clean black ink and crisp edges, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalSpineSpearPrompt;
 
   /// Explore item title: Tribal Knotwork Tattoo
@@ -1889,7 +1889,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Tribal Knotwork Tattoo
   ///
   /// In en, this message translates to:
-  /// **'Symmetrical tribal tattoo with sharp black geometric lines and curves, featuring an elongated central form that tapers at both ends. Intricate interwoven patterns, high contrast, no shading, clean solid ink, modern abstract style with perfect symmetry and a minimal background.'**
+  /// **'Symmetrical tribal tattoo with sharp black geometric lines and curves, featuring an elongated central form that tapers at both ends with intricate interwoven patterns, high contrast, no shading, clean solid ink, modern abstract style with perfect symmetry and minimal background, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalKnotworkPrompt;
 
   /// Explore item title: Tribal Forearm Sleeve Band
@@ -1901,7 +1901,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Tribal Forearm Sleeve Band
   ///
   /// In en, this message translates to:
-  /// **'Photorealistic image of a man\'s bent forearm featuring a bold black Polynesian-style tribal tattoo that wraps toward the wrist, with flowing curved lines, sharp points, and circular motifs. Natural skin texture, white short-sleeve polo, warm indoor lighting, shallow depth of field, and a centered, high-detail composition.'**
+  /// **'Bold Polynesian-style tribal forearm sleeve design with flowing curved lines, sharp points and circular motifs arranged in a dynamic composition, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalForearmSleevePrompt;
 
   /// Explore item title: Central Spiral
@@ -1913,7 +1913,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Central Spiral
   ///
   /// In en, this message translates to:
-  /// **'Close-up photorealistic shot of a hand gripping blue fabric, showing a bold black tribal tattoo flowing from the fingers across the back of the hand toward the wrist. Sharp flame-like lines with smooth curves, visible skin texture and veins, cool moody lighting, shallow depth of field, and a centered cinematic composition.'**
+  /// **'Bold tribal central spiral tattoo design with sharp flame-like lines and smooth flowing curves arranged in a dynamic symmetrical composition, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalCentralSpiralPrompt;
 
   /// Explore item title: Flame Tribal Forearm Tattoo
@@ -1925,7 +1925,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Flame Tribal Forearm Tattoo
   ///
   /// In en, this message translates to:
-  /// **'Photorealistic close-up of an inner forearm with a bold black flame-like tribal tattoo in thick, clean ink, centered along the arm. The person sits in a tattoo studio chair holding their wrist, with a black chair and tiled floor in the background, indoor lighting, natural skin texture, and shallow depth of field.'**
+  /// **'Bold flame-like tribal forearm tattoo design in thick clean black ink with sharp tapered edges and flowing curves, centered vertical composition, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalFlameForearmPrompt;
 
   /// Explore item title: Spiral with Flame Extensions
@@ -1937,7 +1937,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Spiral with Flame Extensions
   ///
   /// In en, this message translates to:
-  /// **'Ultra-realistic photo of a muscular upper arm with a bold black spiral tribal tattoo on the shoulder, featuring thick ink and sharp flame-like extensions. The fresh tattoo shows slight redness, with the person in a sleeveless black shirt inside a tattoo studio, under indoor lighting, with visible skin texture and shallow depth of field.'**
+  /// **'Bold spiral flame tribal tattoo design featuring thick black ink and sharp flame-like extensions radiating from a central swirl, dynamic symmetrical composition, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalSpiralFlamePrompt;
 
   /// Explore item title: Tribal Compass Tattoo
@@ -1949,7 +1949,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Tribal Compass Tattoo
   ///
   /// In en, this message translates to:
-  /// **'Ultra-realistic close-up of a calf featuring a centered black tribal compass-style tattoo with sharp, symmetrical star points and flame-like extensions. Clean solid ink, slight redness, visible skin texture and hair, warm studio lighting, dark background, and shallow depth of field.'**
+  /// **'Centered tribal compass tattoo design with sharp symmetrical star points and flame-like extensions in clean solid black ink, high contrast with crisp edges and balanced geometry, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalCompassPrompt;
 
   /// Explore item title: Modern Geometric Tribal
@@ -1961,7 +1961,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Modern Geometric Tribal
   ///
   /// In en, this message translates to:
-  /// **'Ultra-realistic close-up of a calf with a large symmetrical black geometric tribal tattoo featuring sharp triangular patterns and a flower-like center. Thick solid ink, high contrast, natural skin texture, white socks and black shoes visible, standing on a metal-textured floor in outdoor lighting with shallow depth of field.'**
+  /// **'Large symmetrical modern geometric tribal tattoo design featuring sharp triangular patterns and a flower-like central motif in thick solid black ink with high contrast and precise symmetry, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalModernGeometricPrompt;
 
   /// Explore item title: Neo-Tribal Back Tattoo
@@ -1973,7 +1973,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Neo-Tribal Back Tattoo
   ///
   /// In en, this message translates to:
-  /// **'Overhead photorealistic shot of a person leaning forward, revealing a large bold black spiky tribal tattoo spread across the upper back and shoulders. Sharp thorn-like shapes in solid high-contrast ink, hair tied up and held by hand, dark clothing and background, moody lighting, realistic skin texture, and shallow depth of field.'**
+  /// **'Large neo-tribal back tattoo design featuring bold spiky thorn-like shapes in solid high-contrast black ink with sharp edges and dynamic symmetry, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalNeoBackPrompt;
 
   /// Explore item title: Flame Tribal
@@ -1985,7 +1985,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Flame Tribal
   ///
   /// In en, this message translates to:
-  /// **'Ultra-realistic close-up of the back of a hand with a symmetrical black tribal flame tattoo flowing from the knuckles toward the wrist, featuring sharp curves and decorative swirls in clean solid ink. Visible skin texture and veins, relaxed hand, dark jeans in the background, neutral indoor lighting, and shallow depth of field.'**
+  /// **'Symmetrical tribal flame tattoo design featuring sharp curves and decorative swirls in clean solid black ink with high contrast and precise flowing geometry, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalFlamePrompt;
 
   /// Explore item title: Sword and Compass Tattoo
@@ -1997,7 +1997,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Sword and Compass Tattoo
   ///
   /// In en, this message translates to:
-  /// **'Ultra-realistic close-up of the back of a hand with a black-and-grey tattoo of a vertical sword piercing an 8-point compass rose, featuring fine linework, circular details, and light smoke-like shading. Realistic skin texture, dark blurred background, dramatic studio lighting, and shallow depth of field.'**
+  /// **'Vertical sword and 8-point compass rose tribal tattoo design with fine linework, circular detailing and subtle smoke-like accents in clean high-contrast black ink, symmetrical centered composition, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.'**
   String get exploreItemTribalSwordCompassPrompt;
 
   /// Explore item title: Mind–Body–Soul
