@@ -982,7 +982,13 @@
   "exploreItemLetteringRn": "RN",
   "exploreItemLetteringRnPrompt": "Tatouage gothique sombre avec les initiales \"RN\" en typographie calligraphique agressive acérée avec bords cornus et encre noire seulement et haut contraste et ombrage intense et éclaboussures d'encre et typographie gothique ornementée et composition symétrique et flash de tatouage et lignes propres prêtes pour pochoir et simple et hautement détaillé et design de tatouage professionnel.",
   "exploreItemLetteringC": "C",
-  "exploreItemLetteringCrompt": "Tatouage gothique sombre avec la lettre \"C\" avec couronne royale au-dessus et typographie courbe audacieuse avec bords nets et noir gris réaliste et haut contraste et ombrage et ombres profondes et style gothique luxueux et composition centrée et lignes propres prêtes pour pochoir et flash professionnel de tatouage et simple et hautement détaillé.",
+  "@exploreItemLetteringC": {
+    "description": "Home: Explore item title - Letter C"
+  },
+  "exploreItemLetteringCPrompt": "Tatouage gothique sombre avec la lettre \"C\" avec couronne royale au-dessus et typographie courbe audacieuse avec bords nets et noir gris réaliste et haut contraste et ombrage et ombres profondes et style gothique luxueux et composition centrée et lignes propres prêtes pour pochoir et flash professionnel de tatouage et simple et hautement détaillé.",
+  "@exploreItemLetteringCPrompt": {
+    "description": "Home: Explore item prompt - Letter C"
+  },
   "exploreItemLetteringPeacePositivity": "Paix et positivité",
   "exploreItemLetteringPeacePositivityPrompt": "Tatouage graffiti audacieux de couleurs avec la phrase \"Peace & Positivity\" et style urbain écrit à la main et impression grande tridimensionnelle et lignes noires épaisses et gradients vibrants (jaune orange bleu vert) et éclaboussures de peinture et style graffiti spray urbain et haut contraste et brillances et composition centrée et flash professionnel de tatouage et prêt pour pochoir et abstrait et hautement détaillé.",
   "exploreItemLetteringDreamBig": "Rêve grand",
