@@ -1305,7 +1305,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get exploreItemLetteringCPrompt =>
-      'Dark gothic tattoo design featuring the letter \"C\" with a detailed royal crown on top, bold curved lettering with sharp edges, black and grey realism, high contrast shading, subtle ink splatter and drip effects, luxury gothic style, strong depth and shadow, centered composition, clean stencil-ready outlines, professional tattoo flash, monochrome, highly detailed vector tattoo style.';
+      'Tatouage gothique sombre avec la lettre \"C\" avec couronne royale au-dessus et typographie courbe audacieuse avec bords nets et noir gris réaliste et haut contraste et ombrage et ombres profondes et style gothique luxueux et composition centrée et lignes propres prêtes pour pochoir et flash professionnel de tatouage et simple et hautement détaillé.';
 
   @override
   String get exploreItemLetteringPeacePositivity => 'Paix et positivité';

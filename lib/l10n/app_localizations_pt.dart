@@ -249,7 +249,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get homeExploreInspiration => 'Explorar Inspiração';
 
   @override
-  String get homeSeeAll => 'See all';
+  String get homeSeeAll => 'Ver tudo';
 
   @override
   String get homeGenerate => 'Gerar';
@@ -311,14 +311,14 @@ class AppLocalizationsPt extends AppLocalizations {
       'Um design de tatuagem de gato preto minimalista em estilo abstrato elegante, gato sentado de perfil com uma cauda curva longa e fluente, linhas suaves e amplas e bordas afiadas e afuniladas, tinta preta sólida com sombreamento de gradiente sutil para profundidade, formas geométricas e fluidas formando o corpo, linhas delicadas de bigodes se estendendo do rosto, estilo de tatuagem de linha fina moderno, alto contraste, espaço negativo limpo, visual sofisticado e artístico, arte flash de tatuagem';
 
   @override
-  String get deleteConfirmationTitle => 'Delete Entry';
+  String get deleteConfirmationTitle => 'Excluir entrada';
 
   @override
   String get deleteConfirmationContent =>
-      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+      'Tem certeza de que deseja excluir este design do seu histórico? Esta ação não pode ser desfeita.';
 
   @override
-  String get delete => 'Delete';
+  String get delete => 'Excluir';
 
   @override
   String get exploreTitleRedRoseTattooDesign =>
@@ -713,789 +713,793 @@ class AppLocalizationsPt extends AppLocalizations {
       'Sem conexão com a Internet. Verifique sua rede.';
 
   @override
-  String get exploreCategoryMinimal => 'Minimal Tattoos';
+  String get exploreCategoryMinimal => 'Tatuagens minimalistas';
 
   @override
   String get exploreCategoryMinimalDescription =>
-      'Simple, clean lines with minimalist aesthetic. Perfect for subtle, elegant designs.';
+      'Linhas simples e limpas com estética minimalista. Perfeitas para designs sutis e elegantes.';
 
   @override
-  String get exploreCategoryTraditional => 'Traditional & Old School';
+  String get exploreCategoryTraditional => 'Tradicional e Old School';
 
   @override
   String get exploreCategoryTraditionalDescription =>
-      'Bold lines, vibrant colors, and classic American traditional style.';
+      'Linhas audaciosas e cores vibrantes no estilo americano tradicional clássico.';
 
   @override
-  String get exploreCategoryJapanese => 'Japanese Style';
+  String get exploreCategoryJapanese => 'Estilo japonês';
 
   @override
   String get exploreCategoryJapaneseDescription =>
-      'Traditional Japanese irezumi with dragons, koi fish, and cherry blossoms.';
+      'Irezumi tradicional japonês com dragões, koi e cerejeiras em flor.';
 
   @override
-  String get exploreCategoryTribal => 'Tribal Designs';
+  String get exploreCategoryTribal => 'Motivos tribais';
 
   @override
   String get exploreCategoryTribalDescription =>
-      'Bold black patterns inspired by Polynesian and tribal art.';
+      'Padrões negros audaciosos inspirados na arte polinésia e tribal.';
 
   @override
-  String get exploreCategoryGeometric => 'Geometric Tattoos';
+  String get exploreCategoryGeometric => 'Tatuagens geométricas';
 
   @override
   String get exploreCategoryGeometricDescription =>
-      'Sacred geometry, mandalas, and precise geometric patterns.';
+      'Geometria sagrada e mandalas com padrões geométricos precisos.';
 
   @override
-  String get exploreCategoryRealism => 'Realism & Portrait';
+  String get exploreCategoryRealism => 'Realismo e retratos';
 
   @override
   String get exploreCategoryRealismDescription =>
-      'Photorealistic portraits and detailed realistic imagery.';
+      'Retratos realistas fotográficos e imagens detalhadas realistas.';
 
   @override
-  String get exploreCategoryLettering => 'Lettering & Script';
+  String get exploreCategoryLettering => 'Letras e tipografia';
 
   @override
   String get exploreCategoryLetteringDescription =>
-      'Beautiful typography, calligraphy, and meaningful quotes.';
+      'Tipografia bonita e citações significativas.';
 
   @override
-  String get exploreCategoryFloral => 'Floral & Nature';
+  String get exploreCategoryFloral => 'Floral e natureza';
 
   @override
   String get exploreCategoryFloralDescription =>
-      'Flowers, plants, and natural elements in beautiful compositions.';
+      'Flores e plantas em composições bonitas.';
 
   @override
-  String get exploreCategoryMythology => 'Mythology & Fantasy';
+  String get exploreCategoryMythology => 'Mitologia e fantasia';
 
   @override
   String get exploreCategoryMythologyDescription =>
-      'Mythical creatures, gods, and fantasy-inspired designs.';
+      'Criaturas míticas e deuses e designs inspirados em fantasia.';
 
   @override
-  String get exploreCategoryCustomAi => 'Custom AI Designs';
+  String get exploreCategoryCustomAi => 'Designs personalizados IA';
 
   @override
   String get exploreCategoryCustomAiDescription =>
-      'Unique AI-generated designs combining multiple styles.';
+      'Designs únicos de IA que combinam múltiplos estilos.';
 
   @override
-  String get exploreItemMinimalistPanda => 'Minimalist Panda';
+  String get exploreItemMinimalistPanda => 'Panda minimalista';
 
   @override
   String get exploreItemMinimalistPandaPrompt =>
-      'A tiny minimalist ankle tattoo of a cute panda sitting upright, facing slightly right, drawn with clean black lines and soft micro-shading. The panda holds a thin green stem with small purple lavender flowers, with subtle botanical detail and glossy black ears and arms. The design is centered on ankle skin, photographed in natural light with shallow depth of field and a minimal, professional tattoo reference style in a 1:1 composition.';
+      'Um pequeno tatuagem de panda minimalista na caviglia, um panda adorável sentado olhando ligeiramente para a direita, desenhado com linhas negras limpas e sombreamento micro fino sutil. O panda segura um caule verde fino com pequenas flores de lavanda roxas, com detalhes botânicos sutis e orelhas e braços negros brilhantes. O design é centrado na pele da caviglia, fotografado com luz natural com baixa profundidade de campo e estilo de referência de tatuagem minimalista profissional em composição 1:1.';
 
   @override
-  String get exploreItemFineLineBow => 'Fine-Line Bow';
+  String get exploreItemFineLineBow => 'Arco de linha fina';
 
   @override
   String get exploreItemFineLineBowPrompt =>
-      'A tiny minimalist inner-wrist tattoo of a delicate ribbon bow, drawn with thin black linework and a small center knot. The design is symmetrical, clean, and micro-tattoo style, placed on smooth pale wrist skin. Shot in soft natural light with shallow depth of field, it has a modern minimalist aesthetic and professional tattoo reference look.';
+      'Uma pequena tatuagem simples no lado interno do pulso com uma linha de fita de arco fina, desenhada com tinta negra limpa e fina e uma pequena fivela central. O design é simétrico e limpo no estilo de tatuagem minimalista, posicionado em pele macia do pulso branco. Fotografado com luz natural suave com baixa profundidade de campo no estilo de referência de tatuagem moderna profissional.';
 
   @override
-  String get exploreItemMicroRealismFinger => 'Micro Realism Finger Tattoos';
+  String get exploreItemMicroRealismFinger =>
+      'Tatuagens de dedos realistas micro';
 
   @override
   String get exploreItemMicroRealismFingerPrompt =>
-      'An ultra-realistic macro shot of a middle finger showing two tiny micro tattoos above the knuckle: a small sitting cat facing right and a delicate butterfly with fine linework and subtle shading. The scene features natural skin texture, warm neutral lighting, shallow depth of field, and a clean beige background, styled like a high-detail professional tattoo reference photo.';
+      'Tiro macro fotorrealista do dedo médio mostrando duas tatuagens pequenas detalhadas sobre a articulação: Um gato sentado olhando para a direita e uma libelinha de linha fina abaixo. A cena apresenta textura de pele natural e luz neutra quente com baixa profundidade de campo e fundo bege limpo, no estilo de referência de tatuagem profissional com alta precisão de detalhes.';
 
   @override
-  String get exploreItemFineLineCatCircle => 'Fine-Line Cat in Circle';
+  String get exploreItemFineLineCatCircle => 'Gato de linha fina em círculo';
 
   @override
   String get exploreItemFineLineCatCirclePrompt =>
-      'A minimalist upper-back tattoo below the neck showing a small black silhouette cat sitting and facing away, with a long curved tail. It\'s encircled by a thin, delicate incomplete circle with tiny leaves and a small flower, done in ultra-clean fine-line black ink. The scene features realistic skin texture, soft natural lighting, shallow depth of field, and a modern, photorealistic tattoo reference style.';
+      'Uma pequena tatuagem superior de costas sob o pescoço mostrando uma sombra sutil de gato sentado olhando para trás com cauda curvada longa. Cercado por um círculo fino incompleto com pequenas folhas e uma pequena flor em tinta negra limpa e fina. A cena apresenta textura de pele realista e luz natural suave com baixa profundidade de campo no estilo de referência de tatuagem realista moderna.';
 
   @override
-  String get exploreItemFineLineLotusFlower => 'Fine-Line Lotus Flower';
+  String get exploreItemFineLineLotusFlower => 'Flor de lótus de linha fina';
 
   @override
   String get exploreItemFineLineLotusFlowerPrompt =>
-      'A minimalist fine-line lotus flower tattoo with delicate layered petals and a thin stem with small leaves and buds, done in clean black ink. Beside it sits a small solid black heart with two tiny dots, all in a micro-tattoo style. The design is centered on smooth skin, photographed in warm natural light with shallow depth of field and a modern, photorealistic tattoo reference aesthetic.';
+      'Uma tatuagem simples de flor de lótus com pétalas sobrepostas finas e caule fino com pequenas folhas e botões em tinta negra limpa e fina. Ao lado um pequeno coração negro sólido com dois pequenos pontos no estilo de tatuagem minimalista. O design é centrado em pele macia, fotografado com luz natural quente com baixa profundidade de campo no estilo de referência de tatuagem realista moderna.';
 
   @override
-  String get exploreItemSleepingCatCrescent => 'Sleeping Cat in Crescent Moon';
+  String get exploreItemSleepingCatCrescent => 'Gato dormindo em crescente';
 
   @override
   String get exploreItemSleepingCatCrescentPrompt =>
-      'A tiny minimalist micro tattoo of a sleeping kitten curled inside a thin crescent moon, with soft black-and-grey shading and delicate sparkles around it. The design features clean fine-line work and subtle fur detail, placed on wrist or forearm skin and photographed in warm natural light with a shallow depth of field for a high-detail, photorealistic tattoo reference look.';
+      'Uma pequena tatuagem detalhada de gatinho enrolado dormindo dentro de um crescente fino com sombreamento negro e cinza suave e brilhos sutis ao redor. O design apresenta linhas limpas e finas e detalhes de pelos finos, posicionado em pele de pulso ou antebraço, fotografado com luz natural quente com baixa profundidade de campo para um estilo de referência de tatuagem realista de alta qualidade.';
 
   @override
-  String get exploreItemFineLineHeartStars => 'Fine-Line Heart and Stars';
+  String get exploreItemFineLineHeartStars =>
+      'Coração e estrelas de linha fina';
 
   @override
   String get exploreItemFineLineHeartStarsPrompt =>
-      'A minimalist geometric forearm tattoo featuring a solid black heart with sharp edges, flanked by thin four-point star sparkles above and below. Small black dots and tiny outlined circles form a symmetrical vertical layout around it. Done in clean fine-line black ink on smooth skin, photographed in soft natural light with a modern, high-detail tattoo reference style.';
+      'Uma tatuagem geométrica no antebraço com um coração negro sólido de bordas afiadas e estrelas octogonais acima e abaixo. Pequenos pontos negros e círculos definidos formando um layout vertical simétrico ao redor. Em tinta negra limpa e fina em pele macia, fotografado com luz natural suave no estilo de referência de tatuagem moderna com alta precisão de detalhes.';
 
   @override
-  String get exploreItemFineLineCompassStar => 'Fine-Line Compass Star';
+  String get exploreItemFineLineCompassStar =>
+      'Estrela de bússola de linha fina';
 
   @override
   String get exploreItemFineLineCompassStarPrompt =>
-      'A minimalist inner-forearm micro tattoo featuring a centered geometric compass-style 8-point star with sharp, clean black lines and four tiny dots around it. A small outline heart sits directly below the star. The design is ultra-clean and symmetrical, photographed on smooth skin with soft natural lighting and a modern, photorealistic tattoo reference style.';
+      'Uma pequena tatuagem detalhada no lado interno do antebraço com uma estrela de bússola octogonal no centro com linhas negras afiadas e finas e quatro pequenos pontos ao redor. Um coração definido pequeno diretamente abaixo da estrela. O design é extremamente limpo e simétrico, fotografado em pele macia com luz natural quente no estilo de referência de tatuagem realista moderna.';
 
   @override
-  String get exploreItemMinimalTrebleClef => 'Minimal Treble Clef Neck';
+  String get exploreItemMinimalTrebleClef => 'Clave de sol no pescoço';
 
   @override
   String get exploreItemMinimalTrebleClefPrompt =>
-      'A small glossy black treble clef tattoo with three tiny music notes, placed behind the ear on the side of the neck. Done in bold, clean lines, it\'s photographed in soft warm lighting with realistic skin texture, a visible ear with a silver stud earring, and a shallow depth of field for a detailed, minimal tattoo reference look.';
+      'Uma pequena tatuagem brilhante negra de clave de sol com três notas pequenas atrás da orelha do lado do pescoço. Com linhas audaciosas e limpas, fotografado com luz quente com textura de pele realista e orelha visível com brinco prateado e baixa profundidade de campo no estilo de referência de tatuagem minimalista detalhada.';
 
   @override
-  String get exploreItemStarryHeart => 'Starry Heart';
+  String get exploreItemStarryHeart => 'Coração estrelado';
 
   @override
   String get exploreItemStarryHeartPrompt =>
-      'A minimalist fine-line inner-forearm tattoo featuring a medium outlined heart with tiny dotted details inside, surrounded by small stars and solid dots. Done in clean black micro-tattoo style, it\'s photographed on realistic skin in soft outdoor light, with a white sleeve, light blue jeans, and a subtle bracelet visible against a softly blurred street background.';
+      'Uma tatuagem simples de linha fina no lado interno do antebraço com um coração médio definido com pequenos pontos dentro, cercado de estrelas pequenas e pontos sólidos. No estilo negro minimalista, fotografado em pele realista com luz natural com mangas brancas visíveis e jeans azul escuro e fundo ligeiramente desfocado de rua.';
 
   @override
-  String get exploreItemValknutTriangle => 'Valknut Triangle';
+  String get exploreItemValknutTriangle => 'Triângulo valknut';
 
   @override
   String get exploreItemValknutTrianglePrompt =>
-      'Photorealistic close-up of a hand near a jeans pocket with a small minimalist geometric Valknut-style tattoo made of three interlocking triangles in thin black ink. Visible skin texture and veins, black sleeve and silver ring, denim background, soft natural lighting, and shallow depth of field.';
+      'Uma tomada próxima realista de uma mão apertando em bolso de jeans escuros mostrando um pequeno tatuagem sutil de arte valknut com três triângulos entrelaçados em tinta negra fina limpa. Com textura de pele, veias visíveis, polo escuro e anel prateado e fundo de denim e luz natural e baixa profundidade de campo.';
 
   @override
-  String get exploreItemMinimalistMountain => 'Minimalist Mountain';
+  String get exploreItemMinimalistMountain => 'Montanhas minimalistas';
 
   @override
   String get exploreItemMinimalistMountainPrompt =>
-      'Ultra-realistic close-up of an inner wrist with a tiny fine-line mountain tattoo in clean black ink. Small minimalist design centered on the wrist, visible skin texture and veins, sleeve slightly rolled up, soft natural lighting, neutral background, and shallow depth of field.';
+      'Uma tomada próxima realista do lado interno do antebraço com uma pequena tatuagem simples de montanha em tinta negra fina limpa. O design é pequeno e centrado no meio do antebraço com textura de pele, manga ligeiramente enrolada e luz natural e fundo neutro com baixa profundidade de campo.';
 
   @override
-  String get exploreItemSwallowBird => 'Swallow Bird';
+  String get exploreItemSwallowBird => 'Andorinha';
 
   @override
   String get exploreItemSwallowBirdPrompt =>
-      'Old school swallow tattoo, wings spread, bold outlines, blue and red classic palette, vintage sailor tattoo flash, simple shading, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de andorinha old school com asas estendidas e linhas audaciosas e paleta de cores clássica azul e vermelha e estilo flash de marinheiro antigo e sombreamento simples e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemDaggerHeart => 'Dagger Through Heart';
+  String get exploreItemDaggerHeart => 'Adaga no coração';
 
   @override
   String get exploreItemDaggerHeartPrompt =>
-      'Traditional dagger through heart tattoo, bold outlines, red heart pierced by steel dagger, classic old school flash, strong shading, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem tradicional de adaga no coração com linhas audaciosas e corações vermelhos perfurados e adaga de aço e flash old school clássico e sombreamento forte e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemSkullClassic => 'Skull Classic';
+  String get exploreItemSkullClassic => 'Crânio clássico';
 
   @override
   String get exploreItemSkullClassicPrompt =>
-      'Old school skull tattoo, bold black outlines, simple shading, vintage flash design, traditional tattoo style, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de crânio old school com linhas negras audaciosas e sombreamento simples e estilo flash clássico e estilo americano tradicional e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemEagleSpread => 'Eagle Spread';
+  String get exploreItemEagleSpread => 'Águia estendida';
 
   @override
   String get exploreItemEagleSpreadPrompt =>
-      'Traditional eagle tattoo, wings spread wide, bold outlines, red yellow blue palette, vintage American traditional style, strong shading, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de águia tradicional com asas amplamente estendidas e linhas audaciosas e paleta de cores vermelha amarela azul e estilo americano clássico e sombreamento forte e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemSnakeCoiled => 'Snake Coiled';
+  String get exploreItemSnakeCoiled => 'Cobra enrolada';
 
   @override
   String get exploreItemSnakeCoiledPrompt =>
-      'Old school snake tattoo, coiled serpent, bold outlines, green and red palette, vintage flash style, strong simple shading, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de cobra old school com víbora enrolada e linhas audaciosas e cores verde e vermelha e estilo flash tradicional e sombreamento simples forte e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemShipWheel => 'Ship Wheel';
+  String get exploreItemShipWheel => 'Roda de navio';
 
   @override
   String get exploreItemShipWheelPrompt =>
-      'Traditional ship wheel tattoo, nautical theme, bold outlines, brown and gold tones, classic sailor tattoo flash, simple shading, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem tradicional de roda de navio com tema marinho e linhas audaciosas e tons marrons e dourados e flash de marinheiro clássico e sombreamento simples e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemCowboyRevolver => 'Cowboy Revolver';
+  String get exploreItemCowboyRevolver => 'Revólver cowboy';
 
   @override
   String get exploreItemCowboyRevolverPrompt =>
-      'Traditional old school cowboy revolver tattoo, classic western pistol, bold thick black outlines, vintage tattoo flash style, simple red and gold accents, strong shading, clean vector look, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de revólver cowboy old school com pistola western clássica e linhas negras grossas audaciosas e estilo flash clássico e toques vermelhos e dourados sutis e sombreamento forte e aparência limpa e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemPantherHead => 'Panther Head';
+  String get exploreItemPantherHead => 'Cabeça de pantera';
 
   @override
   String get exploreItemPantherHeadPrompt =>
-      'Old school panther head tattoo, roaring panther, bold black outlines, yellow eyes, red mouth, vintage traditional flash style, strong shading, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de cabeça de pantera old school com pantera rugindo e linhas negras audaciosas e olhos amarelos e boca vermelha e estilo flash tradicional e sombreamento forte e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemKoiFish => 'Koi Fish';
+  String get exploreItemKoiFish => 'Peixe koi';
 
   @override
   String get exploreItemKoiFishPrompt =>
-      'Japanese style koi fish tattoo, traditional irezumi design, flowing koi with curved body, bold outlines, red orange palette, water waves around fish, clean vector look, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de peixe koi japonês com design irezumi tradicional e koi fluindo com corpo curvado e linhas audaciosas e paleta de cores vermelha e laranja e ondas de água ao redor do peixe e aparência limpa e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemHannyaMask => 'Hannya Mask';
+  String get exploreItemHannyaMask => 'Máscara Hannya';
 
   @override
   String get exploreItemHannyaMaskPrompt =>
-      'Japanese hannya mask tattoo, traditional irezumi style, demon mask with horns, bold black outlines, red and white tones, dramatic expression, clean vector style, centered composition, transparent background PNG, high resolution.';
+      'Máscara de demônio Hannya japonesa com estilo irezumi e máscara demoníaca com chifres e linhas negras audaciosas e cores vermelha e branca e expressão dramática e estilo limpo e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemSamuraiHelmet => 'Samurai Helmet';
+  String get exploreItemSamuraiHelmet => 'Capacete samurai';
 
   @override
   String get exploreItemSamuraiHelmetPrompt =>
-      'Japanese samurai helmet tattoo, kabuto helmet front view, traditional irezumi style, bold outlines, gold and red accents, clean vector look, centered composition, transparent background PNG, high resolution.';
+      'Capacete samurai japonês e kabuto da frente com estilo irezumi e linhas audaciosas e toques dourados e vermelhos e aparência limpa e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemCherryBlossomBranch => 'Cherry Blossom Branch';
+  String get exploreItemCherryBlossomBranch => 'Galho de cerejeira em flor';
 
   @override
   String get exploreItemCherryBlossomBranchPrompt =>
-      'Japanese cherry blossom tattoo, sakura branch with flowers, traditional irezumi style, soft pink blossoms, bold outlines, elegant composition, centered design, transparent background PNG, high resolution.';
+      'Tatuagem de cerejeira em flor japonesa e galho sakura com flores rosa suaves com estilo irezumi e linhas audaciosas e composição elegante e design limpo e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemJapaneseDragon => 'Japanese Dragon';
+  String get exploreItemJapaneseDragon => 'Dragão japonês';
 
   @override
   String get exploreItemJapaneseDragonPrompt =>
-      'Japanese dragon tattoo, traditional irezumi dragon, long flowing body, clouds around dragon, bold outlines, green red palette, dynamic pose, centered composition, transparent background PNG, high resolution.';
+      'Dragão japonês com estilo irezumi e corpo longo fluido e nuvens ao redor do dragão e linhas audaciosas e paleta de cores verde vermelha dourada e pose dinâmica e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemOniMask => 'Oni Mask';
+  String get exploreItemOniMask => 'Máscara Oni';
 
   @override
   String get exploreItemOniMaskPrompt =>
-      'Japanese oni mask tattoo, traditional demon mask, bold outlines, red and black palette, fierce expression, irezumi style, centered composition, transparent background PNG, high resolution.';
+      'Máscara de demônio oni japonesa tradicional e máscara demoníaca com linhas audaciosas e cores vermelha e negra e expressão selvagem e estilo irezumi e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemHokusaiWave => 'Wave (Hokusai Style)';
+  String get exploreItemHokusaiWave => 'Onda Hokusai';
 
   @override
   String get exploreItemHokusaiWavePrompt =>
-      'Japanese wave tattoo, traditional irezumi ocean wave, bold outlines, blue tones, classic Japanese wave style, clean vector look, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de onda oceânica japonesa com estilo irezumi e linhas audaciosas e cores azuis e estilo de onda japonesa clássica e aparência limpa e composição central e fundo transparente PNG e alta resolução.';
 
   @override
-  String get exploreItemJapaneseTiger => 'Tiger';
+  String get exploreItemJapaneseTiger => 'Tigre japonês';
 
   @override
   String get exploreItemJapaneseTigerPrompt =>
-      'Japanese tiger tattoo, traditional irezumi tiger, roaring tiger head, bold outlines, orange black palette, dynamic style, centered composition, transparent background PNG, high resolution.';
+      'Tigre japonês com estilo irezumi e cabeça de tigre rugindo e linhas audaciosas e cores laranja negra e estilo dinâmico e composição central e fundo transparente PNG e alta resolução。';
 
   @override
-  String get exploreItemJapaneseLotus => 'Lotus Flower';
+  String get exploreItemJapaneseLotus => 'Lótus japonês';
 
   @override
   String get exploreItemJapaneseLotusPrompt =>
-      'Japanese lotus tattoo, traditional irezumi lotus flower, bold outlines, pink and red tones, water elements, clean vector look, centered composition, transparent background PNG, high resolution.';
+      'Tatuagem de flor de lótus japonesa e flor de lótus com estilo irezumi e linhas audaciosas e cores rosa vermelha e elementos de água e aparência limpa e composição central e fundo transparente PNG e alta resolução。';
 
   @override
-  String get exploreItemJapanesePhoenix => 'Phoenix';
+  String get exploreItemJapanesePhoenix => 'Fênix japonês';
 
   @override
   String get exploreItemJapanesePhoenixPrompt =>
-      'Japanese phoenix tattoo, traditional irezumi phoenix bird, wings spread, bold outlines, red orange yellow palette, flames around bird, centered composition, transparent background PNG, high resolution.';
+      'Pássaro fênix japonês com estilo irezumi e asas estendidas e linhas audaciosas e cores vermelha laranja amarela e fogo ao redor do pássaro e composição central e fundo transparente PNG e alta resolução。';
 
   @override
-  String get exploreItemPolynesianTribal => 'Polynesian Tribal Tattoo';
+  String get exploreItemPolynesianTribal => 'Tatuagem tribal polinésia';
 
   @override
   String get exploreItemPolynesianTribalPrompt =>
-      'A bold Polynesian tribal tattoo on the back of a hand, featuring sharp black lines, swirling patterns, and geometric designs. The tattoo combines smooth curves and sharp angles, wrapping around the hand with a symmetric flow, extending from the palm to the wrist with a pointed tail. The deep black ink contrasts sharply, showcasing traditional Polynesian style, with realistic skin texture and soft lighting.';
+      'Tatuagem tribal polinésia audaciosa no dorso da mão com linhas negras limpas e padrões em espiral e designs geométricos. A tatuagem flui com curvas suaves e ângulos limpos e se estende da palma ao pulso com uma ponta afiada. Tinta negra profunda com alto contraste e mostra estilo tribal polinésio tradicional com textura de pele realista e luz suave。';
 
   @override
-  String get exploreItemTribalSpineSpear => 'Tribal Spine Spear Tattoo';
+  String get exploreItemTribalSpineSpear => 'Lança na coluna';
 
   @override
   String get exploreItemTribalSpineSpearPrompt =>
-      'Ultra-realistic photo of a male upper back with a centered, symmetrical black tribal tattoo combining Celtic knotwork and sharp Polynesian-style lines. The design forms an elongated spear-like shape along the spine with bold clean ink, crisp edges, natural skin texture, outdoor lighting, and shallow depth of field.';
+      'Tiro fotorealista da parte superior das costas de um homem com tatuagem tribal negra central simétrica com linhas de nó entrelaçadas e linhas polinésias limpas. O design se estende ao longo da coluna vertebral com tinta limpa e alto contraste e textura de pele realista e luz externa e baixa profundidade de campo。';
 
   @override
-  String get exploreItemTribalKnotwork => 'Tribal Knotwork Tattoo';
+  String get exploreItemTribalKnotwork => 'Trabalho de nós';
 
   @override
   String get exploreItemTribalKnotworkPrompt =>
-      'Symmetrical tribal tattoo with sharp black geometric lines and curves, featuring an elongated central form that tapers at both ends. Intricate interwoven patterns, high contrast, no shading, clean solid ink, modern abstract style with perfect symmetry and a minimal background.';
+      'Tatuagem tribal simétrica com linhas geométricas negras limpas e curvas entrelaçadas com padrões complexos com alto contraste e sem sombreamento e tinta negra limpa e estilo abstrato moderno com simetria perfeita e fundo simples。';
 
   @override
-  String get exploreItemTribalForearmSleeve => 'Tribal Forearm Sleeve Band';
+  String get exploreItemTribalForearmSleeve => 'Manga do antebraço tribal';
 
   @override
   String get exploreItemTribalForearmSleevePrompt =>
-      'Photorealistic image of a man\'s bent forearm featuring a bold black Polynesian-style tribal tattoo that wraps toward the wrist, with flowing curved lines, sharp points, and circular motifs. Natural skin texture, white short-sleeve polo, warm indoor lighting, shallow depth of field, and a centered, high-detail composition.';
+      'Tiro fotorealista de antebraço masculino curvado com tatuagem tribal negra com curvas em espiral e pontos limpos e ornamentos circulares. Textura de pele realista e luz interna quente e baixa profundidade de campo e composição central detalhada。';
 
   @override
-  String get exploreItemTribalCentralSpiral => 'Central Spiral';
+  String get exploreItemTribalCentralSpiral => 'Espiral central';
 
   @override
   String get exploreItemTribalCentralSpiralPrompt =>
-      'Close-up photorealistic shot of a hand gripping blue fabric, showing a bold black tribal tattoo flowing from the fingers across the back of the hand toward the wrist. Sharp flame-like lines with smooth curves, visible skin texture and veins, cool moody lighting, shallow depth of field, and a centered cinematic composition.';
+      'Tiro próximo de mão com tatuagem tribal negra simétrica fluindo dos dedos pelo dorso da mão até o pulso. Linhas como chamas limpas com curvas suaves e ornamentos em espiral com tinta negra. Textura de pele e veias visíveis e luz ambiente fria e baixa profundidade de campo e composição cinematográfica central。';
 
   @override
-  String get exploreItemTribalFlameForearm => 'Flame Tribal Forearm Tattoo';
+  String get exploreItemTribalFlameForearm => 'Chamas do antebraço tribal';
 
   @override
   String get exploreItemTribalFlameForearmPrompt =>
-      'Photorealistic close-up of an inner forearm with a bold black flame-like tribal tattoo in thick, clean ink, centered along the arm. The person sits in a tattoo studio chair holding their wrist, with a black chair and tiled floor in the background, indoor lighting, natural skin texture, and shallow depth of field.';
+      'Tiro próximo do lado interno do antebraço com tatuagem tribal negra central com padrões como chamas em tinta negra limpa. A pessoa está sentada na cadeira de tatuagem segurando o pulso com manga negra e chão negro em fundo e luz interna e textura de pele realista e baixa profundidade de campo。';
 
   @override
-  String get exploreItemTribalSpiralFlame => 'Spiral with Flame Extensions';
+  String get exploreItemTribalSpiralFlame =>
+      'Espiral com extremidades flamejantes';
 
   @override
   String get exploreItemTribalSpiralFlamePrompt =>
-      'Ultra-realistic photo of a muscular upper arm with a bold black spiral tribal tattoo on the shoulder, featuring thick ink and sharp flame-like extensions. The fresh tattoo shows slight redness, with the person in a sleeveless black shirt inside a tattoo studio, under indoor lighting, with visible skin texture and shallow depth of field.';
+      'Tiro fotorealista de braço superior musculoso com tatuagem tribal negra em espiral no ombro com extremidades flamejantes limpas em tinta negra. O novo tatuagem mostra leve vermelhidão com a pessoa no estúdio de tatuagem com camisa negra sem mangas sob luz interna com textura de pele visível e baixa profundidade de campo。';
 
   @override
-  String get exploreItemTribalCompass => 'Tribal Compass Tattoo';
+  String get exploreItemTribalCompass => 'Bússola tribal';
 
   @override
   String get exploreItemTribalCompassPrompt =>
-      'Ultra-realistic close-up of a calf featuring a centered black tribal compass-style tattoo with sharp, symmetrical star points and flame-like extensions. Clean solid ink, slight redness, visible skin texture and hair, warm studio lighting, dark background, and shallow depth of field.';
+      'Tiro próximo de bússola tribal negra central com pontos estelares simétricos limpos e linhas. Tinta negra limpa e leve vermelhidão e textura de pele e veias visíveis e luz quente de estúdio e fundo escuro e baixa profundidade de campo。';
 
   @override
-  String get exploreItemTribalModernGeometric => 'Modern Geometric Tribal';
+  String get exploreItemTribalModernGeometric => 'Tribal geométrico moderno';
 
   @override
   String get exploreItemTribalModernGeometricPrompt =>
-      'Ultra-realistic close-up of a calf with a large symmetrical black geometric tribal tattoo featuring sharp triangular patterns and a flower-like center. Thick solid ink, high contrast, natural skin texture, white socks and black shoes visible, standing on a metal-textured floor in outdoor lighting with shallow depth of field.';
+      'Tiro próximo de tatuagem tribal grande negra simétrica com padrões triangulares limpos e centro floral. Tinta negra grossa limpa e alto contraste e textura de pele realista e cabelos visíveis e parado no chão metálico com luz externa e baixa profundidade de campo。';
 
   @override
-  String get exploreItemTribalNeoBack => 'Neo-Tribal Back Tattoo';
+  String get exploreItemTribalNeoBack => 'Neo tribal das costas';
 
   @override
   String get exploreItemTribalNeoBackPrompt =>
-      'Overhead photorealistic shot of a person leaning forward, revealing a large bold black spiky tribal tattoo spread across the upper back and shoulders. Sharp thorn-like shapes in solid high-contrast ink, hair tied up and held by hand, dark clothing and background, moody lighting, realistic skin texture, and shallow depth of field.';
+      'Vista superior de pessoa se curvando para frente revelando tatuagem tribal negra grande audaciosa espinhosa estendendo-se sobre a parte superior das costas e ombros. Tinta negra com alto contraste e cabelos amarrados e segurados pela mão e fundo escuro e luz ambiente e textura de pele realista e baixa profundidade de campo。';
 
   @override
-  String get exploreItemTribalFlame => 'Flame Tribal';
+  String get exploreItemTribalFlame => 'Chama tribal';
 
   @override
   String get exploreItemTribalFlamePrompt =>
-      'Ultra-realistic close-up of the back of a hand with a symmetrical black tribal flame tattoo flowing from the knuckles toward the wrist, featuring sharp curves and decorative swirls in clean solid ink. Visible skin texture and veins, relaxed hand, dark jeans in the background, neutral indoor lighting, and shallow depth of field.';
+      'Tiro próximo do dorso da mão com tatuagem tribal negra simétrica fluindo das articulações até o pulso com curvas limpas e ornamentos em espiral em tinta negra. Textura de pele e veias visíveis e mão relaxada e jeans azul escuro em fundo e luz neutra interna e baixa profundidade de campo。';
 
   @override
-  String get exploreItemTribalSwordCompass => 'Sword and Compass Tattoo';
+  String get exploreItemTribalSwordCompass => 'Espada tribal e bússola';
 
   @override
   String get exploreItemTribalSwordCompassPrompt =>
-      'Ultra-realistic close-up of the back of a hand with a black-and-grey tattoo of a vertical sword piercing an 8-point compass rose, featuring fine linework, circular details, and light smoke-like shading. Realistic skin texture, dark blurred background, dramatic studio lighting, and shallow depth of field.';
+      'Tiro próximo do dorso da mão com tatuagem tribal negra cinza de espada vertical perfurando rosa dos ventos com linhas finas e detalhes circulares e sombreamento sutil como fumaça. Textura de pele realista e fundo enevoado escuro e luz dramática de estúdio e baixa profundidade de campo。';
 
   @override
-  String get exploreItemGeometricMindBodySoul => 'Mind–Body–Soul';
+  String get exploreItemGeometricMindBodySoul => 'Mente-Corpo-Alma';
 
   @override
   String get exploreItemGeometricMindBodySoulPrompt =>
-      'Highly detailed black-and-grey sacred geometry forearm tattoo with a vertical design: a brain transforming into a tree at the top, a meditating figure within geometric mandala shapes in the center, and an anatomical heart with ornamental elements at the bottom. Clean linework, dotwork shading, high contrast, and photorealistic studio presentation.';
+      'Tatuagem geométrica sagrada altamente detalhada no antebraço com composição vertical: Cérebro se transformando em árvore acima e formas de mandala anatômicas no meio e coração anatômico com elementos ornamentais abaixo. Linhas limpas e finas e sombreamento de pontos e alto contraste e tiro de estúdio realista。';
 
   @override
-  String get exploreItemGeometricHoneycombSleeve =>
-      'Geometric Blackout Honeycomb Sleeve';
+  String get exploreItemGeometricHoneycombSleeve => 'Manga de favo de mel';
 
   @override
   String get exploreItemGeometricHoneycombSleevePrompt =>
-      'Ultra-realistic studio photo of a shirtless athletic man showing a full black geometric sleeve tattoo, with a honeycomb hexagon pattern on the shoulder and sacred-geometry mandala designs down the arm. Clean high-contrast ink, natural skin texture, neutral background, soft lighting, and shallow depth of field.';
+      'Tiro de estúdio fotorealista de homem musculoso sem camisa exibindo manga completa negra geométrica com padrões de favo de mel hexagonal na ombro e designs de mandala sagrados abaixo no braço. Tinta negra limpa com alto contraste e textura de pele realista e fundo neutro e luz suave e baixa profundidade de campo。';
 
   @override
-  String get exploreItemGeometricBlackwork =>
-      'Geometric + Illustrative Blackwork';
+  String get exploreItemGeometricBlackwork => 'Trabalho negro geométrico';
 
   @override
   String get exploreItemGeometricBlackworkPrompt =>
-      'Ultra-realistic photo of a shirtless man with a black-and-grey geometric shoulder and upper-arm tattoo featuring honeycomb hexagons containing detailed forest and mountain scenes. High-contrast ink with shading and dotwork, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.';
+      'Tiro fotorealista de homem sem camisa com tatuagem negra cinza geométrica na ombro e antebraço superior com cenas detalhadas de floresta e montanha em hexágonos. Tinta negra com alto contraste e sombreamento de pontos e textura de pele realista e luz suave de estúdio e fundo neutro e baixa profundidade de campo。';
 
   @override
-  String get exploreItemGeometricCubeSleeve => 'Geometric Cube Sleeve';
+  String get exploreItemGeometricCubeSleeve => 'Manga de cubo geométrico';
 
   @override
   String get exploreItemGeometricCubeSleevePrompt =>
-      'Ultra-realistic photo of an extended male forearm with a geometric blackwork tattoo featuring 3D cube and hexagon optical-illusion patterns, fading into a solid black wrist band. Precise linework, high-contrast ink, visible skin texture and veins, neutral studio background, soft lighting, and shallow depth of field.';
+      'Tiro fotorealista de antebraço masculino estendido com manga completa de trabalho negro geométrico com padrões de cubo 3D e ilusões óticas desvanecendo à banda de pulso negra sólida. Linhas finas e tinta negra com alto contraste e textura de pele e veias visíveis e fundo neutro de estúdio e luz suave e baixa profundidade de campo。';
 
   @override
-  String get exploreItemGeometric3dCubeSleeve => '3D Cube Geometric Sleeve';
+  String get exploreItemGeometric3dCubeSleeve => 'Manga de cubo geométrico 3D';
 
   @override
   String get exploreItemGeometric3dCubeSleevePrompt =>
-      'Ultra-realistic photo of a forearm with a full geometric blackwork sleeve featuring interlocking 3D cube optical-illusion patterns that transition into a dense sacred-geometry star design near the wrist. High-contrast ink, clean sharp linework, dotwork shading, white rolled-up shirt, soft studio lighting, and shallow depth of field.';
+      'Tiro fotorealista de antebraço com manga completa de trabalho negro geométrico com padrões de cubo 3D entrelaçados com ilusões óticas densas passando a estrela sagrada geométrica perto do pulso. Tinta negra com alto contraste e linhas limpas finas e sombreamento de pontos e camisa branca enrolada e luz suave de estúdio e baixa profundidade de campo。';
 
   @override
-  String get exploreItemGeometricTreeOfLife => 'Tree of Life';
+  String get exploreItemGeometricTreeOfLife => 'Árvore da vida';
 
   @override
   String get exploreItemGeometricTreeOfLifePrompt =>
-      'Ultra-realistic vertical photo of an inner forearm with a black-and-grey nature tattoo featuring a central pine tree, circular mountain landscape, crescent moons, and ornamental roots. Clean fine-line and blackwork style, smooth shading, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.';
+      'Tiro vertical fotorealista do lado interno do antebraço com tatuagem negra cinza de natureza com pinheiro central e paisagem de montanha circular e luas e raízes ornamentais. Linhas finas e sombreamento suave e textura de pele realista e luz suave de estúdio e fundo neutro e baixa profundidade de campo。';
 
   @override
-  String get exploreItemGeometricAtlas => 'Atlas Bearing the World';
+  String get exploreItemGeometricAtlas => 'Atlas';
 
   @override
   String get exploreItemGeometricAtlasPrompt =>
-      'Black-and-grey fine-line and dotwork tattoo of Atlas kneeling and carrying a globe, rendered like a classical Renaissance sculpture with realistic anatomy and shading. The Earth shows continents and a geometric grid, with sacred-geometry patterns and a sun symbol above. Clean, high-contrast, stencil-ready vertical design for an upper-arm tattoo, ultra-detailed and minimalistic.';
+      'Tatuagem de linha fina e pontos negra cinza de Atlas ajoelhado segurando globo terrestre, representado como escultura clássica renascentista com desenho anatômico e sombreamento realista. A Terra mostra continentes e rede geométrica com padrões sagrados geométricos e signo solar acima. Composição vertical limpa com alto contraste e pronta para stencil de tatuagem e altamente detalhada e simples。';
 
   @override
-  String get exploreItemGeometricTriadTravel => 'Triad of Travel';
+  String get exploreItemGeometricTriadTravel => 'Tríade de viagem';
 
   @override
   String get exploreItemGeometricTriadTravelPrompt =>
-      'Minimalist blackwork forearm tattoo in fine-line and dotwork style, featuring a compass rose with geometric orbit lines, a small airplane on a dotted path, mountains, and an ocean wave, all arranged inside an inverted triangle frame with symmetrical sacred-geometry accents. Clean, high-contrast, stencil-ready vertical design with modern travel theme and ultra-detailed linework.';
+      'Tatuagem simples de trabalho negro geométrico no antebraço com linhas finas e sombreamento de pontos com composição triangular vertical: Acima com rosa dos ventos e linhas orbitais e pequeno avião em caminho pontilhado e montanhas e onda oceânica abaixo. Linhas limpas finas com linhas de movimento pontilhadas e geometria sagrada sutil e tema de viagem moderno com alto contraste e pronta para stencil。';
 
   @override
-  String get exploreItemGeometricHorizons => 'Cycle of Horizons';
+  String get exploreItemGeometricHorizons => 'Horizontes';
 
   @override
   String get exploreItemGeometricHorizonsPrompt =>
-      'Minimalist geometric forearm tattoo in fine-line blackwork and dotwork, featuring a vertical column of connected hexagons. The top shows sun and sky, the center a mountain landscape with trees, and the bottom an ocean wave, with smaller surrounding hexagons and sacred-geometry accents linked by thin lines and dotted paths. Clean, symmetrical, high-contrast, stencil-ready nature-themed design.';
+      'Tatuagem geométrica simples no antebraço com linhas finas e sombreamento de pontos com coluna vertical de hexágonos conectados. Acima sol e céu e árvores no meio e onda oceânica abaixo com hexágonos menores e geometria sagrada sutil e caminhos pontilhados. Tema natural com simetria limpa e alto contraste e pronta para stencil。';
 
   @override
-  String get exploreItemGeometricAlignedTriad => 'Aligned Triad';
+  String get exploreItemGeometricAlignedTriad => 'Tríade alinhada';
 
   @override
   String get exploreItemGeometricAlignedTriadPrompt =>
-      'Tiny minimalist finger tattoo in fine-line blackwork, featuring an abstract vertical triangle composition with layered geometric shapes, small diamond and polygon details, and subtle dotwork shading. Modern sacred-geometry style with thin precise lines, clean ornamental accents, and a stencil-ready professional look.';
+      'Tatuagem pequena de dedo geométrico com linhas finas e sombreamento sutil de pontos com composição triangular abstrata vertical com formas geométricas multicamadas e detalhes de diamante e polígonos limpos com sombreamento sutil. Estilo sagrado geométrico moderno com linhas finas precisas e aparência profissional e pronta para stencil e altamente detalhada。';
 
   @override
-  String get exploreItemGeometricSigi => 'Abstract Geometric Sigi';
+  String get exploreItemGeometricSigi => 'Sigi abstrato';
 
   @override
   String get exploreItemGeometricSigiPrompt =>
-      'Ultra-minimalist geometric finger tattoo in fine-line black ink, featuring a small vertical symbol of overlapping triangles, diamonds, and sharp polygon shapes with subtle dotwork shading and clean negative space. Modern sacred-geometry style with precise thin lines, high-contrast blackwork, and a stencil-ready professional design.';
+      'Tatuagem pequena simples de dedo com tinta negra fina com símbolo vertical de triângulos sobrepostos e diamantes e polígonos limpos com sombreamento sutil de pontos e espaço negativo limpo. Estilo sagrado geométrico moderno com linhas finas precisas e alto contraste e pronta para stencil profissional。';
 
   @override
-  String get exploreItemGeometricDualityNature => 'Duality Nature Geometry';
+  String get exploreItemGeometricDualityNature =>
+      'Dualidade geométrica da natureza';
 
   @override
   String get exploreItemGeometricDualityNaturePrompt =>
-      'Minimalist blackwork forearm tattoo in fine-line and dotwork style, featuring two stacked triangles: the top with a mountain scene and rising sun or moon, and the bottom inverted with a large ocean wave. Clean geometric framing, subtle sacred-geometry accents, and dotted motion lines create a balanced, modern nature-themed design that\'s high-contrast, ultra-detailed, and stencil-ready.';
+      'Tatuagem simples de trabalho negro geométrico no antebraço com linhas finas e sombreamento de pontos com triângulos sobrepostos: Acima com cena de montanha e sol/lua nascendo e abaixo invertido com onda oceânica grande. Quadro geométrico limpo e geometria sagrada sutil com linhas de movimento pontilhadas para tema natural equilibrado moderno com alto contraste e pronta para stencil。';
 
   @override
-  String get exploreItemRealismGamblerFedora => 'Gambler in a Fedora';
+  String get exploreItemRealismGamblerFedora => 'Jogador com fedora';
 
   @override
   String get exploreItemRealismGamblerFedoraPrompt =>
-      'Black & grey realistic tattoo of a faceless gambler in a fedora and suit, head down, arms crossed. Vintage street lamp behind, aces cards fanned out, light smoke on one side, two dice at the bottom. Noir mood, high-contrast shading, fine linework, detailed stippling, clean stencil style, centered symmetrical composition, monochrome, tattoo flash.';
+      'Tatuagem negra cinza realista de jogador sem rosto com fedora e terno e mãos atrás das costas. Um lampião antigo atrás e cartas de baralho em leque e fumaça sutil no lado. Atmosfera noir e alto contraste e linhas finas e pontilhado detalhado e estilo tradicional e composição simétrica central e PNG transparente e simples e altamente detalhado e flash negro。';
 
   @override
-  String get exploreItemRealismMindOverHeart => 'Mind Over Heart';
+  String get exploreItemRealismMindOverHeart => 'Mente sobre coração';
 
   @override
   String get exploreItemRealismMindOverHeartPrompt =>
-      'Black & grey surreal tattoo of a realistic human brain acting like a puppeteer, with detailed hands controlling strings attached to an anatomical heart below. Fine linework, stippling and cross-hatching shading, high contrast, dark symbolic concept (mind controlling heart). Centered vertical composition, minimal background, monochrome, highly detailed, professional tattoo flash.';
+      'Tatuagem surreal negra cinza de cérebro humano agindo como marionetista com mãos articulada segurando fios conectados a coração anatômico abaixo. Linhas finas e sombreamento de hachura cruzada e alto contraste e conceito simbólico escuro. Composição vertical central e fundo simples e simples e altamente detalhado e flash de fantasia escura。';
 
   @override
-  String get exploreItemRealismGeometricSplit => 'Geometric Split Portrait';
+  String get exploreItemRealismGeometricSplit =>
+      'Retrato dividido geometricamente';
 
   @override
   String get exploreItemRealismGeometricSplitPrompt =>
-      'Stylized neo-modern tattoo of a female face split into geometric shards. One side realistic black-and-grey portrait, the other side vibrant color with pink hair and a bright blue eye. Sharp abstract shapes cutting through the face, bold clean linework, high contrast shading, minimal background. Neo-traditional / cyber-graphic tattoo style, centered vertical composition, tattoo stencil ready, highly detailed, modern flash design.';
+      'Tatuagem neo-moderna de rosto feminino sem rosto dividido em fragmentos geométricos. Lado esquerdo retrato realista negro cinza e lado direito cores vibrantes com cabelos rosa e olho azul brilhante. Formas abstratas limpas cortando o rosto e linhas limpas audaciosas e alto contraste e fundo simples. Estilo tradicional novo / cyber-gráfico e composição vertical central e pronta para stencil de tatuagem e altamente detalhada e moderna flash。';
 
   @override
-  String get exploreItemRealismFieryCosmic => 'Fiery and Cosmic Split';
+  String get exploreItemRealismFieryCosmic => 'Cósmico ardente';
 
   @override
   String get exploreItemRealismFieryCosmicPrompt =>
-      'Surreal color tattoo of a female portrait with a split reality concept. One side warm tones with cracked skin texture, the other side cool blue cosmic tones. A magnifying glass over one eye revealing a glowing blue iris and abstract liquid details. Vintage pocket watch/clock at the bottom symbolizing time, subtle galaxy elements in the background. Highly detailed neo-surreal style, vibrant color contrast (orange vs blue), smooth gradients, bold clean linework, centered vertical composition, minimal background, modern tattoo flash design, stencil-ready.';
+      'Tatuagem de cores surreal de retrato feminino com conceito dividido. Lado quente com textura de pele rachada e lado cósmico frio com olho azul resplandecente e detalhes abstratos fluidos. Lente de aumento sobre um olho revelando íris azul e sutil galáxia em fundo. Contraste dramático escuro com cores vibrantes e gradientes suaves e linhas audaciosas limpas e composição vertical central e fundo simples e altamente detalhado e moderna flash de tatuagem。';
 
   @override
-  String get exploreItemRealismSinisterClown => 'Sinister Clown Portrait';
+  String get exploreItemRealismSinisterClown => 'Palhaço sinistro';
 
   @override
   String get exploreItemRealismSinisterClownPrompt =>
-      'Dark gothic clown-style female face tattoo with sharp black makeup lines, dramatic eyeliner and dripping eye accents, glowing orange eyes, small star symbol on forehead. Smooth black and grey shading with subtle color in the eyes only, high contrast, fine linework and stippling, clean edges, centered vertical tattoo design. Isolated tattoo artwork only on plain white background, no arm or skin, stencil-ready, professional tattoo flash style.';
+      'Tatuagem gótica escura de rosto feminino com linhas de maquiagem negra limpas e delineador dramático e olhos gotejando e olhos laranja resplandecentes e símbolo de estrela pequeno na testa. Sombreamento cinza suave apenas nos olhos e alto contraste e linhas finas e pontilhado e bordas limpas e composição profissional. Arte de tatuagem isolada apenas sem braço ou pele e pronta para stencil e simples e altamente detalhado e flash gótico。';
 
   @override
-  String get exploreItemRealismButterflyWoman => 'Butterfly and Woman';
+  String get exploreItemRealismButterflyWoman => 'Borboleta e mulher';
 
   @override
   String get exploreItemRealismButterflyWomanPrompt =>
-      'Black & grey tattoo design of a realistic female side profile blended with large detailed butterfly wings emerging from her head. Soft feminine facial features, smooth shading, fine linework, high contrast, delicate wing patterns with stippling and gradient shading. Elegant, surreal composition, centered vertical layout, minimal background, monochrome, clean stencil-ready tattoo flash style, highly detailed.';
+      'Tatuagem negra cinza de retrato feminino com perfil lateral misturado com asas de borboleta grandes detalhadas saindo da cabeça. Traços faciais suaves e sombreamento fluido e linhas finas e alto contraste e padrões de asas finos com pontilhado e sombreamento. Composição surreal elegante e composição vertical central e fundo simples e simples e altamente detalhado e flash realista。';
 
   @override
-  String get exploreItemRealismFlamingSkull => 'Flaming Skull';
+  String get exploreItemRealismFlamingSkull => 'Crânio flamejante';
 
   @override
   String get exploreItemRealismFlamingSkullPrompt =>
-      'Fiery skull tattoo design with a realistic human skull engulfed in dynamic flames. Intense glowing fire inside the eye sockets and mouth, sharp teeth details, high contrast shading, bold clean linework. Realism + dark fantasy style, dramatic lighting, vibrant orange and red flames with black/grey skull tones. Centered vertical composition, isolated on white background, stencil-ready, highly detailed professional tattoo flash.';
+      'Tatuagem de crânio flamejante com crânio humano realista cercado de chamas dinâmicas. Dentes limpos e sombreamento com alto contraste e linhas audaciosas limpas. Realismo + fantasia escura e luz dramática e chamas laranja vermelhas com crânios negro/cinza. Composição vertical central e isolado em fundo branco e pronta para stencil e profissional altamente detalhado flash。';
 
   @override
-  String get exploreItemRealismFierceWolf => 'Fierce Wolf';
+  String get exploreItemRealismFierceWolf => 'Lobo feroz';
 
   @override
   String get exploreItemRealismFierceWolfPrompt =>
-      'Vibrant and colorful tattoo design featuring a fierce wolf\'s face with piercing blue eyes, surrounded by a winding snake. The snake wraps around the wolf\'s head, slithering towards a cluster of blooming orange flowers. The tattoo is adorned with soft watercolor splashes in pink, purple, and blue hues, with a dripping paint effect. Rich detail in the fur, scales, and petals, high contrast between dark and light areas. Watercolor style with fine linework, modern nature and wildlife symbolism. Centered composition, vivid and dynamic, tattoo stencil-ready.';
+      'Tatuagem de cores vibrante com rosto de lobo feroz ao lado de grande borboleta laranja com padrões detalhados. A borboleta é cercada de flores laranja desabrochando. A tatuagem mostra detalhes ricos de pelos e escamas e pétalas e alto contraste entre zonas escuras e claras. Linhas fluidas suaves e simbolismo de natureza e vida selvagem moderna. Ideal para espaço maior e sem fundo distraente para peças centradas。';
 
   @override
-  String get exploreItemRealismRedRoseButterfly => 'Red Rose and Butterfly';
+  String get exploreItemRealismRedRoseButterfly => 'Rosa vermelha e borboleta';
 
   @override
   String get exploreItemRealismRedRoseButterflyPrompt =>
-      'Elegant black and red tattoo design featuring a bold butterfly with dark wings, paired with a vivid red rose. The butterfly\'s wings have a smooth gradient from black to red, while the rose is deeply detailed with soft shading to enhance its petals. The design includes delicate red leaves and branches flowing outward, creating a balanced, flowing composition. The black ink contrasts sharply with the vibrant red, adding a dramatic, fluid appearance. Modern, clean linework with a slightly abstract touch. Tattoo stencil-ready with high contrast, perfect for an arm or thigh placement.';
+      'Tatuagem elegante de cores com borboleta audaciosa com asas escuras ao lado de rosa vermelha viva. Asas de borboleta com gradiente de negro a vermelho e rosa com pétalas detalhadas e sombreamento suave para profundidade. O design inclui folhas vermelhas circundantes e caules para composição fluida elegante. Tinta negra com vermelho vibrante e alto contraste. Linhas modernas limpas com toque abstrato. Perfeito para antebraço ou coxa e sem fundo para stencil claro。';
 
   @override
-  String get exploreItemRealismVibrantPeacock => 'Vibrant Peacock';
+  String get exploreItemRealismVibrantPeacock => 'Pavão vibrante';
 
   @override
   String get exploreItemRealismVibrantPeacockPrompt =>
-      'Vibrant and colorful tattoo design of a peacock with a bright yellow-orange sun in the background. The peacock\'s feathers display stunning shades of blue, green, and purple, while its body is elegantly shaded with turquoise and teal. Bold pink flowers and green leaves frame the design, with fine linework to accentuate the shapes and textures. Modern and stylized with clean, bold outlines and rich, vibrant colors. Ideal for a larger area, with no background distractions, creating a focal piece perfect for placement anywhere on the body.';
+      'Tatuagem de cores vibrante de pavão com sol laranja amarelo em fundo. Plumas de pavão mostrando tons espetaculares de azul verde e violeta com corpo turquesa e detalhes sombreados elegantemente. Flores rosa e folhas verdes enquadrando o design com linhas finas para textura e brilho. Moderna e elegante com linhas audaciosas e cores vibrantes. Ideal para espaços maiores sem fundo distraente para peças focadas centradas。';
 
   @override
-  String get exploreItemRealismPlayfulCharacter => 'Playful Character';
+  String get exploreItemRealismPlayfulCharacter => 'Personagem brincalhão';
 
   @override
   String get exploreItemRealismPlayfulCharacterPrompt =>
-      'Cute, colorful tattoo design of a playful character holding a large pink flower. The character features large, expressive eyes, blue fur, and a light blue belly. The vibrant flower is framed by green leaves, adding a natural touch to the design. The style is bold and cartoonish with smooth shading, clean lines, and vibrant colors, giving the tattoo a joyful and whimsical look. The design is ideal for a smaller area of the body, with no background distractions, emphasizing the character and flower as the focal points.';
+      'Tatuagem de cores vibrante de personagem brincalhão segurando uma grande flor rosa. O personagem tem olhos grandes expressivos e pelos azuis e ventre azul claro. A flor vibrante é enquadrada por folhas verdes. O estilo é audacioso e cartoon com sombreamento fluido e linhas limpas e cores vibrantes. Perfeito para espaço pequeno sem fundo distraente com foco no personagem e flor como pontos centrais。';
 
   @override
-  String get exploreItemRealismCutePinkFish => 'Cute Pink Fish';
+  String get exploreItemRealismCutePinkFish => 'Peixe rosa fofo';
 
   @override
   String get exploreItemRealismCutePinkFishPrompt =>
-      'Playful and vibrant tattoo design of a cute pink fish with a smiling expression. The fish features soft gradients of pink, with smooth shading that creates a lively, cartoonish look. Water splashes in shades of blue and turquoise surround the fish, adding dynamic movement. Small bubbles and light accents enhance the aquatic theme. Modern, clean lines with a playful touch, perfect for a small area on the body. The tattoo design focuses on the fish and water, with no background distractions, and has a joyful, whimsical vibe.';
+      'Tatuagem brincalhona vibrante de peixe rosa fofo com expressão sorridente. O peixe mostra gradientes rosa suaves com sombreamento sutil. Bolhas d\'água em tons azul turquesa ao redor do peixe com pequenas bolhas e brilhos. Linhas modernas limpas com toque brincalhão e ideal para espaço pequeno. O design se concentra no peixe e água sem fundo distraente e atmosfera alegre。';
 
   @override
-  String get exploreItemLetteringTrustNoOne => 'Trust No One';
+  String get exploreItemLetteringTrustNoOne => 'Não confie em ninguém';
 
   @override
   String get exploreItemLetteringTrustNoOnePrompt =>
-      'Create a detailed gothic-style tattoo design with the phrase \'Trust no One\'. The text should be bold and dramatic, with sharp, angular edges. Add shading effects to give the text a three-dimensional look, and incorporate some ink splatter or shadow around the text for a gritty, intense vibe. The font should evoke a dark, mysterious atmosphere with an edgy, rebellious tone.';
+      'Tatuagem gótica detalhada com a frase \'Trust no One\'. O texto é audacioso e dramático com bordas limpas e ângulos. Efeitos de sombreamento para dar ao texto aparência tridimensional com respingos de tinta ao redor do texto para atmosfera áspera e intensa. A tipografia evoca um humor escuro e misterioso com tom afiado e rebelde。';
 
   @override
-  String get exploreItemLetteringBlessed => 'Blessed';
+  String get exploreItemLetteringBlessed => 'Abençoado';
 
   @override
   String get exploreItemLetteringBlessedPrompt =>
-      'High-contrast black and white graffiti tattoo design, word \"Blessed\" in bold hand-lettering calligraphy, smooth flowing script with thick strokes, subtle halo above letter, street-style spray paint glow around text, paint drips and ink splatter, clean vector lines, centered composition, stencil-ready tattoo flash, minimal background, sharp edges, professional tattoo design, black ink only.';
+      'Tatuagem graffiti negra branca de alto contraste com a palavra \"Blessed\" em estilo caligráfico escrito à mão audacioso com efeito halo sobre as letras e efeitos de tinta spray ao redor do texto e pontos de respingos de tinta e linhas limpas grossas e composição central e flash de tatuagem e pronta para stencil e fundo simples e bordas limpas e design de tatuagem profissional e tinta negra apenas。';
 
   @override
   String get exploreItemLetteringHakunaMatata => 'Hakuna Matata';
 
   @override
   String get exploreItemLetteringHakunaMatataPrompt =>
-      'Bold black and white graffiti tattoo design with the words \"Hakuna Matata\", strong street-style block lettering, rough dry-brush strokes, high contrast ink, paint splatter and subtle drip details, urban graffiti wall aesthetic, thick clean outlines, centered composition, professional tattoo flash, stencil-ready, vector style, monochrome, white background, highly detailed, sharp edges.';
+      'Tatuagem graffiti audaciosa negra branca com as palavras \"Hakuna Matata\" e estilo escrito à mão forte com pincéis secos ásperos e tinta negra com alto contraste e respingos de tinta e pontos de tinta e estilo graffiti urbano e linhas limpas grossas e composição central e flash profissional de tatuagem e pronta para stencil e abstrata e simples e altamente detalhada e tinta negra apenas e bordas limpas。';
 
   @override
-  String get exploreItemLetteringDream => 'Dream';
+  String get exploreItemLetteringDream => 'Sonhar';
 
   @override
   String get exploreItemLetteringDreamPrompt =>
-      'Vibrant graffiti tattoo design with the word \"DREAM\", bold 3D street lettering, thick black outlines, colorful paint splashes and ink drips, urban spray-paint style, high contrast, layered graffiti wall aesthetic, dynamic composition, clean sharp edges, professional tattoo flash, stencil-ready, highly detailed, vector style.';
+      'Tatuagem graffiti vibrante com a palavra \"DREAM\" e tipografia tridimensional audaciosa escrita à mão e linhas negras grossas e respingos de tinta vibrantes e pontos de tinta e estilo spray urbano e alto contraste e brilhos e composição dinâmica e bordas limpas e flash profissional de tatuagem e pronta para stencil e altamente detalhada e abstrata。';
 
   @override
   String get exploreItemLetteringBoom => 'Boom';
 
   @override
   String get exploreItemLetteringBoomPrompt =>
-      'Comic pop-art tattoo design with the word \"BOOM\", bold cartoon lettering, thick black outlines, vibrant pink and yellow colors, explosive comic burst background, glossy highlights, playful graffiti style, high contrast, clean smooth edges, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.';
+      'Tatuagem pop art cômica com a palavra \"BOOM\" e tipografia cartoon audaciosa e linhas negras grossas e cores rosa amarelas vibrantes e fundo de explosão cômica e brilhos e alto contraste e bordas suaves limpas e composição central e flash profissional de tatuagem e pronta para stencil e abstrata e altamente detalhada。';
 
   @override
-  String get exploreItemLetteringWorkHardDreamBig => 'Work Hard Dream Big';
+  String get exploreItemLetteringWorkHardDreamBig =>
+      'Trabalhe duro, sonhe grande';
 
   @override
   String get exploreItemLetteringWorkHardDreamBigPrompt =>
-      'Bold colorful graffiti tattoo design with the phrase \"Work Hard Dream Big\", dynamic street lettering, 3D layered typography, thick black outlines, vibrant gradient colors (orange, red, yellow), paint drips and ink splatter, urban graffiti wall style, high contrast, glossy highlights, centered composition, professional tattoo flash, stencil-ready, highly detailed, vector style, clean background.';
+      'Tatuagem graffiti audaciosa de cores com a frase \"Work Hard Dream Big\" e impressão tridimensional multicamada grande e linhas negras grossas e gradientes vibrantes (laranja vermelho amarelo) e respingos de tinta e estilo graffiti spray urbano e alto contraste e brilhos e composição central e flash profissional de tatuagem e pronta para stencil e altamente detalhada e abstrata e fundo simples。';
 
   @override
-  String get exploreItemLetteringRn => 'Letter RN';
+  String get exploreItemLetteringRn => 'RN';
 
   @override
   String get exploreItemLetteringRnPrompt =>
-      'Dark gothic tattoo design, stylized monogram letters \"RN\", sharp aggressive calligraphy with horned and spiked edges, black ink only, high contrast, heavy shadowing, grunge ink splatter, ornamental gothic typography, symmetrical composition, tattoo flash style, clean stencil-ready lines, monochrome, white background, highly detailed, professional tattoo design.';
+      'Tatuagem gótica escura com as iniciais \"RN\" em tipografia caligráfica agressiva afiada com bordas de chifre e tinta negra apenas e alto contraste e sombreamento intenso e respingos de tinta e tipografia gótica ornamentada e composição simétrica e flash de tatuagem e linhas limpas prontas para stencil e simples e altamente detalhada e design de tatuagem profissional。';
 
   @override
-  String get exploreItemLetteringC => 'Letter C';
+  String get exploreItemLetteringC => 'C';
 
   @override
   String get exploreItemLetteringCPrompt =>
-      'Dark gothic tattoo design featuring the letter \"C\" with a detailed royal crown on top, bold curved lettering with sharp edges, black and grey realism, high contrast shading, subtle ink splatter and drip effects, luxury gothic style, strong depth and shadow, centered composition, clean stencil-ready outlines, professional tattoo flash, monochrome, highly detailed vector tattoo style.';
+      'Tatuagem gótica escura com a letra \"C\" com coroa real acima e tipografia curva audaciosa com bordas limpas e negro cinza realista e alto contraste e sombreamento e sombras profundas e estilo gótico luxuoso e composição central e linhas limpas prontas para stencil e flash profissional de tatuagem e simples e altamente detalhada。';
 
   @override
-  String get exploreItemLetteringPeacePositivity => 'Peace & Positivity';
+  String get exploreItemLetteringPeacePositivity => 'Paz e positividade';
 
   @override
   String get exploreItemLetteringPeacePositivityPrompt =>
-      'Bold colorful graffiti tattoo design with the phrase \"Peace & Positivity\", dynamic street-style lettering, large 3D typography, thick black outlines, vibrant gradient colors (yellow, orange, blue, green), paint splashes and dripping ink, urban spray-paint graffiti aesthetic, high contrast, glossy highlights, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.';
+      'Tatuagem graffiti audaciosa de cores com a frase \"Peace & Positivity\" e estilo urbano escrito à mão e impressão grande tridimensional e linhas negras grossas e gradientes vibrantes (amarelo laranja azul verde) e respingos de tinta e estilo graffiti spray urbano e alto contraste e brilhos e composição central e flash profissional de tatuagem e pronta para stencil e abstrata e altamente detalhada。';
 
   @override
-  String get exploreItemLetteringDreamBig => 'Dream Big';
+  String get exploreItemLetteringDreamBig => 'Sonhe grande';
 
   @override
   String get exploreItemLetteringDreamBigPrompt =>
-      'Colorful dreamy tattoo design with the words \"Dream Big\", soft bubble calligraphy lettering, glossy 3D gradient colors (rainbow tones), smooth rounded strokes, cute celestial elements like stars, sparkles and glowing sun, vibrant fantasy aesthetic, high contrast, clean bold outlines, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.';
+      'Tatuagem sonhadora de cores com as palavras \"Dream Big\" e tipografia caligráfica bubble suave e gradientes tridimensionais vibrantes (rosa laranja amarelo) e linhas grossas arredondadas e elementos celestiais como estrelas e brilhos e sol resplandecente e estética positiva vibrante e alto contraste e linhas audaciosas limpas e composição central e flash profissional de tatuagem e pronta para stencil e altamente detalhada。';
 
   @override
-  String get exploreItemLetteringDesire => 'Desire';
+  String get exploreItemLetteringDesire => 'Desejo';
 
   @override
   String get exploreItemLetteringDesirePrompt =>
-      'Dark gothic tattoo design with the word \"Desire\", sharp aggressive black metal calligraphy, spiked thorn-like lettering, symmetrical composition, black and grey realism, metallic dark texture, high contrast shading, sinister ornamental details, clean stencil-ready outlines, professional tattoo flash, monochrome, ultra detailed, edgy gothic style.';
+      'Tatuagem gótica escura com a palavra \"Desire\" e tipografia black metal afiada com letras afiadas e composição simétrica e negro cinza realista e alto contraste e textura metálica escura e detalhes decorativos sinistros e linhas limpas prontas para stencil e flash profissional de tatuagem e simples e altamente detalhada e estilo gótico afiado。';
 
   @override
-  String get exploreItemLetteringBeautiful => 'Beautiful';
+  String get exploreItemLetteringBeautiful => 'Bonito';
 
   @override
   String get exploreItemLetteringBeautifulPrompt =>
-      'Stylish colorful tattoo design with the word \"Beautiful\", smooth flowing script lettering, bold modern calligraphy, glossy 3D gradient colors (pink, orange, yellow), thick black outline, soft highlights and depth, feminine elegant style, clean curves and swashes, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.';
+      'Tatuagem elegante de cores com a palavra \"Beautiful\" e tipografia caligráfica fluida moderna audaciosa e linhas grossas e gradientes tridimensionais vibrantes (rosa laranja amarelo) e linhas negras grossas e brilhos e estilo feminino elegante fluido e curvas limpas e elementos decorativos e composição central e flash profissional de tatuagem e pronta para stencil e altamente detalhada。';
 
   @override
-  String get exploreItemFloralFourLeafClover => 'Minimalist Four-Leaf Clover';
+  String get exploreItemFloralFourLeafClover => 'Trevo de quatro folhas';
 
   @override
   String get exploreItemFloralFourLeafCloverPrompt =>
-      'Minimal fine-line four-leaf clover tattoo design, cute and delicate style, soft pastel green leaves with smooth gradient, thin black stem and clean outlines, small red heart detail inside one leaf, symmetrical composition, feminine minimalist tattoo flash, high contrast linework, subtle color fill, crisp vector-style edges, professional tattoo stencil design, centered composition.';
+      'Tatuagem simples de trevo de quatro folhas com linhas finas e estilo doce e delicado e folhas verdes pastéis suaves com gradientes suaves e caule negro fino e linhas limpas e detalhes de coração vermelho pequeno em uma folha e composição simétrica e flash de tatuagem e linhas finas com alto contraste e bordas limpas e design de tatuagem profissional e composição central。';
 
   @override
-  String get exploreItemFloralCherryBlossom => 'Cherry Blossom Branch';
+  String get exploreItemFloralCherryBlossom => 'Galho de cerejeira em flor';
 
   @override
   String get exploreItemFloralCherryBlossomPrompt =>
-      'Elegant cherry blossom branch tattoo design, fine-line botanical style, flowing sakura branch with multiple pink blossoms and small buds, gradient pink petals with delicate shading, thin black branch and clean outlines, subtle petal fall details, feminine composition, high-detail floral tattoo flash, balanced vertical layout, professional tattoo stencil design, minimal background, high contrast, centered composition.';
+      'Tatuagem elegante de galho de cerejeira em flor com estilo botânico com linhas finas e galho sakura fluido com múltiplas flores rosa e botões e pétalas rosa suaves com sombreamento sutil e caule negro fino e linhas limpas e detalhes de pétalas caindo e composição feminina e flash de tatuagem e layout altamente detalhado e composição central e design de tatuagem profissional e fundo simples e alto contraste e composição central。';
 
   @override
-  String get exploreItemFloralMountainLandscape => 'Mountain Landscape';
+  String get exploreItemFloralMountainLandscape => 'Paisagem de montanha';
 
   @override
   String get exploreItemFloralMountainLandscapePrompt =>
-      'Minimal fine-line mountain landscape tattoo design, small centered composition, detailed mountain peaks with pine trees, flowing waterfall descending from the center, circular moon above the mountains, delicate dotwork shading and stippling, clean black ink linework, geometric balance, subtle texture, high contrast, professional tattoo flash style, crisp outlines, minimalist nature scene, transparent background.';
+      'Tatuagem simples de paisagem de montanha com linhas finas e composição pequena central e picos de montanha detalhados com pinheiros e cachoeira caindo no meio e lua circular acima das montanhas e sombreamento sutil de pontos e pontilhado e linhas negras finas limpas e equilíbrio geométrico e alto contraste e flash profissional de tatuagem e linhas limpas e cena natural e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralHeartSunset => 'Heart-Shaped Sunset';
+  String get exploreItemFloralHeartSunset => 'Coração pôr do sol';
 
   @override
   String get exploreItemFloralHeartSunsetPrompt =>
-      'Small heart-shaped sunset tattoo design, vibrant warm color palette, glowing orange and red sunset inside a clean heart outline, ocean horizon with soft reflections, painterly clouds with subtle splatter details, minimal black base shadow under the heart, fine-line and micro-realism style, smooth gradient color blending, high contrast, centered composition, professional tattoo flash design, crisp edges, no text, transparent background.';
+      'Tatuagem pequena vibrante de coração pôr do sol com cores quentes vibrantes e pôr do sol vermelho ardente dentro de silhueta de coração limpa e horizonte suave com reflexos e nuvens coloridas em cor e borda negra simples abaixo do coração e estilo comic e detalhes realistas e mistura suave de cores e alto contraste e composição central e flash profissional de tatuagem e bordas limpas e sem texto e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralSeaTurtle => 'Sea Turtle';
+  String get exploreItemFloralSeaTurtle => 'Tartaruga marinha';
 
   @override
   String get exploreItemFloralSeaTurtlePrompt =>
-      'Vibrant geometric sea turtle tattoo design, two sea turtles swimming side by side, faceted crystal-style shells with rainbow prism colors, polygonal pattern texture, high-detail scales and flippers, glossy gemstone effect, bold saturation with deep blues, purples, greens and warm highlights, micro-realism meets geometric style, clean sharp outlines, subtle shadow under figures, high contrast, centered composition, professional tattoo flash design, isolated artwork, transparent background.';
+      'Tatuagem de cores vibrante de tartaruga marinha geométrica e duas tartarugas marinhas nadando lado a lado e carapaças em estilo cristal multi-facetado com cores arco-íris e texturas geométricas poligonais e barbatanas e escamas altamente detalhadas e tema colorido e detalhes realistas e alto contraste e composição central e flash profissional de tatuagem e arte isolada e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralHibiscus => 'Hibiscus Flower';
+  String get exploreItemFloralHibiscus => 'Hibisco';
 
   @override
   String get exploreItemFloralHibiscusPrompt =>
-      'Vibrant hibiscus flower tattoo design, bold tropical floral composition, large detailed hibiscus bloom with warm red, orange and yellow gradient petals, smooth color blending, clean black outlines, soft shading for depth, surrounding green leaves with fine vein detail, small decorative ink splatter dots, modern neo-traditional tattoo style, high contrast, centered composition, crisp edges, professional tattoo flash, isolated artwork, transparent background.';
+      'Tatuagem tropical vibrante de hibisco com composição botânica audaciosa e flor de hibisco grande detalhada com pétalas sobrepostas vermelhas laranjas amarelas com gradientes suaves e linhas negras finas e sombreamento sutil para profundidade e folhas verdes circundantes com detalhes de nervuras e pontos pequenos de respingos de tinta e estilo novo tradicional e alto contraste e composição central e bordas limpas e flash profissional de tatuagem e arte isolada e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralButterflyLily => 'Butterfly and Lily';
+  String get exploreItemFloralButterflyLily => 'Borboleta e lírio';
 
   @override
   String get exploreItemFloralButterflyLilyPrompt =>
-      'Realistic monarch butterfly and lily flower tattoo design, vibrant orange and black butterfly with detailed wing patterns, perched beside a large yellow lily bloom, smooth color gradients and soft realistic shading, crisp black outlines with subtle depth, rich green leaves with fine vein detail, neo-traditional realism style, high contrast colors, balanced composition, professional tattoo flash design, clean edges, isolated artwork, transparent background.';
+      'Tatuagem realista de borboleta e lírio com estilo botânico com linhas finas e borboleta monarca com padrões de asas detalhados e lírio amarelo grande desabrochando ao lado e gradientes realistas suaves e linhas negras finas com sombreamento sutil para profundidade e folhas verdes circundantes com detalhes de nervuras e estilo novo tradicional e alto contraste e composição equilibrada e flash profissional de tatuagem e bordas limpas e arte isolada e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralButterfly => 'Butterfly';
+  String get exploreItemFloralButterfly => 'Borboleta';
 
   @override
   String get exploreItemFloralButterflyPrompt =>
-      'Realistic monarch butterfly tattoo design, vibrant orange wings with deep black borders and white dot accents, symmetrical open-wing pose, smooth gradient color blending, glossy highlights and soft shadow for depth, clean bold outlines, high-detail wing texture, neo-traditional realism style, high contrast, centered composition, professional tattoo flash, crisp edges, isolated artwork, transparent background.';
+      'Tatuagem realista de borboleta monarca com asas laranjas com bordas negras e pontos brancos e asas estendidas simétricas e gradientes suaves e linhas negras finas e sombreamento sutil para profundidade e texturas de asas finas com pontilhado e sombreamento e estilo novo tradicional e alto contraste e composição central e flash profissional de tatuagem e bordas limpas e arte isolada e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralHummingbirdCherry =>
-      'Hummingbird and Cherry Blossom';
+  String get exploreItemFloralHummingbirdCherry => 'Beija-flor e cereja';
 
   @override
   String get exploreItemFloralHummingbirdCherryPrompt =>
-      'Delicate hummingbird and cherry blossom tattoo design, fine-line realism style, small hummingbird in mid-flight with detailed feathers and soft shading, thin curved branch with pink cherry blossoms and tiny buds, elegant botanical composition, subtle color accents on flowers with mostly black ink bird, clean crisp outlines, micro-realism tattoo flash style, high detail, balanced composition, high contrast, professional tattoo design, isolated artwork, transparent background.';
+      'Tatuagem delicada realista de beija-flor e cerejeira em flor com estilo botânico com linhas finas e beija-flor pequeno voando com penas detalhadas e sombreamento sutil e caule curvo fino com flores de cereja rosas e botões pequenos e principalmente tinta negra com acentos de cor leves nas flores e linhas limpas finas e flash profissional de tatuagem e layout detalhado e composição equilibrada e alto contraste e arte isolada e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralButterflyBracelet => 'Butterfly Bracelet';
+  String get exploreItemFloralButterflyBracelet => 'Bracelete de borboleta';
 
   @override
   String get exploreItemFloralButterflyBraceletPrompt =>
-      'Elegant blue butterfly bracelet tattoo design, delicate chain-style composition wrapping in a flowing curve, two detailed blue butterflies with gradient wings and fine line texture, small star charms and tiny floral accents connected by thin ornamental chains, feminine micro-realism style, crisp black outlines with vibrant blue highlights, subtle dotwork details, light and airy composition, high contrast, professional tattoo flash design, centered and balanced layout, isolated artwork, transparent background.';
+      'Tatuagem elegante de bracelete de borboleta azul com estilo fluido com linhas finas e corrente fina enrolando-se em curva e duas borboletas azuis detalhadas com asas gradientes e pingentes de estrela pequenos e acentos florais rosas conectados com elos decorativos finos e estilo feminino leve aéreo e linhas finas e composição equilibrada e alto contraste e flash profissional de tatuagem e composição central e arte isolada e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralBabyPanda => 'Baby Panda';
+  String get exploreItemFloralBabyPanda => 'Bebê panda';
 
   @override
   String get exploreItemFloralBabyPandaPrompt =>
-      'Cute baby panda tattoo design, sitting panda holding a small bamboo stick, soft rounded cartoon style with semi-realistic fur texture, gentle blush on cheeks, big expressive eyes and friendly smile, black and white panda with subtle grey shading, small bamboo leaves around the character, light watercolor splash background in pastel tones, clean bold outlines with soft shading, kawaii tattoo style, high contrast, centered composition, professional tattoo flash design, isolated artwork, transparent background.';
+      'Tatuagem de bebê panda kawaii com estilo redondo suave e rosto com rubor sutil e olhos grandes expressivos e sorriso amigável e pelos branco preto com sombreamento cinza sutil e folhas de bambu ao redor da figura e acentos de tinta à guache leves em tons pastéis e linhas grossas limpas com sombreamento suave e estilo de tatuagem kawaii e alto contraste e composição central e flash profissional de tatuagem e arte isolada e fundo transparente simples。';
 
   @override
-  String get exploreItemFloralSunMoon => 'Sun Moon';
+  String get exploreItemFloralSunMoon => 'Sol e lua';
 
   @override
   String get exploreItemFloralSunMoonPrompt =>
-      'Sun and crescent moon watercolor tattoo design, vibrant celestial composition, glowing orange sun with flowing rays surrounding a large crescent moon, moon filled with galaxy-style colors in blue, purple and pink, soft watercolor splashes and ink drips, delicate star details and sparkles, fine clean outlines with smooth color gradients, modern celestial tattoo style, high contrast, balanced centered composition, professional tattoo flash design, isolated artwork, transparent background.';
+      'Tatuagem celestial de tinta à guache com sol e lua e composição vibrante e sol ardente laranja com raios irradiantes e lua cheia em azul violeta e rosa e respingos suaves de tinta à guache e pontos de tinta e estrelas pequenas e brilhos e linhas limpas finas com gradientes suaves e estilo celestial moderno e alto contraste e composição central equilibrada e flash profissional de tatuagem e arte isolada e fundo transparente simples。';
 
   @override
-  String get exploreItemMythologyWarriorSerpents => 'Warrior and Serpents';
+  String get exploreItemMythologyWarriorSerpents => 'Guerreiro e serpentes';
 
   @override
   String get exploreItemMythologyWarriorSerpentsPrompt =>
-      'A muscular classical Greek statue-style male warrior wrapped tightly by multiple serpents, one snake coiling around torso and arms, another rising with open mouth, warrior holding a dagger downward in one hand, dramatic mythological struggle pose, inspired by ancient sculpture and renaissance engraving, highly detailed black ink tattoo design, fine line engraving style, cross-hatching shading, clean linework, centered vertical composition, high contrast, white background, parchment texture, realistic anatomy, dark fantasy tattoo flash, symmetrical balanced layout.';
+      'Guerreiro masculino musculoso em estilo de escultura grega clássica envolto rigidamente com múltiplas serpentes e serpente enrolando-se ao redor do torso e braços e outra serpente elevando-se com boca aberta e pose de luta mítica dramática inspirada em escultura antiga e incisões da Renascença e design de tatuagem com linhas finas e sombreamento detalhado de hachura cruzada e linhas limpas e alto contraste e tiro de estúdio realista。';
 
   @override
-  String get exploreItemMythologyPhoenixRising => 'Phoenix Rising';
+  String get exploreItemMythologyPhoenixRising => 'Fênix ascendendo';
 
   @override
   String get exploreItemMythologyPhoenixRisingPrompt =>
-      'Vibrant phoenix tattoo design, wings fully spread upward, long flowing tail feathers, dynamic rising pose, fiery color palette with red, orange, yellow and hints of blue, ultra detailed feathers, clean bold outlines, modern neo-traditional tattoo style, high contrast, glowing ember effects, subtle ink splatter accents, symmetrical composition, sharp linework, rich gradient coloring, dramatic lighting, professional tattoo flash illustration, centered composition, plain background.';
+      'Tatuagem vibrante de fênix com asas completamente estendidas para cima e cauda longa curvada e pose ascendente e paleta de cores ardentes de vermelho laranja amarelo e acentos azuis dourados e penas altamente detalhadas e linhas audaciosas limpas e estilo novo tradicional e alto contraste e efeitos de brasas resplandecentes e respingos sutis de tinta e composição central e flash profissional de tatuagem e fundo simples。';
 
   @override
   String get exploreItemMythologyMedusa => 'Medusa';
 
   @override
   String get exploreItemMythologyMedusaPrompt =>
-      'Medusa inspired tattoo design, mysterious female face with multiple serpents coiling and intertwining through the hair, several snake heads facing different directions, one snake with open mouth and fangs visible, intense glowing eyes, cracked marble skin texture, mythological dark fantasy theme, ultra detailed scales and hair strands, bold clean linework, neo-traditional tattoo style, rich green and earthy tones, high contrast shading, smooth gradients, dramatic composition, centered tattoo flash illustration, sharp outlines, professional tattoo design.';
+      'Tatuagem mítica de Medusa com rosto feminino misterioso com serpentes no cabelo e cabeças de serpente múltiplas em direções diferentes e bocas abertas com presas e olhos intensos resplandecentes e textura de pele de mármore rachada e tema de fantasia escura e linhas altamente detalhadas e estilo novo tradicional e cores terrosas ricas e sombreamento com alto contraste e gradientes suaves e composição dramática e flash profissional de tatuagem e bordas limpas e design de tatuagem。';
 
   @override
-  String get exploreItemMythologyDragonSword => 'Dragon Coiled Around Sword';
+  String get exploreItemMythologyDragonSword => 'Dragão com espada';
 
   @override
   String get exploreItemMythologyDragonSwordPrompt =>
-      'Dark fantasy dragon wrapped around an ornate medieval sword, dragon body coiling tightly along the blade, detailed scales and sharp claws, fierce dragon head with open mouth and visible fangs near the hilt, gothic engraved sword design, symmetrical vertical composition, black and grey tattoo style, ultra detailed linework, high contrast shading, fine line engraving technique, dramatic shadows, sharp clean outlines, fantasy tattoo flash, centered composition, minimal plain background, professional tattoo illustration.';
+      'Dragão de fantasia escura envolto rigidamente ao redor de espada medieval ornamentada e corpo de serpente longo e escamas limpas e garras detalhadas e cabeça de dragão com boca aberta e presas perto da guarda e espada ornamentada gótica e composição vertical simétrica e tatuagem negra cinza e linhas finas altamente detalhadas e sombreamento de hachura cruzada e sombras profundas e linhas limpas afiadas e flash de fantasia escura e composição central e fundo simples e design de tatuagem profissional。';
 
   @override
-  String get exploreItemMythologyThreeHeadedHydra => 'Three-Headed Hydra';
+  String get exploreItemMythologyThreeHeadedHydra => 'Hidra de três cabeças';
 
   @override
   String get exploreItemMythologyThreeHeadedHydraPrompt =>
-      'Three-headed hydra dragon tattoo design, massive serpentine dragon body with three fierce dragon heads emerging from one neck, mouths open with sharp fangs, aggressive expressions, overlapping scales and armored plates, dark fantasy creature, ultra detailed black and grey tattoo style, heavy shading, high contrast lighting, intricate scale texture, sharp horns and spikes, smoke drifting from mouths, dramatic vertical composition, clean bold outlines, professional tattoo flash illustration, centered composition.';
+      'Dragão hidra grande de três cabeças com corpo de serpente longo e três cabeças de dragão ferozes emergindo de um pescoço e bocas abertas com presas afiadas e escamas sobrepostas e placas blindadas e tema marinho escuro e tatuagem negra cinza e linhas finas altamente detalhadas e sombreamento intenso e alto contraste e textura de escamas complexa e vapor elevando-se das bocas e composição vertical dramática e linhas audaciosas limpas e flash profissional de tatuagem。';
 
   @override
-  String get exploreItemMythologyOctopus => 'Octopus';
+  String get exploreItemMythologyOctopus => 'Polvo';
 
   @override
   String get exploreItemMythologyOctopusPrompt =>
-      'Detailed octopus tattoo design, large octopus with curling tentacles spreading outward in a balanced composition, tentacles twisting and overlapping with visible suction cups, intense eyes and textured head, dark ocean creature theme, black and grey tattoo style, ultra fine linework, engraving and dotwork shading, high contrast shadows, realistic texture, symmetrical centered layout, bold clean outlines, professional tattoo flash illustration.';
+      'Tatuagem detalhada de polvo com tentáculos estendidos em composição equilibrada e ventosas visíveis e olhos resplandecentes e textura de cabeça e tema marinho escuro e tatuagem negra cinza e linhas precisas finas e sombreamento de pontos e hachura cruzada e alto contraste e textura realista e composição simétrica central e linhas audaciosas limpas e flash profissional de tatuagem。';
 
   @override
-  String get exploreItemMythologyJapaneseDragon => 'Japanese Style Dragon';
+  String get exploreItemMythologyJapaneseDragon => 'Dragão japonês';
 
   @override
   String get exploreItemMythologyJapaneseDragonPrompt =>
-      'Japanese style dragon tattoo design, powerful eastern dragon with long serpentine body coiling in an S-shaped composition, detailed layered scales, sharp horns and whiskers, fierce open mouth with fangs, claws extended, flowing mane and tail, surrounded by stylized clouds and flame elements, vibrant red, orange and gold color palette, bold clean outlines, neo-traditional japanese tattoo style, smooth gradient shading, high contrast, dynamic movement, professional tattoo flash illustration.';
+      'Dragão japonês com estilo irezumi tradicional e corpo longo fluido e nuvens ao redor do dragão e linhas audaciosas e paleta de cores verde vermelha dourada vibrante e pose dinâmica e escamas altamente detalhadas e chifres e barba e fogo ornamentado e estilo japonês tradicional e sombreamento com gradientes suaves e alto contraste e movimento dinâmico e flash profissional de tatuagem。';
 
   @override
-  String get exploreItemMythologyDarkFantasyEye => 'Dark Fantasy Eye';
+  String get exploreItemMythologyDarkFantasyEye => 'Olho de fantasia escura';
 
   @override
   String get exploreItemMythologyDarkFantasyEyePrompt =>
-      'Dark fantasy tattoo design featuring a central eye surrounded by multiple smaller eyes, all radiating a glowing red energy, large detailed wings extending from the center, with sharp feather tips and deep shadows, veins of red lightning running through the design, high contrast black and grey shading with fiery accents, intricate and symmetrical composition, modern gothic style, fine line detailing, powerful and intense mystical theme, dramatic atmosphere, professional tattoo flash illustration, minimal background with focus on the design.';
+      'Tatuagem de fantasia escura com olho central cercado de olhos menores e todos irradiando energia vermelha e asas grandes estendidas e sombras profundas e raios de relâmpago vermelho fluindo através do design e sombreamento negro cinza com sutilezas de fogo e composição complexa e simétrica e estilo gótico moderno e linhas finas e tema forte e flash profissional de tatuagem e fundo simples com foco de design。';
 
   @override
-  String get exploreItemMythologyMermaid => 'Mermaid';
+  String get exploreItemMythologyMermaid => 'Sereia';
 
   @override
   String get exploreItemMythologyMermaidPrompt =>
-      'Vibrant, horror-themed mermaid tattoo design, grotesque mermaid with a skeletal, gnarled face, long wild hair in dark shades of black and deep purple, sharp claws, and twisted, muscular body, transitioning from human form to a fish tail with iridescent scales in shades of teal, blue, and green, eerie underwater creature vibe with glowing elements, fiery orange and red highlights on the tail and eyes, dramatic shading with contrasting dark tones, high detail, horror fantasy tattoo style with rich colors, professional flash tattoo, clean bold outlines, vivid contrasts.';
+      'Tatuagem vibrante de sereia de horror com tema de horror e rosto de sereia feio com traços de caveira e cabelos selvagens em tons escuros de negro violeta profundo e garras afiadas e corpo muscular transicionando de forma humana para cauda de peixe com escamas arco-íris e atmosfera de criatura subaquática assustadora com elementos resplandecentes e sutilezas de fogo laranja vermelho na cauda e olhos e sombreamento dramático escuro com contrastes vibrantes e linhas detalhadas e estilo de fantasia de horror com cores ricas e flash profissional de tatuagem e linhas audaciosas limpas e contrastes vibrantes。';
 
   @override
-  String get exploreItemMythologyDynamicDragon => 'Dynamic Dragon';
+  String get exploreItemMythologyDynamicDragon => 'Dragão dinâmico';
 
   @override
   String get exploreItemMythologyDynamicDragonPrompt =>
-      'Vibrant and dynamic dragon tattoo design, serpent-like body with smooth scales transitioning from deep green to teal, fiery orange and golden wings stretching outward, feathered wings with a gradient of warm tones from orange to light yellow, sleek sinuous tail with fiery accents, detailed head with sharp features and subtle horns, dragon exuding energy and motion, dramatic shading to highlight the curves and texture of the body, fantasy style with vivid color palette, high contrast, professional tattoo illustration with clean bold outlines.';
+      'Dragão vibrante dinâmico com corpo de serpente e escamas lisas transicionando de verde profundo a turquesa e asas de fogo laranja dourado estendidas e asas emplumadas em tons quentes de laranja a amarelo claro e cauda sinuosa com sutilezas de fogo e cabeça de dragão com traços afiados e chifres pequenos e o dragão transbordando de energia e movimento e sombreamento dramático para enfatizar curvas e textura corporal e estilo de fantasia com paleta de cores vibrante e alto contraste e design de tatuagem profissional com linhas audaciosas limpas。';
 
   @override
-  String get exploreItemMythologyTrident => 'Trident';
+  String get exploreItemMythologyTrident => 'Tridente';
 
   @override
   String get exploreItemMythologyTridentPrompt =>
-      'Gothic trident tattoo design with sharp, intricate details, the trident head adorned with dark, thorn-like spines and elegant curves, a serpent wrapping around the trident shaft, the body of the serpent with smooth scales and subtle shading, floral vine elements twisting around the trident, delicate yet powerful, dark and eerie black and grey shading with high contrast, dramatic shadow play, sharp outlines, and fine detail, professional tattoo flash, minimal background with focus on the weapon and serpent, symmetrical design.';
+      'Tridente gótico com detalhes complexos afiados e espinhos no eixo e curvas elegantes e uma serpente enrolando-se ao redor e sombreamento sutil e vinhas ornamentais ao redor e delicadas mas poderosas e sombreamento negro cinza escuro com alto contraste e jogo de sombras dramáticas e linhas afiadas e detalhes finos e flash profissional de tatuagem e fundo simples com foco em arma e serpente e design simétrico。';
 
   @override
-  String get exploreItemMythologyWarrior => 'Warrior';
+  String get exploreItemMythologyWarrior => 'Guerreiro';
 
   @override
   String get exploreItemMythologyWarriorPrompt =>
-      'Powerful fantasy warrior tattoo design, dragon-like figure with scales covering the face and neck, glowing blue eyes, long, detailed beard and sharp features, fiery orange and blue flame accents swirling around the character, sharp spiked armor and fins protruding from the back, holding a trident in one hand, dramatic shading with high contrast, detailed textures on the skin and weapon, vivid colors of fire and ice, strong mythical atmosphere, bold clean outlines, professional tattoo flash illustration, minimal background with focus on the character and flames.';
+      'Guerreiro poderoso de fantasia com escamas de dragão recobrindo rosto e pescoço e olhos azuis resplandecentes e barba longa detalhada e traços afiados e sutilezas de chamas laranja azuis turbilhonando ao redor e armadura dentada afiada e barbatanas elevadas de costas e segurando tridente em uma mão e sombreamento dramático com alto contraste e textura detalhada de pele e arma e cores vibrantes de fogo gelo e atmosfera mítica forte e linhas audaciosas limpas e flash profissional de tatuagem e fundo simples com foco em figura e chamas。';
 }

@@ -238,7 +238,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get homeExploreInspiration => '영감 탐색';
 
   @override
-  String get homeSeeAll => 'See all';
+  String get homeSeeAll => '모두 보기';
 
   @override
   String get homeGenerate => '생성';
@@ -298,14 +298,14 @@ class AppLocalizationsKo extends AppLocalizations {
       '우아한 추상 스타일의 미니멀리스트 검은 고양이 타투 디자인, 긴 흐르는 곡선 꼬리를 가진 측면 프로필 앉은 고양이, 부드러운 스위핑 라인과 날카로운 테이퍼 엣지, 깊이를 위한 미묘한 그라데이션 음영을 가진 솔리드 검은색 잉크, 몸을 형성하는 기하학적이고 유동적인 모양, 얼굴에서 뻗어 나오는 섬세한 수염 라인, 현대 파인라인 타투 스타일, 높은 대비, 깔끔한 네거티브 스페이스, 세련되고 예술적인 외관, 타투 플래시 아트';
 
   @override
-  String get deleteConfirmationTitle => 'Delete Entry';
+  String get deleteConfirmationTitle => '항목 삭제';
 
   @override
   String get deleteConfirmationContent =>
-      'Are you sure you want to delete this design from your history? This action cannot be undone.';
+      '기록에서 이 디자인을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.';
 
   @override
-  String get delete => 'Delete';
+  String get delete => '삭제';
 
   @override
   String get exploreTitleRedRoseTattooDesign => '빨간 장미 타투 디자인';
@@ -694,789 +694,781 @@ class AppLocalizationsKo extends AppLocalizations {
       '인터넷에 연결되어 있지 않습니다. 네트워크를 확인해 주세요.';
 
   @override
-  String get exploreCategoryMinimal => 'Minimal Tattoos';
+  String get exploreCategoryMinimal => '미니멀리스트 타투';
 
   @override
   String get exploreCategoryMinimalDescription =>
-      'Simple, clean lines with minimalist aesthetic. Perfect for subtle, elegant designs.';
+      '단순하고 깔끔한 선에 미니멀리스트 미학. 세련되고 우아한 디자인에 완벽합니다.';
 
   @override
-  String get exploreCategoryTraditional => 'Traditional & Old School';
+  String get exploreCategoryTraditional => '전통적이고 올드 스쿨';
 
   @override
   String get exploreCategoryTraditionalDescription =>
-      'Bold lines, vibrant colors, and classic American traditional style.';
+      '전통적인 미국 스타일의 대담한 선과 생생한 색상.';
 
   @override
-  String get exploreCategoryJapanese => 'Japanese Style';
+  String get exploreCategoryJapanese => '일본 스타일';
 
   @override
   String get exploreCategoryJapaneseDescription =>
-      'Traditional Japanese irezumi with dragons, koi fish, and cherry blossoms.';
+      '전통적인 이레즈미 일본 스타일로 용, 코이, 벚꽃.';
 
   @override
-  String get exploreCategoryTribal => 'Tribal Designs';
+  String get exploreCategoryTribal => '부족 모티브';
 
   @override
   String get exploreCategoryTribalDescription =>
-      'Bold black patterns inspired by Polynesian and tribal art.';
+      '폴리네시아와 부족 예술에서 영감을 받은 대담한 검은 패턴.';
 
   @override
-  String get exploreCategoryGeometric => 'Geometric Tattoos';
+  String get exploreCategoryGeometric => '기하학 타투';
 
   @override
   String get exploreCategoryGeometricDescription =>
-      'Sacred geometry, mandalas, and precise geometric patterns.';
+      '정확한 기하학 패턴이 있는 신성한 기하학과 만다라.';
 
   @override
-  String get exploreCategoryRealism => 'Realism & Portrait';
+  String get exploreCategoryRealism => '리얼리즘과 초상화';
 
   @override
-  String get exploreCategoryRealismDescription =>
-      'Photorealistic portraits and detailed realistic imagery.';
+  String get exploreCategoryRealismDescription => '사진 초상화와 상세한 리얼리스틱 이미지.';
 
   @override
-  String get exploreCategoryLettering => 'Lettering & Script';
+  String get exploreCategoryLettering => '문자와 타이포그래피';
 
   @override
-  String get exploreCategoryLetteringDescription =>
-      'Beautiful typography, calligraphy, and meaningful quotes.';
+  String get exploreCategoryLetteringDescription => '아름다운 타이포그래피와 의미 있는 인용구.';
 
   @override
-  String get exploreCategoryFloral => 'Floral & Nature';
+  String get exploreCategoryFloral => '플로럴과 자연';
 
   @override
-  String get exploreCategoryFloralDescription =>
-      'Flowers, plants, and natural elements in beautiful compositions.';
+  String get exploreCategoryFloralDescription => '아름다운 구성의 꽃과 식물.';
 
   @override
-  String get exploreCategoryMythology => 'Mythology & Fantasy';
+  String get exploreCategoryMythology => '신화와 판타지';
 
   @override
-  String get exploreCategoryMythologyDescription =>
-      'Mythical creatures, gods, and fantasy-inspired designs.';
+  String get exploreCategoryMythologyDescription => '판타지에서 영감을 받은 신화적인 생물과 신.';
 
   @override
-  String get exploreCategoryCustomAi => 'Custom AI Designs';
+  String get exploreCategoryCustomAi => '사용자 정의 AI 디자인';
 
   @override
-  String get exploreCategoryCustomAiDescription =>
-      'Unique AI-generated designs combining multiple styles.';
+  String get exploreCategoryCustomAiDescription => '여러 스타일을 결합한 독특한 AI 디자인.';
 
   @override
-  String get exploreItemMinimalistPanda => 'Minimalist Panda';
+  String get exploreItemMinimalistPanda => '미니멀리스트 판다';
 
   @override
   String get exploreItemMinimalistPandaPrompt =>
-      'A tiny minimalist ankle tattoo of a cute panda sitting upright, facing slightly right, drawn with clean black lines and soft micro-shading. The panda holds a thin green stem with small purple lavender flowers, with subtle botanical detail and glossy black ears and arms. The design is centered on ankle skin, photographed in natural light with shallow depth of field and a minimal, professional tattoo reference style in a 1:1 composition.';
+      '발목의 작은 미니멀리스트 판다 타투, 약간 오른쪽을 보고 앉아 있는 귀여운 판다, 검은 깨끗한 선으로 그려지고 미세한 그늘진 미세 섬세함. 판다는 녹색 얇은 줄기와 작은 자줏빛 라벤더 꽃을 들고 있으며, 미세한 식물 디테일과 검은 광택 있는 귀와 팔. 디자인은 발목 피부 중앙에 위치하며, 자연광으로 촬영되고 낮은 피사계 심도와 전문적인 미니멀리스트 타투 참고 스타일로 1:1 구성.';
 
   @override
-  String get exploreItemFineLineBow => 'Fine-Line Bow';
+  String get exploreItemFineLineBow => '세밀 선 리본';
 
   @override
   String get exploreItemFineLineBowPrompt =>
-      'A tiny minimalist inner-wrist tattoo of a delicate ribbon bow, drawn with thin black linework and a small center knot. The design is symmetrical, clean, and micro-tattoo style, placed on smooth pale wrist skin. Shot in soft natural light with shallow depth of field, it has a modern minimalist aesthetic and professional tattoo reference look.';
+      '손목 내부의 작은 간단한 타투, 얇은 리본 선으로 그려지고 흰색 부드러운 손목 피부에 위치하며, 자연광으로 촬영된 전문적인 현대 타투 참고 스타일로 낮은 피사계 심도.';
 
   @override
-  String get exploreItemMicroRealismFinger => 'Micro Realism Finger Tattoos';
+  String get exploreItemMicroRealismFinger => '마이크로 리얼리즘 손가락 타투';
 
   @override
   String get exploreItemMicroRealismFingerPrompt =>
-      'An ultra-realistic macro shot of a middle finger showing two tiny micro tattoos above the knuckle: a small sitting cat facing right and a delicate butterfly with fine linework and subtle shading. The scene features natural skin texture, warm neutral lighting, shallow depth of field, and a clean beige background, styled like a high-detail professional tattoo reference photo.';
+      '매크로 포토리얼리스틱 샷 중간 손가락, 관절 위에 2개의 작은 세부 타투: 오른쪽을 보고 앉아 있는 고양이와 아래의 세밀 선 잠자리. 장면은 자연스러운 피부 텍스처를 특징으로 하며 따뜻한 중립광과 낮은 피사계 심도와 깨끗한 베이지 배경, 전문적인 타투 참고 스타일로 높은 정밀도.';
 
   @override
-  String get exploreItemFineLineCatCircle => 'Fine-Line Cat in Circle';
+  String get exploreItemFineLineCatCircle => '세밀 선 고양이와 원';
 
   @override
   String get exploreItemFineLineCatCirclePrompt =>
-      'A minimalist upper-back tattoo below the neck showing a small black silhouette cat sitting and facing away, with a long curved tail. It\'s encircled by a thin, delicate incomplete circle with tiny leaves and a small flower, done in ultra-clean fine-line black ink. The scene features realistic skin texture, soft natural lighting, shallow depth of field, and a modern, photorealistic tattoo reference style.';
+      '목 아래 등 위 작은 타투, 뒤를 보고 앉아 있는 고양이의 미묘한 그림자를 표시하고 불완전한 얇은 원으로 둘러싸여 있고 작은 잎과 작은 꽃으로 둘러싸여 검은 깨끗하고 얇은 잉크. 장면은 리얼리스틱 피부 텍스처를 특징으로 하며 부드러운 자연광과 낮은 피사계 심도에서 현대 리얼리스틱 타투 참고 스타일.';
 
   @override
-  String get exploreItemFineLineLotusFlower => 'Fine-Line Lotus Flower';
+  String get exploreItemFineLineLotusFlower => '세밀 선 연꽃';
 
   @override
   String get exploreItemFineLineLotusFlowerPrompt =>
-      'A minimalist fine-line lotus flower tattoo with delicate layered petals and a thin stem with small leaves and buds, done in clean black ink. Beside it sits a small solid black heart with two tiny dots, all in a micro-tattoo style. The design is centered on smooth skin, photographed in warm natural light with shallow depth of field and a modern, photorealistic tattoo reference aesthetic.';
+      '연꽃의 간단한 타투, 겹친 얇은 꽃잎과 얇은 줄기와 작은 잎과 봉오리로 검은 깨끗하고 얇은 잉크. 옆에 작은 검은 실선 심장과 2개의 작은 점으로 미니멀리스트 스타일. 디자인은 부드러운 피부에 중앙에 위치하며 따뜻한 자연광으로 촬영되고 낮은 피사계 심도에서 현대 리얼리스틱 타투 참고 스타일.';
 
   @override
-  String get exploreItemSleepingCatCrescent => 'Sleeping Cat in Crescent Moon';
+  String get exploreItemSleepingCatCrescent => '잠자는 고양이와 초승달';
 
   @override
   String get exploreItemSleepingCatCrescentPrompt =>
-      'A tiny minimalist micro tattoo of a sleeping kitten curled inside a thin crescent moon, with soft black-and-grey shading and delicate sparkles around it. The design features clean fine-line work and subtle fur detail, placed on wrist or forearm skin and photographed in warm natural light with a shallow depth of field for a high-detail, photorealistic tattoo reference look.';
+      '작은 세부 타투, 얇은 초승달에 감싸인 웅크린 잠자는 새끼 고양이, 검은 부드러운 그늘과 주변 미세한 광택. 디자인은 깨끗한 얇은 선을 표시하고 미세한 털 세부, 손목이나 전완 피부에 위치하며 따뜻한 자연광으로 촬영되고 낮은 피사계 심도에서 높은 품질의 리얼리스틱 타투 참고 스타일.';
 
   @override
-  String get exploreItemFineLineHeartStars => 'Fine-Line Heart and Stars';
+  String get exploreItemFineLineHeartStars => '세밀 선 심장과 별';
 
   @override
   String get exploreItemFineLineHeartStarsPrompt =>
-      'A minimalist geometric forearm tattoo featuring a solid black heart with sharp edges, flanked by thin four-point star sparkles above and below. Small black dots and tiny outlined circles form a symmetrical vertical layout around it. Done in clean fine-line black ink on smooth skin, photographed in soft natural light with a modern, high-detail tattoo reference style.';
+      '전완의 기하학 타투, 날카로운 모서리의 검은 실선 심장과 위와 아래 별. 작은 검은 점과 정의된 원이 주변의 수직 대칭 레이아웃을 형성. 부드러운 피부의 검은 깨끗하고 얇은 잉크로, 부드러운 자연광으로 촬영된 현대 타투 참고 스타일로 높은 정밀도.';
 
   @override
-  String get exploreItemFineLineCompassStar => 'Fine-Line Compass Star';
+  String get exploreItemFineLineCompassStar => '세밀 선 나침반 별';
 
   @override
   String get exploreItemFineLineCompassStarPrompt =>
-      'A minimalist inner-forearm micro tattoo featuring a centered geometric compass-style 8-point star with sharp, clean black lines and four tiny dots around it. A small outline heart sits directly below the star. The design is ultra-clean and symmetrical, photographed on smooth skin with soft natural lighting and a modern, photorealistic tattoo reference style.';
+      '전완 내부의 작은 세부 타투, 중앙에 팔각 나침반 별, 검은 날카로운 선과 얇은 선과 주변 4개의 작은 점. 바로 아래에 정의된 작은 심장. 디자인은 매우 깨끗하고 대칭, 부드러운 피부에서 촬영되고 따뜻한 자연광으로 현대 리얼리스틱 타투 참고 스타일.';
 
   @override
-  String get exploreItemMinimalTrebleClef => 'Minimal Treble Clef Neck';
+  String get exploreItemMinimalTrebleClef => '목의 고음표';
 
   @override
   String get exploreItemMinimalTrebleClefPrompt =>
-      'A small glossy black treble clef tattoo with three tiny music notes, placed behind the ear on the side of the neck. Done in bold, clean lines, it\'s photographed in soft warm lighting with realistic skin texture, a visible ear with a silver stud earring, and a shallow depth of field for a detailed, minimal tattoo reference look.';
+      '목 측면 귀 뒤에 3개의 작은 음표가 있는 작은 광택 검은 고음표 타투. 대담하고 깨끗한 선으로, 따뜻한 빛으로 촬영되고 리얼리스틱 피부 텍스처와 은 귀걸이 표시와 낮은 피사계 심도로 세부 미니멀리스트 타투 참고 스타일.';
 
   @override
-  String get exploreItemStarryHeart => 'Starry Heart';
+  String get exploreItemStarryHeart => '별 심장';
 
   @override
   String get exploreItemStarryHeartPrompt =>
-      'A minimalist fine-line inner-forearm tattoo featuring a medium outlined heart with tiny dotted details inside, surrounded by small stars and solid dots. Done in clean black micro-tattoo style, it\'s photographed on realistic skin in soft outdoor light, with a white sleeve, light blue jeans, and a subtle bracelet visible against a softly blurred street background.';
+      '전완 내부의 작은 선 얇은 타투, 중앙의 정의된 작은 심장과 주변 작은 별과 실선 점. 검은 미니멀리스트 스타일로, 리얼리스틱 피부에서 자연광으로 촬영되고 흰색 소매 표시와 파란 진과 가벼운 흐릿한 거리 배경.';
 
   @override
-  String get exploreItemValknutTriangle => 'Valknut Triangle';
+  String get exploreItemValknutTriangle => '발크누트 삼각형';
 
   @override
   String get exploreItemValknutTrianglePrompt =>
-      'Photorealistic close-up of a hand near a jeans pocket with a small minimalist geometric Valknut-style tattoo made of three interlocking triangles in thin black ink. Visible skin texture and veins, black sleeve and silver ring, denim background, soft natural lighting, and shallow depth of field.';
+      '진 바지 주머니에서 손을 쥐는 가까운 리얼리스틱 샷, 얽힌 3개의 삼각형 발크누트 아트 같은 미묘한 작은 타투, 검은 얇은 깨끗한 잉크. 피부 텍스처와 정맥 표시와 어두운 폴로와 은 반지와 진 배경과 자연광과 낮은 피사계 심도.';
 
   @override
-  String get exploreItemMinimalistMountain => 'Minimalist Mountain';
+  String get exploreItemMinimalistMountain => '미니멀리스트 산';
 
   @override
   String get exploreItemMinimalistMountainPrompt =>
-      'Ultra-realistic close-up of an inner wrist with a tiny fine-line mountain tattoo in clean black ink. Small minimalist design centered on the wrist, visible skin texture and veins, sleeve slightly rolled up, soft natural lighting, neutral background, and shallow depth of field.';
+      '전완 내부의 가까운 리얼리스틱 샷, 작은 단순한 산 타투, 검은 얇은 깨끗한 잉크. 디자인은 전완 중앙에 작게 위치하며 피부 텍스처와 약간 말린 소매와 자연광과 중립 배경과 낮은 피사계 심도.';
 
   @override
-  String get exploreItemSwallowBird => 'Swallow Bird';
+  String get exploreItemSwallowBird => '제비';
 
   @override
   String get exploreItemSwallowBirdPrompt =>
-      'Old school swallow tattoo, wings spread, bold outlines, blue and red classic palette, vintage sailor tattoo flash, simple shading, centered composition, transparent background PNG, high resolution.';
+      '올드 스쿨 제비 타투, 펼쳐진 날개와 대담한 선과 클래식 블루와 레드 팔레트와 오래된 선원 플래시 스타일과 단순한 그늘과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemDaggerHeart => 'Dagger Through Heart';
+  String get exploreItemDaggerHeart => '단검 심장';
 
   @override
   String get exploreItemDaggerHeartPrompt =>
-      'Traditional dagger through heart tattoo, bold outlines, red heart pierced by steel dagger, classic old school flash, strong shading, centered composition, transparent background PNG, high resolution.';
+      '전통적인 단검 심장 타투, 대담한 선과 찔린 빨간 심장과 강철 단검과 클래식 올드 스쿨 플래시와 강한 그늘과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemSkullClassic => 'Skull Classic';
+  String get exploreItemSkullClassic => '클래식 해골';
 
   @override
   String get exploreItemSkullClassicPrompt =>
-      'Old school skull tattoo, bold black outlines, simple shading, vintage flash design, traditional tattoo style, centered composition, transparent background PNG, high resolution.';
+      '올드 스쿨 해골 타투, 검은 대담한 선과 단순한 그늘과 클래식 플래시 스타일과 미국 전통 스타일과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemEagleSpread => 'Eagle Spread';
+  String get exploreItemEagleSpread => '펼쳐진 독수리';
 
   @override
   String get exploreItemEagleSpreadPrompt =>
-      'Traditional eagle tattoo, wings spread wide, bold outlines, red yellow blue palette, vintage American traditional style, strong shading, centered composition, transparent background PNG, high resolution.';
+      '전통적인 독수리 타투, 넓게 펼쳐진 날개와 대담한 선과 빨간 노란 파란 팔레트와 미국 클래식 스타일과 강한 그늘과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemSnakeCoiled => 'Snake Coiled';
+  String get exploreItemSnakeCoiled => '감긴 뱀';
 
   @override
   String get exploreItemSnakeCoiledPrompt =>
-      'Old school snake tattoo, coiled serpent, bold outlines, green and red palette, vintage flash style, strong simple shading, centered composition, transparent background PNG, high resolution.';
+      '올드 스쿨 뱀 타투, 감긴 바이퍼와 대담한 선과 녹색과 빨간 색상과 전통적인 플래시 스타일과 단순한 강한 그늘과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemShipWheel => 'Ship Wheel';
+  String get exploreItemShipWheel => '배 바퀴';
 
   @override
   String get exploreItemShipWheelPrompt =>
-      'Traditional ship wheel tattoo, nautical theme, bold outlines, brown and gold tones, classic sailor tattoo flash, simple shading, centered composition, transparent background PNG, high resolution.';
+      '전통적인 배 바퀴 타투, 해양 테마와 대담한 선과 갈색과 금색 톤과 클래식 선원 플래시와 단순한 그늘과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemCowboyRevolver => 'Cowboy Revolver';
+  String get exploreItemCowboyRevolver => '카우보이 리볼버';
 
   @override
   String get exploreItemCowboyRevolverPrompt =>
-      'Traditional old school cowboy revolver tattoo, classic western pistol, bold thick black outlines, vintage tattoo flash style, simple red and gold accents, strong shading, clean vector look, centered composition, transparent background PNG, high resolution.';
+      '올드 스쿨 카우보이 리볼버 타투, 클래식 웨스턴 권총과 검은 두꺼운 대담한 선과 클래식 플래시 스타일과 미세한 빨간과 금색 악센트와 강한 그늘과 깨끗한 외관과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemPantherHead => 'Panther Head';
+  String get exploreItemPantherHead => '팬더 머리';
 
   @override
   String get exploreItemPantherHeadPrompt =>
-      'Old school panther head tattoo, roaring panther, bold black outlines, yellow eyes, red mouth, vintage traditional flash style, strong shading, centered composition, transparent background PNG, high resolution.';
+      '올드 스쿨 팬더 머리 타투, 으르렁하는 팬더와 검은 대담한 선과 노란 눈과 빨간 입과 전통적인 플래시 스타일과 강한 그늘과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemKoiFish => 'Koi Fish';
+  String get exploreItemKoiFish => '코이 물고기';
 
   @override
   String get exploreItemKoiFishPrompt =>
-      'Japanese style koi fish tattoo, traditional irezumi design, flowing koi with curved body, bold outlines, red orange palette, water waves around fish, clean vector look, centered composition, transparent background PNG, high resolution.';
+      '전통적인 이레즈미 디자인의 일본 코이 물고기 타투, 구부러진 몸과 대담한 선과 빨간 오렌지 팔레트와 물고기 주변 물결과 깨끗한 외관과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemHannyaMask => 'Hannya Mask';
+  String get exploreItemHannyaMask => '한냐 마스크';
 
   @override
   String get exploreItemHannyaMaskPrompt =>
-      'Japanese hannya mask tattoo, traditional irezumi style, demon mask with horns, bold black outlines, red and white tones, dramatic expression, clean vector style, centered composition, transparent background PNG, high resolution.';
+      '일본 한냐 악마 마스크와 이레즈미 스타일의 악마 마스크와 뿔과 검은 대담한 선과 빨간 흰색과 극적인 표현과 깨끗한 스타일과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemSamuraiHelmet => 'Samurai Helmet';
+  String get exploreItemSamuraiHelmet => '사무라이 헬멧';
 
   @override
   String get exploreItemSamuraiHelmetPrompt =>
-      'Japanese samurai helmet tattoo, kabuto helmet front view, traditional irezumi style, bold outlines, gold and red accents, clean vector look, centered composition, transparent background PNG, high resolution.';
+      '일본 사무라이 헬멧과 카부토 정면과 이레즈미 스타일과 대담한 선과 금색과 빨간 악센트와 깨끗한 외관과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemCherryBlossomBranch => 'Cherry Blossom Branch';
+  String get exploreItemCherryBlossomBranch => '벚꽃 가지';
 
   @override
   String get exploreItemCherryBlossomBranchPrompt =>
-      'Japanese cherry blossom tattoo, sakura branch with flowers, traditional irezumi style, soft pink blossoms, bold outlines, elegant composition, centered design, transparent background PNG, high resolution.';
+      '일본 벚꽃 타투와 사쿠라 가지와 부드러운 분홍 꽃과 이레즈미 스타일과 대담한 선과 우아한 구성과 깨끗한 디자인과 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemJapaneseDragon => 'Japanese Dragon';
+  String get exploreItemJapaneseDragon => '일본 용';
 
   @override
   String get exploreItemJapaneseDragonPrompt =>
-      'Japanese dragon tattoo, traditional irezumi dragon, long flowing body, clouds around dragon, bold outlines, green red palette, dynamic pose, centered composition, transparent background PNG, high resolution.';
+      '일본 용 이레즈미 스타일과 긴 유동 몸과 용 주변 구름과 대담한 선과 녹색 빨간 금색 생생한 팔레트와 역동적 포즈와 중앙 구성과 투명 PNG 배경과 높은 해상도.';
 
   @override
-  String get exploreItemOniMask => 'Oni Mask';
+  String get exploreItemOniMask => '오니 마스크';
 
   @override
   String get exploreItemOniMaskPrompt =>
-      'Japanese oni mask tattoo, traditional demon mask, bold outlines, red and black palette, fierce expression, irezumi style, centered composition, transparent background PNG, high resolution.';
+      '전통적인 일본 오니 악마 마스크와 악마 마스크와 대담한 선과 빨간 검은 색상과 야성적 표현과 이레즈미 스타일과 중앙 구성과 투명 PNG 배경과 높은 해상도。';
 
   @override
-  String get exploreItemHokusaiWave => 'Wave (Hokusai Style)';
+  String get exploreItemHokusaiWave => '호쿠사이 파도';
 
   @override
   String get exploreItemHokusaiWavePrompt =>
-      'Japanese wave tattoo, traditional irezumi ocean wave, bold outlines, blue tones, classic Japanese wave style, clean vector look, centered composition, transparent background PNG, high resolution.';
+      '일본 오션 웨이브 타투와 이레즈미 스타일과 대담한 선과 파란 색상과 클래식 일본 웨이브 스타일과 깨끗한 외관과 중앙 구성과 투명 PNG 배경과 높은 해상도。';
 
   @override
-  String get exploreItemJapaneseTiger => 'Tiger';
+  String get exploreItemJapaneseTiger => '일본 호랑이';
 
   @override
   String get exploreItemJapaneseTigerPrompt =>
-      'Japanese tiger tattoo, traditional irezumi tiger, roaring tiger head, bold outlines, orange black palette, dynamic style, centered composition, transparent background PNG, high resolution.';
+      '일본 호랑이 이레즈미 스타일과 으르렁하는 호랑이 머리와 대담한 선과 오렌지 검은 색상과 역동적 스타일과 중앙 구성과 투명 PNG 배경과 높은 해상도。';
 
   @override
-  String get exploreItemJapaneseLotus => 'Lotus Flower';
+  String get exploreItemJapaneseLotus => '일본 연꽃';
 
   @override
   String get exploreItemJapaneseLotusPrompt =>
-      'Japanese lotus tattoo, traditional irezumi lotus flower, bold outlines, pink and red tones, water elements, clean vector look, centered composition, transparent background PNG, high resolution.';
+      '일본 연꽃 타투와 연꽃과 이레즈미 스타일과 대담한 선과 분홍 빨간 색상과 물 요소와 깨끗한 외관과 중앙 구성과 투명 PNG 배경과 높은 해상도。';
 
   @override
-  String get exploreItemJapanesePhoenix => 'Phoenix';
+  String get exploreItemJapanesePhoenix => '일본 피닉스';
 
   @override
   String get exploreItemJapanesePhoenixPrompt =>
-      'Japanese phoenix tattoo, traditional irezumi phoenix bird, wings spread, bold outlines, red orange yellow palette, flames around bird, centered composition, transparent background PNG, high resolution.';
+      '일본 피닉스 새 이레즈미 스타일과 펼쳐진 날개와 대담한 선과 빨간 오렌지 노란 색상과 새 주변 불과 중앙 구성과 투명 PNG 배경과 높은 해상도。';
 
   @override
-  String get exploreItemPolynesianTribal => 'Polynesian Tribal Tattoo';
+  String get exploreItemPolynesianTribal => '폴리네시아 부족 타투';
 
   @override
   String get exploreItemPolynesianTribalPrompt =>
-      'A bold Polynesian tribal tattoo on the back of a hand, featuring sharp black lines, swirling patterns, and geometric designs. The tattoo combines smooth curves and sharp angles, wrapping around the hand with a symmetric flow, extending from the palm to the wrist with a pointed tail. The deep black ink contrasts sharply, showcasing traditional Polynesian style, with realistic skin texture and soft lighting.';
+      '손등의 대담한 폴리네시아 부족 타투, 검은 깨끗한 선과 나선 패턴과 기하학적 디자인. 타투는 부드러운 곡선과 날카로운 각도로 흘러, 손바닥에서 손목까지 날카로운 끝으로 뻗음. 깊은 검은 잉크로 높은 대비를 보여주고, 전통적인 폴리네시아 부족 스타일로 리얼리스틱 피부 텍스처와 부드러운 빛。';
 
   @override
-  String get exploreItemTribalSpineSpear => 'Tribal Spine Spear Tattoo';
+  String get exploreItemTribalSpineSpear => '척추 창';
 
   @override
   String get exploreItemTribalSpineSpearPrompt =>
-      'Ultra-realistic photo of a male upper back with a centered, symmetrical black tribal tattoo combining Celtic knotwork and sharp Polynesian-style lines. The design forms an elongated spear-like shape along the spine with bold clean ink, crisp edges, natural skin texture, outdoor lighting, and shallow depth of field.';
+      '남자의 등 위쪽 포토리얼리스틱 샷, 중앙 대칭 검은 부족 타투, 얽힌 매듭 선과 날카로운 폴리네시아 선. 디자인은 척추를 따라 뻗고 깨끗한 잉크와 높은 대비와 리얼리스틱 피부 텍스처와 외부 빛과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemTribalKnotwork => 'Tribal Knotwork Tattoo';
+  String get exploreItemTribalKnotwork => '매듭 작업';
 
   @override
   String get exploreItemTribalKnotworkPrompt =>
-      'Symmetrical tribal tattoo with sharp black geometric lines and curves, featuring an elongated central form that tapers at both ends. Intricate interwoven patterns, high contrast, no shading, clean solid ink, modern abstract style with perfect symmetry and a minimal background.';
+      '대칭 부족 타투, 검은 날카로운 기하학적 선과 얽힌 곡선으로 복잡한 패턴, 높은 대비와 그림자 없음 깨끗한 검은 잉크와 현대 추상 스타일과 완벽한 대칭과 단순한 배경。';
 
   @override
-  String get exploreItemTribalForearmSleeve => 'Tribal Forearm Sleeve Band';
+  String get exploreItemTribalForearmSleeve => '전완 슬리브';
 
   @override
   String get exploreItemTribalForearmSleevePrompt =>
-      'Photorealistic image of a man\'s bent forearm featuring a bold black Polynesian-style tribal tattoo that wraps toward the wrist, with flowing curved lines, sharp points, and circular motifs. Natural skin texture, white short-sleeve polo, warm indoor lighting, shallow depth of field, and a centered, high-detail composition.';
+      '구부러진 남자 전완 포토리얼리스틱 샷, 검은 부족 타투, 나선 곡선과 날카로운 점과 원형 장식. 리얼리스틱 피부 텍스처와 따뜻한 내부 빛과 낮은 피사계 심도와 세부 중앙 구성。';
 
   @override
-  String get exploreItemTribalCentralSpiral => 'Central Spiral';
+  String get exploreItemTribalCentralSpiral => '중앙 나선';
 
   @override
   String get exploreItemTribalCentralSpiralPrompt =>
-      'Close-up photorealistic shot of a hand gripping blue fabric, showing a bold black tribal tattoo flowing from the fingers across the back of the hand toward the wrist. Sharp flame-like lines with smooth curves, visible skin texture and veins, cool moody lighting, shallow depth of field, and a centered cinematic composition.';
+      '손 가까운 샷, 중앙 검은 부족 타투, 손가락에서 손목으로 흘러가는. 선 같은 불꽃의 날카로운 곡선과 나선 장식 검은 잉크. 피부 텍스처와 정맥 표시와 차가운 앰비언트 빛과 낮은 피사계 심도와 영화적 중앙 구성。';
 
   @override
-  String get exploreItemTribalFlameForearm => 'Flame Tribal Forearm Tattoo';
+  String get exploreItemTribalFlameForearm => '불꽃 전완';
 
   @override
   String get exploreItemTribalFlameForearmPrompt =>
-      'Photorealistic close-up of an inner forearm with a bold black flame-like tribal tattoo in thick, clean ink, centered along the arm. The person sits in a tattoo studio chair holding their wrist, with a black chair and tiled floor in the background, indoor lighting, natural skin texture, and shallow depth of field.';
+      '전완 내부 가까운 샷, 중앙 검은 부족 타투, 불꽃 같은 패턴 깨끗한 검은 잉크. 사람은 타투 체어에 앉아 손목을 잡고 검은 소매와 검은 바닥 배경과 내부 빛과 리얼리스틱 피부 텍스처와 낮은 피사계 심도。';
 
   @override
-  String get exploreItemTribalSpiralFlame => 'Spiral with Flame Extensions';
+  String get exploreItemTribalSpiralFlame => '나선 불꽃';
 
   @override
   String get exploreItemTribalSpiralFlamePrompt =>
-      'Ultra-realistic photo of a muscular upper arm with a bold black spiral tribal tattoo on the shoulder, featuring thick ink and sharp flame-like extensions. The fresh tattoo shows slight redness, with the person in a sleeveless black shirt inside a tattoo studio, under indoor lighting, with visible skin texture and shallow depth of field.';
+      '근육질 상완 포토리얼리스틱 샷, 어깨의 나선 검은 부족 타투, 날카로운 불꽃 끝 깨끗한 검은 잉크. 새로운 타투는 가벼운 홍반을 보여, 사람은 타투 스튜디오에 있고 검은 소매 없는 셔츠 아래 내부 빛으로 피부 텍스처 표시와 낮은 피사계 심도。';
 
   @override
-  String get exploreItemTribalCompass => 'Tribal Compass Tattoo';
+  String get exploreItemTribalCompass => '나침반';
 
   @override
   String get exploreItemTribalCompassPrompt =>
-      'Ultra-realistic close-up of a calf featuring a centered black tribal compass-style tattoo with sharp, symmetrical star points and flame-like extensions. Clean solid ink, slight redness, visible skin texture and hair, warm studio lighting, dark background, and shallow depth of field.';
+      '중앙 검은 부족 나침반 가까운 샷, 대칭 별 점 날카로운 선. 깨끗한 검은 잉크와 가벼운 홍반과 피부 텍스처와 정맥 표시와 따뜻한 스튜디오 빛과 어두운 배경과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemTribalModernGeometric => 'Modern Geometric Tribal';
+  String get exploreItemTribalModernGeometric => '현대 기하학';
 
   @override
   String get exploreItemTribalModernGeometricPrompt =>
-      'Ultra-realistic close-up of a calf with a large symmetrical black geometric tribal tattoo featuring sharp triangular patterns and a flower-like center. Thick solid ink, high contrast, natural skin texture, white socks and black shoes visible, standing on a metal-textured floor in outdoor lighting with shallow depth of field.';
+      '큰 검은 부족 타투 가까운 샷, 날카로운 삼각 패턴과 꽃 중앙. 두꺼운 깨끗한 검은 잉크와 높은 대비와 리얼리스틱 피부 텍스처와 머리 표시와 금속 바닥에 서있는 외부 빛과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemTribalNeoBack => 'Neo-Tribal Back Tattoo';
+  String get exploreItemTribalNeoBack => '네오 등';
 
   @override
   String get exploreItemTribalNeoBackPrompt =>
-      'Overhead photorealistic shot of a person leaning forward, revealing a large bold black spiky tribal tattoo spread across the upper back and shoulders. Sharp thorn-like shapes in solid high-contrast ink, hair tied up and held by hand, dark clothing and background, moody lighting, realistic skin texture, and shallow depth of field.';
+      '상단 뷰, 사람이 앞으로 구부려 검은 큰 대담한 부족 타투를 드러냄, 등과 어깨 위 가시. 검은 잉크 높은 대비와 머리 묶음과 손으로 잡음과 어두운 배경과 앰비언트 빛과 리얼리스틱 피부 텍스처와 낮은 피사계 심도。';
 
   @override
-  String get exploreItemTribalFlame => 'Flame Tribal';
+  String get exploreItemTribalFlame => '불꽃';
 
   @override
   String get exploreItemTribalFlamePrompt =>
-      'Ultra-realistic close-up of the back of a hand with a symmetrical black tribal flame tattoo flowing from the knuckles toward the wrist, featuring sharp curves and decorative swirls in clean solid ink. Visible skin texture and veins, relaxed hand, dark jeans in the background, neutral indoor lighting, and shallow depth of field.';
+      '손등 가까운 샷, 대칭 검은 부족 타투, 관절에서 손목으로 흘러가는 날카로운 곡선과 나선 장식 검은 잉크. 피부 텍스처와 정맥 표시와 손 휴식과 파란 진 바지 배경과 중립 내부 빛과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemTribalSwordCompass => 'Sword and Compass Tattoo';
+  String get exploreItemTribalSwordCompass => '검 나침반';
 
   @override
   String get exploreItemTribalSwordCompassPrompt =>
-      'Ultra-realistic close-up of the back of a hand with a black-and-grey tattoo of a vertical sword piercing an 8-point compass rose, featuring fine linework, circular details, and light smoke-like shading. Realistic skin texture, dark blurred background, dramatic studio lighting, and shallow depth of field.';
+      '손등 가까운 샷, 검은 회 부족 타투, 수직 검 장미 바람을 찌름 선 얇고 원형 세부와 연기 같은 그림자. 리얼리스틱 피부 텍스처와 안개 어두운 배경과 드라마틱 스튜디오 빛과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemGeometricMindBodySoul => 'Mind–Body–Soul';
+  String get exploreItemGeometricMindBodySoul => '마음-몸-영혼';
 
   @override
   String get exploreItemGeometricMindBodySoulPrompt =>
-      'Highly detailed black-and-grey sacred geometry forearm tattoo with a vertical design: a brain transforming into a tree at the top, a meditating figure within geometric mandala shapes in the center, and an anatomical heart with ornamental elements at the bottom. Clean linework, dotwork shading, high contrast, and photorealistic studio presentation.';
+      '전완의 상세 높은 신성 기하학 타투, 수직 구성: 위 뇌 나무로 변함 가운데 해부학적 만다라 형 아래 해부학적 심장 요소 장식. 깨끗한 얇은 선과 점 그림자와 높은 대비와 스튜디오 리얼리스틱 샷。';
 
   @override
-  String get exploreItemGeometricHoneycombSleeve =>
-      'Geometric Blackout Honeycomb Sleeve';
+  String get exploreItemGeometricHoneycombSleeve => '벌집 슬리브';
 
   @override
   String get exploreItemGeometricHoneycombSleevePrompt =>
-      'Ultra-realistic studio photo of a shirtless athletic man showing a full black geometric sleeve tattoo, with a honeycomb hexagon pattern on the shoulder and sacred-geometry mandala designs down the arm. Clean high-contrast ink, natural skin texture, neutral background, soft lighting, and shallow depth of field.';
+      '근육질 남자 무 셔츠 스튜디오 포토리얼리스틱 샷, 어깨 완전 검은 기하학 슬리브, 육각 벌집 패턴과 아래 신성 만다라 기하학 디자인 팔. 깨끗한 검은 잉크 높은 대비와 리얼리스틱 피부 텍스처와 중립 배경과 부드러운 빛과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemGeometricBlackwork =>
-      'Geometric + Illustrative Blackwork';
+  String get exploreItemGeometricBlackwork => '검은 작업';
 
   @override
   String get exploreItemGeometricBlackworkPrompt =>
-      'Ultra-realistic photo of a shirtless man with a black-and-grey geometric shoulder and upper-arm tattoo featuring honeycomb hexagons containing detailed forest and mountain scenes. High-contrast ink with shading and dotwork, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.';
+      '남자 무 셔츠 포토리얼리스틱 샷, 어깨 검은 회 기하학 타투, 상완 위 세부 숲 산 장면 육각. 검은 잉크 높은 대비와 점 그림자와 리얼리스틱 피부 텍스처와 부드러운 스튜디오 빛과 중립 배경과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemGeometricCubeSleeve => 'Geometric Cube Sleeve';
+  String get exploreItemGeometricCubeSleeve => '큐브 슬리브';
 
   @override
   String get exploreItemGeometricCubeSleevePrompt =>
-      'Ultra-realistic photo of an extended male forearm with a geometric blackwork tattoo featuring 3D cube and hexagon optical-illusion patterns, fading into a solid black wrist band. Precise linework, high-contrast ink, visible skin texture and veins, neutral studio background, soft lighting, and shallow depth of field.';
+      '남자 전완 연장 포토리얼리스틱 샷, 완전 검은 작업 기하학 슬리브, 3D 큐브 패턴과 광학 착시 페이드 검은 손목 밴드. 얇은 선과 검은 잉크 높은 대비와 피부 텍스처와 정맥 표시와 중립 스튜디오 배경과 부드러운 빛과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemGeometric3dCubeSleeve => '3D Cube Geometric Sleeve';
+  String get exploreItemGeometric3dCubeSleeve => '3D 큐브 슬리브';
 
   @override
   String get exploreItemGeometric3dCubeSleevePrompt =>
-      'Ultra-realistic photo of a forearm with a full geometric blackwork sleeve featuring interlocking 3D cube optical-illusion patterns that transition into a dense sacred-geometry star design near the wrist. High-contrast ink, clean sharp linework, dotwork shading, white rolled-up shirt, soft studio lighting, and shallow depth of field.';
+      '전완 포토리얼리스틱 샷, 완전 검은 작업 기하학 슬리브, 얽힌 3D 큐브 패턴 밀 광학 착시 손목 가까이 신성 별로 패스. 검은 잉크 높은 대비와 날카로운 얇은 선과 점 그림자와 흰 셔츠 말아 올림과 부드러운 스튜디오 빛과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemGeometricTreeOfLife => 'Tree of Life';
+  String get exploreItemGeometricTreeOfLife => '생명의 나무';
 
   @override
   String get exploreItemGeometricTreeOfLifePrompt =>
-      'Ultra-realistic vertical photo of an inner forearm with a black-and-grey nature tattoo featuring a central pine tree, circular mountain landscape, crescent moons, and ornamental roots. Clean fine-line and blackwork style, smooth shading, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.';
+      '전완 내부 수직 포토리얼리스틱 샷, 검은 회 자연 타투, 중앙 소나무와 원형 산 풍경과 달과 뿌리 장식. 얇은 선과 부드러운 그림자와 리얼리스틱 피부 텍스처와 부드러운 스튜디오 빛과 중립 배경과 낮은 피사계 심도。';
 
   @override
-  String get exploreItemGeometricAtlas => 'Atlas Bearing the World';
+  String get exploreItemGeometricAtlas => '아틀라스';
 
   @override
   String get exploreItemGeometricAtlasPrompt =>
-      'Black-and-grey fine-line and dotwork tattoo of Atlas kneeling and carrying a globe, rendered like a classical Renaissance sculpture with realistic anatomy and shading. The Earth shows continents and a geometric grid, with sacred-geometry patterns and a sun symbol above. Clean, high-contrast, stencil-ready vertical design for an upper-arm tattoo, ultra-detailed and minimalistic.';
+      '라인 얇은 점 검은 회 아틀라스 타투, 지구본 들고 무릎 꿇은 아틀라스, 클래식 르네상스 조각으로 표현 해부학적 그리기와 리얼리스틱 그림자. 지구 대륙과 기하학 네트워크와 태양 기호 위. 수직 깨끗한 구성 높은 대비와 스텐실 타투 준비와 높은 세부 단순。';
 
   @override
-  String get exploreItemGeometricTriadTravel => 'Triad of Travel';
+  String get exploreItemGeometricTriadTravel => '여행 삼중';
 
   @override
   String get exploreItemGeometricTriadTravelPrompt =>
-      'Minimalist blackwork forearm tattoo in fine-line and dotwork style, featuring a compass rose with geometric orbit lines, a small airplane on a dotted path, mountains, and an ocean wave, all arranged inside an inverted triangle frame with symmetrical sacred-geometry accents. Clean, high-contrast, stencil-ready vertical design with modern travel theme and ultra-detailed linework.';
+      '단순 검은 작업 기하학 타투 전완, 라인 얇은 점 그림자 수직 삼중 구성: 위 장미 바람과 궤도 선과 작은 비행기 점선 경로와 산과 아래 해양 파도. 깨끗한 얇은 라인과 점선 이동 라인과 신성 기하학 미세하고 현대 여행 테마 높은 대비와 스텐실 준비。';
 
   @override
-  String get exploreItemGeometricHorizons => 'Cycle of Horizons';
+  String get exploreItemGeometricHorizons => '지평선';
 
   @override
   String get exploreItemGeometricHorizonsPrompt =>
-      'Minimalist geometric forearm tattoo in fine-line blackwork and dotwork, featuring a vertical column of connected hexagons. The top shows sun and sky, the center a mountain landscape with trees, and the bottom an ocean wave, with smaller surrounding hexagons and sacred-geometry accents linked by thin lines and dotted paths. Clean, symmetrical, high-contrast, stencil-ready nature-themed design.';
+      '기하학 타투 단순 전완, 라인 얇은 점 그림자 수직 육각 연결 열. 위 태양 하늘 산 중 해양 파도 아래 작은 육각과 신성 기하학 미세하고 점선 경로. 자연 테마 깨끗한 대칭 높은 대비와 스텐실 준비。';
 
   @override
-  String get exploreItemGeometricAlignedTriad => 'Aligned Triad';
+  String get exploreItemGeometricAlignedTriad => '정렬 삼중';
 
   @override
   String get exploreItemGeometricAlignedTriadPrompt =>
-      'Tiny minimalist finger tattoo in fine-line blackwork, featuring an abstract vertical triangle composition with layered geometric shapes, small diamond and polygon details, and subtle dotwork shading. Modern sacred-geometry style with thin precise lines, clean ornamental accents, and a stencil-ready professional look.';
+      '작은 손가락 기하학 타투, 라인 얇은 미세 점 그림자 추상 수직 삼중 구성 다층 기하학 형태와 다이아몬드 세부 날카로운 다각형 미세 그림자. 현대 신성 기하학 스타일 얇은 정확한 라인과 전문 외관과 스텐실 준비와 높은 세부。';
 
   @override
-  String get exploreItemGeometricSigi => 'Abstract Geometric Sigi';
+  String get exploreItemGeometricSigi => '추상 시기';
 
   @override
   String get exploreItemGeometricSigiPrompt =>
-      'Ultra-minimalist geometric finger tattoo in fine-line black ink, featuring a small vertical symbol of overlapping triangles, diamonds, and sharp polygon shapes with subtle dotwork shading and clean negative space. Modern sacred-geometry style with precise thin lines, high-contrast blackwork, and a stencil-ready professional design.';
+      '작은 단순 손가락 타투, 검은 얇은 잉크 수직 상징 겹친 삼각과 다이아몬드와 날카로운 다각형 미세 점 그림자와 깨끗한 부정 공간. 현대 신성 기하학 스타일 얇은 정확한 라인과 높은 대비와 전문 스텐실 준비。';
 
   @override
-  String get exploreItemGeometricDualityNature => 'Duality Nature Geometry';
+  String get exploreItemGeometricDualityNature => '기하학 자연 이중성';
 
   @override
   String get exploreItemGeometricDualityNaturePrompt =>
-      'Minimalist blackwork forearm tattoo in fine-line and dotwork style, featuring two stacked triangles: the top with a mountain scene and rising sun or moon, and the bottom inverted with a large ocean wave. Clean geometric framing, subtle sacred-geometry accents, and dotted motion lines create a balanced, modern nature-themed design that\'s high-contrast, ultra-detailed, and stencil-ready.';
+      '단순 검은 작업 기하학 타투 전완, 라인 얇은 점 그림자 겹친 삼각: 위 산 장면과 태양/달 상승과 아래 뒤집힌 큰 해양 파도. 기하학 깨끗한 프레임과 신성 기하학 미세하고 이동 라인 점선 현대 균형 자연 테마 높은 대비와 스텐실 준비。';
 
   @override
-  String get exploreItemRealismGamblerFedora => 'Gambler in a Fedora';
+  String get exploreItemRealismGamblerFedora => '갬블러와 페도라';
 
   @override
   String get exploreItemRealismGamblerFedoraPrompt =>
-      'Black & grey realistic tattoo of a faceless gambler in a fedora and suit, head down, arms crossed. Vintage street lamp behind, aces cards fanned out, light smoke on one side, two dice at the bottom. Noir mood, high-contrast shading, fine linework, detailed stippling, clean stencil style, centered symmetrical composition, monochrome, tattoo flash.';
+      '리얼 검은 회 타투, 얼굴 없는 갬블러 페도라와 슈트와 손 뒤. 오래된 가로등 뒤와 부채 카드와 미세 연기 측. 느와르 분위기 높은 대비 얇은 라인 세부 점묘 전통 스타일 대칭 중앙 구성 투명 PNG 단순 높은 세부 검은 플래시。';
 
   @override
-  String get exploreItemRealismMindOverHeart => 'Mind Over Heart';
+  String get exploreItemRealismMindOverHeart => '마음 위 심장';
 
   @override
   String get exploreItemRealismMindOverHeartPrompt =>
-      'Black & grey surreal tattoo of a realistic human brain acting like a puppeteer, with detailed hands controlling strings attached to an anatomical heart below. Fine linework, stippling and cross-hatching shading, high contrast, dark symbolic concept (mind controlling heart). Centered vertical composition, minimal background, monochrome, highly detailed, professional tattoo flash.';
+      '슈르리얼 검은 회 타투, 인간 뇌 마리오네트 작용 손 관절 심장 해부 아래로 연결. 얇은 라인 크로스 해치 그림자 높은 대비 상징 개념 어두운 수직 중앙 구성 단순 배경 단순 높은 세부 어두운 판타지 플래시。';
 
   @override
-  String get exploreItemRealismGeometricSplit => 'Geometric Split Portrait';
+  String get exploreItemRealismGeometricSplit => '기하학 분할 초상화';
 
   @override
   String get exploreItemRealismGeometricSplitPrompt =>
-      'Stylized neo-modern tattoo of a female face split into geometric shards. One side realistic black-and-grey portrait, the other side vibrant color with pink hair and a bright blue eye. Sharp abstract shapes cutting through the face, bold clean linework, high contrast shading, minimal background. Neo-traditional / cyber-graphic tattoo style, centered vertical composition, tattoo stencil ready, highly detailed, modern flash design.';
+      '뉴 모던 초상화 타투, 얼굴 없는 여성 얼굴 기하학 파편으로 분할. 왼쪽 리얼 검은 회 초상화 오른쪽 생생한 색 머리 분홍 파란 눈 빛남. 추상 날카로운 형태 얼굴 자르는 깨끗한 대담 라인 높은 대비 단순 배경 전통 새/사이버 그래픽 스타일 수직 중앙 구성 타투 스텐실 준비 높은 세부 현대 플래시。';
 
   @override
-  String get exploreItemRealismFieryCosmic => 'Fiery and Cosmic Split';
+  String get exploreItemRealismFieryCosmic => '불타는 우주';
 
   @override
   String get exploreItemRealismFieryCosmicPrompt =>
-      'Surreal color tattoo of a female portrait with a split reality concept. One side warm tones with cracked skin texture, the other side cool blue cosmic tones. A magnifying glass over one eye revealing a glowing blue iris and abstract liquid details. Vintage pocket watch/clock at the bottom symbolizing time, subtle galaxy elements in the background. Highly detailed neo-surreal style, vibrant color contrast (orange vs blue), smooth gradients, bold clean linework, centered vertical composition, minimal background, modern tattoo flash design, stencil-ready.';
+      '슈르리얼 색 타투 여성 초상화 개념 분할. 따뜻한 측면 갈라진 피부 텍스처 차가운 우주 측 파란 빛나는 눈 유동 추상 세부. 확대 유리 눈 위 파란 홍채 미세 은하 배경. 극적 어두운 대비 생생한 색 부드러운 그라데이션 대담 깨끗 라인 수직 중앙 구성 단순 배경 높은 세부 현대 타투 플래시。';
 
   @override
-  String get exploreItemRealismSinisterClown => 'Sinister Clown Portrait';
+  String get exploreItemRealismSinisterClown => '불길한 광대';
 
   @override
   String get exploreItemRealismSinisterClownPrompt =>
-      'Dark gothic clown-style female face tattoo with sharp black makeup lines, dramatic eyeliner and dripping eye accents, glowing orange eyes, small star symbol on forehead. Smooth black and grey shading with subtle color in the eyes only, high contrast, fine linework and stippling, clean edges, centered vertical tattoo design. Isolated tattoo artwork only on plain white background, no arm or skin, stencil-ready, professional tattoo flash style.';
+      '고딕 어두운 여성 얼굴 타투, 검은 메이크업 선 네트와 극적 아이라인과 떨어지는 눈과 오렌지 빛나는 눈과 이마 작은 별 기호. 회 부드러운 그림자 눈만 높은 대비 얇은 라인 점묘 깨끗 모서리 프로페셔널 구성 타투 분리만 팔 없음 피부 타투 스텐실 준비 단순 높은 세부 고딕 플래시。';
 
   @override
-  String get exploreItemRealismButterflyWoman => 'Butterfly and Woman';
+  String get exploreItemRealismButterflyWoman => '나비와 여성';
 
   @override
   String get exploreItemRealismButterflyWomanPrompt =>
-      'Black & grey tattoo design of a realistic female side profile blended with large detailed butterfly wings emerging from her head. Soft feminine facial features, smooth shading, fine linework, high contrast, delicate wing patterns with stippling and gradient shading. Elegant, surreal composition, centered vertical layout, minimal background, monochrome, clean stencil-ready tattoo flash style, highly detailed.';
+      '검은 회 여성 초상화 타투, 측면 프로필 혼합 큰 나비 날개 머리에서 나옴. 얼굴 특징 부드러운 유동 그림자 얇은 라인 높은 대비 날개 패턴 미세 점묘 그림자. 슈르리얼 우아 구성 수직 중앙 구성 단순 배경 단순 높은 세부 리얼 플래시。';
 
   @override
-  String get exploreItemRealismFlamingSkull => 'Flaming Skull';
+  String get exploreItemRealismFlamingSkull => '불타는 해골';
 
   @override
   String get exploreItemRealismFlamingSkullPrompt =>
-      'Fiery skull tattoo design with a realistic human skull engulfed in dynamic flames. Intense glowing fire inside the eye sockets and mouth, sharp teeth details, high contrast shading, bold clean linework. Realism + dark fantasy style, dramatic lighting, vibrant orange and red flames with black/grey skull tones. Centered vertical composition, isolated on white background, stencil-ready, highly detailed professional tattoo flash.';
+      '불타는 해골 타투, 인간 해골 리얼 주변 역동 불꽃. 이빨 날카로운 그림자 높은 대비 대담 깨끗 라인. 리얼+어두운 판타지 극적 빛 오렌지 빨간 불꽃 검은/회 해골. 수직 중앙 구성 분리 흰 배경 타투 스텐실 준비 프로페셔널 높은 세부 플래시。';
 
   @override
-  String get exploreItemRealismFierceWolf => 'Fierce Wolf';
+  String get exploreItemRealismFierceWolf => '맹렬한 늑대';
 
   @override
   String get exploreItemRealismFierceWolfPrompt =>
-      'Vibrant and colorful tattoo design featuring a fierce wolf\'s face with piercing blue eyes, surrounded by a winding snake. The snake wraps around the wolf\'s head, slithering towards a cluster of blooming orange flowers. The tattoo is adorned with soft watercolor splashes in pink, purple, and blue hues, with a dripping paint effect. Rich detail in the fur, scales, and petals, high contrast between dark and light areas. Watercolor style with fine linework, modern nature and wildlife symbolism. Centered composition, vivid and dynamic, tattoo stencil-ready.';
+      '생생한 색 타투, 맹렬한 늑대 얼굴 옆 큰 오렌지 나비 세부 패턴. 나비 주변 피어난 오렌지 꽃. 타투 풍부한 세부 털 비늘 꽃瓣 높은 대비 어두운 밝은 영역. 유동 부드러운 라인 상징 자연 현대 야생 이상 큰 공간 무 방해 배경 중앙 조각。';
 
   @override
-  String get exploreItemRealismRedRoseButterfly => 'Red Rose and Butterfly';
+  String get exploreItemRealismRedRoseButterfly => '빨간 장미와 나비';
 
   @override
   String get exploreItemRealismRedRoseButterflyPrompt =>
-      'Elegant black and red tattoo design featuring a bold butterfly with dark wings, paired with a vivid red rose. The butterfly\'s wings have a smooth gradient from black to red, while the rose is deeply detailed with soft shading to enhance its petals. The design includes delicate red leaves and branches flowing outward, creating a balanced, flowing composition. The black ink contrasts sharply with the vibrant red, adding a dramatic, fluid appearance. Modern, clean linework with a slightly abstract touch. Tattoo stencil-ready with high contrast, perfect for an arm or thigh placement.';
+      '우아한 색 타투, 대담 나비 검은 날개 옆 생생한 빨간 장미. 나비 날개 검은 빨간 그라데이션 장미 세부 꽃瓣 부드러운 그림자 깊이. 디자인 주변 빨간 잎 줄기 유동 우아 구성. 검은 잉크 생생한 빨간 높은 대비. 현대 깨끗 라인 추상 터치. 완벽 전완 허벅지 깨끗 스텐실 배경。';
 
   @override
-  String get exploreItemRealismVibrantPeacock => 'Vibrant Peacock';
+  String get exploreItemRealismVibrantPeacock => '생생한 공작';
 
   @override
   String get exploreItemRealismVibrantPeacockPrompt =>
-      'Vibrant and colorful tattoo design of a peacock with a bright yellow-orange sun in the background. The peacock\'s feathers display stunning shades of blue, green, and purple, while its body is elegantly shaded with turquoise and teal. Bold pink flowers and green leaves frame the design, with fine linework to accentuate the shapes and textures. Modern and stylized with clean, bold outlines and rich, vibrant colors. Ideal for a larger area, with no background distractions, creating a focal piece perfect for placement anywhere on the body.';
+      '생생한 색 공작 타투, 오렌지 노란 태양 배경. 공작 깃털 숨 막히는 청록 녹색 보라 톤 우아 그림자 세부. 꽃 분홍 녹 잎 테두리 디자인 얇은 라인 텍스처와 광택. 현대 우아 대담 라인 생생한 색. 이상 큰 공간 무 방해 배경 초점 중앙 조각。';
 
   @override
-  String get exploreItemRealismPlayfulCharacter => 'Playful Character';
+  String get exploreItemRealismPlayfulCharacter => '장난기 있는 캐릭터';
 
   @override
   String get exploreItemRealismPlayfulCharacterPrompt =>
-      'Cute, colorful tattoo design of a playful character holding a large pink flower. The character features large, expressive eyes, blue fur, and a light blue belly. The vibrant flower is framed by green leaves, adding a natural touch to the design. The style is bold and cartoonish with smooth shading, clean lines, and vibrant colors, giving the tattoo a joyful and whimsical look. The design is ideal for a smaller area of the body, with no background distractions, emphasizing the character and flower as the focal points.';
+      '생생한 색 장난기 캐릭터 타투, 큰 분홍 꽃 들고. 캐릭터 큰 표현 눈 털 청 청 배. 생생한 꽃 녹 잎 테두리. 스타일 대담 만화 유동 그림자 깨끗 라인 생생한 색. 완벽 작은 공간 무 방해 배경 초점 캐릭터 꽃 중앙 포인트。';
 
   @override
-  String get exploreItemRealismCutePinkFish => 'Cute Pink Fish';
+  String get exploreItemRealismCutePinkFish => '귀여운 분홍 물고기';
 
   @override
   String get exploreItemRealismCutePinkFishPrompt =>
-      'Playful and vibrant tattoo design of a cute pink fish with a smiling expression. The fish features soft gradients of pink, with smooth shading that creates a lively, cartoonish look. Water splashes in shades of blue and turquoise surround the fish, adding dynamic movement. Small bubbles and light accents enhance the aquatic theme. Modern, clean lines with a playful touch, perfect for a small area on the body. The tattoo design focuses on the fish and water, with no background distractions, and has a joyful, whimsical vibe.';
+      '장난기 생생한 귀여운 분홍 물고기 타투, 미소 표현. 물고기 부드러운 분홍 그라데이션 미세 그림자. 물방울 청 터코이즈 색 주변 작은 물방울 빛. 현대 깨끗 라인 장난기 터치 이상 작은 공간. 디자인 물고기 물 무 방해 배경 쾌활 분위기。';
 
   @override
-  String get exploreItemLetteringTrustNoOne => 'Trust No One';
+  String get exploreItemLetteringTrustNoOne => '아무도 믿지 마라';
 
   @override
   String get exploreItemLetteringTrustNoOnePrompt =>
-      'Create a detailed gothic-style tattoo design with the phrase \'Trust no One\'. The text should be bold and dramatic, with sharp, angular edges. Add shading effects to give the text a three-dimensional look, and incorporate some ink splatter or shadow around the text for a gritty, intense vibe. The font should evoke a dark, mysterious atmosphere with an edgy, rebellious tone.';
+      '고딕 세부 타투, \'Trust no One\' 구절. 텍스트 대담 극적 날카로운 모서리 각. 그림자 효과 텍스트 3D 외관 주어 잉크 분사 텍스트 주변 거친 분위기 강한. 타이포그래피 어두운 신비적 분위기 날카로운 반항적 톤 불러일으킴。';
 
   @override
-  String get exploreItemLetteringBlessed => 'Blessed';
+  String get exploreItemLetteringBlessed => '축복받은';
 
   @override
   String get exploreItemLetteringBlessedPrompt =>
-      'High-contrast black and white graffiti tattoo design, word \"Blessed\" in bold hand-lettering calligraphy, smooth flowing script with thick strokes, subtle halo above letter, street-style spray paint glow around text, paint drips and ink splatter, clean vector lines, centered composition, stencil-ready tattoo flash, minimal background, sharp edges, professional tattoo design, black ink only.';
+      '그라피티 검은 흰색 높은 대비 타투, \"Blessed\" 단어 대담 손글씨 서체로 쓰인 효과 후광 문자 위 스프레이 페인트 효과 텍스트 주변 잉크 튀김 점. 깨끗한 두꺼운 라인 중앙 구성 타투 플래시 스텐실 준비 단순 배경 날카로운 모서리 프로페셔널 타투 디자인 검은 잉크만。';
 
   @override
-  String get exploreItemLetteringHakunaMatata => 'Hakuna Matata';
+  String get exploreItemLetteringHakunaMatata => '하쿠나 마타타';
 
   @override
   String get exploreItemLetteringHakunaMatataPrompt =>
-      'Bold black and white graffiti tattoo design with the words \"Hakuna Matata\", strong street-style block lettering, rough dry-brush strokes, high contrast ink, paint splatter and subtle drip details, urban graffiti wall aesthetic, thick clean outlines, centered composition, professional tattoo flash, stencil-ready, vector style, monochrome, white background, highly detailed, sharp edges.';
+      '그라피티 대담 검은 흰색 타투, \"Hakuna Matata\" 단어 손글씨 강 스타일 마른 브러시 거친 검은 잉크 높은 대비 스프레이 페인트와 잉크 점과 어반 그래피티 스타일 깨끗한 두꺼운 라인 중앙 구성 프로페셔널 타투 플래시 스텐실 준비 추상 단순 높은 세부 검은 잉크만 날카로운 모서리。';
 
   @override
-  String get exploreItemLetteringDream => 'Dream';
+  String get exploreItemLetteringDream => '꿈꾸다';
 
   @override
   String get exploreItemLetteringDreamPrompt =>
-      'Vibrant graffiti tattoo design with the word \"DREAM\", bold 3D street lettering, thick black outlines, colorful paint splashes and ink drips, urban spray-paint style, high contrast, layered graffiti wall aesthetic, dynamic composition, clean sharp edges, professional tattoo flash, stencil-ready, highly detailed, vector style.';
+      '그라피티 생생한 타투, \"DREAM\" 단어 3D 대담 손글씨 타이포그래피 검은 두꺼운 라인 생생한 스프레이 페인트와 잉크 점과 어반 스프레이 도시 스타일 높은 대비 빛과 역동적 구성 날카로운 모서리 프로페셔널 타투 플래시 스텐실 준비 높은 세부 추상。';
 
   @override
-  String get exploreItemLetteringBoom => 'Boom';
+  String get exploreItemLetteringBoom => '붐';
 
   @override
   String get exploreItemLetteringBoomPrompt =>
-      'Comic pop-art tattoo design with the word \"BOOM\", bold cartoon lettering, thick black outlines, vibrant pink and yellow colors, explosive comic burst background, glossy highlights, playful graffiti style, high contrast, clean smooth edges, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.';
+      '팝 아트 코믹 타투, \"BOOM\" 단어 만화 대담 타이포그래피 검은 두꺼운 라인 생생한 분홍 노란 색 코믹 폭발 배경 빛 높은 대비 부드러운 깨끗한 모서리 중앙 구성 프로페셔널 타투 플래시 스텐실 준비 추상 높은 세부。';
 
   @override
-  String get exploreItemLetteringWorkHardDreamBig => 'Work Hard Dream Big';
+  String get exploreItemLetteringWorkHardDreamBig => '열심히 일하고 크게 꿈꿔라';
 
   @override
   String get exploreItemLetteringWorkHardDreamBigPrompt =>
-      'Bold colorful graffiti tattoo design with the phrase \"Work Hard Dream Big\", dynamic street lettering, 3D layered typography, thick black outlines, vibrant gradient colors (orange, red, yellow), paint drips and ink splatter, urban graffiti wall style, high contrast, glossy highlights, centered composition, professional tattoo flash, stencil-ready, highly detailed, vector style, clean background.';
+      '그라피티 대담 색 타투, \"Work Hard Dream Big\" 구절 3D 멀티레이어 큰 타이포그래피 검은 두꺼운 라인 생생한 그라데이션 (오렌지 빨간 노란)과 스프레이 페인트와 어반 그래피티 스프레이 도시 스타일 높은 대비 빛 중앙 구성 프로페셔널 타투 플래시 스텐실 준비 높은 세부 추상 단순 배경。';
 
   @override
-  String get exploreItemLetteringRn => 'Letter RN';
+  String get exploreItemLetteringRn => 'RN';
 
   @override
   String get exploreItemLetteringRnPrompt =>
-      'Dark gothic tattoo design, stylized monogram letters \"RN\", sharp aggressive calligraphy with horned and spiked edges, black ink only, high contrast, heavy shadowing, grunge ink splatter, ornamental gothic typography, symmetrical composition, tattoo flash style, clean stencil-ready lines, monochrome, white background, highly detailed, professional tattoo design.';
+      '고딕 어두운 타투, \"RN\" 이니셜 공격적 서체 날카로운 타이포그래피 뿔 모서리 검은 잉크만 높은 대비 강한 그림자 잉크 튀김과 고딕 장식 타이포그래피 대칭 구성 타투 플래시 깨끗한 스텐실 준비 라인 단순 높은 세부 프로페셔널 타투 디자인。';
 
   @override
-  String get exploreItemLetteringC => 'Letter C';
+  String get exploreItemLetteringC => 'C';
 
   @override
   String get exploreItemLetteringCPrompt =>
-      'Dark gothic tattoo design featuring the letter \"C\" with a detailed royal crown on top, bold curved lettering with sharp edges, black and grey realism, high contrast shading, subtle ink splatter and drip effects, luxury gothic style, strong depth and shadow, centered composition, clean stencil-ready outlines, professional tattoo flash, monochrome, highly detailed vector tattoo style.';
+      '고딕 어두운 타투, \"C\" 문자 왕관 위 대담 구부러진 타이포그래피 날카로운 모서리 검은 회 리얼 높은 대비 그림자 깊은 그림자 고딕 화려 스타일 중앙 구성 깨끗한 스텐실 준비 라인 프로페셔널 타투 플래시 단순 높은 세부。';
 
   @override
-  String get exploreItemLetteringPeacePositivity => 'Peace & Positivity';
+  String get exploreItemLetteringPeacePositivity => '평화와 긍정';
 
   @override
   String get exploreItemLetteringPeacePositivityPrompt =>
-      'Bold colorful graffiti tattoo design with the phrase \"Peace & Positivity\", dynamic street-style lettering, large 3D typography, thick black outlines, vibrant gradient colors (yellow, orange, blue, green), paint splashes and dripping ink, urban spray-paint graffiti aesthetic, high contrast, glossy highlights, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.';
+      '그라피티 대담 색 타투, \"Peace & Positivity\" 구절 어반 핸드라이팅 스타일 큰 3D 타이포그래피 검은 두꺼운 라인 생생한 그라데이션 (노란 오렌지 파란 녹색)과 스프레이 페인트와 어반 그래피티 스프레이 도시 스타일 높은 대비 빛 중앙 구성 프로페셔널 타투 플래시 스텐실 준비 추상 높은 세부。';
 
   @override
-  String get exploreItemLetteringDreamBig => 'Dream Big';
+  String get exploreItemLetteringDreamBig => '크게 꿈꿔라';
 
   @override
   String get exploreItemLetteringDreamBigPrompt =>
-      'Colorful dreamy tattoo design with the words \"Dream Big\", soft bubble calligraphy lettering, glossy 3D gradient colors (rainbow tones), smooth rounded strokes, cute celestial elements like stars, sparkles and glowing sun, vibrant fantasy aesthetic, high contrast, clean bold outlines, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.';
+      '꿈꾸는 색 타투, \"Dream Big\" 단어 버블 서체 부드러운 타이포그래피 3D 생생한 그라데이션 (분홍 오렌지 노란)과 두꺼운 둥근 라인 천체 요소 별 빛과 태양 빛나는 긍정 생생한 미 높은 대비 대담 깨끗 라인 중앙 구성 프로페셔널 타투 플래시 스텐실 준비 높은 세부。';
 
   @override
-  String get exploreItemLetteringDesire => 'Desire';
+  String get exploreItemLetteringDesire => '욕망';
 
   @override
   String get exploreItemLetteringDesirePrompt =>
-      'Dark gothic tattoo design with the word \"Desire\", sharp aggressive black metal calligraphy, spiked thorn-like lettering, symmetrical composition, black and grey realism, metallic dark texture, high contrast shading, sinister ornamental details, clean stencil-ready outlines, professional tattoo flash, monochrome, ultra detailed, edgy gothic style.';
+      '고딕 어두운 타투, \"Desire\" 단어 블랙 메탈 날카로운 타이포그래피 날카로운 문자 대칭 구성 검은 회 리얼 높은 대비 어두운 금속 텍스처 무서운 장식 세부 깨끗한 스텐실 준비 라인 프로페셔널 타투 플래시 단순 높은 세부 고딕 날카로운 스타일。';
 
   @override
-  String get exploreItemLetteringBeautiful => 'Beautiful';
+  String get exploreItemLetteringBeautiful => '아름다운';
 
   @override
   String get exploreItemLetteringBeautifulPrompt =>
-      'Stylish colorful tattoo design with the word \"Beautiful\", smooth flowing script lettering, bold modern calligraphy, glossy 3D gradient colors (pink, orange, yellow), thick black outline, soft highlights and depth, feminine elegant style, clean curves and swashes, centered composition, professional tattoo flash, stencil-ready, highly detailed vector style.';
+      '우아한 색 타투, \"Beautiful\" 단어 현대 유동 서체 대담 타이포그래피 두꺼운 라인 3D 생생한 그라데이션 (분홍 오렌지 노란)과 검은 두꺼운 라인 빛 부드러운 여성 우아 스타일 구부러진 깨끗한 요소 장식 중앙 구성 프로페셔널 타투 플래시 스텐실 준비 높은 세부.';
 
   @override
-  String get exploreItemFloralFourLeafClover => 'Minimalist Four-Leaf Clover';
+  String get exploreItemFloralFourLeafClover => '네잎 클로버';
 
   @override
   String get exploreItemFloralFourLeafCloverPrompt =>
-      'Minimal fine-line four-leaf clover tattoo design, cute and delicate style, soft pastel green leaves with smooth gradient, thin black stem and clean outlines, small red heart detail inside one leaf, symmetrical composition, feminine minimalist tattoo flash, high contrast linework, subtle color fill, crisp vector-style edges, professional tattoo stencil design, centered composition.';
+      '단순 네잎 클로버 타투, 얇은 라인 달콤한 부드러운 스타일 녹색 파스텔 부드러운 잎 그라데이션 부드러운 검은 얇은 줄기 깨끗한 라인 작은 빨간 심장 세부 잎. 대칭 구성 타투 플래시 얇은 라인 높은 대비 날카로운 모서리 프로페셔널 타투 디자인 중앙 구성。';
 
   @override
-  String get exploreItemFloralCherryBlossom => 'Cherry Blossom Branch';
+  String get exploreItemFloralCherryBlossom => '벚꽃 가지';
 
   @override
   String get exploreItemFloralCherryBlossomPrompt =>
-      'Elegant cherry blossom branch tattoo design, fine-line botanical style, flowing sakura branch with multiple pink blossoms and small buds, gradient pink petals with delicate shading, thin black branch and clean outlines, subtle petal fall details, feminine composition, high-detail floral tattoo flash, balanced vertical layout, professional tattoo stencil design, minimal background, high contrast, centered composition.';
+      '우아한 벚꽃 가지 타투, 식물 스타일 얇은 라인 유동 사쿠라 가지 여러 분홍 꽃 봉오리 부드러운 분홍 꽃잎 미세 그림자 검은 얇은 줄기 깨끗한 라인 떨어지는 꽃잎 세부 여성 구성 타투 플래시 높은 세부 레이아웃 중앙 구성 프로페셔널 타투 디자인 단순 배경 높은 대비 중앙 구성。';
 
   @override
-  String get exploreItemFloralMountainLandscape => 'Mountain Landscape';
+  String get exploreItemFloralMountainLandscape => '산 풍경';
 
   @override
   String get exploreItemFloralMountainLandscapePrompt =>
-      'Minimal fine-line mountain landscape tattoo design, small centered composition, detailed mountain peaks with pine trees, flowing waterfall descending from the center, circular moon above the mountains, delicate dotwork shading and stippling, clean black ink linework, geometric balance, subtle texture, high contrast, professional tattoo flash style, crisp outlines, minimalist nature scene, transparent background.';
+      '단순 산 풍경 타투, 얇은 라인 작은 중앙 구성 날카로운 산 정점 소나무와 중앙 떨어지는 폭포와 위 달 둥글고 미세 점 그림자 점묘 검은 얇은 깨끗한 라인 기하학 균형 높은 대비 프로페셔널 타투 플래시 깨끗한 라인 자연 장면 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralHeartSunset => 'Heart-Shaped Sunset';
+  String get exploreItemFloralHeartSunset => '심장 일몰';
 
   @override
   String get exploreItemFloralHeartSunsetPrompt =>
-      'Small heart-shaped sunset tattoo design, vibrant warm color palette, glowing orange and red sunset inside a clean heart outline, ocean horizon with soft reflections, painterly clouds with subtle splatter details, minimal black base shadow under the heart, fine-line and micro-realism style, smooth gradient color blending, high contrast, centered composition, professional tattoo flash design, crisp edges, no text, transparent background.';
+      '작은 생생한 심장 일몰 타투, 따뜻한 생생한 색 불타는 빨간 일몰 심장 실루엣 내 부드러운 지평선 반사 구름 색 색 검은 단순 모서리 심장 아래 코믹 스타일 리얼 세부 부드러운 색 혼합 높은 대비 중앙 구성 프로페셔널 타투 플래시 날카로운 모서리 텍스트 없음 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralSeaTurtle => 'Sea Turtle';
+  String get exploreItemFloralSeaTurtle => '바다 거북';
 
   @override
   String get exploreItemFloralSeaTurtlePrompt =>
-      'Vibrant geometric sea turtle tattoo design, two sea turtles swimming side by side, faceted crystal-style shells with rainbow prism colors, polygonal pattern texture, high-detail scales and flippers, glossy gemstone effect, bold saturation with deep blues, purples, greens and warm highlights, micro-realism meets geometric style, clean sharp outlines, subtle shadow under figures, high contrast, centered composition, professional tattoo flash design, isolated artwork, transparent background.';
+      '기하학 생생한 바다 거북 타투, 두 바다 거북 헤엄치는 나란히 갑옷 수정 다면 스타일 무지개 색 텍스처 기하학 다각형 지느러미 비늘 높은 세부 테마 색 리얼 세부 높은 대비 중앙 구성 프로페셔널 타투 플래시 분리 예술 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralHibiscus => 'Hibiscus Flower';
+  String get exploreItemFloralHibiscus => '히비스커스';
 
   @override
   String get exploreItemFloralHibiscusPrompt =>
-      'Vibrant hibiscus flower tattoo design, bold tropical floral composition, large detailed hibiscus bloom with warm red, orange and yellow gradient petals, smooth color blending, clean black outlines, soft shading for depth, surrounding green leaves with fine vein detail, small decorative ink splatter dots, modern neo-traditional tattoo style, high contrast, centered composition, crisp edges, professional tattoo flash, isolated artwork, transparent background.';
+      '열대 생생한 히비스커스 타투, 식물 대담 구성 큰 히비스커스 세부 꽃잎 겹친 빨간 오렌지 노란 부드러운 그라데이션 검은 얇은 라인 미세 그림자 깊이 주변 녹색 잎 정맥 세부 작은 잉크 튀김 점 전통 새 스타일 높은 대비 중앙 구성 날카로운 모서리 프로페셔널 타투 플래시 분리 예술 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralButterflyLily => 'Butterfly and Lily';
+  String get exploreItemFloralButterflyLily => '나비와 백합';
 
   @override
   String get exploreItemFloralButterflyLilyPrompt =>
-      'Realistic monarch butterfly and lily flower tattoo design, vibrant orange and black butterfly with detailed wing patterns, perched beside a large yellow lily bloom, smooth color gradients and soft realistic shading, crisp black outlines with subtle depth, rich green leaves with fine vein detail, neo-traditional realism style, high contrast colors, balanced composition, professional tattoo flash design, clean edges, isolated artwork, transparent background.';
+      '리얼 나비 백합 타투, 식물 스타일 얇은 라인 모나크 나비 날개 세부 패턴 큰 노란 피어나는 백합 옆 부드러운 리얼 그라데이션 검은 얇은 라인 미세 그림자 깊이 주변 녹색 잎 정맥 세부 전통 새 스타일 높은 대비 균형 구성 프로페셔널 타투 플래시 날카로운 모서리 분리 예술 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralButterfly => 'Butterfly';
+  String get exploreItemFloralButterfly => '나비';
 
   @override
   String get exploreItemFloralButterflyPrompt =>
-      'Realistic monarch butterfly tattoo design, vibrant orange wings with deep black borders and white dot accents, symmetrical open-wing pose, smooth gradient color blending, glossy highlights and soft shadow for depth, clean bold outlines, high-detail wing texture, neo-traditional realism style, high contrast, centered composition, professional tattoo flash, crisp edges, isolated artwork, transparent background.';
+      '리얼 모나크 나비 타투, 오렌지 날개 검은 모서리 흰 점 날개 펼쳐진 대칭 부드러운 그라데이션 검은 얇은 라인 미세 그림자 깊이 날개 얇은 텍스처 점묘 그림자 전통 새 스타일 높은 대비 중앙 구성 프로페셔널 타투 플래시 날카로운 모서리 분리 예술 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralHummingbirdCherry =>
-      'Hummingbird and Cherry Blossom';
+  String get exploreItemFloralHummingbirdCherry => '벌새와 체리';
 
   @override
   String get exploreItemFloralHummingbirdCherryPrompt =>
-      'Delicate hummingbird and cherry blossom tattoo design, fine-line realism style, small hummingbird in mid-flight with detailed feathers and soft shading, thin curved branch with pink cherry blossoms and tiny buds, elegant botanical composition, subtle color accents on flowers with mostly black ink bird, clean crisp outlines, micro-realism tattoo flash style, high detail, balanced composition, high contrast, professional tattoo design, isolated artwork, transparent background.';
+      '부드러운 리얼 벌새 체리 꽃 타투, 식물 스타일 얇은 라인 작은 날아다니는 벌새 깃털 세부 미세 그림자 구부러진 얇은 줄기 분홍 체리 꽃 작은 봉오리 주로 검은 잉크 가벼운 색 액센트 꽃 깨끗한 얇은 라인 프로페셔널 타투 플래시 세부 레이아웃 균형 구성 높은 대비 분리 예술 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralButterflyBracelet => 'Butterfly Bracelet';
+  String get exploreItemFloralButterflyBracelet => '나비 팔찌';
 
   @override
   String get exploreItemFloralButterflyBraceletPrompt =>
-      'Elegant blue butterfly bracelet tattoo design, delicate chain-style composition wrapping in a flowing curve, two detailed blue butterflies with gradient wings and fine line texture, small star charms and tiny floral accents connected by thin ornamental chains, feminine micro-realism style, crisp black outlines with vibrant blue highlights, subtle dotwork details, light and airy composition, high contrast, professional tattoo flash design, centered and balanced layout, isolated artwork, transparent background.';
+      '우아한 파란 나비 팔찌 타투, 유동 스타일 얇은 라인 얇은 체인 구부러져 감싸는 두 파란 나비 세부 날개 그라데이션 작은 별 펜던트 분홍 꽃 액센트 연결 장식 링 얇은 여성 가벼운 공기 스타일 얇은 라인 균형 구성 높은 대비 프로페셔널 타투 플래시 중앙 구성 분리 예술 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralBabyPanda => 'Baby Panda';
+  String get exploreItemFloralBabyPanda => '아기 팬더';
 
   @override
   String get exploreItemFloralBabyPandaPrompt =>
-      'Cute baby panda tattoo design, sitting panda holding a small bamboo stick, soft rounded cartoon style with semi-realistic fur texture, gentle blush on cheeks, big expressive eyes and friendly smile, black and white panda with subtle grey shading, small bamboo leaves around the character, light watercolor splash background in pastel tones, clean bold outlines with soft shading, kawaii tattoo style, high contrast, centered composition, professional tattoo flash design, isolated artwork, transparent background.';
+      '카와이 아기 팬더 타투, 둥근 부드러운 스타일 얼굴 미세 홍조 큰 표현 눈 웃는 친근한 흰 검은 털 미세 회 그림자 주변 대나무 잎 파스텔 톤 가벼운 물감 액센트 두꺼운 깨끗한 라인 미세 그림자 카와이 타투 스타일 높은 대비 중앙 구성 프로페셔널 타투 플래시 분리 예술 투명 단순 배경。';
 
   @override
-  String get exploreItemFloralSunMoon => 'Sun Moon';
+  String get exploreItemFloralSunMoon => '태양과 달';
 
   @override
   String get exploreItemFloralSunMoonPrompt =>
-      'Sun and crescent moon watercolor tattoo design, vibrant celestial composition, glowing orange sun with flowing rays surrounding a large crescent moon, moon filled with galaxy-style colors in blue, purple and pink, soft watercolor splashes and ink drips, delicate star details and sparkles, fine clean outlines with smooth color gradients, modern celestial tattoo style, high contrast, balanced centered composition, professional tattoo flash design, isolated artwork, transparent background.';
+      '천체 물감 타투, 태양과 달과 생생한 구성 불타는 오렌지 태양 방사 선과 풀문 파란 보라 분홍 물감 부드러운 튀김과 잉크 점 작은 별 빛과 얇은 깨끗한 라인 부드러운 그라데이션 천체 현대 스타일 높은 대비 중앙 균형 구성 프로페셔널 타투 플래시 분리 예술 투명 단순 배경.';
 
   @override
-  String get exploreItemMythologyWarriorSerpents => 'Warrior and Serpents';
+  String get exploreItemMythologyWarriorSerpents => '전사와 뱀';
 
   @override
   String get exploreItemMythologyWarriorSerpentsPrompt =>
-      'A muscular classical Greek statue-style male warrior wrapped tightly by multiple serpents, one snake coiling around torso and arms, another rising with open mouth, warrior holding a dagger downward in one hand, dramatic mythological struggle pose, inspired by ancient sculpture and renaissance engraving, highly detailed black ink tattoo design, fine line engraving style, cross-hatching shading, clean linework, centered vertical composition, high contrast, white background, parchment texture, realistic anatomy, dark fantasy tattoo flash, symmetrical balanced layout.';
+      '근육질 남성 전사 그리스 고전 조각 스타일 여러 뱀 엄격하게 감싸 몸통 팔과 뱀 입 벌린 전투 신화 드라마틱 포즈 고대 조각 영감과 르네상스 판각과 타투 디자인 얇은 라인 세부 크로스 해치 그림자 깨끗한 라인 높은 대비 스튜디오 리얼 샷。';
 
   @override
-  String get exploreItemMythologyPhoenixRising => 'Phoenix Rising';
+  String get exploreItemMythologyPhoenixRising => '상승하는 불사조';
 
   @override
   String get exploreItemMythologyPhoenixRisingPrompt =>
-      'Vibrant phoenix tattoo design, wings fully spread upward, long flowing tail feathers, dynamic rising pose, fiery color palette with red, orange, yellow and hints of blue, ultra detailed feathers, clean bold outlines, modern neo-traditional tattoo style, high contrast, glowing ember effects, subtle ink splatter accents, symmetrical composition, sharp linework, rich gradient coloring, dramatic lighting, professional tattoo flash illustration, centered composition, plain background.';
+      '생생한 불사조 타투, 날개 완전히 펼쳐진 위 꼬리 긴 구부러진 상승 포즈 생생한 색 팔레트 빨간 오렌지 노란 파란 금 액센트 깃털 높이 세부 대담 깨끗한 라인 전통 새 스타일 높은 대비 브레이싱 효과 미세 스프레이 페인트 중앙 구성 프로페셔널 타투 플래시 단순 배경。';
 
   @override
-  String get exploreItemMythologyMedusa => 'Medusa';
+  String get exploreItemMythologyMedusa => '메두사';
 
   @override
   String get exploreItemMythologyMedusaPrompt =>
-      'Medusa inspired tattoo design, mysterious female face with multiple serpents coiling and intertwining through the hair, several snake heads facing different directions, one snake with open mouth and fangs visible, intense glowing eyes, cracked marble skin texture, mythological dark fantasy theme, ultra detailed scales and hair strands, bold clean linework, neo-traditional tattoo style, rich green and earthy tones, high contrast shading, smooth gradients, dramatic composition, centered tattoo flash illustration, sharp outlines, professional tattoo design.';
+      '신화 메두사 타투, 여성 신비 얼굴 뱀 머리카락 여러 뱀 머리 다른 방향 입 벌린 송곳니 빛나는 눈 금간 대리석 피부 텍스처 어두운 판타지 테마 높이 세부 라인 전통 새 스타일 풍부한 흙색 그림자 높은 대비 부드러운 그라데이션 드라마틱 구성 프로페셔널 타투 플래시 날카로운 모서리 타투 디자인。';
 
   @override
-  String get exploreItemMythologyDragonSword => 'Dragon Coiled Around Sword';
+  String get exploreItemMythologyDragonSword => '용과 검';
 
   @override
   String get exploreItemMythologyDragonSwordPrompt =>
-      'Dark fantasy dragon wrapped around an ornate medieval sword, dragon body coiling tightly along the blade, detailed scales and sharp claws, fierce dragon head with open mouth and visible fangs near the hilt, gothic engraved sword design, symmetrical vertical composition, black and grey tattoo style, ultra detailed linework, high contrast shading, fine line engraving technique, dramatic shadows, sharp clean outlines, fantasy tattoo flash, centered composition, minimal plain background, professional tattoo illustration.';
+      '어두운 판타지 용 엄격하게 감싸 중세 장식 검 긴 뱀 몸 비늘 날카로운 발톱 세부 용 머리 입 벌린 송곳니 가까운 가드 장식 검 고딕 수직 대칭 구성 검은 회 타투 얇은 높이 세부 라인 크로스 해치 그림자 깊은 그림자 날카로운 깨끗한 라인 어두운 판타지 플래시 중앙 구성 단순 배경 프로페셔널 타투 디자인。';
 
   @override
-  String get exploreItemMythologyThreeHeadedHydra => 'Three-Headed Hydra';
+  String get exploreItemMythologyThreeHeadedHydra => '세 머리 히드라';
 
   @override
   String get exploreItemMythologyThreeHeadedHydraPrompt =>
-      'Three-headed hydra dragon tattoo design, massive serpentine dragon body with three fierce dragon heads emerging from one neck, mouths open with sharp fangs, aggressive expressions, overlapping scales and armored plates, dark fantasy creature, ultra detailed black and grey tattoo style, heavy shading, high contrast lighting, intricate scale texture, sharp horns and spikes, smoke drifting from mouths, dramatic vertical composition, clean bold outlines, professional tattoo flash illustration, centered composition.';
+      '큰 세 머리 히드라 용 긴 뱀 몸 세 사나운 용 머리 목에서 나오는 입 벌린 날카로운 송곳니 비늘 겹친 판 갑옷 테마 바다 어두운 검은 회 타투 얇은 높이 세부 라인 강한 그림자 높은 대비 비늘 복잡한 텍스처 입 증기 상승 수직 드라마틱 구성 대담 깨끗한 라인 프로페셔널 타투 플래시。';
 
   @override
-  String get exploreItemMythologyOctopus => 'Octopus';
+  String get exploreItemMythologyOctopus => '문어';
 
   @override
   String get exploreItemMythologyOctopusPrompt =>
-      'Detailed octopus tattoo design, large octopus with curling tentacles spreading outward in a balanced composition, tentacles twisting and overlapping with visible suction cups, intense eyes and textured head, dark ocean creature theme, black and grey tattoo style, ultra fine linework, engraving and dotwork shading, high contrast shadows, realistic texture, symmetrical centered layout, bold clean outlines, professional tattoo flash illustration.';
+      '세부 문어 타투, 촉수 펼친 균형 구성 빨판 보이는 빛나는 눈 머리 텍스처 테마 바다 어두운 검은 회 타투 정확한 얇은 라인 점 그림자 크로스 해치 높은 대비 리얼 텍스처 대칭 중앙 구성 대담 깨끗한 라인 프로페셔널 타투 플래시。';
 
   @override
-  String get exploreItemMythologyJapaneseDragon => 'Japanese Style Dragon';
+  String get exploreItemMythologyJapaneseDragon => '일본 용';
 
   @override
   String get exploreItemMythologyJapaneseDragonPrompt =>
-      'Japanese style dragon tattoo design, powerful eastern dragon with long serpentine body coiling in an S-shaped composition, detailed layered scales, sharp horns and whiskers, fierce open mouth with fangs, claws extended, flowing mane and tail, surrounded by stylized clouds and flame elements, vibrant red, orange and gold color palette, bold clean outlines, neo-traditional japanese tattoo style, smooth gradient shading, high contrast, dynamic movement, professional tattoo flash illustration.';
+      '일본 용 이레즈미 전통 스타일 긴 유동 몸 용 주변 구름 대담 라인 녹색 빨간 금 생생한 팔레트 역동적 포즈 비늘 높이 세부 뿔 수염 불 장식 전통 일본 스타일 그림자 부드러운 그라데이션 높은 대비 역동적 움직임 프로페셔널 타투 플래시。';
 
   @override
-  String get exploreItemMythologyDarkFantasyEye => 'Dark Fantasy Eye';
+  String get exploreItemMythologyDarkFantasyEye => '어두운 판타지 눈';
 
   @override
   String get exploreItemMythologyDarkFantasyEyePrompt =>
-      'Dark fantasy tattoo design featuring a central eye surrounded by multiple smaller eyes, all radiating a glowing red energy, large detailed wings extending from the center, with sharp feather tips and deep shadows, veins of red lightning running through the design, high contrast black and grey shading with fiery accents, intricate and symmetrical composition, modern gothic style, fine line detailing, powerful and intense mystical theme, dramatic atmosphere, professional tattoo flash illustration, minimal background with focus on the design.';
+      '어두운 판타지 타투, 중앙 눈 작은 눈 주변 모두 빛나는 빨간 에너지 날개 큰 펼친 그림자 깊은 번개 뇌 빨간 흐름 디자인 그림자 검은 회 불 미세 복잡 구성 대칭 어두운 고딕 현대 스타일 얇은 라인 강 테마 프로페셔널 타투 플래시 단순 배경 디자인 초점。';
 
   @override
-  String get exploreItemMythologyMermaid => 'Mermaid';
+  String get exploreItemMythologyMermaid => '인어';
 
   @override
   String get exploreItemMythologyMermaidPrompt =>
-      'Vibrant, horror-themed mermaid tattoo design, grotesque mermaid with a skeletal, gnarled face, long wild hair in dark shades of black and deep purple, sharp claws, and twisted, muscular body, transitioning from human form to a fish tail with iridescent scales in shades of teal, blue, and green, eerie underwater creature vibe with glowing elements, fiery orange and red highlights on the tail and eyes, dramatic shading with contrasting dark tones, high detail, horror fantasy tattoo style with rich colors, professional flash tattoo, clean bold outlines, vivid contrasts.';
+      '생생한 공포 인어 타투, 공포 테마 공포 인어 못생긴 얼굴 두개골 특징 야성 머리 어두운 톤 검은 보라 깊은 날카로운 발톱 근육 몸 인간 형태 전환 물고기 꼬리 무지개 비늘 어두운 해저 생물 공포 분위기 빛나는 요소 불 오렌지 빨간 꼬리 눈 그림자 드라마틱 어두운 대비 생생한 대비 얇은 세부 라인 공포 판타지 스타일 풍부한 색 프로페셔널 타투 플래시 대담 깨끗한 라인 생생한 대비。';
 
   @override
-  String get exploreItemMythologyDynamicDragon => 'Dynamic Dragon';
+  String get exploreItemMythologyDynamicDragon => '역동적 용';
 
   @override
   String get exploreItemMythologyDynamicDragonPrompt =>
-      'Vibrant and dynamic dragon tattoo design, serpent-like body with smooth scales transitioning from deep green to teal, fiery orange and golden wings stretching outward, feathered wings with a gradient of warm tones from orange to light yellow, sleek sinuous tail with fiery accents, detailed head with sharp features and subtle horns, dragon exuding energy and motion, dramatic shading to highlight the curves and texture of the body, fantasy style with vivid color palette, high contrast, professional tattoo illustration with clean bold outlines.';
+      '생생한 역동적 용 타투, 뱀 몸 비늘 부드러운 녹색 깊은 청색 전환 불 날개 오렌지 금 펼친 날개 깃털 따뜻한 톤 오렌지 노란 가벼운 꼬리 물결 드라마틱 그림자 곡선 강조 몸 텍스처 판타지 스타일 생생한 색 팔레트 높은 대비 프로페셔널 타투 디자인 대담 깨끗한 라인。';
 
   @override
-  String get exploreItemMythologyTrident => 'Trident';
+  String get exploreItemMythologyTrident => '삼지창';
 
   @override
   String get exploreItemMythologyTridentPrompt =>
-      'Gothic trident tattoo design with sharp, intricate details, the trident head adorned with dark, thorn-like spines and elegant curves, a serpent wrapping around the trident shaft, the body of the serpent with smooth scales and subtle shading, floral vine elements twisting around the trident, delicate yet powerful, dark and eerie black and grey shading with high contrast, dramatic shadow play, sharp outlines, and fine detail, professional tattoo flash, minimal background with focus on the weapon and serpent, symmetrical design.';
+      '고딕 삼지창 복잡한 날카로운 세부 축 가시 우아한 곡가리 뱀 감싸는 미세 그림자 덩굴 장식 주변 섬세하지만 강력 그림자 검은 회 어두운 높은 대비 드라마틱 그림자 놀이 날카로운 라인 세부 미세 프로페셔널 타투 플래시 단순 배경 무기 뱀 초점 대칭 디자인。';
 
   @override
-  String get exploreItemMythologyWarrior => 'Warrior';
+  String get exploreItemMythologyWarrior => '전사';
 
   @override
   String get exploreItemMythologyWarriorPrompt =>
-      'Powerful fantasy warrior tattoo design, dragon-like figure with scales covering the face and neck, glowing blue eyes, long, detailed beard and sharp features, fiery orange and blue flame accents swirling around the character, sharp spiked armor and fins protruding from the back, holding a trident in one hand, dramatic shading with high contrast, detailed textures on the skin and weapon, vivid colors of fire and ice, strong mythical atmosphere, bold clean outlines, professional tattoo flash illustration, minimal background with focus on the character and flames.';
+      '강력 판타지 전사 용 비늘 얼굴 목 덮는 파란 빛나는 눈 긴 세부 수염 날카로운 특징 불꽃 오렌지 파란 소용돌이 주변 날카로운 갑옷 이빨 지느러미 등에서 상승 삼지창 한 손 들음 그림자 드라마틱 높은 대비 세부 피부 무기 텍스처 생생한 불 얼음 색 강력 신화 분위기 대담 깨끗한 라인 프로페셔널 타투 플래시 단순 배경 인물 불꽃 초점。';
 }
