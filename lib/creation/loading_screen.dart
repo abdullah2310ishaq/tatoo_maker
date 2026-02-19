@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
 import '../l10n/app_localizations.dart';
 import 'result_screen.dart';
+import '../widgets/creative_loading_spinner.dart';
 
 class LoadingScreen extends StatefulWidget {
   final String?
@@ -88,7 +90,7 @@ class _LoadingScreenState extends State<LoadingScreen>
       print(
         'LoadingScreen: No name or prompt text provided, using placeholder',
       );
-      _navigationTimer = Timer(const Duration(seconds: 3), () {
+      _navigationTimer = Timer(const Duration(seconds: 5), () {
         if (mounted) _navigateToResult();
       });
       return;
@@ -158,7 +160,11 @@ class _LoadingScreenState extends State<LoadingScreen>
     // Global style so the model generates a clean standalone tattoo design,
     // not on a body part.
     promptParts.add(
-      'black and white, line art, minimalist, intricate details, standalone tattoo design, no human body, no arm, no hand, plain background, just the tattoo design',
+      'black and white, line art, minimalist, intricate details, standalone tattoo design, white background, high contrast, 2d only, flat design',
+    );
+    // Explicit negative prompts disguised as positive constraints to ensure no body parts
+    promptParts.add(
+      'no skin, no flesh, no human body, no arms, no legs, no hands, no face, no blurred background, isolated on white',
     );
 
     final finalPrompt = promptParts.join(', ');
@@ -325,7 +331,6 @@ class _LoadingScreenState extends State<LoadingScreen>
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
-    final assetPath = widget.selectedStyleAsset ?? 'assets/unicorn.png';
 
     return SafeArea(
       child: Container(
@@ -335,33 +340,11 @@ class _LoadingScreenState extends State<LoadingScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Centered unicorn/selected style asset
+            // Centered creative spinner
+            // Centered creative spinner
             Expanded(
               flex: 3,
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40.w),
-                  child: Image.asset(
-                    assetPath,
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        width: 200.w,
-                        height: 200.h,
-                        decoration: BoxDecoration(
-                          color: AppColors.buttonBackground,
-                          borderRadius: BorderRadius.circular(16.r),
-                        ),
-                        child: Icon(
-                          Icons.image_not_supported,
-                          color: AppColors.textGrey,
-                          size: 48.sp,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
+              child: Center(child: const CreativeLoadingSpinner()),
             ),
             // Text with underline and progress bar
             Expanded(

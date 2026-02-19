@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'utils/colors.dart';
 import 'home_shell.dart';
 import 'language/first_language.dart';
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         // User has completed onboarding, go directly to home
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomeShell()),
-        );
+                 );
       } else {
         // First time - go to language selection
         Navigator.of(context).pushReplacement(
