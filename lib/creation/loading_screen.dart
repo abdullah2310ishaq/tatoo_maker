@@ -168,12 +168,12 @@ class _LoadingScreenState extends State<LoadingScreen>
     // Strict body-part exclusion instructions (Flux has no negative_prompt
     // param, so these must live in the positive prompt).
     promptParts.add(
-      'STRICTLY NO human body parts whatsoever: '
-      'no skin, no flesh, no human body, no arms, no legs, no hands, no fingers, no feet, '
-      'no torso, no back, no chest, no shoulder, no neck, no face, no head, no ears, no lips, '
-      'no eyes, no nails, no veins, no body hair, no tattoo studio, no tattoo machine, '
-      'no person, no people, no model, no portrait photo, no photograph of body, '
-      'no real skin texture, no wrist, no ankle, no elbow, no muscle, no anatomy',
+      'STRICTLY NO human body parts whatsoever: and white background',
+      // 'no skin, no flesh, no human body, no arms, no legs, no hands, no fingers, no feet, '
+      // 'no torso, no back, no chest, no shoulder, no neck, no face, no head, no ears, no lips, '
+      // 'no eyes, no nails, no veins, no body hair, no tattoo studio, no tattoo machine, '
+      // 'no person, no people, no model, no portrait photo, no photograph of body, '
+      // 'no real skin texture, no wrist, no ankle, no elbow, no muscle, no anatomy',
     );
 
     final finalPrompt = promptParts.join(', ');

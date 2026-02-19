@@ -1577,7 +1577,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Fine-Line Heart and Stars
   ///
   /// In en, this message translates to:
-  /// **'A minimalist geometric forearm tattoo featuring a solid black heart with sharp edges, flanked by thin four-point star sparkles above and below. Small black dots and tiny outlined circles form a symmetrical vertical layout around it. Done in clean fine-line black ink on smooth skin, photographed in soft natural light with a modern, high-detail tattoo reference style.'**
+  /// **'A minimalist geometric tattoo featuring a solid black heart with sharp edges, flanked by thin four-point star sparkles above and below. Small black dots and tiny outlined circles form a symmetrical vertical layout around it.  high-detail tattoo reference style white background'**
   String get exploreItemFineLineHeartStarsPrompt;
 
   /// Explore item title: Fine-Line Compass Star
@@ -1601,7 +1601,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Minimal Treble Clef Neck
   ///
   /// In en, this message translates to:
-  /// **'A small glossy black treble clef tattoo with three tiny music notes, placed behind the ear on the side of the neck. Done in bold, clean lines, it\'s photographed in soft warm lighting with realistic skin texture, a visible ear with a silver stud earring, and a shallow depth of field for a detailed, minimal tattoo reference look.'**
+  /// **'A small glossy black treble clef tattoo with three tiny music notes, . Done in bold, clean lines, it\'s photographed in soft warm lighting with texture  and a shallow depth of field for a detailed, minimal tattoo reference look., tattoo design, inspired by exploreitemminimaltrebleclef style, aesthetic only, stencil-ready design, art print on blank white paper, black and white, line art, minimalist, intricate details, standalone tattoo design, white background, high contrast, 2d only, flat design, isolated artwork, STRICTLY NO human body parts whatsoever: and white background'**
   String get exploreItemMinimalTrebleClefPrompt;
 
   /// Explore item title: Starry Heart
@@ -1613,7 +1613,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Starry Heart
   ///
   /// In en, this message translates to:
-  /// **'A minimalist fine-line inner-forearm tattoo featuring a medium outlined heart with tiny dotted details inside, surrounded by small stars and solid dots. Done in clean black micro-tattoo style, it\'s photographed on realistic skin in soft outdoor light, with a white sleeve, light blue jeans, and a subtle bracelet visible against a softly blurred street background.'**
+  /// **'A minimalist fine-line inner tattoo featuring a medium outlined heart with tiny dotted details inside, surrounded by small stars and solid dots, done in clean black micro-tattoo style on a white background, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, high contrast, 2D only, flat design, isolated artwork.'**
   String get exploreItemStarryHeartPrompt;
 
   /// Explore item title: Valknut Triangle
@@ -1625,7 +1625,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Valknut Triangle
   ///
   /// In en, this message translates to:
-  /// **'Photorealistic close-up of a hand near a jeans pocket with a small minimalist geometric Valknut-style tattoo made of three interlocking triangles in thin black ink. Visible skin texture and veins, black sleeve and silver ring, denim background, soft natural lighting, and shallow depth of field.'**
+  /// **'Photorealistic close-up of a geometric Valknut-style tattoo made of three interlocking triangles in thin black ink, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork, soft natural lighting, shallow depth of field.'**
   String get exploreItemValknutTrianglePrompt;
 
   /// Explore item title: Minimalist Mountain
@@ -1637,7 +1637,7 @@ abstract class AppLocalizations {
   /// Explore item prompt: Minimalist Mountain
   ///
   /// In en, this message translates to:
-  /// **'Ultra-realistic close-up of an inner wrist with a tiny fine-line mountain tattoo in clean black ink. Small minimalist design centered on the wrist, visible skin texture and veins, sleeve slightly rolled up, soft natural lighting, neutral background, and shallow depth of field.'**
+  /// **'Ultra-realistic close-up of a fine-line mountain tattoo in clean black ink, small minimalist design with soft natural lighting, neutral background and shallow depth of field, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork.'**
   String get exploreItemMinimalistMountainPrompt;
 
   /// Explore item title: Swallow Bird

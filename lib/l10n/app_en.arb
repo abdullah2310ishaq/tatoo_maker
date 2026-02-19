@@ -884,7 +884,6 @@
   "@historySelect": {
     "description": "History page: enter selection mode button"
   },
-  
   "noInternetConnectionSomeFeatures": "No internet connection. Some features may not work.",
   "@noInternetConnectionSomeFeatures": {
     "description": "Toast on home when device has no internet"
@@ -1025,7 +1024,7 @@
   "@exploreItemFineLineHeartStars": {
     "description": "Explore item title: Fine-Line Heart and Stars"
   },
-  "exploreItemFineLineHeartStarsPrompt": "A minimalist geometric forearm tattoo featuring a solid black heart with sharp edges, flanked by thin four-point star sparkles above and below. Small black dots and tiny outlined circles form a symmetrical vertical layout around it. Done in clean fine-line black ink on smooth skin, photographed in soft natural light with a modern, high-detail tattoo reference style.",
+  "exploreItemFineLineHeartStarsPrompt": "A minimalist geometric tattoo featuring a solid black heart with sharp edges, flanked by thin four-point star sparkles above and below. Small black dots and tiny outlined circles form a symmetrical vertical layout around it.  high-detail tattoo reference style white background",
   "@exploreItemFineLineHeartStarsPrompt": {
     "description": "Explore item prompt: Fine-Line Heart and Stars"
   },
@@ -1041,7 +1040,7 @@
   "@exploreItemMinimalTrebleClef": {
     "description": "Explore item title: Minimal Treble Clef Neck"
   },
-  "exploreItemMinimalTrebleClefPrompt": "A small glossy black treble clef tattoo with three tiny music notes, placed behind the ear on the side of the neck. Done in bold, clean lines, it's photographed in soft warm lighting with realistic skin texture, a visible ear with a silver stud earring, and a shallow depth of field for a detailed, minimal tattoo reference look.",
+  "exploreItemMinimalTrebleClefPrompt": "A small glossy black treble clef tattoo with three tiny music notes, . Done in bold, clean lines, it's photographed in soft warm lighting with texture  and a shallow depth of field for a detailed, minimal tattoo reference look., tattoo design, inspired by exploreitemminimaltrebleclef style, aesthetic only, stencil-ready design, art print on blank white paper, black and white, line art, minimalist, intricate details, standalone tattoo design, white background, high contrast, 2d only, flat design, isolated artwork, STRICTLY NO human body parts whatsoever: and white background",
   "@exploreItemMinimalTrebleClefPrompt": {
     "description": "Explore item prompt: Minimal Treble Clef Neck"
   },
@@ -1049,7 +1048,7 @@
   "@exploreItemStarryHeart": {
     "description": "Explore item title: Starry Heart"
   },
-  "exploreItemStarryHeartPrompt": "A minimalist fine-line inner-forearm tattoo featuring a medium outlined heart with tiny dotted details inside, surrounded by small stars and solid dots. Done in clean black micro-tattoo style, it's photographed on realistic skin in soft outdoor light, with a white sleeve, light blue jeans, and a subtle bracelet visible against a softly blurred street background.",
+  "exploreItemStarryHeartPrompt": "A minimalist fine-line inner tattoo featuring a medium outlined heart with tiny dotted details inside, surrounded by small stars and solid dots, done in clean black micro-tattoo style on a white background, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, high contrast, 2D only, flat design, isolated artwork.",
   "@exploreItemStarryHeartPrompt": {
     "description": "Explore item prompt: Starry Heart"
   },
@@ -1057,7 +1056,7 @@
   "@exploreItemValknutTriangle": {
     "description": "Explore item title: Valknut Triangle"
   },
-  "exploreItemValknutTrianglePrompt": "Photorealistic close-up of a hand near a jeans pocket with a small minimalist geometric Valknut-style tattoo made of three interlocking triangles in thin black ink. Visible skin texture and veins, black sleeve and silver ring, denim background, soft natural lighting, and shallow depth of field.",
+  "exploreItemValknutTrianglePrompt": "Photorealistic close-up of a geometric Valknut-style tattoo made of three interlocking triangles in thin black ink, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork, soft natural lighting, shallow depth of field.",
   "@exploreItemValknutTrianglePrompt": {
     "description": "Explore item prompt: Valknut Triangle"
   },
@@ -1065,7 +1064,7 @@
   "@exploreItemMinimalistMountain": {
     "description": "Explore item title: Minimalist Mountain"
   },
-  "exploreItemMinimalistMountainPrompt": "Ultra-realistic close-up of an inner wrist with a tiny fine-line mountain tattoo in clean black ink. Small minimalist design centered on the wrist, visible skin texture and veins, sleeve slightly rolled up, soft natural lighting, neutral background, and shallow depth of field.",
+  "exploreItemMinimalistMountainPrompt": "Ultra-realistic close-up of a fine-line mountain tattoo in clean black ink, small minimalist design with soft natural lighting, neutral background and shallow depth of field, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, high contrast, 2D only, flat design, isolated artwork.",
   "@exploreItemMinimalistMountainPrompt": {
     "description": "Explore item prompt: Minimalist Mountain"
   },
