@@ -696,6 +696,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exit => 'خروج';
 
   @override
+  String historySelected(int count) {
+    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+    );
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString محدد';
+  }
+
+  @override
+  String get historySelectAll => 'تحديد الكل';
+
+  @override
+  String get historyDeselectAll => 'إلغاء تحديد الكل';
+
+  @override
+  String get historySelect => 'تحديد';
+
+  @override
   String get noInternetConnectionSomeFeatures =>
       'لا يوجد اتصال بالإنترنت. قد لا تعمل بعض الميزات.';
 
@@ -1485,5 +1504,5 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exploreItemMythologyWarriorPrompt =>
-      'تصميم وشم محارب خيالي قوي وشخصية شبيهة بالتنين بحراشف تغطي الوجه والرقبة وعيون زرقاء متوهجة ولحية طويلة مفصلة وملامح حادة ولمسات لهب نارية برتقالية وزرقاء تدور حول الشخصية ودرع مسنن حاد وزعانف بارزة من الظهر ويحمل رمحًا ثلاثيًا بيد واحدة وتظليل درامي بتباين عالي ونسيج مفصل على الجلد والسلاح وألوان حية من النار والجليد وأجواء أسطورية قوية وخطوط جريئة نظيفة ورسم فلاش وشم احترافي وخلفية بسيطة مع التركيز على الشخصية والنيران.';
+      'محارب خيال قوي مع قشور تنين تغطي وجه ورقبة وعيون زرقاء متوهجة ولحية طويلة مفصلة وملامح حادة وخفايا نار برتقالية زرقاء تدور حوله ودروع مسننة حادة وزعانف مرتفعة من الظهر ويحمل ترايدنت في يد واحدة وتظليل درامي بتباين عالٍ وملمس جلد وسلاح مفصل وألوان نار جليد حيوية وجو أسطوري قوي وخطوط جريئة نظيفة ووميض وشم احترافي وخلفية بسيطة بتركيز على شكل ولهب.';
 }

@@ -677,6 +677,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exit => '退出';
 
   @override
+  String historySelected(int count) {
+    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+    );
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString 已选择';
+  }
+
+  @override
+  String get historySelectAll => '全选';
+
+  @override
+  String get historyDeselectAll => '取消全选';
+
+  @override
+  String get historySelect => '选择';
+
+  @override
   String get noInternetConnectionSomeFeatures => '未连接互联网。部分功能可能无法使用。';
 
   @override
@@ -1373,74 +1392,74 @@ class AppLocalizationsZh extends AppLocalizations {
       '天体水彩纹身，太阳和月亮鲜艳构图燃烧橙太阳辐射射线满月蓝紫粉墨柔和喷和点和星星小光辉和干净细线柔和渐变天体现代风格高对比中央平衡构图专业纹身闪光隔离艺术透明简单背景。';
 
   @override
-  String get exploreItemMythologyWarriorSerpents => 'Warrior and Serpents';
+  String get exploreItemMythologyWarriorSerpents => 'Warrior Serpents';
 
   @override
   String get exploreItemMythologyWarriorSerpentsPrompt =>
-      'A muscular classical Greek statue-style male warrior wrapped tightly by multiple serpents, one snake coiling around torso and arms, another rising with open mouth, warrior holding a dagger downward in one hand, dramatic mythological struggle pose, inspired by ancient sculpture and renaissance engraving, highly detailed black ink tattoo design, fine line engraving style, cross-hatching shading, clean linework, centered vertical composition, high contrast, white background, parchment texture, realistic anatomy, dark fantasy tattoo flash, symmetrical balanced layout.';
+      'Intricate warrior serpents tattoo design in neo-traditional style, featuring two intertwined serpents with detailed scales and fierce expressions, adorned with warrior armor plating and helmets, surrounded by traditional floral elements like peonies and chrysanthemums, bold black outlines with rich, deep colors such as emerald green, crimson red, and gold, dynamic composition emphasizing movement and strength, high contrast and shading for depth, professional tattoo flash style.';
 
   @override
   String get exploreItemMythologyPhoenixRising => 'Phoenix Rising';
 
   @override
   String get exploreItemMythologyPhoenixRisingPrompt =>
-      'Vibrant phoenix tattoo design, wings fully spread upward, long flowing tail feathers, dynamic rising pose, fiery color palette with red, orange, yellow and hints of blue, ultra detailed feathers, clean bold outlines, modern neo-traditional tattoo style, high contrast, glowing ember effects, subtle ink splatter accents, symmetrical composition, sharp linework, rich gradient coloring, dramatic lighting, professional tattoo flash illustration, centered composition, plain background.';
+      'Majestic phoenix tattoo rising from flames, vibrant red, orange, and gold feathers with intricate detailing, dynamic wings spread wide, swirling smoke and embers in the background, symbol of rebirth and resilience, neo-traditional style with bold lines and smooth color gradients, high contrast to emphasize the glowing effect of the fire, professional tattoo illustration.';
 
   @override
   String get exploreItemMythologyMedusa => 'Medusa';
 
   @override
   String get exploreItemMythologyMedusaPrompt =>
-      'Medusa inspired tattoo design, mysterious female face with multiple serpents coiling and intertwining through the hair, several snake heads facing different directions, one snake with open mouth and fangs visible, intense glowing eyes, cracked marble skin texture, mythological dark fantasy theme, ultra detailed scales and hair strands, bold clean linework, neo-traditional tattoo style, rich green and earthy tones, high contrast shading, smooth gradients, dramatic composition, centered tattoo flash illustration, sharp outlines, professional tattoo design.';
+      'Detailed Medusa head tattoo design, stone-cold expression with glowing eyes, hair made of writhing venomous snakes with realistic scales and fangs, Greek mythology inspired, black and grey realism with high contrast, dramatic shading to emphasize texture and depth, ancient stone texture elements, powerful and mystical vibe.';
 
   @override
-  String get exploreItemMythologyDragonSword => 'Dragon Coiled Around Sword';
+  String get exploreItemMythologyDragonSword => 'Dragon Sword';
 
   @override
   String get exploreItemMythologyDragonSwordPrompt =>
-      'Dark fantasy dragon wrapped around an ornate medieval sword, dragon body coiling tightly along the blade, detailed scales and sharp claws, fierce dragon head with open mouth and visible fangs near the hilt, gothic engraved sword design, symmetrical vertical composition, black and grey tattoo style, ultra detailed linework, high contrast shading, fine line engraving technique, dramatic shadows, sharp clean outlines, fantasy tattoo flash, centered composition, minimal plain background, professional tattoo illustration.';
+      'Epic dragon wrapped around a sword tattoo design, detailed dragon scales and fierce head, ancient sword with ornate hilt and runic engravings, dynamic pose with the dragon coiling tightly, black and grey shading with sharp highlights, fantasy warrior style, symbolizing strength and protection, professional tattoo flash art.';
 
   @override
-  String get exploreItemMythologyThreeHeadedHydra => 'Three-Headed Hydra';
+  String get exploreItemMythologyThreeHeadedHydra => 'Three Headed Hydra';
 
   @override
   String get exploreItemMythologyThreeHeadedHydraPrompt =>
-      'Three-headed hydra dragon tattoo design, massive serpentine dragon body with three fierce dragon heads emerging from one neck, mouths open with sharp fangs, aggressive expressions, overlapping scales and armored plates, dark fantasy creature, ultra detailed black and grey tattoo style, heavy shading, high contrast lighting, intricate scale texture, sharp horns and spikes, smoke drifting from mouths, dramatic vertical composition, clean bold outlines, professional tattoo flash illustration, centered composition.';
+      'Fearsome three-headed hydra tattoo, each head displaying a different aggressive expression, detailed reptilian scales and sharp teeth, dynamic necks intertwining, Greek mythology monster, dark fantasy style, bold linework with deep shading, high contrast, menacing and powerful aesthetic.';
 
   @override
   String get exploreItemMythologyOctopus => 'Octopus';
 
   @override
   String get exploreItemMythologyOctopusPrompt =>
-      'Detailed octopus tattoo design, large octopus with curling tentacles spreading outward in a balanced composition, tentacles twisting and overlapping with visible suction cups, intense eyes and textured head, dark ocean creature theme, black and grey tattoo style, ultra fine linework, engraving and dotwork shading, high contrast shadows, realistic texture, symmetrical centered layout, bold clean outlines, professional tattoo flash illustration.';
+      'Intricate giant octopus tattoo occupying the canvas, long flowing tentacles with detailed suckers curling dynamically, intelligent eye, ocean elements like waves and bubbles in the background, illustrative blackwork style with stippling and hatching for texture, deep depth and dimension, marine life tattoo art.';
 
   @override
-  String get exploreItemMythologyJapaneseDragon => 'Japanese Style Dragon';
+  String get exploreItemMythologyJapaneseDragon => 'Japanese Dragon';
 
   @override
   String get exploreItemMythologyJapaneseDragonPrompt =>
-      'Japanese style dragon tattoo design, powerful eastern dragon with long serpentine body coiling in an S-shaped composition, detailed layered scales, sharp horns and whiskers, fierce open mouth with fangs, claws extended, flowing mane and tail, surrounded by stylized clouds and flame elements, vibrant red, orange and gold color palette, bold clean outlines, neo-traditional japanese tattoo style, smooth gradient shading, high contrast, dynamic movement, professional tattoo flash illustration.';
+      'Traditional Japanese dragon tattoo (Ryu), long serpentine body with detailed scales, flowing mane and whiskers, clutching a pearl, surrounded by clouds and wind bars (wind currents), irezumi style, bold thick outlines with vibrant colors or solid black and grey shading, powerful and auspicious symbol.';
 
   @override
   String get exploreItemMythologyDarkFantasyEye => 'Dark Fantasy Eye';
 
   @override
   String get exploreItemMythologyDarkFantasyEyePrompt =>
-      'Dark fantasy tattoo design featuring a central eye surrounded by multiple smaller eyes, all radiating a glowing red energy, large detailed wings extending from the center, with sharp feather tips and deep shadows, veins of red lightning running through the design, high contrast black and grey shading with fiery accents, intricate and symmetrical composition, modern gothic style, fine line detailing, powerful and intense mystical theme, dramatic atmosphere, professional tattoo flash illustration, minimal background with focus on the design.';
+      'Surreal dark fantasy eye tattoo, realistic eye with an intense gaze, surrounded by organic biomechanical or dark twisted roots/vines, dripping ink effects, darker aesthetic with high contrast black and grey shading, mysterious and unsettling but artistic, detailed iris texture.';
 
   @override
   String get exploreItemMythologyMermaid => 'Mermaid';
 
   @override
   String get exploreItemMythologyMermaidPrompt =>
-      'Vibrant, horror-themed mermaid tattoo design, grotesque mermaid with a skeletal, gnarled face, long wild hair in dark shades of black and deep purple, sharp claws, and twisted, muscular body, transitioning from human form to a fish tail with iridescent scales in shades of teal, blue, and green, eerie underwater creature vibe with glowing elements, fiery orange and red highlights on the tail and eyes, dramatic shading with contrasting dark tones, high detail, horror fantasy tattoo style with rich colors, professional flash tattoo, clean bold outlines, vivid contrasts.';
+      'Beautiful mermaid tattoo design, sitting elegantly on a rock or among coral, flowing hair and detailed tail scales, sea shells and pearls accessories, pin-up or neo-traditional style, soft shading for skin tones and vibrant colors for the tail and ocean elements, enchanting and graceful.';
 
   @override
   String get exploreItemMythologyDynamicDragon => 'Dynamic Dragon';
 
   @override
   String get exploreItemMythologyDynamicDragonPrompt =>
-      'Vibrant and dynamic dragon tattoo design, serpent-like body with smooth scales transitioning from deep green to teal, fiery orange and golden wings stretching outward, feathered wings with a gradient of warm tones from orange to light yellow, sleek sinuous tail with fiery accents, detailed head with sharp features and subtle horns, dragon exuding energy and motion, dramatic shading to highlight the curves and texture of the body, fantasy style with vivid color palette, high contrast, professional tattoo illustration with clean bold outlines.';
+      'Action-oriented dynamic dragon tattoo, captured in mid-flight or attack, roaring with mouth open, sharp claws extended, body twisted in a complex pose, high energy and movement, illustrative style with emphasis on anatomy and motion blur effects, fierce and powerful.';
 
   @override
   String get exploreItemMythologyTrident => 'Trident';

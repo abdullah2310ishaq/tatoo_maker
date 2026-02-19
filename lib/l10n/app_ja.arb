@@ -265,92 +265,149 @@
     "description": "Home: style prompt for Floral"
   },
   "homeDescribeYourDreamInk": "あなたの夢のタトゥーを説明してください",
-  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "@homeDescribeYourDreamInk": {
+    "description": "Home: \"Describe Your Dream Ink\" title"
+  },
   "homeDreamInkHint": "あなたが思い描くものを教えてください...",
-  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "@homeDreamInkHint": {
+    "description": "Home: Dream ink input hint"
+  },
   "homeInspiration": "インスピレーション",
-  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "@homeInspiration": {
+    "description": "Home: Inspiration label"
+  },
   "homeCharactersRemaining": "文字残り",
-  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "@homeCharactersRemaining": {
+    "description": "Home: \"characters remaining\" suffix (prepend number in UI)"
+  },
   "homeTattooStyle": "タトゥースタイル",
-  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "@homeTattooStyle": {
+    "description": "Home: Tattoo Style section title"
+  },
   "homeExploreInspiration": "インスピレーションを探索",
-  "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
+  "@homeExploreInspiration": {
+    "description": "Home: Explore Inspiration section title"
+  },
   "homeGenerate": "生成",
-  "@homeGenerate": { "description": "Home: Generate button label" },
+  "@homeGenerate": {
+    "description": "Home: Generate button label"
+  },
   "homeTutorialOverlayText": "心に描いているタトゥーを説明するか、「インスピレーション」をタップしてアイデアを取得してください",
-  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
-
+  "@homeTutorialOverlayText": {
+    "description": "Home: Tutorial overlay text"
+  },
   "exploreTitleGothqueen": "Gothqueen",
-  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "@exploreTitleGothqueen": {
+    "description": "Home: Explore item title - Gothqueen"
+  },
   "explorePromptGothqueen": "黒とグレーのゴシッククイーンタトゥー、ハゲた女性の顔、華やかな王冠、幾何学的なライン作業、リアルなシェーディング、対称、高詳細",
-  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
-
+  "@explorePromptGothqueen": {
+    "description": "Home: Explore item prompt - Gothqueen"
+  },
   "exploreTitleFloral": "Floral",
-  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "@exploreTitleFloral": {
+    "description": "Home: Explore item title - Floral"
+  },
   "explorePromptFloral": "複雑な花びらと葉を持つ美しいフラワータトゥーデザイン、自然な流れる曲線、植物タトゥースタイル、詳細なライン作業、ソリッドホワイトインク、高コントラスト",
-  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
-
+  "@explorePromptFloral": {
+    "description": "Home: Explore item prompt - Floral"
+  },
   "exploreTitleSkullWithFedoraAndPipe": "フェドラとパイプを持つ頭蓋骨",
-  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "@exploreTitleSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item title - Skull with fedora and pipe"
+  },
   "explorePromptSkullWithFedoraAndPipe": "リアルな黒とグレーの頭蓋骨タトゥー、クラシックなフェドラをかぶった横顔の頭蓋骨、柔らかい上向きの煙を出す曲がったパイプを吸う、ビンテージノワールスタイル、詳細な骨と歯のテクスチャ、ドットワークと柔らかいリアリズムによる滑らかなグラデーションシェーディング、細い針のディテール、高コントラストブラック、プロフェッショナルタトゥーアートワーク。",
-  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
-
+  "@explorePromptSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item prompt - Skull with fedora and pipe"
+  },
   "exploreTitleElegantSnakeTattoo": "エレガントなヘビタトゥー",
-  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "@exploreTitleElegantSnakeTattoo": {
+    "description": "Home: Explore item title - Elegant snake tattoo"
+  },
   "explorePromptElegantSnakeTattoo": "超詳細な黒と白の攻撃的なヘビタトゥー、長い牙と二股の舌を持つ開いた口、流れる巻きついた体、細いラインの詳細な鱗、深い黒のシェーディング、強いコントラスト、リアルな深み、クリーンなネガティブスペース、伝統的な彫刻×モダンリアリズム、鋭い輪郭、モノクロインク、背景なし、プロフェッショナルタトゥーフラッシュ、前腕またはスリーブ対応。",
-  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
-
+  "@explorePromptElegantSnakeTattoo": {
+    "description": "Home: Explore item prompt - Elegant snake tattoo"
+  },
   "exploreTitleFeatherAndBirdsInFlight": "羽と飛行中の鳥",
-  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "@exploreTitleFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item title - Feather and birds in flight"
+  },
   "explorePromptFeatherAndBirdsInFlight": "超詳細な黒と白の羽タトゥー、細いライン作業を持つエレガントでリアルな羽、対称的な羽枝と鋭い脊柱、滑らかなドットワークグラデーションシェーディング、ミニマルプレミアムファインラインスタイル、上向きに流れる小さな鳥のシルエット、バランスの取れた構図、鋭い輪郭、高コントラストブラックインク、モダンタトゥーリアリズム、モノクロのみ、白いキャンバス上に背景なし、プロフェッショナルフラッシュ、ステンシル対応。",
-  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
-
+  "@explorePromptFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item prompt - Feather and birds in flight"
+  },
   "exploreTitleRainyBatWithCelestialStars": "天体の星を持つ雨のコウモリ",
-  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "@exploreTitleRainyBatWithCelestialStars": {
+    "description": "Home: Explore item title - Rainy bat with celestial stars"
+  },
   "explorePromptRainyBatWithCelestialStars": "完全に広げた翼を持つ対称的なコウモリタトゥー、ソリッドブラックボディ、滑らかな虹のグラデーション（紫から青、緑、黄、オレンジ）で満たされた翼、細いライン作業を持つクリーンで大胆な輪郭、微妙なドットワークシェーディング、小さな星と点に囲まれた、上下に2つの四角い星、神秘的な天体の雰囲気、モダンネオトラディショナルスタイル、高コントラスト、鋭いディテール。",
-  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
-
+  "@explorePromptRainyBatWithCelestialStars": {
+    "description": "Home: Explore item prompt - Rainy bat with celestial stars"
+  },
   "exploreTitleElegantBlackCatSilhouetteDesign": "エレガントな黒猫シルエットデザイン",
-  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "@exploreTitleElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item title - Elegant black cat silhouette design"
+  },
   "explorePromptElegantBlackCatSilhouetteDesign": "エレガントな抽象スタイルのミニマリスト黒猫タトゥーデザイン、長い流れる曲がった尾を持つ横顔の座った猫、滑らかな掃引線と鋭いテーパーエッジ、深みのための微妙なグラデーションシェーディングを持つソリッドブラックインク、体を形成する幾何学的で流動的な形状、顔から伸びる繊細なひげの線、モダンファインラインタトゥースタイル、高コントラスト、クリーンなネガティブスペース、洗練された芸術的な外観、タトゥーフラッシュアート",
-  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
-
+  "@explorePromptElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item prompt - Elegant black cat silhouette design"
+  },
   "exploreTitleRedRoseTattooDesign": "赤いバラタトゥーデザイン",
-  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "@exploreTitleRedRoseTattooDesign": {
+    "description": "Home: Explore item title - Red rose tattoo design"
+  },
   "explorePromptRedRoseTattooDesign": "リアルな赤いバラタトゥー、層状の花びらを持つ単一の開花バラ、豊かな深い赤色、細かい詳細な花びらのテクスチャ、微妙なグラデーションシェーディング、小さな棘と2つの詳細な葉を持つ自然な緑の茎、クリーンで鮮明な輪郭、柔らかいリアリズムタトゥースタイル、高コントラスト、滑らかな色のブレンディング、プロフェッショナルタトゥーフラッシュ品質、分離されたバラのみ",
-  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
-
+  "@explorePromptRedRoseTattooDesign": {
+    "description": "Home: Explore item prompt - Red rose tattoo design"
+  },
   "exploreTitleBlackInfinityArrowTattoo": "黒い無限矢印タトゥー",
-  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "@exploreTitleBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item title - Black infinity arrow tattoo"
+  },
   "explorePromptBlackInfinityArrowTattoo": "リアルなミニマリスト黒い無限矢印タトゥー、鋭い矢印を持つ滑らかな連続ループ、クリーンで大胆なライン作業、高コントラストソリッドブラックインク、モダンミニマルスタイル、モノクロ、ステンシル対応。",
-  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
-
+  "@explorePromptBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item prompt - Black infinity arrow tattoo"
+  },
   "exploreTitleBlackScorpionTattooDesign": "黒いサソリタトゥーデザイン",
-  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "@exploreTitleBlackScorpionTattooDesign": {
+    "description": "Home: Explore item title - Black scorpion tattoo design"
+  },
   "explorePromptBlackScorpionTattooDesign": "リアルなミニマリスト黒いサソリタトゥーデザイン、大胆なソリッドブラックインク、鋭いクリーンなライン作業、対称的なトライバル風のディテール、高コントラスト、滑らかな曲線、モダンタトゥースタイル、ステンシル対応、プレーンな背景上に分離、超詳細、プロフェッショナルタトゥーフラッシュ",
-  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
-
+  "@explorePromptBlackScorpionTattooDesign": {
+    "description": "Home: Explore item prompt - Black scorpion tattoo design"
+  },
   "exploreTitleCrescentMoonAndStarTattoo": "三日月と星のタトゥー",
-  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "@exploreTitleCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item title - Crescent moon and star tattoo"
+  },
   "explorePromptCrescentMoonAndStarTattoo": "ミニマリストブラックインクタトゥー、ファインラインスタイル、ソリッドブラックフィルを持つ上向きの三日月、垂直に整列した上の小さな四角い星、微妙なドットアクセント、天体的で神秘的な美学、シンプルな幾何学、バランスの取れた間隔、クリーンな背景、正確なライン作業、高コントラスト、時代を超えたミニマルタトゥーデザイン",
-  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
-
+  "@explorePromptCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item prompt - Crescent moon and star tattoo"
+  },
   "exploreTitleSleepingPandaTattoo": "眠っているパンダタトゥー",
-  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "@exploreTitleSleepingPandaTattoo": {
+    "description": "Home: Explore item title - Sleeping panda tattoo"
+  },
   "explorePromptSleepingPandaTattoo": "ミニマリストかわいいパンダタトゥー、横に寝ている小さな眠っているパンダ、シンプルな丸い形状、ソリッドブラックアンドホワイトインク、柔らかく滑らかなフィル、最小限の顔のディテール、クリーンなエッジ、モダンミニマリストタトゥースタイル、モノクロ、背景なし、白いキャンバス、ステンシル対応。",
-  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
-
+  "@explorePromptSleepingPandaTattoo": {
+    "description": "Home: Explore item prompt - Sleeping panda tattoo"
+  },
   "genericTattoo": "タトゥー",
-  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
-
+  "@genericTattoo": {
+    "description": "Generic: Tattoo label (fallback style name)"
+  },
   "loadingGeneratingYourTattoo": "タトゥーを生成中..",
-  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
-
+  "@loadingGeneratingYourTattoo": {
+    "description": "Loading screen: generating message"
+  },
   "resultShare": "共有",
-  "@resultShare": { "description": "Result screen: Share button label" },
+  "@resultShare": {
+    "description": "Result screen: Share button label"
+  },
   "resultNoImageToShare": "共有する画像がありません",
-  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "@resultNoImageToShare": {
+    "description": "Result screen: No image to share message"
+  },
   "resultShareText": "私の {styleName} タトゥーデザインをチェックしてください！",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
@@ -379,7 +436,9 @@
     }
   },
   "resultImageSavedToGallery": "画像がギャラリーに保存されました",
-  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "@resultImageSavedToGallery": {
+    "description": "Result screen: Image saved to gallery message"
+  },
   "resultErrorSaving": "画像保存エラー：{error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
@@ -789,12 +848,10 @@
   },
   "noInternetConnectionSomeFeatures": "インターネットに接続されていません。一部の機能は使用できない場合があります。",
   "noInternetConnectionPleaseCheckNetwork": "インターネットに接続されていません。ネットワークを確認してください。",
-
   "homeSeeAll": "すべて表示",
   "@homeSeeAll": {
     "description": "Home: See all link for category row"
   },
-
   "deleteConfirmationTitle": "エントリを削除",
   "@deleteConfirmationTitle": {
     "description": "Title for delete confirmation dialog"
@@ -807,7 +864,6 @@
   "@delete": {
     "description": "Delete button label"
   },
-
   "exploreCategoryMinimal": "ミニマリストタトゥー",
   "exploreCategoryMinimalDescription": "シンプルでクリーンな線にミニマリストの美学。繊細でエレガントなデザインに最適。",
   "exploreCategoryTraditional": "伝統的・オールドスクール",
@@ -828,7 +884,6 @@
   "exploreCategoryMythologyDescription": "ファンタジーからインスパイアされた神話的な生き物と神々。",
   "exploreCategoryCustomAi": "カスタムAIデザイン",
   "exploreCategoryCustomAiDescription": "複数のスタイルを組み合わせたユニークなAIデザイン。",
-
   "exploreItemMinimalistPanda": "ミニマリストパンダ",
   "exploreItemMinimalistPandaPrompt": "足首の小さなミニマリストパンダタトゥー、軽く右を向いて座る可愛いパンダ、黒いクリーンな線で描かれ、繊細なマイクロシェーディング。パンダは緑の細い茎を持ち、紫の小さなラベンダーの花、繊細なボタニカルディテールと黒い光沢のある耳と腕。デザインは足首の肌の中央に位置し、自然光で撮影され、低い被写界深度とプロフェッショナルなミニマリストタトゥーリファレンススタイルで1:1の構成。",
   "exploreItemFineLineBow": "細線リボン",
@@ -853,7 +908,6 @@
   "exploreItemValknutTrianglePrompt": "デニムのポケットの黒いジーンズで手を握る近い現実的なショット、ヴァルクヌートアートのような微妙な小さなタトゥー、3つの絡みつく三角形で黒い細いクリーンインク。肌のテクスチャーと静脈が表示され、暗いポロと銀の指輪とデニムの背景と自然光と低い被写界深度。",
   "exploreItemMinimalistMountain": "ミニマリスト山",
   "exploreItemMinimalistMountainPrompt": "前腕の内側の近い現実的なショット、小さなシンプルな山タトゥーで黒い細いクリーンインク。デザインは前腕の中央に小さく位置し、肌のテクスチャーと少しロールアップされた袖と自然光と中立背景と低い被写界深度。",
-
   "exploreItemSwallowBird": "ツバメ",
   "exploreItemSwallowBirdPrompt": "オールドスクールツバメタトゥー、翼を広げ、大胆な線とクラシックな青と赤のパレットと古い船乗りフラッシュスタイルとシンプルなシェーディングと中央の構成と透明なPNG背景と高い解像度。",
   "exploreItemDaggerHeart": "ダガー心臓",
@@ -870,7 +924,6 @@
   "exploreItemCowboyRevolverPrompt": "オールドスクールカウボーイリボルバータトゥー、クラシックな西部ピストルと黒い太い大胆な線とクラシックなフラッシュスタイルと微妙な赤と金のアクセントと強いシェーディングとクリーンな外観と中央の構成と透明なPNG背景と高い解像度。",
   "exploreItemPantherHead": "パンサー頭",
   "exploreItemPantherHeadPrompt": "オールドスクールパンサー頭タトゥー、咆哮するパンサーと黒い大胆な線と黄色い目と赤い口と伝統的なフラッシュスタイルと強いシェーディングと中央の構成と透明なPNG背景と高い解像度。",
-
   "exploreItemKoiFish": "コイ魚",
   "exploreItemKoiFishPrompt": "伝統的なイレズミデザインの日本のコイ魚タトゥー、湾曲した体と大胆な線と赤とオレンジのパレットと魚の周りの波の水とクリーンな外観と中央の構成と透明なPNG背景と高い解像度。",
   "exploreItemHannyaMask": "ハンニャマスク",
@@ -891,7 +944,6 @@
   "exploreItemJapaneseLotusPrompt": "日本の蓮の花タトゥーと蓮の花イレズミスタイルと大胆な線とピンク赤の色と水要素とクリーンな外観と中央の構成と透明なPNG背景と高い解像度。",
   "exploreItemJapanesePhoenix": "日本フェニックス",
   "exploreItemJapanesePhoenixPrompt": "日本のフェニックス鳥イレズミスタイルと翼を広げと大胆な線と赤オレンジ黄色の色と鳥の周りの火と中央の構成と透明なPNG背景と高い解像度。",
-
   "exploreItemPolynesianTribal": "ポリネシア部族タトゥー",
   "exploreItemPolynesianTribalPrompt": "手の甲の太いポリネシア部族タトゥー、黒いクリーンな線とスパイラルパターンと幾何学的デザイン。タトゥーは柔らかい曲線と鋭い角度で流れ、手のひらから手首まで鋭い先端で伸びる。深い黒いインクで高いコントラストを示し、伝統的なポリネシア部族スタイルでリアルな肌テクスチャーと柔らかい光。",
   "exploreItemTribalSpineSpear": "脊椎槍",
@@ -916,7 +968,6 @@
   "exploreItemTribalFlamePrompt": "手の甲の近いショット、対称黒部族タトゥー、関節から手首に流れる鋭い曲線とスパイラルオーナメント黒インク。肌テクスチャーと静脈表示と手リラックスと青い濃いデニム背景と中立内部光と低い被写界深度。",
   "exploreItemTribalSwordCompass": "剣コンパス",
   "exploreItemTribalSwordCompassPrompt": "手の甲の近いショット、黒灰部族タトゥー、垂直剣貫通薔薇風向き線細く円詳細と煙のような影。リアル肌テクスチャーと霧暗い背景とドラマチックスタジオ光と低い被写界深度。",
-
   "exploreItemGeometricMindBodySoul": "心体魂",
   "exploreItemGeometricMindBodySoulPrompt": "前腕の詳細高い神聖幾何タトゥー、垂直構成：上脳木に変わり中央解剖学的マンダラ形と下解剖心的要素。クリーン細い線と点影と高いコントラストとスタジオリアリズムショット。",
   "exploreItemGeometricHoneycombSleeve": "蜂の巣スリーブ",
@@ -941,7 +992,6 @@
   "exploreItemGeometricSigiPrompt": "指小シンプルタトゥー、黒細いインク垂直シンボル重なり三角とダイヤモンドと鋭いポリゴン微妙点影とクリーン負スペース。現代神聖幾何スタイル細い正確ラインと高いコントラストとプロフェッショナルスタンシルレディ。",
   "exploreItemGeometricDualityNature": "自然二重性",
   "exploreItemGeometricDualityNaturePrompt": "シンプル黒仕事幾何タトゥー前腕、ライン細い点影重なり三角：上山シーン太陽/月昇りと下逆海洋波大。幾何クリーン枠と神聖幾何微妙と移動ライン点線現代均衡自然テーマ高いコントラストとスタンシルレディ。",
-
   "exploreItemRealismGamblerFedora": "ギャンブラーとフェドラ",
   "exploreItemRealismGamblerFedoraPrompt": "リアル黒灰タトゥー、フェドラとスーツの手後ろ無顔ギャンブラー。古い街灯後ろと扇形カードと微妙煙側。ノワール雰囲気高いコントラスト細いライン詳細点描伝統スタイル対称中央構成透明PNGシンプル高い詳細黒フラッシュ。",
   "exploreItemRealismMindOverHeart": "心上心臓",
@@ -966,7 +1016,6 @@
   "exploreItemRealismPlayfulCharacterPrompt": "鮮やか色遊び心キャラクタータトゥー、大ピンク花持つ。キャラクター大きい表現眼毛青青腹。鮮やか花緑葉縁。スタイル大胆漫画流れる影クリーンライン鮮やか色。完璧小スペース無邪魔背景焦点キャラクター花中央点。",
   "exploreItemRealismCutePinkFish": "可愛いピンク魚",
   "exploreItemRealismCutePinkFishPrompt": "遊び心鮮やか可愛いピンク魚タトゥー、微笑み表現。魚柔らかいピンクグラデーション微妙影。泡青ターコイズ色周囲小泡輝き。現代クリーンライン遊び心タッチ理想小スペース。デザイン魚水無邪魔背景陽気雰囲気。",
-
   "exploreItemLetteringTrustNoOne": "誰も信用するな",
   "exploreItemLetteringTrustNoOnePrompt": "ゴシック詳細タトゥー、'Trust no One'フレーズ。テキスト大胆劇的鋭い縁角。影効果テキスト3D外観与えるインク噴霧テキスト周囲粗い雰囲気強い。タイポグラフィー暗い神秘的ムード鋭い反抗的トーン喚起。",
   "exploreItemLetteringBlessed": "祝福された",
@@ -997,7 +1046,6 @@
   "exploreItemLetteringDesirePrompt": "ゴシック暗いタトゥー、\"Desire\"言葉ブラックメタル鋭いタイポグラフィー鋭い文字対称構成黒灰リアル高いコントラスト暗い金属テクスチャー怖い装飾詳細クリーンスタンシルレディラインプロフェッショナルタトゥーフラッシュシンプル高い詳細ゴシック鋭いスタイル。",
   "exploreItemLetteringBeautiful": "美しい",
   "exploreItemLetteringBeautifulPrompt": "優雅色タトゥー、\"Beautiful\"言葉モダンフローイングカリグラフィック大胆タイポグラフィー太いライン3D鮮やかグラデーション（ピンクオレンジ黄色）と黒太いライン輝き柔らかい女性優雅スタイル曲がりクリーン要素装飾中央構成プロフェッショナルタトゥーフラッシュスタンシルレディ高い詳細。",
-
   "exploreItemFloralFourLeafClover": "四つ葉のクローバー",
   "exploreItemFloralFourLeafCloverPrompt": "シンプル四つ葉クローバータトゥー、細いライン甘い優しいスタイル緑パステル柔らかい葉グラデーション柔らかい黒細い茎クリーンライン心赤小詳細葉。対称構成タトゥーフラッシュ細いライン高いコントラスト鋭い縁プロフェッショナルタトゥーデザイン中央構成。",
   "exploreItemFloralCherryBlossom": "桜の花枝",
@@ -1022,7 +1070,6 @@
   "exploreItemFloralBabyPandaPrompt": "カワイイ赤ちゃんパンダタトゥー、丸い柔らかいスタイル顔微妙赤らみ大きい表現眼微笑みフレンドリー白黒毛微妙灰影周囲竹葉パステルトーン軽い水彩アクセント太いクリーンライン微妙影カワイイタトゥースタイル高いコントラスト中央構成プロフェッショナルタトゥーフラッシュ分離アート透明シンプル背景。",
   "exploreItemFloralSunMoon": "太陽と月",
   "exploreItemFloralSunMoonPrompt": "天体水彩タトゥー、太陽と月と鮮やか構成燃えるオレンジ太陽放射線と満月青紫ピンク柔らかい水彩飛沫とインク点星小輝きと細いクリーンライン柔らかいグラデーション天体現代スタイル高いコントラスト中央均衡構成プロフェッショナルタトゥーフラッシュ分離アート透明シンプル背景。",
-
   "exploreItemMythologyWarriorSerpents": "戦士と蛇",
   "exploreItemMythologyWarriorSerpentsPrompt": "筋肉質男性戦士ギリシャ古典彫刻スタイル複数蛇厳しく巻きつく胴体腕と蛇口開く戦闘神話ドラマ的ポーズ古代彫刻インスピレーションとルネサンス版画とタトゥーデザイン細いライン詳細クロスハッチ影クリーンライン高いコントラストスタジオリアルショット。",
   "exploreItemMythologyPhoenixRising": "上昇する不死鳥",
@@ -1046,5 +1093,10 @@
   "exploreItemMythologyTrident": "三叉槍",
   "exploreItemMythologyTridentPrompt": "ゴシック三叉槍複雑鋭い詳細軸棘優雅曲がり蛇巻きつく微妙影藤飾周り繊細力強く影黒灰暗高いコントラストドラマ的影遊び鋭いライン細い詳細プロフェッショナルタトゥーフラッシュシンプル背景武器蛇焦点対称デザイン。",
   "exploreItemMythologyWarrior": "戦士",
-  "exploreItemMythologyWarriorPrompt": "強力ファンタジー戦士ドラゴン鱗顔首覆う青輝く眼長詳細髭鋭い特徴火オレンジ青渦巻く周り鋭い鎧歯背鰭上昇三叉槍一手持つ影ドラマ的高いコントラスト詳細肌武器テクスチャー鮮やか火氷色強力神話雰囲気大胆クリーンラインプロフェッショナルタトゥーフラッシュシンプル背景人物炎焦点。"
+  "exploreItemMythologyWarriorPrompt": "強力なファンタジーの戦士、顔と首を覆うドラゴンのような鱗、輝く青い目、長い詳細なひげ、鋭い特徴、周りを渦巻くオレンジと青の炎の微妙さ、ギザギザの鋭い胸当てと背中から隆起したひれ、片手にトライデントを持ち、高コントラストの劇的な陰影、肌と武器の詳細なテクスチャ、火と氷の鮮やかな色、強力な神話的な雰囲気、太くきれいな線、プロのタトゥーフラッシュ、フィギュアと炎に焦点を当てたシンプルな背景。",
+  "historySelected": "{count} 選択済み",
+  "historySelectAll": "全て選択",
+  "historyDeselectAll": "全て選択解除",
+  "historySelect": "選択"
 }
+

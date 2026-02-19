@@ -684,6 +684,25 @@ class AppLocalizationsJa extends AppLocalizations {
   String get exit => '終了';
 
   @override
+  String historySelected(int count) {
+    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+    );
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString 選択済み';
+  }
+
+  @override
+  String get historySelectAll => '全て選択';
+
+  @override
+  String get historyDeselectAll => '全て選択解除';
+
+  @override
+  String get historySelect => '選択';
+
+  @override
   String get noInternetConnectionSomeFeatures =>
       'インターネットに接続されていません。一部の機能は使用できない場合があります。';
 
@@ -1467,5 +1486,5 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get exploreItemMythologyWarriorPrompt =>
-      '強力ファンタジー戦士ドラゴン鱗顔首覆う青輝く眼長詳細髭鋭い特徴火オレンジ青渦巻く周り鋭い鎧歯背鰭上昇三叉槍一手持つ影ドラマ的高いコントラスト詳細肌武器テクスチャー鮮やか火氷色強力神話雰囲気大胆クリーンラインプロフェッショナルタトゥーフラッシュシンプル背景人物炎焦点。';
+      '強力なファンタジーの戦士、顔と首を覆うドラゴンのような鱗、輝く青い目、長い詳細なひげ、鋭い特徴、周りを渦巻くオレンジと青の炎の微妙さ、ギザギザの鋭い胸当てと背中から隆起したひれ、片手にトライデントを持ち、高コントラストの劇的な陰影、肌と武器の詳細なテクスチャ、火と氷の鮮やかな色、強力な神話的な雰囲気、太くきれいな線、プロのタトゥーフラッシュ、フィギュアと炎に焦点を当てたシンプルな背景。';
 }

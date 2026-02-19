@@ -265,97 +265,153 @@
     "description": "Home: style prompt for Floral"
   },
   "homeDescribeYourDreamInk": "描述您的梦想纹身",
-  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "@homeDescribeYourDreamInk": {
+    "description": "Home: \"Describe Your Dream Ink\" title"
+  },
   "homeDreamInkHint": "告诉我们您的想法...",
-  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "@homeDreamInkHint": {
+    "description": "Home: Dream ink input hint"
+  },
   "homeInspiration": "灵感",
-  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "@homeInspiration": {
+    "description": "Home: Inspiration label"
+  },
   "homeCharactersRemaining": "剩余字符",
-  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "@homeCharactersRemaining": {
+    "description": "Home: \"characters remaining\" suffix (prepend number in UI)"
+  },
   "homeTattooStyle": "纹身风格",
-  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "@homeTattooStyle": {
+    "description": "Home: Tattoo Style section title"
+  },
   "homeExploreInspiration": "探索灵感",
-  "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
+  "@homeExploreInspiration": {
+    "description": "Home: Explore Inspiration section title"
+  },
   "homeGenerate": "生成",
-  "@homeGenerate": { "description": "Home: Generate button label" },
+  "@homeGenerate": {
+    "description": "Home: Generate button label"
+  },
   "homeTutorialOverlayText": "描述您心中的纹身，或点击'灵感'获取想法",
-  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
-
+  "@homeTutorialOverlayText": {
+    "description": "Home: Tutorial overlay text"
+  },
   "exploreTitleGothqueen": "Gothqueen",
-  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "@exploreTitleGothqueen": {
+    "description": "Home: Explore item title - Gothqueen"
+  },
   "explorePromptGothqueen": "黑白哥特女王纹身，光头女性面孔，华丽的王冠，几何线条，逼真的阴影，对称，高细节",
-  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
-
+  "@explorePromptGothqueen": {
+    "description": "Home: Explore item prompt - Gothqueen"
+  },
   "exploreTitleFloral": "Floral",
-  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "@exploreTitleFloral": {
+    "description": "Home: Explore item title - Floral"
+  },
   "exploreItemMythologyGriffinPrompt": "雄伟的格里芬，半狮半鹰，金色和棕色的羽毛，山顶，高细节",
-  "deleteConfirmationTitle": "删除条目",
-  "deleteConfirmationContent": "您确定要从历史记录中删除此设计吗？此操作无法撤消。",
-  "cancel": "取消",
-  "delete": "删除",
+  "@exploreItemMythologyGriffinPrompt": {
+    "description": "Home: Explore item prompt - Mythology Griffin"
+  },
   "explorePromptFloral": "美丽的花卉纹身设计，复杂的花瓣和叶子，自然流动的曲线，植物纹身风格，详细的线条工作，纯白墨水，高对比度",
-  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
-
+  "@explorePromptFloral": {
+    "description": "Home: Explore item prompt - Floral"
+  },
   "exploreTitleSkullWithFedoraAndPipe": "带软呢帽和烟斗的骷髅",
-  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "@exploreTitleSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item title - Skull with fedora and pipe"
+  },
   "explorePromptSkullWithFedoraAndPipe": "逼真的黑白骷髅纹身，侧面的骷髅戴着经典软呢帽，抽着弯曲的烟斗，柔和的向上烟雾，复古黑色风格，详细的骨骼和牙齿纹理，平滑的渐变阴影与点画和柔和现实主义，细针细节，高对比度黑色，专业纹身艺术品。",
-  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
-
+  "@explorePromptSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item prompt - Skull with fedora and pipe"
+  },
   "exploreTitleElegantSnakeTattoo": "优雅的蛇纹身",
-  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "@exploreTitleElegantSnakeTattoo": {
+    "description": "Home: Explore item title - Elegant snake tattoo"
+  },
   "explorePromptElegantSnakeTattoo": "超详细的黑白攻击性蛇纹身，张开的嘴巴，长牙和分叉的舌头，流动的盘绕身体，细线详细的鳞片，深黑色阴影，强对比度，逼真的深度，干净的负空间，传统雕刻 × 现代现实主义，锋利的轮廓，单色墨水，无背景，专业纹身闪光，前臂或袖子就绪。",
-  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
-
+  "@explorePromptElegantSnakeTattoo": {
+    "description": "Home: Explore item prompt - Elegant snake tattoo"
+  },
   "exploreTitleFeatherAndBirdsInFlight": "羽毛和飞行中的鸟",
-  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "@exploreTitleFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item title - Feather and birds in flight"
+  },
   "explorePromptFeatherAndBirdsInFlight": "超详细的黑白羽毛纹身，优雅逼真的羽毛，细线条工作，对称的倒刺和锐利的脊柱，平滑的点画渐变阴影，极简高级细线风格，小鸟剪影向上流动，平衡的构图，锋利的轮廓，高对比度黑色墨水，现代纹身现实主义，仅单色，白色画布上无背景，专业闪光，模板就绪。",
-  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
-
+  "@explorePromptFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item prompt - Feather and birds in flight"
+  },
   "exploreTitleRainyBatWithCelestialStars": "带天体星星的雨天蝙蝠",
-  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "@exploreTitleRainyBatWithCelestialStars": {
+    "description": "Home: Explore item title - Rainy bat with celestial stars"
+  },
   "explorePromptRainyBatWithCelestialStars": "对称的蝙蝠纹身，完全展开的翅膀，实心黑色身体，翅膀填充平滑的彩虹渐变（紫色到蓝色，绿色，黄色，橙色），干净大胆的轮廓与细线条工作，微妙的点画阴影，周围环绕小星星和点，上下各有两个四角星，神秘的天体氛围，现代新传统风格，高对比度，锐利的细节。",
-  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
-
+  "@explorePromptRainyBatWithCelestialStars": {
+    "description": "Home: Explore item prompt - Rainy bat with celestial stars"
+  },
   "exploreTitleElegantBlackCatSilhouetteDesign": "优雅的黑猫剪影设计",
-  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "@exploreTitleElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item title - Elegant black cat silhouette design"
+  },
   "explorePromptElegantBlackCatSilhouetteDesign": "极简的黑猫纹身设计，优雅的抽象风格，侧面坐着的猫，长而流动的弯曲尾巴，平滑的扫掠线条和锐利的锥形边缘，实心黑色墨水，微妙的渐变阴影以增加深度，几何和流体形状形成身体，从面部延伸的精致胡须线条，现代细线纹身风格，高对比度，干净的负空间，精致和艺术的外观，纹身闪光艺术",
-  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
-
+  "@explorePromptElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item prompt - Elegant black cat silhouette design"
+  },
   "exploreTitleRedRoseTattooDesign": "红玫瑰纹身设计",
-  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "@exploreTitleRedRoseTattooDesign": {
+    "description": "Home: Explore item title - Red rose tattoo design"
+  },
   "explorePromptRedRoseTattooDesign": "逼真的红玫瑰纹身，单朵盛开的玫瑰，分层花瓣，丰富的深红色，精细详细的花瓣纹理，微妙的渐变阴影，自然的绿色茎，小刺和两片详细的叶子，干净清晰的轮廓，柔和现实主义纹身风格，高对比度，平滑的颜色混合，专业纹身闪光质量，仅隔离的玫瑰",
-  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
-
+  "@explorePromptRedRoseTattooDesign": {
+    "description": "Home: Explore item prompt - Red rose tattoo design"
+  },
   "exploreTitleBlackInfinityArrowTattoo": "黑色无限箭头纹身",
-  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "@exploreTitleBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item title - Black infinity arrow tattoo"
+  },
   "explorePromptBlackInfinityArrowTattoo": "逼真的极简黑色无限箭头纹身，平滑的连续循环与锐利的箭头，干净大胆的线条工作，高对比度实心黑色墨水，现代极简风格，单色，模板就绪。",
-  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
-
+  "@explorePromptBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item prompt - Black infinity arrow tattoo"
+  },
   "exploreTitleBlackScorpionTattooDesign": "黑蝎子纹身设计",
-  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "@exploreTitleBlackScorpionTattooDesign": {
+    "description": "Home: Explore item title - Black scorpion tattoo design"
+  },
   "explorePromptBlackScorpionTattooDesign": "逼真的极简黑色蝎子纹身设计，大胆的实心黑色墨水，锐利干净的线条工作，对称的部落风格细节，高对比度，平滑的曲线，现代纹身风格，模板就绪，在纯色背景上隔离，超详细，专业纹身闪光",
-  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
-
+  "@explorePromptBlackScorpionTattooDesign": {
+    "description": "Home: Explore item prompt - Black scorpion tattoo design"
+  },
   "exploreTitleCrescentMoonAndStarTattoo": "新月和星星纹身",
-  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "@exploreTitleCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item title - Crescent moon and star tattoo"
+  },
   "explorePromptCrescentMoonAndStarTattoo": "极简黑色墨水纹身，细线风格，向上的新月，实心黑色填充，上方垂直对齐的小四角星，微妙的点状重音，天体神秘美学，简单几何，平衡间距，干净背景，精确的线条工作，高对比度，永恒的极简纹身设计",
-  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
-
+  "@explorePromptCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item prompt - Crescent moon and star tattoo"
+  },
   "exploreTitleSleepingPandaTattoo": "睡觉的熊猫纹身",
-  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "@exploreTitleSleepingPandaTattoo": {
+    "description": "Home: Explore item title - Sleeping panda tattoo"
+  },
   "explorePromptSleepingPandaTattoo": "极简可爱的熊猫纹身，小小的侧卧睡觉熊猫，简单的圆形形状，实心黑白墨水，柔和平滑的填充，最小的面部细节，干净的边缘，现代极简纹身风格，单色，无背景，白色画布，模板就绪。",
-  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
-
+  "@explorePromptSleepingPandaTattoo": {
+    "description": "Home: Explore item prompt - Sleeping panda tattoo"
+  },
   "genericTattoo": "纹身",
-  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
-
+  "@genericTattoo": {
+    "description": "Generic: Tattoo label (fallback style name)"
+  },
   "loadingGeneratingYourTattoo": "正在生成您的纹身..",
-  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
-
+  "@loadingGeneratingYourTattoo": {
+    "description": "Loading screen: generating message"
+  },
   "resultShare": "分享",
-  "@resultShare": { "description": "Result screen: Share button label" },
+  "@resultShare": {
+    "description": "Result screen: Share button label"
+  },
   "resultNoImageToShare": "没有可分享的图片",
-  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "@resultNoImageToShare": {
+    "description": "Result screen: No image to share message"
+  },
   "resultShareText": "看看我的 {styleName} 纹身设计！",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
@@ -384,7 +440,9 @@
     }
   },
   "resultImageSavedToGallery": "图片已保存到相册",
-  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "@resultImageSavedToGallery": {
+    "description": "Result screen: Image saved to gallery message"
+  },
   "resultErrorSaving": "保存图片错误：{error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
@@ -794,12 +852,10 @@
   },
   "noInternetConnectionSomeFeatures": "未连接互联网。部分功能可能无法使用。",
   "noInternetConnectionPleaseCheckNetwork": "未连接互联网。请检查网络连接。",
-
   "homeSeeAll": "查看全部",
   "@homeSeeAll": {
     "description": "Home: See all link for category row"
   },
-
   "deleteConfirmationTitle": "删除条目",
   "@deleteConfirmationTitle": {
     "description": "Title for delete confirmation dialog"
@@ -812,7 +868,6 @@
   "@delete": {
     "description": "Delete button label"
   },
-
   "exploreCategoryMinimal": "极简主义纹身",
   "exploreCategoryMinimalDescription": "简洁干净的线条与极简主义美学。完美的微妙优雅设计。",
   "exploreCategoryTraditional": "传统和老派",
@@ -833,7 +888,6 @@
   "exploreCategoryMythologyDescription": "神话生物和受奇幻启发的神。",
   "exploreCategoryCustomAi": "自定义AI设计",
   "exploreCategoryCustomAiDescription": "结合多种风格的独特AI设计。",
-
   "exploreItemMinimalistPanda": "极简熊猫",
   "exploreItemMinimalistPandaPrompt": "脚踝的小熊猫极简纹身，可爱的熊猫坐在稍微向右看，干净的黑线绘制和微妙的微型阴影。熊猫拿着细绿茎和小紫薰衣草花，微妙的植物细节和闪亮的黑耳朵和手臂。设计居中于脚踝皮肤，以自然光拍摄，低景深和专业极简纹身参考风格1:1构图。",
   "exploreItemFineLineBow": "细线蝴蝶结",
@@ -858,7 +912,6 @@
   "exploreItemValknutTrianglePrompt": "靠近的写实拍摄，手握深牛仔裤口袋，显示微妙的瓦尔克努特艺术小纹身，三个缠绕三角形在干净的黑细墨。以皮肤纹理，静脉可见，深 Polo 和银戒指和牛仔背景和自然光和低景深。",
   "exploreItemMinimalistMountain": "极简山",
   "exploreItemMinimalistMountainPrompt": "前臂内侧的靠近写实拍摄，小简单山纹身在干净的黑细墨。设计小居中于前臂中间，以皮肤纹理，轻微卷起袖子和自然光和中性背景和低景深。",
-
   "exploreItemSwallowBird": "燕子",
   "exploreItemSwallowBirdPrompt": "老派燕子纹身，展开翅膀和大胆线条和经典蓝色红色调色板和古老水手闪光风格和简单阴影和中央构图和透明PNG背景和高分辨率。",
   "exploreItemDaggerHeart": "匕首心脏",
@@ -875,7 +928,6 @@
   "exploreItemCowboyRevolverPrompt": "老派牛仔左轮手枪纹身，经典西部手枪和粗黑大胆线条和经典闪光风格和微妙红金色调和强阴影和干净外观和中央构图和透明PNG背景和高分辨率。",
   "exploreItemPantherHead": "黑豹头",
   "exploreItemPantherHeadPrompt": "老派黑豹头纹身，咆哮黑豹和黑大胆线条和黄眼和红嘴和传统闪光风格和大阴影和中央构图和透明PNG背景和高分辨率。",
-
   "exploreItemKoiFish": "锦鲤鱼",
   "exploreItemKoiFishPrompt": "日本锦鲤鱼传统刺青设计，流动锦鲤与弯曲身体和大胆线条和红橙调色板和鱼周围水波和干净外观和中央构图和透明PNG背景和高分辨率。",
   "exploreItemHannyaMask": "般若面具",
@@ -896,7 +948,6 @@
   "exploreItemJapaneseLotusPrompt": "日本莲花纹身和莲花与刺青风格和大胆线条和粉红红颜色和水元素和干净外观和中央构图和透明PNG背景和高分辨率。",
   "exploreItemJapanesePhoenix": "日本凤凰",
   "exploreItemJapanesePhoenixPrompt": "日本凤凰鸟与刺青风格和展开翅膀和大胆线条和红橙黄颜色和鸟周围火和中央构图和透明PNG背景和高分辨率。",
-
   "exploreItemPolynesianTribal": "波利尼西亚部落纹身",
   "exploreItemPolynesianTribalPrompt": "大胆的波利尼西亚部落纹身在手背，干净的黑线和螺旋图案和几何设计。纹身以柔和曲线和锐角流动，从手掌延伸到手腕尖端。深黑墨水以高对比显示传统波利尼西亚部落风格与写实皮肤纹理和柔和光。",
   "exploreItemTribalSpineSpear": "脊椎矛",
@@ -921,7 +972,6 @@
   "exploreItemTribalFlamePrompt": "手背靠近拍摄，对称黑部落纹身从关节流动到手腕干净曲线和螺旋装饰黑墨水。皮肤纹理和可见静脉和放松手和深蓝牛仔背景和中性内部光和低景深。",
   "exploreItemTribalSwordCompass": "部落剑指南针",
   "exploreItemTribalSwordCompassPrompt": "手背靠近拍摄，黑灰部落纹身，垂直剑刺穿玫瑰风向线细和圆细节和烟如阴影。写实皮肤纹理和雾黑暗背景和戏剧工作室光和低景深。",
-
   "exploreItemGeometricMindBodySoul": "心灵-身体-灵魂",
   "exploreItemGeometricMindBodySoulPrompt": "高度详细的神圣几何纹身在前臂，垂直构图：上脑变为树和中间解剖曼陀罗形式和下面解剖心脏装饰元素。干净细线和点阴影和高对比和工作室写实拍摄。",
   "exploreItemGeometricHoneycombSleeve": "蜂窝袖子",
@@ -946,7 +996,6 @@
   "exploreItemGeometricSigiPrompt": "小简单手指纹身，黑细墨垂直符号重叠三角和钻石和干净多边形微妙点阴影和干净负空间。现代神圣几何风格精确细线和高对比和准备专业模板。",
   "exploreItemGeometricDualityNature": "几何自然二元性",
   "exploreItemGeometricDualityNaturePrompt": "简单黑工作几何纹身在前臂，细线点阴影重叠三角：上山场景和太阳/月升起和下面倒置大海洋波。几何干净框架和神圣几何微妙与运动线点为现代平衡自然主题高对比和准备模板。",
-
   "exploreItemRealismGamblerFedora": "赌徒和软呢帽",
   "exploreItemRealismGamblerFedoraPrompt": "写实黑灰纹身，无脸赌徒软呢帽和西装和手背后。一个古老街灯后面和扇形纸牌和微妙烟侧。黑色氛围和高对比和细线和详细点描和传统风格和对称中央构图和透明PNG背景和简单和高度详细和黑闪光。",
   "exploreItemRealismMindOverHeart": "心灵胜于心脏",
@@ -971,7 +1020,6 @@
   "exploreItemRealismPlayfulCharacterPrompt": "鲜艳颜色顽皮角色纹身，拿着大粉花。角色大表达眼毛蓝蓝腹。鲜艳花绿叶边框。风格大胆卡通流动阴影干净线鲜艳颜色。完美小空间无分散背景焦点角色花中央点。",
   "exploreItemRealismCutePinkFish": "可爱粉鱼",
   "exploreItemRealismCutePinkFishPrompt": "顽皮鲜艳可爱粉鱼纹身，微笑表情。鱼显示柔和粉渐变微妙阴影。泡水蓝绿调围绕鱼小泡和闪光。现代干净线顽皮触理想小空间。设计聚焦鱼水无分散背景欢乐气氛。",
-
   "exploreItemLetteringTrustNoOne": "不要相信任何人",
   "exploreItemLetteringTrustNoOnePrompt": "哥特详细纹身，'Trust no One'短语。大胆戏剧线条和角度。阴影效果给文本三维外观喷墨文本周围粗糙气氛强烈。排版唤起黑暗神秘氛围尖锐叛逆调。",
   "exploreItemLetteringBlessed": "祝福",
@@ -996,7 +1044,6 @@
   "exploreItemLetteringDesirePrompt": "哥特黑暗纹身，\"Desire\"单词黑金属尖锐排版尖字母对称构图黑灰写实高对比黑暗金属纹理可怕装饰细节干净准备模板线专业纹身闪光简单高度详细哥特尖风格。",
   "exploreItemLetteringBeautiful": "美丽",
   "exploreItemLetteringBeautifulPrompt": "优雅颜色纹身，\"Beautiful\"单词现代流动书法大胆排版粗线3D鲜艳渐变（粉橙黄）和黑粗线光辉柔和女性优雅风格弯曲干净元素装饰中央构图专业纹身闪光准备模板高度详细。",
-
   "exploreItemFloralFourLeafClover": "四叶草",
   "exploreItemFloralFourLeafCloverPrompt": "简单四叶草纹身，细线甜美温柔风格绿柔和叶子渐变柔和黑细茎干净线小红心细节叶子。对称构图纹身闪光细线高对比干净边缘专业纹身设计中央构图。",
   "exploreItemFloralCherryBlossom": "樱花枝",
@@ -1020,5 +1067,33 @@
   "exploreItemFloralBabyPanda": "婴儿熊猫",
   "exploreItemFloralBabyPandaPrompt": "卡哇伊婴儿熊猫纹身，圆柔软风格脸微妙红晕大表达眼微笑友好白黑毛微妙灰阴影周围竹叶柔和色轻水彩强调卡哇伊纹身风格高对比中央构图专业纹身闪光隔离艺术透明简单背景。",
   "exploreItemFloralSunMoon": "太阳和月亮",
-  "exploreItemFloralSunMoonPrompt": "天体水彩纹身，太阳和月亮鲜艳构图燃烧橙太阳辐射射线满月蓝紫粉墨柔和喷和点和星星小光辉和干净细线柔和渐变天体现代风格高对比中央平衡构图专业纹身闪光隔离艺术透明简单背景。"
+  "exploreItemFloralSunMoonPrompt": "天体水彩纹身，太阳和月亮鲜艳构图燃烧橙太阳辐射射线满月蓝紫粉墨柔和喷和点和星星小光辉和干净细线柔和渐变天体现代风格高对比中央平衡构图专业纹身闪光隔离艺术透明简单背景。",
+  "historySelected": "{count} 已选择",
+  "historySelectAll": "全选",
+  "historyDeselectAll": "取消全选",
+  "historySelect": "选择",
+  "exploreItemMythologyWarriorSerpents": "Warrior Serpents",
+  "exploreItemMythologyWarriorSerpentsPrompt": "Intricate warrior serpents tattoo design in neo-traditional style, featuring two intertwined serpents with detailed scales and fierce expressions, adorned with warrior armor plating and helmets, surrounded by traditional floral elements like peonies and chrysanthemums, bold black outlines with rich, deep colors such as emerald green, crimson red, and gold, dynamic composition emphasizing movement and strength, high contrast and shading for depth, professional tattoo flash style.",
+  "exploreItemMythologyPhoenixRising": "Phoenix Rising",
+  "exploreItemMythologyPhoenixRisingPrompt": "Majestic phoenix tattoo rising from flames, vibrant red, orange, and gold feathers with intricate detailing, dynamic wings spread wide, swirling smoke and embers in the background, symbol of rebirth and resilience, neo-traditional style with bold lines and smooth color gradients, high contrast to emphasize the glowing effect of the fire, professional tattoo illustration.",
+  "exploreItemMythologyMedusa": "Medusa",
+  "exploreItemMythologyMedusaPrompt": "Detailed Medusa head tattoo design, stone-cold expression with glowing eyes, hair made of writhing venomous snakes with realistic scales and fangs, Greek mythology inspired, black and grey realism with high contrast, dramatic shading to emphasize texture and depth, ancient stone texture elements, powerful and mystical vibe.",
+  "exploreItemMythologyDragonSword": "Dragon Sword",
+  "exploreItemMythologyDragonSwordPrompt": "Epic dragon wrapped around a sword tattoo design, detailed dragon scales and fierce head, ancient sword with ornate hilt and runic engravings, dynamic pose with the dragon coiling tightly, black and grey shading with sharp highlights, fantasy warrior style, symbolizing strength and protection, professional tattoo flash art.",
+  "exploreItemMythologyThreeHeadedHydra": "Three Headed Hydra",
+  "exploreItemMythologyThreeHeadedHydraPrompt": "Fearsome three-headed hydra tattoo, each head displaying a different aggressive expression, detailed reptilian scales and sharp teeth, dynamic necks intertwining, Greek mythology monster, dark fantasy style, bold linework with deep shading, high contrast, menacing and powerful aesthetic.",
+  "exploreItemMythologyOctopus": "Octopus",
+  "exploreItemMythologyOctopusPrompt": "Intricate giant octopus tattoo occupying the canvas, long flowing tentacles with detailed suckers curling dynamically, intelligent eye, ocean elements like waves and bubbles in the background, illustrative blackwork style with stippling and hatching for texture, deep depth and dimension, marine life tattoo art.",
+  "exploreItemMythologyJapaneseDragon": "Japanese Dragon",
+  "exploreItemMythologyJapaneseDragonPrompt": "Traditional Japanese dragon tattoo (Ryu), long serpentine body with detailed scales, flowing mane and whiskers, clutching a pearl, surrounded by clouds and wind bars (wind currents), irezumi style, bold thick outlines with vibrant colors or solid black and grey shading, powerful and auspicious symbol.",
+  "exploreItemMythologyDarkFantasyEye": "Dark Fantasy Eye",
+  "exploreItemMythologyDarkFantasyEyePrompt": "Surreal dark fantasy eye tattoo, realistic eye with an intense gaze, surrounded by organic biomechanical or dark twisted roots/vines, dripping ink effects, darker aesthetic with high contrast black and grey shading, mysterious and unsettling but artistic, detailed iris texture.",
+  "exploreItemMythologyMermaid": "Mermaid",
+  "exploreItemMythologyMermaidPrompt": "Beautiful mermaid tattoo design, sitting elegantly on a rock or among coral, flowing hair and detailed tail scales, sea shells and pearls accessories, pin-up or neo-traditional style, soft shading for skin tones and vibrant colors for the tail and ocean elements, enchanting and graceful.",
+  "exploreItemMythologyDynamicDragon": "Dynamic Dragon",
+  "exploreItemMythologyDynamicDragonPrompt": "Action-oriented dynamic dragon tattoo, captured in mid-flight or attack, roaring with mouth open, sharp claws extended, body twisted in a complex pose, high energy and movement, illustrative style with emphasis on anatomy and motion blur effects, fierce and powerful.",
+  "exploreItemMythologyTrident": "Trident",
+  "exploreItemMythologyTridentPrompt": "Gothic trident tattoo design with sharp, intricate details, the trident head adorned with dark, thorn-like spines and elegant curves, a serpent wrapping around the trident shaft, the body of the serpent with smooth scales and subtle shading, floral vine elements twisting around the trident, delicate yet powerful, dark and eerie black and grey shading with high contrast, dramatic shadow play, sharp outlines, and fine detail, professional tattoo flash, minimal background with focus on the weapon and serpent, symmetrical design.",
+  "exploreItemMythologyWarrior": "Warrior",
+  "exploreItemMythologyWarriorPrompt": "Powerful fantasy warrior tattoo design, dragon-like figure with scales covering the face and neck, glowing blue eyes, long, detailed beard and sharp features, fiery orange and blue flame accents swirling around the character, sharp spiked armor and fins protruding from the back, holding a trident in one hand, dramatic shading with high contrast, detailed textures on the skin and weapon, vivid colors of fire and ice, strong mythical atmosphere, bold clean outlines, professional tattoo flash illustration, minimal background with focus on the character and flames."
 }

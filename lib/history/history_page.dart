@@ -331,6 +331,8 @@ class _HistoryListPage extends StatefulWidget {
 
 class _HistoryListPageState extends State<_HistoryListPage> {
   late List<Map<String, dynamic>> _items;
+  bool _isSelectionMode = false;
+  final Set<String> _selectedIds = {};
 
   @override
   void initState() {
@@ -343,6 +345,13 @@ class _HistoryListPageState extends State<_HistoryListPage> {
       final favs = await HistoryService.getFavorites();
       if (mounted) {
         setState(() => _items = favs);
+        // Clear selection if items changed significantly or just clear to be safe
+        if (_isSelectionMode) {
+          // We might want to keep selection if possible, but for simplicity let's re-validate or clear
+          // For now, let's just remove IDs that are no longer in the list
+          final currentIds = favs.map(HistoryService.generateEntryId).toSet();
+          _selectedIds.removeWhere((id) => !currentIds.contains(id));
+        }
       }
     }
   }
@@ -351,6 +360,95 @@ class _HistoryListPageState extends State<_HistoryListPage> {
     if (!mounted) return;
     setState(() {
       _items.remove(entry);
+    });
+  }
+
+  void _toggleSelectionMode() {
+    setState(() {
+      _isSelectionMode = !_isSelectionMode;
+      _selectedIds.clear();
+    });
+  }
+
+  void _toggleSelection(String id) {
+    setState(() {
+      if (_selectedIds.contains(id)) {
+        _selectedIds.remove(id);
+      } else {
+        _selectedIds.add(id);
+      }
+    });
+  }
+
+  void _selectAll() {
+    setState(() {
+      if (_selectedIds.length == _items.length) {
+        _selectedIds.clear();
+      } else {
+        _selectedIds.addAll(_items.map(HistoryService.generateEntryId));
+      }
+    });
+  }
+
+  Future<void> _deleteSelected() async {
+    if (_selectedIds.isEmpty) return;
+
+    final l10n = AppLocalizations.of(context)!;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).cardColor,
+          title: Text(l10n.deleteConfirmationTitle),
+          content: Text(
+            '${l10n.deleteConfirmationContent} (${_selectedIds.length})',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(
+                l10n.cancel,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(l10n.delete, style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed != true) return;
+
+    final entriesToDelete = _items
+        .where((e) => _selectedIds.contains(HistoryService.generateEntryId(e)))
+        .toList();
+
+    // If deleting favorites, update provider
+    if (widget.type == 'favorites') {
+      final favoritesProvider = Provider.of<FavoritesProvider>(
+        context,
+        listen: false,
+      );
+      for (final entry in entriesToDelete) {
+        await favoritesProvider.removeFromFavorites(entry);
+      }
+    }
+
+    await HistoryService.deleteEntries(widget.type, entriesToDelete);
+
+    if (!mounted) return;
+
+    setState(() {
+      _items.removeWhere(
+        (e) => _selectedIds.contains(HistoryService.generateEntryId(e)),
+      );
+      _selectedIds.clear();
+      _isSelectionMode = false;
     });
   }
 
@@ -375,28 +473,81 @@ class _HistoryListPageState extends State<_HistoryListPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                        size: 24.sp,
+                    if (_isSelectionMode)
+                      IconButton(
+                        icon: Icon(
+                          Icons.close,
+                          color: isDark
+                              ? AppColors.textWhite
+                              : AppColors.textPrimary,
+                          size: 24.sp,
+                        ),
+                        onPressed: _toggleSelectionMode,
+                      )
+                    else
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: isDark
+                              ? AppColors.textWhite
+                              : AppColors.textPrimary,
+                          size: 24.sp,
+                        ),
+                        onPressed: () => Navigator.of(context).pop(),
                       ),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
                     SizedBox(width: 8.w),
-                    Text(
-                      widget.title,
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                        fontFamily: 'Amaranth',
+                    Expanded(
+                      child: Text(
+                        _isSelectionMode
+                            ? l10n.historySelected(_selectedIds.length)
+                            : widget.title,
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                          color: isDark
+                              ? AppColors.textWhite
+                              : AppColors.textPrimary,
+                          fontFamily: 'Amaranth',
+                        ),
                       ),
                     ),
+                    if (_items.isNotEmpty) ...[
+                      if (_isSelectionMode) ...[
+                        TextButton(
+                          onPressed: _selectAll,
+                          child: Text(
+                            _selectedIds.length == _items.length
+                                ? l10n.historyDeselectAll
+                                : l10n.historySelectAll,
+                            style: TextStyle(
+                              color: AppColors.navBarActive,
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.delete_outline,
+                            color: Colors.red,
+                            size: 24.sp,
+                          ),
+                          onPressed: _selectedIds.isEmpty
+                              ? null
+                              : _deleteSelected,
+                        ),
+                      ] else ...[
+                        TextButton(
+                          onPressed: _toggleSelectionMode,
+                          child: Text(
+                            l10n.historySelect,
+                            style: TextStyle(
+                              color: AppColors.navBarActive,
+                              fontSize: 16.sp,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
                   ],
                 ),
               ),
@@ -416,10 +567,15 @@ class _HistoryListPageState extends State<_HistoryListPage> {
                         itemCount: _items.length,
                         itemBuilder: (context, index) {
                           final entry = _items[index];
+                          final entryId = HistoryService.generateEntryId(entry);
                           return HistoryTile(
                             entry: entry,
                             type: widget.type,
                             isDark: isDark,
+                            isSelectionMode: _isSelectionMode,
+                            isSelected: _selectedIds.contains(entryId),
+                            onSelectionChanged: (_) =>
+                                _toggleSelection(entryId),
                             onFavoriteChanged: widget.type == 'favorites'
                                 ? _reloadFavorites
                                 : null,

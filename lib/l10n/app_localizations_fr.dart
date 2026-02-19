@@ -706,6 +706,25 @@ class AppLocalizationsFr extends AppLocalizations {
   String get exit => 'Quitter';
 
   @override
+  String historySelected(int count) {
+    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+    );
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString Sélectionné';
+  }
+
+  @override
+  String get historySelectAll => 'Tout sélectionner';
+
+  @override
+  String get historyDeselectAll => 'Tout désélectionner';
+
+  @override
+  String get historySelect => 'Sélectionner';
+
+  @override
   String get noInternetConnectionSomeFeatures =>
       'Pas de connexion Internet. Certaines fonctionnalités peuvent ne pas fonctionner.';
 

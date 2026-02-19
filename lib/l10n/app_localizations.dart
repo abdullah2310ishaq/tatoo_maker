@@ -1334,11 +1334,35 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to exit?'**
   String get exitAppMessage;
 
-  /// Exit confirmation dialog: exit button label
+  /// Exit confirmation dialog: confirm button
   ///
   /// In en, this message translates to:
   /// **'Exit'**
   String get exit;
+
+  /// History selection mode: title showing count
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Selected'**
+  String historySelected(int count);
+
+  /// History selection mode: select all button
+  ///
+  /// In en, this message translates to:
+  /// **'Select All'**
+  String get historySelectAll;
+
+  /// History selection mode: deselect all button
+  ///
+  /// In en, this message translates to:
+  /// **'Deselect All'**
+  String get historyDeselectAll;
+
+  /// History page: enter selection mode button
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get historySelect;
 
   /// Toast on home when device has no internet
   ///

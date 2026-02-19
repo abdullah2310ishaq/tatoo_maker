@@ -686,6 +686,25 @@ class AppLocalizationsKo extends AppLocalizations {
   String get exit => '종료';
 
   @override
+  String historySelected(int count) {
+    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+    );
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString개 선택됨';
+  }
+
+  @override
+  String get historySelectAll => '전체 선택';
+
+  @override
+  String get historyDeselectAll => '전체 선택 해제';
+
+  @override
+  String get historySelect => '선택';
+
+  @override
   String get noInternetConnectionSomeFeatures =>
       '인터넷에 연결되어 있지 않습니다. 일부 기능이 작동하지 않을 수 있습니다.';
 

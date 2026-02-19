@@ -265,94 +265,153 @@
     "description": "Home: style prompt for Floral"
   },
   "homeDescribeYourDreamInk": "صف وشمك المثالي",
-  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "@homeDescribeYourDreamInk": {
+    "description": "Home: \"Describe Your Dream Ink\" title"
+  },
   "homeDreamInkHint": "أخبرنا بما تتخيله...",
-  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "@homeDreamInkHint": {
+    "description": "Home: Dream ink input hint"
+  },
   "homeInspiration": "الإلهام",
-  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "@homeInspiration": {
+    "description": "Home: Inspiration label"
+  },
   "homeCharactersRemaining": "حرف متبقي",
-  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "@homeCharactersRemaining": {
+    "description": "Home: \"characters remaining\" suffix (prepend number in UI)"
+  },
   "homeTattooStyle": "أسلوب الوشم",
-  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "@homeTattooStyle": {
+    "description": "Home: Tattoo Style section title"
+  },
   "homeExploreInspiration": "أي فئة",
-  "@homeExploreInspiration": { "description": "Home: Any Category section title" },
+  "@homeExploreInspiration": {
+    "description": "Home: Any Category section title"
+  },
   "homeSeeAll": "عرض الكل",
-  "@homeSeeAll": { "description": "Home: See all link for category row" },
+  "@homeSeeAll": {
+    "description": "Home: See all link for category row"
+  },
   "homeGenerate": "إنشاء",
-  "@homeGenerate": { "description": "Home: Generate button label" },
+  "@homeGenerate": {
+    "description": "Home: Generate button label"
+  },
   "homeTutorialOverlayText": "صف الوشم الذي تفكر فيه، أو اضغط على 'الإلهام' للحصول على أفكار",
-  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
-
+  "@homeTutorialOverlayText": {
+    "description": "Home: Tutorial overlay text"
+  },
   "exploreTitleGothqueen": "Gothqueen",
-  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "@exploreTitleGothqueen": {
+    "description": "Home: Explore item title - Gothqueen"
+  },
   "explorePromptGothqueen": "وشم ملكة قوطية أسود ورمادي، وجه أنثى أصلع، تاج مزخرف، عمل خط هندسي، تظليل واقعي، متماثل، تفاصيل عالية",
-  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
-
+  "@explorePromptGothqueen": {
+    "description": "Home: Explore item prompt - Gothqueen"
+  },
   "exploreTitleFloral": "Floral",
-  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "@exploreTitleFloral": {
+    "description": "Home: Explore item title - Floral"
+  },
   "explorePromptFloral": "تصميم وشم زهري جميل مع بتلات وأوراق معقدة، منحنيات متدفقة طبيعية، أسلوب وشم نباتي، عمل خط مفصل، حبر أبيض صلب، تباين عالي",
-  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
-
+  "@explorePromptFloral": {
+    "description": "Home: Explore item prompt - Floral"
+  },
   "exploreTitleSkullWithFedoraAndPipe": "جمجمة مع قبعة فيدورا وأنبوب",
-  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "@exploreTitleSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item title - Skull with fedora and pipe"
+  },
   "explorePromptSkullWithFedoraAndPipe": "وشم جمجمة واقعي أسود ورمادي، جمجمة جانبية ترتدي قبعة فيدورا كلاسيكية، تدخن أنبوبًا منحنيًا مع دخان صاعد ناعم، أسلوب نوير عتيق، نسيج عظم وأسنان مفصل، تظليل متدرج ناعم مع عمل نقطي وواقعية ناعمة، تفاصيل إبرة دقيقة، أسود عالي التباين، عمل فني وشم احترافي.",
-  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
-
+  "@explorePromptSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item prompt - Skull with fedora and pipe"
+  },
   "exploreTitleElegantSnakeTattoo": "وشم ثعبان أنيق",
-  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "@exploreTitleElegantSnakeTattoo": {
+    "description": "Home: Explore item title - Elegant snake tattoo"
+  },
   "explorePromptElegantSnakeTattoo": "وشم ثعبان عدواني فائق التفاصيل أسود وأبيض، فم مفتوح مع أنياب طويلة ولسان متشعب، جسم ملتف متدفق، حراشف مفصلة بخط دقيق، تظليل أسود عميق، تباين قوي، عمق واقعي، مساحة سلبية نظيفة، نقش تقليدي × واقعية حديثة، خطوط حادة كالموس، حبر أحادي اللون، بدون خلفية، وشم فلاش احترافي، جاهز للساعد أو الكم.",
-  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
-
+  "@explorePromptElegantSnakeTattoo": {
+    "description": "Home: Explore item prompt - Elegant snake tattoo"
+  },
   "exploreTitleFeatherAndBirdsInFlight": "ريشة وطيور في الطيران",
-  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "@exploreTitleFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item title - Feather and birds in flight"
+  },
   "explorePromptFeatherAndBirdsInFlight": "وشم ريشة فائق التفاصيل أسود وأبيض، ريشة أنيقة واقعية مع عمل خط دقيق، شعيرات متماثلة وعمود فقري حاد، تظليل متدرج عمل نقطي ناعم، أسلوب خط دقيق بسيط ممتاز، ظلال طيور صغيرة تتدفق للأعلى، تكوين متوازن، خطوط حادة كالموس، حبر أسود عالي التباين، واقعية وشم حديثة، أحادي اللون فقط، بدون خلفية على قماش أبيض، فلاش احترافي، جاهز للاستنسل.",
-  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
-
+  "@explorePromptFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item prompt - Feather and birds in flight"
+  },
   "exploreTitleRainyBatWithCelestialStars": "خفاش ماطر مع نجوم سماوية",
-  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "@exploreTitleRainyBatWithCelestialStars": {
+    "description": "Home: Explore item title - Rainy bat with celestial stars"
+  },
   "explorePromptRainyBatWithCelestialStars": "وشم خفاش متماثل بأجنحة مفتوحة بالكامل، جسم أسود صلب، أجنحة مملوءة بتدرج قوس قزح ناعم (من البنفسجي إلى الأزرق، الأخضر، الأصفر، البرتقالي)، خطوط عريضة نظيفة جريئة مع عمل خط دقيق، تظليل عمل نقطي خفيف، محاط بنجوم ونقاط صغيرة، نجمتان رباعيتان أعلاه وأسفله، جو سماوي صوفي، أسلوب تقليدي جديد حديث، تباين عالي، تفاصيل حادة.",
-  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
-
+  "@explorePromptRainyBatWithCelestialStars": {
+    "description": "Home: Explore item prompt - Rainy bat with celestial stars"
+  },
   "exploreTitleElegantBlackCatSilhouetteDesign": "تصميم ظل قطة سوداء أنيقة",
-  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "@exploreTitleElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item title - Elegant black cat silhouette design"
+  },
   "explorePromptElegantBlackCatSilhouetteDesign": "تصميم وشم قطة سوداء بسيط بأسلوب مجرد أنيق، قطة جانبية جالسة بذيل منحني طويل متدفق، خطوط كنس ناعمة وحواف مدببة حادة، حبر أسود صلب مع تظليل متدرج خفيف للعمق، أشكال هندسية وسائلة تشكل الجسم، خطوط شوارب رقيقة تمتد من الوجه، أسلوب وشم خط دقيق حديث، تباين عالي، مساحة سلبية نظيفة، مظهر متطور وفني، فن وشم فلاش",
-  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
-
+  "@explorePromptElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item prompt - Elegant black cat silhouette design"
+  },
   "exploreTitleRedRoseTattooDesign": "تصميم وشم وردة حمراء",
-  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "@exploreTitleRedRoseTattooDesign": {
+    "description": "Home: Explore item title - Red rose tattoo design"
+  },
   "explorePromptRedRoseTattooDesign": "وشم وردة حمراء واقعي، وردة واحدة متفتحة مع بتلات متعددة الطبقات، لون أحمر عميق غني، نسيج بتلة مفصل دقيق، تظليل متدرج خفيف، ساق أخضر طبيعي مع أشواك صغيرة وورقتين مفصلة، خطوط نظيفة واضحة، أسلوب وشم واقعية ناعمة، تباين عالي، مزج لون ناعم، جودة وشم فلاش احترافية، وردة معزولة فقط",
-  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
-
+  "@explorePromptRedRoseTattooDesign": {
+    "description": "Home: Explore item prompt - Red rose tattoo design"
+  },
   "exploreTitleBlackInfinityArrowTattoo": "وشم سهم اللانهاية الأسود",
-  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "@exploreTitleBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item title - Black infinity arrow tattoo"
+  },
   "explorePromptBlackInfinityArrowTattoo": "وشم سهم لانهاية أسود بسيط واقعي، حلقة مستمرة ناعمة مع سهم حاد، عمل خط نظيف جريء، حبر أسود صلب عالي التباين، أسلوب بسيط حديث، أحادي اللون، جاهز للاستنسل.",
-  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
-
+  "@explorePromptBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item prompt - Black infinity arrow tattoo"
+  },
   "exploreTitleBlackScorpionTattooDesign": "تصميم وشم عقرب أسود",
-  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "@exploreTitleBlackScorpionTattooDesign": {
+    "description": "Home: Explore item title - Black scorpion tattoo design"
+  },
   "explorePromptBlackScorpionTattooDesign": "تصميم وشم عقرب أسود بسيط واقعي، حبر أسود صلب جريء، عمل خط نظيف حاد، تفاصيل مستوحاة من القبائل متماثلة، تباين عالي، منحنيات ناعمة، أسلوب وشم حديث، جاهز للاستنسل، معزول على خلفية عادية، فائق التفاصيل، وشم فلاش احترافي",
-  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
-
+  "@explorePromptBlackScorpionTattooDesign": {
+    "description": "Home: Explore item prompt - Black scorpion tattoo design"
+  },
   "exploreTitleCrescentMoonAndStarTattoo": "وشم هلال ونجمة",
-  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "@exploreTitleCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item title - Crescent moon and star tattoo"
+  },
   "explorePromptCrescentMoonAndStarTattoo": "وشم حبر أسود بسيط، أسلوب خط دقيق، هلال صاعد مع ملء أسود صلب، نجم رباعي صغير أعلاه محاذي عموديًا، لهجات نقطية خفيفة، جمال سماوي وصوفي، هندسة بسيطة، تباعد متوازن، خلفية نظيفة، عمل خط دقيق، تباين عالي، تصميم وشم بسيط خالد",
-  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
-
+  "@explorePromptCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item prompt - Crescent moon and star tattoo"
+  },
   "exploreTitleSleepingPandaTattoo": "وشم باندا نائم",
-  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "@exploreTitleSleepingPandaTattoo": {
+    "description": "Home: Explore item title - Sleeping panda tattoo"
+  },
   "explorePromptSleepingPandaTattoo": "وشم باندا لطيف بسيط، باندا نائمة صغيرة مستلقية على جانبها، شكل دائري بسيط، حبر أسود وأبيض صلب، ملء ناعم وسلس، تفاصيل وجهية قليلة، حواف نظيفة، أسلوب وشم بسيط حديث، أحادي اللون، بدون خلفية، قماش أبيض، جاهز للاستنسل.",
-  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
-
+  "@explorePromptSleepingPandaTattoo": {
+    "description": "Home: Explore item prompt - Sleeping panda tattoo"
+  },
   "genericTattoo": "الوشم",
-  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
-
+  "@genericTattoo": {
+    "description": "Generic: Tattoo label (fallback style name)"
+  },
   "loadingGeneratingYourTattoo": "جارٍ إنشاء وشمك..",
-  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
-
+  "@loadingGeneratingYourTattoo": {
+    "description": "Loading screen: generating message"
+  },
   "resultShare": "مشاركة",
-  "@resultShare": { "description": "Result screen: Share button label" },
+  "@resultShare": {
+    "description": "Result screen: Share button label"
+  },
   "resultNoImageToShare": "لا توجد صورة للمشاركة",
-  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "@resultNoImageToShare": {
+    "description": "Result screen: No image to share message"
+  },
   "resultShareText": "تحقق من تصميم وشم {styleName} الخاص بي!",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
@@ -381,7 +440,9 @@
     }
   },
   "resultImageSavedToGallery": "تم حفظ الصورة في المعرض",
-  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "@resultImageSavedToGallery": {
+    "description": "Result screen: Image saved to gallery message"
+  },
   "resultErrorSaving": "خطأ في حفظ الصورة: {error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
@@ -791,7 +852,6 @@
   },
   "noInternetConnectionSomeFeatures": "لا يوجد اتصال بالإنترنت. قد لا تعمل بعض الميزات.",
   "noInternetConnectionPleaseCheckNetwork": "لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة.",
-
   "exploreCategoryMinimal": "وشوم بسيطة",
   "exploreCategoryMinimalDescription": "خطوط بسيطة ونظيفة بجمالية حد أدنى. مثالية للتصاميم الرقيقة والأنيقة.",
   "exploreCategoryTraditional": "تقليدي والمدرسة القديمة",
@@ -812,7 +872,6 @@
   "exploreCategoryMythologyDescription": "مخلوقات أسطورية وآلهة وتصاميم مستوحاة من الخيال.",
   "exploreCategoryCustomAi": "تصاميم ذكاء اصطناعي مخصصة",
   "exploreCategoryCustomAiDescription": "تصاميم فريدة من الذكاء الاصطناعي تجمع بين أنماط متعددة.",
-
   "exploreItemMinimalistPanda": "باندا بسيط",
   "exploreItemMinimalistPandaPrompt": "وشم باندا بسيط صغير على الكاحل، باندا لطيفة جالسة بخطوط سوداء نظيفة وتظليل دقيق ناعم، تحمل ساقًا رفيعة خضراء مع أزهار لافندر بنفسجية صغيرة، تفاصيل نباتية رقيقة وأذنين وذراعين سوداء لامعة، التصميم في المنتصف على جلد الكاحل، مصور بإضاءة طبيعية مع عمق ميدان ضحل وأسلوب مرجع وشم بسيط واحترافي بتكوين 1:1.",
   "exploreItemFineLineBow": "قوس بخط رفيع",
@@ -837,7 +896,6 @@
   "exploreItemValknutTrianglePrompt": "لقطة قريبة واقعية ليد بالقرب من جيب جينز مع وشم هندسي بسيط صغير بأسلوب فالكنوت مصنوع من ثلاثة مثلثات متشابكة بحبر أسود رفيع. نسيج جلد وأوردة مرئية وكم أسود وخاتم فضي وخلفية دنيم وإضاءة طبيعية ناعمة وعمق ميدان ضحل.",
   "exploreItemMinimalistMountain": "جبل بسيط",
   "exploreItemMinimalistMountainPrompt": "لقطة قريبة فائقة الواقعية للمعصم الداخلي مع وشم جبل صغير بخط رفيع بحبر أسود نظيف. تصميم بسيط صغير في منتصف المعصم مع نسيج جلد وأوردة مرئية وكم مطوي قليلاً وإضاءة طبيعية ناعمة وخلفية محايدة وعمق ميدان ضحل.",
-
   "exploreItemSwallowBird": "طائر السنونو",
   "exploreItemSwallowBirdPrompt": "وشم سنونو بأسلوب المدرسة القديمة بأجنحة مفتوحة وخطوط جريئة ولوحة ألوان كلاسيكية زرقاء وحمراء وأسلوب فلاش وشم بحار عتيق وتظليل بسيط وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
   "exploreItemDaggerHeart": "خنجر في القلب",
@@ -854,7 +912,6 @@
   "exploreItemCowboyRevolverPrompt": "وشم مسدس كاوبوي تقليدي بأسلوب المدرسة القديمة ومسدس غربي كلاسيكي وخطوط سوداء سميكة جريئة وأسلوب فلاش وشم عتيق ولمسات حمراء وذهبية بسيطة وتظليل قوي ومظهر نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
   "exploreItemPantherHead": "رأس النمر",
   "exploreItemPantherHeadPrompt": "وشم رأس نمر بأسلوب المدرسة القديمة ونمر يزأر وخطوط سوداء جريئة وعيون صفراء وفم أحمر وأسلوب فلاش تقليدي عتيق وتظليل قوي وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
-
   "exploreItemKoiFish": "سمكة كوي",
   "exploreItemKoiFishPrompt": "وشم سمكة كوي بأسلوب ياباني وتصميم إيريزومي تقليدي وكوي متدفقة بجسم منحني وخطوط جريئة ولوحة ألوان حمراء برتقالية وموجات مائية حول السمكة ومظهر نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
   "exploreItemHannyaMask": "قناع هانيا",
@@ -875,7 +932,6 @@
   "exploreItemJapaneseLotusPrompt": "وشم لوتس ياباني وزهرة لوتس بأسلوب إيريزومي تقليدي وخطوط جريئة ونغمات وردية وحمراء وعناصر مائية ومظهر نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
   "exploreItemJapanesePhoenix": "طائر الفينيق",
   "exploreItemJapanesePhoenixPrompt": "وشم طائر فينيق ياباني بأسلوب إيريزومي تقليدي وأجنحة مفتوحة وخطوط جريئة ولوحة ألوان حمراء برتقالية صفراء ونيران حول الطائر وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
-
   "exploreItemPolynesianTribal": "وشم قبلي بولينيزي",
   "exploreItemPolynesianTribalPrompt": "وشم قبلي بولينيزي جريء على ظهر اليد يتميز بخطوط سوداء حادة وأنماط لولبية وتصاميم هندسية. يجمع الوشم بين منحنيات ناعمة وزوايا حادة ويلتف حول اليد بتدفق متماثل ويمتد من الكف إلى المعصم بطرف مدبب. الحبر الأسود العميق يتباين بشكل حاد ويعرض الأسلوب البولينيزي التقليدي مع نسيج جلد واقعي وإضاءة ناعمة.",
   "exploreItemTribalSpineSpear": "وشم رمح قبلي على العمود الفقري",
@@ -900,7 +956,6 @@
   "exploreItemTribalFlamePrompt": "لقطة قريبة فائقة الواقعية لظهر اليد مع وشم لهب قبلي أسود متماثل يتدفق من المفاصل نحو المعصم يتميز بمنحنيات حادة وزخارف لولبية بحبر صلب نظيف. نسيج جلد وأوردة مرئية ويد مسترخية وجينز داكن في الخلفية وإضاءة داخلية محايدة وعمق ميدان ضحل.",
   "exploreItemTribalSwordCompass": "وشم سيف وبوصلة",
   "exploreItemTribalSwordCompassPrompt": "لقطة قريبة فائقة الواقعية لظهر اليد مع وشم أسود ورمادي لسيف عمودي يخترق وردة بوصلة ذات 8 نقاط يتميز بعمل خط رفيع وتفاصيل دائرية وتظليل خفيف شبيه بالدخان. نسيج جلد واقعي وخلفية ضبابية داكنة وإضاءة استوديو درامية وعمق ميدان ضحل.",
-
   "exploreItemGeometricMindBodySoul": "العقل–الجسد–الروح",
   "exploreItemGeometricMindBodySoulPrompt": "وشم هندسة مقدسة أسود ورمادي عالي التفاصيل على الساعد بتصميم عمودي: دماغ يتحول إلى شجرة في الأعلى وشخص يتأمل داخل أشكال ماندالا هندسية في الوسط وقلب تشريحي مع عناصر زخرفية في الأسفل. عمل خط نظيف وتظليل عمل نقطي وتباين عالي وعرض استوديو واقعي.",
   "exploreItemGeometricHoneycombSleeve": "كم خلية نحل هندسي",
@@ -925,7 +980,6 @@
   "exploreItemGeometricSigiPrompt": "وشم إصبع هندسي فائق البساطة بحبر أسود بخط رفيع يتميز برمز عمودي صغير من مثلثات متراكبة وماسات وأشكال مضلعة حادة مع تظليل عمل نقطي خفيف ومساحة سلبية نظيفة. أسلوب هندسة مقدسة حديثة بخطوط رفيعة دقيقة وعمل أسود عالي التباين وتصميم احترافي جاهز للاستنسل.",
   "exploreItemGeometricDualityNature": "ثنائية هندسة الطبيعة",
   "exploreItemGeometricDualityNaturePrompt": "وشم عمل أسود بسيط على الساعد بأسلوب خط رفيع وعمل نقطي يتميز بمثلثين متراكبين: الأعلى بمشهد جبلي وشمس أو قمر صاعد والأسفل مقلوب بموجة محيطية كبيرة. إطار هندسي نظيف ولمسات هندسة مقدسة خفيفة وخطوط حركة منقطة تخلق تصميمًا متوازنًا حديثًا بموضوع طبيعي عالي التباين وفائق التفاصيل وجاهز للاستنسل.",
-
   "exploreItemRealismGamblerFedora": "مقامر بقبعة فيدورا",
   "exploreItemRealismGamblerFedoraPrompt": "وشم واقعي أسود ورمادي لمقامر بلا وجه يرتدي فيدورا وبدلة ورأسه للأسفل وذراعاه متقاطعتان. مصباح شارع عتيق خلفه وأوراق آس مروحية ودخان خفيف على جانب ونردين في الأسفل. أجواء نوار وتظليل عالي التباين وعمل خط دقيق وتنقيط مفصل وأسلوب استنسل نظيف وتكوين متماثل متمركز وأحادي اللون وفلاش وشم.",
   "exploreItemRealismMindOverHeart": "العقل فوق القلب",
@@ -950,7 +1004,6 @@
   "exploreItemRealismPlayfulCharacterPrompt": "تصميم وشم ملون لطيف لشخصية مرحة تحمل زهرة وردية كبيرة. الشخصية تتميز بعيون كبيرة معبرة وفراء أزرق وبطن أزرق فاتح. الزهرة النابضة مؤطرة بأوراق خضراء. الأسلوب جريء وكرتوني بتظليل سلس وخطوط نظيفة وألوان نابضة. التصميم مثالي لمساحة صغيرة من الجسم وبدون خلفية مشتتة مع التركيز على الشخصية والزهرة كنقاط محورية.",
   "exploreItemRealismCutePinkFish": "سمكة وردية لطيفة",
   "exploreItemRealismCutePinkFishPrompt": "تصميم وشم مرح ونابض لسمكة وردية لطيفة بتعبير مبتسم. السمكة تتميز بتدرجات وردية ناعمة بتظليل سلس. رشات مائية بدرجات أزرق وفيروزي تحيط بالسمكة مع فقاعات صغيرة ولمسات ضوء. خطوط حديثة ونظيفة بلمسة مرحة ومثالية لمساحة صغيرة على الجسم. التصميم يركز على السمكة والماء بدون خلفية مشتتة وبأجواء مبهجة ومرحة.",
-
   "exploreItemLetteringTrustNoOne": "لا تثق بأحد",
   "exploreItemLetteringTrustNoOnePrompt": "تصميم وشم قوطي مفصل بعبارة 'Trust no One'. النص جريء ودرامي بحواف حادة وزاوية. تأثيرات تظليل لإعطاء النص مظهرًا ثلاثي الأبعاد مع رشات حبر أو ظل حول النص لأجواء خشنة ومكثفة. الخط يستحضر جوًا داكنًا وغامضًا بنبرة حادة ومتمردة.",
   "exploreItemLetteringBlessed": "مبارك",
@@ -975,7 +1028,6 @@
   "exploreItemLetteringDesirePrompt": "تصميم وشم قوطي داكن بكلمة \"Desire\" وخط كاليغرافي عدواني حاد بأسلوب بلاك ميتال وحروف شوكية مسننة وتكوين متماثل وواقعية أسود ورمادي ونسيج داكن معدني وتظليل عالي التباين وتفاصيل زخرفية شريرة وخطوط جاهزة للاستنسل نظيفة وفلاش وشم احترافي وأحادي اللون وفائق التفاصيل وأسلوب قوطي حاد.",
   "exploreItemLetteringBeautiful": "جميل",
   "exploreItemLetteringBeautifulPrompt": "تصميم وشم ملون أنيق بكلمة \"Beautiful\" وخط سكريبت متدفق سلس وكاليغرافي حديثة جريئة وألوان تدرج ثلاثية الأبعاد لامعة (وردي وبرتقالي وأصفر) وخط أسود سميك ولمعات ناعمة وعمق وأسلوب أنثوي أنيق ومنحنيات نظيفة وزخارف وتكوين متمركز وفلاش وشم احترافي وجاهز للاستنسل وأسلوب متجه عالي التفاصيل.",
-
   "exploreItemFloralFourLeafClover": "ورقة برسيم رباعية بسيطة",
   "exploreItemFloralFourLeafCloverPrompt": "تصميم وشم ورقة برسيم رباعية بسيطة بخط رفيع وأسلوب لطيف ورقيق وأوراق خضراء باستيل ناعمة بتدرج سلس وساق أسود رفيع وخطوط نظيفة وتفاصيل قلب أحمر صغيرة داخل ورقة واحدة وتكوين متماثل وفلاش وشم أنثوي بسيط وعمل خط عالي التباين وملء لوني خفيف وحواف نظيفة بأسلوب متجه وتصميم استنسل وشم احترافي وتكوين متمركز.",
   "exploreItemFloralCherryBlossom": "فرع زهر الكرز",
@@ -1000,7 +1052,6 @@
   "exploreItemFloralBabyPandaPrompt": "تصميم وشم باندا صغيرة لطيفة جالسة تحمل عصا بامبو صغيرة بأسلوب كرتوني دائري ناعم مع نسيج فراء شبه واقعي واحمرار خفيف على الخدود وعيون كبيرة معبرة وابتسامة ودية وباندا أبيض وأسود بتظليل رمادي خفيف وأوراق بامبو صغيرة حول الشخصية وخلفية رشات ألوان مائية خفيفة بنغمات باستيل وخطوط جريئة نظيفة مع تظليل ناعم وأسلوب وشم كاوايي وتباين عالي وتكوين متمركز وتصميم فلاش وشم احترافي وعمل فني معزول وخلفية شفافة.",
   "exploreItemFloralSunMoon": "الشمس والقمر",
   "exploreItemFloralSunMoonPrompt": "تصميم وشم ألوان مائية للشمس والهلال وتكوين سماوي نابض وشمس برتقالية متوهجة بأشعة متدفقة تحيط بهلال كبير والقمر ممتلئ بألوان مجرة بالأزرق والبنفسجي والوردي ورشات ألوان مائية ناعمة وقطرات حبر وتفاصيل نجوم رقيقة وبريقات وخطوط نظيفة دقيقة مع تدرجات ألوان سلسة وأسلوب وشم سماوي حديث وتباين عالي وتكوين متمركز متوازن وتصميم فلاش وشم احترافي وعمل فني معزول وخلفية شفافة.",
-
   "exploreItemMythologyWarriorSerpents": "محارب وأفاعي",
   "exploreItemMythologyWarriorSerpentsPrompt": "محارب ذكر عضلي بأسلوب تمثال يوناني كلاسيكي ملتف بإحكام بأفاعي متعددة وأفعى تلتف حول الجذع والذراعين وأخرى ترتفع بفم مفتوح والمحارب يحمل خنجرًا للأسفل بيد واحدة ووضعية صراع أسطوري درامي مستوحاة من النحت القديم ونقش عصر النهضة وتصميم وشم حبر أسود عالي التفاصيل وأسلوب نقش بخط رفيع وتظليل بتخطيط متقاطع وعمل خط نظيف وتكوين عمودي متمركز وتباين عالي وخلفية بيضاء ونسيج رق وتشريح واقعي وفلاش وشم خيال داكن وتخطيط متماثل متوازن.",
   "exploreItemMythologyPhoenixRising": "طائر فينيق صاعد",
@@ -1024,8 +1075,11 @@
   "exploreItemMythologyTrident": "رمح ثلاثي",
   "exploreItemMythologyTridentPrompt": "تصميم وشم رمح ثلاثي قوطي بتفاصيل معقدة حادة ورأس الرمح مزين بأشواك داكنة شبيهة بالشوك ومنحنيات أنيقة وأفعى تلتف حول عمود الرمح بحراشف ناعمة وتظليل خفيف وعناصر كرمة زهرية تلتف حول الرمح ورقيقة لكن قوية وتظليل أسود ورمادي داكن ومخيف بتباين عالي ولعب ظلال درامي وخطوط حادة وتفاصيل دقيقة وفلاش وشم احترافي وخلفية بسيطة مع التركيز على السلاح والأفعى وتصميم متماثل.",
   "exploreItemMythologyWarrior": "محارب",
-  "exploreItemMythologyWarriorPrompt": "تصميم وشم محارب خيالي قوي وشخصية شبيهة بالتنين بحراشف تغطي الوجه والرقبة وعيون زرقاء متوهجة ولحية طويلة مفصلة وملامح حادة ولمسات لهب نارية برتقالية وزرقاء تدور حول الشخصية ودرع مسنن حاد وزعانف بارزة من الظهر ويحمل رمحًا ثلاثيًا بيد واحدة وتظليل درامي بتباين عالي ونسيج مفصل على الجلد والسلاح وألوان حية من النار والجليد وأجواء أسطورية قوية وخطوط جريئة نظيفة ورسم فلاش وشم احترافي وخلفية بسيطة مع التركيز على الشخصية والنيران.",
-
+  "exploreItemMythologyWarriorPrompt": "محارب خيال قوي مع قشور تنين تغطي وجه ورقبة وعيون زرقاء متوهجة ولحية طويلة مفصلة وملامح حادة وخفايا نار برتقالية زرقاء تدور حوله ودروع مسننة حادة وزعانف مرتفعة من الظهر ويحمل ترايدنت في يد واحدة وتظليل درامي بتباين عالٍ وملمس جلد وسلاح مفصل وألوان نار جليد حيوية وجو أسطوري قوي وخطوط جريئة نظيفة ووميض وشم احترافي وخلفية بسيطة بتركيز على شكل ولهب.",
+  "historySelected": "{count} محدد",
+  "historySelectAll": "تحديد الكل",
+  "historyDeselectAll": "إلغاء تحديد الكل",
+  "historySelect": "تحديد",
   "deleteConfirmationTitle": "حذف الإدخال",
   "@deleteConfirmationTitle": {
     "description": "Title for delete confirmation dialog"

@@ -265,97 +265,153 @@
     "description": "Home: style prompt for Floral"
   },
   "homeDescribeYourDreamInk": "Опишите Вашу Татуировку Мечты",
-  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "@homeDescribeYourDreamInk": {
+    "description": "Home: \"Describe Your Dream Ink\" title"
+  },
   "homeDreamInkHint": "Расскажите нам, что вы представляете...",
-  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "@homeDreamInkHint": {
+    "description": "Home: Dream ink input hint"
+  },
   "homeInspiration": "Вдохновение",
-  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "@homeInspiration": {
+    "description": "Home: Inspiration label"
+  },
   "homeCharactersRemaining": "символов осталось",
-  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "@homeCharactersRemaining": {
+    "description": "Home: \"characters remaining\" suffix (prepend number in UI)"
+  },
   "homeTattooStyle": "Стиль Татуировки",
-  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "@homeTattooStyle": {
+    "description": "Home: Tattoo Style section title"
+  },
   "homeExploreInspiration": "Исследовать Вдохновение",
-  "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
+  "@homeExploreInspiration": {
+    "description": "Home: Explore Inspiration section title"
+  },
   "homeGenerate": "Создать",
-  "@homeGenerate": { "description": "Home: Generate button label" },
+  "@homeGenerate": {
+    "description": "Home: Generate button label"
+  },
   "homeTutorialOverlayText": "Опишите татуировку, которую вы имеете в виду, или нажмите 'Вдохновение' для идей",
-  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
-
+  "@homeTutorialOverlayText": {
+    "description": "Home: Tutorial overlay text"
+  },
   "exploreTitleGothqueen": "Gothqueen",
-  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "@exploreTitleGothqueen": {
+    "description": "Home: Explore item title - Gothqueen"
+  },
   "exploreItemMythologyGriffinPrompt": "Величественный грифон, часть лев часть орел, золотые и коричневые перья, горная вершина, высокая детализация",
-  "deleteConfirmationTitle": "Удалить запись",
-  "deleteConfirmationContent": "Вы уверены, что хотите удалить этот дизайн из истории? Это действие нельзя отменить.",
-  "cancel": "Отмена",
-  "delete": "Удалить",
+  "@exploreItemMythologyGriffinPrompt": {
+    "description": "Home: Explore item prompt - Mythology Griffin"
+  },
   "explorePromptGothqueen": "Черно-серая готическая татуировка королевы, лысое женское лицо, украшенная корона, геометрическая линейная работа, реалистичная штриховка, симметричная, высокий уровень детализации",
-  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
-
+  "@explorePromptGothqueen": {
+    "description": "Home: Explore item prompt - Gothqueen"
+  },
   "exploreTitleFloral": "Floral",
-  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "@exploreTitleFloral": {
+    "description": "Home: Explore item title - Floral"
+  },
   "explorePromptFloral": "Красивый дизайн цветочной татуировки с замысловатыми лепестками и листьями, естественные плавные кривые, ботанический стиль татуировки, детализированная линейная работа, сплошная белая краска, высокий контраст",
-  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
-
+  "@explorePromptFloral": {
+    "description": "Home: Explore item prompt - Floral"
+  },
   "exploreTitleSkullWithFedoraAndPipe": "Череп с федорой и трубкой",
-  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "@exploreTitleSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item title - Skull with fedora and pipe"
+  },
   "explorePromptSkullWithFedoraAndPipe": "Реалистичная черно-серая татуировка черепа, череп в профиль в классической федоре, курящий изогнутую трубку с мягким дымом вверх, винтажный нуар стиль, детализированная текстура костей и зубов, плавная градиентная штриховка с точечной работой и мягким реализмом, детализация тонкой иглой, высококонтрастные черные тона, профессиональное произведение татуировки.",
-  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
-
+  "@explorePromptSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item prompt - Skull with fedora and pipe"
+  },
   "exploreTitleElegantSnakeTattoo": "Элегантная татуировка змеи",
-  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "@exploreTitleElegantSnakeTattoo": {
+    "description": "Home: Explore item title - Elegant snake tattoo"
+  },
   "explorePromptElegantSnakeTattoo": "Ультра-детализированная черно-белая агрессивная татуировка змеи, открытая пасть с длинными клыками и раздвоенным языком, плавное свернутое тело, детализированная чешуя тонкими линиями, глубокая черная штриховка, сильный контраст, реалистичная глубина, чистое негативное пространство, традиционная гравюра × современный реализм, бритвенно-острые контуры, монохромная краска, без фона, профессиональный флеш татуировки, готово для предплечья или рукава.",
-  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
-
+  "@explorePromptElegantSnakeTattoo": {
+    "description": "Home: Explore item prompt - Elegant snake tattoo"
+  },
   "exploreTitleFeatherAndBirdsInFlight": "Перо и птицы в полете",
-  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "@exploreTitleFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item title - Feather and birds in flight"
+  },
   "explorePromptFeatherAndBirdsInFlight": "Ультра-детализированная черно-белая татуировка пера, элегантное реалистичное перо с тонкой линейной работой, симметричные зазубрины и острый стержень, плавная градиентная штриховка точечной работы, минималистичный премиум стиль тонких линий, маленькие силуэты птиц, струящиеся вверх, сбалансированная композиция, бритвенно-острые контуры, высококонтрастная черная краска, современный реализм татуировки, только монохром, без фона на белом холсте, профессиональный флеш, готово для трафарета.",
-  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
-
+  "@explorePromptFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item prompt - Feather and birds in flight"
+  },
   "exploreTitleRainyBatWithCelestialStars": "Дождливая летучая мышь с небесными звездами",
-  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "@exploreTitleRainyBatWithCelestialStars": {
+    "description": "Home: Explore item title - Rainy bat with celestial stars"
+  },
   "explorePromptRainyBatWithCelestialStars": "Симметричная татуировка летучей мыши с полностью расправленными крыльями, сплошное черное тело, крылья заполнены плавным радужным градиентом (от фиолетового к синему, зеленому, желтому, оранжевому), чистые смелые контуры с тонкой линейной работой, тонкая точечная штриховка, окруженная маленькими звездами и точками, две четырехконечные звезды сверху и снизу, мистическая небесная атмосфера, современный нео-традиционный стиль, высокий контраст, острый детали.",
-  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
-
+  "@explorePromptRainyBatWithCelestialStars": {
+    "description": "Home: Explore item prompt - Rainy bat with celestial stars"
+  },
   "exploreTitleElegantBlackCatSilhouetteDesign": "Элегантный дизайн силуэта черной кошки",
-  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "@exploreTitleElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item title - Elegant black cat silhouette design"
+  },
   "explorePromptElegantBlackCatSilhouetteDesign": "Минималистичный дизайн татуировки черной кошки в элегантном абстрактном стиле, сидящая кошка в профиль с длинным струящимся изогнутым хвостом, плавные широкие линии и острые сужающиеся края, сплошная черная краска с тонкой градиентной штриховкой для глубины, геометрические и плавные формы, образующие тело, нежные линии усов, простирающиеся от морды, современный стиль татуировки тонких линий, высокий контраст, чистое негативное пространство, изысканный и художественный вид, флеш-арт татуировки",
-  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
-
+  "@explorePromptElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item prompt - Elegant black cat silhouette design"
+  },
   "exploreTitleRedRoseTattooDesign": "Дизайн татуировки красной розы",
-  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "@exploreTitleRedRoseTattooDesign": {
+    "description": "Home: Explore item title - Red rose tattoo design"
+  },
   "explorePromptRedRoseTattooDesign": "Реалистичная татуировка красной розы, одна цветущая роза со слоистыми лепестками, богатый глубокий красный цвет, тонкая детализированная текстура лепестков, тонкая градиентная штриховка, естественный зеленый стебель с маленькими шипами и двумя детализированными листьями, чистые четкие контуры, мягкий реалистичный стиль татуировки, высокий контраст, плавное смешивание цветов, профессиональное качество флеш татуировки, только изолированная роза",
-  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
-
+  "@explorePromptRedRoseTattooDesign": {
+    "description": "Home: Explore item prompt - Red rose tattoo design"
+  },
   "exploreTitleBlackInfinityArrowTattoo": "Черная татуировка бесконечной стрелы",
-  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "@exploreTitleBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item title - Black infinity arrow tattoo"
+  },
   "explorePromptBlackInfinityArrowTattoo": "Реалистичная минималистичная черная татуировка бесконечной стрелы, плавная непрерывная петля с острой стрелой, чистая смелая линейная работа, высококонтрастная сплошная черная краска, современный минималистичный стиль, монохром, готово для трафарета.",
-  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
-
+  "@explorePromptBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item prompt - Black infinity arrow tattoo"
+  },
   "exploreTitleBlackScorpionTattooDesign": "Дизайн татуировки черного скорпиона",
-  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "@exploreTitleBlackScorpionTattooDesign": {
+    "description": "Home: Explore item title - Black scorpion tattoo design"
+  },
   "explorePromptBlackScorpionTattooDesign": "Реалистичный минималистичный дизайн татуировки черного скорпиона, смелая сплошная черная краска, острая чистая линейная работа, симметричные детали, вдохновленные племенными мотивами, высокий контраст, плавные кривые, современный стиль татуировки, готово для трафарета, изолировано на простом фоне, ультра-детализировано, профессиональный флеш татуировки",
-  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
-
+  "@explorePromptBlackScorpionTattooDesign": {
+    "description": "Home: Explore item prompt - Black scorpion tattoo design"
+  },
   "exploreTitleCrescentMoonAndStarTattoo": "Татуировка полумесяца и звезды",
-  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "@exploreTitleCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item title - Crescent moon and star tattoo"
+  },
   "explorePromptCrescentMoonAndStarTattoo": "Минималистичная татуировка черной краской, стиль тонких линий, полумесяц вверх со сплошной черной заливкой, маленькая четырехконечная звезда сверху, выровненная вертикально, тонкие точечные акценты, небесная и мистическая эстетика, простая геометрия, сбалансированное расстояние, чистый фон, точная линейная работа, высокий контраст, вневременной минималистичный дизайн татуировки",
-  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
-
+  "@explorePromptCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item prompt - Crescent moon and star tattoo"
+  },
   "exploreTitleSleepingPandaTattoo": "Татуировка спящей панды",
-  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "@exploreTitleSleepingPandaTattoo": {
+    "description": "Home: Explore item title - Sleeping panda tattoo"
+  },
   "explorePromptSleepingPandaTattoo": "Минималистичная милая татуировка панды, крошечная спящая панда, лежащая на боку, простая округлая форма, сплошная черная и белая краска, мягкие плавные заливки, минимальные детали лица, чистые края, современный минималистичный стиль татуировки, монохром, без фона, белый холст, готово для трафарета.",
-  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
-
+  "@explorePromptSleepingPandaTattoo": {
+    "description": "Home: Explore item prompt - Sleeping panda tattoo"
+  },
   "genericTattoo": "Татуировка",
-  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
-
+  "@genericTattoo": {
+    "description": "Generic: Tattoo label (fallback style name)"
+  },
   "loadingGeneratingYourTattoo": "Создание вашей татуировки..",
-  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
-
+  "@loadingGeneratingYourTattoo": {
+    "description": "Loading screen: generating message"
+  },
   "resultShare": "Поделиться",
-  "@resultShare": { "description": "Result screen: Share button label" },
+  "@resultShare": {
+    "description": "Result screen: Share button label"
+  },
   "resultNoImageToShare": "Нет изображения для обмена",
-  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "@resultNoImageToShare": {
+    "description": "Result screen: No image to share message"
+  },
   "resultShareText": "Посмотрите мой дизайн татуировки {styleName}!",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
@@ -384,7 +440,9 @@
     }
   },
   "resultImageSavedToGallery": "Изображение сохранено в галерею",
-  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "@resultImageSavedToGallery": {
+    "description": "Result screen: Image saved to gallery message"
+  },
   "resultErrorSaving": "Ошибка при сохранении изображения: {error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
@@ -794,12 +852,10 @@
   },
   "noInternetConnectionSomeFeatures": "Нет подключения к интернету. Некоторые функции могут быть недоступны.",
   "noInternetConnectionPleaseCheckNetwork": "Нет подключения к интернету. Проверьте сеть.",
-
   "homeSeeAll": "Посмотреть все",
   "@homeSeeAll": {
     "description": "Home: See all link for category row"
   },
-
   "deleteConfirmationTitle": "Удалить запись",
   "@deleteConfirmationTitle": {
     "description": "Title for delete confirmation dialog"
@@ -812,7 +868,6 @@
   "@delete": {
     "description": "Delete button label"
   },
-
   "exploreCategoryMinimal": "Минималистические татуировки",
   "exploreCategoryMinimalDescription": "Простые и чистые линии с минималистской эстетикой. Идеально для утонченных и элегантных дизайнов.",
   "exploreCategoryTraditional": "Традиционный и Old School",
@@ -833,7 +888,6 @@
   "exploreCategoryMythologyDescription": "Мифические существа и боги и дизайны, вдохновленные фэнтези.",
   "exploreCategoryCustomAi": "Пользовательские дизайны ИИ",
   "exploreCategoryCustomAiDescription": "Уникальные дизайны ИИ, сочетающие несколько стилей.",
-
   "exploreItemMinimalistPanda": "Минималистический панда",
   "exploreItemMinimalistPandaPrompt": "Маленькая минималистическая татуировка панды на лодыжке, милый панда сидит, слегка глядя вправо, нарисованный чистыми черными линиями и тонким микро-затенением. Панде держит тонкий зеленый стебель с маленькими фиолетовыми цветами лаванды, с тонкими ботаническими деталями и черными блестящими ушами и руками. Дизайн центрирован на коже лодыжки, сфотографирован при естественном освещении с низкой глубиной резкости и стилем профессиональной минималистической татуировки в композиции 1:1.",
   "exploreItemFineLineBow": "Тонкая линия банта",
@@ -858,7 +912,6 @@
   "exploreItemValknutTrianglePrompt": "Близкий реалистичный снимок руки, сжимающей в темных джинсовых карманах, показывающий маленькую тонкую татуировку стиля валькнут с тремя переплетенными треугольниками в чистой черной тонкой краске. С текстурой кожи, видимыми венами, темным поло и серебряным кольцом и джинсовым фоном и естественным освещением и низкой глубиной резкости.",
   "exploreItemMinimalistMountain": "Минималистические горы",
   "exploreItemMinimalistMountainPrompt": "Близкий реалистичный снимок внутренней стороны предплечья с маленькой простой горной татуировкой в чистой черной тонкой краске. Дизайн маленько центрирован в середине предплечья с текстурой кожи, слегка закатанным рукавом и естественным освещением и нейтральным фоном с низкой глубиной резкости.",
-
   "exploreItemSwallowBird": "Ласточка",
   "exploreItemSwallowBirdPrompt": "Татуировка ласточки old school с распростертыми крыльями и смелыми линиями и классической палитрой цветов синий и красный и стилем флеш древнего моряка и простым затенением и центральной композицией и прозрачным фоном PNG и высоким разрешением.",
   "exploreItemDaggerHeart": "Кинжал в сердце",
@@ -875,7 +928,6 @@
   "exploreItemCowboyRevolverPrompt": "Татуировка ковбойского револьвера old school с классическим вестерном пистолетом и толстыми смелыми черными линиями и классическим стилем флеша и тонкими красными и золотыми акцентами и сильным затенением и чистым видом и центральной композицией и прозрачным фоном PNG и высоким разрешением。",
   "exploreItemPantherHead": "Голова пантеры",
   "exploreItemPantherHeadPrompt": "Татуировка головы пантеры old school с рычащей пантерой и смелыми черными линиями и желтыми глазами и красным ртом и традиционным стилем флеша и сильным затенением и центральной композицией и прозрачным фоном PNG и высоким разрешением。",
-
   "exploreItemKoiFish": "Рыба кои",
   "exploreItemKoiFishPrompt": "Японская татуировка рыбы кои с традиционным дизайном ирезumi и текущей кои с изогнутым телом и смелыми линиями и палитрой цветов красный и оранжевый и волнами воды вокруг рыбы и чистым видом и центральной композицией и прозрачным фоном PNG и высоким разрешением。",
   "exploreItemHannyaMask": "Маска Ханни",
@@ -896,7 +948,6 @@
   "exploreItemJapaneseLotusPrompt": "Японская татуировка цветка лотоса и цветок лотоса с стилем ирезumi и смелыми линиями и цветами розовый красный и элементами воды и чистым видом и центральной композицией и прозрачным фоном PNG и высоким разрешением。",
   "exploreItemJapanesePhoenix": "Японский феникс",
   "exploreItemJapanesePhoenixPrompt": "Японская птица феникс с стилем ирезumi и распростертыми крыльями и смелыми линиями и цветами красный оранжевый желтый и огнем вокруг птицы и центральной композицией и прозрачным фоном PNG и высоким разрешением。",
-
   "exploreItemPolynesianTribal": "Полинезийская племенная татуировка",
   "exploreItemPolynesianTribalPrompt": "Смелая полинезийская племенная татуировка на тыльной стороне ладони с чистыми черными линиями и спиральными узорами и геометрическими дизайнами. Татуировка течет с мягкими кривыми и острыми углами и простирается от ладони до запястья с острым концом. Глубокая черная краска с высоким контрастом и показывает традиционный полинезийский племенный стиль с реалистичной текстурой кожи и мягким светом。",
   "exploreItemTribalSpineSpear": "Копье на позвоночнике",
@@ -921,7 +972,6 @@
   "exploreItemTribalFlamePrompt": "Близкий снимок тыльной стороны ладони с симметричной черной племенной татуировкой, текущей от суставов к запястью с чистыми кривыми и спиральными орнаментами в черной краске. Текстура кожи и видимые вены и рука расслабленная и темные синие джинсы в фоне и нейтральный внутренний свет и низкая глубина резкости。",
   "exploreItemTribalSwordCompass": "Меч племени и компас",
   "exploreItemTribalSwordCompassPrompt": "Близкий снимок тыльной стороны ладони с черно-серой племенной татуировкой меча, пронзающего розу ветров с тонкими линиями и круговыми деталями и тонким затенением как дым. Реалистичная текстура кожи и туманный темный фон и драматический свет студии и низкая глубина резкости。",
-
   "exploreItemGeometricMindBodySoul": "Разум-Тело-Душа",
   "exploreItemGeometricMindBodySoulPrompt": "Высокодетализированная священная геометрическая татуировка на предплечье с вертикальной композицией: Мозг превращающийся в дерево сверху и анатомические формы мандалы посередине и анатомическое сердце с декоративными элементами внизу. Чистые тонкие линии и затенение точками и высокий контраст и снимок студии реализма。",
   "exploreItemGeometricHoneycombSleeve": "Рукав сот",
@@ -946,7 +996,6 @@
   "exploreItemGeometricSigiPrompt": "Простая маленькая татуировка пальца с тонкой черной краской с вертикальным символом перекрывающихся треугольников и бриллиантов и чистых полигонов с тонким затенением точек и чистым отрицательным пространством. Современный священный геометрический стиль с точными тонкими линиями и высоким контрастом и готовым для профессионального трафарета。",
   "exploreItemGeometricDualityNature": "Геометрическая дуальность природы",
   "exploreItemGeometricDualityNaturePrompt": "Простая черная работа геометрической татуировки на предплечье с тонкими линиями и затенением точек с перекрывающимися треугольниками: Сверху с сценой горы и солнцем/луной восходящими и ниже перевернутым с большой волной океана. Чистый геометрический кадр и тонкая священная геометрия с линиями движения пунктирными для современной сбалансированной натуральной темы с высоким контрастом и готовым для трафарета。",
-
   "exploreItemRealismGamblerFedora": "Игрок с федорой",
   "exploreItemRealismGamblerFedoraPrompt": "Реалистичная черно-серая татуировка игрока без лица с федорой и костюмом и руками за спиной. Старый уличный фонарь позади и веер карт и тонкий дым сбоку. Атмосфера нуара и высокий контраст и тонкие линии и детализированное точечное и традиционный стиль и симметричная центральная композиция и прозрачный PNG фон и простой и высокодетализированный и черный флеш。",
   "exploreItemRealismMindOverHeart": "Разум над сердцем",
@@ -971,7 +1020,6 @@
   "exploreItemRealismPlayfulCharacterPrompt": "Яркая цветная татуировка игривого персонажа, держащего большой розовый цветок. Персонаж имеет большие выразительные глаза и синие шерсть и синий живот. Яркий цветок обрамлен зелеными листьями. Стиль смелый и мультяшный с текучим затенением и чистыми линиями и яркими цветами. Идеально для маленького пространства без отвлекающего фона с фокусом на персонаже и цветке как центральных точках。",
   "exploreItemRealismCutePinkFish": "Милый розовый рыба",
   "exploreItemRealismCutePinkFishPrompt": "Игривая яркая татуировка милой розовой рыбки с улыбающимся выражением. Рыбка показывает мягкие розовые градиенты с тонким затенением. Пузыри воды в тонах синего бирюзового вокруг рыбки с маленькими пузырями и бликами. Современные чистые линии с игривым прикосновением и идеально для маленького пространства. Дизайн фокусируется на рыбке и воде без отвлекающего фона и атмосферы радости。",
-
   "exploreItemLetteringTrustNoOne": "Никому не доверяй",
   "exploreItemLetteringTrustNoOnePrompt": "Готическая детализированная татуировка с фразой 'Trust no One'. Текст смелый и драматический с чистыми краями и углами. Эффекты затенения для придания тексту трехмерного вида с брызгами краски вокруг текста для грубой атмосферы и сильного. Типографика вызывает темную и таинственную атмосферу с острым и бунтарским тоном。",
   "exploreItemLetteringBlessed": "Благословенный",
@@ -996,7 +1044,6 @@
   "exploreItemLetteringDesirePrompt": "Готическая темная татуировка со словом \"Desire\" и типографией black metal острой с острыми буквами и симметричной композицией и черно-серым реализмом и высоким контрастом и темной металлической текстурой и зловещими декоративными деталями и чистыми линиями готовыми для трафарета и профессиональным флешем татуировки и простыми и высокодетализированными и готическим острым стилем。",
   "exploreItemLetteringBeautiful": "Красивый",
   "exploreItemLetteringBeautifulPrompt": "Элегантная цветная татуировка со словом \"Beautiful\" и современной текучей типографией каллиграфии смелой и толстыми линиями и яркими трехмерными градиентами (розовый оранжевый желтый) и толстыми черными линиями и бликами и мягким женским элегантным стилем и чистыми изгибами и декоративными элементами и центральной композицией и профессиональным флешем татуировки и готовым для трафарета и высокодетализированным。",
-
   "exploreItemFloralFourLeafClover": "Четырехлистный клевер",
   "exploreItemFloralFourLeafCloverPrompt": "Простая татуировка четырехлистного клевера с тонкими линиями и сладким нежным стилем и мягкими зелеными листьями пастели с мягкими градиентами и тонким черным стеблем и чистыми линиями и деталями маленького красного сердечка на листе и симметричной композицией и флешем татуировки и тонкими линиями с высоким контрастом и чистыми краями и профессиональным дизайном татуировки и центральной композицией。",
   "exploreItemFloralCherryBlossom": "Ветвь цветущей вишни",
@@ -1021,7 +1068,6 @@
   "exploreItemFloralBabyPandaPrompt": "Кавайи татуировка малыша панды с круглым мягким стилем и лицом с тонким румянцем и большими выразительными глазами и улыбкой дружелюбной и шерстью белой черной с тонким серым затенением и листами бамбука вокруг фигуры и легкими акцентами краски гуаши в пастельных тонах и толстыми чистыми линиями с тонким затенением и стилем кавайи татуировки и высоким контрастом и центральной композицией и профессиональным флешем татуировки и изолированным искусством и прозрачным простым фоном。",
   "exploreItemFloralSunMoon": "Солнце и луна",
   "exploreItemFloralSunMoonPrompt": "Небесная татуировка краски гуаши с солнцем и луной и яркой композицией и горящим оранжевым солнцем с излучающимися лучами и полной луной в голубом фиолетовом и розовом и мягкими брызгами краски гуаши и точками краски и маленькими звездами и бликами и чистыми тонкими линиями с мягкими градиентами и современным небесным стилем и высоким контрастом и центральной сбалансированной композицией и профессиональным флешем татуировки и изолированным искусством и прозрачным простым фоном。",
-
   "exploreItemMythologyWarriorSerpents": "Воин и змеи",
   "exploreItemMythologyWarriorSerpentsPrompt": "Мускулистый мужской воин в классическом стиле греческой скульптуры туго обернутый множественными змеями и змеей обвивающейся вокруг торса и рук и другой змеей поднимающейся с открытой пастью и драматической мифической позой борьбы вдохновленной древней скульптурой и ренессансными гравюрами и дизайном татуировки с тонкими линиями и детализированным затенением перекрестной штриховки и чистыми линиями и высоким контрастом и снимком студии реализма。",
   "exploreItemMythologyPhoenixRising": "Восстающий феникс",
@@ -1045,5 +1091,9 @@
   "exploreItemMythologyTrident": "Трезубец",
   "exploreItemMythologyTridentPrompt": "Готический трезубец с сложными острыми деталями и шипами на древке и элегантными изгибами и змеей обвивающейся вокруг и тонким затенением и орнаментальными лозами вокруг и нежными но мощными и затенением черно-серым темным с высоким контрастом и игрой драматических теней и острыми линиями и тонкими деталями и профессиональным флешем татуировки и простым фоном с фокусом на оружие и змею и симметричным дизайном。",
   "exploreItemMythologyWarrior": "Воин",
-  "exploreItemMythologyWarriorPrompt": "Мощный воин фэнтези с чешуйками дракона покрывающими лицо и шею и сияющими синими глазами и длинной детализированной бородой и острыми чертами и тонкостями пламени оранжевого синего закручивающимися вокруг и зубчатой острой броней и поднятыми плавниками от спины и держащим трезубец в одной руке и драматическим затенением с высоким контрастом и детализированной текстурой кожи и оружия и яркими цветами огня льда и сильной мифической атмосферой и смелыми чистыми линиями и профессиональным флешем татуировки и простым фоном с фокусом на фигуре и пламени。"
+  "exploreItemMythologyWarriorPrompt": "Мощный воин фэнтези с чешуйками дракона покрывающими лицо и шею и сияющими синими глазами и длинной детализированной бородой и острыми чертами и тонкостями пламени оранжевого синего закручивающимися вокруг и зубчатой острой броней и поднятыми плавниками от спины и держащим трезубец в одной руке и драматическим затенением с высоким контрастом и детализированной текстурой кожи и оружия и яркими цветами огня льда и сильной мифической атмосферой и смелыми чистыми линиями и профессиональным флешем татуировки и простым фоном с фокусом на фигуре и пламени。",
+  "historySelected": "{count} Выбрано",
+  "historySelectAll": "Выбрать все",
+  "historyDeselectAll": "Отменить выбор",
+  "historySelect": "Выбрать"
 }

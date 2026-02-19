@@ -90,7 +90,7 @@ class _LoadingScreenState extends State<LoadingScreen>
       print(
         'LoadingScreen: No name or prompt text provided, using placeholder',
       );
-      _navigationTimer = Timer(const Duration(seconds: 5), () {
+      _navigationTimer = Timer(const Duration(seconds: 5000), () {
         if (mounted) _navigateToResult();
       });
       return;

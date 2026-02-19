@@ -265,58 +265,97 @@
     "description": "Home: style prompt for Floral"
   },
   "homeDescribeYourDreamInk": "Describe Your Dream Ink",
-  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "@homeDescribeYourDreamInk": {
+    "description": "Home: \"Describe Your Dream Ink\" title"
+  },
   "homeDreamInkHint": "Tell us what you envision...",
-  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "@homeDreamInkHint": {
+    "description": "Home: Dream ink input hint"
+  },
   "homeInspiration": "Inspiration",
-  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "@homeInspiration": {
+    "description": "Home: Inspiration label"
+  },
   "homeCharactersRemaining": "characters remaining",
-  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "@homeCharactersRemaining": {
+    "description": "Home: \"characters remaining\" suffix (prepend number in UI)"
+  },
   "homeTattooStyle": "Tattoo Style",
-  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "@homeTattooStyle": {
+    "description": "Home: Tattoo Style section title"
+  },
   "homeExploreInspiration": "Any Category",
-  "@homeExploreInspiration": { "description": "Home: Any Category section title" },
+  "@homeExploreInspiration": {
+    "description": "Home: Any Category section title"
+  },
   "homeSeeAll": "See all",
-  "@homeSeeAll": { "description": "Home: See all link for category row" },
+  "@homeSeeAll": {
+    "description": "Home: See all link for category row"
+  },
   "homeGenerate": "Generate",
-  "@homeGenerate": { "description": "Home: Generate button label" },
+  "@homeGenerate": {
+    "description": "Home: Generate button label"
+  },
   "homeTutorialOverlayText": "Describe the tattoo you have in mind, or tap 'Inspiration' for ideas",
-  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
-
+  "@homeTutorialOverlayText": {
+    "description": "Home: Tutorial overlay text"
+  },
   "exploreTitleGothqueen": "Gothqueen",
-  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "@exploreTitleGothqueen": {
+    "description": "Home: Explore item title - Gothqueen"
+  },
   "explorePromptGothqueen": "Black and grey gothic queen tattoo, bald female face, ornate crown, geometric linework, realistic shading, symmetrical, high detail",
-  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
-
+  "@explorePromptGothqueen": {
+    "description": "Home: Explore item prompt - Gothqueen"
+  },
   "exploreTitleFloral": "Floral",
-  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "@exploreTitleFloral": {
+    "description": "Home: Explore item title - Floral"
+  },
   "explorePromptFloral": "Beautiful floral tattoo design with intricate petals and leaves, natural flowing curves, botanical tattoo style, detailed line-work, solid white ink, high contrast",
-  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
-
+  "@explorePromptFloral": {
+    "description": "Home: Explore item prompt - Floral"
+  },
   "exploreTitleSkullWithFedoraAndPipe": "Skull with fedora and pipe",
-  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "@exploreTitleSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item title - Skull with fedora and pipe"
+  },
   "explorePromptSkullWithFedoraAndPipe": "Realistic black & grey skull tattoo, side-profile skull wearing a classic fedora, smoking a curved pipe with soft upward smoke, vintage noir style, detailed bone & teeth texture, smooth gradient shading with dotwork and soft realism, fine-needle detailing, high-contrast blacks, professional tattoo artwork.",
-  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
-
+  "@explorePromptSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item prompt - Skull with fedora and pipe"
+  },
   "exploreTitleElegantSnakeTattoo": "Elegant snake tattoo",
-  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "@exploreTitleElegantSnakeTattoo": {
+    "description": "Home: Explore item title - Elegant snake tattoo"
+  },
   "explorePromptElegantSnakeTattoo": "Ultra-detailed black & white aggressive snake tattoo, open mouth with long fangs and forked tongue, flowing coiled body, fine-line detailed scales, deep black shading, strong contrast, realistic depth, clean negative space, traditional engraving × modern realism, razor-sharp outlines, monochrome ink, no background, professional tattoo flash, forearm or sleeve ready.",
-  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
-
+  "@explorePromptElegantSnakeTattoo": {
+    "description": "Home: Explore item prompt - Elegant snake tattoo"
+  },
   "exploreTitleFeatherAndBirdsInFlight": "Feather and birds in flight",
-  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "@exploreTitleFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item title - Feather and birds in flight"
+  },
   "explorePromptFeatherAndBirdsInFlight": "Ultra-detailed black & white feather tattoo, elegant realistic feather with fine linework, symmetrical barbs and sharp spine, smooth dotwork gradient shading, minimal premium fineline style, small bird silhouettes flowing upward, balanced composition, razor-sharp outlines, high-contrast black ink, modern tattoo realism, monochrome only, no background on white canvas, professional flash, stencil-ready.",
-  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
-
+  "@explorePromptFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item prompt - Feather and birds in flight"
+  },
   "exploreTitleRainyBatWithCelestialStars": "Rainy bat with celestial stars",
-  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "@exploreTitleRainyBatWithCelestialStars": {
+    "description": "Home: Explore item title - Rainy bat with celestial stars"
+  },
   "explorePromptRainyBatWithCelestialStars": "Symmetrical bat tattoo with fully spread wings, solid black body, wings filled with smooth rainbow gradient (purple to blue, green, yellow, orange), clean bold outlines with fine linework, subtle dotwork shading, surrounded by small stars and dots, two four-pointed stars above and below, mystical celestial vibe, modern neo-traditional style, high contrast, sharp detail.",
-  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
-
+  "@explorePromptRainyBatWithCelestialStars": {
+    "description": "Home: Explore item prompt - Rainy bat with celestial stars"
+  },
   "exploreTitleElegantBlackCatSilhouetteDesign": "Elegant black cat silhouette design",
-  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "@exploreTitleElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item title - Elegant black cat silhouette design"
+  },
   "explorePromptElegantBlackCatSilhouetteDesign": "A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art",
-  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
+  "@explorePromptElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item prompt - Elegant black cat silhouette design"
+  },
   "deleteConfirmationTitle": "Delete Entry",
   "@deleteConfirmationTitle": {
     "description": "Title for delete confirmation dialog"
@@ -329,42 +368,62 @@
   "@delete": {
     "description": "Delete button label"
   },
-
   "exploreTitleRedRoseTattooDesign": "Red rose tattoo design",
-  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "@exploreTitleRedRoseTattooDesign": {
+    "description": "Home: Explore item title - Red rose tattoo design"
+  },
   "explorePromptRedRoseTattooDesign": "Realistic red rose tattoo, single blooming rose with layered petals, rich deep red color, fine detailed petal texture, subtle gradient shading, natural green stem with small thorns and two detailed leaves, clean crisp outlines, soft realism tattoo style, high contrast, smooth color blending, professional tattoo flash quality, isolated rose only",
-  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
-
+  "@explorePromptRedRoseTattooDesign": {
+    "description": "Home: Explore item prompt - Red rose tattoo design"
+  },
   "exploreTitleBlackInfinityArrowTattoo": "Black infinity arrow tattoo",
-  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "@exploreTitleBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item title - Black infinity arrow tattoo"
+  },
   "explorePromptBlackInfinityArrowTattoo": "Realistic Minimalist black infinity arrow tattoo, smooth continuous loop with sharp arrow, clean bold linework, high-contrast solid black ink, modern minimal style, monochrome, stencil-ready.",
-  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
-
+  "@explorePromptBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item prompt - Black infinity arrow tattoo"
+  },
   "exploreTitleBlackScorpionTattooDesign": "Black scorpion tattoo design",
-  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "@exploreTitleBlackScorpionTattooDesign": {
+    "description": "Home: Explore item title - Black scorpion tattoo design"
+  },
   "explorePromptBlackScorpionTattooDesign": "Realistic minimalist black scorpion tattoo design, bold solid black ink, sharp clean linework, symmetrical tribal-inspired detailing, high contrast, smooth curves, modern tattoo style, stencil-ready, isolated on plain background, ultra-detailed, professional tattoo flash",
-  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
-
+  "@explorePromptBlackScorpionTattooDesign": {
+    "description": "Home: Explore item prompt - Black scorpion tattoo design"
+  },
   "exploreTitleCrescentMoonAndStarTattoo": "Crescent moon and star tattoo",
-  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "@exploreTitleCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item title - Crescent moon and star tattoo"
+  },
   "explorePromptCrescentMoonAndStarTattoo": "Minimalist black ink tattoo, fine-line style, upward crescent moon with solid black fill, small four-point star above aligned vertically, subtle dot accents, celestial and mystical aesthetic, simple geometry, balanced spacing, clean background, precise linework, high contrast, timeless minimal tattoo design",
-  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
-
+  "@explorePromptCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item prompt - Crescent moon and star tattoo"
+  },
   "exploreTitleSleepingPandaTattoo": "Sleeping panda tattoo",
-  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "@exploreTitleSleepingPandaTattoo": {
+    "description": "Home: Explore item title - Sleeping panda tattoo"
+  },
   "explorePromptSleepingPandaTattoo": "Minimalist cute panda tattoo, tiny sleeping panda lying on its side, simple rounded shape, solid black and white ink, soft smooth fills, minimal facial details, clean edges, modern minimalist tattoo style, monochrome, no background, white canvas, stencil-ready.",
-  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
-
+  "@explorePromptSleepingPandaTattoo": {
+    "description": "Home: Explore item prompt - Sleeping panda tattoo"
+  },
   "genericTattoo": "Tattoo",
-  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
-
+  "@genericTattoo": {
+    "description": "Generic: Tattoo label (fallback style name)"
+  },
   "loadingGeneratingYourTattoo": "Generating your tattoo..",
-  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
-
+  "@loadingGeneratingYourTattoo": {
+    "description": "Loading screen: generating message"
+  },
   "resultShare": "Share",
-  "@resultShare": { "description": "Result screen: Share button label" },
+  "@resultShare": {
+    "description": "Result screen: Share button label"
+  },
   "resultNoImageToShare": "No image to share",
-  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "@resultNoImageToShare": {
+    "description": "Result screen: No image to share message"
+  },
   "resultShareText": "Check out my {styleName} tattoo design!",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
@@ -393,7 +452,9 @@
     }
   },
   "resultImageSavedToGallery": "Image saved to gallery",
-  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "@resultImageSavedToGallery": {
+    "description": "Result screen: Image saved to gallery message"
+  },
   "resultErrorSaving": "Error saving image: {error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
@@ -799,8 +860,31 @@
   },
   "exit": "Exit",
   "@exit": {
-    "description": "Exit confirmation dialog: exit button label"
+    "description": "Exit confirmation dialog: confirm button"
   },
+  "historySelected": "{count} Selected",
+  "@historySelected": {
+    "description": "History selection mode: title showing count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "historySelectAll": "Select All",
+  "@historySelectAll": {
+    "description": "History selection mode: select all button"
+  },
+  "historyDeselectAll": "Deselect All",
+  "@historyDeselectAll": {
+    "description": "History selection mode: deselect all button"
+  },
+  "historySelect": "Select",
+  "@historySelect": {
+    "description": "History page: enter selection mode button"
+  },
+  
   "noInternetConnectionSomeFeatures": "No internet connection. Some features may not work.",
   "@noInternetConnectionSomeFeatures": {
     "description": "Toast on home when device has no internet"
@@ -809,7 +893,6 @@
   "@noInternetConnectionPleaseCheckNetwork": {
     "description": "Toast during generation when network fails"
   },
-
   "exploreCategoryMinimal": "Minimal Tattoos",
   "@exploreCategoryMinimal": {
     "description": "Explore category: Minimal Tattoos"
@@ -818,7 +901,6 @@
   "@exploreCategoryMinimalDescription": {
     "description": "Explore category description: Minimal Tattoos"
   },
-
   "exploreCategoryTraditional": "Traditional & Old School",
   "@exploreCategoryTraditional": {
     "description": "Explore category: Traditional & Old School"
@@ -827,7 +909,6 @@
   "@exploreCategoryTraditionalDescription": {
     "description": "Explore category description: Traditional & Old School"
   },
-
   "exploreCategoryJapanese": "Japanese Style",
   "@exploreCategoryJapanese": {
     "description": "Explore category: Japanese Style"
@@ -836,7 +917,6 @@
   "@exploreCategoryJapaneseDescription": {
     "description": "Explore category description: Japanese Style"
   },
-
   "exploreCategoryTribal": "Tribal Designs",
   "@exploreCategoryTribal": {
     "description": "Explore category: Tribal Designs"
@@ -845,7 +925,6 @@
   "@exploreCategoryTribalDescription": {
     "description": "Explore category description: Tribal Designs"
   },
-
   "exploreCategoryGeometric": "Geometric Tattoos",
   "@exploreCategoryGeometric": {
     "description": "Explore category: Geometric Tattoos"
@@ -854,7 +933,6 @@
   "@exploreCategoryGeometricDescription": {
     "description": "Explore category description: Geometric Tattoos"
   },
-
   "exploreCategoryRealism": "Realism & Portrait",
   "@exploreCategoryRealism": {
     "description": "Explore category: Realism & Portrait"
@@ -863,7 +941,6 @@
   "@exploreCategoryRealismDescription": {
     "description": "Explore category description: Realism & Portrait"
   },
-
   "exploreCategoryLettering": "Lettering & Script",
   "@exploreCategoryLettering": {
     "description": "Explore category: Lettering & Script"
@@ -872,7 +949,6 @@
   "@exploreCategoryLetteringDescription": {
     "description": "Explore category description: Lettering & Script"
   },
-
   "exploreCategoryFloral": "Floral & Nature",
   "@exploreCategoryFloral": {
     "description": "Explore category: Floral & Nature"
@@ -881,7 +957,6 @@
   "@exploreCategoryFloralDescription": {
     "description": "Explore category description: Floral & Nature"
   },
-
   "exploreCategoryMythology": "Mythology & Fantasy",
   "@exploreCategoryMythology": {
     "description": "Explore category: Mythology & Fantasy"
@@ -890,7 +965,6 @@
   "@exploreCategoryMythologyDescription": {
     "description": "Explore category description: Mythology & Fantasy"
   },
-
   "exploreCategoryCustomAi": "Custom AI Designs",
   "@exploreCategoryCustomAi": {
     "description": "Explore category: Custom AI Designs"
@@ -899,7 +973,6 @@
   "@exploreCategoryCustomAiDescription": {
     "description": "Explore category description: Custom AI Designs"
   },
-
   "exploreItemMinimalistPanda": "Minimalist Panda",
   "@exploreItemMinimalistPanda": {
     "description": "Explore item title: Minimalist Panda"
@@ -908,7 +981,6 @@
   "@exploreItemMinimalistPandaPrompt": {
     "description": "Explore item prompt: Minimalist Panda"
   },
-
   "exploreItemFineLineBow": "Fine-Line Bow",
   "@exploreItemFineLineBow": {
     "description": "Explore item title: Fine-Line Bow"
@@ -917,7 +989,6 @@
   "@exploreItemFineLineBowPrompt": {
     "description": "Explore item prompt: Fine-Line Bow"
   },
-
   "exploreItemMicroRealismFinger": "Micro Realism Finger Tattoos",
   "@exploreItemMicroRealismFinger": {
     "description": "Explore item title: Micro Realism Finger Tattoos"
@@ -926,7 +997,6 @@
   "@exploreItemMicroRealismFingerPrompt": {
     "description": "Explore item prompt: Micro Realism Finger Tattoos"
   },
-
   "exploreItemFineLineCatCircle": "Fine-Line Cat in Circle",
   "@exploreItemFineLineCatCircle": {
     "description": "Explore item title: Fine-Line Cat in Circle"
@@ -935,7 +1005,6 @@
   "@exploreItemFineLineCatCirclePrompt": {
     "description": "Explore item prompt: Fine-Line Cat in Circle"
   },
-
   "exploreItemFineLineLotusFlower": "Fine-Line Lotus Flower",
   "@exploreItemFineLineLotusFlower": {
     "description": "Explore item title: Fine-Line Lotus Flower"
@@ -944,7 +1013,6 @@
   "@exploreItemFineLineLotusFlowerPrompt": {
     "description": "Explore item prompt: Fine-Line Lotus Flower"
   },
-
   "exploreItemSleepingCatCrescent": "Sleeping Cat in Crescent Moon",
   "@exploreItemSleepingCatCrescent": {
     "description": "Explore item title: Sleeping Cat in Crescent Moon"
@@ -953,7 +1021,6 @@
   "@exploreItemSleepingCatCrescentPrompt": {
     "description": "Explore item prompt: Sleeping Cat in Crescent Moon"
   },
-
   "exploreItemFineLineHeartStars": "Fine-Line Heart and Stars",
   "@exploreItemFineLineHeartStars": {
     "description": "Explore item title: Fine-Line Heart and Stars"
@@ -962,7 +1029,6 @@
   "@exploreItemFineLineHeartStarsPrompt": {
     "description": "Explore item prompt: Fine-Line Heart and Stars"
   },
-
   "exploreItemFineLineCompassStar": "Fine-Line Compass Star",
   "@exploreItemFineLineCompassStar": {
     "description": "Explore item title: Fine-Line Compass Star"
@@ -971,7 +1037,6 @@
   "@exploreItemFineLineCompassStarPrompt": {
     "description": "Explore item prompt: Fine-Line Compass Star"
   },
-
   "exploreItemMinimalTrebleClef": "Minimal Treble Clef Neck",
   "@exploreItemMinimalTrebleClef": {
     "description": "Explore item title: Minimal Treble Clef Neck"
@@ -980,7 +1045,6 @@
   "@exploreItemMinimalTrebleClefPrompt": {
     "description": "Explore item prompt: Minimal Treble Clef Neck"
   },
-
   "exploreItemStarryHeart": "Starry Heart",
   "@exploreItemStarryHeart": {
     "description": "Explore item title: Starry Heart"
@@ -989,7 +1053,6 @@
   "@exploreItemStarryHeartPrompt": {
     "description": "Explore item prompt: Starry Heart"
   },
-
   "exploreItemValknutTriangle": "Valknut Triangle",
   "@exploreItemValknutTriangle": {
     "description": "Explore item title: Valknut Triangle"
@@ -998,7 +1061,6 @@
   "@exploreItemValknutTrianglePrompt": {
     "description": "Explore item prompt: Valknut Triangle"
   },
-
   "exploreItemMinimalistMountain": "Minimalist Mountain",
   "@exploreItemMinimalistMountain": {
     "description": "Explore item title: Minimalist Mountain"
@@ -1007,7 +1069,6 @@
   "@exploreItemMinimalistMountainPrompt": {
     "description": "Explore item prompt: Minimalist Mountain"
   },
-
   "exploreItemSwallowBird": "Swallow Bird",
   "@exploreItemSwallowBird": {
     "description": "Explore item title: Swallow Bird"
@@ -1016,7 +1077,6 @@
   "@exploreItemSwallowBirdPrompt": {
     "description": "Explore item prompt: Swallow Bird"
   },
-
   "exploreItemDaggerHeart": "Dagger Through Heart",
   "@exploreItemDaggerHeart": {
     "description": "Explore item title: Dagger Through Heart"
@@ -1025,7 +1085,6 @@
   "@exploreItemDaggerHeartPrompt": {
     "description": "Explore item prompt: Dagger Through Heart"
   },
-
   "exploreItemSkullClassic": "Skull Classic",
   "@exploreItemSkullClassic": {
     "description": "Explore item title: Skull Classic"
@@ -1034,7 +1093,6 @@
   "@exploreItemSkullClassicPrompt": {
     "description": "Explore item prompt: Skull Classic"
   },
-
   "exploreItemEagleSpread": "Eagle Spread",
   "@exploreItemEagleSpread": {
     "description": "Explore item title: Eagle Spread"
@@ -1043,7 +1101,6 @@
   "@exploreItemEagleSpreadPrompt": {
     "description": "Explore item prompt: Eagle Spread"
   },
-
   "exploreItemSnakeCoiled": "Snake Coiled",
   "@exploreItemSnakeCoiled": {
     "description": "Explore item title: Snake Coiled"
@@ -1052,7 +1109,6 @@
   "@exploreItemSnakeCoiledPrompt": {
     "description": "Explore item prompt: Snake Coiled"
   },
-
   "exploreItemShipWheel": "Ship Wheel",
   "@exploreItemShipWheel": {
     "description": "Explore item title: Ship Wheel"
@@ -1061,7 +1117,6 @@
   "@exploreItemShipWheelPrompt": {
     "description": "Explore item prompt: Ship Wheel"
   },
-
   "exploreItemCowboyRevolver": "Cowboy Revolver",
   "@exploreItemCowboyRevolver": {
     "description": "Explore item title: Cowboy Revolver"
@@ -1070,7 +1125,6 @@
   "@exploreItemCowboyRevolverPrompt": {
     "description": "Explore item prompt: Cowboy Revolver"
   },
-
   "exploreItemPantherHead": "Panther Head",
   "@exploreItemPantherHead": {
     "description": "Explore item title: Panther Head"
@@ -1079,7 +1133,6 @@
   "@exploreItemPantherHeadPrompt": {
     "description": "Explore item prompt: Panther Head"
   },
-
   "exploreItemKoiFish": "Koi Fish",
   "@exploreItemKoiFish": {
     "description": "Explore item title: Koi Fish"
@@ -1088,7 +1141,6 @@
   "@exploreItemKoiFishPrompt": {
     "description": "Explore item prompt: Koi Fish"
   },
-
   "exploreItemHannyaMask": "Hannya Mask",
   "@exploreItemHannyaMask": {
     "description": "Explore item title: Hannya Mask"
@@ -1097,7 +1149,6 @@
   "@exploreItemHannyaMaskPrompt": {
     "description": "Explore item prompt: Hannya Mask"
   },
-
   "exploreItemSamuraiHelmet": "Samurai Helmet",
   "@exploreItemSamuraiHelmet": {
     "description": "Explore item title: Samurai Helmet"
@@ -1106,7 +1157,6 @@
   "@exploreItemSamuraiHelmetPrompt": {
     "description": "Explore item prompt: Samurai Helmet"
   },
-
   "exploreItemCherryBlossomBranch": "Cherry Blossom Branch",
   "@exploreItemCherryBlossomBranch": {
     "description": "Explore item title: Cherry Blossom Branch"
@@ -1115,7 +1165,6 @@
   "@exploreItemCherryBlossomBranchPrompt": {
     "description": "Explore item prompt: Cherry Blossom Branch"
   },
-
   "exploreItemJapaneseDragon": "Japanese Dragon",
   "@exploreItemJapaneseDragon": {
     "description": "Explore item title: Japanese Dragon"
@@ -1124,7 +1173,6 @@
   "@exploreItemJapaneseDragonPrompt": {
     "description": "Explore item prompt: Japanese Dragon"
   },
-
   "exploreItemOniMask": "Oni Mask",
   "@exploreItemOniMask": {
     "description": "Explore item title: Oni Mask"
@@ -1133,7 +1181,6 @@
   "@exploreItemOniMaskPrompt": {
     "description": "Explore item prompt: Oni Mask"
   },
-
   "exploreItemHokusaiWave": "Wave (Hokusai Style)",
   "@exploreItemHokusaiWave": {
     "description": "Explore item title: Wave (Hokusai Style)"
@@ -1142,7 +1189,6 @@
   "@exploreItemHokusaiWavePrompt": {
     "description": "Explore item prompt: Wave (Hokusai Style)"
   },
-
   "exploreItemJapaneseTiger": "Tiger",
   "@exploreItemJapaneseTiger": {
     "description": "Explore item title: Tiger"
@@ -1151,7 +1197,6 @@
   "@exploreItemJapaneseTigerPrompt": {
     "description": "Explore item prompt: Tiger"
   },
-
   "exploreItemJapaneseLotus": "Lotus Flower",
   "@exploreItemJapaneseLotus": {
     "description": "Explore item title: Lotus Flower"
@@ -1160,7 +1205,6 @@
   "@exploreItemJapaneseLotusPrompt": {
     "description": "Explore item prompt: Lotus Flower"
   },
-
   "exploreItemJapanesePhoenix": "Phoenix",
   "@exploreItemJapanesePhoenix": {
     "description": "Explore item title: Phoenix"
@@ -1169,7 +1213,6 @@
   "@exploreItemJapanesePhoenixPrompt": {
     "description": "Explore item prompt: Phoenix"
   },
-
   "exploreItemPolynesianTribal": "Polynesian Tribal Tattoo",
   "@exploreItemPolynesianTribal": {
     "description": "Explore item title: Polynesian Tribal Tattoo"
@@ -1178,7 +1221,6 @@
   "@exploreItemPolynesianTribalPrompt": {
     "description": "Explore item prompt: Polynesian Tribal Tattoo"
   },
-
   "exploreItemTribalSpineSpear": "Tribal Spine Spear Tattoo",
   "@exploreItemTribalSpineSpear": {
     "description": "Explore item title: Tribal Spine Spear Tattoo"
@@ -1187,7 +1229,6 @@
   "@exploreItemTribalSpineSpearPrompt": {
     "description": "Explore item prompt: Tribal Spine Spear Tattoo"
   },
-
   "exploreItemTribalKnotwork": "Tribal Knotwork Tattoo",
   "@exploreItemTribalKnotwork": {
     "description": "Explore item title: Tribal Knotwork Tattoo"
@@ -1196,7 +1237,6 @@
   "@exploreItemTribalKnotworkPrompt": {
     "description": "Explore item prompt: Tribal Knotwork Tattoo"
   },
-
   "exploreItemTribalForearmSleeve": "Tribal Forearm Sleeve Band",
   "@exploreItemTribalForearmSleeve": {
     "description": "Explore item title: Tribal Forearm Sleeve Band"
@@ -1205,7 +1245,6 @@
   "@exploreItemTribalForearmSleevePrompt": {
     "description": "Explore item prompt: Tribal Forearm Sleeve Band"
   },
-
   "exploreItemTribalCentralSpiral": "Central Spiral",
   "@exploreItemTribalCentralSpiral": {
     "description": "Explore item title: Central Spiral"
@@ -1214,7 +1253,6 @@
   "@exploreItemTribalCentralSpiralPrompt": {
     "description": "Explore item prompt: Central Spiral"
   },
-
   "exploreItemTribalFlameForearm": "Flame Tribal Forearm Tattoo",
   "@exploreItemTribalFlameForearm": {
     "description": "Explore item title: Flame Tribal Forearm Tattoo"
@@ -1223,7 +1261,6 @@
   "@exploreItemTribalFlameForearmPrompt": {
     "description": "Explore item prompt: Flame Tribal Forearm Tattoo"
   },
-
   "exploreItemTribalSpiralFlame": "Spiral with Flame Extensions",
   "@exploreItemTribalSpiralFlame": {
     "description": "Explore item title: Spiral with Flame Extensions"
@@ -1232,7 +1269,6 @@
   "@exploreItemTribalSpiralFlamePrompt": {
     "description": "Explore item prompt: Spiral with Flame Extensions"
   },
-
   "exploreItemTribalCompass": "Tribal Compass Tattoo",
   "@exploreItemTribalCompass": {
     "description": "Explore item title: Tribal Compass Tattoo"
@@ -1241,7 +1277,6 @@
   "@exploreItemTribalCompassPrompt": {
     "description": "Explore item prompt: Tribal Compass Tattoo"
   },
-
   "exploreItemTribalModernGeometric": "Modern Geometric Tribal",
   "@exploreItemTribalModernGeometric": {
     "description": "Explore item title: Modern Geometric Tribal"
@@ -1250,7 +1285,6 @@
   "@exploreItemTribalModernGeometricPrompt": {
     "description": "Explore item prompt: Modern Geometric Tribal"
   },
-
   "exploreItemTribalNeoBack": "Neo-Tribal Back Tattoo",
   "@exploreItemTribalNeoBack": {
     "description": "Explore item title: Neo-Tribal Back Tattoo"
@@ -1259,7 +1293,6 @@
   "@exploreItemTribalNeoBackPrompt": {
     "description": "Explore item prompt: Neo-Tribal Back Tattoo"
   },
-
   "exploreItemTribalFlame": "Flame Tribal",
   "@exploreItemTribalFlame": {
     "description": "Explore item title: Flame Tribal"
@@ -1268,7 +1301,6 @@
   "@exploreItemTribalFlamePrompt": {
     "description": "Explore item prompt: Flame Tribal"
   },
-
   "exploreItemTribalSwordCompass": "Sword and Compass Tattoo",
   "@exploreItemTribalSwordCompass": {
     "description": "Explore item title: Sword and Compass Tattoo"
@@ -1277,7 +1309,6 @@
   "@exploreItemTribalSwordCompassPrompt": {
     "description": "Explore item prompt: Sword and Compass Tattoo"
   },
-
   "exploreItemGeometricMindBodySoul": "Mind–Body–Soul",
   "@exploreItemGeometricMindBodySoul": {
     "description": "Explore item title: Mind–Body–Soul"
@@ -1286,7 +1317,6 @@
   "@exploreItemGeometricMindBodySoulPrompt": {
     "description": "Explore item prompt: Mind–Body–Soul"
   },
-
   "exploreItemGeometricHoneycombSleeve": "Geometric Blackout Honeycomb Sleeve",
   "@exploreItemGeometricHoneycombSleeve": {
     "description": "Explore item title: Geometric Blackout Honeycomb Sleeve"
@@ -1295,7 +1325,6 @@
   "@exploreItemGeometricHoneycombSleevePrompt": {
     "description": "Explore item prompt: Geometric Blackout Honeycomb Sleeve"
   },
-
   "exploreItemGeometricBlackwork": "Geometric + Illustrative Blackwork",
   "@exploreItemGeometricBlackwork": {
     "description": "Explore item title: Geometric + Illustrative Blackwork"
@@ -1304,7 +1333,6 @@
   "@exploreItemGeometricBlackworkPrompt": {
     "description": "Explore item prompt: Geometric + Illustrative Blackwork"
   },
-
   "exploreItemGeometricCubeSleeve": "Geometric Cube Sleeve",
   "@exploreItemGeometricCubeSleeve": {
     "description": "Explore item title: Geometric Cube Sleeve"
@@ -1313,7 +1341,6 @@
   "@exploreItemGeometricCubeSleevePrompt": {
     "description": "Explore item prompt: Geometric Cube Sleeve"
   },
-
   "exploreItemGeometric3dCubeSleeve": "3D Cube Geometric Sleeve",
   "@exploreItemGeometric3dCubeSleeve": {
     "description": "Explore item title: 3D Cube Geometric Sleeve"
@@ -1322,7 +1349,6 @@
   "@exploreItemGeometric3dCubeSleevePrompt": {
     "description": "Explore item prompt: 3D Cube Geometric Sleeve"
   },
-
   "exploreItemGeometricTreeOfLife": "Tree of Life",
   "@exploreItemGeometricTreeOfLife": {
     "description": "Explore item title: Tree of Life"
@@ -1331,7 +1357,6 @@
   "@exploreItemGeometricTreeOfLifePrompt": {
     "description": "Explore item prompt: Tree of Life"
   },
-
   "exploreItemGeometricAtlas": "Atlas Bearing the World",
   "@exploreItemGeometricAtlas": {
     "description": "Explore item title: Atlas Bearing the World"
@@ -1340,7 +1365,6 @@
   "@exploreItemGeometricAtlasPrompt": {
     "description": "Explore item prompt: Atlas Bearing the World"
   },
-
   "exploreItemGeometricTriadTravel": "Triad of Travel",
   "@exploreItemGeometricTriadTravel": {
     "description": "Explore item title: Triad of Travel"
@@ -1349,7 +1373,6 @@
   "@exploreItemGeometricTriadTravelPrompt": {
     "description": "Explore item prompt: Triad of Travel"
   },
-
   "exploreItemGeometricHorizons": "Cycle of Horizons",
   "@exploreItemGeometricHorizons": {
     "description": "Explore item title: Cycle of Horizons"
@@ -1358,7 +1381,6 @@
   "@exploreItemGeometricHorizonsPrompt": {
     "description": "Explore item prompt: Cycle of Horizons"
   },
-
   "exploreItemGeometricAlignedTriad": "Aligned Triad",
   "@exploreItemGeometricAlignedTriad": {
     "description": "Explore item title: Aligned Triad"
@@ -1367,7 +1389,6 @@
   "@exploreItemGeometricAlignedTriadPrompt": {
     "description": "Explore item prompt: Aligned Triad"
   },
-
   "exploreItemGeometricSigi": "Abstract Geometric Sigi",
   "@exploreItemGeometricSigi": {
     "description": "Explore item title: Abstract Geometric Sigi"
@@ -1376,7 +1397,6 @@
   "@exploreItemGeometricSigiPrompt": {
     "description": "Explore item prompt: Abstract Geometric Sigi"
   },
-
   "exploreItemGeometricDualityNature": "Duality Nature Geometry",
   "@exploreItemGeometricDualityNature": {
     "description": "Explore item title: Duality Nature Geometry"
@@ -1385,7 +1405,6 @@
   "@exploreItemGeometricDualityNaturePrompt": {
     "description": "Explore item prompt: Duality Nature Geometry"
   },
-
   "exploreItemRealismGamblerFedora": "Gambler in a Fedora",
   "@exploreItemRealismGamblerFedora": {
     "description": "Explore item title: Gambler in a Fedora"
@@ -1394,7 +1413,6 @@
   "@exploreItemRealismGamblerFedoraPrompt": {
     "description": "Explore item prompt: Gambler in a Fedora"
   },
-
   "exploreItemRealismMindOverHeart": "Mind Over Heart",
   "@exploreItemRealismMindOverHeart": {
     "description": "Explore item title: Mind Over Heart"
@@ -1403,7 +1421,6 @@
   "@exploreItemRealismMindOverHeartPrompt": {
     "description": "Explore item prompt: Mind Over Heart"
   },
-
   "exploreItemRealismGeometricSplit": "Geometric Split Portrait",
   "@exploreItemRealismGeometricSplit": {
     "description": "Explore item title: Geometric Split Portrait"
@@ -1412,7 +1429,6 @@
   "@exploreItemRealismGeometricSplitPrompt": {
     "description": "Explore item prompt: Geometric Split Portrait"
   },
-
   "exploreItemRealismFieryCosmic": "Fiery and Cosmic Split",
   "@exploreItemRealismFieryCosmic": {
     "description": "Explore item title: Fiery and Cosmic Split"
@@ -1421,7 +1437,6 @@
   "@exploreItemRealismFieryCosmicPrompt": {
     "description": "Explore item prompt: Fiery and Cosmic Split"
   },
-
   "exploreItemRealismSinisterClown": "Sinister Clown Portrait",
   "@exploreItemRealismSinisterClown": {
     "description": "Explore item title: Sinister Clown Portrait"
@@ -1430,7 +1445,6 @@
   "@exploreItemRealismSinisterClownPrompt": {
     "description": "Explore item prompt: Sinister Clown Portrait"
   },
-
   "exploreItemRealismButterflyWoman": "Butterfly and Woman",
   "@exploreItemRealismButterflyWoman": {
     "description": "Explore item title: Butterfly and Woman"
@@ -1439,7 +1453,6 @@
   "@exploreItemRealismButterflyWomanPrompt": {
     "description": "Explore item prompt: Butterfly and Woman"
   },
-
   "exploreItemRealismFlamingSkull": "Flaming Skull",
   "@exploreItemRealismFlamingSkull": {
     "description": "Explore item title: Flaming Skull"
@@ -1448,7 +1461,6 @@
   "@exploreItemRealismFlamingSkullPrompt": {
     "description": "Explore item prompt: Flaming Skull"
   },
-
   "exploreItemRealismFierceWolf": "Fierce Wolf",
   "@exploreItemRealismFierceWolf": {
     "description": "Explore item title: Fierce Wolf"
@@ -1457,7 +1469,6 @@
   "@exploreItemRealismFierceWolfPrompt": {
     "description": "Explore item prompt: Fierce Wolf"
   },
-
   "exploreItemRealismRedRoseButterfly": "Red Rose and Butterfly",
   "@exploreItemRealismRedRoseButterfly": {
     "description": "Explore item title: Red Rose and Butterfly"
@@ -1466,7 +1477,6 @@
   "@exploreItemRealismRedRoseButterflyPrompt": {
     "description": "Explore item prompt: Red Rose and Butterfly"
   },
-
   "exploreItemRealismVibrantPeacock": "Vibrant Peacock",
   "@exploreItemRealismVibrantPeacock": {
     "description": "Explore item title: Vibrant Peacock"
@@ -1475,7 +1485,6 @@
   "@exploreItemRealismVibrantPeacockPrompt": {
     "description": "Explore item prompt: Vibrant Peacock"
   },
-
   "exploreItemRealismPlayfulCharacter": "Playful Character",
   "@exploreItemRealismPlayfulCharacter": {
     "description": "Explore item title: Playful Character"
@@ -1484,7 +1493,6 @@
   "@exploreItemRealismPlayfulCharacterPrompt": {
     "description": "Explore item prompt: Playful Character"
   },
-
   "exploreItemRealismCutePinkFish": "Cute Pink Fish",
   "@exploreItemRealismCutePinkFish": {
     "description": "Explore item title: Cute Pink Fish"
@@ -1493,7 +1501,6 @@
   "@exploreItemRealismCutePinkFishPrompt": {
     "description": "Explore item prompt: Cute Pink Fish"
   },
-
   "exploreItemLetteringTrustNoOne": "Trust No One",
   "@exploreItemLetteringTrustNoOne": {
     "description": "Explore item title: Trust No One"
@@ -1502,7 +1509,6 @@
   "@exploreItemLetteringTrustNoOnePrompt": {
     "description": "Explore item prompt: Trust No One"
   },
-
   "exploreItemLetteringBlessed": "Blessed",
   "@exploreItemLetteringBlessed": {
     "description": "Explore item title: Blessed"
@@ -1511,7 +1517,6 @@
   "@exploreItemLetteringBlessedPrompt": {
     "description": "Explore item prompt: Blessed"
   },
-
   "exploreItemLetteringHakunaMatata": "Hakuna Matata",
   "@exploreItemLetteringHakunaMatata": {
     "description": "Explore item title: Hakuna Matata"
@@ -1520,7 +1525,6 @@
   "@exploreItemLetteringHakunaMatataPrompt": {
     "description": "Explore item prompt: Hakuna Matata"
   },
-
   "exploreItemLetteringDream": "Dream",
   "@exploreItemLetteringDream": {
     "description": "Explore item title: Dream"
@@ -1529,7 +1533,6 @@
   "@exploreItemLetteringDreamPrompt": {
     "description": "Explore item prompt: Dream"
   },
-
   "exploreItemLetteringBoom": "Boom",
   "@exploreItemLetteringBoom": {
     "description": "Explore item title: Boom"
@@ -1538,7 +1541,6 @@
   "@exploreItemLetteringBoomPrompt": {
     "description": "Explore item prompt: Boom"
   },
-
   "exploreItemLetteringWorkHardDreamBig": "Work Hard Dream Big",
   "@exploreItemLetteringWorkHardDreamBig": {
     "description": "Explore item title: Work Hard Dream Big"
@@ -1547,7 +1549,6 @@
   "@exploreItemLetteringWorkHardDreamBigPrompt": {
     "description": "Explore item prompt: Work Hard Dream Big"
   },
-
   "exploreItemLetteringRn": "Letter RN",
   "@exploreItemLetteringRn": {
     "description": "Explore item title: Letter RN"
@@ -1556,7 +1557,6 @@
   "@exploreItemLetteringRnPrompt": {
     "description": "Explore item prompt: Letter RN"
   },
-
   "exploreItemLetteringC": "Letter C",
   "@exploreItemLetteringC": {
     "description": "Explore item title: Letter C"
@@ -1565,7 +1565,6 @@
   "@exploreItemLetteringCPrompt": {
     "description": "Explore item prompt: Letter C"
   },
-
   "exploreItemLetteringPeacePositivity": "Peace & Positivity",
   "@exploreItemLetteringPeacePositivity": {
     "description": "Explore item title: Peace & Positivity"
@@ -1574,7 +1573,6 @@
   "@exploreItemLetteringPeacePositivityPrompt": {
     "description": "Explore item prompt: Peace & Positivity"
   },
-
   "exploreItemLetteringDreamBig": "Dream Big",
   "@exploreItemLetteringDreamBig": {
     "description": "Explore item title: Dream Big"
@@ -1583,7 +1581,6 @@
   "@exploreItemLetteringDreamBigPrompt": {
     "description": "Explore item prompt: Dream Big"
   },
-
   "exploreItemLetteringDesire": "Desire",
   "@exploreItemLetteringDesire": {
     "description": "Explore item title: Desire"
@@ -1592,7 +1589,6 @@
   "@exploreItemLetteringDesirePrompt": {
     "description": "Explore item prompt: Desire"
   },
-
   "exploreItemLetteringBeautiful": "Beautiful",
   "@exploreItemLetteringBeautiful": {
     "description": "Explore item title: Beautiful"
@@ -1601,7 +1597,6 @@
   "@exploreItemLetteringBeautifulPrompt": {
     "description": "Explore item prompt: Beautiful"
   },
-
   "exploreItemFloralFourLeafClover": "Minimalist Four-Leaf Clover",
   "@exploreItemFloralFourLeafClover": {
     "description": "Explore item title: Minimalist Four-Leaf Clover"
@@ -1610,7 +1605,6 @@
   "@exploreItemFloralFourLeafCloverPrompt": {
     "description": "Explore item prompt: Minimalist Four-Leaf Clover"
   },
-
   "exploreItemFloralCherryBlossom": "Cherry Blossom Branch",
   "@exploreItemFloralCherryBlossom": {
     "description": "Explore item title: Cherry Blossom Branch"
@@ -1619,7 +1613,6 @@
   "@exploreItemFloralCherryBlossomPrompt": {
     "description": "Explore item prompt: Cherry Blossom Branch"
   },
-
   "exploreItemFloralMountainLandscape": "Mountain Landscape",
   "@exploreItemFloralMountainLandscape": {
     "description": "Explore item title: Mountain Landscape"
@@ -1628,7 +1621,6 @@
   "@exploreItemFloralMountainLandscapePrompt": {
     "description": "Explore item prompt: Mountain Landscape"
   },
-
   "exploreItemFloralHeartSunset": "Heart-Shaped Sunset",
   "@exploreItemFloralHeartSunset": {
     "description": "Explore item title: Heart-Shaped Sunset"
@@ -1637,7 +1629,6 @@
   "@exploreItemFloralHeartSunsetPrompt": {
     "description": "Explore item prompt: Heart-Shaped Sunset"
   },
-
   "exploreItemFloralSeaTurtle": "Sea Turtle",
   "@exploreItemFloralSeaTurtle": {
     "description": "Explore item title: Sea Turtle"
@@ -1646,7 +1637,6 @@
   "@exploreItemFloralSeaTurtlePrompt": {
     "description": "Explore item prompt: Sea Turtle"
   },
-
   "exploreItemFloralHibiscus": "Hibiscus Flower",
   "@exploreItemFloralHibiscus": {
     "description": "Explore item title: Hibiscus Flower"
@@ -1655,7 +1645,6 @@
   "@exploreItemFloralHibiscusPrompt": {
     "description": "Explore item prompt: Hibiscus Flower"
   },
-
   "exploreItemFloralButterflyLily": "Butterfly and Lily",
   "@exploreItemFloralButterflyLily": {
     "description": "Explore item title: Butterfly and Lily"
@@ -1664,7 +1653,6 @@
   "@exploreItemFloralButterflyLilyPrompt": {
     "description": "Explore item prompt: Butterfly and Lily"
   },
-
   "exploreItemFloralButterfly": "Butterfly",
   "@exploreItemFloralButterfly": {
     "description": "Explore item title: Butterfly"
@@ -1673,7 +1661,6 @@
   "@exploreItemFloralButterflyPrompt": {
     "description": "Explore item prompt: Butterfly"
   },
-
   "exploreItemFloralHummingbirdCherry": "Hummingbird and Cherry Blossom",
   "@exploreItemFloralHummingbirdCherry": {
     "description": "Explore item title: Hummingbird and Cherry Blossom"
@@ -1682,7 +1669,6 @@
   "@exploreItemFloralHummingbirdCherryPrompt": {
     "description": "Explore item prompt: Hummingbird and Cherry Blossom"
   },
-
   "exploreItemFloralButterflyBracelet": "Butterfly Bracelet",
   "@exploreItemFloralButterflyBracelet": {
     "description": "Explore item title: Butterfly Bracelet"
@@ -1691,7 +1677,6 @@
   "@exploreItemFloralButterflyBraceletPrompt": {
     "description": "Explore item prompt: Butterfly Bracelet"
   },
-
   "exploreItemFloralBabyPanda": "Baby Panda",
   "@exploreItemFloralBabyPanda": {
     "description": "Explore item title: Baby Panda"
@@ -1700,7 +1685,6 @@
   "@exploreItemFloralBabyPandaPrompt": {
     "description": "Explore item prompt: Baby Panda"
   },
-
   "exploreItemFloralSunMoon": "Sun Moon",
   "@exploreItemFloralSunMoon": {
     "description": "Explore item title: Sun Moon"
@@ -1709,7 +1693,6 @@
   "@exploreItemFloralSunMoonPrompt": {
     "description": "Explore item prompt: Sun Moon"
   },
-
   "exploreItemMythologyWarriorSerpents": "Warrior and Serpents",
   "@exploreItemMythologyWarriorSerpents": {
     "description": "Explore item title: Warrior and Serpents"
@@ -1718,7 +1701,6 @@
   "@exploreItemMythologyWarriorSerpentsPrompt": {
     "description": "Explore item prompt: Warrior and Serpents"
   },
-
   "exploreItemMythologyPhoenixRising": "Phoenix Rising",
   "@exploreItemMythologyPhoenixRising": {
     "description": "Explore item title: Phoenix Rising"
@@ -1727,7 +1709,6 @@
   "@exploreItemMythologyPhoenixRisingPrompt": {
     "description": "Explore item prompt: Phoenix Rising"
   },
-
   "exploreItemMythologyMedusa": "Medusa",
   "@exploreItemMythologyMedusa": {
     "description": "Explore item title: Medusa"
@@ -1736,7 +1717,6 @@
   "@exploreItemMythologyMedusaPrompt": {
     "description": "Explore item prompt: Medusa"
   },
-
   "exploreItemMythologyDragonSword": "Dragon Coiled Around Sword",
   "@exploreItemMythologyDragonSword": {
     "description": "Explore item title: Dragon Coiled Around Sword"
@@ -1745,7 +1725,6 @@
   "@exploreItemMythologyDragonSwordPrompt": {
     "description": "Explore item prompt: Dragon Coiled Around Sword"
   },
-
   "exploreItemMythologyThreeHeadedHydra": "Three-Headed Hydra",
   "@exploreItemMythologyThreeHeadedHydra": {
     "description": "Explore item title: Three-Headed Hydra"
@@ -1754,7 +1733,6 @@
   "@exploreItemMythologyThreeHeadedHydraPrompt": {
     "description": "Explore item prompt: Three-Headed Hydra"
   },
-
   "exploreItemMythologyOctopus": "Octopus",
   "@exploreItemMythologyOctopus": {
     "description": "Explore item title: Octopus"
@@ -1763,7 +1741,6 @@
   "@exploreItemMythologyOctopusPrompt": {
     "description": "Explore item prompt: Octopus"
   },
-
   "exploreItemMythologyJapaneseDragon": "Japanese Style Dragon",
   "@exploreItemMythologyJapaneseDragon": {
     "description": "Explore item title: Japanese Style Dragon"
@@ -1772,7 +1749,6 @@
   "@exploreItemMythologyJapaneseDragonPrompt": {
     "description": "Explore item prompt: Japanese Style Dragon"
   },
-
   "exploreItemMythologyDarkFantasyEye": "Dark Fantasy Eye",
   "@exploreItemMythologyDarkFantasyEye": {
     "description": "Explore item title: Dark Fantasy Eye"
@@ -1781,7 +1757,6 @@
   "@exploreItemMythologyDarkFantasyEyePrompt": {
     "description": "Explore item prompt: Dark Fantasy Eye"
   },
-
   "exploreItemMythologyMermaid": "Mermaid",
   "@exploreItemMythologyMermaid": {
     "description": "Explore item title: Mermaid"
@@ -1790,7 +1765,6 @@
   "@exploreItemMythologyMermaidPrompt": {
     "description": "Explore item prompt: Mermaid"
   },
-
   "exploreItemMythologyDynamicDragon": "Dynamic Dragon",
   "@exploreItemMythologyDynamicDragon": {
     "description": "Explore item title: Dynamic Dragon"
@@ -1799,7 +1773,6 @@
   "@exploreItemMythologyDynamicDragonPrompt": {
     "description": "Explore item prompt: Dynamic Dragon"
   },
-
   "exploreItemMythologyTrident": "Trident",
   "@exploreItemMythologyTrident": {
     "description": "Explore item title: Trident"
@@ -1808,7 +1781,6 @@
   "@exploreItemMythologyTridentPrompt": {
     "description": "Explore item prompt: Trident"
   },
-
   "exploreItemMythologyWarrior": "Warrior",
   "@exploreItemMythologyWarrior": {
     "description": "Explore item title: Warrior"

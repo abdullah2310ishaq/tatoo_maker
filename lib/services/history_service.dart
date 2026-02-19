@@ -128,8 +128,8 @@ class HistoryService {
     }
 
     final list = _getList(prefs, key);
-    final entryId = _generateEntryId(entry);
-    list.removeWhere((e) => _generateEntryId(e) == entryId);
+    final entryId = generateEntryId(entry);
+    list.removeWhere((e) => generateEntryId(e) == entryId);
     await _saveList(prefs, key, list);
   }
 
@@ -145,7 +145,7 @@ class HistoryService {
 
   /// Generate a unique ID for an entry (based on imageBase64 + styleName/name)
   /// Uses imageBase64 as primary identifier since it's unique per generated image
-  static String _generateEntryId(Map<String, dynamic> entry) {
+  static String generateEntryId(Map<String, dynamic> entry) {
     final imageBase64 = entry['imageBase64'] as String? ?? '';
     final styleName = entry['styleName'] as String? ?? '';
     final name = entry['name'] as String? ?? '';
@@ -162,10 +162,10 @@ class HistoryService {
   static Future<void> addToFavorites(Map<String, dynamic> entry) async {
     final prefs = await SharedPreferences.getInstance();
     final list = _getList(prefs, _keyFavorites);
-    final entryId = _generateEntryId(entry);
+    final entryId = generateEntryId(entry);
 
     // Check if already favorited
-    if (list.any((e) => _generateEntryId(e) == entryId)) {
+    if (list.any((e) => generateEntryId(e) == entryId)) {
       return; // Already favorited
     }
 
@@ -182,9 +182,9 @@ class HistoryService {
   static Future<void> removeFromFavorites(Map<String, dynamic> entry) async {
     final prefs = await SharedPreferences.getInstance();
     final list = _getList(prefs, _keyFavorites);
-    final entryId = _generateEntryId(entry);
+    final entryId = generateEntryId(entry);
 
-    list.removeWhere((e) => _generateEntryId(e) == entryId);
+    list.removeWhere((e) => generateEntryId(e) == entryId);
     await _saveList(prefs, _keyFavorites, list);
   }
 
@@ -192,13 +192,45 @@ class HistoryService {
   static Future<bool> isFavorited(Map<String, dynamic> entry) async {
     final prefs = await SharedPreferences.getInstance();
     final list = _getList(prefs, _keyFavorites);
-    final entryId = _generateEntryId(entry);
-    return list.any((e) => _generateEntryId(e) == entryId);
+    final entryId = generateEntryId(entry);
+    return list.any((e) => generateEntryId(e) == entryId);
   }
 
   /// Get all favorites
   static Future<List<Map<String, dynamic>>> getFavorites() async {
     final prefs = await SharedPreferences.getInstance();
     return _getList(prefs, _keyFavorites);
+  }
+
+  /// Delete multiple entries from the specified history type.
+  static Future<void> deleteEntries(
+    String type,
+    List<Map<String, dynamic>> entries,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    String key;
+    switch (type) {
+      case 'creation':
+        key = _keyCreation;
+        break;
+      case 'tattoo':
+        key = _keyTattoo;
+        break;
+      case 'flower':
+        key = _keyFlower;
+        break;
+      case 'favorites':
+        key = _keyFavorites;
+        break;
+      default:
+        return;
+    }
+
+    final list = _getList(prefs, key);
+    final entryIdsToDelete = entries.map(generateEntryId).toSet();
+
+    list.removeWhere((e) => entryIdsToDelete.contains(generateEntryId(e)));
+    await _saveList(prefs, key, list);
   }
 }

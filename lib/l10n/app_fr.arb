@@ -265,92 +265,149 @@
     "description": "Home: style prompt for Floral"
   },
   "homeDescribeYourDreamInk": "Décrivez Votre Tatouage de Rêve",
-  "@homeDescribeYourDreamInk": { "description": "Home: \"Describe Your Dream Ink\" title" },
+  "@homeDescribeYourDreamInk": {
+    "description": "Home: \"Describe Your Dream Ink\" title"
+  },
   "homeDreamInkHint": "Dites-nous ce que vous imaginez...",
-  "@homeDreamInkHint": { "description": "Home: Dream ink input hint" },
+  "@homeDreamInkHint": {
+    "description": "Home: Dream ink input hint"
+  },
   "homeInspiration": "Inspiration",
-  "@homeInspiration": { "description": "Home: Inspiration label" },
+  "@homeInspiration": {
+    "description": "Home: Inspiration label"
+  },
   "homeCharactersRemaining": "caractères restants",
-  "@homeCharactersRemaining": { "description": "Home: \"characters remaining\" suffix (prepend number in UI)" },
+  "@homeCharactersRemaining": {
+    "description": "Home: \"characters remaining\" suffix (prepend number in UI)"
+  },
   "homeTattooStyle": "Style de Tatouage",
-  "@homeTattooStyle": { "description": "Home: Tattoo Style section title" },
+  "@homeTattooStyle": {
+    "description": "Home: Tattoo Style section title"
+  },
   "homeExploreInspiration": "Explorer l'Inspiration",
-  "@homeExploreInspiration": { "description": "Home: Explore Inspiration section title" },
+  "@homeExploreInspiration": {
+    "description": "Home: Explore Inspiration section title"
+  },
   "homeGenerate": "Générer",
-  "@homeGenerate": { "description": "Home: Generate button label" },
+  "@homeGenerate": {
+    "description": "Home: Generate button label"
+  },
   "homeTutorialOverlayText": "Décrivez le tatouage que vous avez en tête, ou appuyez sur 'Inspiration' pour des idées",
-  "@homeTutorialOverlayText": { "description": "Home: Tutorial overlay text" },
-
+  "@homeTutorialOverlayText": {
+    "description": "Home: Tutorial overlay text"
+  },
   "exploreTitleGothqueen": "Gothqueen",
-  "@exploreTitleGothqueen": { "description": "Home: Explore item title - Gothqueen" },
+  "@exploreTitleGothqueen": {
+    "description": "Home: Explore item title - Gothqueen"
+  },
   "explorePromptGothqueen": "Tatouage de reine gothique noir et gris, visage féminin chauve, couronne ornée, travail de lignes géométrique, ombrage réaliste, symétrique, haut détail",
-  "@explorePromptGothqueen": { "description": "Home: Explore item prompt - Gothqueen" },
-
+  "@explorePromptGothqueen": {
+    "description": "Home: Explore item prompt - Gothqueen"
+  },
   "exploreTitleFloral": "Floral",
-  "@exploreTitleFloral": { "description": "Home: Explore item title - Floral" },
+  "@exploreTitleFloral": {
+    "description": "Home: Explore item title - Floral"
+  },
   "explorePromptFloral": "Beau design de tatouage floral avec pétales et feuilles complexes, courbes naturelles fluides, style de tatouage botanique, travail de lignes détaillé, encre blanche solide, contraste élevé",
-  "@explorePromptFloral": { "description": "Home: Explore item prompt - Floral" },
-
+  "@explorePromptFloral": {
+    "description": "Home: Explore item prompt - Floral"
+  },
   "exploreTitleSkullWithFedoraAndPipe": "Crâne avec fedora et pipe",
-  "@exploreTitleSkullWithFedoraAndPipe": { "description": "Home: Explore item title - Skull with fedora and pipe" },
+  "@exploreTitleSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item title - Skull with fedora and pipe"
+  },
   "explorePromptSkullWithFedoraAndPipe": "Tatouage de crâne réaliste noir et gris, crâne de profil portant un fedora classique, fumant une pipe incurvée avec une fumée douce vers le haut, style noir vintage, texture détaillée d'os et de dents, ombrage de dégradé lisse avec travail de points et réalisme doux, détails d'aiguille fine, noirs à contraste élevé, œuvre de tatouage professionnelle.",
-  "@explorePromptSkullWithFedoraAndPipe": { "description": "Home: Explore item prompt - Skull with fedora and pipe" },
-
+  "@explorePromptSkullWithFedoraAndPipe": {
+    "description": "Home: Explore item prompt - Skull with fedora and pipe"
+  },
   "exploreTitleElegantSnakeTattoo": "Tatouage de serpent élégant",
-  "@exploreTitleElegantSnakeTattoo": { "description": "Home: Explore item title - Elegant snake tattoo" },
+  "@exploreTitleElegantSnakeTattoo": {
+    "description": "Home: Explore item title - Elegant snake tattoo"
+  },
   "explorePromptElegantSnakeTattoo": "Tatouage de serpent agressif ultra détaillé en noir et blanc, bouche ouverte avec longs crocs et langue fourchue, corps enroulé fluide, écailles détaillées à ligne fine, ombrage noir profond, fort contraste, profondeur réaliste, espace négatif propre, gravure traditionnelle × réalisme moderne, contours tranchants, encre monochrome, pas de fond, flash de tatouage professionnel, prêt pour avant-bras ou manche.",
-  "@explorePromptElegantSnakeTattoo": { "description": "Home: Explore item prompt - Elegant snake tattoo" },
-
+  "@explorePromptElegantSnakeTattoo": {
+    "description": "Home: Explore item prompt - Elegant snake tattoo"
+  },
   "exploreTitleFeatherAndBirdsInFlight": "Plume et oiseaux en vol",
-  "@exploreTitleFeatherAndBirdsInFlight": { "description": "Home: Explore item title - Feather and birds in flight" },
+  "@exploreTitleFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item title - Feather and birds in flight"
+  },
   "explorePromptFeatherAndBirdsInFlight": "Tatouage de plume ultra détaillé en noir et blanc, plume réaliste élégante avec travail de lignes fines, barbes symétriques et épine nette, ombrage de dégradé de travail de points lisse, style de ligne fine premium minimaliste, silhouettes de petits oiseaux s'élevant, composition équilibrée, contours tranchants, encre noire à contraste élevé, réalisme de tatouage moderne, monochrome uniquement, pas de fond sur toile blanche, flash professionnel, prêt pour pochoir.",
-  "@explorePromptFeatherAndBirdsInFlight": { "description": "Home: Explore item prompt - Feather and birds in flight" },
-
+  "@explorePromptFeatherAndBirdsInFlight": {
+    "description": "Home: Explore item prompt - Feather and birds in flight"
+  },
   "exploreTitleRainyBatWithCelestialStars": "Chauve-souris pluvieuse avec étoiles célestes",
-  "@exploreTitleRainyBatWithCelestialStars": { "description": "Home: Explore item title - Rainy bat with celestial stars" },
+  "@exploreTitleRainyBatWithCelestialStars": {
+    "description": "Home: Explore item title - Rainy bat with celestial stars"
+  },
   "explorePromptRainyBatWithCelestialStars": "Tatouage de chauve-souris symétrique avec ailes complètement déployées, corps noir solide, ailes remplies de dégradé arc-en-ciel lisse (violet à bleu, vert, jaune, orange), contours audacieux et propres avec travail de lignes fines, ombrage subtil de travail de points, entouré de petites étoiles et points, deux étoiles à quatre pointes au-dessus et en dessous, ambiance mystique céleste, style néo-traditionnel moderne, contraste élevé, détail net.",
-  "@explorePromptRainyBatWithCelestialStars": { "description": "Home: Explore item prompt - Rainy bat with celestial stars" },
-
+  "@explorePromptRainyBatWithCelestialStars": {
+    "description": "Home: Explore item prompt - Rainy bat with celestial stars"
+  },
   "exploreTitleElegantBlackCatSilhouetteDesign": "Design de silhouette de chat noir élégant",
-  "@exploreTitleElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item title - Elegant black cat silhouette design" },
+  "@exploreTitleElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item title - Elegant black cat silhouette design"
+  },
   "explorePromptElegantBlackCatSilhouetteDesign": "Un design de tatouage de chat noir minimaliste en style abstrait élégant, chat assis de profil avec une queue courbe longue et fluide, lignes douces et balayées et bords nets et effilés, encre noire solide avec ombrage de dégradé subtil pour la profondeur, formes géométriques et fluides formant le corps, lignes délicates de moustaches s'étendant du visage, style de tatouage à ligne fine moderne, contraste élevé, espace négatif propre, look sophistiqué et artistique, art flash de tatouage",
-  "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
-
+  "@explorePromptElegantBlackCatSilhouetteDesign": {
+    "description": "Home: Explore item prompt - Elegant black cat silhouette design"
+  },
   "exploreTitleRedRoseTattooDesign": "Design de tatouage de rose rouge",
-  "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
+  "@exploreTitleRedRoseTattooDesign": {
+    "description": "Home: Explore item title - Red rose tattoo design"
+  },
   "explorePromptRedRoseTattooDesign": "Tatouage de rose rouge réaliste, rose unique en fleur avec pétales en couches, couleur rouge riche et profonde, texture de pétales fine et détaillée, ombrage de dégradé subtil, tige verte naturelle avec petites épines et deux feuilles détaillées, contours propres et nets, style de tatouage de réalisme doux, contraste élevé, mélange de couleurs lisse, qualité de flash de tatouage professionnel, rose isolée uniquement",
-  "@explorePromptRedRoseTattooDesign": { "description": "Home: Explore item prompt - Red rose tattoo design" },
-
+  "@explorePromptRedRoseTattooDesign": {
+    "description": "Home: Explore item prompt - Red rose tattoo design"
+  },
   "exploreTitleBlackInfinityArrowTattoo": "Tatouage de flèche infinie noire",
-  "@exploreTitleBlackInfinityArrowTattoo": { "description": "Home: Explore item title - Black infinity arrow tattoo" },
+  "@exploreTitleBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item title - Black infinity arrow tattoo"
+  },
   "explorePromptBlackInfinityArrowTattoo": "Tatouage de flèche infinie noire minimaliste réaliste, boucle continue lisse avec flèche nette, travail de lignes audacieux et propre, encre noire solide à contraste élevé, style minimal moderne, monochrome, prêt pour pochoir.",
-  "@explorePromptBlackInfinityArrowTattoo": { "description": "Home: Explore item prompt - Black infinity arrow tattoo" },
-
+  "@explorePromptBlackInfinityArrowTattoo": {
+    "description": "Home: Explore item prompt - Black infinity arrow tattoo"
+  },
   "exploreTitleBlackScorpionTattooDesign": "Design de tatouage de scorpion noir",
-  "@exploreTitleBlackScorpionTattooDesign": { "description": "Home: Explore item title - Black scorpion tattoo design" },
+  "@exploreTitleBlackScorpionTattooDesign": {
+    "description": "Home: Explore item title - Black scorpion tattoo design"
+  },
   "explorePromptBlackScorpionTattooDesign": "Design de tatouage de scorpion noir minimaliste réaliste, encre noire solide et audacieuse, travail de lignes net et propre, détails symétriques inspirés des tribaux, contraste élevé, courbes lisses, style de tatouage moderne, prêt pour pochoir, isolé sur fond uni, ultra détaillé, flash de tatouage professionnel",
-  "@explorePromptBlackScorpionTattooDesign": { "description": "Home: Explore item prompt - Black scorpion tattoo design" },
-
+  "@explorePromptBlackScorpionTattooDesign": {
+    "description": "Home: Explore item prompt - Black scorpion tattoo design"
+  },
   "exploreTitleCrescentMoonAndStarTattoo": "Tatouage de lune croissante et étoile",
-  "@exploreTitleCrescentMoonAndStarTattoo": { "description": "Home: Explore item title - Crescent moon and star tattoo" },
+  "@exploreTitleCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item title - Crescent moon and star tattoo"
+  },
   "explorePromptCrescentMoonAndStarTattoo": "Tatouage d'encre noire minimaliste, style de ligne fine, lune croissante vers le haut avec remplissage noir solide, petite étoile à quatre pointes au-dessus alignée verticalement, accents de points subtils, esthétique céleste et mystique, géométrie simple, espacement équilibré, fond propre, travail de lignes précis, contraste élevé, design de tatouage minimal intemporel",
-  "@explorePromptCrescentMoonAndStarTattoo": { "description": "Home: Explore item prompt - Crescent moon and star tattoo" },
-
+  "@explorePromptCrescentMoonAndStarTattoo": {
+    "description": "Home: Explore item prompt - Crescent moon and star tattoo"
+  },
   "exploreTitleSleepingPandaTattoo": "Tatouage de panda endormi",
-  "@exploreTitleSleepingPandaTattoo": { "description": "Home: Explore item title - Sleeping panda tattoo" },
+  "@exploreTitleSleepingPandaTattoo": {
+    "description": "Home: Explore item title - Sleeping panda tattoo"
+  },
   "explorePromptSleepingPandaTattoo": "Tatouage de panda mignon minimaliste, petit panda endormi couché sur le côté, forme arrondie simple, encre noire et blanche solide, remplissages doux et lisses, détails faciaux minimaux, bords propres, style de tatouage minimaliste moderne, monochrome, pas de fond, toile blanche, prêt pour pochoir.",
-  "@explorePromptSleepingPandaTattoo": { "description": "Home: Explore item prompt - Sleeping panda tattoo" },
-
+  "@explorePromptSleepingPandaTattoo": {
+    "description": "Home: Explore item prompt - Sleeping panda tattoo"
+  },
   "genericTattoo": "Tatouage",
-  "@genericTattoo": { "description": "Generic: Tattoo label (fallback style name)" },
-
+  "@genericTattoo": {
+    "description": "Generic: Tattoo label (fallback style name)"
+  },
   "loadingGeneratingYourTattoo": "Génération de votre tatouage..",
-  "@loadingGeneratingYourTattoo": { "description": "Loading screen: generating message" },
-
+  "@loadingGeneratingYourTattoo": {
+    "description": "Loading screen: generating message"
+  },
   "resultShare": "Partager",
-  "@resultShare": { "description": "Result screen: Share button label" },
+  "@resultShare": {
+    "description": "Result screen: Share button label"
+  },
   "resultNoImageToShare": "Aucune image à partager",
-  "@resultNoImageToShare": { "description": "Result screen: No image to share message" },
+  "@resultNoImageToShare": {
+    "description": "Result screen: No image to share message"
+  },
   "resultShareText": "Découvrez mon design de tatouage {styleName} !",
   "@resultShareText": {
     "description": "Result screen: Share text with style name",
@@ -379,7 +436,9 @@
     }
   },
   "resultImageSavedToGallery": "Image enregistrée dans la galerie",
-  "@resultImageSavedToGallery": { "description": "Result screen: Image saved to gallery message" },
+  "@resultImageSavedToGallery": {
+    "description": "Result screen: Image saved to gallery message"
+  },
   "resultErrorSaving": "Erreur lors de l'enregistrement de l'image : {error}",
   "@resultErrorSaving": {
     "description": "Result screen: Error saving message",
@@ -789,12 +848,10 @@
   },
   "noInternetConnectionSomeFeatures": "Pas de connexion Internet. Certaines fonctionnalités peuvent ne pas fonctionner.",
   "noInternetConnectionPleaseCheckNetwork": "Pas de connexion Internet. Veuillez vérifier votre réseau.",
-
   "homeSeeAll": "Voir tout",
   "@homeSeeAll": {
     "description": "Home: See all link for category row"
   },
-
   "deleteConfirmationTitle": "Supprimer l'entrée",
   "@deleteConfirmationTitle": {
     "description": "Title for delete confirmation dialog"
@@ -807,7 +864,6 @@
   "@delete": {
     "description": "Delete button label"
   },
-
   "exploreCategoryMinimal": "Tatouages minimalistes",
   "exploreCategoryMinimalDescription": "Lignes simples et nettes avec esthétique minimaliste. Parfaits pour des designs subtils et élégants.",
   "exploreCategoryTraditional": "Traditionnel et Old School",
@@ -828,7 +884,6 @@
   "exploreCategoryMythologyDescription": "Créatures mythiques et dieux et designs inspirés de la fantasy.",
   "exploreCategoryCustomAi": "Designs personnalisés IA",
   "exploreCategoryCustomAiDescription": "Designs uniques d'IA qui combinent plusieurs styles.",
-
   "exploreItemMinimalistPanda": "Panda minimaliste",
   "exploreItemMinimalistPandaPrompt": "Un petit tatouage de panda minimaliste sur la cheville, un panda adorable assis regardant légèrement à droite, dessiné avec des lignes noires propres et un ombrage micro fin subtil. Le panda tient une tige verte fine avec de petites fleurs de lavande violettes, avec des détails botaniques subtils et des oreilles et bras noirs brillants. Le design est centré sur la peau de la cheville, photographié avec lumière naturelle avec faible profondeur de champ et style de référence de tatouage minimaliste professionnel en composition 1:1.",
   "exploreItemFineLineBow": "Arc de ligne fine",
@@ -853,7 +908,6 @@
   "exploreItemValknutTrianglePrompt": "Une prise proche réaliste d'une main dans une poche de jean sombre montrant un petit tatouage subtil de valknut-art avec trois triangles entrelacés en encre noire fine propre. Avec texture de peau, veines visibles, polo sombre et anneau argenté et fond denim et lumière naturelle et faible profondeur de champ.",
   "exploreItemMinimalistMountain": "Montagnes minimalistes",
   "exploreItemMinimalistMountainPrompt": "Une prise proche réaliste de la partie interne de l'avant-bras avec un petit tatouage simple de montagne en encre noire fine propre. Le design est petit et centré au milieu de l'avant-bras avec texture de peau, manche légèrement abaissée et lumière naturelle et fond neutre avec faible profondeur de champ.",
-
   "exploreItemSwallowBird": "Hirondelle",
   "exploreItemSwallowBirdPrompt": "Tatouage d'hirondelle old school avec ailes déployées et lignes audacieuses et palette de couleurs classique bleue et rouge et style flash de marin ancien et ombrage simple et composition centrée et fond transparent PNG et haute résolution.",
   "exploreItemDaggerHeart": "Dague dans le cœur",
@@ -870,7 +924,6 @@
   "exploreItemCowboyRevolverPrompt": "Tatouage de revolver de cowboy old school avec pistolet western classique et lignes noires épaisses audacieuses et style flash classique et touches rouges et dorées subtiles et ombrage fort et apparence propre et composition centrée et fond transparent PNG et haute résolution.",
   "exploreItemPantherHead": "Tête de panthère",
   "exploreItemPantherHeadPrompt": "Tatouage de tête de panthère old school avec panthère rugissant et lignes noires audacieuses et yeux jaunes et bouche rouge et style flash traditionnel et ombrage fort et composition centrée et fond transparent PNG et haute résolution.",
-
   "exploreItemKoiFish": "Poisson koi",
   "exploreItemKoiFishPrompt": "Tatouage de poisson koi japonais avec design irezumi traditionnel et koi fluide avec corps courbé et lignes audacieuses et palette de couleurs rouge et orange et vagues d'eau autour du poisson et apparence propre et composition centrée et fond transparent PNG et haute résolution.",
   "exploreItemHannyaMask": "Masque Hannya",
@@ -891,7 +944,6 @@
   "exploreItemJapaneseLotusPrompt": "Tatouage de fleur de lotus japonaise et fleur de lotus avec style irezumi et lignes audacieuses et couleurs rose rouge et éléments d'eau et apparence propre et composition centrée et fond transparent PNG et haute résolution.",
   "exploreItemJapanesePhoenix": "Phénix japonais",
   "exploreItemJapanesePhoenixPrompt": "Oiseau phénix japonais avec style irezumi et ailes déployées et lignes audacieuses et couleurs rouge orange jaune et feu autour de l'oiseau et composition centrée et fond transparent PNG et haute résolution.",
-
   "exploreItemPolynesianTribal": "Tatouage tribal polynésien",
   "exploreItemPolynesianTribalPrompt": "Tatouage tribal polynésien audacieux sur le dos de la main avec lignes noires nettes et motifs en spirale et designs géométriques. Le tatouage coule avec courbes douces et angles nets et s'étend de la paume au poignet avec une pointe pointue. Encre noire profonde avec haut contraste et montre style tribal polynésien traditionnel avec texture de peau réaliste et lumière douce.",
   "exploreItemTribalSpineSpear": "Lance tribale sur la colonne",
@@ -916,7 +968,6 @@
   "exploreItemTribalFlamePrompt": "Prise proche du dos de la main avec tatouage tribal noir symétrique coulant des articulations vers le poignet avec courbes nettes et ornements en spirale en encre noire. Texture de peau et veines visibles et main détendue et jean bleu foncé en fond et lumière neutre intérieure et faible profondeur de champ.",
   "exploreItemTribalSwordCompass": "Épée tribale et boussole",
   "exploreItemTribalSwordCompassPrompt": "Prise proche du dos de la main avec tatouage tribal noir gris d'épée verticale transperçant rose des vents avec lignes fines et détails circulaires et ombrage subtil comme fumée. Texture de peau réaliste et fond brumeux sombre et lumière dramatique de studio et faible profondeur de champ.",
-
   "exploreItemGeometricMindBodySoul": "Esprit-Corps-Âme",
   "exploreItemGeometricMindBodySoulPrompt": "Tatouage géométrique sacré hautement détaillé sur l'avant-bras avec composition verticale : Cerveau se transformant en arbre en haut et formes de mandala anatomiques au milieu et cœur anatomique avec éléments ornementaux en bas. Lignes propres et fines et ombrage de points et haut contraste et prise d'étude réaliste.",
   "exploreItemGeometricHoneycombSleeve": "Manche de ruche",
@@ -941,7 +992,6 @@
   "exploreItemGeometricSigiPrompt": "Tatouage petit simple de doigt avec encre noire fine avec symbole vertical de triangles superposés et diamants et polygones nets avec ombrage subtil de points et espace négatif propre. Style sacré géométrique moderne avec lignes fines précises et haut contraste et prêt pour pochoir professionnel.",
   "exploreItemGeometricDualityNature": "Dualité géométrique de la nature",
   "exploreItemGeometricDualityNaturePrompt": "Tatouage simple de travail noir géométrique sur l'avant-bras avec lignes fines et ombrage de points avec triangles superposés : Au-dessus avec scène de montagne et soleil/lune se levant et en dessous inversé avec vague océanique grande. Cadre géométrique propre et géométrie sacrée subtile avec lignes de mouvement pointillées pour thème naturel équilibré moderne avec haut contraste et prêt pour pochoir.",
-
   "exploreItemRealismGamblerFedora": "Joueur avec fedora",
   "exploreItemRealismGamblerFedoraPrompt": "Tatouage noir gris réaliste de joueur sans visage avec fedora et costume et mains derrière le dos. Un réverbère ancien derrière et cartes à jouer éventail et fumée subtile sur le côté. Ambiance noir et haut contraste et lignes fines et pointillage détaillé et style traditionnel et composition symétrique centrée et PNG transparent et simple et hautement détaillé et flash noir.",
   "exploreItemRealismMindOverHeart": "Esprit sur cœur",
@@ -966,7 +1016,6 @@
   "exploreItemRealismPlayfulCharacterPrompt": "Tatouage de couleurs vibrant de personnage joueur tenant une grande fleur rose. Le personnage a yeux grands expressifs et pelage bleu et ventre bleu clair. La fleur vibrante est encadrée par feuilles vertes. Le style est audacieux et cartoon avec ombrage fluide et lignes propres et couleurs vibrantes. Parfait pour petit espace sans fond distrayant avec focus sur personnage et fleur comme points centraux.",
   "exploreItemRealismCutePinkFish": "Poisson rose mignon",
   "exploreItemRealismCutePinkFishPrompt": "Tatouage joueur vibrant de poisson rose mignon avec expression souriante. Le poisson montre gradations roses douces avec ombrage subtil. Bulles d'eau en tons azur turquoise entourant le poisson avec petites bulles et brillances. Lignes modernes propres avec touche joueur et idéal pour petit espace. Le design se concentre sur poisson et eau sans fond distrayant et atmosphère joyeuse.",
-
   "exploreItemLetteringTrustNoOne": "Ne fais confiance à personne",
   "exploreItemLetteringTrustNoOnePrompt": "Tatouage gothique détaillé avec la phrase 'Trust no One'. Le texte est audacieux et dramatique avec bords nets et angles. Effets d'ombrage pour donner au texte apparence tridimensionnelle avec bruine d'encre autour du texte pour atmosphère rugueuse et intense. La typographie évoque une humeur sombre et mystérieuse avec ton acéré et rebelle.",
   "exploreItemLetteringBlessed": "Béni",
@@ -997,7 +1046,6 @@
   "exploreItemLetteringDesirePrompt": "Tatouage gothique sombre avec le mot \"Desire\" et typographie black metal acérée avec lettres pointues et composition symétrique et noir gris réaliste et haut contraste et texture métallique sombre et détails décoratifs sinistres et lignes propres prêtes pour pochoir et flash professionnel de tatouage et simple et hautement détaillé et style gothique acéré.",
   "exploreItemLetteringBeautiful": "Beau",
   "exploreItemLetteringBeautifulPrompt": "Tatouage élégant de couleurs avec le mot \"Beautiful\" et typographie calligraphique fluide moderne audacieuse et lignes épaisses et gradients tridimensionnels vibrants (rose orange jaune) et lignes noires épaisses et brillances et style féminin élégant fluide et courbes propres et éléments décoratifs et composition centrée et flash professionnel de tatouage et prêt pour pochoir et hautement détaillé.",
-
   "exploreItemFloralFourLeafClover": "Trèfle à quatre feuilles",
   "exploreItemFloralFourLeafCloverPrompt": "Tatouage simple de trèfle à quatre feuilles avec lignes fines et style doux et délicat et feuilles vertes pastel douces avec gradations douces et tige noire fine et lignes propres et détails de cœur rouge petit sur une feuille et composition symétrique et flash de tatouage et lignes fines avec haut contraste et bords nets et design de tatouage professionnel et composition centrée.",
   "exploreItemFloralCherryBlossom": "Branche de cerisier en fleurs",
@@ -1022,7 +1070,6 @@
   "exploreItemFloralBabyPandaPrompt": "Tatouage de bébé panda kawaii avec style rond doux et visage avec rougeur subtil et yeux grands expressifs et sourire amical et pelage blanc noir avec ombrage gris subtil et feuilles de bambou autour de la figure et accents de peinture à l'eau légers en tons pastel et lignes épaisses propres avec ombrage doux et style de tatouage kawaii et haut contraste et composition centrée et flash professionnel de tatouage et art isolé et fond transparent simple.",
   "exploreItemFloralSunMoon": "Soleil et lune",
   "exploreItemFloralSunMoonPrompt": "Tatouage céleste de peinture à l'eau avec soleil et lune et composition vibrante et soleil ardent orange avec rayons irradiants et lune pleine en bleu violet et rose et éclaboussures douces de peinture à l'eau et points d'encre et étoiles petites et brillances et lignes propres fines avec gradations douces et style céleste moderne et haut contraste et composition centrée équilibrée et flash professionnel de tatouage et art isolé et fond transparent simple.",
-
   "exploreItemMythologyWarriorSerpents": "Guerrier et serpents",
   "exploreItemMythologyWarriorSerpentsPrompt": "Guerrier masculin musclé en style de sculpture grecque classique enveloppé étroitement avec multiples serpents et serpent s'enroulant autour du torse et bras et autre serpent s'élevant avec bouche ouverte et pose de lutte mythique dramatique inspirée de sculpture ancienne et gravure de la Renaissance et design de tatouage avec lignes fines et ombrage détaillé de hachure croisée et lignes propres et haut contraste et prise d'étude réaliste.",
   "exploreItemMythologyPhoenixRising": "Phénix s'élevant",
@@ -1046,5 +1093,9 @@
   "exploreItemMythologyTrident": "Trident",
   "exploreItemMythologyTridentPrompt": "Trident gothique avec détails complexes acérés et épines sur l'arbre et courbes élégantes et un serpent s'enroulant autour et ombrage subtil et vignes ornementales autour et délicates mais puissantes et ombrage noir gris sombre avec haut contraste et jeu d'ombres dramatiques et lignes acérées et détails fins et flash professionnel de tatouage et fond simple avec focus sur arme et serpent et design symétrique.",
   "exploreItemMythologyWarrior": "Guerrier",
-  "exploreItemMythologyWarriorPrompt": "Guerrier puissant de fantasy avec écailles de dragon recouvrant visage et cou et yeux bleus resplendissants et barbe longue détaillée et traits acérés et subtilités de flammes orange bleues tourbillonnant autour et armure dentée acérée et nageoires élevées depuis dos et tenant trident dans une main et ombrage dramatique avec haut contraste et texture détaillée de peau et arme et couleurs vibrantes de feu glace et atmosphère mythique forte et lignes audacieuses propres et flash professionnel de tatouage et fond simple avec focus sur figure et flammes."
+  "exploreItemMythologyWarriorPrompt": "Guerrier puissant de fantasy avec écailles de dragon recouvrant visage et cou et yeux bleus resplendissants et barbe longue détaillée et traits acérés et subtilités de flammes orange bleues tourbillonnant autour et armure dentée acérée et nageoires élevées depuis dos et tenant trident dans une main et ombrage dramatique avec haut contraste et texture détaillée de peau et arme et couleurs vibrantes de feu glace et atmosphère mythique forte et lignes audacieuses propres et flash professionnel de tatouage et fond simple avec focus sur figure et flammes.",
+  "historySelected": "{count} Sélectionné",
+  "historySelectAll": "Tout sélectionner",
+  "historyDeselectAll": "Tout désélectionner",
+  "historySelect": "Sélectionner"
 }

@@ -48,7 +48,7 @@ class _CreativeLoadingSpinnerState extends State<CreativeLoadingSpinner>
             painter: _SegmentSpinnerPainter(
               progress: _controller.value,
               segmentColor: segmentColor,
-              accentColor: accent,
+              accentColor: Colors.transparent,
               isDark: isDark,
             ),
           );
@@ -78,8 +78,8 @@ class _SegmentSpinnerPainter extends CustomPainter {
     final c = Offset(cx, cy);
     final maxR = size.width / 2;
 
-    const totalSegments = 8;
-    const gapDeg = 13.0;
+    const totalSegments = 4;
+    const gapDeg = 5.0;
     const sliceDeg = 360.0 / totalSegments; // 45°
     const arcDeg = sliceDeg - gapDeg; // ~32°
     final arcRad = arcDeg * math.pi / 180;

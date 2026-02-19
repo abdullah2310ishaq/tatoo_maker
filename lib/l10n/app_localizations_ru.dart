@@ -703,6 +703,25 @@ class AppLocalizationsRu extends AppLocalizations {
   String get exit => 'Выйти';
 
   @override
+  String historySelected(int count) {
+    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+    );
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString Выбрано';
+  }
+
+  @override
+  String get historySelectAll => 'Выбрать все';
+
+  @override
+  String get historyDeselectAll => 'Отменить выбор';
+
+  @override
+  String get historySelect => 'Выбрать';
+
+  @override
   String get noInternetConnectionSomeFeatures =>
       'Нет подключения к интернету. Некоторые функции могут быть недоступны.';
 

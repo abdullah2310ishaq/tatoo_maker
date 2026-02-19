@@ -19,6 +19,10 @@ class HistoryTile extends StatefulWidget {
   /// Called after entry is deleted (remove from list). Favorite toggle does not call this.
   final VoidCallback? onDeleted;
 
+  final bool isSelectionMode;
+  final bool isSelected;
+  final ValueChanged<bool?>? onSelectionChanged;
+
   const HistoryTile({
     super.key,
     required this.entry,
@@ -27,6 +31,9 @@ class HistoryTile extends StatefulWidget {
     required this.onTap,
     this.onFavoriteChanged,
     this.onDeleted,
+    this.isSelectionMode = false,
+    this.isSelected = false,
+    this.onSelectionChanged,
   });
 
   @override
@@ -132,11 +139,35 @@ class _HistoryTileState extends State<HistoryTile> {
         borderRadius: BorderRadius.circular(12.r),
         child: InkWell(
           borderRadius: BorderRadius.circular(12.r),
-          onTap: widget.onTap,
+          onTap: widget.isSelectionMode
+              ? () => widget.onSelectionChanged?.call(!widget.isSelected)
+              : widget.onTap,
           child: Padding(
             padding: EdgeInsets.all(12.w),
             child: Row(
               children: [
+                if (widget.isSelectionMode)
+                  Padding(
+                    padding: EdgeInsets.only(right: 12.w),
+                    child: SizedBox(
+                      width: 24.w,
+                      height: 24.w,
+                      child: Checkbox(
+                        value: widget.isSelected,
+                        onChanged: widget.onSelectionChanged,
+                        activeColor: const Color(0xFFFE8B3A),
+                        side: BorderSide(
+                          color: widget.isDark
+                              ? AppColors.textGrey
+                              : AppColors.textGrey,
+                          width: 2,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.r),
+                        ),
+                      ),
+                    ),
+                  ),
                 if (bytes != null)
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.r),
@@ -175,44 +206,48 @@ class _HistoryTileState extends State<HistoryTile> {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                // Favorite button
-                IconButton(
-                  icon: isLoadingFavorite
-                      ? SizedBox(
-                          width: 20.w,
-                          height: 20.w,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: widget.isDark
-                                ? AppColors.textWhite
-                                : AppColors.textPrimary,
+                if (!widget.isSelectionMode) ...[
+                  // Favorite button
+                  IconButton(
+                    icon: isLoadingFavorite
+                        ? SizedBox(
+                            width: 20.w,
+                            height: 20.w,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: widget.isDark
+                                  ? AppColors.textWhite
+                                  : AppColors.textPrimary,
+                            ),
+                          )
+                        : Icon(
+                            isFavorited
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: isFavorited
+                                ? Colors.red
+                                : (widget.isDark
+                                      ? AppColors.textGrey
+                                      : AppColors.textGrey),
+                            size: 24.sp,
                           ),
-                        )
-                      : Icon(
-                          isFavorited ? Icons.favorite : Icons.favorite_border,
-                          color: isFavorited
-                              ? Colors.red
-                              : (widget.isDark
-                                    ? AppColors.textGrey
-                                    : AppColors.textGrey),
-                          size: 24.sp,
-                        ),
-                  onPressed: () => _toggleFavorite(context),
-                ),
-                // Delete button
-                IconButton(
-                  icon: Icon(
-                    Icons.delete_outline,
-                    color: AppColors.textGrey,
-                    size: 22.sp,
+                    onPressed: () => _toggleFavorite(context),
                   ),
-                  onPressed: () => _deleteEntry(context),
-                ),
-                Icon(
-                  Icons.chevron_right,
-                  color: AppColors.textGrey,
-                  size: 24.sp,
-                ),
+                  // Delete button
+                  IconButton(
+                    icon: Icon(
+                      Icons.delete_outline,
+                      color: AppColors.textGrey,
+                      size: 22.sp,
+                    ),
+                    onPressed: () => _deleteEntry(context),
+                  ),
+                  Icon(
+                    Icons.chevron_right,
+                    color: AppColors.textGrey,
+                    size: 24.sp,
+                  ),
+                ],
               ],
             ),
           ),
