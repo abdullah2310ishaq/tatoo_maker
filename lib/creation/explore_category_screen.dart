@@ -9,10 +9,7 @@ import 'explore_detail_screen.dart';
 class ExploreCategoryScreen extends StatelessWidget {
   final ExploreCategory category;
 
-  const ExploreCategoryScreen({
-    super.key,
-    required this.category,
-  });
+  const ExploreCategoryScreen({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +54,7 @@ class ExploreCategoryScreen extends StatelessWidget {
               bigImagePath: item.bigImagePath,
               smallImagePath: item.smallImagePath,
               smallImagePathDark: item.smallImagePathDark,
+              styleKey: item.id,
             );
           },
         ),
@@ -71,6 +69,7 @@ class _CategoryDetailCard extends StatelessWidget {
   final String bigImagePath;
   final String? smallImagePath;
   final String? smallImagePathDark;
+  final String? styleKey;
 
   const _CategoryDetailCard({
     required this.title,
@@ -78,6 +77,7 @@ class _CategoryDetailCard extends StatelessWidget {
     required this.bigImagePath,
     required this.smallImagePath,
     required this.smallImagePathDark,
+    this.styleKey,
   });
 
   @override
@@ -94,6 +94,7 @@ class _CategoryDetailCard extends StatelessWidget {
               bigImagePath: bigImagePath,
               smallImagePath: smallImagePath,
               smallImagePathDark: smallImagePathDark,
+              styleKey: styleKey,
             ),
           ),
         );

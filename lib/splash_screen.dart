@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'creation/loading_screen.dart';
 import 'utils/colors.dart';
 import 'home_shell.dart';
 import 'language/first_language.dart';

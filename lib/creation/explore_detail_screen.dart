@@ -12,6 +12,10 @@ class ExploreDetailScreen extends StatelessWidget {
   final String? smallImagePath;
   final String? smallImagePathDark;
 
+  /// Stable key (e.g. 'exploreItemMinimalistPanda') stored in history
+  /// so the title can be re-localized on language change.
+  final String? styleKey;
+
   const ExploreDetailScreen({
     super.key,
     required this.title,
@@ -19,6 +23,7 @@ class ExploreDetailScreen extends StatelessWidget {
     required this.bigImagePath,
     this.smallImagePath,
     this.smallImagePathDark,
+    this.styleKey,
   });
 
   @override
@@ -204,7 +209,7 @@ class ExploreDetailScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => LoadingScreen(
                               selectedStyleAsset: bigImagePath,
-                              styleName: title,
+                              styleName: styleKey ?? title,
                               promptText: prompt,
                             ),
                           ),

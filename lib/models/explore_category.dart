@@ -21,6 +21,9 @@ class ExploreCategory {
 }
 
 class ExploreCategoryItem {
+  /// Stable key used to persist in history (e.g. 'exploreItemMinimalistPanda').
+  /// Must never be translated.
+  final String id;
   final String Function(AppLocalizations) title;
   final String Function(AppLocalizations) prompt;
   final String bigImagePath;
@@ -28,6 +31,7 @@ class ExploreCategoryItem {
   final String? smallImagePathDark;
 
   const ExploreCategoryItem({
+    required this.id,
     required this.title,
     required this.prompt,
     required this.bigImagePath,
@@ -48,6 +52,7 @@ class ExploreData {
       smallImagePathDark: 'assets/minimal/pandamalldark.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemMinimalistPanda',
           title: (l10n) => l10n.exploreItemMinimalistPanda,
           prompt: (l10n) => l10n.exploreItemMinimalistPandaPrompt,
           bigImagePath: 'assets/minimal/pandabig.png',
@@ -55,6 +60,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/pandamalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFineLineBow',
           title: (l10n) => l10n.exploreItemFineLineBow,
           prompt: (l10n) => l10n.exploreItemFineLineBowPrompt,
           bigImagePath: 'assets/minimal/bowbig.png',
@@ -62,6 +68,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/bowdarksmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMicroRealismFinger',
           title: (l10n) => l10n.exploreItemMicroRealismFinger,
           prompt: (l10n) => l10n.exploreItemMicroRealismFingerPrompt,
           bigImagePath: 'assets/minimal/microrealsimbig.png',
@@ -69,6 +76,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/microrealsimsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFineLineCatCircle',
           title: (l10n) => l10n.exploreItemFineLineCatCircle,
           prompt: (l10n) => l10n.exploreItemFineLineCatCirclePrompt,
           bigImagePath: 'assets/minimal/catbig.png',
@@ -76,6 +84,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/catsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFineLineLotusFlower',
           title: (l10n) => l10n.exploreItemFineLineLotusFlower,
           prompt: (l10n) => l10n.exploreItemFineLineLotusFlowerPrompt,
           bigImagePath: 'assets/minimal/finrlinelotusbig.png',
@@ -83,6 +92,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/finelinelotussmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemSleepingCatCrescent',
           title: (l10n) => l10n.exploreItemSleepingCatCrescent,
           prompt: (l10n) => l10n.exploreItemSleepingCatCrescentPrompt,
           bigImagePath: 'assets/minimal/sleepingcatbig.png',
@@ -90,6 +100,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/sleepingcatdarksmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFineLineHeartStars',
           title: (l10n) => l10n.exploreItemFineLineHeartStars,
           prompt: (l10n) => l10n.exploreItemFineLineHeartStarsPrompt,
           bigImagePath: 'assets/minimal/finelineheartbig.png',
@@ -97,6 +108,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/finelineheartsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFineLineCompassStar',
           title: (l10n) => l10n.exploreItemFineLineCompassStar,
           prompt: (l10n) => l10n.exploreItemFineLineCompassStarPrompt,
           bigImagePath: 'assets/minimal/compassbig.png',
@@ -104,6 +116,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/compasssmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMinimalTrebleClef',
           title: (l10n) => l10n.exploreItemMinimalTrebleClef,
           prompt: (l10n) => l10n.exploreItemMinimalTrebleClefPrompt,
           bigImagePath: 'assets/minimal/clefneckbig.png',
@@ -111,6 +124,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/clefnecksmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemStarryHeart',
           title: (l10n) => l10n.exploreItemStarryHeart,
           prompt: (l10n) => l10n.exploreItemStarryHeartPrompt,
           bigImagePath: 'assets/minimal/staryyheartbig.png',
@@ -118,6 +132,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/staryyheartsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemValknutTriangle',
           title: (l10n) => l10n.exploreItemValknutTriangle,
           prompt: (l10n) => l10n.exploreItemValknutTrianglePrompt,
           bigImagePath: 'assets/minimal/valknutbig.png',
@@ -125,6 +140,7 @@ class ExploreData {
           smallImagePathDark: 'assets/minimal/valknutsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMinimalistMountain',
           title: (l10n) => l10n.exploreItemMinimalistMountain,
           prompt: (l10n) => l10n.exploreItemMinimalistMountainPrompt,
           bigImagePath: 'assets/minimal/mountainbig.png',
@@ -141,48 +157,56 @@ class ExploreData {
       smallImagePath: 'assets/oldschool/swallowbird.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemSwallowBird',
           title: (l10n) => l10n.exploreItemSwallowBird,
           prompt: (l10n) => l10n.exploreItemSwallowBirdPrompt,
           bigImagePath: 'assets/oldschool/swallowbird.png',
           smallImagePath: 'assets/oldschool/swallowbird.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemDaggerHeart',
           title: (l10n) => l10n.exploreItemDaggerHeart,
           prompt: (l10n) => l10n.exploreItemDaggerHeartPrompt,
           bigImagePath: 'assets/oldschool/daggerheart.png',
           smallImagePath: 'assets/oldschool/daggerheart.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemSkullClassic',
           title: (l10n) => l10n.exploreItemSkullClassic,
           prompt: (l10n) => l10n.exploreItemSkullClassicPrompt,
           bigImagePath: 'assets/oldschool/skullclassic.png',
           smallImagePath: 'assets/oldschool/skullclassic.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemEagleSpread',
           title: (l10n) => l10n.exploreItemEagleSpread,
           prompt: (l10n) => l10n.exploreItemEagleSpreadPrompt,
           bigImagePath: 'assets/oldschool/eaglespread.png',
           smallImagePath: 'assets/oldschool/eaglespread.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemSnakeCoiled',
           title: (l10n) => l10n.exploreItemSnakeCoiled,
           prompt: (l10n) => l10n.exploreItemSnakeCoiledPrompt,
           bigImagePath: 'assets/oldschool/snakecoiled.png',
           smallImagePath: 'assets/oldschool/snakecoiled.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemShipWheel',
           title: (l10n) => l10n.exploreItemShipWheel,
           prompt: (l10n) => l10n.exploreItemShipWheelPrompt,
           bigImagePath: 'assets/oldschool/shipwheel.png',
           smallImagePath: 'assets/oldschool/shipwheel.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemCowboyRevolver',
           title: (l10n) => l10n.exploreItemCowboyRevolver,
           prompt: (l10n) => l10n.exploreItemCowboyRevolverPrompt,
           bigImagePath: 'assets/oldschool/cowboy.png',
           smallImagePath: 'assets/oldschool/cowboy.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemPantherHead',
           title: (l10n) => l10n.exploreItemPantherHead,
           prompt: (l10n) => l10n.exploreItemPantherHeadPrompt,
           bigImagePath: 'assets/oldschool/panther.png',
@@ -198,60 +222,70 @@ class ExploreData {
       smallImagePath: 'assets/japanese/koi_fish.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemKoiFish',
           title: (l10n) => l10n.exploreItemKoiFish,
           prompt: (l10n) => l10n.exploreItemKoiFishPrompt,
           bigImagePath: 'assets/japanese/koi_fish.png',
           smallImagePath: 'assets/japanese/koi_fish.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemHannyaMask',
           title: (l10n) => l10n.exploreItemHannyaMask,
           prompt: (l10n) => l10n.exploreItemHannyaMaskPrompt,
           bigImagePath: 'assets/japanese/hannyamask.png',
           smallImagePath: 'assets/japanese/hannyamask.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemSamuraiHelmet',
           title: (l10n) => l10n.exploreItemSamuraiHelmet,
           prompt: (l10n) => l10n.exploreItemSamuraiHelmetPrompt,
           bigImagePath: 'assets/japanese/samuraihelmet.png',
           smallImagePath: 'assets/japanese/samuraihelmet.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemCherryBlossomBranch',
           title: (l10n) => l10n.exploreItemCherryBlossomBranch,
           prompt: (l10n) => l10n.exploreItemCherryBlossomBranchPrompt,
           bigImagePath: 'assets/japanese/cherryblossombranch.png',
           smallImagePath: 'assets/japanese/cherryblossombranch.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemJapaneseDragon',
           title: (l10n) => l10n.exploreItemJapaneseDragon,
           prompt: (l10n) => l10n.exploreItemJapaneseDragonPrompt,
           bigImagePath: 'assets/japanese/japanesedragon.png',
           smallImagePath: 'assets/japanese/japanesedragon.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemOniMask',
           title: (l10n) => l10n.exploreItemOniMask,
           prompt: (l10n) => l10n.exploreItemOniMaskPrompt,
           bigImagePath: 'assets/japanese/onimask.png',
           smallImagePath: 'assets/japanese/onimask.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemHokusaiWave',
           title: (l10n) => l10n.exploreItemHokusaiWave,
           prompt: (l10n) => l10n.exploreItemHokusaiWavePrompt,
           bigImagePath: 'assets/japanese/wave.png',
           smallImagePath: 'assets/japanese/wave.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemJapaneseTiger',
           title: (l10n) => l10n.exploreItemJapaneseTiger,
           prompt: (l10n) => l10n.exploreItemJapaneseTigerPrompt,
           bigImagePath: 'assets/japanese/tiger.png',
           smallImagePath: 'assets/japanese/tiger.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemJapaneseLotus',
           title: (l10n) => l10n.exploreItemJapaneseLotus,
           prompt: (l10n) => l10n.exploreItemJapaneseLotusPrompt,
           bigImagePath: 'assets/japanese/lotus.png',
           smallImagePath: 'assets/japanese/lotus.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemJapanesePhoenix',
           title: (l10n) => l10n.exploreItemJapanesePhoenix,
           prompt: (l10n) => l10n.exploreItemJapanesePhoenixPrompt,
           bigImagePath: 'assets/japanese/phoenix.png',
@@ -268,6 +302,7 @@ class ExploreData {
       smallImagePathDark: 'assets/tribal_designs/polynesiansmalldark.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemPolynesianTribal',
           title: (l10n) => l10n.exploreItemPolynesianTribal,
           prompt: (l10n) => l10n.exploreItemPolynesianTribalPrompt,
           bigImagePath: 'assets/tribal_designs/polynesianbig.png',
@@ -275,6 +310,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/polynesiansmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalSpineSpear',
           title: (l10n) => l10n.exploreItemTribalSpineSpear,
           prompt: (l10n) => l10n.exploreItemTribalSpineSpearPrompt,
           bigImagePath: 'assets/tribal_designs/spearbig.png',
@@ -282,6 +318,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/spearsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalKnotwork',
           title: (l10n) => l10n.exploreItemTribalKnotwork,
           prompt: (l10n) => l10n.exploreItemTribalKnotworkPrompt,
           bigImagePath: 'assets/tribal_designs/knotworkbig.png',
@@ -289,6 +326,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/knotworksmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalForearmSleeve',
           title: (l10n) => l10n.exploreItemTribalForearmSleeve,
           prompt: (l10n) => l10n.exploreItemTribalForearmSleevePrompt,
           bigImagePath: 'assets/tribal_designs/tribalsleevebig.png',
@@ -296,6 +334,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/tribalsleevesmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalCentralSpiral',
           title: (l10n) => l10n.exploreItemTribalCentralSpiral,
           prompt: (l10n) => l10n.exploreItemTribalCentralSpiralPrompt,
           bigImagePath: 'assets/tribal_designs/centralspiralbig.png',
@@ -304,6 +343,7 @@ class ExploreData {
               'assets/tribal_designs/centralspiralsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalFlameForearm',
           title: (l10n) => l10n.exploreItemTribalFlameForearm,
           prompt: (l10n) => l10n.exploreItemTribalFlameForearmPrompt,
           bigImagePath: 'assets/tribal_designs/flameforearmbig.png',
@@ -311,6 +351,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/flameforearmsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalSpiralFlame',
           title: (l10n) => l10n.exploreItemTribalSpiralFlame,
           prompt: (l10n) => l10n.exploreItemTribalSpiralFlamePrompt,
           bigImagePath: 'assets/tribal_designs/spiralbig.png',
@@ -318,6 +359,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/spiralsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalCompass',
           title: (l10n) => l10n.exploreItemTribalCompass,
           prompt: (l10n) => l10n.exploreItemTribalCompassPrompt,
           bigImagePath: 'assets/tribal_designs/tribalbig.png',
@@ -325,6 +367,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/tribalsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalModernGeometric',
           title: (l10n) => l10n.exploreItemTribalModernGeometric,
           prompt: (l10n) => l10n.exploreItemTribalModernGeometricPrompt,
           bigImagePath: 'assets/tribal_designs/modernbig.png',
@@ -332,6 +375,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/modernsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalNeoBack',
           title: (l10n) => l10n.exploreItemTribalNeoBack,
           prompt: (l10n) => l10n.exploreItemTribalNeoBackPrompt,
           bigImagePath: 'assets/tribal_designs/neobig.png',
@@ -339,6 +383,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/neosmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalFlame',
           title: (l10n) => l10n.exploreItemTribalFlame,
           prompt: (l10n) => l10n.exploreItemTribalFlamePrompt,
           bigImagePath: 'assets/tribal_designs/flamebig.png',
@@ -346,6 +391,7 @@ class ExploreData {
           smallImagePathDark: 'assets/tribal_designs/flamesmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemTribalSwordCompass',
           title: (l10n) => l10n.exploreItemTribalSwordCompass,
           prompt: (l10n) => l10n.exploreItemTribalSwordCompassPrompt,
           bigImagePath: 'assets/tribal_designs/swordbig.png',
@@ -363,6 +409,7 @@ class ExploreData {
       smallImagePathDark: 'assets/geometrical/mindbodysmalldark.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemGeometricMindBodySoul',
           title: (l10n) => l10n.exploreItemGeometricMindBodySoul,
           prompt: (l10n) => l10n.exploreItemGeometricMindBodySoulPrompt,
           bigImagePath: 'assets/geometrical/mindbodybig.png',
@@ -370,6 +417,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/mindbodysmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricHoneycombSleeve',
           title: (l10n) => l10n.exploreItemGeometricHoneycombSleeve,
           prompt: (l10n) => l10n.exploreItemGeometricHoneycombSleevePrompt,
           bigImagePath: 'assets/geometrical/honeycombbig.png',
@@ -377,6 +425,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/honeycombsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricBlackwork',
           title: (l10n) => l10n.exploreItemGeometricBlackwork,
           prompt: (l10n) => l10n.exploreItemGeometricBlackworkPrompt,
           bigImagePath: 'assets/geometrical/blackworkbig.png',
@@ -384,6 +433,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/blackworksmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricCubeSleeve',
           title: (l10n) => l10n.exploreItemGeometricCubeSleeve,
           prompt: (l10n) => l10n.exploreItemGeometricCubeSleevePrompt,
           bigImagePath: 'assets/geometrical/cubesleevebig.png',
@@ -391,6 +441,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/cubesleevesmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometric3dCubeSleeve',
           title: (l10n) => l10n.exploreItemGeometric3dCubeSleeve,
           prompt: (l10n) => l10n.exploreItemGeometric3dCubeSleevePrompt,
           bigImagePath: 'assets/geometrical/geometricsleevebig.png',
@@ -398,6 +449,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/geometricsleevesmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricTreeOfLife',
           title: (l10n) => l10n.exploreItemGeometricTreeOfLife,
           prompt: (l10n) => l10n.exploreItemGeometricTreeOfLifePrompt,
           bigImagePath: 'assets/geometrical/treeoflifebig.png',
@@ -405,6 +457,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/treeoflifesmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricAtlas',
           title: (l10n) => l10n.exploreItemGeometricAtlas,
           prompt: (l10n) => l10n.exploreItemGeometricAtlasPrompt,
           bigImagePath: 'assets/geometrical/atlasbig.png',
@@ -412,6 +465,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/atlassmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricTriadTravel',
           title: (l10n) => l10n.exploreItemGeometricTriadTravel,
           prompt: (l10n) => l10n.exploreItemGeometricTriadTravelPrompt,
           bigImagePath: 'assets/geometrical/triadbig.png',
@@ -419,6 +473,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/triadsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricHorizons',
           title: (l10n) => l10n.exploreItemGeometricHorizons,
           prompt: (l10n) => l10n.exploreItemGeometricHorizonsPrompt,
           bigImagePath: 'assets/geometrical/horizonsbig.png',
@@ -426,6 +481,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/horizonssmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricAlignedTriad',
           title: (l10n) => l10n.exploreItemGeometricAlignedTriad,
           prompt: (l10n) => l10n.exploreItemGeometricAlignedTriadPrompt,
           bigImagePath: 'assets/geometrical/alignedtriadbig.png',
@@ -433,6 +489,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/alignedsmalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricSigi',
           title: (l10n) => l10n.exploreItemGeometricSigi,
           prompt: (l10n) => l10n.exploreItemGeometricSigiPrompt,
           bigImagePath: 'assets/geometrical/sigibig.png',
@@ -440,6 +497,7 @@ class ExploreData {
           smallImagePathDark: 'assets/geometrical/sigismalldark.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemGeometricDualityNature',
           title: (l10n) => l10n.exploreItemGeometricDualityNature,
           prompt: (l10n) => l10n.exploreItemGeometricDualityNaturePrompt,
           bigImagePath: 'assets/geometrical/dualitynaturebig.png',
@@ -456,18 +514,21 @@ class ExploreData {
       smallImagePath: 'assets/realism_and_portrait/gambler_small.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemRealismGamblerFedora',
           title: (l10n) => l10n.exploreItemRealismGamblerFedora,
           prompt: (l10n) => l10n.exploreItemRealismGamblerFedoraPrompt,
           bigImagePath: 'assets/realism_and_portrait/gambler_big.png',
           smallImagePath: 'assets/realism_and_portrait/gambler_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismMindOverHeart',
           title: (l10n) => l10n.exploreItemRealismMindOverHeart,
           prompt: (l10n) => l10n.exploreItemRealismMindOverHeartPrompt,
           bigImagePath: 'assets/realism_and_portrait/mindoverheartbig.png',
           smallImagePath: 'assets/realism_and_portrait/mindoverheartsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismGeometricSplit',
           title: (l10n) => l10n.exploreItemRealismGeometricSplit,
           prompt: (l10n) => l10n.exploreItemRealismGeometricSplitPrompt,
           bigImagePath: 'assets/realism_and_portrait/geometricsplit_big.png',
@@ -475,6 +536,7 @@ class ExploreData {
               'assets/realism_and_portrait/geometricsplit_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismFieryCosmic',
           title: (l10n) => l10n.exploreItemRealismFieryCosmic,
           prompt: (l10n) => l10n.exploreItemRealismFieryCosmicPrompt,
           bigImagePath:
@@ -483,6 +545,7 @@ class ExploreData {
               'assets/realism_and_portrait/fiery andcosmicsplit_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismSinisterClown',
           title: (l10n) => l10n.exploreItemRealismSinisterClown,
           prompt: (l10n) => l10n.exploreItemRealismSinisterClownPrompt,
           bigImagePath:
@@ -491,6 +554,7 @@ class ExploreData {
               'assets/realism_and_portrait/sinister _clown_portrait_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismButterflyWoman',
           title: (l10n) => l10n.exploreItemRealismButterflyWoman,
           prompt: (l10n) => l10n.exploreItemRealismButterflyWomanPrompt,
           bigImagePath:
@@ -499,18 +563,21 @@ class ExploreData {
               'assets/realism_and_portrait/butterflyandwoman_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismFlamingSkull',
           title: (l10n) => l10n.exploreItemRealismFlamingSkull,
           prompt: (l10n) => l10n.exploreItemRealismFlamingSkullPrompt,
           bigImagePath: 'assets/realism_and_portrait/flamingskull_large.png',
           smallImagePath: 'assets/realism_and_portrait/flamingskull_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismFierceWolf',
           title: (l10n) => l10n.exploreItemRealismFierceWolf,
           prompt: (l10n) => l10n.exploreItemRealismFierceWolfPrompt,
           bigImagePath: 'assets/realism_and_portrait/fiercewolf_large.png',
           smallImagePath: 'assets/realism_and_portrait/fiercewolf_small .png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismRedRoseButterfly',
           title: (l10n) => l10n.exploreItemRealismRedRoseButterfly,
           prompt: (l10n) => l10n.exploreItemRealismRedRoseButterflyPrompt,
           bigImagePath:
@@ -519,6 +586,7 @@ class ExploreData {
               'assets/realism_and_portrait/redrosebutterfly_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismVibrantPeacock',
           title: (l10n) => l10n.exploreItemRealismVibrantPeacock,
           prompt: (l10n) => l10n.exploreItemRealismVibrantPeacockPrompt,
           bigImagePath: 'assets/realism_and_portrait/vibrant_peacock_large.png',
@@ -526,6 +594,7 @@ class ExploreData {
               'assets/realism_and_portrait/vibrant_peacock_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismPlayfulCharacter',
           title: (l10n) => l10n.exploreItemRealismPlayfulCharacter,
           prompt: (l10n) => l10n.exploreItemRealismPlayfulCharacterPrompt,
           bigImagePath: 'assets/realism_and_portrait/playful_character_big.png',
@@ -533,6 +602,7 @@ class ExploreData {
               'assets/realism_and_portrait/playful_character_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemRealismCutePinkFish',
           title: (l10n) => l10n.exploreItemRealismCutePinkFish,
           prompt: (l10n) => l10n.exploreItemRealismCutePinkFishPrompt,
           bigImagePath: 'assets/realism_and_portrait/cute_pink_fish_large.png',
@@ -549,72 +619,84 @@ class ExploreData {
       smallImagePath: 'assets/letters/trustnoone_small.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemLetteringTrustNoOne',
           title: (l10n) => l10n.exploreItemLetteringTrustNoOne,
           prompt: (l10n) => l10n.exploreItemLetteringTrustNoOnePrompt,
           bigImagePath: 'assets/letters/trutnoonebig.png',
           smallImagePath: 'assets/letters/trustnoone_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringBlessed',
           title: (l10n) => l10n.exploreItemLetteringBlessed,
           prompt: (l10n) => l10n.exploreItemLetteringBlessedPrompt,
           bigImagePath: 'assets/letters/blessedbig.png',
           smallImagePath: 'assets/letters/blessedsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringHakunaMatata',
           title: (l10n) => l10n.exploreItemLetteringHakunaMatata,
           prompt: (l10n) => l10n.exploreItemLetteringHakunaMatataPrompt,
           bigImagePath: 'assets/letters/hakunamatatabig.png',
           smallImagePath: 'assets/letters/hakunamatatasmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringDream',
           title: (l10n) => l10n.exploreItemLetteringDream,
           prompt: (l10n) => l10n.exploreItemLetteringDreamPrompt,
           bigImagePath: 'assets/letters/dreambig.png',
           smallImagePath: 'assets/letters/dreamsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringBoom',
           title: (l10n) => l10n.exploreItemLetteringBoom,
           prompt: (l10n) => l10n.exploreItemLetteringBoomPrompt,
           bigImagePath: 'assets/letters/boombig.png',
           smallImagePath: 'assets/letters/boomsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringWorkHardDreamBig',
           title: (l10n) => l10n.exploreItemLetteringWorkHardDreamBig,
           prompt: (l10n) => l10n.exploreItemLetteringWorkHardDreamBigPrompt,
           bigImagePath: 'assets/letters/workhardbig.png',
           smallImagePath: 'assets/letters/workhardsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringRn',
           title: (l10n) => l10n.exploreItemLetteringRn,
           prompt: (l10n) => l10n.exploreItemLetteringRnPrompt,
           bigImagePath: 'assets/letters/rnbig.png',
           smallImagePath: 'assets/letters/rnsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringC',
           title: (l10n) => l10n.exploreItemLetteringC,
           prompt: (l10n) => l10n.exploreItemLetteringCPrompt,
           bigImagePath: 'assets/letters/cbig.png',
           smallImagePath: 'assets/letters/csmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringPeacePositivity',
           title: (l10n) => l10n.exploreItemLetteringPeacePositivity,
           prompt: (l10n) => l10n.exploreItemLetteringPeacePositivityPrompt,
           bigImagePath: 'assets/letters/peacebig.png',
           smallImagePath: 'assets/letters/peacesmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringDreamBig',
           title: (l10n) => l10n.exploreItemLetteringDreamBig,
           prompt: (l10n) => l10n.exploreItemLetteringDreamBigPrompt,
           bigImagePath: 'assets/letters/dreambig_big.png',
           smallImagePath: 'assets/letters/dreambig_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringDesire',
           title: (l10n) => l10n.exploreItemLetteringDesire,
           prompt: (l10n) => l10n.exploreItemLetteringDesirePrompt,
           bigImagePath: 'assets/letters/desirebig.png',
           smallImagePath: 'assets/letters/desiresmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemLetteringBeautiful',
           title: (l10n) => l10n.exploreItemLetteringBeautiful,
           prompt: (l10n) => l10n.exploreItemLetteringBeautifulPrompt,
           bigImagePath: 'assets/letters/beautifullarge.png',
@@ -631,6 +713,7 @@ class ExploreData {
           'assets/floral/Minimalistfourleafcloverwithheartsmall.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemFloralFourLeafClover',
           title: (l10n) => l10n.exploreItemFloralFourLeafClover,
           prompt: (l10n) => l10n.exploreItemFloralFourLeafCloverPrompt,
           bigImagePath:
@@ -639,66 +722,77 @@ class ExploreData {
               'assets/floral/Minimalistfourleafcloverwithheartsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralCherryBlossom',
           title: (l10n) => l10n.exploreItemFloralCherryBlossom,
           prompt: (l10n) => l10n.exploreItemFloralCherryBlossomPrompt,
           bigImagePath: 'assets/floral/Cherryblossombranchbig.png',
           smallImagePath: 'assets/floral/Cherryblossombranchsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralMountainLandscape',
           title: (l10n) => l10n.exploreItemFloralMountainLandscape,
           prompt: (l10n) => l10n.exploreItemFloralMountainLandscapePrompt,
           bigImagePath: 'assets/floral/mountainlandscapebig.png',
           smallImagePath: 'assets/floral/mountainlandscapesmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralHeartSunset',
           title: (l10n) => l10n.exploreItemFloralHeartSunset,
           prompt: (l10n) => l10n.exploreItemFloralHeartSunsetPrompt,
           bigImagePath: 'assets/floral/Heartshaped sunsetbig.png',
           smallImagePath: 'assets/floral/Heartshaped sunsetsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralSeaTurtle',
           title: (l10n) => l10n.exploreItemFloralSeaTurtle,
           prompt: (l10n) => l10n.exploreItemFloralSeaTurtlePrompt,
           bigImagePath: 'assets/floral/seaturtlebig.png',
           smallImagePath: 'assets/floral/seaturtlesmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralHibiscus',
           title: (l10n) => l10n.exploreItemFloralHibiscus,
           prompt: (l10n) => l10n.exploreItemFloralHibiscusPrompt,
           bigImagePath: 'assets/floral/Hibiscusflowerbig.png',
           smallImagePath: 'assets/floral/Hibiscusflowersmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralButterflyLily',
           title: (l10n) => l10n.exploreItemFloralButterflyLily,
           prompt: (l10n) => l10n.exploreItemFloralButterflyLilyPrompt,
           bigImagePath: 'assets/floral/butterflyandlilyflowersbig.png',
           smallImagePath: 'assets/floral/butterflyandlilyflowersmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralButterfly',
           title: (l10n) => l10n.exploreItemFloralButterfly,
           prompt: (l10n) => l10n.exploreItemFloralButterflyPrompt,
           bigImagePath: 'assets/floral/Butterfly_big.png',
           smallImagePath: 'assets/floral/Butterfly_small.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralHummingbirdCherry',
           title: (l10n) => l10n.exploreItemFloralHummingbirdCherry,
           prompt: (l10n) => l10n.exploreItemFloralHummingbirdCherryPrompt,
           bigImagePath: 'assets/floral/Hummingbirdandcherryblossombig.png',
           smallImagePath: 'assets/floral/Hummingbirdandcherryblossomsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralButterflyBracelet',
           title: (l10n) => l10n.exploreItemFloralButterflyBracelet,
           prompt: (l10n) => l10n.exploreItemFloralButterflyBraceletPrompt,
           bigImagePath: 'assets/floral/Butterflybraceletbig.png',
           smallImagePath: 'assets/floral/Butterflybraceletsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralBabyPanda',
           title: (l10n) => l10n.exploreItemFloralBabyPanda,
           prompt: (l10n) => l10n.exploreItemFloralBabyPandaPrompt,
           bigImagePath: 'assets/floral/babypandabig.png',
           smallImagePath: 'assets/floral/babypandasmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemFloralSunMoon',
           title: (l10n) => l10n.exploreItemFloralSunMoon,
           prompt: (l10n) => l10n.exploreItemFloralSunMoonPrompt,
           bigImagePath: 'assets/floral/sunmoonbig.png',
@@ -714,72 +808,84 @@ class ExploreData {
       smallImagePath: 'assets/myths/warriorandserpentsmall.png',
       items: [
         ExploreCategoryItem(
+          id: 'exploreItemMythologyWarriorSerpents',
           title: (l10n) => l10n.exploreItemMythologyWarriorSerpents,
           prompt: (l10n) => l10n.exploreItemMythologyWarriorSerpentsPrompt,
           bigImagePath: 'assets/myths/warriorandserpentsbig.png',
           smallImagePath: 'assets/myths/warriorandserpentsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyPhoenixRising',
           title: (l10n) => l10n.exploreItemMythologyPhoenixRising,
           prompt: (l10n) => l10n.exploreItemMythologyPhoenixRisingPrompt,
           bigImagePath: 'assets/myths/phoenixrisingbig.png',
           smallImagePath: 'assets/myths/phoenixrisingsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyMedusa',
           title: (l10n) => l10n.exploreItemMythologyMedusa,
           prompt: (l10n) => l10n.exploreItemMythologyMedusaPrompt,
           bigImagePath: 'assets/myths/medusabig.png',
           smallImagePath: 'assets/myths/medusasmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyDragonSword',
           title: (l10n) => l10n.exploreItemMythologyDragonSword,
           prompt: (l10n) => l10n.exploreItemMythologyDragonSwordPrompt,
           bigImagePath: 'assets/myths/dragoncoiledlarge.png',
           smallImagePath: 'assets/myths/dragoncoiledsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyThreeHeadedHydra',
           title: (l10n) => l10n.exploreItemMythologyThreeHeadedHydra,
           prompt: (l10n) => l10n.exploreItemMythologyThreeHeadedHydraPrompt,
           bigImagePath: 'assets/myths/hydrabig.png',
           smallImagePath: 'assets/myths/hydrasmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyOctopus',
           title: (l10n) => l10n.exploreItemMythologyOctopus,
           prompt: (l10n) => l10n.exploreItemMythologyOctopusPrompt,
           bigImagePath: 'assets/myths/octopusbig.png',
           smallImagePath: 'assets/myths/octopussmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyJapaneseDragon',
           title: (l10n) => l10n.exploreItemMythologyJapaneseDragon,
           prompt: (l10n) => l10n.exploreItemMythologyJapaneseDragonPrompt,
           bigImagePath: 'assets/myths/japanesedragonbig.png',
           smallImagePath: 'assets/myths/japanesedragonsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyDarkFantasyEye',
           title: (l10n) => l10n.exploreItemMythologyDarkFantasyEye,
           prompt: (l10n) => l10n.exploreItemMythologyDarkFantasyEyePrompt,
           bigImagePath: 'assets/myths/darkfantasyeyesbig.png',
           smallImagePath: 'assets/myths/darkfantasyeyesmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyMermaid',
           title: (l10n) => l10n.exploreItemMythologyMermaid,
           prompt: (l10n) => l10n.exploreItemMythologyMermaidPrompt,
           bigImagePath: 'assets/myths/mermaidbig.png',
           smallImagePath: 'assets/myths/mermaidsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyDynamicDragon',
           title: (l10n) => l10n.exploreItemMythologyDynamicDragon,
           prompt: (l10n) => l10n.exploreItemMythologyDynamicDragonPrompt,
           bigImagePath: 'assets/myths/dynamicdragonbig.png',
           smallImagePath: 'assets/myths/dynamicdragonsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyTrident',
           title: (l10n) => l10n.exploreItemMythologyTrident,
           prompt: (l10n) => l10n.exploreItemMythologyTridentPrompt,
           bigImagePath: 'assets/myths/tridentbig.png',
           smallImagePath: 'assets/myths/tridentsmall.png',
         ),
         ExploreCategoryItem(
+          id: 'exploreItemMythologyWarrior',
           title: (l10n) => l10n.exploreItemMythologyWarrior,
           prompt: (l10n) => l10n.exploreItemMythologyWarriorPrompt,
           bigImagePath: 'assets/myths/warriorbig.png',
@@ -799,7 +905,7 @@ class ExploreData {
     // Shuffle to show random order each time
     allItems.shuffle();
 
-    final     customAi = ExploreCategory(
+    final customAi = ExploreCategory(
       id: 'custom_ai',
       title: (l10n) => l10n.exploreCategoryCustomAi,
       prompt: (l10n) => l10n.exploreCategoryCustomAiDescription,
@@ -813,5 +919,16 @@ class ExploreData {
     );
 
     return [..._baseCategories, customAi];
+  }
+
+  /// Look up an explore item by its stable [id] key.
+  /// Returns `null` when no item matches (e.g. home-page styles).
+  static ExploreCategoryItem? findById(String id) {
+    for (final category in _baseCategories) {
+      for (final item in category.items) {
+        if (item.id == id) return item;
+      }
+    }
+    return null;
   }
 }

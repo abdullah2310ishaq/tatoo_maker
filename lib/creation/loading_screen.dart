@@ -157,14 +157,23 @@ class _LoadingScreenState extends State<LoadingScreen>
       }
     }
 
-    // Global style so the model generates a clean standalone tattoo design,
-    // not on a body part.
+    // Global style: force the model to produce a clean standalone tattoo
+    // flash/stencil artwork — NOT ink on a real body.
     promptParts.add(
-      'black and white, line art, minimalist, intricate details, standalone tattoo design, white background, high contrast, 2d only, flat design',
+      'clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, '
+      'black and white, line art, minimalist, intricate details, standalone tattoo design, '
+      'white background, high contrast, 2d only, flat design, isolated artwork',
     );
-    // Explicit negative prompts disguised as positive constraints to ensure no body parts
+
+    // Strict body-part exclusion instructions (Flux has no negative_prompt
+    // param, so these must live in the positive prompt).
     promptParts.add(
-      'no skin, no flesh, no human body, no arms, no legs, no hands, no face, no blurred background, isolated on white',
+      'STRICTLY NO human body parts whatsoever: '
+      'no skin, no flesh, no human body, no arms, no legs, no hands, no fingers, no feet, '
+      'no torso, no back, no chest, no shoulder, no neck, no face, no head, no ears, no lips, '
+      'no eyes, no nails, no veins, no body hair, no tattoo studio, no tattoo machine, '
+      'no person, no people, no model, no portrait photo, no photograph of body, '
+      'no real skin texture, no wrist, no ankle, no elbow, no muscle, no anatomy',
     );
 
     final finalPrompt = promptParts.join(', ');

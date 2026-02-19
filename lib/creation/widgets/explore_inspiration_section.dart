@@ -48,9 +48,7 @@ class _CategoryRow extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => ExploreCategoryScreen(
-              category: category,
-            ),
+            builder: (context) => ExploreCategoryScreen(category: category),
           ),
         );
       },
@@ -105,6 +103,7 @@ class _CategoryRow extends StatelessWidget {
                               smallImagePath: category.items[0].smallImagePath,
                               smallImagePathDark:
                                   category.items[0].smallImagePathDark,
+                              styleKey: category.items[0].id,
                             ),
                           ),
                         );
@@ -131,6 +130,7 @@ class _CategoryRow extends StatelessWidget {
                               smallImagePath: category.items[1].smallImagePath,
                               smallImagePathDark:
                                   category.items[1].smallImagePathDark,
+                              styleKey: category.items[1].id,
                             ),
                           ),
                         );
