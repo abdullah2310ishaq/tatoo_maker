@@ -49,10 +49,7 @@ class _CategoryRow extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => ExploreCategoryScreen(
-              title: category.title,
-              prompt: category.prompt,
-              bigImagePath: category.bigImagePath,
-              smallImagePath: category.smallImagePath,
+              category: category,
             ),
           ),
         );
@@ -67,7 +64,7 @@ class _CategoryRow extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    category.title,
+                    category.title(l10n),
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
@@ -102,8 +99,8 @@ class _CategoryRow extends StatelessWidget {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ExploreDetailScreen(
-                              title: category.items[0].title,
-                              prompt: category.items[0].prompt,
+                              title: category.items[0].title(l10n),
+                              prompt: category.items[0].prompt(l10n),
                               bigImagePath: category.items[0].bigImagePath,
                               smallImagePath: category.items[0].smallImagePath,
                               smallImagePathDark:
@@ -128,8 +125,8 @@ class _CategoryRow extends StatelessWidget {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ExploreDetailScreen(
-                              title: category.items[1].title,
-                              prompt: category.items[1].prompt,
+                              title: category.items[1].title(l10n),
+                              prompt: category.items[1].prompt(l10n),
                               bigImagePath: category.items[1].bigImagePath,
                               smallImagePath: category.items[1].smallImagePath,
                               smallImagePathDark:

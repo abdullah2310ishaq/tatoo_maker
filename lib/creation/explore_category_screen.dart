@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../l10n/app_localizations.dart';
 import '../models/explore_category.dart';
 import '../utils/colors.dart';
 import 'explore_detail_screen.dart';
 
 class ExploreCategoryScreen extends StatelessWidget {
-  final String title;
-  final String prompt;
-  final String bigImagePath;
-  final String? smallImagePath;
+  final ExploreCategory category;
 
   const ExploreCategoryScreen({
     super.key,
-    required this.title,
-    required this.prompt,
-    required this.bigImagePath,
-    this.smallImagePath,
+    required this.category,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
-
-    // Find the matching category from ExploreData to get all items
-    final category = ExploreData.categories.firstWhere(
-      (cat) => cat.title == title,
-      orElse: () => ExploreData.categories.first,
-    );
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +28,7 @@ class ExploreCategoryScreen extends StatelessWidget {
         foregroundColor: textColor,
         elevation: 0,
         title: Text(
-          title,
+          category.title(l10n),
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w600,
@@ -62,8 +52,8 @@ class ExploreCategoryScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final item = category.items[index];
             return _CategoryDetailCard(
-              title: item.title,
-              prompt: item.prompt,
+              title: item.title(l10n),
+              prompt: item.prompt(l10n),
               bigImagePath: item.bigImagePath,
               smallImagePath: item.smallImagePath,
               smallImagePathDark: item.smallImagePathDark,
