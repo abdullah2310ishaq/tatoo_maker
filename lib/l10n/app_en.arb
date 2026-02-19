@@ -318,9 +318,17 @@
   "explorePromptElegantBlackCatSilhouetteDesign": "A minimalist black cat tattoo design in elegant abstract style, side-profile sitting cat with a long flowing curved tail, smooth sweeping lines and sharp tapered edges, solid black ink with subtle gradient shading for depth, geometric and fluid shapes forming the body, delicate whisker lines extending from the face, modern fine-line tattoo style, high contrast, clean negative space, sophisticated and artistic look, tattoo flash art",
   "@explorePromptElegantBlackCatSilhouetteDesign": { "description": "Home: Explore item prompt - Elegant black cat silhouette design" },
   "deleteConfirmationTitle": "Delete Entry",
+  "@deleteConfirmationTitle": {
+    "description": "Title for delete confirmation dialog"
+  },
   "deleteConfirmationContent": "Are you sure you want to delete this design from your history? This action cannot be undone.",
-
+  "@deleteConfirmationContent": {
+    "description": "Content for delete confirmation dialog"
+  },
   "delete": "Delete",
+  "@delete": {
+    "description": "Delete button label"
+  },
 
   "exploreTitleRedRoseTattooDesign": "Red rose tattoo design",
   "@exploreTitleRedRoseTattooDesign": { "description": "Home: Explore item title - Red rose tattoo design" },
