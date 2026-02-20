@@ -846,9 +846,7 @@
   "@exit": {
     "description": "Exit confirmation dialog: exit button label"
   },
-  "noInternetConnectionSomeFeatures": "Keine Internetverbindung. Einige Funktionen sind möglicherweise nicht verfügbar.",
-  "noInternetConnectionPleaseCheckNetwork": "Keine Internetverbindung. Bitte überprüfen Sie Ihr Netzwerk.",
-  "homeSeeAll": "Alle anzeigen",
+ "homeSeeAll": "Alle anzeigen",
   "@homeSeeAll": {
     "description": "Home: See all link for category row"
   },
@@ -864,232 +862,931 @@
   "@delete": {
     "description": "Delete button label"
   },
-  "exploreCategoryMinimal": "Minimalistische Tattoos",
-  "exploreCategoryMinimalDescription": "Einfache, saubere Linien mit minimalistischer Ästhetik. Perfekt für subtile, elegante Designs.",
-  "exploreCategoryTraditional": "Traditionell und Old School",
-  "exploreCategoryTraditionalDescription": "Kühne Linien und lebendige Farben im klassischen amerikanischen Stil.",
-  "exploreCategoryJapanese": "Japanischer Stil",
-  "exploreCategoryJapaneseDescription": "Traditionelles Irezumi mit Drachen, Koi-Fischen und Kirschblüten.",
-  "exploreCategoryTribal": "Stammesdesigns",
-  "exploreCategoryTribalDescription": "Kühne schwarze Muster inspiriert von polynesischer und Stammeskunst.",
-  "exploreCategoryGeometric": "Geometrische Tattoos",
-  "exploreCategoryGeometricDescription": "Heilige Geometrie und Mandalas mit präzisen geometrischen Mustern.",
-  "exploreCategoryRealism": "Realismus und Porträts",
-  "exploreCategoryRealismDescription": "Realistische Porträts und detaillierte fotografische Bilder.",
-  "exploreCategoryLettering": "Schrift und Typografie",
-  "exploreCategoryLetteringDescription": "Schöne Typografie und bedeutungsvolle Zitate.",
-  "exploreCategoryFloral": "Floral und Natur",
-  "exploreCategoryFloralDescription": "Blumen und Pflanzen in wunderschönen Kompositionen.",
-  "exploreCategoryMythology": "Mythologie und Fantasy",
-  "exploreCategoryMythologyDescription": "Mythische Kreaturen und Götter und Designs inspiriert von Fantasy.",
-  "exploreCategoryCustomAi": "Benutzerdefinierte KI-Designs",
-  "exploreCategoryCustomAiDescription": "Einzigartige Designs von KI, die verschiedene Stile kombinieren.",
-  "exploreItemMinimalistPanda": "Minimalistischer Panda",
-  "exploreItemMinimalistPandaPrompt": "Ein kleines minimalistisches Knöcheltattoo eines niedlichen Pandas, der leicht nach rechts schaut, gezeichnet mit sauberen schwarzen Linien und subtiler Mikro-Schattierung. Der Panda hält einen dünnen grünen Stängel mit kleinen lila Lavendelblüten, mit subtiler botanischer Detailzeichnung und glänzenden schwarzen Ohren und Armen. Das Design ist in der Mitte auf der Knöchelhaut positioniert, fotografiert bei natürlichem Licht mit flacher Tiefenschärfe und minimalistischem professionellem Tattoo-Referenzstil in 1:1-Komposition.",
-  "exploreItemFineLineBow": "Feine Linien Schleife",
-  "exploreItemFineLineBowPrompt": "Ein kleines einfaches Tattoo auf der Innenseite des Handgelenks mit einer dünnen Schleifenband-Linie, gezeichnet mit sauberer schwarzer dünner Linie und einer kleinen zentralen Schleife. Das Design ist symmetrisch und sauber in einem minimalistischen Tattoo-Stil, positioniert auf glatter blasser Handgelenkshaut. Fotografiert bei natürlichem weichem Licht mit flacher Tiefenschärfe in einem modernen, professionellen Tattoo-Referenzstil.",
-  "exploreItemMicroRealismFinger": "Mikrorealistische Finger Tattoos",
-  "exploreItemMicroRealismFingerPrompt": "Makro-fotorealistische Nahaufnahme eines Mittelrings mit zwei kleinen detaillierten Tattoos über dem Gelenk: Eine sitzende Katze nach rechts blickend und eine dünne Linien-Schmetterling unterhalb. Die Szene zeigt natürliche Hauttextur und warmes neutrales Licht mit flacher Tiefenschärfe und sauberem beigem Hintergrund, in einem professionellen Tattoo-Referenzstil mit hoher Detailgenauigkeit.",
-  "exploreItemFineLineCatCircle": "Feine Linien Katze im Kreis",
-  "exploreItemFineLineCatCirclePrompt": "Ein kleines oberes Rückentattoo unter dem Nacken, das einen subtilen Schatten einer sitzenden Katze zeigt, die nach hinten blickt mit einem langen geschwungenen Schwanz. Umgeben von einem dünnen unvollständigen Kreis mit kleinen Blättern und einer kleinen Blume in sauberer schwarzer dünner Linie. Die Szene zeigt realistische Hauttextur und weiches natürliches Licht mit flacher Tiefenschärfe in einem modernen realistischen Tattoo-Referenzstil.",
-  "exploreItemFineLineLotusFlower": "Feine Linien Lotusblume",
-  "exploreItemFineLineLotusFlowerPrompt": "Ein einfaches Tattoo einer Lotusblume mit dünnen geschichteten Blütenblättern und dünnem Stängel mit kleinen Blättern und Knospen in sauberer schwarzer dünner Linie. Daneben ein kleines solides schwarzes Herz mit zwei kleinen Punkten in minimalistischen Tattoo-Stil. Das Design ist zentriert auf glatter Haut, fotografiert bei warmem natürlichem Licht mit flacher Tiefenschärfe in einem modernen realistischen Tattoo-Referenzstil.",
-  "exploreItemSleepingCatCrescent": "Schlafende Katze im Halbmond",
-  "exploreItemSleepingCatCrescentPrompt": "Ein kleines detailliertes Tattoo eines zusammengerollten schlafenden Kätzchens innerhalb eines dünnen Halbmonds mit weicher schwarzer und grauer Schattierung und feinen Glanzlichtern um es herum. Das Design zeigt saubere dünne Linien und feine Fell-Details, positioniert auf Handgelenk oder Unterarmhaut, fotografiert bei warmem natürlichem Licht mit flacher Tiefenschärfe für einen hochwertigen realistischen Tattoo-Referenzstil.",
-  "exploreItemFineLineHeartStars": "Feine Linien Herz mit Sternen",
-  "exploreItemFineLineHeartStarsPrompt": "Ein geometrisches Tattoo auf dem Unterarm mit einem scharfkantigen soliden schwarzen Herzen und achteckigen Sternen darüber und darunter. Kleine schwarze Punkte und definierte Kreise bilden ein vertikales symmetrisches Layout darum herum. In sauberer schwarzer dünner Linie auf glatter Haut, fotografiert bei weichem natürlichem Licht in einem modernen Tattoo-Referenzstil mit hoher Detailgenauigkeit.",
-  "exploreItemFineLineCompassStar": "Feine Linien Kompassstern",
-  "exploreItemFineLineCompassStarPrompt": "Ein kleines detailliertes Tattoo auf der Innenseite des Unterarms mit einem achteckigen Kompassstern in der Mitte mit scharfen schwarzen Linien und dünnen Linien und vier kleinen Punkten darum herum. Ein definiertes kleines Herz direkt unter dem Stern. Das Design ist extrem sauber und symmetrisch, fotografiert auf glatter Haut bei weichem natürlichem Licht in einem modernen realistischen Tattoo-Referenzstil.",
-  "exploreItemMinimalTrebleClef": "Notenschlüssel am Hals",
-  "exploreItemMinimalTrebleClefPrompt": "Ein kleines glänzendes schwarzes Notenschlüssel-Tattoo mit drei kleinen Noten hinter dem Ohr auf der Halsseite. Mit kühnen sauberen Linien, fotografiert bei warmem Licht mit realistischer Hauttextur und sichtbarem silbernem Ohrstecker und flacher Tiefenschärfe in einem detaillierten minimalistischen Tattoo-Referenzstil.",
-  "exploreItemStarryHeart": "Sternen-Herz",
-  "exploreItemStarryHeartPrompt": "Ein einfaches dünnliniges Tattoo auf der Innenseite des Unterarms mit einem mittelgroßen definierten Herzen mit kleinen Punkten darin, umgeben von kleinen Sternen und soliden Punkten. In schwarzem minimalistischen Stil, fotografiert auf realistischer Haut bei natürlichem Licht mit sichtbarem weißem Ärmel und dunkelblauer Jeans und leicht verschwommenem Straßenhintergrund.",
-  "exploreItemValknutTriangle": "Valknut-Dreieck",
-  "exploreItemValknutTrianglePrompt": "Eine Nahaufnahme realistischer Nahaufnahme einer Hand in einer dunklen Jeans-Tasche mit einem kleinen subtilen Valknut-artigen Tattoo mit drei verschränkten Dreiecken in sauberer schwarzer dünner Linie. Mit realistischer Hauttextur, sichtbaren Venen, dunklem Polo-Hemd und silbernem Ring und schwarzem Hintergrund mit natürlichem Licht und flacher Tiefenschärfe.",
-  "exploreItemMinimalistMountain": "Minimalistische Berge",
-  "exploreItemMinimalistMountainPrompt": "Eine Nahaufnahme realistischer Nahaufnahme der Innenseite des Unterarms mit einem kleinen einfachen Berg-Tattoo in sauberer schwarzer dünner Linie. Das Design ist klein und zentriert in der Mitte des Unterarms mit realistischer Hauttextur, leicht heruntergezogenem Ärmel und natürlichem Licht und neutralem Hintergrund mit flacher Tiefenschärfe.",
-  "exploreItemSwallowBird": "Schwalbe",
-  "exploreItemSwallowBirdPrompt": "Old School Schwalben-Tattoo mit ausgebreiteten Flügeln und kühnen Linien und klassischer blauer und roter Farbpalette und traditionellem Sailor-Flash-Stil und einfacher Schattierung und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemDaggerHeart": "Dolch im Herzen",
-  "exploreItemDaggerHeartPrompt": "Traditionelles Dolch-im-Herzen-Tattoo mit kühnen Linien und durchstochenen roten Herzen und Stahl-Dolch und klassischem Old School Flash und starker Schattierung und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemSkullClassic": "Klassischer Schädel",
-  "exploreItemSkullClassicPrompt": "Old School Schädel-Tattoo mit kühnen schwarzen Linien und einfacher Schattierung und klassischem Flash-Stil und traditionellem amerikanischen Stil und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemEagleSpread": "Ausgebreiteter Adler",
-  "exploreItemEagleSpreadPrompt": "Traditionelles Adler-Tattoo mit weit ausgebreiteten Flügeln und kühnen Linien und roter, gelber, blauer Farbpalette und klassischem amerikanischen Stil und starker Schattierung und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemSnakeCoiled": "Aufgerollte Schlange",
-  "exploreItemSnakeCoiledPrompt": "Old School Schlangen-Tattoo mit aufgerollter Viper und kühnen Linien und grünen und roten Farben und traditionellem Flash-Stil und einfacher starker Schattierung und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemShipWheel": "Schiffsruder",
-  "exploreItemShipWheelPrompt": "Traditionelles Schiffsruder-Tattoo mit maritimem Thema und kühnen Linien und braunen und goldenen Tönen und Sailor-Flash-Stil und einfacher Schattierung und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemCowboyRevolver": "Cowboy-Revolver",
-  "exploreItemCowboyRevolverPrompt": "Old School Cowboy-Revolver-Tattoo mit Western-Revolver und kühnen schwarzen dicken Linien und klassischem Flash-Stil und subtilen roten und goldenen Akzenten und starker Schattierung und sauberem Look und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemPantherHead": "Panther-Kopf",
-  "exploreItemPantherHeadPrompt": "Old School Panther-Kopf-Tattoo mit brüllendem Panther und kühnen schwarzen Linien und gelben Augen und roten Mund und traditionellem Flash-Stil und starker Schattierung und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemKoiFish": "Koi-Fisch",
-  "exploreItemKoiFishPrompt": "Japanisches Irezumi Koi-Fisch-Tattoo mit traditionellem Design und fließendem Koi mit gebogenem Körper und kühnen Linien und roter und orangefarbener Farbpalette und Wellen um den Fisch und sauberem Look und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemHannyaMask": "Hannya-Maske",
-  "exploreItemHannyaMaskPrompt": "Japanische Hannya-Dämonen-Maske mit Irezumi-Stil und Dämonen-Maske mit Hörnern und kühnen schwarzen Linien und roten und weißen Farben und dramatischem Ausdruck und sauberem Stil und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemSamuraiHelmet": "Samurai-Helm",
-  "exploreItemSamuraiHelmetPrompt": "Japanischer Samurai-Helm und Kabuto-Helm von vorne mit Irezumi-Stil und kühnen Linien und goldenen und roten Akzenten und sauberem Look und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemCherryBlossomBranch": "Kirschblüten-Zweig",
-  "exploreItemCherryBlossomBranchPrompt": "Japanische Sakura-Kirschblüten-Tattoo und Sakurazweig mit rosa Blüten mit Irezumi-Stil und weichen rosa Blüten und kühnen Linien und anmutiger Komposition und sauberem Design und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemJapaneseDragon": "Japanischer Drache",
-  "exploreItemJapaneseDragonPrompt": "Japanischer Drache mit Irezumi-Stil und langem fließendem Körper und Wolken um den Drachen und kühnen Linien und grünen und roten Farben und dynamischer Pose und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemOniMask": "Oni-Maske",
-  "exploreItemOniMaskPrompt": "Japanische traditionelle Oni-Dämonen-Maske und Dämonen-Maske mit kühnen Linien und roten und schwarzen Farben und wildem Ausdruck und Irezumi-Stil und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemHokusaiWave": "Hokusai-Welle",
-  "exploreItemHokusaiWavePrompt": "Japanische Ozeanwellen-Tattoo mit Irezumi-Stil und kühnen Linien und blauen Farben und klassischem japanischen Wellen-Stil und sauberem Look und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemJapaneseTiger": "Japanischer Tiger",
-  "exploreItemJapaneseTigerPrompt": "Japanischer Tiger mit Irezumi-Stil und brüllender Tiger-Kopf und kühnen Linien und orangefarbenen und schwarzen Farben und dynamischem Stil und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemJapaneseLotus": "Japanische Lotus",
-  "exploreItemJapaneseLotusPrompt": "Japanische Lotusblumen-Tattoo und Lotusblume mit Irezumi-Stil und kühnen Linien und rosa und roten Farben und Wasserelementen und sauberem Look und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemJapanesePhoenix": "Japanischer Phönix",
-  "exploreItemJapanesePhoenixPrompt": "Japanischer Phönix-Vogel mit Irezumi-Stil und ausgebreiteten Flügeln und kühnen Linien und roten, orangefarbenen und gelben Farben und Flammen um den Vogel und zentrierter Komposition und transparentem PNG-Hintergrund und hoher Auflösung.",
-  "exploreItemPolynesianTribal": "Polynesisches Stammes-Tattoo",
-  "exploreItemPolynesianTribalPrompt": "Kühnes polynesisches Stammes-Tattoo auf dem Handrücken mit scharfen schwarzen Linien und spiralförmigen Mustern und geometrischen Designs. Das Tattoo fließt mit sanften Kurven und scharfen Winkeln und erstreckt sich von der Handfläche zum Handgelenk mit einem spitzen Ende. Tiefes schwarzes Tinte mit hohem Kontrast und zeigt polynesischen traditionellen Stil mit realistischer Hauttextur und weichem Licht.",
-  "exploreItemTribalSpineSpear": "Stammes-Speer auf der Wirbelsäule",
-  "exploreItemTribalSpineSpearPrompt": "Fotorealistische Nahaufnahme des oberen Rückens eines Mannes mit zentriertem symmetrischen schwarzen Stammes-Tattoo mit verschränkten Knotenlinien und polynesischen scharfen Linien. Das Design erstreckt sich entlang der Wirbelsäule mit sauberer Tinte und hohem Kontrast und realistischer Hauttextur und Außenlicht und flacher Tiefenschärfe.",
-  "exploreItemTribalKnotwork": "Stammes-Knotenarbeit",
-  "exploreItemTribalKnotworkPrompt": "Symmetrisches Stammes-Tattoo mit geometrischen scharfen schwarzen Linien und verschränkten Kurven mit komplexen Mustern mit hohem Kontrast und ohne Schattierung und sauberer schwarzer Tinte und modernem abstrakten Stil mit perfekter Symmetrie und einfachem Hintergrund.",
-  "exploreItemTribalForearmSleeve": "Stammes-Unterarm-Ärmel",
-  "exploreItemTribalForearmSleevePrompt": "Fotorealistische Nahaufnahme eines gekrümmten Männerunterarms mit polynesischem Stammes-Tattoo in schwarzer Tinte mit spiralförmigen Kurven und scharfen Punkten und kreisförmigen Verzierungen. Realistische Hauttextur und warmes Innenlicht und flacher Tiefenschärfe und detaillierter Komposition zentriert.",
-  "exploreItemTribalCentralSpiral": "Zentrale Spirale",
-  "exploreItemTribalCentralSpiralPrompt": "Nahaufnahme einer Hand mit schwarzem Stammes-Tattoo, das von den Fingern über den Handrücken zum Handgelenk fließt mit flammenähnlichen scharfen Kurven und spiralförmigen Verzierungen mit schwarzer Tinte. Realistische Hauttextur und Venen sichtbar und kaltes stimmungsvolles Licht und flacher Tiefenschärfe und kinematografischer zentrierter Komposition.",
-  "exploreItemTribalFlameForearm": "Stammes-Flammen-Unterarm",
-  "exploreItemTribalFlameForearmPrompt": "Nahaufnahme des inneren Unterarms mit zentriertem schwarzen Stammes-Tattoo mit flammähnlichen Mustern in sauberer schwarzer Tinte. Die Person sitzt in einem Tattoo-Stuhl und hält ihren Unterarm mit schwarzem Ärmel und schwarzem Boden im Hintergrund und Innenlicht und realistischer Hauttextur und flacher Tiefenschärfe.",
-  "exploreItemTribalSpiralFlame": "Spirale mit Flammenenden",
-  "exploreItemTribalSpiralFlamePrompt": "Fotorealistische Nahaufnahme eines muskulösen Oberarms mit schwarzem Stammes-Spiral-Tattoo auf der Schulter mit scharfen Flammenenden in schwarzer Tinte. Das neue Tattoo zeigt leichte Rötung mit der Person in einem Tattoo-Studio mit schwarzem kurzärmeligem Hemd unter Innenlicht mit sichtbarer Hauttextur und flacher Tiefenschärfe.",
-  "exploreItemTribalCompass": "Stammes-Kompass",
-  "exploreItemTribalCompassPrompt": "Nahaufnahme eines zentrierten schwarzen Stammes-Kompass-Tattoos mit symmetrischen Sternpunkten und scharfen Linien. Saubere schwarze Tinte und leichte Rötung und realistische Hauttextur und Venen sichtbar und warmes Studio-Licht und dunklem Hintergrund und flacher Tiefenschärfe.",
-  "exploreItemTribalModernGeometric": "Modernes geometrisches Stammes-Tattoo",
-  "exploreItemTribalModernGeometricPrompt": "Nahaufnahme eines großen symmetrischen schwarzen Stammes-Tattoos mit scharfen dreieckigen Mustern und blumenartigem Zentrum. Saubere dicke schwarze Tinte und hoher Kontrast und realistische Hauttextur und Haare sichtbar und steht auf metallischem Boden mit Außenlicht und flacher Tiefenschärfe.",
-  "exploreItemTribalNeoBack": "Neo-Stammes-Rücken",
-  "exploreItemTribalNeoBackPrompt": "Oberansicht einer Person, die sich nach vorne beugt und ein großes schwarzes Stammes-Tattoo mit stacheligen scharfen Formen über den oberen Rücken und Schultern freilegt. Schwarze Tinte mit hohem Kontrast und Haare gebunden und gehalten von der Hand und dunklem Hintergrund und stimmungsvollem Licht und realistischer Hauttextur und flacher Tiefenschärfe.",
-  "exploreItemTribalFlame": "Stammes-Flamme",
-  "exploreItemTribalFlamePrompt": "Nahaufnahme des Handrückens mit symmetrischem schwarzen Stammes-Flammen-Tattoo, das von den Gelenken zum Handgelenk fließt mit scharfen Kurven und spiralförmigen Verzierungen in schwarzer Tinte. Realistische Hauttextur und Venen sichtbar und Hand entspannt und dunkelblauer Jeans im Hintergrund und neutralem Innenlicht und flacher Tiefenschärfe.",
-  "exploreItemTribalSwordCompass": "Stammes-Schwert und Kompass",
-  "exploreItemTribalSwordCompassPrompt": "Nahaufnahme des Handrückens mit schwarzem und grauem Stammes-Tattoo eines vertikalen Schwertes, das eine Kompass-Rose durchbohrt mit dünnen Linien und kreisförmigen Details und subtiler rauchähnlicher Schattierung. Realistische Hauttextur und nebeligem dunklen Hintergrund und dramatischem Studio-Licht und flacher Tiefenschärfe.",
-  "exploreItemGeometricMindBodySoul": "Geist-Körper-Seele",
-  "exploreItemGeometricMindBodySoulPrompt": "Hochdetailliertes geometrisches heiliges Tattoo auf dem Unterarm mit vertikaler Komposition: Gehirn, das oben in einen Baum übergeht und mittig in anatomische Mandala-Formen und unten in ein anatomisches Herz mit ornamentalen Elementen. Saubere dünne Linien und Punkt-Schattierung und hoher Kontrast und Studio-Realismus-Aufnahme.",
-  "exploreItemGeometricHoneycombSleeve": "Honigwaben-Ärmel",
-  "exploreItemGeometricHoneycombSleevePrompt": "Fotorealistische Studio-Aufnahme eines muskulösen Mannes ohne Hemd mit vollem geometrischen schwarzen Tattoo auf der Schulter und heiligen Mandala-Designs darunter am Arm. Saubere schwarze Tinte mit hohem Kontrast und realistischer Hauttextur und neutralem Hintergrund und weichem Licht und flacher Tiefenschärfe.",
-  "exploreItemGeometricBlackwork": "Geometrisches Blackwork",
-  "exploreItemGeometricBlackworkPrompt": "Fotorealistische Nahaufnahme eines Mannes ohne Hemd mit schwarzem und grauem geometrischen Tattoo auf der Schulter und Oberarm mit detaillierten Wald- und Bergszenen in Sechsecken. Schwarze Tinte mit hohem Kontrast und Punkt-Schattierung und realistischer Hauttextur und weichem Studio-Licht und neutralem Hintergrund und flacher Tiefenschärfe.",
-  "exploreItemGeometricCubeSleeve": "Geometrischer Würfel-Ärmel",
-  "exploreItemGeometricCubeSleevePrompt": "Fotorealistische Nahaufnahme eines gestreckten Männerunterarms mit vollem geometrischen Blackwork-Tattoo mit 3D-Würfelmustern und optischen Täuschungen, die zum schwarzen Handgelenkband verblassen. Dünne Linien und schwarze Tinte mit hohem Kontrast und realistischer Hauttextur und Venen sichtbar und neutralem Studio-Hintergrund und weichem Licht und flacher Tiefenschärfe.",
-  "exploreItemGeometric3dCubeSleeve": "3D-Geometrischer Würfel-Ärmel",
-  "exploreItemGeometric3dCubeSleevePrompt": "Fotorealistische Nahaufnahme eines Unterarms mit vollem geometrischen Blackwork-Ärmel mit verschränkten 3D-Würfelmustern mit optischen Täuschungen, die zu einem dichten geometrischen Heiligtum nahe dem Handgelenk übergehen. Schwarze Tinte mit hohem Kontrast und dünne scharfe Linien und Punkt-Schattierung und weißem heruntergezogenen Ärmel und weichem Studio-Licht und flacher Tiefenschärfe.",
-  "exploreItemGeometricTreeOfLife": "Baum des Lebens",
-  "exploreItemGeometricTreeOfLifePrompt": "Vertikale fotorealistische Nahaufnahme der Innenseite des Unterarms mit schwarzem und grauem Natur-Tattoo mit zentraler Kiefer und kreisförmiger Berglandschaft und Monden und Wurzelverzierungen. Dünne Linien und weiche Schattierung und realistischer Hauttextur und weichem Studio-Licht und neutralem Hintergrund und flacher Tiefenschärfe.",
-  "exploreItemGeometricAtlas": "Atlas",
-  "exploreItemGeometricAtlasPrompt": "Dünnliniges und Punkt-Schwarz-Weiß-Tattoo eines knienden Atlas, der eine Weltkugel hält, dargestellt als Renaissance-Skulptur mit anatomischer Zeichnung und realistischer Schattierung. Die Erde zeigt Kontinente und geometrisches Netz mit heiligen geometrischen Mustern und Sonnenzeichen darüber. Vertikale saubere Komposition mit hohem Kontrast und für Unterarm-Tattoo-Stencil bereit und hochdetailliert und einfach.",
-  "exploreItemGeometricTriadTravel": "Reise-Trias",
-  "exploreItemGeometricTriadTravelPrompt": "Einfaches geometrisches Blackwork-Tattoo auf dem Unterarm mit dünnen Linien und Punkt-Schattierung mit vertikaler Dreieckskomposition: Oben mit Kompass-Rose und Orbitalinien und kleinem Flugzeug auf gepunktetem Pfad und Bergen und Ozeanwelle unten. Saubere dünne Linien mit Bewegungslinien und subtiler heiliger Geometrie und modernem Reisethema mit hohem Kontrast und für Stencil bereit.",
-  "exploreItemGeometricHorizons": "Horizonte",
-  "exploreItemGeometricHorizonsPrompt": "Einfaches geometrisches Tattoo auf dem Unterarm mit dünnen Linien und Punkt-Schattierung mit vertikaler Sechseck-Säule. Oben Sonne und Himmel und Bäume in der Mitte und Ozeanwelle unten mit kleineren Sechsecken und subtiler heiliger Geometrie und gepunkteten Pfaden. Natürliches Thema mit sauberer Symmetrie und hohem Kontrast und für Stencil bereit.",
-  "exploreItemGeometricAlignedTriad": "Ausgerichtete Trias",
-  "exploreItemGeometricAlignedTriadPrompt": "Kleines geometrisches Finger-Tattoo mit dünnen Linien und subtiler Punkt-Schattierung mit abstrakter vertikaler Dreieckskomposition mit mehrschichtigen geometrischen Formen und Diamantdetails und kleinen Polygonen und subtiler Schattierung. Moderner heiliger geometrischer Stil mit dünnen präzisen Linien und professionellem Look und für Stencil bereit und hochdetailliert.",
-  "exploreItemGeometricSigi": "Abstrakte Sigi",
-  "exploreItemGeometricSigiPrompt": "Kleines einfaches Finger-Tattoo mit schwarzer dünner Linie mit vertikalem Symbol von überschneidenden Dreiecken und Diamanten und scharfen Polygonen mit subtiler Punkt-Schattierung und negativem sauberem Raum. Moderner heiliger geometrischer Stil mit dünnen präzisen Linien und hohem Kontrast und für professionelles Stencil bereit.",
-  "exploreItemGeometricDualityNature": "Naturdualität",
-  "exploreItemGeometricDualityNaturePrompt": "Einfaches geometrisches Blackwork-Tattoo auf dem Unterarm mit dünnen Linien und Punkt-Schattierung mit überschneidenden Dreiecken: Oben mit Bergszene und aufgehender Sonne/Mond und unten umgekehrt mit großer Ozeanwelle. Sauberer Rahmen und subtile heilige Geometrie mit Bewegungslinien für modernes ausgewogenes Naturthema mit hohem Kontrast und für Stencil bereit.",
-  "exploreItemRealismGamblerFedora": "Gambler mit Fedora",
-  "exploreItemRealismGamblerFedoraPrompt": "Realistisches Schwarz-Weiß-Tattoo eines gesichtslosen Gamblers mit Fedora und Anzug und Händen hinter dem Rücken. Eine antike Straßenlaterne dahinter und fächerförmige Spielkarten und subtiler Rauch auf der Seite. Noir-Stimmung und hoher Kontrast und dünne Linien und detaillierte Punktierung und traditioneller Stil und zentrierte symmetrische Komposition und transparenter PNG-Hintergrund und einfach und hochdetailliert und Blackwork-Flash.",
-  "exploreItemRealismMindOverHeart": "Geist über Herz",
-  "exploreItemRealismMindOverHeartPrompt": "Surreales Schwarz-Grau-Tattoo eines menschlichen Gehirns, das eine Marionette mit Händen an Fäden über einem anatomischen Herzen bedient. Dünne Linien und Kreuzschraffur-Schattierung und hoher Kontrast und symbolisches dunkles Konzept. Vertikale zentrierte Komposition und einfacher Hintergrund und einfach und hochdetailliert und dunkles Fantasy-Flash.",
-  "exploreItemRealismGeometricSplit": "Geometrisch geteiltes Porträt",
-  "exploreItemRealismGeometricSplitPrompt": "Neo-moderne Porträt-Tattoo eines gesichtslosen Frauengesichts, geteilt in geometrische Scherben. Linke Seite realistisches Porträt Schwarz-Grau und rechte Seite lebendige Farben mit pinken Haaren und blauem Auge. Scharfe abstrakte Formen, die das Gesicht schneiden und saubere kühne Linien und hoher Kontrast und einfacher Hintergrund. Traditionell-neuer / Cyber-Graphic-Stil und vertikale zentrierte Komposition und für Tattoo-Stencil bereit und hochdetailliert und modernes Flash.",
-  "exploreItemRealismFieryCosmic": "Feuriges Kosmisches",
-  "exploreItemRealismFieryCosmicPrompt": "Farbiges surreales Porträt-Tattoo mit geteiltem Konzept eines Frauengesichts. Warme Seite mit rissiger Hauttextur und kalte kosmische Seite mit blauem Auge und flüssigen abstrakten Details. Vergrößerungsglas über einem Auge zeigt blaue Iris und subtile Galaxie-Elemente im Hintergrund. Dunkler dramatischer Kontrast mit lebendigen Farben und sanften Farbverläufen und dünnen kühnen Linien und vertikale zentrierte Komposition und einfacher Hintergrund und hochdetailliert und modernes Tattoo-Flash.",
-  "exploreItemRealismSinisterClown": "Unheimlicher Clown",
-  "exploreItemRealismSinisterClownPrompt": "Dunkles Gothic-Clown-Porträt-Tattoo eines Frauengesichts mit scharfen schwarzen Make-up-Linien und dramatischem Eyeliner und tropfenden Augen und orangefarbenen glühenden Augen und kleinem Sternsymbol auf der Stirn. Nur graue Schattierung in den Augen und hoher Kontrast und dünne Linien und Punktierung und scharfe Kanten und professionelle Komposition. Isolierte Tattoo-Kunst ohne Arm oder Haut und für Stencil bereit und einfach und hochdetailliert und Gothic-Flash.",
-  "exploreItemRealismButterflyWoman": "Schmetterling und Frau",
-  "exploreItemRealismButterflyWomanPrompt": "Schwarz-Grau-Porträt-Tattoo einer Frau mit seitlichem Profil, vermischt mit großen detaillierten Schmetterlingsflügeln, die aus dem Kopf wachsen. Weiche Gesichtszüge und fließende Schattierung und dünne Linien und hoher Kontrast und feine Flügelmuster mit Punktierung und Schattierung. Surreale anmutige Komposition und vertikale zentrierte Komposition und einfacher Hintergrund und einfach und hochdetailliert und Realismus-Flash.",
-  "exploreItemRealismFlamingSkull": "Flammender Schädel",
-  "exploreItemRealismFlamingSkullPrompt": "Flammendes Schädel-Tattoo mit realistischem menschlichen Schädel umgeben von dynamischen Flammen. Scharfe Zähne und Schattierung mit hohem Kontrast und dünne kühne Linien. Realismus + dunkles Fantasy und dramatisches Licht und orangefarbene und rote Flammen mit schwarzen/grauen Schädeln. Vertikale zentrierte Komposition und isoliert auf weißem Hintergrund und für Stencil bereit und professionelles hochdetailliertes Flash.",
-  "exploreItemRealismFierceWolf": "Wilder Wolf",
-  "exploreItemRealismFierceWolfPrompt": "Lebendiges farbiges Tattoo mit wütendem Wolfsgesicht neben einer großen orangefarbenen Schmetterling mit detaillierten Mustern. Die Schmetterling ist umgeben von aufblühenden orangefarbenen Blumen. Das Tattoo zeigt reiche Details im Fell und Schuppen und Blüten und hoher Kontrast zwischen dunklen und hellen Bereichen. Sanfte Fließende Linien und symbolische Natur und moderne wilde Tiere. Ideal für größere Platzierung und ohne ablenkenden Hintergrund für zentrierte Stücke.",
-  "exploreItemRealismRedRoseButterfly": "Rote Rose und Schmetterling",
-  "exploreItemRealismRedRoseButterflyPrompt": "Anmutiges farbiges Tattoo mit kühner Schmetterling mit dunklen Flügeln neben einer lebendigen roten Rose. Schmetterlingsflügel mit Farbverlauf von Schwarz zu Rot und Rose mit detaillierten Blütenblättern und sanfter Schattierung für Tiefe. Das Design umfasst umgebende rote Blätter und Äste für fließende anmutige Komposition. Schwarze Tinte mit lebendigem Rot und hoher Kontrast. Moderne saubere Linien mit abstraktem Touch. Perfekt für Unterarm oder Oberschenkel und ohne Hintergrund für klares Stencil.",
-  "exploreItemRealismVibrantPeacock": "Lebendiger Pfau",
-  "exploreItemRealismVibrantPeacockPrompt": "Lebendiges farbiges Pfau-Tattoo mit gelber orangefarbener Sonne im Hintergrund. Pfauenfedern zeigen atemberaubende Blau-, Grün- und Violetttöne mit türkisem Körper und elegant schattierten Details. Blumen in Rosa und Grün umrahmen das Design mit feinen Linien für Textur und Glanz. Modern und elegant mit kühnen Linien und lebendigen Farben. Ideal für größere Bereiche ohne ablenkenden Hintergrund für fokussierte zentrierte Stücke.",
-  "exploreItemRealismPlayfulCharacter": "Verspielter Charakter",
-  "exploreItemRealismPlayfulCharacterPrompt": "Lebendiges farbiges Tattoo eines verspielten Charakters, der eine große rosa Blume hält. Der Charakter hat große ausdrucksvolle Augen und blaues Fell und blauen Bauch. Die lebendige Blume ist umrahmt von grünen Blättern. Der Stil ist kühn und cartoonhaft mit fließender Schattierung und sauberen Linien und lebendigen Farben. Perfekt für kleinere Bereiche ohne ablenkenden Hintergrund mit Fokus auf Charakter und Blume als zentrale Punkte.",
-  "exploreItemRealismCutePinkFish": "Niedliche rosa Fisch",
-  "exploreItemRealismCutePinkFishPrompt": "Verspieltes lebendiges Tattoo eines niedlichen rosa Fischs mit lächelndem Ausdruck. Der Fisch zeigt sanfte Rosatöne mit subtiler Schattierung. Wassertröpfchen in Blau- und Türkistönen umgeben den Fisch mit kleinen Blasen und Glanzlichtern. Moderne saubere Linien mit verspieltem Touch und ideal für kleinere Bereiche. Das Design fokussiert auf den Fisch und Wasser ohne ablenkenden Hintergrund und heitere Atmosphäre.",
-  "exploreItemLetteringTrustNoOne": "Vertraue Niemandem",
-  "exploreItemLetteringTrustNoOnePrompt": "Detailliertes Gothic-Tattoo mit dem Satz 'Trust no One'. Der Text ist kühn und dramatisch mit scharfen Kanten und Winkel. Schattierungseffekte um den Text für raue und intensive Atmosphäre. Die Schrift verkörpert eine dunkle und geheimnisvolle Stimmung mit harter und rebellischer Note.",
-  "exploreItemLetteringBlessed": "Gesegnet",
-  "exploreItemLetteringBlessedPrompt": "Schwarz-weißes Graffiti-Tattoo mit hohem Kontrast mit dem Wort \"Blessed\" in fettem handgeschriebenem kalligrafischem Stil mit Halo-Effekt über den Buchstaben und Sprayfarbe-Effekten um den Text und Punkten von Farbspritzern und sauberen dicken Linien und zentrierter Komposition und Tattoo-Flash und für Stencil bereit und einfacher Hintergrund und scharfe Kanten und professionelles Tattoo-Design und schwarze Tinte nur.",
-  "exploreItemLetteringHakunaMatata": "Hakuna Matata",
-  "exploreItemLetteringHakunaMatataPrompt": "Kühnes schwarz-weißes Graffiti-Tattoo mit den Wörtern \"Hakuna Matata\" und starkem handgeschriebenem Stil mit trockenen Pinseln und schwarzer Tinte mit hohem Kontrast und Farbspritzern und Punkten von Tinte und urbanem Graffiti-Stil und dicken sauberen Linien und zentrierter Komposition und professionellem Tattoo-Flash und für Stencil bereit und abstrakt und einfach und hochdetailliert und schwarze Tinte nur und scharfe Kanten.",
-  "exploreItemLetteringDream": "Träumen",
-  "exploreItemLetteringDreamPrompt": "Lebendiges Graffiti-Tattoo mit dem Wort \"DREAM\" und 3D-kühner handgeschriebener Schrift und dicken schwarzen Linien und lebendigen Farbspritzern und Punkten von Tinte und urbanem Sprayfarben-Stil und hohem Kontrast und Glanzlichtern und dynamischer Komposition und scharfen Kanten und professionellem Tattoo-Flash und für Stencil bereit und hochdetailliert und abstrakt.",
-  "exploreItemLetteringBoom": "Boom",
-  "exploreItemLetteringBoomPrompt": "Comichaftes Pop-Art-Tattoo mit dem Wort \"BOOM\" und kühner cartoonhafter Schrift und dicken schwarzen Linien und lebendigen rosa und gelben Farben und comicartigem Explosionshintergrund und Glanzlichtern und hohem Kontrast und weichen Kanten und zentrierter Komposition und professionellem Tattoo-Flash und für Stencil bereit und abstrakt und hochdetailliert.",
-  "exploreItemLetteringWorkHardDreamBig": "Hart arbeiten, groß träumen",
-  "exploreItemLetteringWorkHardDreamBigPrompt": "Kühnes farbiges Graffiti-Tattoo mit der Phrase \"Work Hard Dream Big\" und 3D-Druck mehrschichtig und dicken schwarzen Linien und lebendigen Farbverläufen (Orange, Rot, Gelb) und Punkten von Farbspritzern und urbanem Graffiti-Sprayfarben-Stil und hohem Kontrast und Glanzlichtern und zentrierter Komposition und professionellem Tattoo-Flash und für Stencil bereit und hochdetailliert und abstrakt und einfacher Hintergrund.",
-  "exploreItemLetteringRn": "RN",
-  "exploreItemLetteringRnPrompt": "Dunkles Gothic-Tattoo mit den Initialen \"RN\" in aggressiver kalligrafischer Schrift mit gezackten scharfen Kanten und schwarzer Tinte nur und hohem Kontrast und schwerer Schattierung und Punkten von Tinte und Gothic-verschnörkelter Schrift und symmetrischer Komposition und Tattoo-Flash und saubere für Stencil bereite Linien und einfach und hochdetailliert und professionelles Tattoo-Design.",
-  "exploreItemLetteringC": "C",
-  "exploreItemLetteringCPrompt": "Dunkles Gothic-Tattoo mit dem Buchstaben \"C\" mit königlicher Krone oben und kühner geschwungener Schrift mit scharfen Kanten und realistischem Schwarz-Grau und hohem Kontrast und Schattierung und tiefen Schatten und Gothic-luxuriösem Stil und zentrierter Komposition und saubere für Stencil bereite Linien und professionellem Tattoo-Flash und einfach und hochdetailliert.",
-  "exploreItemLetteringPeacePositivity": "Frieden und Positivität",
-  "exploreItemLetteringPeacePositivityPrompt": "Kühnes farbiges Graffiti-Tattoo mit der Phrase \"Peace & Positivity\" und urbanem handgeschriebenen Stil und großen 3D-Druck und dicken schwarzen Linien und lebendigen Farbverläufen (Gelb, Orange, Blau, Grün) und Farbspritzern und urbanem Sprayfarben-Stil und hohem Kontrast und Glanzlichtern und zentrierter Komposition und professionellem Tattoo-Flash und für Stencil bereit und abstrakt und hochdetailliert.",
-  "exploreItemLetteringDreamBig": "Groß träumen",
-  "exploreItemLetteringDreamBigPrompt": "Traumhaftes farbiges Tattoo mit den Wörtern \"Dream Big\" und weicher bubble-kalligrafischer Schrift und 3D-lebendigen Farbverläufen und runden dicken Linien und himmlischen Elementen wie Sternen und Glanzlichtern und Sonne und positiver lebendiger Ästhetik und hohem Kontrast und kühnen Linien und zentrierter Komposition und professionellem Tattoo-Flash und für Stencil bereit und hochdetailliert.",
-  "exploreItemLetteringDesire": "Verlangen",
-  "exploreItemLetteringDesirePrompt": "Dunkles Gothic-Tattoo mit dem Wort \"Desire\" und scharfer Black-Metal-Schrift mit gezackten Buchstaben und symmetrischer Komposition und realistischem Schwarz-Grau und hohem Kontrast und dunkler metallischer Textur und schrecklichen dekorativen Details und saubere für Stencil bereite Linien und professionellem Tattoo-Flash und einfach und hochdetailliert und scharfem Gothic-Stil.",
-  "exploreItemLetteringBeautiful": "Schön",
-  "exploreItemLetteringBeautifulPrompt": "Anmutiges farbiges Tattoo mit dem Wort \"Beautiful\" und moderner fließender kalligrafischer Schrift und kühner Schrift und lebendigen 3D-Farbverläufen (Rosa, Orange, Gelb) und schwarzen dicken Linien und Glanzlichtern und weichem femininen anmutigen Stil und geschwungenen Linien und dekorativen Elementen und zentrierter Komposition und professionellem Tattoo-Flash und für Stencil bereit und hochdetailliert.",
-  "exploreItemFloralFourLeafClover": "Vierblättriges Kleeblatt",
-  "exploreItemFloralFourLeafCloverPrompt": "Einfaches vierblättriges Kleeblatt-Tattoo mit dünnen Linien und süßem und zartem Stil und weichen grünen Blättern mit sanften Farbverläufen und dünnem schwarzem Stängel und sauberen Linien und Details eines kleinen roten Herzen in einem Blatt und symmetrischer Komposition und Tattoo-Flash und dünne Linien mit hohem Kontrast und scharfen Kanten und professionelles Tattoo-Design und zentrierte Komposition.",
-  "exploreItemFloralCherryBlossom": "Kirschblüten-Zweig",
-  "exploreItemFloralCherryBlossomPrompt": "Anmutiges Kirschblütenzweig-Tattoo mit botanischem Stil mit dünnen Linien und fließendem Sakurazweig mit mehreren rosa Blüten und Knospen und weichen rosa Blütenblättern mit subtiler Schattierung und dünnem schwarzen Stängel und sauberen Linien und Details von fallenden Blütenblättern und femininer Komposition und Tattoo-Flash und hochdetailliertes Layout und zentrierte Komposition und professionelles Tattoo-Design und einfacher Hintergrund und hoher Kontrast und zentrierte Komposition.",
-  "exploreItemFloralMountainLandscape": "Berglandschaft",
-  "exploreItemFloralMountainLandscapePrompt": "Einfache Berglandschaft-Tattoo mit dünnen Linien und kleiner zentrierter Komposition und detaillierten Berggipfeln mit Kiefern und Wasserfall in der Mitte und Mond oben über den Bergen und subtiler Punkt-Schattierung und Kreuzschraffur und dünne schwarze Linien und ausgewogene geometrische Komposition und hoher Kontrast und professionelles Tattoo-Flash und saubere Linien und natürliche Szene und einfacher transparenter Hintergrund.",
-  "exploreItemFloralHeartSunset": "Herz-Sonnenuntergang",
-  "exploreItemFloralHeartSunsetPrompt": "Lebendiger kleiner Herz-Sonnenuntergang-Tattoo mit warmen lebendigen Farben und glutrotem Sonnenuntergang innerhalb einer sauberen Herzsilhouette und sanftem Horizont mit Reflexionen und weichen Wolken in Farbe und schwarzem einfachen Rahmen unter dem Herzen und Comic-Stil und realistische Details und sanfte Farbmischung und hoher Kontrast und zentrierte Komposition und professionelles Tattoo-Flash und scharfe Kanten und ohne Text und einfacher transparenter Hintergrund.",
-  "exploreItemFloralSeaTurtle": "Meeresschildkröte",
-  "exploreItemFloralSeaTurtlePrompt": "Geometrische lebendige Meeresschildkröte-Tattoo und zwei schwimmende Meeresschildkröten nebeneinander und Panzerschalen in Kristall-Mehrfachfacetten-Stil mit Regenbogenfarben und geometrischen polygonalen Texturen und hochdetaillierten Flossen und Schuppen und farbenfrohes Motiv und realistische Details und hoher Kontrast und zentrierte Komposition und professionelles Tattoo-Flash und isolierte Kunst und einfacher transparenter Hintergrund.",
-  "exploreItemFloralHibiscus": "Hibiskus",
-  "exploreItemFloralHibiscusPrompt": "Lebendige tropische Hibiskus-Tattoo mit kühner botanischer Komposition und detaillierter großer Hibiskusblume mit geschichteten Blütenblättern in Rot, Orange, Gelb mit sanften Farbverläufen und dünnen schwarzen Linien und subtiler Schattierung für Tiefe und umgebenden grünen Blättern mit Venendetails und kleinen Punkten von Tinte und traditionellem neuen Stil und hoher Kontrast und zentrierte Komposition und scharfe Kanten und professionelles Tattoo-Flash und isolierte Kunst und einfacher transparenter Hintergrund.",
-  "exploreItemFloralButterflyLily": "Schmetterling und Lilie",
-  "exploreItemFloralButterflyLilyPrompt": "Realistische Schmetterling und Lilie Tattoo mit botanischem Stil mit dünnen Linien und monarchfarbener Schmetterling mit detaillierten Flügelmustern und großer gelber aufblühender Lilie daneben und sanften realistischen Farbverläufen und dünnen schwarzen Linien mit subtiler Schattierung für Tiefe und umgebenden grünen Blättern mit Venendetails und traditionellem neuen Stil und hoher Kontrast und ausgewogene Komposition und professionelles Tattoo-Flash und scharfe Kanten und isolierte Kunst und einfacher transparenter Hintergrund.",
-  "exploreItemFloralButterfly": "Schmetterling",
-  "exploreItemFloralButterflyPrompt": "Realistische Monarchfalter-Tattoo mit lebendigen orangefarbenen Flügeln mit schwarzen Rändern und weißen Punkten und ausgebreiteten Flügeln symmetrisch und sanften Farbverläufen und dünnen schwarzen Linien und subtiler Schattierung für Tiefe und feinen Flügeltexturen mit Punktierung und Schattierung und traditionellem neuen Stil und hoher Kontrast und zentrierte Komposition und professionelles Tattoo-Flash und scharfe Kanten und isolierte Kunst und einfacher transparenter Hintergrund.",
-  "exploreItemFloralHummingbirdCherry": "Kolibri und Kirsche",
-  "exploreItemFloralHummingbirdCherryPrompt": "Zartes realistisches Kolibri und Kirschblüten Tattoo mit botanischem Stil mit dünnen Linien und kleinem fliegendem Kolibri mit detaillierten Federn und subtiler Schattierung und gebogenem Stängel mit rosa Kirschblüten und kleinen Knospen und hauptsächlich schwarzer Tinte mit leichten Farbakzenten auf Blüten und dünnen sauberen Linien und professionellem Tattoo-Flash und detailliertem Layout und ausgewogener Komposition und hoher Kontrast und isolierte Kunst und einfacher transparenter Hintergrund.",
-  "exploreItemFloralButterflyBracelet": "Schmetterling-Armband",
-  "exploreItemFloralButterflyBraceletPrompt": "Anmutiges blaues Schmetterling-Armband Tattoo mit fließendem Stil mit dünnen Linien und dünner Gliederkette, die sich in Kurve windet und zwei detaillierte blaue Schmetterlinge mit Farbverlauf-Flügeln und kleinen Sternanhängern und rosa floralen Elementen verbunden mit dekorativen Gliedern und dünnen schwarzen Linien mit subtiler Punkt-Schattierung und femininer leichter luftiger Stil und dünne Linien und ausgewogene Komposition und hoher Kontrast und professionelles Tattoo-Flash und zentrierte Komposition und isolierte Kunst und einfacher transparenter Hintergrund.",
-  "exploreItemFloralBabyPanda": "Baby-Panda",
-  "exploreItemFloralBabyPandaPrompt": "Niedliches Baby-Panda-Tattoo mit kawaii-Stil mit runden weichen Formen und Bambusstock in der Hand und subtiler Gesichtsrötung und großen ausdrucksvollen Augen und Lächeln und weißem und schwarzem Fell mit grauer subtiler Schattierung und Bambusblättern darum und wasserfarbigen Akzenten in Pastelltönen und dünnen kühnen Linien mit weicher Schattierung und kawaii Tattoo-Stil und hoher Kontrast und zentrierte Komposition und professionelles Tattoo-Flash und isolierte Kunst und einfacher transparenter Hintergrund.",
-  "exploreItemFloralSunMoon": "Sonne und Mond",
-  "exploreItemFloralSunMoonPrompt": "Himmlisches Wasserfarben-Tattoo mit Sonne und Mond und lebendiger Komposition und glühender orangefarbener Sonne mit ausstrahlenden Strahlen und vollem Mond in Blau und Violett und Pink und sanften Wasserfarben-Spritzern und Punkten von Tinte und kleinen Sternen und Glanzlichtern und dünnen sauberen Linien mit sanften Farbverläufen und himmlischem modernem Stil und hoher Kontrast und zentrierte ausgewogene Komposition und professionelles Tattoo-Flash und isolierte Kunst und einfacher transparenter Hintergrund.",
-  "exploreItemMythologyWarriorSerpents": "Krieger und Schlangen",
-  "exploreItemMythologyWarriorSerpentsPrompt": "Muskulöser männlicher Krieger im griechischen klassischen Skulpturenstil, eng umwickelt mit mehreren Schlangen und einer Schlange, die sich um den Torso und Arme windet und einer anderen Schlange, die sich mit offenem Maul erhebt und dem Krieger, der ein Schwert nach unten hält in dynamischer mythischer Kampfhaltung inspiriert von antiker Skulptur und Renaissance-Gravur und Tattoo-Design mit dünnen Linien und detaillierter Kreuzschraffur-Schattierung und sauberen Linien und hohem Kontrast und Studio-Realismus-Aufnahme.",
-  "exploreItemMythologyPhoenixRising": "Phönix erhebt sich",
-  "exploreItemMythologyPhoenixRisingPrompt": "Lebendiges Phönix-Tattoo mit vollständig ausgebreiteten Flügeln nach oben und langem geschwungenem Schwanz und aufstehender Haltung und leuchtender Farbpalette von Rot, Orange, Gelb und blauen und goldenen Akzenten und detaillierten Federn und dünnen kühnen Linien und traditionellem neuen Stil und hohem Kontrast und glühenden Kohleeffekten und subtilen Farbspritzern und zentrierte Komposition und professionelles Tattoo-Flash und einfacher Hintergrund.",
-  "exploreItemMythologyMedusa": "Medusa",
-  "exploreItemMythologyMedusaPrompt": "Mythisches Medusa-Tattoo mit geheimnisvollem Frauengesicht mit gewundenen Schlangen in den Haaren und mehreren Schlangenköpfen in verschiedene Richtungen blickend und offenen Mäulern mit Fangzähnen und glühenden intensiven Augen und rissiger Marmorhauttextur und dunklem Fantasy-Motiv und feine detaillierte Linien und traditionellem neuen Stil und grünen erdigen reichen Farben und Schattierung mit hohem Kontrast und sanften Farbverläufen und dramatischer Komposition und professionelles Tattoo-Flash und scharfe Kanten und Tattoo-Design.",
-  "exploreItemMythologyDragonSword": "Drache mit Schwert",
-  "exploreItemMythologyDragonSwordPrompt": "Dunkler Fantasy-Drache, eng um ein mittelalterliches Schwert gewunden und langer Schlangen-Körper und scharfe Schuppen und Klauen detailliert und Drachenkopf mit offenem Maul und Fangzähnen nahe der Parierstange und verziertes Schwert mit gotischem Design und vertikale symmetrische Komposition und Schwarz-Grau-Tattoo und dünne detaillierte Linien und Kreuzschraffur-Schattierung und tiefe Schatten und scharfe saubere Linien und dunkles Fantasy-Flash und zentrierte Komposition und einfacher Hintergrund und professionelles Tattoo-Design.",
-  "exploreItemMythologyThreeHeadedHydra": "Dreiköpfige Hydra",
-  "exploreItemMythologyThreeHeadedHydraPrompt": "Großer dreiköpfiger Hydra-Drache mit langem Schlangenkörper und drei wütenden Drachenköpfen aus einem Hals kommend und offenen Mäulern mit scharfen Fangzähnen und überlappenden Schuppen und Panzerplatten und dunkles Meeresmotiv und Schwarz-Grau-Tattoo und dünne detaillierte Linien und intensive Schattierung und hohem Kontrast und komplexer Schuppentextur und Dampf aus den Mäulern aufsteigend und vertikale dramatische Komposition und dünne kühne Linien und professionelles Tattoo-Flash.",
-  "exploreItemMythologyOctopus": "Oktopus",
-  "exploreItemMythologyOctopusPrompt": "Detaillierter Oktopus-Tattoo mit ausgestreckten Tentakeln in ausgewogener Komposition und sichtbaren Saugnäpfen und glühenden Augen und Kopftextur und dunkles Meeresmotiv und Schwarz-Grau-Tattoo und dünne präzise Linien und Punkt-Schattierung und Kreuzschraffur und hohem Kontrast und realistischer Textur und symmetrische zentrierte Komposition und dünne kühne Linien und professionelles Tattoo-Flash.",
-  "exploreItemMythologyJapaneseDragon": "Japanischer Drache",
-  "exploreItemMythologyJapaneseDragonPrompt": "Japanischer Drache mit traditionellem Irezumi-Stil und langem fließendem Körper und Wolken darum und kühnen Linien und Rot, Grün, Gold lebendiger Farbpalette und dynamischer Haltung und hochdetaillierten Schuppen und Hörnern und Bart und Feuer um den Drachen und traditionellem japanischen Stil und Schattierung mit sanften Farbverläufen und hohem Kontrast und dynamischer Bewegung und professionelles Tattoo-Flash.",
-  "exploreItemMythologyDarkFantasyEye": "Dunkles Fantasy-Auge",
-  "exploreItemMythologyDarkFantasyEyePrompt": "Dunkles Fantasy-Tattoo mit zentralem Auge umgeben von kleineren Augen und allen strahlenden roten Energie und großen ausgebreiteten Flügeln und tiefen Schatten und Stromblitze rot fließend durch das Design und intensive Schattierung Schwarz-Grau mit Feuersubtilitäten und komplexe Komposition und symmetrisch und dunkler Gothic-Stil und dünne Linien und starkes Motiv und dramatischer Fokus und professionelles Tattoo-Flash und einfacher Hintergrund mit Design-Fokus.",
-  "exploreItemMythologyMermaid": "Meerjungfrau",
-  "exploreItemMythologyMermaidPrompt": "Lebendiges Horror-Meerjungfrau-Tattoo mit Horror-Motiv und hässlichem Meerjungfrauengesicht mit Schädelzügen und wildem Haar in dunklen Tönen von Schwarz und tiefem Violett und scharfen Klauen und muskulösem Körper, der von menschlicher Form in Fischschwanz mit Regenbogen-Schuppen übergeht und dunkle Unterwasser-Kreaturenatmosphäre mit glühenden Elementen und orangefarbenen und roten Feuersubtilitäten am Schwanz und Augen und intensive dunkle Kontraste und detaillierte Linien und Horror-Fantasy-Stil mit reichen Farben und professionelles Tattoo-Flash und dünne kühne Linien und lebendige Kontraste.",
-  "exploreItemMythologyDynamicDragon": "Dynamischer Drache",
-  "exploreItemMythologyDynamicDragonPrompt": "Lebendiger dynamischer Drache mit Schlangenkörper und glatten Schuppen, die von tiefem Grün zu Türkis übergehen und Feuerflügel in Orange und Gold ausgebreitet und Federflügel in warmen Tönen von Orange zu hellem Gelb und fließendem Schwanz mit Feuersubtilitäten und Drachenkopf mit scharfen Gesichtszügen und kleinen Hörnern und der Drache voller Energie und Bewegung und intensive Schattierung für Kurven und Körpertextur hervorzuheben und Fantasy-Stil mit lebendiger Farbpalette und hohem Kontrast und professionelles Tattoo-Design mit dünnen kühnen Linien.",
-  "exploreItemMythologyTrident": "Dreizack",
-  "exploreItemMythologyTridentPrompt": "Gotischer Dreizack mit detaillierten scharfen Kanten und Dornen am Schaft und geschwungenen anmutigen Formen und einer Schlange darum gewunden mit glatten Schuppen und subtiler Schattierung und Weinranken darum mit zart aber stark und dunkle Schattierung Schwarz-Grau mit hohem Kontrast und Spiel dramatischer Schatten und scharfe Kanten und detaillierte Linien und professionelles Tattoo-Flash und einfacher Hintergrund mit Fokus auf Waffe und Schlange und symmetrisches Design.",
-  "exploreItemMythologyWarrior": "Krieger",
-  "exploreItemMythologyWarriorPrompt": "Mächtiger Fantasy-Krieger mit Drachen-ähnlichen Schuppen bedeckendem Gesicht und Hals und glühenden blauen Augen und langem detaillierten Bart und scharfen Gesichtszügen und Feuersubtilitäten in Orange und Blau darum wirbelnd und gezacktem scharfen Brustpanzer und erhobenen Flossen vom Rücken und Dreizack in einer Hand haltend und intensive Schattierung mit hohem Kontrast und detaillierter Haut- und Waffen-Textur und lebendige Feuer- und Eis-Farben und mythische starke Atmosphäre und dünne kühne Linien und professionelles Tattoo-Flash und einfacher Hintergrund mit Fokus auf Figur und Flammen.",
+
   "historySelected": "{count} Ausgewählt",
+  "@historySelected": {
+    "description": "History selection mode: title showing count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
   "historySelectAll": "Alles auswählen",
+  "@historySelectAll": {
+    "description": "History selection mode: select all button"
+  },
   "historyDeselectAll": "Alles abwählen",
-  "historySelect": "Auswählen"
+  "@historyDeselectAll": {
+    "description": "History selection mode: deselect all button"
+  },
+  "historySelect": "Auswählen",
+  "@historySelect": {
+    "description": "History page: enter selection mode button"
+  },
+  "noInternetConnectionSomeFeatures": "Keine Internetverbindung. Einige Funktionen sind möglicherweise nicht verfügbar.",
+  "@noInternetConnectionSomeFeatures": {
+    "description": "Toast on home when device has no internet"
+  },
+  "noInternetConnectionPleaseCheckNetwork": "Keine Internetverbindung. Bitte überprüfe dein Netzwerk.",
+  "@noInternetConnectionPleaseCheckNetwork": {
+    "description": "Toast during generation when network fails"
+  },
+  "exploreCategoryMinimal": "Minimale Tattoos",
+  "@exploreCategoryMinimal": {
+    "description": "Explore category: Minimal Tattoos"
+  },
+  "exploreCategoryMinimalDescription": "Einfache, saubere Linien mit minimalistischem Ästhetik. Perfekt für subtile, elegante Designs.",
+  "@exploreCategoryMinimalDescription": {
+    "description": "Explore category description: Minimal Tattoos"
+  },
+  "exploreCategoryTraditional": "Traditionell und Old School",
+  "@exploreCategoryTraditional": {
+    "description": "Explore category: Traditional & Old School"
+  },
+  "exploreCategoryTraditionalDescription": "Kühne Linien, lebhafte Farben und klassischer amerikanischer traditioneller Stil.",
+  "@exploreCategoryTraditionalDescription": {
+    "description": "Explore category description: Traditional & Old School"
+  },
+  "exploreCategoryJapanese": "Japanischer Stil",
+  "@exploreCategoryJapanese": {
+    "description": "Explore category: Japanese Style"
+  },
+  "exploreCategoryJapaneseDescription": "Traditionelles japanisches Irezumi mit Drachen, Koi-Fischen und Kirschblüten.",
+  "@exploreCategoryJapaneseDescription": {
+    "description": "Explore category description: Japanese Style"
+  },
+  "exploreCategoryTribal": "Stammes-Designs",
+  "@exploreCategoryTribal": {
+    "description": "Explore category: Tribal Designs"
+  },
+  "exploreCategoryTribalDescription": "Kühne schwarze Muster inspiriert von polynesischer und Stammes-Kunst.",
+  "@exploreCategoryTribalDescription": {
+    "description": "Explore category description: Tribal Designs"
+  },
+  "exploreCategoryGeometric": "Geometrische Tattoos",
+  "@exploreCategoryGeometric": {
+    "description": "Explore category: Geometric Tattoos"
+  },
+  "exploreCategoryGeometricDescription": "Heilige Geometrie, Mandalas und präzise geometrische Muster.",
+  "@exploreCategoryGeometricDescription": {
+    "description": "Explore category description: Geometric Tattoos"
+  },
+  "exploreCategoryRealism": "Realismus und Porträt",
+  "@exploreCategoryRealism": {
+    "description": "Explore category: Realism & Portrait"
+  },
+  "exploreCategoryRealismDescription": "Fotorealistische Porträts und detaillierte realistische Bildgebung.",
+  "@exploreCategoryRealismDescription": {
+    "description": "Explore category description: Realism & Portrait"
+  },
+  "exploreCategoryLettering": "Schrift und Skript",
+  "@exploreCategoryLettering": {
+    "description": "Explore category: Lettering & Script"
+  },
+  "exploreCategoryLetteringDescription": "Schöne Typografie, Kalligrafie und bedeutungsvolle Zitate.",
+  "@exploreCategoryLetteringDescription": {
+    "description": "Explore category description: Lettering & Script"
+  },
+  "exploreCategoryFloral": "Floral und Natur",
+  "@exploreCategoryFloral": {
+    "description": "Explore category: Floral & Nature"
+  },
+  "exploreCategoryFloralDescription": "Blumen, Pflanzen und natürliche Elemente in schönen Kompositionen.",
+  "@exploreCategoryFloralDescription": {
+    "description": "Explore category description: Floral & Nature"
+  },
+  "exploreCategoryMythology": "Mythologie und Fantasy",
+  "@exploreCategoryMythology": {
+    "description": "Explore category: Mythology & Fantasy"
+  },
+  "exploreCategoryMythologyDescription": "Mythische Kreaturen, Götter und fantasy-inspirierte Designs.",
+  "@exploreCategoryMythologyDescription": {
+    "description": "Explore category description: Mythology & Fantasy"
+  },
+  "exploreCategoryCustomAi": "Benutzerdefinierte KI-Designs",
+  "@exploreCategoryCustomAi": {
+    "description": "Explore category: Custom AI Designs"
+  },
+  "exploreCategoryCustomAiDescription": "Einzigartige KI-generierte Designs, die mehrere Stile kombinieren.",
+  "@exploreCategoryCustomAiDescription": {
+    "description": "Explore category description: Custom AI Designs"
+  },
+  "exploreItemMinimalistPanda": "Minimalistischer Panda",
+  "@exploreItemMinimalistPanda": {
+    "description": "Explore item title: Minimalist Panda"
+  },
+  "exploreItemMinimalistPandaPrompt": "Ein winziges minimalistisches Tattoo eines niedlichen Pandas, der aufrecht sitzt, leicht nach rechts gerichtet, gezeichnet mit sauberen schwarzen Linien und weicher Mikro-Schattierung. Der Panda hält einen dünnen grünen Stängel mit kleinen lila Lavendelblumen, mit subtilen botanischen Details und glänzenden schwarzen Ohren und Armen. Das Design ist auf Handhaut zentriert, fotografiert bei natürlichem Licht mit flacher Schärfentiefe und einem minimalistischen, professionellen Tattoo-Referenzstil in 1:1-Komposition.",
+  "@exploreItemMinimalistPandaPrompt": {
+    "description": "Explore item prompt: Minimalist Panda"
+  },
+  "exploreItemFineLineBow": "Feine Linie Schleife",
+  "@exploreItemFineLineBow": {
+    "description": "Explore item title: Fine-Line Bow"
+  },
+  "exploreItemFineLineBowPrompt": "Ein winziges minimalistisches Tattoo einer zarten Band-Schleife am inneren Handgelenk, gezeichnet mit dünnen schwarzen Linien und einem kleinen mittleren Knoten. Das Design ist symmetrisch, sauber und im Mikro-Tattoo-Stil, auf glatter blasser Handgelenkshaut platziert. Bei weichem natürlichem Licht fotografiert mit flacher Schärfentiefe, es hat eine moderne minimalistische Ästhetik und professionellen Tattoo-Referenz-Look.",
+  "@exploreItemFineLineBowPrompt": {
+    "description": "Explore item prompt: Fine-Line Bow"
+  },
+  "exploreItemMicroRealismFinger": "Mikro-Realismus-Finger-Tattoos",
+  "@exploreItemMicroRealismFinger": {
+    "description": "Explore item title: Micro Realism Finger Tattoos"
+  },
+  "exploreItemMicroRealismFingerPrompt": "Eine ultra-realistische Makro-Aufnahme eines Mittelfingers, die zwei winzige Mikro-Tattoos über dem Knöchel zeigt: eine kleine sitzende Katze, die nach rechts gerichtet ist, und eine zarte Schmetterling mit feiner Linienführung und subtiler Schattierung. Die Szene zeigt natürliche Hauttextur, warmes neutrales Licht, flache Schärfentiefe und einen sauberen beigen Hintergrund, gestaltet wie ein hochdetailliertes professionelles Tattoo-Referenzfoto.",
+  "@exploreItemMicroRealismFingerPrompt": {
+    "description": "Explore item prompt: Micro Realism Finger Tattoos"
+  },
+  "exploreItemFineLineCatCircle": "Feine Linie Katze im Kreis",
+  "@exploreItemFineLineCatCircle": {
+    "description": "Explore item title: Fine-Line Cat in Circle"
+  },
+  "exploreItemFineLineCatCirclePrompt": "Ein minimalistisches Tattoo oben am Rücken unter dem Hals, das eine kleine schwarze Silhouetten-Katze zeigt, die sitzt und nach hinten gerichtet ist, mit einem langen gebogenen Schwanz. Es ist von einem dünnen, zarten unvollständigen Kreis umgeben, mit winzigen Blättern und einer kleinen Blume, in ultra-sauberer feiner schwarzer Tinte. Die Szene zeigt realistische Hauttextur, weiches natürliches Licht, flache Schärfentiefe und einen modernen, fotorealistischen Tattoo-Referenzstil.",
+  "@exploreItemFineLineCatCirclePrompt": {
+    "description": "Explore item prompt: Fine-Line Cat in Circle"
+  },
+  "exploreItemFineLineLotusFlower": "Feine Linie Lotusblume",
+  "@exploreItemFineLineLotusFlower": {
+    "description": "Explore item title: Fine-Line Lotus Flower"
+  },
+  "exploreItemFineLineLotusFlowerPrompt": "Eine minimalistische feine Lotusblumen-Tattoo mit zarten geschichteten Blütenblättern und einem dünnen Stängel mit kleinen Blättern und Knospen, in sauberer schwarzer Tinte. Daneben sitzt eine kleine feste schwarze Herz mit zwei winzigen Punkten, alles im Mikro-Tattoo-Stil. Das Design ist auf glatter Haut zentriert, fotografiert bei warmem natürlichem Licht mit flacher Schärfentiefe und einer modernen, fotorealistischen Tattoo-Referenz-Ästhetik.",
+  "@exploreItemFineLineLotusFlowerPrompt": {
+    "description": "Explore item prompt: Fine-Line Lotus Flower"
+  },
+  "exploreItemSleepingCatCrescent": "Schlafende Katze im Halbmond",
+  "@exploreItemSleepingCatCrescent": {
+    "description": "Explore item title: Sleeping Cat in Crescent Moon"
+  },
+  "exploreItemSleepingCatCrescentPrompt": "Ein winziges minimalistisches Mikro-Tattoo einer schlafenden Kätzchen, die sich in einem dünnen Halbmond einrollt, mit weicher schwarz-grauer Schattierung und zarten Glitzern darum. Das Design zeigt saubere feine Linien und subtile Fell-Details, auf Handgelenk oder Unterarmhaut platziert und fotografiert bei warmem natürlichem Licht mit flacher Schärfentiefe für einen hochdetaillierten, fotorealistischen Tattoo-Referenz-Look.",
+  "@exploreItemSleepingCatCrescentPrompt": {
+    "description": "Explore item prompt: Sleeping Cat in Crescent Moon"
+  },
+  "exploreItemFineLineHeartStars": "Feine Linie Herz Sterne",
+  "@exploreItemFineLineHeartStars": {
+    "description": "Explore item title: Fine-Line Heart and Stars"
+  },
+  "exploreItemFineLineHeartStarsPrompt": "Ein minimalistisches geometrisches Tattoo mit einem festen schwarzen Herzen mit scharfen Kanten, flankiert von dünnen vierstrahligen Stern-Spritzern oben und unten. Kleine schwarze Punkte und winzige umrandete Kreise bilden ein symmetrisches vertikales Layout darum. Hochdetaillierter Tattoo-Referenzstil, weißer Hintergrund.",
+  "@exploreItemFineLineHeartStarsPrompt": {
+    "description": "Explore item prompt: Fine-Line Heart and Stars"
+  },
+  "exploreItemFineLineCompassStar": "Feine Linie Kompass Stern",
+  "@exploreItemFineLineCompassStar": {
+    "description": "Explore item title: Fine-Line Compass Star"
+  },
+  "exploreItemFineLineCompassStarPrompt": "Ein minimalistisches Mikro-Tattoo am inneren Unterarm mit einem zentrierten geometrischen Kompass-ähnlichen 8-Punkte-Stern mit scharfen, sauberen schwarzen Linien und vier winzigen Punkten darum. Ein kleines umrandetes Herz sitzt direkt unter dem Stern. Das Design ist ultra-sauber und symmetrisch, fotografiert auf glatter Haut mit weichem natürlichem Licht und einem modernen, fotorealistischen Tattoo-Referenzstil.",
+  "@exploreItemFineLineCompassStarPrompt": {
+    "description": "Explore item prompt: Fine-Line Compass Star"
+  },
+  "exploreItemMinimalTrebleClef": "Minimalistische Violinschlüssel",
+  "@exploreItemMinimalTrebleClef": {
+    "description": "Explore item title: Minimal Treble Clef Neck"
+  },
+  "exploreItemMinimalTrebleClefPrompt": "Ein kleines glänzendes schwarzes Violinschlüssel-Tattoo mit drei winzigen Noten, gezeichnet mit kühnen, sauberen Linien, fotografiert bei weichem warmem Licht mit Textur und flacher Schärfentiefe für einen detaillierten, minimalistischen Tattoo-Referenz-Look, Tattoo-Design, inspiriert von exploreitemminimaltrebleclef Stil, Ästhetik nur, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß, Linienkunst, minimalistisch, komplexe Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk, STRIKT KEINE menschlichen Körperteile überhaupt: und weißer Hintergrund.",
+  "@exploreItemMinimalTrebleClefPrompt": {
+    "description": "Explore item prompt: Minimal Treble Clef Neck"
+  },
+  "exploreItemStarryHeart": "Sternen-Herz",
+  "@exploreItemStarryHeart": {
+    "description": "Explore item title: Starry Heart"
+  },
+  "exploreItemStarryHeartPrompt": "Ein minimalistisches feines Tattoo mit einem mittleren umrandeten Herzen mit winzigen punktierten Details darin, umgeben von kleinen Sternen und festen Punkten, in sauberem schwarzen Mikro-Tattoo-Stil auf weißem Hintergrund, saubere Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemStarryHeartPrompt": {
+    "description": "Explore item prompt: Starry Heart"
+  },
+  "exploreItemValknutTriangle": "Valknut Dreieck",
+  "@exploreItemValknutTriangle": {
+    "description": "Explore item title: Valknut Triangle"
+  },
+  "exploreItemValknutTrianglePrompt": "Fotorealistische Nahaufnahme eines geometrischen Valknut-artigen Tattoos aus drei ineinandergreifenden Dreiecken in dünner schwarzer Tinte, saubere Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk, weiches natürliches Licht, flache Schärfentiefe.",
+  "@exploreItemValknutTrianglePrompt": {
+    "description": "Explore item prompt: Valknut Triangle"
+  },
+  "exploreItemMinimalistMountain": "Minimalistischer Berg",
+  "@exploreItemMinimalistMountain": {
+    "description": "Explore item title: Minimalist Mountain"
+  },
+  "exploreItemMinimalistMountainPrompt": "Ultra-realistische Nahaufnahme eines feinen Berg-Tattoos in sauberer schwarzer Tinte, kleines minimalistisches Design mit weichem natürlichem Licht, neutralem Hintergrund und flacher Schärfentiefe, saubere Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemMinimalistMountainPrompt": {
+    "description": "Explore item prompt: Minimalist Mountain"
+  },
+  "exploreItemSwallowBird": "Schwalbe",
+  "@exploreItemSwallowBird": {
+    "description": "Explore item title: Swallow Bird"
+  },
+  "exploreItemSwallowBirdPrompt": "Old School Schwalben-Tattoo, Flügel ausgebreitet, kühne Umrisse, Blau und Rot klassische Palette, Vintage Matrosen-Tattoo-Flash, einfache Schattierung, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemSwallowBirdPrompt": {
+    "description": "Explore item prompt: Swallow Bird"
+  },
+  "exploreItemDaggerHeart": "Dolch durch Herz",
+  "@exploreItemDaggerHeart": {
+    "description": "Explore item title: Dagger Through Heart"
+  },
+  "exploreItemDaggerHeartPrompt": "Traditionelles Dolch-durch-Herz-Tattoo, kühne Umrisse, rotes Herz durch Stahl-Dolch durchstochen, klassischer Old School Flash, starke Schattierung, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemDaggerHeartPrompt": {
+    "description": "Explore item prompt: Dagger Through Heart"
+  },
+  "exploreItemSkullClassic": "Klassischer Schädel",
+  "@exploreItemSkullClassic": {
+    "description": "Explore item title: Skull Classic"
+  },
+  "exploreItemSkullClassicPrompt": "Old School Schädel-Tattoo, kühne schwarze Umrisse, einfache Schattierung, Vintage Flash Design, traditioneller Tattoo-Stil, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemSkullClassicPrompt": {
+    "description": "Explore item prompt: Skull Classic"
+  },
+  "exploreItemEagleSpread": "Adler ausgebreitet",
+  "@exploreItemEagleSpread": {
+    "description": "Explore item title: Eagle Spread"
+  },
+  "exploreItemEagleSpreadPrompt": "Traditionelles Adler-Tattoo, Flügel weit ausgebreitet, kühne Umrisse, Rot Gelb Blau Palette, Vintage amerikanischer traditioneller Stil, starke Schattierung, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemEagleSpreadPrompt": {
+    "description": "Explore item prompt: Eagle Spread"
+  },
+  "exploreItemSnakeCoiled": "Schlange eingerollt",
+  "@exploreItemSnakeCoiled": {
+    "description": "Explore item title: Snake Coiled"
+  },
+  "exploreItemSnakeCoiledPrompt": "Old School Schlangen-Tattoo, eingerollte Schlange, kühne Umrisse, Grün und Rot Palette, Vintage Flash Stil, starke einfache Schattierung, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemSnakeCoiledPrompt": {
+    "description": "Explore item prompt: Snake Coiled"
+  },
+  "exploreItemShipWheel": "Schiffsrad",
+  "@exploreItemShipWheel": {
+    "description": "Explore item title: Ship Wheel"
+  },
+  "exploreItemShipWheelPrompt": "Traditionelles Schiffsrad-Tattoo, nautisches Thema, kühne Umrisse, Braun und Gold Töne, klassischer Matrosen-Tattoo-Flash, einfache Schattierung, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemShipWheelPrompt": {
+    "description": "Explore item prompt: Ship Wheel"
+  },
+  "exploreItemCowboyRevolver": "Cowboy Revolver",
+  "@exploreItemCowboyRevolver": {
+    "description": "Explore item title: Cowboy Revolver"
+  },
+  "exploreItemCowboyRevolverPrompt": "Traditionelles Old School Cowboy-Revolver-Tattoo, klassische Western-Pistole, kühne dicke schwarze Umrisse, Vintage Tattoo-Flash Stil, einfache Rot und Gold Akzente, starke Schattierung, sauberes Vektor-Aussehen, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemCowboyRevolverPrompt": {
+    "description": "Explore item prompt: Cowboy Revolver"
+  },
+  "exploreItemPantherHead": "Panther Kopf",
+  "@exploreItemPantherHead": {
+    "description": "Explore item title: Panther Head"
+  },
+  "exploreItemPantherHeadPrompt": "Old School Panther-Kopf-Tattoo, brüllender Panther, kühne schwarze Umrisse, gelbe Augen, roter Mund, Vintage traditioneller Flash Stil, starke Schattierung, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemPantherHeadPrompt": {
+    "description": "Explore item prompt: Panther Head"
+  },
+  "exploreItemKoiFish": "Koi Fisch",
+  "@exploreItemKoiFish": {
+    "description": "Explore item title: Koi Fish"
+  },
+  "exploreItemKoiFishPrompt": "Japanischer Stil Koi-Fisch-Tattoo, traditionelles Irezumi Design, fließender Koi mit gebogenem Körper, kühne Umrisse, Rot Orange Palette, Wasserwellen um Fisch, sauberes Vektor-Aussehen, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemKoiFishPrompt": {
+    "description": "Explore item prompt: Koi Fish"
+  },
+  "exploreItemHannyaMask": "Hannya Maske",
+  "@exploreItemHannyaMask": {
+    "description": "Explore item title: Hannya Mask"
+  },
+  "exploreItemHannyaMaskPrompt": "Japanische Hannya-Masken-Tattoo, traditioneller Irezumi Stil, Dämonen-Maske mit Hörnern, kühne schwarze Umrisse, Rot und Weiß Töne, dramatischer Ausdruck, sauberes Vektor-Stil, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemHannyaMaskPrompt": {
+    "description": "Explore item prompt: Hannya Mask"
+  },
+  "exploreItemSamuraiHelmet": "Samurai Helm",
+  "@exploreItemSamuraiHelmet": {
+    "description": "Explore item title: Samurai Helmet"
+  },
+  "exploreItemSamuraiHelmetPrompt": "Japanischer Samurai-Helm-Tattoo, Kabuto-Helm Vorderansicht, traditioneller Irezumi Stil, kühne Umrisse, Gold und Rot Akzente, sauberes Vektor-Aussehen, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemSamuraiHelmetPrompt": {
+    "description": "Explore item prompt: Samurai Helmet"
+  },
+  "exploreItemCherryBlossomBranch": "Kirschblüten-Zweig",
+  "@exploreItemCherryBlossomBranch": {
+    "description": "Explore item title: Cherry Blossom Branch"
+  },
+  "exploreItemCherryBlossomBranchPrompt": "Japanisches Kirschblüten-Tattoo, Sakura-Zweig mit Blumen, traditioneller Irezumi Stil, weiche rosa Blüten, kühne Umrisse, elegante Komposition, zentriertes Design, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemCherryBlossomBranchPrompt": {
+    "description": "Explore item prompt: Cherry Blossom Branch"
+  },
+  "exploreItemJapaneseDragon": "Japanischer Drache",
+  "@exploreItemJapaneseDragon": {
+    "description": "Explore item title: Japanese Dragon"
+  },
+  "exploreItemJapaneseDragonPrompt": "Japanisches Drachen-Tattoo, traditioneller Irezumi Drache, langer fließender Körper, Wolken um Drache, kühne Umrisse, Grün Rot Palette, dynamische Pose, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemJapaneseDragonPrompt": {
+    "description": "Explore item prompt: Japanese Dragon"
+  },
+  "exploreItemOniMask": "Oni Maske",
+  "@exploreItemOniMask": {
+    "description": "Explore item title: Oni Mask"
+  },
+  "exploreItemOniMaskPrompt": "Japanische Oni-Masken-Tattoo, traditionelle Dämonen-Maske, kühne Umrisse, Rot und Schwarz Palette, wilder Ausdruck, Irezumi Stil, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemOniMaskPrompt": {
+    "description": "Explore item prompt: Oni Mask"
+  },
+  "exploreItemHokusaiWave": "Welle (Hokusai Stil)",
+  "@exploreItemHokusaiWave": {
+    "description": "Explore item title: Wave (Hokusai Style)"
+  },
+  "exploreItemHokusaiWavePrompt": "Japanisches Wellen-Tattoo, traditionelle Irezumi Ozeanwelle, kühne Umrisse, blaue Töne, klassischer japanischer Wellen-Stil, sauberes Vektor-Aussehen, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemHokusaiWavePrompt": {
+    "description": "Explore item prompt: Wave (Hokusai Style)"
+  },
+  "exploreItemJapaneseTiger": "Tiger",
+  "@exploreItemJapaneseTiger": {
+    "description": "Explore item title: Tiger"
+  },
+  "exploreItemJapaneseTigerPrompt": "Japanisches Tiger-Tattoo, traditioneller Irezumi Tiger, brüllender Tiger-Kopf, kühne Umrisse, Orange Schwarz Palette, dynamischer Stil, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemJapaneseTigerPrompt": {
+    "description": "Explore item prompt: Tiger"
+  },
+  "exploreItemJapaneseLotus": "Lotusblume",
+  "@exploreItemJapaneseLotus": {
+    "description": "Explore item title: Lotus Flower"
+  },
+  "exploreItemJapaneseLotusPrompt": "Japanisches Lotus-Tattoo, traditioneller Irezumi Lotusblume, kühne Umrisse, Rosa und Rot Töne, Wasserelemente, sauberes Vektor-Aussehen, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemJapaneseLotusPrompt": {
+    "description": "Explore item prompt: Lotus Flower"
+  },
+  "exploreItemJapanesePhoenix": "Phönix",
+  "@exploreItemJapanesePhoenix": {
+    "description": "Explore item title: Phoenix"
+  },
+  "exploreItemJapanesePhoenixPrompt": "Japanischer Phönix-Tattoo, traditioneller Irezumi Phönix-Vogel, Flügel ausgebreitet, kühne Umrisse, Rot Orange Gelb Palette, Flammen um Vogel, zentrierte Komposition, transparenter PNG-Hintergrund, hohe Auflösung.",
+  "@exploreItemJapanesePhoenixPrompt": {
+    "description": "Explore item prompt: Phoenix"
+  },
+  "exploreItemPolynesianTribal": "Polynesisches Stammes-Tattoo",
+  "@exploreItemPolynesianTribal": {
+    "description": "Explore item title: Polynesian Tribal Tattoo"
+  },
+  "exploreItemPolynesianTribalPrompt": "Ein kühnes polynesisches Stammes-Tattoo-Design mit scharfen schwarzen Linien, wirbelnden Mustern und geometrischen Elementen mit glatten Kurven und scharfen Winkeln, die in einem symmetrischen Fluss angeordnet sind, der in einen spitzen Schwanz ausläuft, tiefe schwarze Tinte im traditionellen polynesischen Stil, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemPolynesianTribalPrompt": {
+    "description": "Explore item prompt: Polynesian Tribal Tattoo"
+  },
+  "exploreItemTribalSpineSpear": "Stammes Wirbelsäulen-Speer Tattoo",
+  "@exploreItemTribalSpineSpear": {
+    "description": "Explore item title: Tribal Spine Spear Tattoo"
+  },
+  "exploreItemTribalSpineSpearPrompt": "Zentriertes symmetrisches Stammes-Wirbelsäulen-Tattoo-Design, das keltische Knotenarbeit und scharfe polynesische Stil-Linien kombiniert, eine längliche speerartige Form bildet mit kühner sauberer schwarzer Tinte und scharfen Kanten, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalSpineSpearPrompt": {
+    "description": "Explore item prompt: Tribal Spine Spear Tattoo"
+  },
+  "exploreItemTribalKnotwork": "Stammes-Knotenarbeit Tattoo",
+  "@exploreItemTribalKnotwork": {
+    "description": "Explore item title: Tribal Knotwork Tattoo"
+  },
+  "exploreItemTribalKnotworkPrompt": "Symmetrisches Stammes-Tattoo mit scharfen schwarzen geometrischen Linien und Kurven, mit einer zentralen länglichen Form, die sich an beiden Enden verjüngt, mit komplexen ineinander verwobenen Mustern, hoher Kontrast, keine Schattierung, saubere feste Tinte, moderner abstrakter Stil mit perfekter Symmetrie und minimalem Hintergrund, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalKnotworkPrompt": {
+    "description": "Explore item prompt: Tribal Knotwork Tattoo"
+  },
+  "exploreItemTribalForearmSleeve": "Stammes Unterarm-Ärmel Band",
+  "@exploreItemTribalForearmSleeve": {
+    "description": "Explore item title: Tribal Forearm Sleeve Band"
+  },
+  "exploreItemTribalForearmSleevePrompt": "Kühnes polynesischer Stil Stammes-Unterarm-Ärmel-Design mit fließenden gebogenen Linien, scharfen Punkten und kreisförmigen Motiven in dynamischer Komposition angeordnet, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalForearmSleevePrompt": {
+    "description": "Explore item prompt: Tribal Forearm Sleeve Band"
+  },
+  "exploreItemTribalCentralSpiral": "Zentrale Spirale",
+  "@exploreItemTribalCentralSpiral": {
+    "description": "Explore item title: Central Spiral"
+  },
+  "exploreItemTribalCentralSpiralPrompt": "Kühnes zentrales Stammes-Spiral-Tattoo-Design mit scharfen flammartigen Linien und glatten fließenden Kurven in dynamischer symmetrischer Komposition angeordnet, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalCentralSpiralPrompt": {
+    "description": "Explore item prompt: Central Spiral"
+  },
+  "exploreItemTribalFlameForearm": "Flammen-Stammes Unterarm Tattoo",
+  "@exploreItemTribalFlameForearm": {
+    "description": "Explore item title: Flame Tribal Forearm Tattoo"
+  },
+  "exploreItemTribalFlameForearmPrompt": "Kühnes flammartiges Stammes-Unterarm-Tattoo-Design in dicker sauberer schwarzer Tinte mit scharfen gezackten Kanten und fließenden Kurven, vertikale zentrierte Komposition, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalFlameForearmPrompt": {
+    "description": "Explore item prompt: Flame Tribal Forearm Tattoo"
+  },
+  "exploreItemTribalSpiralFlame": "Spirale mit Flammen-Erweiterungen",
+  "@exploreItemTribalSpiralFlame": {
+    "description": "Explore item title: Spiral with Flame Extensions"
+  },
+  "exploreItemTribalSpiralFlamePrompt": "Kühnes Spiral-Flammen-Stammes-Tattoo-Design mit dicker schwarzer Tinte und scharfen flammartigen Erweiterungen, die von einem zentralen Wirbel ausgehen, dynamische symmetrische Komposition, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, hoher Kontrast, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalSpiralFlamePrompt": {
+    "description": "Explore item prompt: Spiral with Flame Extensions"
+  },
+  "exploreItemTribalCompass": "Stammes-Kompass Tattoo",
+  "@exploreItemTribalCompass": {
+    "description": "Explore item title: Tribal Compass Tattoo"
+  },
+  "exploreItemTribalCompassPrompt": "Zentriertes Stammes-Kompass-Tattoo-Design mit scharfen symmetrischen Sternpunkten und flammartigen Erweiterungen in sauberer fester schwarzer Tinte, hoher Kontrast mit scharfen Kanten und ausgewogener Geometrie, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalCompassPrompt": {
+    "description": "Explore item prompt: Tribal Compass Tattoo"
+  },
+  "exploreItemTribalModernGeometric": "Modern geometrisch Stammes",
+  "@exploreItemTribalModernGeometric": {
+    "description": "Explore item title: Modern Geometric Tribal"
+  },
+  "exploreItemTribalModernGeometricPrompt": "Großes symmetrisches modernes geometrisches Stammes-Tattoo-Design mit scharfen dreieckigen Mustern und einem blumenartigen zentralen Motiv in dicker fester schwarzer Tinte mit hohem Kontrast und präziser Symmetrie, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalModernGeometricPrompt": {
+    "description": "Explore item prompt: Modern Geometric Tribal"
+  },
+  "exploreItemTribalNeoBack": "Neo-Stammes Rücken Tattoo",
+  "@exploreItemTribalNeoBack": {
+    "description": "Explore item title: Neo-Tribal Back Tattoo"
+  },
+  "exploreItemTribalNeoBackPrompt": "Großes Neo-Stammes-Rücken-Tattoo-Design mit kühnen stacheligen dornartigen Formen in fester hochkontrastierender schwarzer Tinte mit scharfen Kanten und dynamischer Symmetrie, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalNeoBackPrompt": {
+    "description": "Explore item prompt: Neo-Tribal Back Tattoo"
+  },
+  "exploreItemTribalFlame": "Flammen-Stammes",
+  "@exploreItemTribalFlame": {
+    "description": "Explore item title: Flame Tribal"
+  },
+  "exploreItemTribalFlamePrompt": "Symmetrisches Stammes-Flammen-Tattoo-Design mit scharfen Kurven und dekorativen Wirbeln in sauberer fester schwarzer Tinte mit hohem Kontrast und präziser fließender Geometrie, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalFlamePrompt": {
+    "description": "Explore item prompt: Flame Tribal"
+  },
+  "exploreItemTribalSwordCompass": "Schwert und Kompass Tattoo",
+  "@exploreItemTribalSwordCompass": {
+    "description": "Explore item title: Sword and Compass Tattoo"
+  },
+  "exploreItemTribalSwordCompassPrompt": "Vertikales Schwert und 8-Punkte-Kompass-Rose Stammes-Tattoo-Design mit feiner Linienführung, kreisförmigen Details und subtilen rauchartigen Akzenten in sauberem hochkontrastierender schwarzer Tinte, symmetrische zentrierte Komposition, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemTribalSwordCompassPrompt": {
+    "description": "Explore item prompt: Sword and Compass Tattoo"
+  },
+  "exploreItemGeometricMindBodySoul": "Geist–Körper–Seele",
+  "@exploreItemGeometricMindBodySoul": {
+    "description": "Explore item title: Mind–Body–Soul"
+  },
+  "exploreItemGeometricMindBodySoulPrompt": "Hochdetailliertes heiliges geometrisches Tattoo-Design mit einer vertikalen Komposition mit einem Gehirn, das sich oben in einen Baum verwandelt, einer meditierenden Figur in der Mitte innerhalb geometrischer Mandala-Formen und einem anatomischen Herzen mit ornamentalen Elementen unten, saubere Linienführung mit komplexer Punkt-Schattierung und hohem schwarzem Kontrast, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemGeometricMindBodySoulPrompt": {
+    "description": "Explore item prompt: Mind–Body–Soul"
+  },
+  "exploreItemGeometricHoneycombSleeve": "Geometrisches Wabenmuster Ärmel",
+  "@exploreItemGeometricHoneycombSleeve": {
+    "description": "Explore item title: Geometric Blackout Honeycomb Sleeve"
+  },
+  "exploreItemGeometricHoneycombSleevePrompt": "Vollständiges schwarzes geometrisches Ärmel-Tattoo-Design mit einem vertikalen Waben-Sechseck-Muster, das mit heiligen geometrischen Mandala-Elementen kombiniert wird, die nach unten fließen, saubere hochkontrastierende schwarze Tinte mit präziser Symmetrie und scharfer Linienführung, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk. mit Hand-Muster",
+  "@exploreItemGeometricHoneycombSleevePrompt": {
+    "description": "Explore item prompt: Geometric Blackout Honeycomb Sleeve"
+  },
+  "exploreItemGeometricBlackwork": "Geometrisch + illustrative Schwarzarbeit",
+  "@exploreItemGeometricBlackwork": {
+    "description": "Explore item title: Geometric + Illustrative Blackwork"
+  },
+  "exploreItemGeometricBlackworkPrompt": "Geometrisches Schwarzarbeits-Ärmel-Tattoo-Design mit 3D-Würfel- und Sechseck-Optik-Täuschungsmustern, die nahtlos in einen festen schwarzen Abschnitt übergehen, präzise Linienführung mit hochkontrastierender schwarzer Tinte und scharfer Symmetrie, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemGeometricBlackworkPrompt": {
+    "description": "Explore item prompt: Geometric + Illustrative Blackwork"
+  },
+  "exploreItemGeometricCubeSleeve": "Geometrischer Würfel Ärmel",
+  "@exploreItemGeometricCubeSleeve": {
+    "description": "Explore item title: Geometric Cube Sleeve"
+  },
+  "exploreItemGeometricCubeSleevePrompt": "Geometrisches Schwarzarbeits-Ärmel-Tattoo-Design mit 3D-Würfel- und Sechseck-Optik-Täuschungsmustern, die nahtlos in einen festen schwarzen Abschnitt übergehen, präzise Linienführung mit hochkontrastierender schwarzer Tinte und scharfer Symmetrie, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk",
+  "@exploreItemGeometricCubeSleevePrompt": {
+    "description": "Explore item prompt: Geometric Cube Sleeve"
+  },
+  "exploreItemGeometric3dCubeSleeve": "3D Würfel geometrischer Ärmel",
+  "@exploreItemGeometric3dCubeSleeve": {
+    "description": "Explore item title: 3D Cube Geometric Sleeve"
+  },
+  "exploreItemGeometric3dCubeSleevePrompt": "Vollständiges geometrisches Schwarzarbeits-Ärmel-Tattoo-Design mit ineinandergreifenden 3D-Würfel-Optik-Täuschungsmustern, die in ein dichtes heiliges geometrisches Sternmotiv übergehen, hochkontrastierende schwarze Tinte mit sauberer scharfer Linienführung und komplexer Punktierungsdetailierung, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemGeometric3dCubeSleevePrompt": {
+    "description": "Explore item prompt: 3D Cube Geometric Sleeve"
+  },
+  "exploreItemGeometricTreeOfLife": "Baum des Lebens",
+  "@exploreItemGeometricTreeOfLife": {
+    "description": "Explore item title: Tree of Life"
+  },
+  "exploreItemGeometricTreeOfLifePrompt": "Vertikales Baum-des-Lebens-Tattoo-Design mit einer zentralen Kiefer, kreisförmiger Berglandschaft, Halbmonden oben und ornamentalen Wurzeln unten, dargestellt in sauberer feiner Linien- und Schwarzarbeitsstil mit glatten hochkontrastierenden Details, sauberes Vektor-Tattoo-Flash-Sheet, Schablonen-fertig Design, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, minimalistisch mit komplexen Details, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemGeometricTreeOfLifePrompt": {
+    "description": "Explore item prompt: Tree of Life"
+  },
+  "exploreItemGeometricAtlas": "Atlas trägt die Welt",
+  "@exploreItemGeometricAtlas": {
+    "description": "Explore item title: Atlas Bearing the World"
+  },
+  "exploreItemGeometricAtlasPrompt": "Vertikales Atlas-Tattoo-Design in schwarz-grauer feiner Linien- und Punktierungsstil, eine klassische Skulptur-inspirierte Figur kniend und einen Globus tragend, detailliert mit Kontinenten und einem geometrischen Gitter, heilige geometrische Muster und ein Sonnensymbol oben, saubere hochkontrastierende Schablonen-fertige Komposition mit komplexen minimalistischen Details, sauberes Vektor-Tattoo-Flash-Sheet, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemGeometricAtlasPrompt": {
+    "description": "Explore item prompt: Atlas Bearing the World"
+  },
+  "exploreItemGeometricTriadTravel": "Triade der Reise",
+  "@exploreItemGeometricTriadTravel": {
+    "description": "Explore item title: Triad of Travel"
+  },
+  "exploreItemGeometricTriadTravelPrompt": "Minimalistisches geometrisches Reise-Tattoo-Design in feiner Linien- und Punktierungsstil mit einer Kompass-Rose mit orbitalen Linien, einem kleinen Flugzeug auf einem gepunkteten Pfad, Bergen und einer Meereswelle, angeordnet in einem umgekehrten Dreieck-Rahmen mit symmetrischen heiligen geometrischen Akzenten, saubere hochkontrastierende Schablonen-fertige vertikale Komposition mit ultra-detaillierter Linienführung, sauberes Vektor-Tattoo-Flash-Sheet, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemGeometricTriadTravelPrompt": {
+    "description": "Explore item prompt: Triad of Travel"
+  },
+  "exploreItemGeometricHorizons": "Zyklus der Horizonte",
+  "@exploreItemGeometricHorizons": {
+    "description": "Explore item title: Cycle of Horizons"
+  },
+  "exploreItemGeometricHorizonsPrompt": "Minimalistisches geometrisches Horizont-Tattoo-Design in feiner schwarzer Linien- und Punktierungsstil mit einer vertikalen Säule verbundener Sechsecke mit einer Sonne und einem Himmel oben, einer Berglandschaft mit Bäumen in der Mitte und einer Meereswelle unten, umgeben von kleineren Sechsecken und heiligen geometrischen Akzenten, die durch dünne Linien und gepunktete Pfade verbunden sind, saubere symmetrische hochkontrastierende Schablonen-fertige Komposition, sauberes Vektor-Tattoo-Flash-Sheet, Kunst-Druck auf leerem weißen Papier, schwarz und weiß Linienkunst, eigenständiges Tattoo-Design, weißer Hintergrund, 2D nur, flaches Design, isoliertes Kunstwerk.",
+  "@exploreItemGeometricHorizonsPrompt": {
+    "description": "Explore item prompt: Cycle of Horizons"
+  },
+  "exploreItemGeometricAlignedTriad": "Ausgerichtete Triade",
+  "@exploreItemGeometricAlignedTriad": {
+    "description": "Explore item title: Aligned Triad"
+  },
+  "exploreItemGeometricAlignedTriadPrompt": "Winziges minimalistisches Finger-Tattoo in feiner schwarzer Linienführung, mit einer abstrakten vertikalen Dreieckskomposition mit geschichteten geometrischen Formen, kleinen Diamant- und Polygon-Details und subtiler Punktierungs-Schattierung. Moderner heiliger geometrischer Stil mit dünnen präzisen Linien, saubere ornamentale Akzente und professioneller Schablonen-Look.",
+  "@exploreItemGeometricAlignedTriadPrompt": {
+    "description": "Explore item prompt: Aligned Triad"
+  },
+  "exploreItemGeometricSigi": "Abstrakte geometrische Sigi",
+  "@exploreItemGeometricSigi": {
+    "description": "Explore item title: Abstract Geometric Sigi"
+  },
+  "exploreItemGeometricSigiPrompt": "Ultra-minimalistisches geometrisches Finger-Tattoo in feiner schwarzer Tinte, mit einem kleinen vertikalen Symbol überlappender Dreiecke, Diamanten und scharfer Polygon-Formen mit subtiler Punktierungs-Schattierung und sauberer negativer Fläche. Moderner heiliger geometrischer Stil mit präzisen dünnen Linien, hochkontrastierender Schwarzarbeit und professionellem Schablonen-Design.",
+  "@exploreItemGeometricSigiPrompt": {
+    "description": "Explore item prompt: Abstract Geometric Sigi"
+  },
+  "exploreItemGeometricDualityNature": "Dualität Natur Geometrie",
+  "@exploreItemGeometricDualityNature": {
+    "description": "Explore item title: Duality Nature Geometry"
+  },
+  "exploreItemGeometricDualityNaturePrompt": "Minimalistisches Schwarzarbeits-Tattoo in feiner Linien- und Punktierungsstil, mit zwei übereinandergestapelten Dreiecken: das obere mit einer Bergszene und aufgehender Sonne oder Mond, und das untere umgekehrt mit einer großen Meereswelle. Saubere geometrische Rahmung, subtile heilige geometrische Akzente und gepunktete Bewegungs-Linien schaffen ein ausgewogenes, modernes Naturthema mit hohem Kontrast, ultra-detailliert und Schablonen-fertig.",
+  "@exploreItemGeometricDualityNaturePrompt": {
+    "description": "Explore item prompt: Duality Nature Geometry"
+  },
+  "exploreItemRealismGamblerFedora": "Spieler in einem Fedora",
+  "@exploreItemRealismGamblerFedora": {
+    "description": "Explore item title: Gambler in a Fedora"
+  },
+  "exploreItemRealismGamblerFedoraPrompt": "Schwarz & graues realistisches Tattoo eines faceless Gamblers in einem Fedora und Anzug, Kopf nach unten, Arme gekreuzt. Vintage Straßenlaterne dahinter, Ass-Karten fächerartig ausgelegt, leichter Rauch auf einer Seite, zwei Würfel unten. Noir-Stimmung, hochkontrastierende Schattierung, feine Linienführung, detaillierte Punktierung, sauberer Stencil-Stil, zentrierte symmetrische Komposition, monochrome, Tattoo-Flash.",
+  "@exploreItemRealismGamblerFedoraPrompt": {
+    "description": "Explore item prompt: Gambler in a Fedora"
+  },
+  "exploreItemRealismMindOverHeart": "Verstand über Herz",
+  "@exploreItemRealismMindOverHeart": {
+    "description": "Explore item title: Mind Over Heart"
+  },
+  "exploreItemRealismMindOverHeartPrompt": "Schwarz & graues surreales Tattoo eines realistischen menschlichen Gehirns, das wie eine Marionette fungiert, mit detaillierten Händen, die Fäden halten, die mit einem anatomischen Herzen unten verbunden sind. Feine Linienführung, Punktierung und Kreuzschraffur-Schattierung, hoher Kontrast, dunkles symbolisches Konzept (Verstand kontrolliert Herz). Vertikale zentrierte Komposition, minimaler Hintergrund, monochrome, hochdetailliert, professionelles Tattoo-Flash.",
+  "@exploreItemRealismMindOverHeartPrompt": {
+    "description": "Explore item prompt: Mind Over Heart"
+  },
+  "exploreItemRealismGeometricSplit": "Geometrisches geteiltes Porträt",
+  "@exploreItemRealismGeometricSplit": {
+    "description": "Explore item title: Geometric Split Portrait"
+  },
+  "exploreItemRealismGeometricSplitPrompt": "Stylisiertes neo-modernes Tattoo eines weiblichen Gesichts, geteilt in geometrische Scherben. Eine Seite realistisches schwarz-graues Porträt, die andere Seite lebhafte Farbe mit pinken Haaren und einem hellen blauen Auge. Scharfe abstrakte Formen, die das Gesicht durchschneiden, kühne saubere Linienführung, hochkontrastierende Schattierung, minimaler Hintergrund. Neo-traditional / cyber-grafischer Tattoo-Stil, vertikale zentrierte Komposition, Tattoo-Schablone bereit, hochdetailliert, modernes Flash-Design.",
+  "@exploreItemRealismGeometricSplitPrompt": {
+    "description": "Explore item prompt: Geometric Split Portrait"
+  },
+  "exploreItemRealismFieryCosmic": "Feurig und kosmisch geteilt",
+  "@exploreItemRealismFieryCosmic": {
+    "description": "Explore item title: Fiery and Cosmic Split"
+  },
+  "exploreItemRealismFieryCosmicPrompt": "Surreales Farb-Tattoo eines weiblichen Porträts mit geteiltem Realitätskonzept. Eine Seite warme Töne mit rissiger Hauttextur, die andere Seite kühle kosmische blaue Töne. Ein Vergrößerungsglas über einem Auge, das eine leuchtende blaue Iris und abstrakte flüssige Details enthüllt. Vintage Taschenuhr unten, die die Zeit symbolisiert, subtile Galaxie-Elemente im Hintergrund. Hochdetaillierter neo-surrealer Stil, lebhafte Farbkontraste (Orange vs. Blau), glatte Gradienten, kühne saubere Linienführung, vertikale zentrierte Komposition, minimaler Hintergrund, modernes Tattoo-Flash-Design, Schablonen-fertig.",
+  "@exploreItemRealismFieryCosmicPrompt": {
+    "description": "Explore item prompt: Fiery and Cosmic Split"
+  },
+  "exploreItemRealismSinisterClown": "Unheimliches Clown-Porträt",
+  "@exploreItemRealismSinisterClown": {
+    "description": "Explore item title: Sinister Clown Portrait"
+  },
+  "exploreItemRealismSinisterClownPrompt": "Dunkles gothic Clown-stil weibliches Gesicht Tattoo mit scharfen schwarzen Make-up-Linien, dramatisches Augen-Make-up und tropfende Augenakzente, leuchtende orange Augen, kleines Sternsymbol auf der Stirn. Glatte schwarz-graue Schattierung mit subtiler Farbe nur in den Augen, hoher Kontrast, feine Linienführung und Punktierung, saubere Kanten, vertikales Tattoo-Design zentriert. Isoliertes Tattoo-Kunstwerk nur auf einfachem weißen Hintergrund, kein Arm oder Haut, Schablonen-fertig, professioneller Tattoo-Flash-Stil.",
+  "@exploreItemRealismSinisterClownPrompt": {
+    "description": "Explore item prompt: Sinister Clown Portrait"
+  },
+  "exploreItemRealismButterflyWoman": "Schmetterling und Frau",
+  "@exploreItemRealismButterflyWoman": {
+    "description": "Explore item title: Butterfly and Woman"
+  },
+  "exploreItemRealismButterflyWomanPrompt": "Schwarz & graues Tattoo-Design eines realistischen weiblichen seitlichen Profils, vermischt mit großen detaillierten Schmetterlingsflügeln, die aus ihrem Kopf kommen. Weiche weibliche Gesichtszüge, glatte Schattierung, feine Linienführung, hoher Kontrast, zarte Flügelmuster mit Punktierung und Gradient-Schattierung. Elegante, surreale Komposition, vertikale zentrierte Ausrichtung, minimaler Hintergrund, monochrome, saubere Schablonen-fertige Tattoo-Flash-Stil, hochdetailliert.",
+  "@exploreItemRealismButterflyWomanPrompt": {
+    "description": "Explore item prompt: Butterfly and Woman"
+  },
+  "exploreItemRealismFlamingSkull": "Flammender Schädel",
+  "@exploreItemRealismFlamingSkull": {
+    "description": "Explore item title: Flaming Skull"
+  },
+  "exploreItemRealismFlamingSkullPrompt": "Flammendes Schädel-Tattoo-Design mit einem realistischen menschlichen Schädel, umhüllt von dynamischen Flammen. Intensive glühende Feuer in den Augenhöhlen und dem Mund, scharfe Zähndetails, hochkontrastierende Schattierung, kühne saubere Linienführung. Realismus + dunkle Fantasy-Stil, dramatisches Licht, lebhafte orange und rote Flammen mit schwarz/grauen Schädel-Tönen. Vertikale zentrierte Komposition, isoliert auf weißem Hintergrund, Schablonen-fertig, hochdetailliert professionelles Tattoo-Flash.",
+  "@exploreItemRealismFlamingSkullPrompt": {
+    "description": "Explore item prompt: Flaming Skull"
+  },
+  "exploreItemRealismFierceWolf": "Wilder Wolf",
+  "@exploreItemRealismFierceWolf": {
+    "description": "Explore item title: Fierce Wolf"
+  },
+  "exploreItemRealismFierceWolfPrompt": "Lebendiges und farbenfrohes Tattoo-Design mit einem wilden Wolfsgesicht mit stechenden blauen Augen, umgeben von einer sich windenden Schlange. Die Schlange windet sich um den Wolfskopf, schlängelt sich zu einer Gruppe blühender orangefarbener Blumen. Das Tattoo ist mit weichen Aquarell-Spritzern in rosa, lila und blauen Tönen geschmückt, mit einem tropfenden Farbeffekt. Reichhaltige Details im Fell, den Schuppen und Blütenblättern, hoher Kontrast zwischen dunklen und hellen Bereichen. Aquarell-Stil mit feiner Linienführung, moderne Natur- und Wildlife-Symbolik. Zentrierte Komposition, lebhaft und dynamisch, Tattoo-Schablonen-fertig.",
+  "@exploreItemRealismFierceWolfPrompt": {
+    "description": "Explore item prompt: Fierce Wolf"
+  },
+  "exploreItemRealismRedRoseButterfly": "Rote Rose und Schmetterling",
+  "@exploreItemRealismRedRoseButterfly": {
+    "description": "Explore item title: Red Rose and Butterfly"
+  },
+  "exploreItemRealismRedRoseButterflyPrompt": "Elegantes schwarz und rotes Tattoo-Design mit einem kühnen Schmetterling mit dunklen Flügeln, gekoppelt mit einer lebendigen roten Rose. Die Schmetterlingsflügel haben einen glatten Gradient von Schwarz zu Rot, während die Rose tief detailliert ist mit weicher Schattierung, um ihre Blütenblätter zu betonen. Das Design enthält zarte rote Blätter und Zweige, die nach außen fließen, um eine ausgewogene, fließende Komposition zu schaffen. Die schwarze Tinte kontrastiert scharf mit dem lebhaften Rot, fügt einen dramatischen, flüssigen Look hinzu. Moderne, saubere Linienführung mit einer leicht abstrakten Note. Tattoo-Schablonen-fertig mit hohem Kontrast, perfekt für Arm oder Oberschenkel Platzierung.",
+  "@exploreItemRealismRedRoseButterflyPrompt": {
+    "description": "Explore item prompt: Red Rose and Butterfly"
+  },
+  "exploreItemRealismVibrantPeacock": "Lebendiger Pfau",
+  "@exploreItemRealismVibrantPeacock": {
+    "description": "Explore item title: Vibrant Peacock"
+  },
+  "exploreItemRealismVibrantPeacockPrompt": "Lebendiges und farbenfrohes Tattoo-Design eines Pfaus mit einer hellen gelb-orangen Sonne im Hintergrund. Die Pfauenfedern zeigen atemberaubende Schattierungen von Blau, Grün und Violett, während sein Körper elegant mit Türkis und Blaugrün schattiert ist. Kühne rosa Blumen und grüne Blätter rahmen das Design, mit feiner Linienführung, um die Formen und Texturen zu betonen. Modern und stilvoll mit sauberen, kühnen Umrissen und reichen, lebhaften Farben. Ideal für einen größeren Bereich, ohne ablenkende Hintergründe, schafft eine fokussierte Stück, perfekt für jeden Körperbereich.",
+  "@exploreItemRealismVibrantPeacockPrompt": {
+    "description": "Explore item prompt: Vibrant Peacock"
+  },
+  "exploreItemRealismPlayfulCharacter": "Verspielte Figur",
+  "@exploreItemRealismPlayfulCharacter": {
+    "description": "Explore item title: Playful Character"
+  },
+  "exploreItemRealismPlayfulCharacterPrompt": "Niedliches, farbenfrohes Tattoo-Design einer verspielten Figur, die eine große rosa Blume hält. Die Figur hat große, ausdrucksvolle Augen, blaues Fell und einen hellblauen Bauch. Die lebhafte Blume ist von grünen Blättern umrahmt, fügt einen natürlichen Touch hinzu. Der Stil ist kühn und cartoonhaft mit glatter Schattierung, sauberen Linien und lebhaften Farben, gibt dem Tattoo einen fröhlichen, spielerischen Look. Das Design ist ideal für einen kleineren Körperbereich, ohne ablenkende Hintergründe, betont Figur und Blume als Fokuspunkte.",
+  "@exploreItemRealismPlayfulCharacterPrompt": {
+    "description": "Explore item prompt: Playful Character"
+  },
+  "exploreItemRealismCutePinkFish": "Niedlicher rosa Fisch",
+  "@exploreItemRealismCutePinkFish": {
+    "description": "Explore item title: Cute Pink Fish"
+  },
+  "exploreItemRealismCutePinkFishPrompt": "Spielerisches und lebhaftes Tattoo-Design eines niedlichen rosa Fisches mit lächelndem Ausdruck. Der Fisch hat weiche Gradienten von Rosa, mit glatter Schattierung, die einen cartoonhaften, lebhaften Look schafft. Wasserspritzer in Schattierungen von Blau und Türkis umgeben den Fisch, fügen dynamische Bewegung hinzu. Kleine Blasen und Lichtakzente verbessern das aquatische Thema. Moderne, saubere Linien mit spielerischer Note, perfekt für einen kleinen Bereich am Körper. Das Tattoo-Design konzentriert sich auf Fisch und Wasser, ohne ablenkende Hintergründe, und hat eine fröhliche, spielerische Stimmung.",
+  "@exploreItemRealismCutePinkFishPrompt": {
+    "description": "Explore item prompt: Cute Pink Fish"
+  },
+  "exploreItemLetteringTrustNoOne": "Niemandem vertrauen",
+  "@exploreItemLetteringTrustNoOne": {
+    "description": "Explore item title: Trust No One"
+  },
+  "exploreItemLetteringTrustNoOnePrompt": "Erstelle ein detailliertes gothic-style Tattoo-Design mit der Phrase 'Trust no One'. Der Text sollte kühn und dramatisch sein, mit scharfen, eckigen Kanten. Füge Schattierungseffekte hinzu, um dem Text ein dreidimensionales Aussehen zu geben, und integriere einige Tintentropfen oder Schatten um den Text für eine raue, intensive Atmosphäre. Die Schrift sollte eine dunkle, geheimnisvolle Stimmung mit einem scharfen, rebellischen Ton vermitteln.",
+  "@exploreItemLetteringTrustNoOnePrompt": {
+    "description": "Explore item prompt: Trust No One"
+  },
+  "exploreItemLetteringBlessed": "Gesegnet",
+  "@exploreItemLetteringBlessed": {
+    "description": "Explore item title: Blessed"
+  },
+  "exploreItemLetteringBlessedPrompt": "Hochkontrast schwarzes und weißes Graffiti-Tattoo-Design, Wort \"Blessed\" in kühner Handlettering-Kalligrafie, glatte fließende Skript mit dicken Strichen, subtile Heiligenschein über Buchstaben, Street-Style Spray-Paint-Glow um Text, Farbtropfen und Tintenspritzer, saubere Vektor-Linien, zentrierte Komposition, Schablonen-fertiges Tattoo-Flash, minimaler Hintergrund, scharfe Kanten, professionelles Tattoo-Design, schwarze Tinte nur.",
+  "@exploreItemLetteringBlessedPrompt": {
+    "description": "Explore item prompt: Blessed"
+  },
+  "exploreItemLetteringHakunaMatata": "Hakuna Matata",
+  "@exploreItemLetteringHakunaMatata": {
+    "description": "Explore item title: Hakuna Matata"
+  },
+  "exploreItemLetteringHakunaMatataPrompt": "Kühnes schwarzes und weißes Graffiti-Tattoo-Design mit den Worten \"Hakuna Matata\", starker Street-Style Block-Buchstaben, raue Trockenpinsel-Striche, hoher Kontrast-Tinte, Farbspritzer und subtile Tröpfel-Details, urbane Graffiti-Wand-Ästhetik, dicke saubere Umrisse, zentrierte Komposition, professionelles Tattoo-Flash, Schablonen-fertig, Vektor-Stil, monochrome, weißer Hintergrund, hochdetailliert, scharfe Kanten.",
+  "@exploreItemLetteringHakunaMatataPrompt": {
+    "description": "Explore item prompt: Hakuna Matata"
+  },
+  "exploreItemLetteringDream": "Traum",
+  "@exploreItemLetteringDream": {
+    "description": "Explore item title: Dream"
+  },
+  "exploreItemLetteringDreamPrompt": "Lebhafte Graffiti-Tattoo-Design mit dem Wort \"DREAM\", kühne 3D Street-Buchstaben, dicke schwarze Umrisse, bunte Farbspritzer und Tintentröpfel, urbane Spray-Paint-Stil, hoher Kontrast, geschichtete Graffiti-Wand-Ästhetik, dynamische Komposition, saubere scharfe Kanten, professionelles Tattoo-Flash, Schablonen-fertig, hochdetailliert, Vektor-Stil.",
+  "@exploreItemLetteringDreamPrompt": {
+    "description": "Explore item prompt: Dream"
+  },
+  "exploreItemLetteringBoom": "Boom",
+  "@exploreItemLetteringBoom": {
+    "description": "Explore item title: Boom"
+  },
+  "exploreItemLetteringBoomPrompt": "Comic Pop-Art-Tattoo-Design mit dem Wort \"BOOM\", kühne Cartoon-Buchstaben, dicke schwarze Umrisse, lebhafte rosa und gelbe Farben, explosive Comic-Burst-Hintergrund, glänzende Highlights, spielerische Graffiti-Stil, hoher Kontrast, saubere glatte Kanten, zentrierte Komposition, professionelles Tattoo-Flash, Schablonen-fertig, hochdetailliert Vektor-Stil.",
+  "@exploreItemLetteringBoomPrompt": {
+    "description": "Explore item prompt: Boom"
+  },
+  "exploreItemLetteringWorkHardDreamBig": "Hart arbeiten, groß träumen",
+  "@exploreItemLetteringWorkHardDreamBig": {
+    "description": "Explore item title: Work Hard Dream Big"
+  },
+  "exploreItemLetteringWorkHardDreamBigPrompt": "Kühnes farbenfrohes Graffiti-Tattoo-Design mit der Phrase \"Work Hard Dream Big\", dynamische Street-Buchstaben, 3D geschichtete Typografie, dicke schwarze Umrisse, lebhafte Gradient-Farben (Orange, Rot, Gelb), Farbtropfen und Tintenspritzer, urbane Graffiti-Wand-Stil, hoher Kontrast, glänzende Highlights, zentrierte Komposition, professionelles Tattoo-Flash, Schablonen-fertig, hochdetailliert, Vektor-Stil, sauberer Hintergrund.",
+  "@exploreItemLetteringWorkHardDreamBigPrompt": {
+    "description": "Explore item prompt: Work Hard Dream Big"
+  },
+  "exploreItemLetteringRn": "Buchstabe RN",
+  "@exploreItemLetteringRn": {
+    "description": "Explore item title: Letter RN"
+  },
+  "exploreItemLetteringRnPrompt": "Dunkles gothic Tattoo-Design, stilisierte Monogramm-Buchstaben \"RN\", scharfe aggressive Kalligrafie mit gehörnten und stacheligen Kanten, schwarze Tinte nur, hoher Kontrast, schwere Schattierung, Grunge-Tintenspritzer, ornamentale gothic Typografie, symmetrische Komposition, Tattoo-Flash-Stil, saubere Schablonen-fertige Linien, monochrome, weißer Hintergrund, hochdetailliert, professionelles Tattoo-Design.",
+  "@exploreItemLetteringRnPrompt": {
+    "description": "Explore item prompt: Letter RN"
+  },
+  "exploreItemLetteringC": "Buchstabe C",
+  "@exploreItemLetteringC": {
+    "description": "Explore item title: Letter C"
+  },
+  "exploreItemLetteringCPrompt": "Dunkles gothic Tattoo-Design mit dem Buchstaben \"C\" mit einer detaillierten königlichen Krone oben, kühne gebogene Buchstaben mit scharfen Kanten, schwarze und graue Realismus, hoher Kontrast-Schattierung, subtile Tintenspritzer und Tröpfel-Effekte, luxuriöser gothic Stil, starke Tiefe und Schatten, zentrierte Komposition, saubere Schablonen-fertige Umrisse, professionelles Tattoo-Flash, monochrome, hochdetailliert Vektor-Tattoo-Stil.",
+  "@exploreItemLetteringCPrompt": {
+    "description": "Explore item prompt: Letter C"
+  },
+  "exploreItemLetteringPeacePositivity": "Frieden & Positivität",
+  "@exploreItemLetteringPeacePositivity": {
+    "description": "Explore item title: Peace & Positivity"
+  },
+  "exploreItemLetteringPeacePositivityPrompt": "Kühnes farbenfrohes Graffiti-Tattoo-Design mit der Phrase \"Peace & Positivity\", dynamische Street-Style-Buchstaben, große 3D Typografie, dicke schwarze Umrisse, lebhafte Gradient-Farben (Gelb, Orange, Blau, Grün), Farbspritzer und tropfende Tinte, urbane Spray-Paint-Graffiti-Ästhetik, hoher Kontrast, glänzende Highlights, zentrierte Komposition, professionelles Tattoo-Flash, Schablonen-fertig, hochdetailliert Vektor-Stil.",
+  "@exploreItemLetteringPeacePositivityPrompt": {
+    "description": "Explore item prompt: Peace & Positivity"
+  },
+  "exploreItemLetteringDreamBig": "Groß träumen",
+  "@exploreItemLetteringDreamBig": {
+    "description": "Explore item title: Dream Big"
+  },
+  "exploreItemLetteringDreamBigPrompt": "Farbenfrohes traumhaftes Tattoo-Design mit den Worten \"Dream Big\", weiche Blasen-Kalligrafie-Buchstaben, glänzende 3D Gradient-Farben (Regenbogen-Töne), glatte runde Striche, niedliche himmlische Elemente wie Sterne, Glitzern und leuchtende Sonne, lebhafte Fantasy-Ästhetik, hoher Kontrast, saubere kühne Umrisse, zentrierte Komposition, professionelles Tattoo-Flash, Schablonen-fertig, hochdetailliert Vektor-Stil.",
+  "@exploreItemLetteringDreamBigPrompt": {
+    "description": "Explore item prompt: Dream Big"
+  },
+  "exploreItemLetteringDesire": "Verlangen",
+  "@exploreItemLetteringDesire": {
+    "description": "Explore item title: Desire"
+  },
+  "exploreItemLetteringDesirePrompt": "Dunkles gothic Tattoo-Design mit dem Wort \"Desire\", scharfe aggressive Black Metal-Kalligrafie, stachelige Dorn-Buchstaben, symmetrische Komposition, schwarze und graue Realismus, metallische dunkle Textur, hoher Kontrast-Schattierung, finstere ornamentale Details, saubere Schablonen-fertige Umrisse, professionelles Tattoo-Flash, monochrome, ultra-detailliert, scharfer gothic Stil.",
+  "@exploreItemLetteringDesirePrompt": {
+    "description": "Explore item prompt: Desire"
+  },
+  "exploreItemLetteringBeautiful": "Schön",
+  "@exploreItemLetteringBeautiful": {
+    "description": "Explore item title: Beautiful"
+  },
+  "exploreItemLetteringBeautifulPrompt": "Stilvolles farbenfrohes Tattoo-Design mit dem Wort \"Beautiful\", glatt fließende Skript-Buchstaben, moderne kühne Kalligrafie, glänzende 3D Gradient-Farben (Rosa, Orange, Gelb), dicker schwarzer Umriss, weiche Highlights und Tiefe, feminine elegante Stil, saubere Kurven und Schwünge, zentrierte Komposition, professionelles Tattoo-Flash, Schablonen-fertig, hochdetailliert Vektor-Stil.",
+  "@exploreItemLetteringBeautifulPrompt": {
+    "description": "Explore item prompt: Beautiful"
+  },
+  "exploreItemFloralFourLeafClover": "Minimalistisches vierblättriges Kleeblatt",
+  "@exploreItemFloralFourLeafClover": {
+    "description": "Explore item title: Minimalist Four-Leaf Clover"
+  },
+  "exploreItemFloralFourLeafCloverPrompt": "Minimal feine Linie vierblättriges Kleeblatt-Tattoo-Design, niedlich und zart Stil, weiche pastellgrüne Blätter mit glattem Gradient, dünner schwarzer Stängel, saubere Umrisse, subtile Herzdetail in einem Blatt, symmetrische Komposition, feminine minimalistische Tattoo-Flash, hoher Kontrast Linienführung, subtile Farbfüllung, scharfe Vektor-Style-Kanten, professionelles Tattoo-Schablonen-Design, zentrierte Komposition.",
+  "@exploreItemFloralFourLeafCloverPrompt": {
+    "description": "Explore item prompt: Minimalist Four-Leaf Clover"
+  },
+  "exploreItemFloralCherryBlossom": "Kirschblüten-Zweig",
+  "@exploreItemFloralCherryBlossom": {
+    "description": "Explore item title: Cherry Blossom Branch"
+  },
+  "exploreItemFloralCherryBlossomPrompt": "Elegantes Kirschblüten-Zweig-Tattoo-Design, feine botanische Linie Stil, fließender Sakura-Zweig mit mehreren rosa Blüten und kleinen Knospen, rosa Blütenblätter mit subtiler Schattierung, dünner schwarzer Zweig, saubere Umrisse, subtile Blütenfall-Details, feminine Komposition, hochdetailierte florale Tattoo-Flash, ausgewogene vertikale Anordnung, professionelles Tattoo-Schablonen-Design, minimaler Hintergrund, hoher Kontrast, zentrierte Komposition.",
+  "@exploreItemFloralCherryBlossomPrompt": {
+    "description": "Explore item prompt: Cherry Blossom Branch"
+  },
+  "exploreItemFloralMountainLandscape": "Berglandschaft",
+  "@exploreItemFloralMountainLandscape": {
+    "description": "Explore item title: Mountain Landscape"
+  },
+  "exploreItemFloralMountainLandscapePrompt": "Minimal feine Linie Berglandschaft-Tattoo-Design, kleines zentriertes Komposition, detaillierte Bergspitzen mit Kiefern und fließendem Wasserfall, der von der Mitte herabfließt, runder Mond oben über Bergen, subtile Punktierungs-Schattierung und Stippling, saubere schwarze Tinte Linienführung, geometrische Balance, subtile Textur, hoher Kontrast, professioneller Tattoo-Flash-Stil, scharfe Umrisse, minimalistisches Natur-Szene, transparenter Hintergrund.",
+  "@exploreItemFloralMountainLandscapePrompt": {
+    "description": "Explore item prompt: Mountain Landscape"
+  },
+  "exploreItemFloralHeartSunset": "Herzförmiger Sonnenuntergang",
+  "@exploreItemFloralHeartSunset": {
+    "description": "Explore item title: Heart-Shaped Sunset"
+  },
+  "exploreItemFloralHeartSunsetPrompt": "Kleines herzförmiges Sonnenuntergang-Tattoo-Design, lebhafte warme Farbpalette, leuchtender orange und roter Sonnenuntergang innerhalb sauberer Herzumriss, Ozean-Horizont mit weichen Spiegelungen, malerische Wolken mit subtilen Spritz-Details, minimaler schwarzer Schatten unter dem Herz, feine Linie und Mikro-Realismus-Stil, glatte Farbgradient-Mischung, hoher Kontrast, zentrierte Komposition, professionelles Tattoo-Flash-Design, scharfe Kanten, kein Text, transparenter Hintergrund.",
+  "@exploreItemFloralHeartSunsetPrompt": {
+    "description": "Explore item prompt: Heart-Shaped Sunset"
+  },
+  "exploreItemFloralSeaTurtle": "Meeresschildkröte",
+  "@exploreItemFloralSeaTurtle": {
+    "description": "Explore item title: Sea Turtle"
+  },
+  "exploreItemFloralSeaTurtlePrompt": "Lebhafte geometrische Meeresschildkröte-Tattoo-Design, zwei Meeresschildkröten, die nebeneinander schwimmen, facettierte Kristall-Stil-Schalen mit Regenbogen-Prisma-Farben, hochdetailierte Schuppen und Flossen, glitzernder Juwelen-Effekt, kräftige Sättigung mit tiefen Blautönen, Violett, Grün und warmen Highlights, Mikro-Realismus trifft geometrischen Stil, saubere scharfe Umrisse, subtiler Schatten unter Figuren, hoher Kontrast, zentrierte Komposition, professionelles Tattoo-Flash-Design, isoliertes Kunstwerk, transparenter Hintergrund.",
+  "@exploreItemFloralSeaTurtlePrompt": {
+    "description": "Explore item prompt: Sea Turtle"
+  },
+  "exploreItemFloralHibiscus": "Hibiskusblume",
+  "@exploreItemFloralHibiscus": {
+    "description": "Explore item title: Hibiscus Flower"
+  },
+  "exploreItemFloralHibiscusPrompt": "Lebhafte Hibiskusblume-Tattoo-Design, kühnes tropisches florales Komposition, große detaillierte Hibiskusblüte mit warmen roten, orangen und gelben Blütenblatt-Gradienten, glatte Farbmischung, saubere schwarze Umrisse, weiche Schattierung für Tiefe, umgebende grüne Blätter mit feinen Ader-Details, kleine dekorative Tintenspritzer-Punkte, moderne neo-traditionelle Tattoo-Stil, hoher Kontrast, zentrierte Komposition, scharfe Kanten, professionelles Tattoo-Flash, isoliertes Kunstwerk, transparenter Hintergrund.",
+  "@exploreItemFloralHibiscusPrompt": {
+    "description": "Explore item prompt: Hibiscus Flower"
+  },
+  "exploreItemFloralButterflyLily": "Schmetterling und Lilie",
+  "@exploreItemFloralButterflyLily": {
+    "description": "Explore item title: Butterfly and Lily"
+  },
+  "exploreItemFloralButterflyLilyPrompt": "Realistische Monarch-Schmetterling und Lilie Blumen-Tattoo-Design, lebhafte orange und schwarze Schmetterling mit detaillierten Flügelmustern, sitzend neben einer großen gelben Lilie-Blüte, glatte Farbgradienten und weiche realistische Schattierung, scharfe schwarze Umrisse mit subtiler Tiefe, reiche grüne Blätter mit feinen Ader-Details, neo-traditionelle Realismus-Stil, hoher Farbkontrast, ausgewogene Komposition, professionelles Tattoo-Flash-Design, saubere Kanten, isoliertes Kunstwerk, transparenter Hintergrund.",
+  "@exploreItemFloralButterflyLilyPrompt": {
+    "description": "Explore item prompt: Butterfly and Lily"
+  },
+  "exploreItemFloralButterfly": "Schmetterling",
+  "@exploreItemFloralButterfly": {
+    "description": "Explore item title: Butterfly"
+  },
+  "exploreItemFloralButterflyPrompt": "Realistische Monarch-Schmetterling-Tattoo-Design, lebhafte orangefarbene Flügel mit tiefen schwarzen Rändern und weißen Punkten, symmetrische offene Flügel-Haltung, glatte Gradient-Farbmischung, glänzende Highlights und weicher Schatten für Tiefe, saubere kühne Umrisse, hochdetaillierte Flügel-Textur, neo-traditionelle Realismus-Stil, hoher Kontrast, zentrierte Komposition, professionelles Tattoo-Flash, scharfe Kanten, isoliertes Kunstwerk, transparenter Hintergrund.",
+  "@exploreItemFloralButterflyPrompt": {
+    "description": "Explore item prompt: Butterfly"
+  },
+  "exploreItemFloralHummingbirdCherry": "Kolibri und Kirschblüte",
+  "@exploreItemFloralHummingbirdCherry": {
+    "description": "Explore item title: Hummingbird and Cherry Blossom"
+  },
+  "exploreItemFloralHummingbirdCherryPrompt": "Zarte Kolibri und Kirschblüten-Tattoo-Design, feine Realismus-Linie Stil, kleiner Kolibri in Mid-Flight mit detaillierten Federn und weicher Schattierung, dünner gebogener Zweig mit rosa Kirschblüten und kleinen Knospen, elegante botanische Komposition, subtile Farbakzente auf Blüten mit hauptsächlich schwarzer Tinte, saubere scharfe Umrisse, Mikro-Realismus Tattoo-Flash-Stil, hohe Detailgenauigkeit, ausgewogene Komposition, hoher Kontrast, professionelles Tattoo-Design, isoliertes Kunstwerk, transparenter Hintergrund.",
+  "@exploreItemFloralHummingbirdCherryPrompt": {
+    "description": "Explore item prompt: Hummingbird and Cherry Blossom"
+  },
+  "exploreItemFloralButterflyBracelet": "Schmetterlings-Armband",
+  "@exploreItemFloralButterflyBracelet": {
+    "description": "Explore item title: Butterfly Bracelet"
+  },
+  "exploreItemFloralButterflyBraceletPrompt": "Elegantes blaues Schmetterlings-Armband-Tattoo-Design, zarte Ketten-Stil-Komposition, die in einem fließenden Bogen wickelt, zwei detaillierte blaue Schmetterlinge mit Gradient-Flügeln und feiner Textur-Linie, kleine Stern-Anhänger und subtile florale Akzente, die mit dünnen ornamentalen Ketten verbunden sind, feminine Mikro-Realismus-Stil, scharfe schwarze Umrisse mit lebhaften blauen Highlights, subtile Punktierungs-Details, luftiges Komposition, hoher Kontrast, professionelles Tattoo-Flash-Design, zentriert und ausgewogen, isoliertes Kunstwerk, transparenter Hintergrund.",
+  "@exploreItemFloralButterflyBraceletPrompt": {
+    "description": "Explore item prompt: Butterfly Bracelet"
+  },
+  "exploreItemFloralBabyPanda": "Baby Panda",
+  "@exploreItemFloralBabyPanda": {
+    "description": "Explore item title: Baby Panda"
+  },
+  "exploreItemFloralBabyPandaPrompt": "Niedliches Baby-Panda-Tattoo-Design, sitzendes Panda, das einen kleinen Bambusstab hält, weiche runde Cartoon-Stil mit semi-realistischer Fell-Textur, sanftes Erröten auf Wangen, große ausdrucksvolle Augen und freundliches Lächeln, schwarzes und weißes Panda mit subtiler grauer Schattierung, kleine Bambusblätter um die Figur, leichte Aquarell-Splash-Hintergrund in Pastelltönen, saubere kühne Umrisse mit weicher Schattierung, Kawaii-Tattoo-Stil, hoher Kontrast, zentrierte Komposition, professionelles Tattoo-Flash-Design, isoliertes Kunstwerk, transparenter Hintergrund.",
+  "@exploreItemFloralBabyPandaPrompt": {
+    "description": "Explore item prompt: Baby Panda"
+  },
+  "exploreItemFloralSunMoon": "Sonne Mond",
+  "@exploreItemFloralSunMoon": {
+    "description": "Explore item title: Sun Moon"
+  },
+  "exploreItemFloralSunMoonPrompt": "Sonne und Halbmond Aquarell-Tattoo-Design, lebhafte himmlische Komposition, leuchtende orangefarbene Sonne mit fließenden Strahlen, umgeben von einem großen Halbmond, Mond gefüllt mit Galaxie-Stil-Farben in Blau, Violett und Pink, weiche Aquarell-Spritzer und Tintentröpfel, zarte Stern-Details und Glitzern, saubere scharfe Umrisse mit glatten Farbgradienten, moderne himmlische Tattoo-Stil, hoher Kontrast, ausgewogene zentrierte Komposition, professionelles Tattoo-Flash-Design, isoliertes Kunstwerk, transparenter Hintergrund.",
+  "@exploreItemFloralSunMoonPrompt": {
+    "description": "Explore item prompt: Sun Moon"
+  },
+  "exploreItemMythologyWarriorSerpents": "Krieger und Schlangen",
+  "@exploreItemMythologyWarriorSerpents": {
+    "description": "Explore item title: Warrior and Serpents"
+  },
+  "exploreItemMythologyWarriorSerpentsPrompt": "Muskelreicher klassischer griechischer Skulptur-Stil männlicher Krieger, eng umwickelt von mehreren Schlangen, eine Schlange, die sich um Torso und Arme windet, eine andere steigend mit offenem Mund, Krieger hält einen Dreizack in einer Hand, dramatisches mythologisches Kampf-Pose, inspiriert von antiken Skulpturen und Renaissance-Gravur, hochdetailliertes schwarzes Tattoo-Design, feine Linien-Gravur-Stil, Kreuzschraffur-Schattierung, saubere Linienführung, vertikale zentrierte Komposition, hoher Kontrast, weißer Hintergrund, Pergament-Textur, realistische Anatomie, dunkles Fantasy-Tattoo-Flash, symmetrisches ausgewogenes Layout.",
+  "@exploreItemMythologyWarriorSerpentsPrompt": {
+    "description": "Explore item prompt: Warrior and Serpents"
+  },
+  "exploreItemMythologyPhoenixRising": "Aufsteigender Phönix",
+  "@exploreItemMythologyPhoenixRising": {
+    "description": "Explore item title: Phoenix Rising"
+  },
+  "exploreItemMythologyPhoenixRisingPrompt": "Lebhafte Phönix-Tattoo-Design, Flügel vollständig ausgebreitet nach oben, langer fließender Schwanz-Feder, dynamische aufsteigende Pose, feurige Farbpalette mit Rot, Orange, Gelb und Hinweisen auf Blau, ultra-detaillierte Federn, saubere kühne Umrisse, moderne neo-traditionelle Tattoo-Stil, hoher Kontrast, glühende Glut-Effekte, subtile Tintenspritzer-Akzente, symmetrische Komposition, scharfe Linienführung, reiche Gradient-Färbung, dramatisches Licht, professionelle Tattoo-Illustration, zentrierte Komposition, einfacher Hintergrund.",
+  "@exploreItemMythologyPhoenixRisingPrompt": {
+    "description": "Explore item prompt: Phoenix Rising"
+  },
+  "exploreItemMythologyMedusa": "Medusa",
+  "@exploreItemMythologyMedusa": {
+    "description": "Explore item title: Medusa"
+  },
+  "exploreItemMythologyMedusaPrompt": "Medusa inspiriertes Tattoo-Design, mysteriöses weibliches Gesicht mit mehreren Schlangen, die sich durch die Haare winden und verflechten, mehrere Schlangenköpfe, die in verschiedene Richtungen zeigen, eine Schlange mit offenem Mund und sichtbaren Fängen, intensive leuchtende Augen, gebrochene Marmor-Haut-Textur, mythologische dunkle Fantasy-Thema, ultra-detaillierte Schuppen- und Haar-Strähnen, kühne saubere Linienführung, neo-traditionelle Tattoo-Stil, reiche grüne und erdige Töne, hoher Kontrast-Schattierung, glatte Gradienten, dramatisches Komposition, zentrierte Tattoo-Illustration, scharfe Umrisse, professionelles Tattoo-Design.",
+  "@exploreItemMythologyMedusaPrompt": {
+    "description": "Explore item prompt: Medusa"
+  },
+  "exploreItemMythologyDragonSword": "Drache um Schwert gewickelt",
+  "@exploreItemMythologyDragonSword": {
+    "description": "Explore item title: Dragon Coiled Around Sword"
+  },
+  "exploreItemMythologyDragonSwordPrompt": "Dunkle Fantasy-Drache um ein ornamentiertes mittelalterliches Schwert gewickelt, Drachenkörper eng um die Klinge gewickelt, detaillierte Schuppen und scharfe Klauen, fieser Drachenkopf mit offenem Mund und sichtbaren Fängen nahe dem Griff, gotisches graviertes Schwert-Design, symmetrische vertikale Komposition, schwarze und graue Tattoo-Stil, ultra-detaillierte Linienführung, hoher Kontrast-Schattierung, feine Linien-Gravur-Technik, dramatischer Schatten, scharfe saubere Umrisse, Fantasy-Tattoo-Flash, zentrierte Komposition, minimaler einfacher Hintergrund, professionelle Tattoo-Illustration.",
+  "@exploreItemMythologyDragonSwordPrompt": {
+    "description": "Explore item prompt: Dragon Coiled Around Sword"
+  },
+  "exploreItemMythologyThreeHeadedHydra": "Drei-Köpfige Hydra",
+  "@exploreItemMythologyThreeHeadedHydra": {
+    "description": "Explore item title: Three-Headed Hydra"
+  },
+  "exploreItemMythologyThreeHeadedHydraPrompt": "Drei-Köpfige Hydra-Drache Tattoo-Design, massiver schlangenartiger Drachenkörper mit drei fiesen Drachenköpfen, die aus einem Hals kommen, Münder offen mit scharfen Fängen, aggressive Ausdrücke, überlappende Schuppen und gepanzerte Platten, dunkle Fantasy-Kreatur, ultra-detaillierter schwarzer und grauer Tattoo-Stil, schwere Schattierung, hoher Kontrast-Beleuchtung, komplexe Schuppen-Textur, scharfe Hörner und Stacheln, Rauch steigt aus Mündern auf, dramatisches vertikale Komposition, kühne saubere Umrisse, professionelle Tattoo-Flash-Illustration, zentrierte Komposition.",
+  "@exploreItemMythologyThreeHeadedHydraPrompt": {
+    "description": "Explore item prompt: Three-Headed Hydra"
+  },
+  "exploreItemMythologyOctopus": "Oktopus",
+  "@exploreItemMythologyOctopus": {
+    "description": "Explore item title: Octopus"
+  },
+  "exploreItemMythologyOctopusPrompt": "Detailliertes Oktopus-Tattoo-Design, großer Oktopus mit sich kräuselnden Tentakeln, die nach außen ausgebreitet sind in ausgewogener Komposition, Tentakel, die sich winden und überlappen mit sichtbaren Saugnäpfen, intensive Augen und strukturierte Kopf, dunkle Ozean-Kreatur-Thema, schwarzer und grauer Tattoo-Stil, ultra-feine Linienführung, Gravur und Punktierung-Schattierung, hoher Kontrast-Schatten, realistische Textur, symmetrische zentrierte Anordnung, kühne saubere Umrisse, professionelle Tattoo-Flash-Illustration.",
+  "@exploreItemMythologyOctopusPrompt": {
+    "description": "Explore item prompt: Octopus"
+  },
+  "exploreItemMythologyJapaneseDragon": "Japanischer Drache",
+  "@exploreItemMythologyJapaneseDragon": {
+    "description": "Explore item title: Japanese Dragon"
+  },
+  "exploreItemMythologyJapaneseDragonPrompt": "Japanischer Drache Tattoo-Design, mächtiger östlicher Drache mit langem schlangenartigem Körper, der sich in S-Form-Komposition windet, detaillierte mehrschichtige Schuppen, scharfe Hörner und Barthaare, fieser offener Mund mit Fängen, Klauen ausgestreckt, fließende Mähne und Schwanz, umgeben von stilisierten Wolken und Flammen-Elementen, lebhafte rote, orange und goldene Farbpalette, kühne saubere Umrisse, neo-traditioneller japanischer Tattoo-Stil, glatte Gradient-Schattierung, hoher Kontrast, dynamische Bewegung, professionelle Tattoo-Flash-Illustration.",
+  "@exploreItemMythologyJapaneseDragonPrompt": {
+    "description": "Explore item prompt: Japanese Dragon"
+  },
+  "exploreItemMythologyDarkFantasyEye": "Dunkles Fantasy-Auge",
+  "@exploreItemMythologyDarkFantasyEye": {
+    "description": "Explore item title: Dark Fantasy Eye"
+  },
+  "exploreItemMythologyDarkFantasyEyePrompt": "Dunkles Fantasy-Tattoo-Design mit einem zentralen Auge, umgeben von mehreren kleineren Augen, alle strahlen eine leuchtende rote Energie aus, große detaillierte Flügel erstrecken sich von der Mitte mit scharfen Federkanten und tiefen Schatten, Venen von rotem Blitz laufen durch das Design, hoher Kontrast schwarzer und grauer Schattierung mit feurigen Akzenten, komplexe und symmetrische Komposition, moderner gothic Stil, feine Linien-Detailierung, mächtiges und intensives mystisches Thema, dramatisches Ambiente, professionelle Tattoo-Flash-Illustration, minimaler Hintergrund mit Fokus auf das Design.",
+  "@exploreItemMythologyDarkFantasyEyePrompt": {
+    "description": "Explore item prompt: Dark Fantasy Eye"
+  },
+  "exploreItemMythologyMermaid": "Meerjungfrau",
+  "@exploreItemMythologyMermaid": {
+    "description": "Explore item title: Mermaid"
+  },
+  "exploreItemMythologyMermaidPrompt": "Lebhafte Horror-Thema-Meerjungfrau-Tattoo-Design, gruselige Meerjungfrau mit skelettartigem, faltigem Gesicht, wildes langes Haar in dunklen Schattierungen von Schwarz und tiefem Violett, scharfe Klauen, verdrehter muskulöser Körper, der sich von menschlicher Form zu Fischschwanz mit schimmernden Schuppen in Schattierungen von Türkis, Blau und Grün verwandelt, unheimliche Unterwasser-Kreatur Stimmung mit glühenden Elementen, feurige orange und rote Highlights auf Schwanz und Augen, dramatische Schattierung mit kontrastierenden dunklen Tönen, hohe Detailgenauigkeit, Horror-Fantasy-Tattoo-Stil mit reichen Farben, professionelles Flash-Tattoo, kühne saubere Umrisse, lebhafte Kontraste.",
+  "@exploreItemMythologyMermaidPrompt": {
+    "description": "Explore item prompt: Mermaid"
+  },
+  "exploreItemMythologyDynamicDragon": "Dynamischer Drache",
+  "@exploreItemMythologyDynamicDragon": {
+    "description": "Explore item title: Dynamic Dragon"
+  },
+  "exploreItemMythologyDynamicDragonPrompt": "Lebhafte und dynamische Drachen-Tattoo-Design, schlangenartiger Körper mit glatten Schuppen, die von tiefem Grün zu Türkis übergehen, feurige orangefarbene und goldene Flügel strecken sich aus, gefiederte Flügel mit einem Gradient von warmen Tönen von Orange zu hellem Gelb, fließender Schwanz mit feurigen Akzenten, detaillierter Kopf mit scharfen Gesichtszügen und subtilen Hörnern, Drache strahlt Energie und Bewegung aus, dramatische Schattierung zur Betonung von Kurven und Körpertextur, Fantasy-Stil mit lebhafter Farbpalette, hohem Kontrast, professionelle Tattoo-Illustration mit kühnen sauberen Umrissen.",
+  "@exploreItemMythologyDynamicDragonPrompt": {
+    "description": "Explore item prompt: Dynamic Dragon"
+  },
+  "exploreItemMythologyTrident": "Dreizack",
+  "@exploreItemMythologyTrident": {
+    "description": "Explore item title: Trident"
+  },
+  "exploreItemMythologyTridentPrompt": "Gotisches Dreizack-Tattoo-Design mit komplexen scharfen Details, der Dreizack-Kopf ist mit dunklen dornartigen Stacheln und eleganten Kurven geschmückt, eine Schlange windet sich um den Dreizack-Schaft, der Körper der Schlange mit glatten Schuppen und subtiler Schattierung, Weinlaub rankt sich um den Dreizack, zart doch mächtig, dunkle graue Schattierung mit hohem Kontrast, dramatisches Schatten-Spiel, scharfe Umrisse und feine Details, professionelles Tattoo-Flash, minimaler Hintergrund mit Fokus auf Waffe und Schlange, symmetrisches Design.",
+  "@exploreItemMythologyTridentPrompt": {
+    "description": "Explore item prompt: Trident"
+  },
+  "exploreItemMythologyWarrior": "Krieger",
+  "@exploreItemMythologyWarrior": {
+    "description": "Explore item title: Warrior"
+  },
+  "exploreItemMythologyWarriorPrompt": "Mächtiger Fantasy-Krieger-Tattoo-Design, drachenähnliche Figur mit Schuppen, die Gesicht und Hals bedecken, glühende blaue Augen, langer detaillierter Bart und scharfe Gesichtszüge, feurige orange und blaue Flammenakzente wirbeln um die Figur, scharfe gezackte Rüstung und Flossen ragen vom Rücken hervor, hält einen Dreizack in einer Hand, dramatische Schattierung mit hohem Kontrast, detaillierte Texturen auf Haut und Waffe, lebhafte Farben von Feuer und Eis, starke mythische Atmosphäre, kühne saubere Umrisse, professionelle Tattoo-Flash-Illustration, minimaler Hintergrund mit Fokus auf Figur und Flammen.",
+  "@exploreItemMythologyWarriorPrompt": {
+    "description": "Explore item prompt: Warrior"
+  }
 }
