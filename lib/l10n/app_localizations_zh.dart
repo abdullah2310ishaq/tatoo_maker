@@ -766,84 +766,84 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get exploreItemMinimalistPandaPrompt =>
-      '脚踝的小熊猫极简纹身，可爱的熊猫坐在稍微向右看，干净的黑线绘制和微妙的微型阴影。熊猫拿着细绿茎和小紫薰衣草花，微妙的植物细节和闪亮的黑耳朵和手臂。设计居中于脚踝皮肤，以自然光拍摄，低景深和专业极简纹身参考风格1:1构图。';
+      '可爱熊猫极简纹身，略朝右坐，干净黑线与微妙微阴影。细绿茎配小紫薰衣草花，植物细节与闪亮黑耳黑爪。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemFineLineBow => '细线蝴蝶结';
 
   @override
   String get exploreItemFineLineBowPrompt =>
-      '手腕内侧的小型简单纹身，细线蝴蝶结，干净的黑细线绘制和中央小蝴蝶结。设计对称和干净，在极简纹身风格中定位于柔软的白手腕皮肤。以柔和自然光拍摄，低景深在现代专业纹身参考风格。';
+      '细线蝴蝶结与中央小结的极简纹身，对称干净，微纹身风格。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemMicroRealismFinger => '微型写实手指纹身';
 
   @override
   String get exploreItemMicroRealismFingerPrompt =>
-      '宏观摄影写实拍摄的中指，显示关节上两个小的详细纹身：猫坐在向右看和下面细线蜻蜓。场景以自然皮肤纹理为特色，温暖的中性光和低景深和干净的米色背景，在专业纹身参考风格中具有高精度。';
+      '两个微纹身：朝右坐的猫与细线蜻蜓，微妙阴影、干净黑墨。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemFineLineCatCircle => '细线猫在圆圈中';
 
   @override
   String get exploreItemFineLineCatCirclePrompt =>
-      '脖子下背部的小上部纹身，显示猫的微妙阴影坐在向后看，长卷尾。被不完整的细圆包围和小的叶子和小花在干净的黑细墨。场景以写实皮肤纹理为特色，柔和自然光和低景深在现代写实纹身参考风格。';
+      '极简黑猫背影剪影，长卷尾，不完整细圆配小叶小花，超净细黑墨。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemFineLineLotusFlower => '细线莲花';
 
   @override
   String get exploreItemFineLineLotusFlowerPrompt =>
-      '简单的莲花纹身，重叠的细花瓣和细茎和小叶子和小花蕾在干净的黑细墨。旁边一个小实心黑心脏和两个小点在极简风格。设计居中于柔软皮肤，以温暖自然光拍摄，低景深在现代写实纹身参考风格。';
+      '极简莲花纹身，重叠细瓣、细茎、叶与蕾，黑墨。旁有小实心黑心与两点，微纹身风格。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemSleepingCatCrescent => '睡觉的猫在新月';
 
   @override
   String get exploreItemSleepingCatCrescentPrompt =>
-      '小的详细纹身，卷曲睡觉的小猫在新月细内，黑灰柔和阴影和微妙的光芒周围。设计显示干净细线和细毛细节，定位于手腕或前臂皮肤，以温暖自然光拍摄，低景深为高质量写实纹身参考风格。';
+      '细新月内蜷睡小猫微纹身，黑灰柔阴影与微妙光晕，干净细线、细毛细节。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemFineLineHeartStars => '细线心脏和星星';
 
   @override
   String get exploreItemFineLineHeartStarsPrompt =>
-      '前臂的几何纹身，锐边实心黑心脏和上和下八角星。小的黑点和定义的圆形成垂直对称布局周围。在柔软皮肤的干净黑细墨，以柔和自然光拍摄，在现代纹身参考风格具有高精度。';
+      '极简几何纹身，锐边实心黑心与上下四角星，小点与圆成垂直对称布局。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemFineLineCompassStar => '细线指南针星';
 
   @override
   String get exploreItemFineLineCompassStarPrompt =>
-      '前臂内侧的小详细纹身，中心八角指南针星，锐黑线和细线和周围四个小点。直接下面定义的小心脏。设计极其干净和对称，在柔软皮肤拍摄，以温暖自然光在现代写实纹身参考风格。';
+      '微纹身：中心八角罗盘星、锐黑线与四小点，下方小爱心，极净对称。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemMinimalTrebleClef => '脖子的高音谱号';
 
   @override
   String get exploreItemMinimalTrebleClefPrompt =>
-      '脖子侧面耳朵后面的小闪亮黑高音谱号纹身，有三个小音符。大胆干净线，以温暖光拍摄，写实皮肤纹理和可见银耳环和低景深在详细极简纹身参考风格。';
+      '小闪黑高音谱号配三小音符，线条大胆干净。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemStarryHeart => '星星心脏';
 
   @override
   String get exploreItemStarryHeartPrompt =>
-      '前臂内侧的小细线纹身，中间定义的小心脏和小星星和实心点包围。在黑极简风格，在写实皮肤以自然光拍摄，白色袖子可见和深蓝牛仔裤和轻微模糊的街道背景。';
+      '极简细线纹身，中间定义小心脏配小点，周围星星与实心点，黑极简风格白底。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemValknutTriangle => '瓦尔克努特三角';
 
   @override
   String get exploreItemValknutTrianglePrompt =>
-      '靠近的写实拍摄，手握深牛仔裤口袋，显示微妙的瓦尔克努特艺术小纹身，三个缠绕三角形在干净的黑细墨。以皮肤纹理，静脉可见，深 Polo 和银戒指和牛仔背景和自然光和低景深。';
+      '瓦尔克努特风几何纹身，三枚交织三角，干净细黑墨。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemMinimalistMountain => '极简山';
 
   @override
   String get exploreItemMinimalistMountainPrompt =>
-      '前臂内侧的靠近写实拍摄，小简单山纹身在干净的黑细墨。设计小居中于前臂中间，以皮肤纹理，轻微卷起袖子和自然光和中性背景和低景深。';
+      '极简山纹身，干净细黑墨，小简设计，柔和自然光与中性背景。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemSwallowBird => '燕子';
@@ -976,168 +976,168 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get exploreItemPolynesianTribalPrompt =>
-      '大胆的波利尼西亚部落纹身在手背，干净的黑线和螺旋图案和几何设计。纹身以柔和曲线和锐角流动，从手掌延伸到手腕尖端。深黑墨水以高对比显示传统波利尼西亚部落风格与写实皮肤纹理和柔和光。';
+      '大胆波利尼西亚部落纹身，干净黑线、螺旋图案与几何设计，柔和曲线与锐角，深黑墨高对比。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalSpineSpear => '脊椎矛';
 
   @override
   String get exploreItemTribalSpineSpearPrompt =>
-      '男人上背部的摄影写实拍摄，中央对称黑部落纹身，缠绕结线和干净的波利尼西亚线。设计沿着脊椎延伸，干净墨水和高对比和写实皮肤纹理和外部光和低景深。';
+      '中央对称脊椎部落纹身，凯尔特结线与锐利波利尼西亚线结合，纵长矛形，大胆净黑墨、清晰边缘。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalKnotwork => '结工作';
 
   @override
   String get exploreItemTribalKnotworkPrompt =>
-      '对称部落纹身，干净的黑几何线和缠绕曲线与复杂图案，高对比和无阴影和干净黑墨水和现代抽象风格和完美对称和简单背景。';
+      '对称部落纹身，锐黑几何线与缠绕曲线，中央纵长两端收窄，复杂编织图案，高对比无阴影净黑实线，现代抽象、完美对称。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalForearmSleeve => '前臂袖子';
 
   @override
   String get exploreItemTribalForearmSleevePrompt =>
-      '弯曲男人前臂的摄影写实拍摄，黑部落纹身与螺旋曲线和干净点和圆形装饰。写实皮肤纹理和温暖内部光和低景深和详细中央构图。';
+      '波利尼西亚风部落袖，流动曲线、锐点与圆形纹样动态构图。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalCentralSpiral => '中央螺旋';
 
   @override
   String get exploreItemTribalCentralSpiralPrompt =>
-      '手的靠近拍摄，中央对称黑部落纹身，从手指流动到手背到手腕。线如火焰干净曲线和螺旋装饰黑墨水。皮肤纹理和可见静脉和寒冷周围光和低景深和电影中央构图。';
+      '大胆部落中央螺旋，火焰般锐线与流畅曲线，动态对称构图。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalFlameForearm => '火焰前臂';
 
   @override
   String get exploreItemTribalFlameForearmPrompt =>
-      '前臂内侧靠近拍摄，中央黑部落纹身如火焰图案在干净黑墨水。人在纹身椅子上坐着握手腕与黑袖子和黑地板背景和内部光和写实皮肤纹理和低景深。';
+      '火焰感部落前臂纹身，粗净黑墨、锐收边与流动曲线，中央垂直构图。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalSpiralFlame => '螺旋火焰';
 
   @override
   String get exploreItemTribalSpiralFlamePrompt =>
-      '肌肉上臂的摄影写实拍摄，肩上螺旋黑部落纹身，干净火焰末端在干净黑墨水。新的纹身显示轻微红晕，人在纹身工作室与无袖黑衬衫下内部光可见皮肤纹理和低景深。';
+      '大胆螺旋火焰部落纹身，粗黑墨与中央螺旋放射的火焰延伸，动态对称构图。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、高对比、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalCompass => '部落指南针';
 
   @override
   String get exploreItemTribalCompassPrompt =>
-      '中央黑部落指南针靠近拍摄，对称星点干净线。干净黑墨水和轻微红晕和皮肤纹理和可见静脉和温暖工作室光和黑暗背景和低景深。';
+      '中央部落罗盘纹身，锐对称星角与火焰延伸，净实线黑墨、高对比、清晰边、平衡几何。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalModernGeometric => '现代几何';
 
   @override
   String get exploreItemTribalModernGeometricPrompt =>
-      '大的对称黑部落纹身靠近拍摄，干净三角图案和花中央。厚的干净黑墨水和高对比和写实皮肤纹理和可见头发和站立在金属地板外部光和低景深。';
+      '大现代几何部落纹身，锐三角图案与中央花纹样，粗实线黑墨、高对比、精确对称。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalNeoBack => '新背';
 
   @override
   String get exploreItemTribalNeoBackPrompt =>
-      '上视图，人向前弯曲揭示大胆黑部落纹身延伸上背和肩棘。黑墨水高对比和绑发和手握和黑暗背景和周围光和写实皮肤纹理和低景深。';
+      '大新部落背纹身，大胆棘状形、实线高对比黑墨、锐边、动态对称。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalFlame => '部落火焰';
 
   @override
   String get exploreItemTribalFlamePrompt =>
-      '手背靠近拍摄，对称黑部落纹身从关节流动到手腕干净曲线和螺旋装饰黑墨水。皮肤纹理和可见静脉和放松手和深蓝牛仔背景和中性内部光和低景深。';
+      '对称部落火焰纹身，锐曲线与螺旋装饰，净实线黑墨、高对比、精确流动几何。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemTribalSwordCompass => '部落剑指南针';
 
   @override
   String get exploreItemTribalSwordCompassPrompt =>
-      '手背靠近拍摄，黑灰部落纹身，垂直剑刺穿玫瑰风向线细和圆细节和烟如阴影。写实皮肤纹理和雾黑暗背景和戏剧工作室光和低景深。';
+      '垂直剑与八点罗盘玫瑰部落纹身，细线、圆细节、烟感点缀，净高对比黑墨、中央对称构图。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricMindBodySoul => '心灵-身体-灵魂';
 
   @override
   String get exploreItemGeometricMindBodySoulPrompt =>
-      '高度详细的神圣几何纹身在前臂，垂直构图：上脑变为树和中间解剖曼陀罗形式和下面解剖心脏装饰元素。干净细线和点阴影和高对比和工作室写实拍摄。';
+      '精细神圣几何纹身，垂直构图：上为脑变树、中为解剖曼陀罗形、下为解剖心与装饰，净线加点影、高对比黑墨。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricHoneycombSleeve => '蜂窝袖子';
 
   @override
   String get exploreItemGeometricHoneycombSleevePrompt =>
-      '肌肉男人无衬衫工作室摄影写实拍摄，肩完整黑几何袖子，六角蜂窝图案和下面神圣曼陀罗几何设计臂。干净黑墨水高对比和写实皮肤纹理和中性背景和柔和光和低景深。';
+      '完整黑几何袖，纵列六角蜂窝与神圣几何曼陀罗元素向下延伸，净高对比黑墨、精确对称、清晰线。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricBlackwork => '黑工作';
 
   @override
   String get exploreItemGeometricBlackworkPrompt =>
-      '男人无衬衫摄影写实拍摄，肩黑灰几何纹身，上前臂详细森林山场景六角。黑墨水高对比和点阴影和写实皮肤纹理和柔和工作室光和中性背景和低景深。';
+      '几何黑工袖，3D立方与六角视错觉过渡到实心黑段，精确线、高对比黑墨、清晰对称。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricCubeSleeve => '立方体袖子';
 
   @override
   String get exploreItemGeometricCubeSleevePrompt =>
-      '男人前臂伸展摄影写实拍摄，完整黑工作几何袖子，3D立方体图案和光学错觉消失到实心手腕黑带。细线和黑墨水高对比和皮肤纹理和可见静脉和中性工作室背景和柔和光和低景深。';
+      '几何黑工袖，3D立方与六角视错觉过渡到实心黑段，精确线、高对比黑墨、清晰对称。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometric3dCubeSleeve => '3D立方体袖子';
 
   @override
   String get exploreItemGeometric3dCubeSleevePrompt =>
-      '前臂摄影写实拍摄，完整黑工作几何袖子，缠绕3D立方体图案密集光学错觉通过到神圣几何星手腕附近。黑墨水高对比和干净锐细线和点阴影和卷白衬衫和柔和工作室光和低景深。';
+      '完整几何黑工袖，交织3D立方视错觉过渡到密集神圣几何星纹样，高对比黑墨、净锐线、点影细节。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricTreeOfLife => '生命树';
 
   @override
   String get exploreItemGeometricTreeOfLifePrompt =>
-      '前臂内侧垂直摄影写实拍摄，黑灰自然纹身，中央松树和圆形山景观和月亮和装饰根。细线和柔和阴影和写实皮肤纹理和柔和工作室光和中性背景和低景深。';
+      '垂直生命树纹身，中央松、圆山景、月与装饰根，细线黑工风格、柔和高对比细节。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricAtlas => '阿特拉斯';
 
   @override
   String get exploreItemGeometricAtlasPrompt =>
-      '细线点黑灰阿特拉斯纹身，跪地持地球，表现为经典文艺复兴雕塑解剖绘图和写实阴影。地球显示大陆和几何网络和神圣几何图案和太阳标志上。垂直干净构图高对比和准备纹身模板和高度详细和简单。';
+      '垂直阿特拉斯纹身，细线点绘黑灰，古典雕塑感跪姿持地球、大陆与几何网格，神圣几何与太阳符号在上。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricTriadTravel => '旅行三元组';
 
   @override
   String get exploreItemGeometricTriadTravelPrompt =>
-      '简单黑工作几何纹身在前臂，细线点阴影垂直三元组构图：上玫瑰风向线轨道线和小飞机点路径和山和下面海洋波。干净细线与运动线点和神圣几何微妙和高对比和准备模板。';
+      '极简几何旅行纹身，罗盘玫瑰、小飞机点线路径、山与海浪于倒三角框内，神圣几何点缀，净线高对比。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricHorizons => '地平线';
 
   @override
   String get exploreItemGeometricHorizonsPrompt =>
-      '几何纹身简单在前臂，细线点阴影垂直连接六角柱。上太阳天空树中间海洋波下面小六角和神圣几何微妙和点路径。自然主题干净对称高对比和准备模板。';
+      '极简几何地平线纹身，纵列连接六角：上日空、中树、下海浪，小六角与神圣几何、点线路径，净对称高对比。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricAlignedTriad => '对齐三元组';
 
   @override
   String get exploreItemGeometricAlignedTriadPrompt =>
-      '小手指几何纹身，细线微妙点阴影抽象垂直三元组构图多层几何形式和钻石细节和干净多边形微妙阴影。现代神圣几何风格精确细线和专业外观和准备模板和高度详细。';
+      '微指几何纹身，抽象垂直三角构图、多层几何形、钻石与多边形细节、微妙点影，现代神圣几何、精确线、模板就绪。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricSigi => '抽象西吉';
 
   @override
   String get exploreItemGeometricSigiPrompt =>
-      '小简单手指纹身，黑细墨垂直符号重叠三角和钻石和干净多边形微妙点阴影和干净负空间。现代神圣几何风格精确细线和高对比和准备专业模板。';
+      '超极简指几何纹身，垂直重叠三角、钻石与多边形符号，微妙点影、净负空间，现代神圣几何、精确线、高对比、模板就绪。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemGeometricDualityNature => '几何自然二元性';
 
   @override
   String get exploreItemGeometricDualityNaturePrompt =>
-      '简单黑工作几何纹身在前臂，细线点阴影重叠三角：上山场景和太阳/月升起和下面倒置大海洋波。几何干净框架和神圣几何微妙与运动线点为现代平衡自然主题高对比和准备模板。';
+      '极简黑工几何纹身，重叠三角：上为山景与日出/月、下为倒置海浪，净几何框、神圣几何点缀与点线动势，平衡自然主题高对比。干净矢量纹身闪图、模板就绪设计、白纸艺术印刷、黑白线稿、独立纹身设计、白底、仅2D、平面设计、独立作品。';
 
   @override
   String get exploreItemRealismGamblerFedora => '赌徒和软呢帽';
