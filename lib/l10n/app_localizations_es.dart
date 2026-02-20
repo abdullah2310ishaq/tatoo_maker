@@ -802,14 +802,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get exploreItemMinimalistPandaPrompt =>
-      'Un tatuaje pequeño de panda minimalista en el tobillo, un panda adorable sentado mirando ligeramente a la derecha, dibujado con líneas negras limpias y sombreado micro fino sutil. El panda sostiene un tallo verde delgado con pequeñas flores de lavanda moradas, con detalles botánicos sutiles y orejas y brazos negros brillantes. El diseño está centrado en la piel del tobillo, fotografiado con luz natural con poca profundidad de campo y estilo de referencia de tatuaje minimalista profesional en composición 1:1.';
+      'Tatuaje minimalista de panda adorable sentado erguido, mirando ligeramente a la derecha, dibujado con líneas negras limpias y sombreado micro suave. El panda sostiene un tallo verde delgado con pequeñas flores de lavanda moradas, detalles botánicos sutiles y orejas y brazos negros brillantes. Diseño centrado, limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemFineLineBow => 'Arco de línea fina';
 
   @override
   String get exploreItemFineLineBowPrompt =>
-      'Un tatuaje pequeño simple en la parte interna de la muñeca con una línea delgada de cinta de arco, dibujada con tinta negra limpia y delgada y una pequeña lazada central. El diseño es simétrico y limpio en estilo de tatuaje minimalista, posicionado en piel de muñeca blanca suave. Fotografiado con luz natural suave con poca profundidad de campo en estilo de referencia de tatuaje moderno profesional.';
+      'Tatuaje minimalista de lazo de cinta delicado, dibujado con líneas negras finas y pequeño nudo central. Diseño simétrico y limpio en estilo micro-tatuaje, limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemMicroRealismFinger =>
@@ -817,28 +817,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get exploreItemMicroRealismFingerPrompt =>
-      'Toma macro fotorrealista de un dedo medio mostrando dos tatuajes pequeños detallados sobre la articulación: Un gato sentado mirando a la derecha y una mariposa de línea fina debajo. La escena presenta textura de piel natural y luz neutral cálida con poca profundidad de campo y fondo beige limpio, en estilo de referencia de tatuaje profesional con alta precisión de detalles.';
+      'Diseño de dos micro-tatuajes detallados: gato pequeño sentado mirando a la derecha y mariposa delicada de línea fina con sombreado sutil. Tinta negra limpia, limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemFineLineCatCircle => 'Gato de línea fina en círculo';
 
   @override
   String get exploreItemFineLineCatCirclePrompt =>
-      'Un tatuaje superior pequeño de espalda debajo del cuello mostrando una sombra sutil de gato sentado mirando hacia atrás con una cola curva larga. Rodeado por un círculo delgado incompleto con pequeñas hojas y una flor pequeña en tinta negra limpia y delgada. La escena presenta textura de piel realista y luz natural suave con poca profundidad de campo en estilo de referencia de tatuaje realista moderno.';
+      'Tatuaje minimalista de silueta de gato negro sentado mirando hacia atrás con cola curva larga, rodeado por círculo delgado incompleto con pequeñas hojas y flor, en tinta negra fina ultra limpia. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemFineLineLotusFlower => 'Flor de loto de línea fina';
 
   @override
   String get exploreItemFineLineLotusFlowerPrompt =>
-      'Un tatuaje simple de flor de loto con pétalos superpuestos delgados y tallo delgado con pequeñas hojas y capullos en tinta negra limpia y delgada. Al lado un pequeño corazón negro sólido con dos pequeños puntos en estilo de tatuaje minimalista. El diseño está centrado en piel suave, fotografiado con luz natural cálida con poca profundidad de campo en estilo de referencia de tatuaje realista moderno.';
+      'Tatuaje minimalista de flor de loto con pétalos delicados superpuestos, tallo delgado, hojas y capullos en tinta negra. Pequeño corazón negro sólido con dos puntos, estilo micro-tatuaje. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemSleepingCatCrescent => 'Gato durmiendo en media luna';
 
   @override
   String get exploreItemSleepingCatCrescentPrompt =>
-      'Un tatuaje pequeño detallado de un gatito enrollado durmiendo dentro de una media luna delgada con sombreado negro y gris suave y brillos sutiles alrededor. El diseño presenta líneas limpias y delgadas y detalles de pelaje finos, posicionado en piel de muñeca o antebrazo, fotografiado con luz natural cálida con poca profundidad de campo para un estilo de referencia de tatuaje realista de alta calidad.';
+      'Micro-tatuaje minimalista de gatito dormido enrollado dentro de media luna delgada con sombreado negro-gris suave y destellos delicados. Líneas limpias, detalles de pelaje sutiles. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemFineLineHeartStars =>
@@ -846,7 +846,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get exploreItemFineLineHeartStarsPrompt =>
-      'Un tatuaje geométrico en el antebrazo con un corazón sólido negro afilado con bordes y estrellas octogonales arriba y abajo. Puntos negros pequeños y círculos definidos formando un layout vertical simétrico alrededor. En tinta negra limpia y delgada en piel suave, fotografiado con luz natural suave en estilo de referencia de tatuaje moderno con alta precisión de detalles.';
+      'Tatuaje geométrico minimalista con corazón negro sólido de bordes afilados, estrellas de cuatro puntas arriba y abajo. Pequeños puntos negros y círculos definidos formando diseño vertical simétrico. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemFineLineCompassStar =>
@@ -854,35 +854,35 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get exploreItemFineLineCompassStarPrompt =>
-      'Un tatuaje pequeño detallado en la parte interna del antebrazo con una estrella de brújula octogonal en el centro con líneas afiladas negras y delgadas y cuatro pequeños puntos alrededor. Un corazón definido pequeño directamente debajo de la estrella. El diseño es extremadamente limpio y simétrico, fotografiado en piel suave con luz natural suave en estilo de referencia de tatuaje realista moderno.';
+      'Micro-tatuaje minimalista con estrella de brújula geométrica de 8 puntas en el centro, líneas negras afiladas y cuatro puntos pequeños. Pequeño corazón definido debajo. Diseño ultra limpio y simétrico. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemMinimalTrebleClef => 'Clave de sol en el cuello';
 
   @override
   String get exploreItemMinimalTrebleClefPrompt =>
-      'Un tatuaje pequeño brillante negro de clave de sol con tres notas pequeñas detrás de la oreja en el lado del cuello. Con líneas audaces y limpias, fotografiado con luz cálida con textura de piel realista y oreja visible con arete plateado y poca profundidad de campo en estilo de referencia de tatuaje minimalista detallado.';
+      'Pequeño tatuaje de clave de sol negra brillante con tres notas pequeñas, líneas audaces y limpias. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemStarryHeart => 'Corazón estrellado';
 
   @override
   String get exploreItemStarryHeartPrompt =>
-      'Un tatuaje simple de línea delgada en la parte interna del antebrazo con un corazón mediano definido con pequeños puntos dentro, rodeado de estrellas pequeñas y puntos sólidos. En estilo negro minimalista, fotografiado en piel realista con luz natural con mangas blancas visibles y jeans azul oscuro y fondo ligeramente borroso de calle.';
+      'Tatuaje minimalista de línea fina con corazón mediano definido con puntos pequeños dentro, rodeado de estrellas y puntos sólidos. Estilo micro-tatuaje negro en fondo blanco. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemValknutTriangle => 'Triángulo valknut';
 
   @override
   String get exploreItemValknutTrianglePrompt =>
-      'Una toma cercana realista de una mano en un bolsillo de jeans oscuros mostrando un tatuaje sutil pequeño de valknut-art con tres triángulos entrelazados en tinta negra delgada limpia. Con textura de piel, venas visibles, polo oscuro y anillo plateado y fondo denim y luz natural y poca profundidad de campo.';
+      'Tatuaje geométrico tipo valknut con tres triángulos entrelazados en tinta negra fina. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemMinimalistMountain => 'Montañas minimalistas';
 
   @override
   String get exploreItemMinimalistMountainPrompt =>
-      'Una toma cercana realista de la parte interna del antebrazo con un tatuaje pequeño simple de montaña en tinta negra delgada limpia. El diseño es pequeño y centrado en el medio del antebrazo con textura de piel, manga ligeramente bajada y luz natural y fondo neutral con poca profundidad de campo.';
+      'Tatuaje de línea fina minimalista de montaña en tinta negra limpia. Diseño pequeño con luz suave y fondo neutro. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemSwallowBird => 'Golondrina';
@@ -1015,161 +1015,161 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get exploreItemPolynesianTribalPrompt =>
-      'Tatuaje tribal polinesio audaz en el dorso de la mano con líneas negras afiladas y patrones en espiral y diseños geométricos. El tatuaje fluye con curvas suaves y ángulos afilados y se extiende desde la palma hasta la muñeca con un extremo puntiagudo. Tinta negra profunda con alto contraste y muestra estilo tribal polinesio tradicional con textura de piel realista y luz suave.';
+      'Diseño de tatuaje tribal polinesio audaz con líneas negras afiladas, patrones en espiral y elementos geométricos. Curvas suaves y ángulos afilados en flujo simétrico con extremo puntiagudo. Tinta negra profunda estilo polinesio tradicional. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalSpineSpear => 'Lanza tribal en la columna';
 
   @override
   String get exploreItemTribalSpineSpearPrompt =>
-      'Toma fotorealista de la parte superior de la espalda de un hombre con tatuaje tribal negro centrado simétrico con líneas de nudo entrelazadas y líneas polinesias afiladas. El diseño se extiende a lo largo de la columna vertebral con tinta limpia y alto contraste y textura de piel realista y luz exterior y poca profundidad de campo.';
+      'Diseño simétrico tribal tipo lanza de columna combinando trabajo de nudos celtas y líneas polinesias afiladas, forma alargada tipo lanza con tinta negra limpia. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalKnotwork => 'Trabajo de nudos tribal';
 
   @override
   String get exploreItemTribalKnotworkPrompt =>
-      'Tatuaje tribal simétrico con líneas geométricas afiladas negras y curvas entrelazadas con patrones complejos con alto contraste y sin sombreado y tinta negra limpia y estilo abstracto moderno con simetría perfecta y fondo simple.';
+      'Tatuaje tribal simétrico con líneas geométricas negras afiladas y curvas entrelazadas, forma central alargada que se afina en ambos extremos, patrones complejos. Alto contraste, sin sombreado, tinta negra limpia, estilo abstracto moderno. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalForearmSleeve => 'Manga tribal del antebrazo';
 
   @override
   String get exploreItemTribalForearmSleevePrompt =>
-      'Toma fotorealista de antebrazo masculino curvado con tatuaje tribal negro con curvas en espiral y puntos afilados y adornos circulares. Textura de piel realista y luz interior cálida y poca profundidad de campo y composición centrada detallada.';
+      'Diseño audaz tribal estilo polinesio de manga de antebrazo con curvas fluidas, puntos afilados y motivos circulares en composición dinámica. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalCentralSpiral => 'Espiral central';
 
   @override
   String get exploreItemTribalCentralSpiralPrompt =>
-      'Toma cercana de mano con tatuaje tribal negro simétrico fluyendo desde los dedos sobre el dorso de la mano hacia la muñeca. Líneas como llamas afiladas con curvas suaves y adornos en espiral con tinta negra. Textura de piel y venas visibles y luz ambiente fría y poca profundidad de campo y composición cinematográfica centrada.';
+      'Diseño tribal central de espiral audaz con líneas afiladas tipo llama y curvas fluidas en composición simétrica dinámica. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalFlameForearm => 'Llamas tribales del antebrazo';
 
   @override
   String get exploreItemTribalFlameForearmPrompt =>
-      'Toma cercana del antebrazo interno con tatuaje tribal negro centrado con patrones como llamas en tinta negra limpia. La persona se sienta en silla de tatuaje sosteniendo su antebrazo con manga negra y piso negro en fondo y luz interior y textura de piel realista y poca profundidad de campo.';
+      'Diseño tribal de antebrazo tipo llama audaz en tinta negra gruesa con bordes afilados y curvas fluidas, composición vertical centrada. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalSpiralFlame => 'Espiral con extremos flamígeros';
 
   @override
   String get exploreItemTribalSpiralFlamePrompt =>
-      'Toma fotorealista de brazo superior muscular con tatuaje tribal negro en espiral en el hombro con extremos flamígeros afilados en tinta negra. El tatuaje nuevo muestra enrojecimiento leve con la persona en estudio de tatuaje con camisa negra sin mangas bajo luz interior con textura de piel visible y poca profundidad de campo.';
+      'Diseño tribal espiral de llamas audaz con tinta negra gruesa y extensiones afiladas tipo llama desde espiral central. Composición simétrica dinámica. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, alto contraste, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalCompass => 'Brújula tribal';
 
   @override
   String get exploreItemTribalCompassPrompt =>
-      'Toma cercana de brújula tribal negra centrada con puntos estelares simétricos afilados y líneas. Tinta negra limpia y enrojecimiento leve y textura de piel y venas visibles y luz cálida de estudio y fondo oscuro y poca profundidad de campo.';
+      'Diseño tribal de brújula centrado con puntos estelares simétricos afilados y extensiones tipo llama en tinta negra. Alto contraste, bordes afilados, geometría equilibrada. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalModernGeometric => 'Tribal geométrico moderno';
 
   @override
   String get exploreItemTribalModernGeometricPrompt =>
-      'Toma cercana de tatuaje tribal grande negro simétrico con patrones triangulares afilados y centro floral. Tinta negra gruesa limpia y alto contraste y textura de piel realista y pelo visible y parado en piso metálico con luz exterior y poca profundidad de campo.';
+      'Diseño tribal geométrico moderno grande simétrico con patrones triangulares afilados y motivo floral central en tinta negra gruesa. Alto contraste, simetría precisa. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalNeoBack => 'Neo tribal de espalda';
 
   @override
   String get exploreItemTribalNeoBackPrompt =>
-      'Vista superior de persona inclinándose hacia adelante revelando tatuaje tribal negro grande audaz espinoso extendiéndose sobre la parte superior de la espalda y hombros. Tinta negra con alto contraste y pelo atado y sostenido por la mano y fondo oscuro y luz ambiente y textura de piel realista y poca profundidad de campo.';
+      'Diseño neo-tribal grande con formas espinosas audaces en tinta negra de alto contraste. Bordes afilados, simetría dinámica. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalFlame => 'Llama tribal';
 
   @override
   String get exploreItemTribalFlamePrompt =>
-      'Toma cercana del dorso de la mano con tatuaje tribal negro simétrico fluyendo desde las articulaciones hacia la muñeca con curvas afiladas y adornos en espiral en tinta negra. Textura de piel y venas visibles y mano relajada y jeans azul oscuro en fondo y luz neutral interior y poca profundidad de campo.';
+      'Diseño tribal de llamas simétrico con curvas afiladas y adornos en espiral en tinta negra limpia. Alto contraste, geometría fluida precisa. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemTribalSwordCompass => 'Espada tribal y brújula';
 
   @override
   String get exploreItemTribalSwordCompassPrompt =>
-      'Toma cercana del dorso de la mano con tatuaje tribal negro gris de espada vertical atravesando rosa de los vientos con líneas delgadas y detalles circulares y sombreado sutil como humo. Textura de piel realista y fondo brumoso oscuro y luz dramática de estudio y poca profundidad de campo.';
+      'Diseño tribal de espada vertical y rosa de brújula de 8 puntas con línea fina, detalles circulares y acentos sutiles tipo humo en tinta negra. Composición simétrica centrada. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricMindBodySoul => 'Mente-Cuerpo-Alma';
 
   @override
   String get exploreItemGeometricMindBodySoulPrompt =>
-      'Tatuaje geométrico sagrado detallado de alto contraste en el antebrazo con composición vertical: Cerebro convirtiéndose en árbol arriba y formas de mandala anatómicas en el medio y corazón anatómico con elementos ornamentales abajo. Líneas limpias delgadas y sombreado de puntos y alto contraste y toma de estudio realista.';
+      'Diseño geométrico sagrado detallado con composición vertical: cerebro transformándose en árbol arriba, formas mandala anatómicas en medio, corazón anatómico con elementos ornamentales abajo. Líneas limpias, sombreado de puntos, alto contraste. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricHoneycombSleeve => 'Manga de panal';
 
   @override
   String get exploreItemGeometricHoneycombSleevePrompt =>
-      'Toma de estudio fotorealista de hombre musculoso sin camisa exhibiendo manga completa negra geométrica con patrones de panal hexagonal en el hombro y diseños de mandala sagrados geométricos abajo en el brazo. Tinta negra limpia con alto contraste y textura de piel realista y fondo neutral y luz suave y poca profundidad de campo.';
+      'Diseño completo de manga geométrica negra con patrón vertical hexagonal de panal y elementos mandala sagrados geométricos fluyendo hacia abajo. Tinta negra de alto contraste, simetría precisa. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricBlackwork => 'Trabajo negro geométrico';
 
   @override
   String get exploreItemGeometricBlackworkPrompt =>
-      'Toma fotorealista de hombre sin camisa con tatuaje negro gris geométrico en el hombro y antebrazo superior con escenas detalladas de bosque y montaña en hexágonos. Tinta negra con alto contraste y sombreado de puntos y textura de piel realista y luz suave de estudio y fondo neutral y poca profundidad de campo.';
+      'Diseño geométrico de manga blackwork con patrones 3D de cubos y hexágonos que transicionan a sección negra sólida. Líneas precisas, tinta negra de alto contraste. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricCubeSleeve => 'Manga de cubo geométrico';
 
   @override
   String get exploreItemGeometricCubeSleevePrompt =>
-      'Toma fotorealista de antebrazo masculino extendido con manga completa de trabajo negro geométrico con patrones de cubo 3D y ilusiones ópticas desvaneciéndose a banda de muñeca negra sólida. Líneas delgadas y tinta negra con alto contraste y textura de piel y venas visibles y fondo neutral de estudio y luz suave y poca profundidad de campo.';
+      'Diseño geométrico de manga blackwork con patrones 3D de cubos y hexágonos que transicionan a sección negra sólida. Líneas precisas, tinta negra de alto contraste, simetría afilada. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometric3dCubeSleeve => 'Manga de cubo geométrico 3D';
 
   @override
   String get exploreItemGeometric3dCubeSleevePrompt =>
-      'Toma fotorealista de antebrazo con manga completa de trabajo negro geométrico con patrones de cubo 3D entrelazados con ilusiones ópticas densas que pasan a estrella sagrada geométrica cerca de la muñeca. Tinta negra con alto contraste y líneas afiladas delgadas y sombreado de puntos y camisa blanca bajada y luz suave de estudio y poca profundidad de campo.';
+      'Diseño completo geométrico de manga blackwork con cubos 3D entrelazados que transicionan a motivo de estrella sagrada geométrica. Tinta negra de alto contraste, línea fina, detalle de puntillismo. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricTreeOfLife => 'Árbol de la vida';
 
   @override
   String get exploreItemGeometricTreeOfLifePrompt =>
-      'Toma vertical fotorealista de la parte interna del antebrazo con tatuaje negro gris de naturaleza con pino central y paisaje de montaña circular y lunas y raíces ornamentales. Líneas delgadas y sombreado suave y textura de piel realista y luz suave de estudio y fondo neutral y poca profundidad de campo.';
+      'Diseño vertical de Árbol de la Vida con pino central, paisaje de montaña circular, lunas y raíces ornamentales. Estilo línea fina y blackwork con detalles de alto contraste. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricAtlas => 'Atlas';
 
   @override
   String get exploreItemGeometricAtlasPrompt =>
-      'Tatuaje de línea delgada y puntos negro gris de Atlas arrodillado sosteniendo globo terráqueo, representado como escultura renacentista clásica con dibujo anatómico y sombreado realista. La Tierra muestra continentes y red geométrica con patrones sagrados geométricos y signo solar arriba. Composición vertical limpia con alto contraste y lista para stencil de tatuaje y altamente detallada y simple.';
+      'Diseño vertical Atlas en estilo línea fina y puntillismo negro-gris, figura clásica tipo escultura arrodillada sosteniendo globo con continentes y red geométrica, patrones geométricos sagrados y símbolo solar arriba. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricTriadTravel => 'Tríada de viaje';
 
   @override
   String get exploreItemGeometricTriadTravelPrompt =>
-      'Tatuaje simple de trabajo negro geométrico en el antebrazo con líneas delgadas y sombreado de puntos con composición triangular vertical: Arriba con rosa de los vientos y líneas orbitales y avión pequeño en camino punteado y montañas y ola oceánica abajo. Líneas limpias delgadas con líneas de movimiento punteadas y geometría sagrada sutil y tema de viaje moderno con alto contraste y listo para stencil.';
+      'Diseño geométrico de viaje minimalista con rosa de los vientos, avión pequeño en camino punteado, montañas y ola oceánica en marco triangular invertido con acentos geométricos sagrados. Líneas limpias, alto contraste. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricHorizons => 'Horizontes';
 
   @override
   String get exploreItemGeometricHorizonsPrompt =>
-      'Tatuaje geométrico simple en el antebrazo con líneas delgadas y sombreado de puntos con columna vertical de hexágonos conectados. Arriba sol y cielo y árboles en medio y ola oceánica abajo con hexágonos más pequeños y geometría sagrada sutil y caminos punteados. Tema natural con simetría limpia y alto contraste y listo para stencil.';
+      'Diseño geométrico de horizontes con columna vertical de hexágonos conectados: sol y cielo arriba, árboles en medio, ola oceánica abajo. Hexágonos pequeños, geometría sagrada sutil, caminos punteados. Simetría limpia, alto contraste. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricAlignedTriad => 'Tríada alineada';
 
   @override
   String get exploreItemGeometricAlignedTriadPrompt =>
-      'Tatuaje pequeño de dedo geométrico con líneas delgadas y sombreado sutil de puntos con composición triangular abstracta vertical con formas geométricas multicapa y detalles de diamante y polígonos afilados con sombreado sutil. Estilo sagrado geométrico moderno con líneas delgadas precisas y apariencia profesional y listo para stencil y altamente detallado.';
+      'Micro-tatuaje geométrico de dedo con composición triangular abstracta vertical, formas geométricas superpuestas, diamantes y polígonos afilados, sombreado sutil. Estilo geométrico sagrado moderno, líneas precisas. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricSigi => 'Sigi abstracto';
 
   @override
   String get exploreItemGeometricSigiPrompt =>
-      'Tatuaje pequeño simple de dedo con tinta negra delgada con símbolo vertical de triángulos superpuestos y diamantes y polígonos afilados con sombreado sutil de puntos y espacio negativo limpio. Estilo sagrado geométrico moderno con líneas delgadas precisas y alto contraste y listo para stencil profesional.';
+      'Micro-tatuaje geométrico de dedo ultra minimalista con símbolo vertical de triángulos superpuestos, diamantes y polígonos afilados, sombreado de puntos sutil, espacio negativo limpio. Estilo geométrico sagrado moderno, líneas precisas, alto contraste. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemGeometricDualityNature =>
@@ -1177,7 +1177,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get exploreItemGeometricDualityNaturePrompt =>
-      'Tatuaje simple de trabajo negro geométrico en el antebrazo con líneas delgadas y sombreado de puntos con triángulos superpuestos: Arriba con escena de montaña y sol/luna naciente y abajo invertido con ola oceánica grande. Marco geométrico limpio y geometría sagrada sutil con líneas de movimiento punteadas para tema natural equilibrado moderno con alto contraste y listo para stencil.';
+      'Tatuaje blackwork geométrico minimalista con triángulos superpuestos: escena de montaña y sol/luna arriba, ola oceánica invertida abajo. Marco geométrico limpio, geometría sagrada sutil, líneas punteadas. Tema naturaleza equilibrado, alto contraste. Limpia hoja de flash vector, diseño listo para plantilla, impresión artística en papel blanco, arte lineal negro y blanco, diseño de tatuaje independiente, fondo blanco, 2D solo, diseño plano, obra aislada.';
 
   @override
   String get exploreItemRealismGamblerFedora => 'Jugador con fedora';
