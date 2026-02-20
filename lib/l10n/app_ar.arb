@@ -68,14 +68,6 @@
   "@noHistoryYet": {
     "description": "Empty state when no history items"
   },
-  "choosePhotoSource": "اختر مصدر الصورة",
-  "@choosePhotoSource": {
-    "description": "Virtual try-on: dialog title for camera vs gallery"
-  },
-  "chooseFromGallery": "اختر من المعرض",
-  "@chooseFromGallery": {
-    "description": "Virtual try-on: pick image from gallery option"
-  },
   "openSettings": "فتح الإعدادات",
   "@openSettings": {
     "description": "Dialog/CTA: Open Settings"
@@ -192,6 +184,14 @@
   "@capturePhoto": {
     "description": "Virtual try-on: capture photo button label"
   },
+  "choosePhotoSource": "اختر مصدر الصورة",
+  "@choosePhotoSource": {
+    "description": "Virtual try-on: dialog title for camera vs gallery"
+  },
+  "chooseFromGallery": "اختر من المعرض",
+  "@chooseFromGallery": {
+    "description": "Virtual try-on: pick image from gallery option"
+  },
   "apply": "تطبيق",
   "@apply": {
     "description": "Virtual try-on: apply button label"
@@ -252,15 +252,15 @@
   "@tattooStylePromptButterfly": {
     "description": "Home: style prompt for Butterfly"
   },
-  "tattooStylePromptDragon": "تصميم وشم تنين خيالي، جسم ملتف، حراشف داكنة، أجنحة برتقالية متوهجة، قرون حادة، خطوط نظيفة جريئة",
+  "tattooStylePromptDragon": "أنشئ تصميم وشم مستوحى من أسلوب التنين. استخدم ألوانًا جريئة ومتقدة مثل الأحمر والبرتقالي والذهبي، مع دمج حراشف معقدة وخطوط شرسة. ركز على تفاصيل حادة وملموسة مع ظلال درامية لمظهر ديناميكي وقوي. جمالية مستوحاة من الشرق، مؤكدة على الحركة والقوة. يجب أن يحتوي الموضوع على تفاصيل تنينية متقدة، وحراشف مدمجة في التصميم، وخطوط شرسة حادة، وتظليل درامي. أشكال قوية متدفقة تستحضر القوة والطاقة، وكأنها تتنفس النار، مع عناصر عدوانية وأسطورية.",
   "@tattooStylePromptDragon": {
-    "description": "Home: style prompt for Dragon"
+    "description": "Home: style prompt for Dragon — rich Eastern-inspired fiery dragon aesthetic"
   },
-  "tattooStylePromptUnicorn": "تصميم وشم رأس حصان وحيد القرن، قرن ذهبي، لبدة قوس قزح متدفقة، رسم خيالي مفصل",
+  "tattooStylePromptUnicorn": "أنشئ تصميم وشم مستوحى من أسلوب وحيد القرن. استخدم ألوانًا باستيلية مثل الوردي الناعم والأزرق والبنفسجي والفضي. خطوط ناعمة متدفقة، وبريق وتوهج لإحساس سحري ومرح. نسيج ناعم هوائي، إضاءة خفيفة، تفاصيل مرحّة مثل النجوم وانعكاسات الضوء. أجواء حالمة، مؤكدة على الأناقة والرقة والخيال. يجب أن يحتوي الموضوع على خطوط ناعمة متدفقة، ولمسات سحرية مثل النجوم أو البريق، ومنحنيات رشيقة ناعمة، وإضاءة مرحّة، وجودة سحرية إيثيرية، مغمور بألوان باستيلية، خفة وسحر يستحضران الخيال والأحلام.",
   "@tattooStylePromptUnicorn": {
     "description": "Home: style prompt for Unicorn"
   },
-  "tattooStylePromptFloral": "باقة زهرية باستيل، ورود خوخية ووردية، أزهار برية، أوراق ذهبية، شرائط متتالية، قطرة دموع غير متماثلة، عتيق رومانسي، إضاءة ناعمة، واقعية عالية، خلفية داكنة.",
+  "tattooStylePromptFloral": "أنشئ تصميم وشم مستوحى من الأسلوب الزهري. استخدم ألوانًا هادئة طبيعية مثل الوردي الخجول والأبيض الناعم والأخضر الترابي. يجب أن يدمج التصميم بتلات رقيقة معقدة، وخطوط ناعمة، ومنحنيات رشيقة متدفقة. ركز على تظليل ناعم مع نسيج واقعي لاستحضار جمال الطبيعة والهدوء. يجب أن يتمتع التصميم بجمالية أنيقة عضوية، مؤكدة على الرقة والسلام. والآن، أدخل الموضوع في هذا الأسلوب. يجب أن يحتوي الموضوع على تفاصيل زهرية ناعمة، مع دمج البتلات أو الأوراق في التصميم، ومنحنيات رشيقة، ونسيج طبيعي. يجب أن يعكس التصميم الهدوء والجمال، مع إحساس بالأناقة والتوافق الطبيعي. يجب أن يُحيط بالموضوع عناصر زهرية، ليجعله يبدو رقيقًا وأنثويًا وطبيعيًا، مع تظليل ناعم وإضاءة خفيفة.",
   "@tattooStylePromptFloral": {
     "description": "Home: style prompt for Floral"
   },
@@ -355,6 +355,18 @@
   "explorePromptElegantBlackCatSilhouetteDesign": "تصميم وشم قطة سوداء بسيط بأسلوب مجرد أنيق، قطة جانبية جالسة بذيل منحني طويل متدفق، خطوط كنس ناعمة وحواف مدببة حادة، حبر أسود صلب مع تظليل متدرج خفيف للعمق، أشكال هندسية وسائلة تشكل الجسم، خطوط شوارب رقيقة تمتد من الوجه، أسلوب وشم خط دقيق حديث، تباين عالي، مساحة سلبية نظيفة، مظهر متطور وفني، فن وشم فلاش",
   "@explorePromptElegantBlackCatSilhouetteDesign": {
     "description": "Home: Explore item prompt - Elegant black cat silhouette design"
+  },
+  "deleteConfirmationTitle": "حذف الإدخال",
+  "@deleteConfirmationTitle": {
+    "description": "Title for delete confirmation dialog"
+  },
+  "deleteConfirmationContent": "هل أنت متأكد أنك تريد حذف هذا التصميم من السجل؟ لا يمكن التراجع عن هذا الإجراء.",
+  "@deleteConfirmationContent": {
+    "description": "Content for delete confirmation dialog"
+  },
+  "delete": "حذف",
+  "@delete": {
+    "description": "Delete button label"
   },
   "exploreTitleRedRoseTattooDesign": "تصميم وشم وردة حمراء",
   "@exploreTitleRedRoseTattooDesign": {
@@ -848,248 +860,932 @@
   },
   "exit": "خروج",
   "@exit": {
-    "description": "Exit confirmation dialog: exit button label"
+    "description": "Exit confirmation dialog: confirm button"
+  },
+  "historySelected": "{count} محدد",
+  "@historySelected": {
+    "description": "History selection mode: title showing count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "historySelectAll": "تحديد الكل",
+  "@historySelectAll": {
+    "description": "History selection mode: select all button"
+  },
+  "historyDeselectAll": "إلغاء تحديد الكل",
+  "@historyDeselectAll": {
+    "description": "History selection mode: deselect all button"
+  },
+  "historySelect": "تحديد",
+  "@historySelect": {
+    "description": "History page: enter selection mode button"
   },
   "noInternetConnectionSomeFeatures": "لا يوجد اتصال بالإنترنت. قد لا تعمل بعض الميزات.",
+  "@noInternetConnectionSomeFeatures": {
+    "description": "Toast on home when device has no internet"
+  },
   "noInternetConnectionPleaseCheckNetwork": "لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة.",
-  "exploreCategoryMinimal": "وشوم بسيطة",
+  "@noInternetConnectionPleaseCheckNetwork": {
+    "description": "Toast during generation when network fails"
+  },
+  "exploreCategoryMinimal": "وشوم مينيمالية",
+  "@exploreCategoryMinimal": {
+    "description": "Explore category: Minimal Tattoos"
+  },
   "exploreCategoryMinimalDescription": "خطوط بسيطة ونظيفة بجمالية حد أدنى. مثالية للتصاميم الرقيقة والأنيقة.",
+  "@exploreCategoryMinimalDescription": {
+    "description": "Explore category description: Minimal Tattoos"
+  },
   "exploreCategoryTraditional": "تقليدي والمدرسة القديمة",
+  "@exploreCategoryTraditional": {
+    "description": "Explore category: Traditional & Old School"
+  },
   "exploreCategoryTraditionalDescription": "خطوط جريئة وألوان نابضة بالحياة وأسلوب أمريكي تقليدي كلاسيكي.",
-  "exploreCategoryJapanese": "النمط الياباني",
+  "@exploreCategoryTraditionalDescription": {
+    "description": "Explore category description: Traditional & Old School"
+  },
+  "exploreCategoryJapanese": "أسلوب ياباني",
+  "@exploreCategoryJapanese": {
+    "description": "Explore category: Japanese Style"
+  },
   "exploreCategoryJapaneseDescription": "إيريزومي ياباني تقليدي مع تنانين وأسماك كوي وأزهار الكرز.",
+  "@exploreCategoryJapaneseDescription": {
+    "description": "Explore category description: Japanese Style"
+  },
   "exploreCategoryTribal": "تصاميم قبلية",
+  "@exploreCategoryTribal": {
+    "description": "Explore category: Tribal Designs"
+  },
   "exploreCategoryTribalDescription": "أنماط سوداء جريئة مستوحاة من الفن البولينيزي والقبلي.",
+  "@exploreCategoryTribalDescription": {
+    "description": "Explore category description: Tribal Designs"
+  },
   "exploreCategoryGeometric": "وشوم هندسية",
+  "@exploreCategoryGeometric": {
+    "description": "Explore category: Geometric Tattoos"
+  },
   "exploreCategoryGeometricDescription": "هندسة مقدسة وماندالا وأنماط هندسية دقيقة.",
-  "exploreCategoryRealism": "واقعية وبورتريه",
-  "exploreCategoryRealismDescription": "بورتريهات واقعية تصويرية وصور تفصيلية واقعية.",
-  "exploreCategoryLettering": "حروف وخط",
-  "exploreCategoryLetteringDescription": "طباعة جميلة وخط واقتباسات ذات معنى.",
-  "exploreCategoryFloral": "زهري وطبيعة",
+  "@exploreCategoryGeometricDescription": {
+    "description": "Explore category description: Geometric Tattoos"
+  },
+  "exploreCategoryRealism": "واقعية وصورة شخصية",
+  "@exploreCategoryRealism": {
+    "description": "Explore category: Realism & Portrait"
+  },
+  "exploreCategoryRealismDescription": "صور شخصية واقعية تصويرية وصور تفصيلية واقعية.",
+  "@exploreCategoryRealismDescription": {
+    "description": "Explore category description: Realism & Portrait"
+  },
+  "exploreCategoryLettering": "خطوط وكتابة يدوية",
+  "@exploreCategoryLettering": {
+    "description": "Explore category: Lettering & Script"
+  },
+  "exploreCategoryLetteringDescription": "طباعة جميلة وكتابة يدوية واقتباسات ذات معنى.",
+  "@exploreCategoryLetteringDescription": {
+    "description": "Explore category description: Lettering & Script"
+  },
+  "exploreCategoryFloral": "أزهار وطبيعة",
+  "@exploreCategoryFloral": {
+    "description": "Explore category: Floral & Nature"
+  },
   "exploreCategoryFloralDescription": "أزهار ونباتات وعناصر طبيعية في تكوينات جميلة.",
-  "exploreCategoryMythology": "أساطير وخيال",
+  "@exploreCategoryFloralDescription": {
+    "description": "Explore category description: Floral & Nature"
+  },
+  "exploreCategoryMythology": "ميثولوجيا وفانتازيا",
+  "@exploreCategoryMythology": {
+    "description": "Explore category: Mythology & Fantasy"
+  },
   "exploreCategoryMythologyDescription": "مخلوقات أسطورية وآلهة وتصاميم مستوحاة من الخيال.",
-  "exploreCategoryCustomAi": "تصاميم ذكاء اصطناعي مخصصة",
+  "@exploreCategoryMythologyDescription": {
+    "description": "Explore category description: Mythology & Fantasy"
+  },
+  "exploreCategoryCustomAi": "تصاميم مخصصة بالذكاء الاصطناعي",
+  "@exploreCategoryCustomAi": {
+    "description": "Explore category: Custom AI Designs"
+  },
   "exploreCategoryCustomAiDescription": "تصاميم فريدة من الذكاء الاصطناعي تجمع بين أنماط متعددة.",
-  "exploreItemMinimalistPanda": "باندا بسيط",
-  "exploreItemMinimalistPandaPrompt": "وشم باندا بسيط صغير على الكاحل، باندا لطيفة جالسة بخطوط سوداء نظيفة وتظليل دقيق ناعم، تحمل ساقًا رفيعة خضراء مع أزهار لافندر بنفسجية صغيرة، تفاصيل نباتية رقيقة وأذنين وذراعين سوداء لامعة، التصميم في المنتصف على جلد الكاحل، مصور بإضاءة طبيعية مع عمق ميدان ضحل وأسلوب مرجع وشم بسيط واحترافي بتكوين 1:1.",
+  "@exploreCategoryCustomAiDescription": {
+    "description": "Explore category description: Custom AI Designs"
+  },
+  "exploreItemMinimalistPanda": "باندا مينيمالي",
+  "@exploreItemMinimalistPanda": {
+    "description": "Explore item title: Minimalist Panda"
+  },
+  "exploreItemMinimalistPandaPrompt": "وشم باندا مينيمالي صغير جداً، باندا لطيفة جالسة منتصبة تواجه قليلاً لليمين، مرسومة بخطوط سوداء نظيفة وتظليل دقيق ناعم. الباندا تحمل ساقاً خضراء رفيعة مع أزهار لافندر بنفسجية صغيرة، مع تفاصيل نباتية خفيفة وأذنين وذراعين سوداء لامعة. التصميم في المنتصف على جلد الكاحل، مصور بإضاءة طبيعية مع عمق ميدان ضحل وأسلوب مرجع وشم مينيمالي واحترافي بتكوين 1:1.",
+  "@exploreItemMinimalistPandaPrompt": {
+    "description": "Explore item prompt: Minimalist Panda"
+  },
   "exploreItemFineLineBow": "قوس بخط رفيع",
+  "@exploreItemFineLineBow": {
+    "description": "Explore item title: Fine-Line Bow"
+  },
   "exploreItemFineLineBowPrompt": "وشم صغير بسيط على المعصم الداخلي لشريطة قوس رقيقة، مرسومة بخط أسود رفيع وعقدة مركزية صغيرة. التصميم متماثل ونظيف وبأسلوب وشم صغير، موضوع على جلد معصم أملس شاحب. مصور بإضاءة طبيعية ناعمة مع عمق ميدان ضحل، بجمالية بسيطة حديثة ومظهر مرجع وشم احترافي.",
+  "@exploreItemFineLineBowPrompt": {
+    "description": "Explore item prompt: Fine-Line Bow"
+  },
   "exploreItemMicroRealismFinger": "وشوم أصابع واقعية دقيقة",
+  "@exploreItemMicroRealismFinger": {
+    "description": "Explore item title: Micro Realism Finger Tattoos"
+  },
   "exploreItemMicroRealismFingerPrompt": "لقطة ماكرو فائقة الواقعية لإصبع أوسط تظهر وشمين صغيرين دقيقين فوق المفصل: قطة صغيرة جالسة تواجه اليمين وفراشة رقيقة بخط دقيق وتظليل خفيف. المشهد يتميز بنسيج جلد طبيعي وإضاءة محايدة دافئة وعمق ميدان ضحل وخلفية بيج نظيفة، بأسلوب صورة مرجع وشم احترافية عالية التفاصيل.",
+  "@exploreItemMicroRealismFingerPrompt": {
+    "description": "Explore item prompt: Micro Realism Finger Tattoos"
+  },
   "exploreItemFineLineCatCircle": "قطة بخط رفيع في دائرة",
+  "@exploreItemFineLineCatCircle": {
+    "description": "Explore item title: Fine-Line Cat in Circle"
+  },
   "exploreItemFineLineCatCirclePrompt": "وشم بسيط أعلى الظهر أسفل الرقبة يظهر ظل قطة سوداء صغيرة جالسة وموجهة للخلف بذيل منحني طويل. محاطة بدائرة رفيعة ورقيقة غير مكتملة مع أوراق صغيرة وزهرة صغيرة بحبر أسود بخط رفيع فائق النظافة. المشهد يتميز بنسيج جلد واقعي وإضاءة طبيعية ناعمة وعمق ميدان ضحل وأسلوب مرجع وشم واقعي حديث.",
+  "@exploreItemFineLineCatCirclePrompt": {
+    "description": "Explore item prompt: Fine-Line Cat in Circle"
+  },
   "exploreItemFineLineLotusFlower": "زهرة لوتس بخط رفيع",
+  "@exploreItemFineLineLotusFlower": {
+    "description": "Explore item title: Fine-Line Lotus Flower"
+  },
   "exploreItemFineLineLotusFlowerPrompt": "وشم زهرة لوتس بخط رفيع بسيط مع بتلات طبقية رقيقة وساق رفيعة مع أوراق صغيرة وبراعم بحبر أسود نظيف. بجانبها قلب أسود صلب صغير مع نقطتين صغيرتين بأسلوب وشم صغير. التصميم في المنتصف على جلد أملس مصور بإضاءة طبيعية دافئة مع عمق ميدان ضحل وجمالية مرجع وشم واقعية حديثة.",
+  "@exploreItemFineLineLotusFlowerPrompt": {
+    "description": "Explore item prompt: Fine-Line Lotus Flower"
+  },
   "exploreItemSleepingCatCrescent": "قطة نائمة في هلال",
+  "@exploreItemSleepingCatCrescent": {
+    "description": "Explore item title: Sleeping Cat in Crescent Moon"
+  },
   "exploreItemSleepingCatCrescentPrompt": "وشم صغير دقيق لقطيطة نائمة ملتفة داخل هلال رفيع مع تظليل أسود ورمادي ناعم وبريقات رقيقة حولها. التصميم يتميز بعمل خط رفيع نظيف وتفاصيل فراء خفيفة، موضوع على جلد المعصم أو الساعد مصور بإضاءة طبيعية دافئة مع عمق ميدان ضحل لمظهر مرجع وشم واقعي عالي التفاصيل.",
+  "@exploreItemSleepingCatCrescentPrompt": {
+    "description": "Explore item prompt: Sleeping Cat in Crescent Moon"
+  },
   "exploreItemFineLineHeartStars": "قلب ونجوم بخط رفيع",
-  "exploreItemFineLineHeartStarsPrompt": "وشم هندسي بسيط على الساعد يتميز بقلب أسود صلب بحواف حادة محاط بنجوم رباعية رفيعة أعلاه وأسفله. نقاط سوداء صغيرة ودوائر محددة صغيرة تشكل تخطيطًا عموديًا متماثلًا حوله. بحبر أسود بخط رفيع نظيف على جلد أملس مصور بإضاءة طبيعية ناعمة بأسلوب مرجع وشم حديث عالي التفاصيل.",
+  "@exploreItemFineLineHeartStars": {
+    "description": "Explore item title: Fine-Line Heart and Stars"
+  },
+  "exploreItemFineLineHeartStarsPrompt": "وشم هندسي مينيمالي يتميز بقلب أسود صلب بحواف حادة محاط بنجوم رباعية رفيعة أعلاه وأسفله. نقاط سوداء صغيرة ودوائر محددة صغيرة تشكل تخطيطاً عمودياً متماثلاً حوله. أسلوب مرجع وشم عالي التفاصيل، خلفية بيضاء.",
+  "@exploreItemFineLineHeartStarsPrompt": {
+    "description": "Explore item prompt: Fine-Line Heart and Stars"
+  },
   "exploreItemFineLineCompassStar": "نجمة بوصلة بخط رفيع",
+  "@exploreItemFineLineCompassStar": {
+    "description": "Explore item title: Fine-Line Compass Star"
+  },
   "exploreItemFineLineCompassStarPrompt": "وشم صغير دقيق على الساعد الداخلي يتميز بنجمة بوصلة هندسية ذات 8 نقاط في المنتصف بخطوط سوداء حادة ونظيفة وأربع نقاط صغيرة حولها. قلب محدد صغير أسفل النجمة مباشرة. التصميم فائق النظافة ومتماثل مصور على جلد أملس بإضاءة طبيعية ناعمة وأسلوب مرجع وشم واقعي حديث.",
-  "exploreItemMinimalTrebleClef": "مفتاح موسيقي على الرقبة",
+  "@exploreItemFineLineCompassStarPrompt": {
+    "description": "Explore item prompt: Fine-Line Compass Star"
+  },
+  "exploreItemMinimalTrebleClef": "مفتاح صول مينيمالي على الرقبة",
+  "@exploreItemMinimalTrebleClef": {
+    "description": "Explore item title: Minimal Treble Clef Neck"
+  },
   "exploreItemMinimalTrebleClefPrompt": "وشم مفتاح موسيقي أسود لامع صغير مع ثلاث نوتات موسيقية صغيرة خلف الأذن على جانب الرقبة. بخطوط جريئة ونظيفة مصور بإضاءة دافئة ناعمة مع نسيج جلد واقعي وأذن مرئية مع قرط فضي وعمق ميدان ضحل لمظهر مرجع وشم مفصل وبسيط.",
+  "@exploreItemMinimalTrebleClefPrompt": {
+    "description": "Explore item prompt: Minimal Treble Clef Neck"
+  },
   "exploreItemStarryHeart": "قلب نجمي",
-  "exploreItemStarryHeartPrompt": "وشم بسيط بخط رفيع على الساعد الداخلي يتميز بقلب محدد متوسط مع تفاصيل نقطية صغيرة بداخله محاط بنجوم صغيرة ونقاط صلبة. بأسلوب وشم صغير أسود نظيف مصور على جلد واقعي بإضاءة خارجية ناعمة مع كم أبيض وجينز أزرق فاتح وسوار خفيف مرئي على خلفية شارع ضبابية خفيفة.",
+  "@exploreItemStarryHeart": {
+    "description": "Explore item title: Starry Heart"
+  },
+  "exploreItemStarryHeartPrompt": "وشم بسيط بخط رفيع يتميز بقلب محدد متوسط مع تفاصيل نقطية صغيرة بداخله محاط بنجوم صغيرة ونقاط صلبة، بأسلوب وشم صغير أسود نظيف على خلفية بيضاء، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemStarryHeartPrompt": {
+    "description": "Explore item prompt: Starry Heart"
+  },
   "exploreItemValknutTriangle": "مثلث فالكنوت",
-  "exploreItemValknutTrianglePrompt": "لقطة قريبة واقعية ليد بالقرب من جيب جينز مع وشم هندسي بسيط صغير بأسلوب فالكنوت مصنوع من ثلاثة مثلثات متشابكة بحبر أسود رفيع. نسيج جلد وأوردة مرئية وكم أسود وخاتم فضي وخلفية دنيم وإضاءة طبيعية ناعمة وعمق ميدان ضحل.",
-  "exploreItemMinimalistMountain": "جبل بسيط",
-  "exploreItemMinimalistMountainPrompt": "لقطة قريبة فائقة الواقعية للمعصم الداخلي مع وشم جبل صغير بخط رفيع بحبر أسود نظيف. تصميم بسيط صغير في منتصف المعصم مع نسيج جلد وأوردة مرئية وكم مطوي قليلاً وإضاءة طبيعية ناعمة وخلفية محايدة وعمق ميدان ضحل.",
+  "@exploreItemValknutTriangle": {
+    "description": "Explore item title: Valknut Triangle"
+  },
+  "exploreItemValknutTrianglePrompt": "لقطة قريبة واقعية تصويرية لوشم هندسي بأسلوب فالكنوت مصنوع من ثلاثة مثلثات متشابكة بحبر أسود رفيع، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول، إضاءة طبيعية ناعمة، عمق ميدان ضحل.",
+  "@exploreItemValknutTrianglePrompt": {
+    "description": "Explore item prompt: Valknut Triangle"
+  },
+  "exploreItemMinimalistMountain": "جبل مينيمالي",
+  "@exploreItemMinimalistMountain": {
+    "description": "Explore item title: Minimalist Mountain"
+  },
+  "exploreItemMinimalistMountainPrompt": "لقطة قريبة فائقة الواقعية لوشم جبل بخط رفيع بحبر أسود نظيف، تصميم مينيمالي صغير مع إضاءة طبيعية ناعمة وخلفية محايدة وعمق ميدان ضحل، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemMinimalistMountainPrompt": {
+    "description": "Explore item prompt: Minimalist Mountain"
+  },
   "exploreItemSwallowBird": "طائر السنونو",
+  "@exploreItemSwallowBird": {
+    "description": "Explore item title: Swallow Bird"
+  },
   "exploreItemSwallowBirdPrompt": "وشم سنونو بأسلوب المدرسة القديمة بأجنحة مفتوحة وخطوط جريئة ولوحة ألوان كلاسيكية زرقاء وحمراء وأسلوب فلاش وشم بحار عتيق وتظليل بسيط وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
-  "exploreItemDaggerHeart": "خنجر في القلب",
+  "@exploreItemSwallowBirdPrompt": {
+    "description": "Explore item prompt: Swallow Bird"
+  },
+  "exploreItemDaggerHeart": "خنجر يخترق القلب",
+  "@exploreItemDaggerHeart": {
+    "description": "Explore item title: Dagger Through Heart"
+  },
   "exploreItemDaggerHeartPrompt": "وشم خنجر تقليدي في القلب بخطوط جريئة وقلب أحمر مخترق بخنجر فولاذي وفلاش مدرسة قديمة كلاسيكي وتظليل قوي وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemDaggerHeartPrompt": {
+    "description": "Explore item prompt: Dagger Through Heart"
+  },
   "exploreItemSkullClassic": "جمجمة كلاسيكية",
+  "@exploreItemSkullClassic": {
+    "description": "Explore item title: Skull Classic"
+  },
   "exploreItemSkullClassicPrompt": "وشم جمجمة بأسلوب المدرسة القديمة بخطوط سوداء جريئة وتظليل بسيط وتصميم فلاش عتيق وأسلوب وشم تقليدي وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
-  "exploreItemEagleSpread": "نسر ممتد",
+  "@exploreItemSkullClassicPrompt": {
+    "description": "Explore item prompt: Skull Classic"
+  },
+  "exploreItemEagleSpread": "نسر بأجنحة ممتدة",
+  "@exploreItemEagleSpread": {
+    "description": "Explore item title: Eagle Spread"
+  },
   "exploreItemEagleSpreadPrompt": "وشم نسر تقليدي بأجنحة ممتدة واسعة وخطوط جريئة ولوحة ألوان حمراء صفراء زرقاء وأسلوب أمريكي تقليدي عتيق وتظليل قوي وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemEagleSpreadPrompt": {
+    "description": "Explore item prompt: Eagle Spread"
+  },
   "exploreItemSnakeCoiled": "ثعبان ملتف",
+  "@exploreItemSnakeCoiled": {
+    "description": "Explore item title: Snake Coiled"
+  },
   "exploreItemSnakeCoiledPrompt": "وشم ثعبان بأسلوب المدرسة القديمة وأفعى ملتفة وخطوط جريئة ولوحة ألوان خضراء وحمراء وأسلوب فلاش عتيق وتظليل بسيط قوي وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
-  "exploreItemShipWheel": "عجلة سفينة",
+  "@exploreItemSnakeCoiledPrompt": {
+    "description": "Explore item prompt: Snake Coiled"
+  },
+  "exploreItemShipWheel": "عجلة السفينة",
+  "@exploreItemShipWheel": {
+    "description": "Explore item title: Ship Wheel"
+  },
   "exploreItemShipWheelPrompt": "وشم عجلة سفينة تقليدية بموضوع بحري وخطوط جريئة ونغمات بنية وذهبية وفلاش وشم بحار كلاسيكي وتظليل بسيط وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemShipWheelPrompt": {
+    "description": "Explore item prompt: Ship Wheel"
+  },
   "exploreItemCowboyRevolver": "مسدس كاوبوي",
+  "@exploreItemCowboyRevolver": {
+    "description": "Explore item title: Cowboy Revolver"
+  },
   "exploreItemCowboyRevolverPrompt": "وشم مسدس كاوبوي تقليدي بأسلوب المدرسة القديمة ومسدس غربي كلاسيكي وخطوط سوداء سميكة جريئة وأسلوب فلاش وشم عتيق ولمسات حمراء وذهبية بسيطة وتظليل قوي ومظهر نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
-  "exploreItemPantherHead": "رأس النمر",
+  "@exploreItemCowboyRevolverPrompt": {
+    "description": "Explore item prompt: Cowboy Revolver"
+  },
+  "exploreItemPantherHead": "رأس الفهد",
+  "@exploreItemPantherHead": {
+    "description": "Explore item title: Panther Head"
+  },
   "exploreItemPantherHeadPrompt": "وشم رأس نمر بأسلوب المدرسة القديمة ونمر يزأر وخطوط سوداء جريئة وعيون صفراء وفم أحمر وأسلوب فلاش تقليدي عتيق وتظليل قوي وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemPantherHeadPrompt": {
+    "description": "Explore item prompt: Panther Head"
+  },
   "exploreItemKoiFish": "سمكة كوي",
+  "@exploreItemKoiFish": {
+    "description": "Explore item title: Koi Fish"
+  },
   "exploreItemKoiFishPrompt": "وشم سمكة كوي بأسلوب ياباني وتصميم إيريزومي تقليدي وكوي متدفقة بجسم منحني وخطوط جريئة ولوحة ألوان حمراء برتقالية وموجات مائية حول السمكة ومظهر نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemKoiFishPrompt": {
+    "description": "Explore item prompt: Koi Fish"
+  },
   "exploreItemHannyaMask": "قناع هانيا",
+  "@exploreItemHannyaMask": {
+    "description": "Explore item title: Hannya Mask"
+  },
   "exploreItemHannyaMaskPrompt": "وشم قناع هانيا ياباني بأسلوب إيريزومي تقليدي وقناع شيطاني بقرون وخطوط سوداء جريئة ونغمات حمراء وبيضاء وتعبير درامي وأسلوب نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemHannyaMaskPrompt": {
+    "description": "Explore item prompt: Hannya Mask"
+  },
   "exploreItemSamuraiHelmet": "خوذة ساموراي",
+  "@exploreItemSamuraiHelmet": {
+    "description": "Explore item title: Samurai Helmet"
+  },
   "exploreItemSamuraiHelmetPrompt": "وشم خوذة ساموراي يابانية وخوذة كابوتو من الأمام بأسلوب إيريزومي تقليدي وخطوط جريئة ولمسات ذهبية وحمراء ومظهر نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemSamuraiHelmetPrompt": {
+    "description": "Explore item prompt: Samurai Helmet"
+  },
   "exploreItemCherryBlossomBranch": "فرع زهر الكرز",
+  "@exploreItemCherryBlossomBranch": {
+    "description": "Explore item title: Cherry Blossom Branch"
+  },
   "exploreItemCherryBlossomBranchPrompt": "وشم زهر كرز ياباني وفرع ساكورا بأزهار بأسلوب إيريزومي تقليدي وأزهار وردية ناعمة وخطوط جريئة وتكوين أنيق وتصميم متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemCherryBlossomBranchPrompt": {
+    "description": "Explore item prompt: Cherry Blossom Branch"
+  },
   "exploreItemJapaneseDragon": "تنين ياباني",
+  "@exploreItemJapaneseDragon": {
+    "description": "Explore item title: Japanese Dragon"
+  },
   "exploreItemJapaneseDragonPrompt": "وشم تنين ياباني بأسلوب إيريزومي تقليدي وجسم طويل متدفق وسحب حول التنين وخطوط جريئة ولوحة ألوان خضراء حمراء ووضعية ديناميكية وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemJapaneseDragonPrompt": {
+    "description": "Explore item prompt: Japanese Dragon"
+  },
   "exploreItemOniMask": "قناع أوني",
+  "@exploreItemOniMask": {
+    "description": "Explore item title: Oni Mask"
+  },
   "exploreItemOniMaskPrompt": "وشم قناع أوني ياباني وقناع شيطاني تقليدي وخطوط جريئة ولوحة ألوان حمراء وسوداء وتعبير شرس وأسلوب إيريزومي وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemOniMaskPrompt": {
+    "description": "Explore item prompt: Oni Mask"
+  },
   "exploreItemHokusaiWave": "موجة (أسلوب هوكوساي)",
+  "@exploreItemHokusaiWave": {
+    "description": "Explore item title: Wave (Hokusai Style)"
+  },
   "exploreItemHokusaiWavePrompt": "وشم موجة يابانية وموجة محيطية بأسلوب إيريزومي تقليدي وخطوط جريئة ونغمات زرقاء وأسلوب موجة يابانية كلاسيكية ومظهر نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemHokusaiWavePrompt": {
+    "description": "Explore item prompt: Wave (Hokusai Style)"
+  },
   "exploreItemJapaneseTiger": "نمر",
+  "@exploreItemJapaneseTiger": {
+    "description": "Explore item title: Tiger"
+  },
   "exploreItemJapaneseTigerPrompt": "وشم نمر ياباني بأسلوب إيريزومي تقليدي ورأس نمر يزأر وخطوط جريئة ولوحة ألوان برتقالية سوداء وأسلوب ديناميكي وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemJapaneseTigerPrompt": {
+    "description": "Explore item prompt: Tiger"
+  },
   "exploreItemJapaneseLotus": "زهرة اللوتس",
+  "@exploreItemJapaneseLotus": {
+    "description": "Explore item title: Lotus Flower"
+  },
   "exploreItemJapaneseLotusPrompt": "وشم لوتس ياباني وزهرة لوتس بأسلوب إيريزومي تقليدي وخطوط جريئة ونغمات وردية وحمراء وعناصر مائية ومظهر نظيف وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemJapaneseLotusPrompt": {
+    "description": "Explore item prompt: Lotus Flower"
+  },
   "exploreItemJapanesePhoenix": "طائر الفينيق",
+  "@exploreItemJapanesePhoenix": {
+    "description": "Explore item title: Phoenix"
+  },
   "exploreItemJapanesePhoenixPrompt": "وشم طائر فينيق ياباني بأسلوب إيريزومي تقليدي وأجنحة مفتوحة وخطوط جريئة ولوحة ألوان حمراء برتقالية صفراء ونيران حول الطائر وتكوين متمركز وخلفية شفافة PNG ودقة عالية.",
+  "@exploreItemJapanesePhoenixPrompt": {
+    "description": "Explore item prompt: Phoenix"
+  },
   "exploreItemPolynesianTribal": "وشم قبلي بولينيزي",
-  "exploreItemPolynesianTribalPrompt": "وشم قبلي بولينيزي جريء على ظهر اليد يتميز بخطوط سوداء حادة وأنماط لولبية وتصاميم هندسية. يجمع الوشم بين منحنيات ناعمة وزوايا حادة ويلتف حول اليد بتدفق متماثل ويمتد من الكف إلى المعصم بطرف مدبب. الحبر الأسود العميق يتباين بشكل حاد ويعرض الأسلوب البولينيزي التقليدي مع نسيج جلد واقعي وإضاءة ناعمة.",
+  "@exploreItemPolynesianTribal": {
+    "description": "Explore item title: Polynesian Tribal Tattoo"
+  },
+  "exploreItemPolynesianTribalPrompt": "تصميم وشم قبلي بولينيزي جريء يتميز بخطوط سوداء حادة وأنماط لولبية وعناصر هندسية بمنحنيات ناعمة وزوايا حادة مرتبة بتدفق متماثل يمتد إلى طرف مدبب، حبر أسود عميق بأسلوب بولينيزي تقليدي، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemPolynesianTribalPrompt": {
+    "description": "Explore item prompt: Polynesian Tribal Tattoo"
+  },
   "exploreItemTribalSpineSpear": "وشم رمح قبلي على العمود الفقري",
-  "exploreItemTribalSpineSpearPrompt": "صورة فائقة الواقعية لأعلى ظهر رجل مع وشم قبلي أسود متمركز ومتماثل يجمع بين عمل عقد سلتي وخطوط بولينيزية حادة. التصميم يشكل شكلًا ممدودًا يشبه الرمح على طول العمود الفقري بحبر نظيف جريء وحواف واضحة ونسيج جلد طبيعي وإضاءة خارجية وعمق ميدان ضحل.",
+  "@exploreItemTribalSpineSpear": {
+    "description": "Explore item title: Tribal Spine Spear Tattoo"
+  },
+  "exploreItemTribalSpineSpearPrompt": "تصميم وشم قبلي على العمود الفقري متمركز ومتماثل يجمع بين عمل عقد سلتي وخطوط بأسلوب بولينيزي حادة، يشكل شكلاً ممدوداً يشبه الرمح بحبر أسود نظيف جريء وحواف واضحة، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalSpineSpearPrompt": {
+    "description": "Explore item prompt: Tribal Spine Spear Tattoo"
+  },
   "exploreItemTribalKnotwork": "وشم عقد قبلي",
-  "exploreItemTribalKnotworkPrompt": "وشم قبلي متماثل بخطوط هندسية سوداء حادة ومنحنيات يتميز بشكل مركزي ممدود يتناقص من كلا الطرفين. أنماط متشابكة معقدة وتباين عالي وبدون تظليل وحبر صلب نظيف وأسلوب مجرد حديث بتماثل مثالي وخلفية بسيطة.",
+  "@exploreItemTribalKnotwork": {
+    "description": "Explore item title: Tribal Knotwork Tattoo"
+  },
+  "exploreItemTribalKnotworkPrompt": "وشم قبلي متماثل بخطوط هندسية سوداء حادة ومنحنيات يتميز بشكل مركزي ممدود يتناقص من كلا الطرفين، أنماط متشابكة معقدة، تباين عالي، بدون تظليل، حبر صلب نظيف، أسلوب مجرد حديث بتماثل مثالي وخلفية بسيطة، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalKnotworkPrompt": {
+    "description": "Explore item prompt: Tribal Knotwork Tattoo"
+  },
   "exploreItemTribalForearmSleeve": "شريط كم قبلي على الساعد",
-  "exploreItemTribalForearmSleevePrompt": "صورة واقعية لساعد رجل منحني يتميز بوشم قبلي أسود جريء بأسلوب بولينيزي يلتف نحو المعصم بخطوط منحنية متدفقة ونقاط حادة وزخارف دائرية. نسيج جلد طبيعي وقميص بولو أبيض قصير الأكمام وإضاءة داخلية دافئة وعمق ميدان ضحل وتكوين عالي التفاصيل متمركز.",
+  "@exploreItemTribalForearmSleeve": {
+    "description": "Explore item title: Tribal Forearm Sleeve Band"
+  },
+  "exploreItemTribalForearmSleevePrompt": "تصميم شريط كم قبلي بولينيزي جريء بخطوط منحنية متدفقة ونقاط حادة وزخارف دائرية في تكوين ديناميكي، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalForearmSleevePrompt": {
+    "description": "Explore item prompt: Tribal Forearm Sleeve Band"
+  },
   "exploreItemTribalCentralSpiral": "لولب مركزي",
-  "exploreItemTribalCentralSpiralPrompt": "لقطة قريبة واقعية ليد تمسك بقماش أزرق تظهر وشمًا قبليًا أسود جريئًا يتدفق من الأصابع عبر ظهر اليد نحو المعصم. خطوط شبيهة باللهب حادة مع منحنيات ناعمة ونسيج جلد وأوردة مرئية وإضاءة مزاجية باردة وعمق ميدان ضحل وتكوين سينمائي متمركز.",
+  "@exploreItemTribalCentralSpiral": {
+    "description": "Explore item title: Central Spiral"
+  },
+  "exploreItemTribalCentralSpiralPrompt": "تصميم وشم قبلي لولب مركزي جريء بخطوط شبيهة باللهب حادة ومنحنيات ناعمة متدفقة في تكوين متماثل ديناميكي، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalCentralSpiralPrompt": {
+    "description": "Explore item prompt: Central Spiral"
+  },
   "exploreItemTribalFlameForearm": "وشم لهب قبلي على الساعد",
-  "exploreItemTribalFlameForearmPrompt": "لقطة قريبة واقعية للساعد الداخلي مع وشم قبلي أسود جريء شبيه باللهب بحبر سميك ونظيف متمركز على الذراع. الشخص يجلس في كرسي استوديو وشم يمسك معصمه مع كرسي أسود وأرضية بلاط في الخلفية وإضاءة داخلية ونسيج جلد طبيعي وعمق ميدان ضحل.",
+  "@exploreItemTribalFlameForearm": {
+    "description": "Explore item title: Flame Tribal Forearm Tattoo"
+  },
+  "exploreItemTribalFlameForearmPrompt": "تصميم وشم قبلي شبيه باللهب على الساعد بحبر أسود سميك ونظيف مع حواف مدببة ومنحنيات متدفقة، تكوين عمودي متمركز، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalFlameForearmPrompt": {
+    "description": "Explore item prompt: Flame Tribal Forearm Tattoo"
+  },
   "exploreItemTribalSpiralFlame": "لولب بامتدادات لهبية",
-  "exploreItemTribalSpiralFlamePrompt": "صورة فائقة الواقعية لذراع عضلية علوية مع وشم قبلي لولبي أسود جريء على الكتف يتميز بحبر سميك وامتدادات لهبية حادة. الوشم الجديد يظهر احمرارًا خفيفًا مع الشخص بقميص أسود بلا أكمام داخل استوديو وشم تحت إضاءة داخلية مع نسيج جلد مرئي وعمق ميدان ضحل.",
+  "@exploreItemTribalSpiralFlame": {
+    "description": "Explore item title: Spiral with Flame Extensions"
+  },
+  "exploreItemTribalSpiralFlamePrompt": "تصميم وشم قبلي لولبي لهبي جريء بحبر أسود سميك وامتدادات لهبية حادة تشع من لولب مركزي، تكوين متماثل ديناميكي، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، تباين عالي، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalSpiralFlamePrompt": {
+    "description": "Explore item prompt: Spiral with Flame Extensions"
+  },
   "exploreItemTribalCompass": "وشم بوصلة قبلي",
-  "exploreItemTribalCompassPrompt": "لقطة قريبة فائقة الواقعية لساق تتميز بوشم بوصلة قبلي أسود متمركز بنقاط نجمية متماثلة حادة وامتدادات لهبية. حبر صلب نظيف واحمرار خفيف ونسيج جلد وشعر مرئي وإضاءة استوديو دافئة وخلفية داكنة وعمق ميدان ضحل.",
+  "@exploreItemTribalCompass": {
+    "description": "Explore item title: Tribal Compass Tattoo"
+  },
+  "exploreItemTribalCompassPrompt": "تصميم وشم بوصلة قبلي متمركز بنقاط نجمية متماثلة حادة وامتدادات لهبية بحبر أسود صلب نظيف، تباين عالي مع حواف واضحة وهندسة متوازنة، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalCompassPrompt": {
+    "description": "Explore item prompt: Tribal Compass Tattoo"
+  },
   "exploreItemTribalModernGeometric": "قبلي هندسي حديث",
-  "exploreItemTribalModernGeometricPrompt": "لقطة قريبة فائقة الواقعية لساق مع وشم قبلي هندسي أسود كبير ومتماثل يتميز بأنماط مثلثة حادة ومركز شبيه بالزهرة. حبر صلب سميك وتباين عالي ونسيج جلد طبيعي وجوارب بيضاء وأحذية سوداء مرئية ووقوف على أرضية معدنية النسيج بإضاءة خارجية مع عمق ميدان ضحل.",
-  "exploreItemTribalNeoBack": "وشم قبلي نيو على الظهر",
-  "exploreItemTribalNeoBackPrompt": "لقطة علوية واقعية لشخص يميل للأمام يكشف عن وشم قبلي أسود كبير جريء شائك منتشر عبر أعلى الظهر والأكتاف. أشكال شائكة حادة بحبر صلب عالي التباين وشعر مربوط وممسوك باليد وملابس وخلفية داكنة وإضاءة مزاجية ونسيج جلد واقعي وعمق ميدان ضحل.",
+  "@exploreItemTribalModernGeometric": {
+    "description": "Explore item title: Modern Geometric Tribal"
+  },
+  "exploreItemTribalModernGeometricPrompt": "تصميم وشم قبلي هندسي حديث كبير ومتماثل يتميز بأنماط مثلثة حادة ومركز شبيه بالزهرة بحبر أسود صلب سميك وتباين عالي وتماثل دقيق، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalModernGeometricPrompt": {
+    "description": "Explore item prompt: Modern Geometric Tribal"
+  },
+  "exploreItemTribalNeoBack": "وشم نيو قبلي على الظهر",
+  "@exploreItemTribalNeoBack": {
+    "description": "Explore item title: Neo-Tribal Back Tattoo"
+  },
+  "exploreItemTribalNeoBackPrompt": "تصميم وشم نيو قبلي على الظهر كبير يتميز بأشكال شائكة شبيهة بالشوك حادة بحبر أسود صلب عالي التباين وحواف حادة وتماثل ديناميكي، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalNeoBackPrompt": {
+    "description": "Explore item prompt: Neo-Tribal Back Tattoo"
+  },
   "exploreItemTribalFlame": "لهب قبلي",
-  "exploreItemTribalFlamePrompt": "لقطة قريبة فائقة الواقعية لظهر اليد مع وشم لهب قبلي أسود متماثل يتدفق من المفاصل نحو المعصم يتميز بمنحنيات حادة وزخارف لولبية بحبر صلب نظيف. نسيج جلد وأوردة مرئية ويد مسترخية وجينز داكن في الخلفية وإضاءة داخلية محايدة وعمق ميدان ضحل.",
+  "@exploreItemTribalFlame": {
+    "description": "Explore item title: Flame Tribal"
+  },
+  "exploreItemTribalFlamePrompt": "تصميم وشم لهب قبلي متماثل يتميز بمنحنيات حادة وزخارف لولبية زخرفية بحبر أسود صلب نظيف وتباين عالي وهندسة متدفقة دقيقة، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalFlamePrompt": {
+    "description": "Explore item prompt: Flame Tribal"
+  },
   "exploreItemTribalSwordCompass": "وشم سيف وبوصلة",
-  "exploreItemTribalSwordCompassPrompt": "لقطة قريبة فائقة الواقعية لظهر اليد مع وشم أسود ورمادي لسيف عمودي يخترق وردة بوصلة ذات 8 نقاط يتميز بعمل خط رفيع وتفاصيل دائرية وتظليل خفيف شبيه بالدخان. نسيج جلد واقعي وخلفية ضبابية داكنة وإضاءة استوديو درامية وعمق ميدان ضحل.",
+  "@exploreItemTribalSwordCompass": {
+    "description": "Explore item title: Sword and Compass Tattoo"
+  },
+  "exploreItemTribalSwordCompassPrompt": "تصميم وشم قبلي لسيف عمودي وردة بوصلة ذات 8 نقاط بعمل خط رفيع وتفاصيل دائرية ولمسات دخانية خفيفة بحبر أسود عالي التباين، تكوين متماثل متمركز، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemTribalSwordCompassPrompt": {
+    "description": "Explore item prompt: Sword and Compass Tattoo"
+  },
   "exploreItemGeometricMindBodySoul": "العقل–الجسد–الروح",
-  "exploreItemGeometricMindBodySoulPrompt": "وشم هندسة مقدسة أسود ورمادي عالي التفاصيل على الساعد بتصميم عمودي: دماغ يتحول إلى شجرة في الأعلى وشخص يتأمل داخل أشكال ماندالا هندسية في الوسط وقلب تشريحي مع عناصر زخرفية في الأسفل. عمل خط نظيف وتظليل عمل نقطي وتباين عالي وعرض استوديو واقعي.",
+  "@exploreItemGeometricMindBodySoul": {
+    "description": "Explore item title: Mind–Body–Soul"
+  },
+  "exploreItemGeometricMindBodySoulPrompt": "تصميم وشم هندسة مقدسة عالي التفاصيل بتكوين عمودي: دماغ يتحول إلى شجرة في الأعلى وشخص يتأمل داخل أشكال ماندالا هندسية في الوسط وقلب تشريحي مع عناصر زخرفية في الأسفل، عمل خط نظيف وتظليل عمل نقطي وحبر أسود عالي التباين، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemGeometricMindBodySoulPrompt": {
+    "description": "Explore item prompt: Mind–Body–Soul"
+  },
   "exploreItemGeometricHoneycombSleeve": "كم خلية نحل هندسي",
-  "exploreItemGeometricHoneycombSleevePrompt": "صورة استوديو فائقة الواقعية لرجل رياضي بدون قميص يعرض وشم كم هندسي أسود كامل مع نمط سداسي خلية نحل على الكتف وتصاميم ماندالا هندسة مقدسة أسفل الذراع. حبر نظيف عالي التباين ونسيج جلد طبيعي وخلفية محايدة وإضاءة ناعمة وعمق ميدان ضحل.",
-  "exploreItemGeometricBlackwork": "هندسي + عمل أسود توضيحي",
-  "exploreItemGeometricBlackworkPrompt": "صورة فائقة الواقعية لرجل بدون قميص مع وشم هندسي أسود ورمادي على الكتف وأعلى الذراع يتميز بسداسيات خلية نحل تحتوي على مشاهد غابة وجبال مفصلة. حبر عالي التباين مع تظليل وعمل نقطي ونسيج جلد طبيعي وإضاءة استوديو ناعمة وخلفية محايدة وعمق ميدان ضحل.",
+  "@exploreItemGeometricHoneycombSleeve": {
+    "description": "Explore item title: Geometric Blackout Honeycomb Sleeve"
+  },
+  "exploreItemGeometricHoneycombSleevePrompt": "تصميم كم وشم هندسي أسود كامل يتميز بنمط سداسي خلية نحل عمودي مجتمع مع عناصر ماندالا هندسة مقدسة متدفقة للأسفل، حبر أسود عالي التباين بعمل خط دقيق وتماثل واضح، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemGeometricHoneycombSleevePrompt": {
+    "description": "Explore item prompt: Geometric Blackout Honeycomb Sleeve"
+  },
+  "exploreItemGeometricBlackwork": "هندسي + عمل أسود رسومي",
+  "@exploreItemGeometricBlackwork": {
+    "description": "Explore item title: Geometric + Illustrative Blackwork"
+  },
+  "exploreItemGeometricBlackworkPrompt": "تصميم كم وشم عمل أسود هندسي يتميز بأنماط مكعب ثلاثي الأبعاد وسداسي بخداع بصري ينتقل بسلاسة إلى قسم أسود صلب، عمل خط دقيق بحبر أسود عالي التباين وتماثل حاد، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemGeometricBlackworkPrompt": {
+    "description": "Explore item prompt: Geometric + Illustrative Blackwork"
+  },
   "exploreItemGeometricCubeSleeve": "كم مكعب هندسي",
-  "exploreItemGeometricCubeSleevePrompt": "صورة فائقة الواقعية لساعد ذكر ممدود مع وشم عمل أسود هندسي يتميز بأنماط مكعب ثلاثي الأبعاد وسداسي بخداع بصري تتلاشى إلى شريط معصم أسود صلب. عمل خط دقيق وحبر عالي التباين ونسيج جلد وأوردة مرئية وخلفية استوديو محايدة وإضاءة ناعمة وعمق ميدان ضحل.",
+  "@exploreItemGeometricCubeSleeve": {
+    "description": "Explore item title: Geometric Cube Sleeve"
+  },
+  "exploreItemGeometricCubeSleevePrompt": "تصميم كم وشم عمل أسود هندسي يتميز بأنماط مكعب ثلاثي الأبعاد وسداسي بخداع بصري تتلاشى بسلاسة إلى قسم أسود صلب، عمل خط دقيق بحبر أسود عالي التباين وتماثل حاد، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemGeometricCubeSleevePrompt": {
+    "description": "Explore item prompt: Geometric Cube Sleeve"
+  },
   "exploreItemGeometric3dCubeSleeve": "كم مكعب هندسي ثلاثي الأبعاد",
-  "exploreItemGeometric3dCubeSleevePrompt": "صورة فائقة الواقعية لساعد مع كم عمل أسود هندسي كامل يتميز بأنماط مكعب ثلاثي الأبعاد متشابكة بخداع بصري تنتقل إلى تصميم نجمة هندسة مقدسة كثيفة بالقرب من المعصم. حبر عالي التباين وعمل خط حاد نظيف وتظليل عمل نقطي وقميص أبيض مطوي وإضاءة استوديو ناعمة وعمق ميدان ضحل.",
+  "@exploreItemGeometric3dCubeSleeve": {
+    "description": "Explore item title: 3D Cube Geometric Sleeve"
+  },
+  "exploreItemGeometric3dCubeSleevePrompt": "تصميم كم عمل أسود هندسي كامل يتميز بأنماط مكعب ثلاثي الأبعاد متشابكة بخداع بصري تنتقل إلى motifs نجمة هندسة مقدسة كثيفة، حبر أسود عالي التباين بعمل خط حاد نظيف وتفاصيل عمل نقطي، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemGeometric3dCubeSleevePrompt": {
+    "description": "Explore item prompt: 3D Cube Geometric Sleeve"
+  },
   "exploreItemGeometricTreeOfLife": "شجرة الحياة",
-  "exploreItemGeometricTreeOfLifePrompt": "صورة عمودية فائقة الواقعية للساعد الداخلي مع وشم طبيعة أسود ورمادي يتميز بشجرة صنوبر مركزية ومنظر جبلي دائري وأهلة وجذور زخرفية. أسلوب خط رفيع وعمل أسود نظيف وتظليل سلس ونسيج جلد طبيعي وإضاءة استوديو ناعمة وخلفية محايدة وعمق ميدان ضحل.",
+  "@exploreItemGeometricTreeOfLife": {
+    "description": "Explore item title: Tree of Life"
+  },
+  "exploreItemGeometricTreeOfLifePrompt": "تصميم وشم شجرة الحياة عمودي يتميز بشجرة صنوبر مركزية داخل منظر جبلي دائري وهلالين أعلاه وجذور زخرفية أسفل، أسلوب خط رفيع وعمل أسود نظيف وتظليل سلس عالي التباين، لوحة فلاش وشم نظيفة جاهزة للاستنسل، طباعة فنية على ورق أبيض فارغ، فن خط أسود وأبيض، مينيمالي بتفاصيل معقدة، تصميم وشم مستقل، خلفية بيضاء، ثنائي الأبعاد فقط، تصميم مسطح، عمل فني معزول.",
+  "@exploreItemGeometricTreeOfLifePrompt": {
+    "description": "Explore item prompt: Tree of Life"
+  },
   "exploreItemGeometricAtlas": "أطلس يحمل العالم",
+  "@exploreItemGeometricAtlas": {
+    "description": "Explore item title: Atlas Bearing the World"
+  },
   "exploreItemGeometricAtlasPrompt": "وشم خط رفيع وعمل نقطي أسود ورمادي لأطلس راكعًا يحمل كرة أرضية مصور كنحت عصر النهضة الكلاسيكي بتشريح وتظليل واقعي. الأرض تظهر قارات وشبكة هندسية مع أنماط هندسة مقدسة ورمز شمس أعلاه. تصميم عمودي نظيف عالي التباين جاهز للاستنسل لوشم أعلى الذراع فائق التفاصيل وبسيط.",
+  "@exploreItemGeometricAtlasPrompt": {
+    "description": "Explore item prompt: Atlas Bearing the World"
+  },
   "exploreItemGeometricTriadTravel": "ثالوث السفر",
+  "@exploreItemGeometricTriadTravel": {
+    "description": "Explore item title: Triad of Travel"
+  },
   "exploreItemGeometricTriadTravelPrompt": "وشم عمل أسود بسيط على الساعد بأسلوب خط رفيع وعمل نقطي يتميز بوردة بوصلة مع خطوط مدار هندسية وطائرة صغيرة على مسار منقط وجبال وموجة محيطية كلها مرتبة داخل إطار مثلث مقلوب مع لمسات هندسة مقدسة متماثلة. تصميم عمودي نظيف عالي التباين جاهز للاستنسل بموضوع سفر حديث وعمل خط فائق التفاصيل.",
+  "@exploreItemGeometricTriadTravelPrompt": {
+    "description": "Explore item prompt: Triad of Travel"
+  },
   "exploreItemGeometricHorizons": "دورة الآفاق",
+  "@exploreItemGeometricHorizons": {
+    "description": "Explore item title: Cycle of Horizons"
+  },
   "exploreItemGeometricHorizonsPrompt": "وشم هندسي بسيط على الساعد بأسلوب عمل أسود بخط رفيع وعمل نقطي يتميز بعمود عمودي من سداسيات متصلة. الأعلى يظهر الشمس والسماء والوسط منظر جبلي مع أشجار والأسفل موجة محيطية مع سداسيات محيطة أصغر ولمسات هندسة مقدسة مرتبطة بخطوط رفيعة ومسارات منقطة. تصميم طبيعي نظيف ومتماثل وعالي التباين جاهز للاستنسل.",
+  "@exploreItemGeometricHorizonsPrompt": {
+    "description": "Explore item prompt: Cycle of Horizons"
+  },
   "exploreItemGeometricAlignedTriad": "ثالوث متحاذي",
+  "@exploreItemGeometricAlignedTriad": {
+    "description": "Explore item title: Aligned Triad"
+  },
   "exploreItemGeometricAlignedTriadPrompt": "وشم إصبع صغير بسيط بعمل أسود بخط رفيع يتميز بتكوين مثلث عمودي مجرد مع أشكال هندسية متعددة الطبقات وتفاصيل ماسة ومضلعات صغيرة وتظليل عمل نقطي خفيف. أسلوب هندسة مقدسة حديثة بخطوط رفيعة دقيقة ولمسات زخرفية نظيفة ومظهر احترافي جاهز للاستنسل.",
+  "@exploreItemGeometricAlignedTriadPrompt": {
+    "description": "Explore item prompt: Aligned Triad"
+  },
   "exploreItemGeometricSigi": "سيجي هندسي مجرد",
+  "@exploreItemGeometricSigi": {
+    "description": "Explore item title: Abstract Geometric Sigi"
+  },
   "exploreItemGeometricSigiPrompt": "وشم إصبع هندسي فائق البساطة بحبر أسود بخط رفيع يتميز برمز عمودي صغير من مثلثات متراكبة وماسات وأشكال مضلعة حادة مع تظليل عمل نقطي خفيف ومساحة سلبية نظيفة. أسلوب هندسة مقدسة حديثة بخطوط رفيعة دقيقة وعمل أسود عالي التباين وتصميم احترافي جاهز للاستنسل.",
-  "exploreItemGeometricDualityNature": "ثنائية هندسة الطبيعة",
+  "@exploreItemGeometricSigiPrompt": {
+    "description": "Explore item prompt: Abstract Geometric Sigi"
+  },
+  "exploreItemGeometricDualityNature": "هندسة ثنائية الطبيعة",
+  "@exploreItemGeometricDualityNature": {
+    "description": "Explore item title: Duality Nature Geometry"
+  },
   "exploreItemGeometricDualityNaturePrompt": "وشم عمل أسود بسيط على الساعد بأسلوب خط رفيع وعمل نقطي يتميز بمثلثين متراكبين: الأعلى بمشهد جبلي وشمس أو قمر صاعد والأسفل مقلوب بموجة محيطية كبيرة. إطار هندسي نظيف ولمسات هندسة مقدسة خفيفة وخطوط حركة منقطة تخلق تصميمًا متوازنًا حديثًا بموضوع طبيعي عالي التباين وفائق التفاصيل وجاهز للاستنسل.",
+  "@exploreItemGeometricDualityNaturePrompt": {
+    "description": "Explore item prompt: Duality Nature Geometry"
+  },
   "exploreItemRealismGamblerFedora": "مقامر بقبعة فيدورا",
+  "@exploreItemRealismGamblerFedora": {
+    "description": "Explore item title: Gambler in a Fedora"
+  },
   "exploreItemRealismGamblerFedoraPrompt": "وشم واقعي أسود ورمادي لمقامر بلا وجه يرتدي فيدورا وبدلة ورأسه للأسفل وذراعاه متقاطعتان. مصباح شارع عتيق خلفه وأوراق آس مروحية ودخان خفيف على جانب ونردين في الأسفل. أجواء نوار وتظليل عالي التباين وعمل خط دقيق وتنقيط مفصل وأسلوب استنسل نظيف وتكوين متماثل متمركز وأحادي اللون وفلاش وشم.",
+  "@exploreItemRealismGamblerFedoraPrompt": {
+    "description": "Explore item prompt: Gambler in a Fedora"
+  },
   "exploreItemRealismMindOverHeart": "العقل فوق القلب",
+  "@exploreItemRealismMindOverHeart": {
+    "description": "Explore item title: Mind Over Heart"
+  },
   "exploreItemRealismMindOverHeartPrompt": "وشم سريالي أسود ورمادي لدماغ بشري واقعي يتصرف كمحرك دمى مع أيدي مفصلة تتحكم بخيوط متصلة بقلب تشريحي أسفله. عمل خط دقيق وتظليل بالتنقيط والتخطيط المتقاطع وتباين عالي ومفهوم رمزي داكن. تكوين عمودي متمركز وخلفية بسيطة وأحادي اللون وعالي التفاصيل وفلاش وشم احترافي.",
-  "exploreItemRealismGeometricSplit": "بورتريه انقسام هندسي",
+  "@exploreItemRealismMindOverHeartPrompt": {
+    "description": "Explore item prompt: Mind Over Heart"
+  },
+  "exploreItemRealismGeometricSplit": "صورة شخصية منقسمة هندسياً",
+  "@exploreItemRealismGeometricSplit": {
+    "description": "Explore item title: Geometric Split Portrait"
+  },
   "exploreItemRealismGeometricSplitPrompt": "وشم نيو-حديث لوجه أنثى منقسم إلى شظايا هندسية. جانب بورتريه واقعي أسود ورمادي والجانب الآخر لون نابض بشعر وردي وعين زرقاء ساطعة. أشكال مجردة حادة تقطع الوجه وعمل خط نظيف جريء وتظليل عالي التباين وخلفية بسيطة. أسلوب وشم تقليدي جديد / سايبر-جرافيك وتكوين عمودي متمركز وجاهز لاستنسل الوشم وعالي التفاصيل وتصميم فلاش حديث.",
+  "@exploreItemRealismGeometricSplitPrompt": {
+    "description": "Explore item prompt: Geometric Split Portrait"
+  },
   "exploreItemRealismFieryCosmic": "انقسام ناري وكوني",
+  "@exploreItemRealismFieryCosmic": {
+    "description": "Explore item title: Fiery and Cosmic Split"
+  },
   "exploreItemRealismFieryCosmicPrompt": "وشم ألوان سريالي لبورتريه أنثى بمفهوم واقع منقسم. جانب نغمات دافئة بنسيج جلد متشقق والجانب الآخر نغمات كونية زرقاء باردة. عدسة مكبرة فوق عين واحدة تكشف قزحية زرقاء متوهجة وتفاصيل سائلة مجردة. ساعة جيب عتيقة في الأسفل ترمز للزمن وعناصر مجرة خفيفة في الخلفية. أسلوب نيو-سريالي عالي التفاصيل وتباين ألوان نابض وتدرجات ناعمة وعمل خط نظيف جريء وتكوين عمودي متمركز وخلفية بسيطة وتصميم فلاش وشم حديث وجاهز للاستنسل.",
-  "exploreItemRealismSinisterClown": "بورتريه مهرج شرير",
+  "@exploreItemRealismFieryCosmicPrompt": {
+    "description": "Explore item prompt: Fiery and Cosmic Split"
+  },
+  "exploreItemRealismSinisterClown": "صورة شخصية لمهرج شرير",
+  "@exploreItemRealismSinisterClown": {
+    "description": "Explore item title: Sinister Clown Portrait"
+  },
   "exploreItemRealismSinisterClownPrompt": "وشم وجه أنثى بأسلوب مهرج قوطي داكن مع خطوط ماكياج سوداء حادة وكحل درامي ولمسات عين متقطرة وعيون برتقالية متوهجة ورمز نجمة صغيرة على الجبهة. تظليل أسود ورمادي ناعم مع لون خفيف في العيون فقط وتباين عالي وعمل خط دقيق وتنقيط وحواف نظيفة وتصميم وشم عمودي متمركز. عمل فني وشم معزول فقط على خلفية بيضاء عادية وبدون ذراع أو جلد وجاهز للاستنسل وأسلوب فلاش وشم احترافي.",
+  "@exploreItemRealismSinisterClownPrompt": {
+    "description": "Explore item prompt: Sinister Clown Portrait"
+  },
   "exploreItemRealismButterflyWoman": "فراشة وامرأة",
+  "@exploreItemRealismButterflyWoman": {
+    "description": "Explore item title: Butterfly and Woman"
+  },
   "exploreItemRealismButterflyWomanPrompt": "تصميم وشم أسود ورمادي لملف أنثى جانبي واقعي ممزوج مع أجنحة فراشة كبيرة مفصلة تخرج من رأسها. ملامح وجه أنثوية ناعمة وتظليل سلس وعمل خط دقيق وتباين عالي وأنماط أجنحة رقيقة بتنقيط وتظليل متدرج. تكوين سريالي أنيق وتخطيط عمودي متمركز وخلفية بسيطة وأحادي اللون وأسلوب فلاش وشم جاهز للاستنسل نظيف وعالي التفاصيل.",
+  "@exploreItemRealismButterflyWomanPrompt": {
+    "description": "Explore item prompt: Butterfly and Woman"
+  },
   "exploreItemRealismFlamingSkull": "جمجمة ملتهبة",
+  "@exploreItemRealismFlamingSkull": {
+    "description": "Explore item title: Flaming Skull"
+  },
   "exploreItemRealismFlamingSkullPrompt": "تصميم وشم جمجمة ملتهبة بجمجمة بشرية واقعية محاطة بنيران ديناميكية. نار متوهجة مكثفة داخل محجري العينين والفم وتفاصيل أسنان حادة وتظليل عالي التباين وعمل خط نظيف جريء. أسلوب واقعية + خيال داكن وإضاءة درامية ونيران برتقالية وحمراء نابضة مع نغمات جمجمة سوداء/رمادية. تكوين عمودي متمركز ومعزول على خلفية بيضاء وجاهز للاستنسل وفلاش وشم احترافي عالي التفاصيل.",
+  "@exploreItemRealismFlamingSkullPrompt": {
+    "description": "Explore item prompt: Flaming Skull"
+  },
   "exploreItemRealismFierceWolf": "ذئب شرس",
+  "@exploreItemRealismFierceWolf": {
+    "description": "Explore item title: Fierce Wolf"
+  },
   "exploreItemRealismFierceWolfPrompt": "تصميم وشم ملون نابض يتميز بوجه ذئب شرس بعيون زرقاء ثاقبة محاط بثعبان ملتف. الثعبان يلتف حول رأس الذئب وينزلق نحو مجموعة أزهار برتقالية متفتحة. الوشم مزين برشات ألوان مائية ناعمة بنغمات وردية وبنفسجية وزرقاء مع تأثير طلاء متقطر. تفاصيل غنية في الفراء والحراشف والبتلات وتباين عالي بين المناطق الداكنة والفاتحة. أسلوب ألوان مائية مع عمل خط دقيق ورمزية طبيعة وحياة برية حديثة. تكوين متمركز ونابض وديناميكي وجاهز لاستنسل الوشم.",
+  "@exploreItemRealismFierceWolfPrompt": {
+    "description": "Explore item prompt: Fierce Wolf"
+  },
   "exploreItemRealismRedRoseButterfly": "وردة حمراء وفراشة",
+  "@exploreItemRealismRedRoseButterfly": {
+    "description": "Explore item title: Red Rose and Butterfly"
+  },
   "exploreItemRealismRedRoseButterflyPrompt": "تصميم وشم أنيق أسود وأحمر يتميز بفراشة جريئة بأجنحة داكنة مقترنة بوردة حمراء حية. أجنحة الفراشة بتدرج سلس من الأسود إلى الأحمر بينما الوردة مفصلة بعمق بتظليل ناعم لتعزيز بتلاتها. التصميم يشمل أوراق وأغصان حمراء رقيقة تتدفق للخارج لتخلق تكوينًا متوازنًا ومتدفقًا. الحبر الأسود يتباين بحدة مع الأحمر النابض. عمل خط حديث ونظيف بلمسة مجردة قليلاً. جاهز لاستنسل الوشم بتباين عالي ومثالي لوضع على الذراع أو الفخذ.",
-  "exploreItemRealismVibrantPeacock": "طاووس نابض",
+  "@exploreItemRealismRedRoseButterflyPrompt": {
+    "description": "Explore item prompt: Red Rose and Butterfly"
+  },
+  "exploreItemRealismVibrantPeacock": "طاووس حي",
+  "@exploreItemRealismVibrantPeacock": {
+    "description": "Explore item title: Vibrant Peacock"
+  },
   "exploreItemRealismVibrantPeacockPrompt": "تصميم وشم ملون ونابض لطاووس مع شمس صفراء برتقالية ساطعة في الخلفية. ريش الطاووس يعرض درجات مذهلة من الأزرق والأخضر والبنفسجي بينما جسمه مظلل بأناقة بالفيروزي. أزهار وردية جريئة وأوراق خضراء تؤطر التصميم مع عمل خط دقيق لإبراز الأشكال والأنسجة. حديث ومنمق بخطوط جريئة نظيفة وألوان غنية نابضة. مثالي لمساحة أكبر وبدون خلفية مشتتة لإنشاء قطعة محورية مثالية للوضع في أي مكان على الجسم.",
+  "@exploreItemRealismVibrantPeacockPrompt": {
+    "description": "Explore item prompt: Vibrant Peacock"
+  },
   "exploreItemRealismPlayfulCharacter": "شخصية مرحة",
+  "@exploreItemRealismPlayfulCharacter": {
+    "description": "Explore item title: Playful Character"
+  },
   "exploreItemRealismPlayfulCharacterPrompt": "تصميم وشم ملون لطيف لشخصية مرحة تحمل زهرة وردية كبيرة. الشخصية تتميز بعيون كبيرة معبرة وفراء أزرق وبطن أزرق فاتح. الزهرة النابضة مؤطرة بأوراق خضراء. الأسلوب جريء وكرتوني بتظليل سلس وخطوط نظيفة وألوان نابضة. التصميم مثالي لمساحة صغيرة من الجسم وبدون خلفية مشتتة مع التركيز على الشخصية والزهرة كنقاط محورية.",
+  "@exploreItemRealismPlayfulCharacterPrompt": {
+    "description": "Explore item prompt: Playful Character"
+  },
   "exploreItemRealismCutePinkFish": "سمكة وردية لطيفة",
+  "@exploreItemRealismCutePinkFish": {
+    "description": "Explore item title: Cute Pink Fish"
+  },
   "exploreItemRealismCutePinkFishPrompt": "تصميم وشم مرح ونابض لسمكة وردية لطيفة بتعبير مبتسم. السمكة تتميز بتدرجات وردية ناعمة بتظليل سلس. رشات مائية بدرجات أزرق وفيروزي تحيط بالسمكة مع فقاعات صغيرة ولمسات ضوء. خطوط حديثة ونظيفة بلمسة مرحة ومثالية لمساحة صغيرة على الجسم. التصميم يركز على السمكة والماء بدون خلفية مشتتة وبأجواء مبهجة ومرحة.",
+  "@exploreItemRealismCutePinkFishPrompt": {
+    "description": "Explore item prompt: Cute Pink Fish"
+  },
   "exploreItemLetteringTrustNoOne": "لا تثق بأحد",
+  "@exploreItemLetteringTrustNoOne": {
+    "description": "Explore item title: Trust No One"
+  },
   "exploreItemLetteringTrustNoOnePrompt": "تصميم وشم قوطي مفصل بعبارة 'Trust no One'. النص جريء ودرامي بحواف حادة وزاوية. تأثيرات تظليل لإعطاء النص مظهرًا ثلاثي الأبعاد مع رشات حبر أو ظل حول النص لأجواء خشنة ومكثفة. الخط يستحضر جوًا داكنًا وغامضًا بنبرة حادة ومتمردة.",
+  "@exploreItemLetteringTrustNoOnePrompt": {
+    "description": "Explore item prompt: Trust No One"
+  },
   "exploreItemLetteringBlessed": "مبارك",
+  "@exploreItemLetteringBlessed": {
+    "description": "Explore item title: Blessed"
+  },
   "exploreItemLetteringBlessedPrompt": "تصميم وشم غرافيتي أسود وأبيض عالي التباين بكلمة \"Blessed\" بخط يد جريء وخط كاليغرافي متدفق سلس بجرات سميكة وهالة خفيفة فوق الحرف وتوهج طلاء رش بأسلوب شارع حول النص وقطرات طلاء ورشات حبر وخطوط نظيفة وتكوين متمركز وفلاش وشم جاهز للاستنسل وخلفية بسيطة وحواف حادة وتصميم وشم احترافي وحبر أسود فقط.",
+  "@exploreItemLetteringBlessedPrompt": {
+    "description": "Explore item prompt: Blessed"
+  },
   "exploreItemLetteringHakunaMatata": "هاكونا ماتاتا",
+  "@exploreItemLetteringHakunaMatata": {
+    "description": "Explore item title: Hakuna Matata"
+  },
   "exploreItemLetteringHakunaMatataPrompt": "تصميم وشم غرافيتي أسود وأبيض جريء بكلمات \"Hakuna Matata\" وخط كتل قوي بأسلوب شارع وجرات فرشاة جافة خشنة وحبر عالي التباين ورشات طلاء وتفاصيل قطر خفيفة وجمالية حائط غرافيتي حضري وخطوط نظيفة سميكة وتكوين متمركز وفلاش وشم احترافي وجاهز للاستنسل وأسلوب متجه وأحادي اللون وخلفية بيضاء وعالي التفاصيل وحواف حادة.",
+  "@exploreItemLetteringHakunaMatataPrompt": {
+    "description": "Explore item prompt: Hakuna Matata"
+  },
   "exploreItemLetteringDream": "حلم",
+  "@exploreItemLetteringDream": {
+    "description": "Explore item title: Dream"
+  },
   "exploreItemLetteringDreamPrompt": "تصميم وشم غرافيتي نابض بكلمة \"DREAM\" وخط شارع ثلاثي الأبعاد جريء وخطوط سوداء سميكة ورشات طلاء ملونة وقطرات حبر وأسلوب طلاء رش حضري وتباين عالي وجمالية حائط غرافيتي متعددة الطبقات وتكوين ديناميكي وحواف حادة نظيفة وفلاش وشم احترافي وجاهز للاستنسل وعالي التفاصيل وأسلوب متجه.",
+  "@exploreItemLetteringDreamPrompt": {
+    "description": "Explore item prompt: Dream"
+  },
   "exploreItemLetteringBoom": "بووم",
+  "@exploreItemLetteringBoom": {
+    "description": "Explore item title: Boom"
+  },
   "exploreItemLetteringBoomPrompt": "تصميم وشم بوب آرت كوميدي بكلمة \"BOOM\" وخط كرتوني جريء وخطوط سوداء سميكة وألوان وردية وصفراء نابضة وخلفية انفجار كوميدي ولمعات لامعة وأسلوب غرافيتي مرح وتباين عالي وحواف ناعمة نظيفة وتكوين متمركز وفلاش وشم احترافي وجاهز للاستنسل وأسلوب متجه عالي التفاصيل.",
-  "exploreItemLetteringWorkHardDreamBig": "اعمل بجد احلم بكبر",
+  "@exploreItemLetteringBoomPrompt": {
+    "description": "Explore item prompt: Boom"
+  },
+  "exploreItemLetteringWorkHardDreamBig": "اعمل بجد واحلم بكبر",
+  "@exploreItemLetteringWorkHardDreamBig": {
+    "description": "Explore item title: Work Hard Dream Big"
+  },
   "exploreItemLetteringWorkHardDreamBigPrompt": "تصميم وشم غرافيتي ملون جريء بعبارة \"Work Hard Dream Big\" وخط شارع ديناميكي وطباعة ثلاثية الأبعاد متعددة الطبقات وخطوط سوداء سميكة وألوان تدرج نابضة (برتقالي وأحمر وأصفر) وقطرات طلاء ورشات حبر وأسلوب حائط غرافيتي حضري وتباين عالي ولمعات لامعة وتكوين متمركز وفلاش وشم احترافي وجاهز للاستنسل وعالي التفاصيل وأسلوب متجه وخلفية نظيفة.",
-  "exploreItemLetteringRn": "حرف RN",
+  "@exploreItemLetteringWorkHardDreamBigPrompt": {
+    "description": "Explore item prompt: Work Hard Dream Big"
+  },
+  "exploreItemLetteringRn": "الحرفان RN",
+  "@exploreItemLetteringRn": {
+    "description": "Explore item title: Letter RN"
+  },
   "exploreItemLetteringRnPrompt": "تصميم وشم قوطي داكن وأحرف مونوغرام \"RN\" بخط كاليغرافي عدواني حاد بحواف قرنية وشائكة وحبر أسود فقط وتباين عالي وتظليل كثيف ورشات حبر غرنج وطباعة قوطية زخرفية وتكوين متماثل وأسلوب فلاش وشم وخطوط نظيفة جاهزة للاستنسل وأحادي اللون وخلفية بيضاء وعالي التفاصيل وتصميم وشم احترافي.",
-  "exploreItemLetteringC": "حرف C",
+  "@exploreItemLetteringRnPrompt": {
+    "description": "Explore item prompt: Letter RN"
+  },
+  "exploreItemLetteringC": "الحرف C",
+  "@exploreItemLetteringC": {
+    "description": "Explore item title: Letter C"
+  },
   "exploreItemLetteringCPrompt": "تصميم وشم قوطي داكن يتميز بحرف \"C\" مع تاج ملكي مفصل في الأعلى وخط منحني جريء بحواف حادة وواقعية أسود ورمادي وتظليل عالي التباين وتأثيرات رشات حبر وقطرات خفيفة وأسلوب قوطي فاخر وعمق وظل قوي وتكوين متمركز وخطوط جاهزة للاستنسل نظيفة وفلاش وشم احترافي وأحادي اللون وأسلوب وشم متجه عالي التفاصيل.",
+  "@exploreItemLetteringCPrompt": {
+    "description": "Explore item prompt: Letter C"
+  },
   "exploreItemLetteringPeacePositivity": "سلام وإيجابية",
+  "@exploreItemLetteringPeacePositivity": {
+    "description": "Explore item title: Peace & Positivity"
+  },
   "exploreItemLetteringPeacePositivityPrompt": "تصميم وشم غرافيتي ملون جريء بعبارة \"Peace & Positivity\" وخط بأسلوب شارع ديناميكي وطباعة ثلاثية الأبعاد كبيرة وخطوط سوداء سميكة وألوان تدرج نابضة (أصفر وبرتقالي وأزرق وأخضر) ورشات طلاء وحبر متقطر وجمالية غرافيتي طلاء رش حضري وتباين عالي ولمعات لامعة وتكوين متمركز وفلاش وشم احترافي وجاهز للاستنسل وأسلوب متجه عالي التفاصيل.",
+  "@exploreItemLetteringPeacePositivityPrompt": {
+    "description": "Explore item prompt: Peace & Positivity"
+  },
   "exploreItemLetteringDreamBig": "احلم بكبر",
+  "@exploreItemLetteringDreamBig": {
+    "description": "Explore item title: Dream Big"
+  },
   "exploreItemLetteringDreamBigPrompt": "تصميم وشم حالم ملون بكلمات \"Dream Big\" وخط كاليغرافي فقاعي ناعم وألوان تدرج ثلاثية الأبعاد لامعة (نغمات قوس قزح) وجرات مدورة ناعمة وعناصر سماوية لطيفة مثل نجوم وبريقات وشمس متوهجة وجمالية خيال نابضة وتباين عالي وخطوط جريئة نظيفة وتكوين متمركز وفلاش وشم احترافي وجاهز للاستنسل وأسلوب متجه عالي التفاصيل.",
+  "@exploreItemLetteringDreamBigPrompt": {
+    "description": "Explore item prompt: Dream Big"
+  },
   "exploreItemLetteringDesire": "رغبة",
+  "@exploreItemLetteringDesire": {
+    "description": "Explore item title: Desire"
+  },
   "exploreItemLetteringDesirePrompt": "تصميم وشم قوطي داكن بكلمة \"Desire\" وخط كاليغرافي عدواني حاد بأسلوب بلاك ميتال وحروف شوكية مسننة وتكوين متماثل وواقعية أسود ورمادي ونسيج داكن معدني وتظليل عالي التباين وتفاصيل زخرفية شريرة وخطوط جاهزة للاستنسل نظيفة وفلاش وشم احترافي وأحادي اللون وفائق التفاصيل وأسلوب قوطي حاد.",
+  "@exploreItemLetteringDesirePrompt": {
+    "description": "Explore item prompt: Desire"
+  },
   "exploreItemLetteringBeautiful": "جميل",
+  "@exploreItemLetteringBeautiful": {
+    "description": "Explore item title: Beautiful"
+  },
   "exploreItemLetteringBeautifulPrompt": "تصميم وشم ملون أنيق بكلمة \"Beautiful\" وخط سكريبت متدفق سلس وكاليغرافي حديثة جريئة وألوان تدرج ثلاثية الأبعاد لامعة (وردي وبرتقالي وأصفر) وخط أسود سميك ولمعات ناعمة وعمق وأسلوب أنثوي أنيق ومنحنيات نظيفة وزخارف وتكوين متمركز وفلاش وشم احترافي وجاهز للاستنسل وأسلوب متجه عالي التفاصيل.",
-  "exploreItemFloralFourLeafClover": "ورقة برسيم رباعية بسيطة",
+  "@exploreItemLetteringBeautifulPrompt": {
+    "description": "Explore item prompt: Beautiful"
+  },
+  "exploreItemFloralFourLeafClover": "ورقة برسيم رباعية مينيمالية",
+  "@exploreItemFloralFourLeafClover": {
+    "description": "Explore item title: Minimalist Four-Leaf Clover"
+  },
   "exploreItemFloralFourLeafCloverPrompt": "تصميم وشم ورقة برسيم رباعية بسيطة بخط رفيع وأسلوب لطيف ورقيق وأوراق خضراء باستيل ناعمة بتدرج سلس وساق أسود رفيع وخطوط نظيفة وتفاصيل قلب أحمر صغيرة داخل ورقة واحدة وتكوين متماثل وفلاش وشم أنثوي بسيط وعمل خط عالي التباين وملء لوني خفيف وحواف نظيفة بأسلوب متجه وتصميم استنسل وشم احترافي وتكوين متمركز.",
+  "@exploreItemFloralFourLeafCloverPrompt": {
+    "description": "Explore item prompt: Minimalist Four-Leaf Clover"
+  },
   "exploreItemFloralCherryBlossom": "فرع زهر الكرز",
+  "@exploreItemFloralCherryBlossom": {
+    "description": "Explore item title: Cherry Blossom Branch"
+  },
   "exploreItemFloralCherryBlossomPrompt": "تصميم وشم فرع زهر كرز أنيق بأسلوب نباتي بخط رفيع وفرع ساكورا متدفق بأزهار وردية متعددة وبراعم صغيرة وبتلات وردية متدرجة بتظليل رقيق وفرع أسود رفيع وخطوط نظيفة وتفاصيل سقوط بتلات خفيفة وتكوين أنثوي وفلاش وشم زهري عالي التفاصيل وتخطيط عمودي متوازن وتصميم استنسل وشم احترافي وخلفية بسيطة وتباين عالي وتكوين متمركز.",
+  "@exploreItemFloralCherryBlossomPrompt": {
+    "description": "Explore item prompt: Cherry Blossom Branch"
+  },
   "exploreItemFloralMountainLandscape": "منظر جبلي",
+  "@exploreItemFloralMountainLandscape": {
+    "description": "Explore item title: Mountain Landscape"
+  },
   "exploreItemFloralMountainLandscapePrompt": "تصميم وشم منظر جبلي بسيط بخط رفيع وتكوين صغير متمركز وقمم جبلية مفصلة مع أشجار صنوبر وشلال متدفق ينزل من المنتصف وقمر دائري فوق الجبال وتظليل عمل نقطي رقيق وتنقيط وعمل خط بحبر أسود نظيف وتوازن هندسي ونسيج خفيف وتباين عالي وأسلوب فلاش وشم احترافي وخطوط واضحة ومشهد طبيعي بسيط وخلفية شفافة.",
+  "@exploreItemFloralMountainLandscapePrompt": {
+    "description": "Explore item prompt: Mountain Landscape"
+  },
   "exploreItemFloralHeartSunset": "غروب على شكل قلب",
+  "@exploreItemFloralHeartSunset": {
+    "description": "Explore item title: Heart-Shaped Sunset"
+  },
   "exploreItemFloralHeartSunsetPrompt": "تصميم وشم غروب صغير على شكل قلب بلوحة ألوان دافئة نابضة وغروب برتقالي وأحمر متوهج داخل محيط قلب نظيف وأفق محيط بانعكاسات ناعمة وغيوم ملونة بتفاصيل رشات خفيفة وظل قاعدة أسود بسيط تحت القلب وأسلوب خط رفيع وواقعية دقيقة ومزج ألوان تدرجي سلس وتباين عالي وتكوين متمركز وتصميم فلاش وشم احترافي وحواف واضحة وبدون نص وخلفية شفافة.",
+  "@exploreItemFloralHeartSunsetPrompt": {
+    "description": "Explore item prompt: Heart-Shaped Sunset"
+  },
   "exploreItemFloralSeaTurtle": "سلحفاة بحرية",
+  "@exploreItemFloralSeaTurtle": {
+    "description": "Explore item title: Sea Turtle"
+  },
   "exploreItemFloralSeaTurtlePrompt": "تصميم وشم سلحفاة بحرية هندسي نابض وسلحفاتان بحريتان تسبحان جنبًا إلى جنب وأصداف بأسلوب كريستال متعدد الأوجه بألوان منشور قوس قزح ونسيج نمط مضلع وحراشف وزعانف عالية التفاصيل وتأثير حجر كريم لامع وتشبع جريء بدرجات أزرق عميق وبنفسجي وأخضر ودرجات دافئة وواقعية دقيقة تلتقي بأسلوب هندسي وخطوط حادة نظيفة وظل خفيف تحت الأشكال وتباين عالي وتكوين متمركز وتصميم فلاش وشم احترافي وعمل فني معزول وخلفية شفافة.",
+  "@exploreItemFloralSeaTurtlePrompt": {
+    "description": "Explore item prompt: Sea Turtle"
+  },
   "exploreItemFloralHibiscus": "زهرة الكركديه",
+  "@exploreItemFloralHibiscus": {
+    "description": "Explore item title: Hibiscus Flower"
+  },
   "exploreItemFloralHibiscusPrompt": "تصميم وشم زهرة كركديه نابض وتكوين زهري استوائي جريء وزهرة كركديه كبيرة مفصلة ببتلات متدرجة حمراء ودافئة وبرتقالية وصفراء ومزج ألوان سلس وخطوط سوداء نظيفة وتظليل ناعم للعمق وأوراق خضراء محيطة بتفاصيل عروق دقيقة ونقاط رشات حبر زخرفية صغيرة وأسلوب وشم تقليدي جديد حديث وتباين عالي وتكوين متمركز وحواف واضحة وفلاش وشم احترافي وعمل فني معزول وخلفية شفافة.",
+  "@exploreItemFloralHibiscusPrompt": {
+    "description": "Explore item prompt: Hibiscus Flower"
+  },
   "exploreItemFloralButterflyLily": "فراشة وزنبق",
+  "@exploreItemFloralButterflyLily": {
+    "description": "Explore item title: Butterfly and Lily"
+  },
   "exploreItemFloralButterflyLilyPrompt": "تصميم وشم فراشة ملكية وزهرة زنبق واقعية وفراشة برتقالية وسوداء نابضة بأنماط أجنحة مفصلة جالسة بجانب زنبق أصفر كبير متفتح وتدرجات ألوان سلسة وتظليل واقعي ناعم وخطوط سوداء واضحة مع عمق خفيف وأوراق خضراء غنية بتفاصيل عروق دقيقة وأسلوب واقعية تقليدية جديدة وألوان عالية التباين وتكوين متوازن وتصميم فلاش وشم احترافي وحواف نظيفة وعمل فني معزول وخلفية شفافة.",
+  "@exploreItemFloralButterflyLilyPrompt": {
+    "description": "Explore item prompt: Butterfly and Lily"
+  },
   "exploreItemFloralButterfly": "فراشة",
+  "@exploreItemFloralButterfly": {
+    "description": "Explore item title: Butterfly"
+  },
   "exploreItemFloralButterflyPrompt": "تصميم وشم فراشة ملكية واقعي وأجنحة برتقالية نابضة بحدود سوداء عميقة ولمسات نقاط بيضاء ووضعية أجنحة مفتوحة متماثلة ومزج ألوان تدرجي سلس ولمعات لامعة وظل ناعم للعمق وخطوط جريئة نظيفة ونسيج أجنحة عالي التفاصيل وأسلوب واقعية تقليدية جديدة وتباين عالي وتكوين متمركز وفلاش وشم احترافي وحواف واضحة وعمل فني معزول وخلفية شفافة.",
+  "@exploreItemFloralButterflyPrompt": {
+    "description": "Explore item prompt: Butterfly"
+  },
   "exploreItemFloralHummingbirdCherry": "طائر طنان وزهر كرز",
+  "@exploreItemFloralHummingbirdCherry": {
+    "description": "Explore item title: Hummingbird and Cherry Blossom"
+  },
   "exploreItemFloralHummingbirdCherryPrompt": "تصميم وشم طائر طنان وزهر كرز رقيق بأسلوب واقعية بخط رفيع وطائر طنان صغير في منتصف الطيران بريش مفصل وتظليل ناعم وفرع منحني رفيع بأزهار كرز وردية وبراعم صغيرة وتكوين نباتي أنيق ولمسات لونية خفيفة على الأزهار مع طائر بحبر أسود في الغالب وخطوط واضحة نظيفة وأسلوب فلاش وشم واقعية دقيقة وتفاصيل عالية وتكوين متوازن وتباين عالي وتصميم وشم احترافي وعمل فني معزول وخلفية شفافة.",
+  "@exploreItemFloralHummingbirdCherryPrompt": {
+    "description": "Explore item prompt: Hummingbird and Cherry Blossom"
+  },
   "exploreItemFloralButterflyBracelet": "سوار فراشة",
+  "@exploreItemFloralButterflyBracelet": {
+    "description": "Explore item title: Butterfly Bracelet"
+  },
   "exploreItemFloralButterflyBraceletPrompt": "تصميم وشم سوار فراشة أزرق أنيق وتكوين بأسلوب سلسلة رقيقة يلتف بمنحنى متدفق وفراشتان زرقاوان مفصلتان بأجنحة متدرجة ونسيج خط رفيع وتعليقات نجمة صغيرة ولمسات زهرية صغيرة متصلة بسلاسل زخرفية رفيعة وأسلوب واقعية دقيقة أنثوي وخطوط سوداء واضحة مع لمسات زرقاء نابضة وتفاصيل عمل نقطي خفيفة وتكوين خفيف وهوائي وتباين عالي وتصميم فلاش وشم احترافي وتخطيط متمركز ومتوازن وعمل فني معزول وخلفية شفافة.",
+  "@exploreItemFloralButterflyBraceletPrompt": {
+    "description": "Explore item prompt: Butterfly Bracelet"
+  },
   "exploreItemFloralBabyPanda": "باندا صغيرة",
+  "@exploreItemFloralBabyPanda": {
+    "description": "Explore item title: Baby Panda"
+  },
   "exploreItemFloralBabyPandaPrompt": "تصميم وشم باندا صغيرة لطيفة جالسة تحمل عصا بامبو صغيرة بأسلوب كرتوني دائري ناعم مع نسيج فراء شبه واقعي واحمرار خفيف على الخدود وعيون كبيرة معبرة وابتسامة ودية وباندا أبيض وأسود بتظليل رمادي خفيف وأوراق بامبو صغيرة حول الشخصية وخلفية رشات ألوان مائية خفيفة بنغمات باستيل وخطوط جريئة نظيفة مع تظليل ناعم وأسلوب وشم كاوايي وتباين عالي وتكوين متمركز وتصميم فلاش وشم احترافي وعمل فني معزول وخلفية شفافة.",
+  "@exploreItemFloralBabyPandaPrompt": {
+    "description": "Explore item prompt: Baby Panda"
+  },
   "exploreItemFloralSunMoon": "الشمس والقمر",
+  "@exploreItemFloralSunMoon": {
+    "description": "Explore item title: Sun Moon"
+  },
   "exploreItemFloralSunMoonPrompt": "تصميم وشم ألوان مائية للشمس والهلال وتكوين سماوي نابض وشمس برتقالية متوهجة بأشعة متدفقة تحيط بهلال كبير والقمر ممتلئ بألوان مجرة بالأزرق والبنفسجي والوردي ورشات ألوان مائية ناعمة وقطرات حبر وتفاصيل نجوم رقيقة وبريقات وخطوط نظيفة دقيقة مع تدرجات ألوان سلسة وأسلوب وشم سماوي حديث وتباين عالي وتكوين متمركز متوازن وتصميم فلاش وشم احترافي وعمل فني معزول وخلفية شفافة.",
-  "exploreItemMythologyWarriorSerpents": "محارب وأفاعي",
+  "@exploreItemFloralSunMoonPrompt": {
+    "description": "Explore item prompt: Sun Moon"
+  },
+  "exploreItemMythologyWarriorSerpents": "محارب وثعابين",
+  "@exploreItemMythologyWarriorSerpents": {
+    "description": "Explore item title: Warrior and Serpents"
+  },
   "exploreItemMythologyWarriorSerpentsPrompt": "محارب ذكر عضلي بأسلوب تمثال يوناني كلاسيكي ملتف بإحكام بأفاعي متعددة وأفعى تلتف حول الجذع والذراعين وأخرى ترتفع بفم مفتوح والمحارب يحمل خنجرًا للأسفل بيد واحدة ووضعية صراع أسطوري درامي مستوحاة من النحت القديم ونقش عصر النهضة وتصميم وشم حبر أسود عالي التفاصيل وأسلوب نقش بخط رفيع وتظليل بتخطيط متقاطع وعمل خط نظيف وتكوين عمودي متمركز وتباين عالي وخلفية بيضاء ونسيج رق وتشريح واقعي وفلاش وشم خيال داكن وتخطيط متماثل متوازن.",
+  "@exploreItemMythologyWarriorSerpentsPrompt": {
+    "description": "Explore item prompt: Warrior and Serpents"
+  },
   "exploreItemMythologyPhoenixRising": "طائر فينيق صاعد",
+  "@exploreItemMythologyPhoenixRising": {
+    "description": "Explore item title: Phoenix Rising"
+  },
   "exploreItemMythologyPhoenixRisingPrompt": "تصميم وشم طائر فينيق نابض بأجنحة مفتوحة بالكامل للأعلى وريش ذيل طويل متدفق ووضعية صعود ديناميكية ولوحة ألوان نارية بالأحمر والبرتقالي والأصفر ولمسات أزرق وريش فائق التفاصيل وخطوط جريئة نظيفة وأسلوب وشم تقليدي جديد حديث وتباين عالي وتأثيرات جمر متوهجة ولمسات رشات حبر خفيفة وتكوين متماثل وعمل خط حاد وتلوين تدرجي غني وإضاءة درامية ورسم فلاش وشم احترافي وتكوين متمركز وخلفية عادية.",
+  "@exploreItemMythologyPhoenixRisingPrompt": {
+    "description": "Explore item prompt: Phoenix Rising"
+  },
   "exploreItemMythologyMedusa": "ميدوسا",
+  "@exploreItemMythologyMedusa": {
+    "description": "Explore item title: Medusa"
+  },
   "exploreItemMythologyMedusaPrompt": "تصميم وشم مستوحى من ميدوسا ووجه أنثى غامض مع أفاعي متعددة تلتف وتتشابك عبر الشعر ورؤوس أفاعي متعددة تواجه اتجاهات مختلفة وأفعى بفم مفتوح وأنياب مرئية وعيون متوهجة مكثفة ونسيج جلد رخام متشقق وموضوع خيال داكن أسطوري وحراشف وخصلات شعر فائقة التفاصيل وعمل خط نظيف جريء وأسلوب وشم تقليدي جديد ونغمات خضراء وترابية غنية وتظليل عالي التباين وتدرجات سلسة وتكوين درامي ورسم فلاش وشم متمركز وخطوط حادة وتصميم وشم احترافي.",
+  "@exploreItemMythologyMedusaPrompt": {
+    "description": "Explore item prompt: Medusa"
+  },
   "exploreItemMythologyDragonSword": "تنين ملتف حول سيف",
+  "@exploreItemMythologyDragonSword": {
+    "description": "Explore item title: Dragon Coiled Around Sword"
+  },
   "exploreItemMythologyDragonSwordPrompt": "تنين خيال داكن ملتف حول سيف من القرون الوسطى مزخرف وجسم التنين يلتف بإحكام على طول النصل وحراشف ومخالب حادة مفصلة ورأس تنين شرس بفم مفتوح وأنياب مرئية بالقرب من المقبض وتصميم سيف منقوش قوطي وتكوين عمودي متماثل وأسلوب وشم أسود ورمادي وعمل خط فائق التفاصيل وتظليل عالي التباين وتقنية نقش خط رفيع وظلال درامية وخطوط حادة نظيفة وفلاش وشم خيالي وتكوين متمركز وخلفية عادية بسيطة ورسم وشم احترافي.",
+  "@exploreItemMythologyDragonSwordPrompt": {
+    "description": "Explore item prompt: Dragon Coiled Around Sword"
+  },
   "exploreItemMythologyThreeHeadedHydra": "هيدرا ثلاثية الرؤوس",
+  "@exploreItemMythologyThreeHeadedHydra": {
+    "description": "Explore item title: Three-Headed Hydra"
+  },
   "exploreItemMythologyThreeHeadedHydraPrompt": "تصميم وشم تنين هيدرا ثلاثي الرؤوس وجسم تنين أفعواني ضخم بثلاثة رؤوس تنين شرسة تخرج من رقبة واحدة وأفواه مفتوحة بأنياب حادة وتعبيرات عدوانية وحراشف متراكبة وصفائح مدرعة ومخلوق خيال داكن وأسلوب وشم أسود ورمادي فائق التفاصيل وتظليل كثيف وإضاءة عالية التباين ونسيج حراشف معقد وقرون وأشواك حادة ودخان يتصاعد من الأفواه وتكوين عمودي درامي وخطوط جريئة نظيفة ورسم فلاش وشم احترافي وتكوين متمركز.",
+  "@exploreItemMythologyThreeHeadedHydraPrompt": {
+    "description": "Explore item prompt: Three-Headed Hydra"
+  },
   "exploreItemMythologyOctopus": "أخطبوط",
+  "@exploreItemMythologyOctopus": {
+    "description": "Explore item title: Octopus"
+  },
   "exploreItemMythologyOctopusPrompt": "تصميم وشم أخطبوط مفصل وأخطبوط كبير بمجسات ملتفة تمتد للخارج بتكوين متوازن ومجسات تلتف وتتراكب مع محاجم مرئية وعيون مكثفة ورأس منسج وموضوع مخلوق محيطي داكن وأسلوب وشم أسود ورمادي وعمل خط فائق الدقة وتظليل نقش وعمل نقطي وظلال عالية التباين ونسيج واقعي وتخطيط متمركز متماثل وخطوط جريئة نظيفة ورسم فلاش وشم احترافي.",
+  "@exploreItemMythologyOctopusPrompt": {
+    "description": "Explore item prompt: Octopus"
+  },
   "exploreItemMythologyJapaneseDragon": "تنين بأسلوب ياباني",
+  "@exploreItemMythologyJapaneseDragon": {
+    "description": "Explore item title: Japanese Style Dragon"
+  },
   "exploreItemMythologyJapaneseDragonPrompt": "تصميم وشم تنين بأسلوب ياباني وتنين شرقي قوي بجسم أفعواني طويل يلتف بتكوين شكل S وحراشف متعددة الطبقات مفصلة وقرون حادة وشوارب وفم شرس مفتوح بأنياب ومخالب ممدودة ولبدة وذيل متدفقة ومحاط بعناصر سحب ونار منمقة ولوحة ألوان أحمر وبرتقالي وذهبي نابضة وخطوط جريئة نظيفة وأسلوب وشم ياباني تقليدي جديد وتظليل تدرجي سلس وتباين عالي وحركة ديناميكية ورسم فلاش وشم احترافي.",
+  "@exploreItemMythologyJapaneseDragonPrompt": {
+    "description": "Explore item prompt: Japanese Style Dragon"
+  },
   "exploreItemMythologyDarkFantasyEye": "عين خيال داكن",
+  "@exploreItemMythologyDarkFantasyEye": {
+    "description": "Explore item title: Dark Fantasy Eye"
+  },
   "exploreItemMythologyDarkFantasyEyePrompt": "تصميم وشم خيال داكن يتميز بعين مركزية محاطة بعيون أصغر متعددة وجميعها تشع طاقة حمراء متوهجة وأجنحة كبيرة مفصلة تمتد من المنتصف بأطراف ريش حادة وظلال عميقة وعروق برق أحمر تجري عبر التصميم وتظليل أسود ورمادي عالي التباين مع لمسات نارية وتكوين معقد ومتماثل وأسلوب قوطي حديث وتفاصيل خط رفيع وموضوع صوفي قوي ومكثف وأجواء درامية ورسم فلاش وشم احترافي وخلفية بسيطة مع التركيز على التصميم.",
+  "@exploreItemMythologyDarkFantasyEyePrompt": {
+    "description": "Explore item prompt: Dark Fantasy Eye"
+  },
   "exploreItemMythologyMermaid": "حورية البحر",
+  "@exploreItemMythologyMermaid": {
+    "description": "Explore item title: Mermaid"
+  },
   "exploreItemMythologyMermaidPrompt": "تصميم وشم حورية بحر نابض بموضوع رعب وحورية بحر بشعة بوجه هيكلي ومتجعد وشعر طويل بري بدرجات داكنة من الأسود والبنفسجي العميق ومخالب حادة وجسم عضلي ملتو ينتقل من شكل بشري إلى ذيل سمكة بحراشف قزحية بدرجات فيروزي وأزرق وأخضر وأجواء مخلوق تحت الماء مخيفة مع عناصر متوهجة ولمسات نارية برتقالية وحمراء على الذيل والعيون وتظليل درامي بنغمات داكنة متباينة وتفاصيل عالية وأسلوب وشم خيال رعب بألوان غنية وفلاش وشم احترافي وخطوط جريئة نظيفة وتباينات حية.",
+  "@exploreItemMythologyMermaidPrompt": {
+    "description": "Explore item prompt: Mermaid"
+  },
   "exploreItemMythologyDynamicDragon": "تنين ديناميكي",
+  "@exploreItemMythologyDynamicDragon": {
+    "description": "Explore item title: Dynamic Dragon"
+  },
   "exploreItemMythologyDynamicDragonPrompt": "تصميم وشم تنين نابض وديناميكي بجسم أفعواني وحراشف ناعمة تنتقل من أخضر عميق إلى فيروزي وأجنحة نارية برتقالية وذهبية تمتد للخارج وأجنحة ريشية بتدرج نغمات دافئة من البرتقالي إلى الأصفر الفاتح وذيل انسيابي ملتو بلمسات نارية ورأس مفصل بملامح حادة وقرون خفيفة والتنين يفيض بالطاقة والحركة وتظليل درامي لإبراز منحنيات ونسيج الجسم وأسلوب خيالي بلوحة ألوان حية وتباين عالي ورسم وشم احترافي بخطوط جريئة نظيفة.",
+  "@exploreItemMythologyDynamicDragonPrompt": {
+    "description": "Explore item prompt: Dynamic Dragon"
+  },
   "exploreItemMythologyTrident": "رمح ثلاثي",
+  "@exploreItemMythologyTrident": {
+    "description": "Explore item title: Trident"
+  },
   "exploreItemMythologyTridentPrompt": "تصميم وشم رمح ثلاثي قوطي بتفاصيل معقدة حادة ورأس الرمح مزين بأشواك داكنة شبيهة بالشوك ومنحنيات أنيقة وأفعى تلتف حول عمود الرمح بحراشف ناعمة وتظليل خفيف وعناصر كرمة زهرية تلتف حول الرمح ورقيقة لكن قوية وتظليل أسود ورمادي داكن ومخيف بتباين عالي ولعب ظلال درامي وخطوط حادة وتفاصيل دقيقة وفلاش وشم احترافي وخلفية بسيطة مع التركيز على السلاح والأفعى وتصميم متماثل.",
+  "@exploreItemMythologyTridentPrompt": {
+    "description": "Explore item prompt: Trident"
+  },
   "exploreItemMythologyWarrior": "محارب",
+  "@exploreItemMythologyWarrior": {
+    "description": "Explore item title: Warrior"
+  },
   "exploreItemMythologyWarriorPrompt": "محارب خيال قوي مع قشور تنين تغطي وجه ورقبة وعيون زرقاء متوهجة ولحية طويلة مفصلة وملامح حادة وخفايا نار برتقالية زرقاء تدور حوله ودروع مسننة حادة وزعانف مرتفعة من الظهر ويحمل ترايدنت في يد واحدة وتظليل درامي بتباين عالٍ وملمس جلد وسلاح مفصل وألوان نار جليد حيوية وجو أسطوري قوي وخطوط جريئة نظيفة ووميض وشم احترافي وخلفية بسيطة بتركيز على شكل ولهب.",
-  "historySelected": "{count} محدد",
-  "historySelectAll": "تحديد الكل",
-  "historyDeselectAll": "إلغاء تحديد الكل",
-  "historySelect": "تحديد",
-  "deleteConfirmationTitle": "حذف الإدخال",
-  "@deleteConfirmationTitle": {
-    "description": "Title for delete confirmation dialog"
-  },
-  "deleteConfirmationContent": "هل أنت متأكد أنك تريد حذف هذا التصميم من السجل؟ لا يمكن التراجع عن هذا الإجراء.",
-  "@deleteConfirmationContent": {
-    "description": "Content for delete confirmation dialog"
-  },
-  "delete": "حذف",
-  "@delete": {
-    "description": "Delete button label"
+  "@exploreItemMythologyWarriorPrompt": {
+    "description": "Explore item prompt: Warrior"
   }
 }
