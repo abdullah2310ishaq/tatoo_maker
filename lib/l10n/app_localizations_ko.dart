@@ -782,84 +782,84 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get exploreItemMinimalistPandaPrompt =>
-      '발목의 작은 미니멀리스트 판다 타투, 약간 오른쪽을 보고 앉아 있는 귀여운 판다, 검은 깨끗한 선으로 그려지고 미세한 그늘진 미세 섬세함. 판다는 녹색 얇은 줄기와 작은 자줏빛 라벤더 꽃을 들고 있으며, 미세한 식물 디테일과 검은 광택 있는 귀와 팔. 디자인은 발목 피부 중앙에 위치하며, 자연광으로 촬영되고 낮은 피사계 심도와 전문적인 미니멀리스트 타투 참고 스타일로 1:1 구성.';
+      '약간 오른쪽을 보고 앉아 있는 귀여운 판다 미니멀 타투, 검은 깨끗한 선과 미세한 그늘. 녹색 얇은 줄기에 자줏빛 라벤더 꽃, 식물 디테일과 광택 검은 귀와 팔. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemFineLineBow => '세밀 선 리본';
 
   @override
   String get exploreItemFineLineBowPrompt =>
-      '손목 내부의 작은 간단한 타투, 얇은 리본 선으로 그려지고 흰색 부드러운 손목 피부에 위치하며, 자연광으로 촬영된 전문적인 현대 타투 참고 스타일로 낮은 피사계 심도.';
+      '얇은 리본 활과 중앙 작은 매듭 미니멀 타투. 대칭 깨끗한 미니 타투 스타일. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemMicroRealismFinger => '마이크로 리얼리즘 손가락 타투';
 
   @override
   String get exploreItemMicroRealismFingerPrompt =>
-      '매크로 포토리얼리스틱 샷 중간 손가락, 관절 위에 2개의 작은 세부 타투: 오른쪽을 보고 앉아 있는 고양이와 아래의 세밀 선 잠자리. 장면은 자연스러운 피부 텍스처를 특징으로 하며 따뜻한 중립광과 낮은 피사계 심도와 깨끗한 베이지 배경, 전문적인 타투 참고 스타일로 높은 정밀도.';
+      '2개의 세부 미니 타투: 오른쪽을 보고 앉은 고양이와 세밀 선 잠자리. 미세한 그늘, 깨끗한 검은 잉크. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemFineLineCatCircle => '세밀 선 고양이와 원';
 
   @override
   String get exploreItemFineLineCatCirclePrompt =>
-      '목 아래 등 위 작은 타투, 뒤를 보고 앉아 있는 고양이의 미묘한 그림자를 표시하고 불완전한 얇은 원으로 둘러싸여 있고 작은 잎과 작은 꽃으로 둘러싸여 검은 깨끗하고 얇은 잉크. 장면은 리얼리스틱 피부 텍스처를 특징으로 하며 부드러운 자연광과 낮은 피사계 심도에서 현대 리얼리스틱 타투 참고 스타일.';
+      '뒤를 보고 앉은 검은 고양이 실루엣, 불완전한 얇은 원으로 둘러싸이고 작은 잎과 꽃 악센트, 얇은 검은 잉크 미니멀. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemFineLineLotusFlower => '세밀 선 연꽃';
 
   @override
   String get exploreItemFineLineLotusFlowerPrompt =>
-      '연꽃의 간단한 타투, 겹친 얇은 꽃잎과 얇은 줄기와 작은 잎과 봉오리로 검은 깨끗하고 얇은 잉크. 옆에 작은 검은 실선 심장과 2개의 작은 점으로 미니멀리스트 스타일. 디자인은 부드러운 피부에 중앙에 위치하며 따뜻한 자연광으로 촬영되고 낮은 피사계 심도에서 현대 리얼리스틱 타투 참고 스타일.';
+      '겹친 섬세한 꽃잎과 얇은 줄기, 잎과 봉오리 연꽃 미니멀 타투. 작은 검은 실선 심장과 2개 점으로 마이크로 스타일. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemSleepingCatCrescent => '잠자는 고양이와 초승달';
 
   @override
   String get exploreItemSleepingCatCrescentPrompt =>
-      '작은 세부 타투, 얇은 초승달에 감싸인 웅크린 잠자는 새끼 고양이, 검은 부드러운 그늘과 주변 미세한 광택. 디자인은 깨끗한 얇은 선을 표시하고 미세한 털 세부, 손목이나 전완 피부에 위치하며 따뜻한 자연광으로 촬영되고 낮은 피사계 심도에서 높은 품질의 리얼리스틱 타투 참고 스타일.';
+      '얇은 초승달 안에서 잠자는 새끼 고양이 마이크로 타투, 검은 회색 부드러운 그늘과 섬세한 광택. 깨끗한 얇은 선, 미세한 털 디테일. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemFineLineHeartStars => '세밀 선 심장과 별';
 
   @override
   String get exploreItemFineLineHeartStarsPrompt =>
-      '전완의 기하학 타투, 날카로운 모서리의 검은 실선 심장과 위와 아래 별. 작은 검은 점과 정의된 원이 주변의 수직 대칭 레이아웃을 형성. 부드러운 피부의 검은 깨끗하고 얇은 잉크로, 부드러운 자연광으로 촬영된 현대 타투 참고 스타일로 높은 정밀도.';
+      '날카로운 모서리 검은 실선 심장과 위아래 별 미니멀 기하 타투. 작은 점과 원이 수직 대칭 레이아웃 형성. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemFineLineCompassStar => '세밀 선 나침반 별';
 
   @override
   String get exploreItemFineLineCompassStarPrompt =>
-      '전완 내부의 작은 세부 타투, 중앙에 팔각 나침반 별, 검은 날카로운 선과 얇은 선과 주변 4개의 작은 점. 바로 아래에 정의된 작은 심장. 디자인은 매우 깨끗하고 대칭, 부드러운 피부에서 촬영되고 따뜻한 자연광으로 현대 리얼리스틱 타투 참고 스타일.';
+      '중앙 팔각 나침반 별, 주변 4개 작은 점과 아래 작은 심장 마이크로 타투. 매우 깨끗하고 대칭. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemMinimalTrebleClef => '목의 고음표';
 
   @override
   String get exploreItemMinimalTrebleClefPrompt =>
-      '목 측면 귀 뒤에 3개의 작은 음표가 있는 작은 광택 검은 고음표 타투. 대담하고 깨끗한 선으로, 따뜻한 빛으로 촬영되고 리얼리스틱 피부 텍스처와 은 귀걸이 표시와 낮은 피사계 심도로 세부 미니멀리스트 타투 참고 스타일.';
+      '3개 작은 음표가 있는 작은 광택 검은 고음표 타투, 대담하고 깨끗한 선. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemStarryHeart => '별 심장';
 
   @override
   String get exploreItemStarryHeartPrompt =>
-      '전완 내부의 작은 선 얇은 타투, 중앙의 정의된 작은 심장과 주변 작은 별과 실선 점. 검은 미니멀리스트 스타일로, 리얼리스틱 피부에서 자연광으로 촬영되고 흰색 소매 표시와 파란 진과 가벼운 흐릿한 거리 배경.';
+      '중앙 정의된 심장에 작은 점, 주변 별과 실선 점 미니멀 선화 타투. 검은 미니멀 스타일, 흰 배경. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemValknutTriangle => '발크누트 삼각형';
 
   @override
   String get exploreItemValknutTrianglePrompt =>
-      '진 바지 주머니에서 손을 쥐는 가까운 리얼리스틱 샷, 얽힌 3개의 삼각형 발크누트 아트 같은 미묘한 작은 타투, 검은 얇은 깨끗한 잉크. 피부 텍스처와 정맥 표시와 어두운 폴로와 은 반지와 진 배경과 자연광과 낮은 피사계 심도.';
+      '얽힌 3개 삼각형 발크누트 풍 기하 타투, 검은 얇은 깨끗한 잉크. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemMinimalistMountain => '미니멀리스트 산';
 
   @override
   String get exploreItemMinimalistMountainPrompt =>
-      '전완 내부의 가까운 리얼리스틱 샷, 작은 단순한 산 타투, 검은 얇은 깨끗한 잉크. 디자인은 전완 중앙에 작게 위치하며 피부 텍스처와 약간 말린 소매와 자연광과 중립 배경과 낮은 피사계 심도.';
+      '검은 얇은 깨끗한 잉크 미니멀 산 타투, 작고 단순한 디자인, 부드러운 자연광과 중립 배경. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemSwallowBird => '제비';
@@ -992,168 +992,168 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get exploreItemPolynesianTribalPrompt =>
-      '손등의 대담한 폴리네시아 부족 타투, 검은 깨끗한 선과 나선 패턴과 기하학적 디자인. 타투는 부드러운 곡선과 날카로운 각도로 흘러, 손바닥에서 손목까지 날카로운 끝으로 뻗음. 깊은 검은 잉크로 높은 대비를 보여주고, 전통적인 폴리네시아 부족 스타일로 리얼리스틱 피부 텍스처와 부드러운 빛。';
+      '대담한 폴리네시아 부족 타투, 검은 깨끗한 선과 나선 패턴과 기하학 디자인. 부드러운 곡선과 날카로운 각도, 깊은 검은 잉크로 높은 대비. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalSpineSpear => '척추 창';
 
   @override
   String get exploreItemTribalSpineSpearPrompt =>
-      '남자의 등 위쪽 포토리얼리스틱 샷, 중앙 대칭 검은 부족 타투, 얽힌 매듭 선과 날카로운 폴리네시아 선. 디자인은 척추를 따라 뻗고 깨끗한 잉크와 높은 대비와 리얼리스틱 피부 텍스처와 외부 빛과 낮은 피사계 심도。';
+      '켈트 매듭과 날카로운 폴리네시아 선 결합 중앙 대칭 부족 척추 타투, 세로로 긴 창 모양 폼, 대담한 깨끗한 검은 잉크, 선명한 가장자리. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalKnotwork => '매듭 작업';
 
   @override
   String get exploreItemTribalKnotworkPrompt =>
-      '대칭 부족 타투, 검은 날카로운 기하학적 선과 얽힌 곡선으로 복잡한 패턴, 높은 대비와 그림자 없음 깨끗한 검은 잉크와 현대 추상 스타일과 완벽한 대칭과 단순한 배경。';
+      '대칭 부족 타투, 날카로운 검은 기하 선과 얽힌 곡선, 양끝이 좁아지는 세로 폼, 복잡한 직조 패턴. 높은 대비, 그림자 없음, 깨끗한 실선 잉크, 현대 추상 스타일, 완벽한 대칭. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalForearmSleeve => '전완 슬리브';
 
   @override
   String get exploreItemTribalForearmSleevePrompt =>
-      '구부러진 남자 전완 포토리얼리스틱 샷, 검은 부족 타투, 나선 곡선과 날카로운 점과 원형 장식. 리얼리스틱 피부 텍스처와 따뜻한 내부 빛과 낮은 피사계 심도와 세부 중앙 구성。';
+      '폴리네시아 풍 부족 슬리브, 흐르는 곡선과 날카로운 점과 원형 모티프를 역동적 구도에 배치. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalCentralSpiral => '중앙 나선';
 
   @override
   String get exploreItemTribalCentralSpiralPrompt =>
-      '손 가까운 샷, 중앙 검은 부족 타투, 손가락에서 손목으로 흘러가는. 선 같은 불꽃의 날카로운 곡선과 나선 장식 검은 잉크. 피부 텍스처와 정맥 표시와 차가운 앰비언트 빛과 낮은 피사계 심도와 영화적 중앙 구성。';
+      '불꽃 같은 날카로운 선과 매끄러운 흐르는 곡선의 대담한 부족 중앙 나선 타투, 역동적 대칭 구도. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalFlameForearm => '불꽃 전완';
 
   @override
   String get exploreItemTribalFlameForearmPrompt =>
-      '전완 내부 가까운 샷, 중앙 검은 부족 타투, 불꽃 같은 패턴 깨끗한 검은 잉크. 사람은 타투 체어에 앉아 손목을 잡고 검은 소매와 검은 바닥 배경과 내부 빛과 리얼리스틱 피부 텍스처와 낮은 피사계 심도。';
+      '불꽃 같은 부족 전완 타투, 두꺼운 깨끗한 검은 잉크, 날카롭게 좁아지는 끝과 흐르는 곡선, 중앙 세로 구도. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalSpiralFlame => '나선 불꽃';
 
   @override
   String get exploreItemTribalSpiralFlamePrompt =>
-      '근육질 상완 포토리얼리스틱 샷, 어깨의 나선 검은 부족 타투, 날카로운 불꽃 끝 깨끗한 검은 잉크. 새로운 타투는 가벼운 홍반을 보여, 사람은 타투 스튜디오에 있고 검은 소매 없는 셔츠 아래 내부 빛으로 피부 텍스처 표시와 낮은 피사계 심도。';
+      '중앙 나선에서 퍼지는 불꽃 같은 확장이 있는 대담한 나선 불꽃 부족 타투, 두꺼운 검은 잉크와 날카로운 불꽃 끝, 역동적 대칭 구도. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 높은 대비, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalCompass => '나침반';
 
   @override
   String get exploreItemTribalCompassPrompt =>
-      '중앙 검은 부족 나침반 가까운 샷, 대칭 별 점 날카로운 선. 깨끗한 검은 잉크와 가벼운 홍반과 피부 텍스처와 정맥 표시와 따뜻한 스튜디오 빛과 어두운 배경과 낮은 피사계 심도。';
+      '중앙 부족 나침반 타투, 날카로운 대칭 별 모서리와 불꽃 같은 확장, 깨끗한 실선 검은 잉크, 높은 대비, 선명한 가장자리, 균형 잡힌 기하. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalModernGeometric => '현대 기하학';
 
   @override
   String get exploreItemTribalModernGeometricPrompt =>
-      '큰 검은 부족 타투 가까운 샷, 날카로운 삼각 패턴과 꽃 중앙. 두꺼운 깨끗한 검은 잉크와 높은 대비와 리얼리스틱 피부 텍스처와 머리 표시와 금속 바닥에 서있는 외부 빛과 낮은 피사계 심도。';
+      '날카로운 삼각 패턴과 꽃 중앙 모티프 큰 현대 기하 부족 타투, 두꺼운 실선 검은 잉크, 높은 대비, 정밀한 대칭. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalNeoBack => '네오 등';
 
   @override
   String get exploreItemTribalNeoBackPrompt =>
-      '상단 뷰, 사람이 앞으로 구부려 검은 큰 대담한 부족 타투를 드러냄, 등과 어깨 위 가시. 검은 잉크 높은 대비와 머리 묶음과 손으로 잡음과 어두운 배경과 앰비언트 빛과 리얼리스틱 피부 텍스처와 낮은 피사계 심도。';
+      '가시 모양 대담한 형태의 큰 네오 부족 등 타투, 실선 높은 대비 검은 잉크, 날카로운 가장자리, 역동적 대칭. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalFlame => '불꽃';
 
   @override
   String get exploreItemTribalFlamePrompt =>
-      '손등 가까운 샷, 대칭 검은 부족 타투, 관절에서 손목으로 흘러가는 날카로운 곡선과 나선 장식 검은 잉크. 피부 텍스처와 정맥 표시와 손 휴식과 파란 진 바지 배경과 중립 내부 빛과 낮은 피사계 심도。';
+      '날카로운 곡선과 장식적 나선의 대칭 부족 불꽃 타투, 깨끗한 실선 검은 잉크, 높은 대비, 정밀한 흐르는 기하. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemTribalSwordCompass => '검 나침반';
 
   @override
   String get exploreItemTribalSwordCompassPrompt =>
-      '손등 가까운 샷, 검은 회 부족 타투, 수직 검 장미 바람을 찌름 선 얇고 원형 세부와 연기 같은 그림자. 리얼리스틱 피부 텍스처와 안개 어두운 배경과 드라마틱 스튜디오 빛과 낮은 피사계 심도。';
+      '수직 검과 8점 나침반 장미 부족 타투, 얇은 선, 원형 디테일, 연기 같은 악센트, 깨끗한 높은 대비 검은 잉크, 중앙 대칭 구도. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricMindBodySoul => '마음-몸-영혼';
 
   @override
   String get exploreItemGeometricMindBodySoulPrompt =>
-      '전완의 상세 높은 신성 기하학 타투, 수직 구성: 위 뇌 나무로 변함 가운데 해부학적 만다라 형 아래 해부학적 심장 요소 장식. 깨끗한 얇은 선과 점 그림자와 높은 대비와 스튜디오 리얼리스틱 샷。';
+      '위에서 뇌가 나무로 변하고 중앙 해부학적 만다라 형, 아래 해부학적 심장과 장식 요소의 상세 신성 기하 타투. 수직 구성, 깨끗한 선, 미세한 점 그림자, 높은 대비 검은 잉크. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricHoneycombSleeve => '벌집 슬리브';
 
   @override
   String get exploreItemGeometricHoneycombSleevePrompt =>
-      '근육질 남자 무 셔츠 스튜디오 포토리얼리스틱 샷, 어깨 완전 검은 기하학 슬리브, 육각 벌집 패턴과 아래 신성 만다라 기하학 디자인 팔. 깨끗한 검은 잉크 높은 대비와 리얼리스틱 피부 텍스처와 중립 배경과 부드러운 빛과 낮은 피사계 심도。';
+      '육각 벌집 패턴과 신성 기하 만다라 요소를 결합한 완전 검은 기하 슬리브, 팔 아래로 흐르는 구도. 깨끗한 높은 대비 검은 잉크, 정밀 대칭, 선명한 선. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricBlackwork => '검은 작업';
 
   @override
   String get exploreItemGeometricBlackworkPrompt =>
-      '남자 무 셔츠 포토리얼리스틱 샷, 어깨 검은 회 기하학 타투, 상완 위 세부 숲 산 장면 육각. 검은 잉크 높은 대비와 점 그림자와 리얼리스틱 피부 텍스처와 부드러운 스튜디오 빛과 중립 배경과 낮은 피사계 심도。';
+      '3D 큐브와 육각 광학 착시 패턴이 실선 검은 영역으로 자연스럽게 페이드되는 기하 블랙워크 슬리브. 정밀한 선, 높은 대비 검은 잉크, 선명한 대칭. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricCubeSleeve => '큐브 슬리브';
 
   @override
   String get exploreItemGeometricCubeSleevePrompt =>
-      '남자 전완 연장 포토리얼리스틱 샷, 완전 검은 작업 기하학 슬리브, 3D 큐브 패턴과 광학 착시 페이드 검은 손목 밴드. 얇은 선과 검은 잉크 높은 대비와 피부 텍스처와 정맥 표시와 중립 스튜디오 배경과 부드러운 빛과 낮은 피사계 심도。';
+      '3D 큐브와 육각 광학 착시 패턴이 실선 검은 영역으로 자연스럽게 페이드되는 기하 블랙워크 슬리브. 정밀한 선, 높은 대비 검은 잉크, 선명한 대칭. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometric3dCubeSleeve => '3D 큐브 슬리브';
 
   @override
   String get exploreItemGeometric3dCubeSleevePrompt =>
-      '전완 포토리얼리스틱 샷, 완전 검은 작업 기하학 슬리브, 얽힌 3D 큐브 패턴 밀 광학 착시 손목 가까이 신성 별로 패스. 검은 잉크 높은 대비와 날카로운 얇은 선과 점 그림자와 흰 셔츠 말아 올림과 부드러운 스튜디오 빛과 낮은 피사계 심도。';
+      '얽힌 3D 큐브 광학 착시가 밀집한 신성 기하 별 모티프로 이어지는 완전 기하 블랙워크 슬리브. 높은 대비 검은 잉크, 깨끗한 날카로운 선, 미세한 점 묘사. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricTreeOfLife => '생명의 나무';
 
   @override
   String get exploreItemGeometricTreeOfLifePrompt =>
-      '전완 내부 수직 포토리얼리스틱 샷, 검은 회 자연 타투, 중앙 소나무와 원형 산 풍경과 달과 뿌리 장식. 얇은 선과 부드러운 그림자와 리얼리스틱 피부 텍스처와 부드러운 스튜디오 빛과 중립 배경과 낮은 피사계 심도。';
+      '중앙 소나무와 원형 산 풍경, 위 초승달, 아래 장식적 뿌리의 수직 생명의 나무 타투. 깨끗한 얇은 선과 블랙워크 스타일, 부드러운 높은 대비 디테일. 깨끗한 벡터 타투 플래시 시트, 스텐실 준비 디자인, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricAtlas => '아틀라스';
 
   @override
   String get exploreItemGeometricAtlasPrompt =>
-      '라인 얇은 점 검은 회 아틀라스 타투, 지구본 들고 무릎 꿇은 아틀라스, 클래식 르네상스 조각으로 표현 해부학적 그리기와 리얼리스틱 그림자. 지구 대륙과 기하학 네트워크와 태양 기호 위. 수직 깨끗한 구성 높은 대비와 스텐실 타투 준비와 높은 세부 단순。';
+      '검은 회색 얇은 선과 점묘 스타일 수직 아틀라스 타투, 클래식 조각 풍 무릎 꿇은 인물이 대륙과 기하 그리드가 있는 지구본을 들고, 위에 신성 기하 패턴과 태양 기호. 깨끗한 높은 대비 스텐실 준비, 미세한 미니멀 디테일. 깨끗한 벡터 타투 플래시 시트, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricTriadTravel => '여행 삼중';
 
   @override
   String get exploreItemGeometricTriadTravelPrompt =>
-      '단순 검은 작업 기하학 타투 전완, 라인 얇은 점 그림자 수직 삼중 구성: 위 장미 바람과 궤도 선과 작은 비행기 점선 경로와 산과 아래 해양 파도. 깨끗한 얇은 라인과 점선 이동 라인과 신성 기하학 미세하고 현대 여행 테마 높은 대비와 스텐실 준비。';
+      '얇은 선과 점묘 스타일 미니멀 기하 여행 타투, 나침반 장미와 궤도 선, 점선 길 위 작은 비행기, 산과 해양 파도를 뒤집힌 삼각 프레임 안에 배치, 대칭 신성 기하 악센트. 깨끗한 높은 대비 스텐실 준비 수직 구도, 초상세 선묘. 깨끗한 벡터 타투 플래시 시트, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricHorizons => '지평선';
 
   @override
   String get exploreItemGeometricHorizonsPrompt =>
-      '기하학 타투 단순 전완, 라인 얇은 점 그림자 수직 육각 연결 열. 위 태양 하늘 산 중 해양 파도 아래 작은 육각과 신성 기하학 미세하고 점선 경로. 자연 테마 깨끗한 대칭 높은 대비와 스텐실 준비。';
+      '얇은 선 블랙워크와 점묘 미니멀 기하 지평선 타투, 위 태양과 하늘, 중앙 산과 나무, 아래 해양 파도의 연결된 육각 수직 열, 작은 육각과 신성 기하 악센트, 얇은 선과 점선 경로로 연결. 깨끗한 대칭 높은 대비 스텐실 준비. 깨끗한 벡터 타투 플래시 시트, 흰 종이에 아트 프린트, 흑백 선화, 독립 타투 디자인, 흰 배경, 2D만, 플랫 디자인, 독립 작품.';
 
   @override
   String get exploreItemGeometricAlignedTriad => '정렬 삼중';
 
   @override
   String get exploreItemGeometricAlignedTriadPrompt =>
-      '작은 손가락 기하학 타투, 라인 얇은 미세 점 그림자 추상 수직 삼중 구성 다층 기하학 형태와 다이아몬드 세부 날카로운 다각형 미세 그림자. 현대 신성 기하학 스타일 얇은 정확한 라인과 전문 외관과 스텐실 준비와 높은 세부。';
+      '얇은 선 블랙워크 극소 손가락 타투, 다층 기하 형태와 작은 다이아몬드, 다각형 디테일, 미세한 점 그림자의 추상 수직 삼각 구도. 현대 신성 기하 스타일, 얇은 정밀 선, 깨끗한 장식 악센트, 스텐실 준비 프로페셔널 외관.';
 
   @override
   String get exploreItemGeometricSigi => '추상 시기';
 
   @override
   String get exploreItemGeometricSigiPrompt =>
-      '작은 단순 손가락 타투, 검은 얇은 잉크 수직 상징 겹친 삼각과 다이아몬드와 날카로운 다각형 미세 점 그림자와 깨끗한 부정 공간. 현대 신성 기하학 스타일 얇은 정확한 라인과 높은 대비와 전문 스텐실 준비。';
+      '얇은 선 검은 잉크 초미니멀 기하 손가락 타투, 겹친 삼각형, 다이아몬드, 날카로운 다각형 형태의 작은 수직 상징, 미세한 점 그림자, 깨끗한 여백. 현대 신성 기하 스타일, 정밀한 얇은 선, 높은 대비 블랙워크, 스텐실 준비 프로페셔널 디자인.';
 
   @override
   String get exploreItemGeometricDualityNature => '기하학 자연 이중성';
 
   @override
   String get exploreItemGeometricDualityNaturePrompt =>
-      '단순 검은 작업 기하학 타투 전완, 라인 얇은 점 그림자 겹친 삼각: 위 산 장면과 태양/달 상승과 아래 뒤집힌 큰 해양 파도. 기하학 깨끗한 프레임과 신성 기하학 미세하고 이동 라인 점선 현대 균형 자연 테마 높은 대비와 스텐실 준비。';
+      '얇은 선과 점묘 스타일 미니멀 블랙워크 타투, 겹친 두 삼각: 위 산 풍경과 떠오르는 태양/달, 아래 뒤집힌 큰 해양 파도. 깨끗한 기하 프레이밍, 미세한 신성 기하 악센트, 점선 움직임 선으로 균형 잡힌 현대 자연 테마, 높은 대비, 초상세, 스텐실 준비.';
 
   @override
   String get exploreItemRealismGamblerFedora => '갬블러와 페도라';
