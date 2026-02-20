@@ -308,10 +308,6 @@
   "@exploreTitleFloral": {
     "description": "Home: Explore item title - Floral"
   },
-  "exploreItemMythologyGriffinPrompt": "雄伟的格里芬，半狮半鹰，金色和棕色的羽毛，山顶，高细节",
-  "@exploreItemMythologyGriffinPrompt": {
-    "description": "Home: Explore item prompt - Mythology Griffin"
-  },
   "explorePromptFloral": "美丽的花卉纹身设计，复杂的花瓣和叶子，自然流动的曲线，植物纹身风格，详细的线条工作，纯白墨水，高对比度",
   "@explorePromptFloral": {
     "description": "Home: Explore item prompt - Floral"

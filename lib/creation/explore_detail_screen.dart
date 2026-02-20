@@ -1,11 +1,14 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import 'loading_screen.dart';
+import 'virtual_try_on.dart';
 
-class ExploreDetailScreen extends StatelessWidget {
+class ExploreDetailScreen extends StatefulWidget {
   final String title;
   final String prompt;
   final String bigImagePath;
@@ -25,6 +28,87 @@ class ExploreDetailScreen extends StatelessWidget {
     this.smallImagePathDark,
     this.styleKey,
   });
+
+  @override
+  State<ExploreDetailScreen> createState() => _ExploreDetailScreenState();
+}
+
+class _ExploreDetailScreenState extends State<ExploreDetailScreen> {
+  bool _isLoadingImageBytes = false;
+
+  /// Converts an asset image to Uint8List bytes
+  Future<Uint8List?> _loadAssetImageBytes(String assetPath) async {
+    try {
+      final ByteData data = await rootBundle.load(assetPath);
+      return data.buffer.asUint8List();
+    } catch (e) {
+      debugPrint('Error loading asset image: $e');
+      return null;
+    }
+  }
+
+  /// Navigates to Virtual Try On screen with the asset image
+  Future<void> _navigateToVirtualTryOn() async {
+    if (_isLoadingImageBytes) return;
+
+    setState(() {
+      _isLoadingImageBytes = true;
+    });
+
+    try {
+      // Prefer the same small image used in the detailed view (dark/light),
+      // fall back to the big image if needed.
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+      String assetPath;
+      if (isDark && widget.smallImagePathDark != null) {
+        assetPath = widget.smallImagePathDark!;
+      } else if (widget.smallImagePath != null) {
+        assetPath = widget.smallImagePath!;
+      } else {
+        assetPath = widget.bigImagePath;
+      }
+
+      final imageBytes = await _loadAssetImageBytes(assetPath);
+
+      if (!mounted) return;
+
+      if (imageBytes != null) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => VirtualTryOnScreen(
+              tattooImageBytes: imageBytes,
+              styleName: widget.styleKey ?? widget.title,
+            ),
+          ),
+        );
+      } else {
+        if (!mounted) return;
+        final l10n = AppLocalizations.of(context)!;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.virtualTryOnProcessingFailedTryAgain),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      debugPrint('Error navigating to virtual try on: $e');
+      if (!mounted) return;
+      final l10n = AppLocalizations.of(context)!;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.virtualTryOnProcessingFailedTryAgain),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoadingImageBytes = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +162,7 @@ class ExploreDetailScreen extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 48.w),
                           child: Text(
-                            title,
+                            widget.title,
                             style: TextStyle(
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
@@ -95,22 +179,39 @@ class ExploreDetailScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Asset image centered below X (fixed smaller size)
+                // Asset image centered below X (fixed smaller size) - clickable for virtual try on
                 Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.w,
                     vertical: 16.h,
                   ),
                   child: Center(
-                    child: SizedBox(
-                      width: 265.w, // Fixed width
-                      height: 265.w, // Fixed height (square)
-                      child: _buildImageAsset(
-                        context,
-                        smallImagePath,
-                        smallImagePathDark,
-                        bigImagePath,
-                        isDark,
+                    child: GestureDetector(
+                      onTap: _navigateToVirtualTryOn,
+                      child: SizedBox(
+                        width: 265.w, // Fixed width
+                        height: 265.w, // Fixed height (square)
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            _buildImageAsset(
+                              context,
+                              widget.smallImagePath,
+                              widget.smallImagePathDark,
+                              widget.bigImagePath,
+                              isDark,
+                            ),
+                            if (_isLoadingImageBytes)
+                              Container(
+                                color: Colors.black.withValues(alpha: 0.3),
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.cardGlowStart,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -174,7 +275,7 @@ class ExploreDetailScreen extends StatelessWidget {
                             // Scrollable prompt text
                             SingleChildScrollView(
                               child: Text(
-                                prompt,
+                                widget.prompt,
                                 style: TextStyle(
                                   fontSize: 15.sp,
                                   color: promptTextColor,
@@ -193,48 +294,93 @@ class ExploreDetailScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 24.h),
-                // "Try This" button
+                // Action buttons: "Try This" and "Virtual Try On"
                 Padding(
                   padding: EdgeInsets.only(
                     left: 20.w,
                     right: 20.w,
                     bottom: bottomPadding > 0 ? bottomPadding : 20.h,
                   ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 56.h,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => LoadingScreen(
-                              selectedStyleAsset: bigImagePath,
-                              styleName: styleKey ?? title,
-                              promptText: prompt,
+                  child: Column(
+                    children: [
+                      // "Try This" button
+                      SizedBox(
+                        width: double.infinity,
+                        height: 56.h,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => LoadingScreen(
+                                  selectedStyleAsset: widget.bigImagePath,
+                                  styleName: widget.styleKey ?? widget.title,
+                                  promptText: widget.prompt,
+                                ),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(
+                              0xFFA6541D,
+                            ), // Burnt orange
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                8.r,
+                              ), // Stadium shape
                             ),
                           ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(
-                          0xFFA6541D,
-                        ), // Burnt orange
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            8.r,
-                          ), // Stadium shape
+                          child: Text(
+                            l10n.tryThis,
+                            style: TextStyle(
+                              fontSize: 25.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              fontFamily: 'Amaranth',
+                            ),
+                          ),
                         ),
                       ),
-                      child: Text(
-                        l10n.tryThis,
-                        style: TextStyle(
-                          fontSize: 25.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                          fontFamily: 'Amaranth',
+                      SizedBox(height: 12.h),
+                      // "Virtual Try On" button
+                      SizedBox(
+                        width: double.infinity,
+                        height: 56.h,
+                        child: ElevatedButton(
+                          onPressed: _isLoadingImageBytes
+                              ? null
+                              : _navigateToVirtualTryOn,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(
+                              0xFFA6541D,
+                            ), // Burnt orange
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                            disabledBackgroundColor: Colors.grey,
+                          ),
+                          child: _isLoadingImageBytes
+                              ? const SizedBox(
+                                  width: 24,
+                                  height: 24,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white,
+                                    ),
+                                  ),
+                                )
+                              : Text(
+                                  l10n.virtualTryOn,
+                                  style: TextStyle(
+                                    fontSize: 25.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    fontFamily: 'Amaranth',
+                                  ),
+                                ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ],
