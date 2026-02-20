@@ -1094,7 +1094,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exploreItemGeometricMindBodySoulPrompt =>
-      'Highly detailed black-and-grey sacred geometry forearm tattoo with a vertical design: a brain transforming into a tree at the top, a meditating figure within geometric mandala shapes in the center, and an anatomical heart with ornamental elements at the bottom. Clean linework, dotwork shading, high contrast, and photorealistic studio presentation.';
+      'Highly detailed sacred geometry tattoo design featuring a vertical composition with a brain transforming into a tree at the top, a meditating figure within geometric mandala shapes in the center, and an anatomical heart with ornamental elements at the bottom, clean linework with intricate dotwork shading and high contrast black ink, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.';
 
   @override
   String get exploreItemGeometricHoneycombSleeve =>
@@ -1102,7 +1102,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exploreItemGeometricHoneycombSleevePrompt =>
-      'Ultra-realistic studio photo of a shirtless athletic man showing a full black geometric sleeve tattoo, with a honeycomb hexagon pattern on the shoulder and sacred-geometry mandala designs down the arm. Clean high-contrast ink, natural skin texture, neutral background, soft lighting, and shallow depth of field.';
+      'Full black geometric sleeve tattoo design featuring a vertical honeycomb hexagon pattern combined with sacred-geometry mandala elements flowing down the arm, clean high-contrast black ink with precise symmetry and crisp linework, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork. wiht ni hand pattern';
 
   @override
   String get exploreItemGeometricBlackwork =>
@@ -1110,49 +1110,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exploreItemGeometricBlackworkPrompt =>
-      'Ultra-realistic photo of a shirtless man with a black-and-grey geometric shoulder and upper-arm tattoo featuring honeycomb hexagons containing detailed forest and mountain scenes. High-contrast ink with shading and dotwork, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.';
+      'Geometric blackwork sleeve tattoo design featuring 3D cube and hexagon optical-illusion patterns seamlessly fading into a solid black section, precise linework with high-contrast black ink and sharp symmetry, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.';
 
   @override
   String get exploreItemGeometricCubeSleeve => 'Geometric Cube Sleeve';
 
   @override
   String get exploreItemGeometricCubeSleevePrompt =>
-      'Ultra-realistic photo of an extended male forearm with a geometric blackwork tattoo featuring 3D cube and hexagon optical-illusion patterns, fading into a solid black wrist band. Precise linework, high-contrast ink, visible skin texture and veins, neutral studio background, soft lighting, and shallow depth of field.';
+      'Geometric blackwork sleeve tattoo design featuring 3D cube and hexagon optical-illusion patterns seamlessly fading into a solid black section, precise linework with high-contrast black ink and sharp symmetry, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork';
 
   @override
   String get exploreItemGeometric3dCubeSleeve => '3D Cube Geometric Sleeve';
 
   @override
   String get exploreItemGeometric3dCubeSleevePrompt =>
-      'Ultra-realistic photo of a forearm with a full geometric blackwork sleeve featuring interlocking 3D cube optical-illusion patterns that transition into a dense sacred-geometry star design near the wrist. High-contrast ink, clean sharp linework, dotwork shading, white rolled-up shirt, soft studio lighting, and shallow depth of field.';
+      'Full geometric blackwork sleeve tattoo design featuring interlocking 3D cube optical-illusion patterns transitioning into a dense sacred-geometry star motif, high-contrast black ink with clean sharp linework and intricate dotwork detailing, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.';
 
   @override
   String get exploreItemGeometricTreeOfLife => 'Tree of Life';
 
   @override
   String get exploreItemGeometricTreeOfLifePrompt =>
-      'Ultra-realistic vertical photo of an inner forearm with a black-and-grey nature tattoo featuring a central pine tree, circular mountain landscape, crescent moons, and ornamental roots. Clean fine-line and blackwork style, smooth shading, natural skin texture, soft studio lighting, neutral background, and shallow depth of field.';
+      'Vertical tree of life tattoo design featuring a central pine tree within a circular mountain landscape, crescent moons above and ornamental roots below, rendered in clean fine-line and blackwork style with smooth high-contrast detailing, clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, black and white line art, minimalist with intricate details, standalone tattoo design, white background, 2D only, flat design, isolated artwork.';
 
   @override
   String get exploreItemGeometricAtlas => 'Atlas Bearing the World';
 
   @override
   String get exploreItemGeometricAtlasPrompt =>
-      'Black-and-grey fine-line and dotwork tattoo of Atlas kneeling and carrying a globe, rendered like a classical Renaissance sculpture with realistic anatomy and shading. The Earth shows continents and a geometric grid, with sacred-geometry patterns and a sun symbol above. Clean, high-contrast, stencil-ready vertical design for an upper-arm tattoo, ultra-detailed and minimalistic.';
+      'Vertical Atlas tattoo design in black-and-grey fine-line and dotwork style, depicting a classical sculpture-inspired figure kneeling and carrying a globe detailed with continents and a geometric grid, sacred-geometry patterns and a sun symbol above, clean high-contrast stencil-ready composition with intricate minimalist detailing, clean vector tattoo flash sheet, art print on blank white paper, black and white line art, standalone tattoo design, white background, 2D only, flat design, isolated artwork.';
 
   @override
   String get exploreItemGeometricTriadTravel => 'Triad of Travel';
 
   @override
   String get exploreItemGeometricTriadTravelPrompt =>
-      'Minimalist blackwork forearm tattoo in fine-line and dotwork style, featuring a compass rose with geometric orbit lines, a small airplane on a dotted path, mountains, and an ocean wave, all arranged inside an inverted triangle frame with symmetrical sacred-geometry accents. Clean, high-contrast, stencil-ready vertical design with modern travel theme and ultra-detailed linework.';
+      'Minimalist geometric travel tattoo design in fine-line and dotwork style featuring a compass rose with orbital lines, a small airplane on a dotted path, mountains and an ocean wave arranged inside an inverted triangle frame with symmetrical sacred-geometry accents, clean high-contrast stencil-ready vertical composition with ultra-detailed linework, clean vector tattoo flash sheet, art print on blank white paper, black and white line art, standalone tattoo design, white background, 2D only, flat design, isolated artwork.';
 
   @override
   String get exploreItemGeometricHorizons => 'Cycle of Horizons';
 
   @override
   String get exploreItemGeometricHorizonsPrompt =>
-      'Minimalist geometric forearm tattoo in fine-line blackwork and dotwork, featuring a vertical column of connected hexagons. The top shows sun and sky, the center a mountain landscape with trees, and the bottom an ocean wave, with smaller surrounding hexagons and sacred-geometry accents linked by thin lines and dotted paths. Clean, symmetrical, high-contrast, stencil-ready nature-themed design.';
+      'Minimalist geometric horizons tattoo design in fine-line blackwork and dotwork featuring a vertical column of connected hexagons with a sun and sky at the top, mountain landscape with trees in the center, and an ocean wave at the bottom, surrounded by smaller hexagons and sacred-geometry accents linked by thin lines and dotted paths, clean symmetrical high-contrast stencil-ready composition, clean vector tattoo flash sheet, art print on blank white paper, black and white line art, standalone tattoo design, white background, 2D only, flat design, isolated artwork.';
 
   @override
   String get exploreItemGeometricAlignedTriad => 'Aligned Triad';
@@ -1173,7 +1173,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exploreItemGeometricDualityNaturePrompt =>
-      'Minimalist blackwork forearm tattoo in fine-line and dotwork style, featuring two stacked triangles: the top with a mountain scene and rising sun or moon, and the bottom inverted with a large ocean wave. Clean geometric framing, subtle sacred-geometry accents, and dotted motion lines create a balanced, modern nature-themed design that\'s high-contrast, ultra-detailed, and stencil-ready.';
+      'Minimalist blackwork  tattoo in fine-line and dotwork style, featuring two stacked triangles: the top with a mountain scene and rising sun or moon, and the bottom inverted with a large ocean wave. Clean geometric framing, subtle sacred-geometry accents, and dotted motion lines create a balanced, modern nature-themed design that\'s high-contrast, ultra-detailed, and stencil-ready.';
 
   @override
   String get exploreItemRealismGamblerFedora => 'Gambler in a Fedora';

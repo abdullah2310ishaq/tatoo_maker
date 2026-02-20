@@ -160,9 +160,9 @@ class _LoadingScreenState extends State<LoadingScreen>
     // Global style: force the model to produce a clean standalone tattoo
     // flash/stencil artwork — NOT ink on a real body.
     promptParts.add(
-        'clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, '
-        'black and white, line art, minimalist, intricate details, standalone tattoo design, '
-        'white background, high contrast, 2d only, flat design, isolated artwork',
+      'clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, '
+      'black and white, line art, minimalist, intricate details, standalone tattoo design, '
+      'white background, high contrast, 2d only, flat design, isolated artwork',
     );
 
     // Strict body-part exclusion instructions (Flux has no negative_prompt
