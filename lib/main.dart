@@ -14,9 +14,8 @@ import 'providers/favorites_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Lock app orientation so it does not rotate.
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   runApp(const MyApp());
 }
 
@@ -112,7 +111,7 @@ class _MyAppState extends State<MyApp> {
         child: ScreenUtilInit(
           designSize: const Size(375, 812), // iPhone X design size
           minTextAdapt: true,
-          splitScreenMode: true,
+          splitScreenMode: false,
           builder: (context, child) {
             final locale = context.watch<LocaleService>().getCurrentLocale();
             return MaterialApp(

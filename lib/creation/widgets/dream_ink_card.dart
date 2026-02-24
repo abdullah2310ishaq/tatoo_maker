@@ -15,6 +15,8 @@ class DreamInkCard extends StatelessWidget {
 
   /// When set, tapping the Inspiration label/icon triggers this (e.g. random style selection).
   final VoidCallback? onInspirationTap;
+  final bool hasSelectedStyle;
+  final VoidCallback? onClearStyleTap;
 
   const DreamInkCard({
     super.key,
@@ -24,6 +26,8 @@ class DreamInkCard extends StatelessWidget {
     required this.onChanged,
     required this.checkAssetExists,
     this.onInspirationTap,
+    this.hasSelectedStyle = false,
+    this.onClearStyleTap,
   });
 
   @override
@@ -55,6 +59,19 @@ class DreamInkCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             child: Stack(
               children: [
+                if (hasSelectedStyle)
+                  PositionedDirectional(
+                    top: -4.h,
+                    end: -4.w,
+                    child: GestureDetector(
+                      onTap: onClearStyleTap,
+                      behavior: HitTestBehavior.opaque,
+                      child: Padding(
+                        padding: EdgeInsets.all(4.w),
+                        child: Icon(Icons.close, size: 20.sp, color: hintColor),
+                      ),
+                    ),
+                  ),
                 // Content
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

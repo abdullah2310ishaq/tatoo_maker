@@ -233,6 +233,14 @@ class _HomePageState extends State<HomePage> {
                             onChanged: _onDreamInkChanged,
                             checkAssetExists: _checkAssetExists,
                             onInspirationTap: _onInspirationTap,
+                            hasSelectedStyle: _selectedStyleIndex != null,
+                            onClearStyleTap: () {
+                              setState(() {
+                                _selectedStyleIndex = null;
+                                _dreamInkController.clear();
+                                _lastAutoFilledPrompt = null;
+                              });
+                            },
                           ),
                         ),
                       ),

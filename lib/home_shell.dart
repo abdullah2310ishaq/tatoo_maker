@@ -41,9 +41,7 @@ class _HomeShellState extends State<HomeShell> {
     try {
       final client = HttpClient()
         ..connectionTimeout = const Duration(seconds: 4);
-      final request = await client.getUrl(
-        Uri.parse('https://www.google.com'),
-      );
+      final request = await client.getUrl(Uri.parse('https://www.google.com'));
       final response = await request.close();
       client.close(force: true);
       if (response.statusCode >= 200 && response.statusCode < 500) {
@@ -77,11 +75,11 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   void _onItemTapped(int index) {
-      // When switching tabs, remove focus from any text fields so the keyboard
+    // When switching tabs, remove focus from any text fields so the keyboard
     // does not automatically open when returning to the home screen.
     FocusScope.of(context).unfocus();
     setState(() {
-      _selectedIndex = index; 
+      _selectedIndex = index;
     });
   }
 
@@ -90,7 +88,7 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final themeProvider = ThemeProvider.of(context);
     final keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
@@ -114,48 +112,48 @@ class _HomeShellState extends State<HomeShell> {
               ? AppColors.darkBackground
               : AppColors.lightBackground,
           drawer: AppDrawer(
-          isDarkTheme: themeProvider?.isDarkTheme ?? false,
-          onThemeToggle: themeProvider?.toggleTheme ?? () {},
-        ),
-        body: Stack(
-          children: [
-            // Main content area based on selected index
-            SafeArea(
-              child: Container(
-                color: isDark
-                    ? AppColors.darkBackground
-                    : AppColors.lightBackground,
-                child: _buildCurrentPage(openDrawer),
+            isDarkTheme: themeProvider?.isDarkTheme ?? false,
+            onThemeToggle: themeProvider?.toggleTheme ?? () {},
+          ),
+          body: Stack(
+            children: [
+              // Main content area based on selected index
+              SafeArea(
+                child: Container(
+                  color: isDark
+                      ? AppColors.darkBackground
+                      : AppColors.lightBackground,
+                  child: _buildCurrentPage(openDrawer),
+                ),
               ),
-            ),
-            // Static bottom area: LTR so navbar + button always English-style (Creation | Tattoo | Flower)
-            if (!keyboardVisible)
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: SafeArea(
-                    top: false,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        if (_selectedIndex == 0)
-                          _buildGenerateButtonSeparate()
-                        else
-                          SizedBox(height: 66.h + 8.h),
-                        _buildFloatingNavBar(),
-                      ],
+              // Static bottom area: LTR so navbar + button always English-style (Creation | Tattoo | Flower)
+              if (!keyboardVisible)
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: SafeArea(
+                      top: false,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          if (_selectedIndex == 0)
+                            _buildGenerateButtonSeparate()
+                          else
+                            SizedBox(height: 66.h + 8.h),
+                          _buildFloatingNavBar(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
-        ),
     );
   }
 
@@ -369,8 +367,8 @@ class _HomeShellState extends State<HomeShell> {
         if (snapshot.hasData && snapshot.data == true) {
           return SvgPicture.asset(
             iconPath,
-            width: 30.w,
-            height: 35.h,
+            width: index == 2 ? 40.w : 30.w,
+            height: index == 2 ? 45.h : 35.h,
             colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             placeholderBuilder: (context) =>
                 Icon(_getIconData(index), size: 22, color: color),
