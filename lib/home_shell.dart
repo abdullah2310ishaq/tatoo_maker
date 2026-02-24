@@ -344,13 +344,18 @@ class _HomeShellState extends State<HomeShell> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildSvgIcon(iconPath, itemColor, index),
-              SizedBox(height: 2.h),
-              Text(
-                label,
-                style: TextStyle(
-                  color: itemColor,
-                  fontSize: 11.sp,
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              if (index != 2) SizedBox(height: 3.h),
+              Transform.translate(
+                offset: Offset(0, index == 2 ? 0.5.h : 0),
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color: itemColor,
+                    fontSize: 11.sp,
+                    fontWeight: isSelected
+                        ? FontWeight.w600
+                        : FontWeight.normal,
+                  ),
                 ),
               ),
             ],
@@ -367,8 +372,10 @@ class _HomeShellState extends State<HomeShell> {
         if (snapshot.hasData && snapshot.data == true) {
           return SvgPicture.asset(
             iconPath,
+            // Yahan se aap sirf flower (index 2) ki width badha sakte hain
             width: index == 2 ? 40.w : 30.w,
-            height: index == 2 ? 45.h : 35.h,
+            // Yahan se aap sirf flower (index 2) ki height badha sakte hain
+            height: index == 2 ? 36.h : 35.h,
             colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             placeholderBuilder: (context) =>
                 Icon(_getIconData(index), size: 22, color: color),

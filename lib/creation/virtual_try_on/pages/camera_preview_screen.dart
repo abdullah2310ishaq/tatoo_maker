@@ -74,8 +74,9 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
         if (!result.isGranted) {
           if (mounted) {
             setState(() {
-              _errorMessage = AppLocalizations.of(context)!
-                  .cameraPermissionIsRequiredToTakePhotos;
+              _errorMessage = AppLocalizations.of(
+                context,
+              )!.cameraPermissionIsRequiredToTakePhotos;
               _isPermissionError = true;
               _isInitializing = false;
             });
@@ -89,8 +90,9 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
       if (_cameras == null || _cameras!.isEmpty) {
         if (mounted) {
           setState(() {
-            _errorMessage =
-                AppLocalizations.of(context)!.noCamerasAvailableOnThisDevice;
+            _errorMessage = AppLocalizations.of(
+              context,
+            )!.noCamerasAvailableOnThisDevice;
             _isInitializing = false;
           });
         }
@@ -121,8 +123,9 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
       debugPrint('Camera initialization error: $e');
       if (mounted) {
         setState(() {
-          _errorMessage =
-              AppLocalizations.of(context)!.failedToInitializeCameraTryAgain;
+          _errorMessage = AppLocalizations.of(
+            context,
+          )!.failedToInitializeCameraTryAgain;
           _isInitializing = false;
         });
       }
@@ -348,9 +351,12 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
                 size: 32.sp,
               ),
               onPressed:
-                  (_cameras == null || (_cameras?.length ?? 0) < 2 || _isInitializing || _capturedImage != null)
-                      ? null
-                      : _switchCamera,
+                  (_cameras == null ||
+                      (_cameras?.length ?? 0) < 2 ||
+                      _isInitializing ||
+                      _capturedImage != null)
+                  ? null
+                  : _switchCamera,
             ),
           ),
 
