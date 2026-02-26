@@ -183,7 +183,7 @@ class _HistoryPageState extends State<HistoryPage> {
         .push(
           MaterialPageRoute(
             builder: (context) =>
-                _HistoryListPage(title: title, items: list, type: typeStr),
+                HistoryListPage(title: title, items: list, type: typeStr),
           ),
         )
         .then((_) {
@@ -314,22 +314,22 @@ class _SectionCard extends StatelessWidget {
   }
 }
 
-class _HistoryListPage extends StatefulWidget {
+class HistoryListPage extends StatefulWidget {
   final String title;
   final List<Map<String, dynamic>> items;
   final String type;
 
-  const _HistoryListPage({
+  const HistoryListPage({
     required this.title,
     required this.items,
     required this.type,
   });
 
   @override
-  State<_HistoryListPage> createState() => _HistoryListPageState();
+  State<HistoryListPage> createState() => _HistoryListPageState();
 }
 
-class _HistoryListPageState extends State<_HistoryListPage> {
+class _HistoryListPageState extends State<HistoryListPage> {
   late List<Map<String, dynamic>> _items;
   bool _isSelectionMode = false;
   final Set<String> _selectedIds = {};

@@ -14,6 +14,7 @@ import 'flower/flower_home.dart';
 import 'widgets/app_drawer.dart';
 import 'widgets/exit_confirmation_dialog.dart';
 import 'providers/theme_provider.dart';
+import 'services/history_service.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
@@ -179,10 +180,17 @@ class _HomeShellState extends State<HomeShell> {
       case 1:
         return TattooPage(
           onMenuTap: openDrawer,
-          onHistoryTap: () {
+          onHistoryTap: () async {
+            final l10n = AppLocalizations.of(context)!;
+            final items = await HistoryService.getTattooHistory();
+            if (!mounted) return;
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => HistoryPage(tabIndex: _selectedIndex),
+                builder: (_) => HistoryListPage(
+                  title: '${l10n.tattoo} ${l10n.history}',
+                  items: items,
+                  type: 'tattoo',
+                ),
               ),
             );
           },
@@ -190,10 +198,17 @@ class _HomeShellState extends State<HomeShell> {
       case 2:
         return FlowerHome(
           onMenuTap: openDrawer,
-          onHistoryTap: () {
+          onHistoryTap: () async {
+            final l10n = AppLocalizations.of(context)!;
+            final items = await HistoryService.getFlowerHistory();
+            if (!mounted) return;
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => HistoryPage(tabIndex: _selectedIndex),
+                builder: (_) => HistoryListPage(
+                  title: '${l10n.flower} ${l10n.history}',
+                  items: items,
+                  type: 'flower',
+                ),
               ),
             );
           },
