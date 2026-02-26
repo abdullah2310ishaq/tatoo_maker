@@ -98,6 +98,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
         maxScale: 4.0,
         panEnabled: true,
         scaleEnabled: true,
+        
         child: Center(
           child: Image.memory(widget.processedTryOnBytes!, fit: BoxFit.contain),
         ),
@@ -109,6 +110,37 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final viewportSize = Size(constraints.maxWidth, constraints.maxHeight);
+
+        // Keep the tattoo generally within the image area, but allow more freedom
+        // in both directions by clamping based on the tattoo *center*.
+        const double edgeInset = 8.0;
+        Offset clampToViewport(Offset position, double scale) {
+          final size = baseTattooSize * scale;
+          final half = size / 2;
+
+          // Horizontal: allow the center to travel almost full width.
+          double minX = -half + edgeInset;
+          double maxX = viewportSize.width - half - edgeInset;
+          if (minX > maxX) {
+            final mid = (minX + maxX) / 2;
+            minX = mid;
+            maxX = mid;
+          }
+
+          // Vertical: allow the center to travel almost full height.
+          double minY = -half + edgeInset;
+          double maxY = viewportSize.height - half - edgeInset;
+          if (minY > maxY) {
+            final mid = (minY + maxY) / 2;
+            minY = mid;
+            maxY = mid;
+          }
+
+          return Offset(
+            position.dx.clamp(minX, maxX),
+            position.dy.clamp(minY, maxY),
+          );
+        }
 
         // Auto-center once when a new image is loaded (or when position was reset).
         if (!_didAutoCenter &&
@@ -122,7 +154,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
               (viewportSize.height - (baseTattooSize * widget.tattooScale)) / 2,
             );
             widget.onTattooTransform(
-              centered,
+              clampToViewport(centered, widget.tattooScale),
               widget.tattooScale,
               widget.tattooRotation,
             );
@@ -132,24 +164,29 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
           });
         }
 
+        final RenderBox? contentBox = context.findRenderObject() as RenderBox?;
+
         return GestureDetector(
           behavior: HitTestBehavior.opaque,
           onScaleStart: (details) {
             if (details.pointerCount == 1) {
               _panStartPosition = widget.tattooPosition;
-              _panStartLocal = details.focalPoint;
+              _panStartLocal = contentBox?.globalToLocal(details.focalPoint) ?? details.focalPoint;
             } else if (details.pointerCount >= 2) {
               _scaleStart = widget.tattooScale;
               _rotationStart = widget.tattooRotation;
-              _focalStart = details.focalPoint;
+              _focalStart = contentBox?.globalToLocal(details.focalPoint) ?? details.focalPoint;
               _positionStart = widget.tattooPosition;
             }
           },
           onScaleUpdate: (details) {
             if (details.pointerCount == 1) {
               if (_panStartPosition == null || _panStartLocal == null) return;
-              final newPosition =
-                  _panStartPosition! + (details.focalPoint - _panStartLocal!);
+              final localNow = contentBox?.globalToLocal(details.focalPoint) ?? details.focalPoint;
+              final newPosition = clampToViewport(
+                _panStartPosition! + (localNow - _panStartLocal!),
+                widget.tattooScale,
+              );
               widget.onTattooTransform(
                 newPosition,
                 widget.tattooScale,
@@ -158,8 +195,11 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
             } else if (details.pointerCount >= 2) {
               final newScale = (_scaleStart * details.scale).clamp(0.25, 3.0);
               final newRotation = _rotationStart + details.rotation;
-              final newPosition =
-                  _positionStart + (details.focalPoint - _focalStart);
+              final localNow = contentBox?.globalToLocal(details.focalPoint) ?? details.focalPoint;
+              final newPosition = clampToViewport(
+                _positionStart + (localNow - _focalStart),
+                newScale,
+              );
               widget.onTattooTransform(newPosition, newScale, newRotation);
             }
           },
