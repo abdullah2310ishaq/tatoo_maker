@@ -16,6 +16,8 @@ class DreamInkCard extends StatelessWidget {
   /// When set, tapping the Inspiration label/icon triggers this (e.g. random style selection).
   final VoidCallback? onInspirationTap;
   final bool hasSelectedStyle;
+  /// When true, the clear (X) button is shown so user can clear prompt text (e.g. after typing).
+  final bool showClearButton;
   final VoidCallback? onClearStyleTap;
 
   const DreamInkCard({
@@ -27,6 +29,7 @@ class DreamInkCard extends StatelessWidget {
     required this.checkAssetExists,
     this.onInspirationTap,
     this.hasSelectedStyle = false,
+    this.showClearButton = false,
     this.onClearStyleTap,
   });
 
@@ -59,7 +62,7 @@ class DreamInkCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             child: Stack(
               children: [
-                if (hasSelectedStyle)
+                if (showClearButton)
                   PositionedDirectional(
                     top: -4.h,
                     end: -4.w,

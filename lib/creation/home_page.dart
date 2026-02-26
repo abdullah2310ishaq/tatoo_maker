@@ -234,6 +234,8 @@ class _HomePageState extends State<HomePage> {
                             checkAssetExists: _checkAssetExists,
                             onInspirationTap: _onInspirationTap,
                             hasSelectedStyle: _selectedStyleIndex != null,
+                            showClearButton: _selectedStyleIndex != null ||
+                                _dreamInkController.text.trim().isNotEmpty,
                             onClearStyleTap: () {
                               setState(() {
                                 _selectedStyleIndex = null;

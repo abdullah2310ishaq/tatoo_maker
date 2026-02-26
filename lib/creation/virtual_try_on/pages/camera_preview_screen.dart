@@ -54,7 +54,8 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   }
 
   void _unlockOrientation() {
-    SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+    // Keep app locked in portrait when leaving the camera screen.
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   Future<void> _initializeCamera() async {
