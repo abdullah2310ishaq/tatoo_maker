@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:tatoo_maker/history/favorites_page.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/language/language_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import 'package:tatoo_maker/history/favorites_page.dart';
 import '../utils/colors.dart';
 import 'inkvision_underline.dart';
 
@@ -159,7 +160,11 @@ class _AppDrawerState extends State<AppDrawer> {
                       textColor: textColor,
                       iconColor: iconColor,
                       isEnabled: !_isProcessing,
-                      onTap: () {},
+                      onTap: () {
+                        _openExternalUrl(
+                          'https://sites.google.com/view/tattoogeneratoraitattoo/home',
+                        );
+                      },
                     ),
                     _buildMenuItem(
                       context: context,
@@ -177,7 +182,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       textColor: textColor,
                       iconColor: iconColor,
                       isEnabled: !_isProcessing,
-                      onTap: () {},
+                      onTap: _sendFeedbackEmail,
                     ),
                     _buildMenuItem(
                       context: context,
@@ -186,7 +191,11 @@ class _AppDrawerState extends State<AppDrawer> {
                       textColor: textColor,
                       iconColor: iconColor,
                       isEnabled: !_isProcessing,
-                      onTap: () {},
+                      onTap: () {
+                        _openExternalUrl(
+                          'https://sites.google.com/view/tattoogeneratoraitattoo/community-guidelines',
+                        );
+                      },
                     ),
                     _buildMenuItem(
                       context: context,
@@ -196,7 +205,11 @@ class _AppDrawerState extends State<AppDrawer> {
                       iconColor: iconColor,
                       showAdBadge: true,
                       isEnabled: !_isProcessing,
-                      onTap: () {},
+                      onTap: () {
+                        _openExternalUrl(
+                          'https://play.google.com/store/search?q=pub%3ACodix%20Apps&c=apps',
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -206,6 +219,35 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
       ),
     );
+  }
+
+  Future<void> _openExternalUrl(String url) async {
+    final uri = Uri.tryParse(url);
+    if (uri == null) {
+      return;
+    }
+
+    try {
+      await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+    } catch (_) {
+      // Intentionally ignore errors to avoid crashing the app.
+    }
+  }
+
+  Future<void> _sendFeedbackEmail() async {
+    final uri = Uri(
+      scheme: 'mailto',
+      path: 'islam24hoursstudio@gmail.com',
+    );
+
+    try {
+      await launchUrl(uri);
+    } catch (_) {
+      // Intentionally ignore errors to avoid crashing the app.
+    }
   }
 
   Widget _buildMenuItem({
