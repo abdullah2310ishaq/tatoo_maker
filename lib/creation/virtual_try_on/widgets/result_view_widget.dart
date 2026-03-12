@@ -37,10 +37,9 @@ class ResultViewWidget extends StatefulWidget {
 class _ResultViewWidgetState extends State<ResultViewWidget> {
   final GlobalKey _bodyImageKey = GlobalKey();
   bool _didAutoCenter = false;
-  // Pan (single finger): anchor so drag is 1:1 with finger
   Offset? _panStartPosition;
   Offset? _panStartLocal;
-  // Scale (two fingers): cumulative from gesture start
+
   double _scaleStart = 1.0;
   double _rotationStart = 0.0;
   Offset _focalStart = Offset.zero;

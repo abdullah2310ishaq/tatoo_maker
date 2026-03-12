@@ -5,6 +5,8 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+import java.util.Properties
+
 android {
     namespace = "com.tattoo.generator.ai.tattoo.tattoo.maker.name.tattoo"
     compileSdk = flutter.compileSdkVersion
@@ -20,21 +22,56 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.tattoo.generator.ai.tattoo.tattoo.maker.name.tattoo"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    val signingPropertiesFile = rootProject.file("key.properties")
+    val signingProperties = Properties()
+    val hasSigningProperties = signingPropertiesFile.exists()
+
+    if (hasSigningProperties) {
+        signingProperties.load(signingPropertiesFile.inputStream())
+    }
+
+    signingConfigs {
+        if (hasSigningProperties) {
+            create("release") {
+                keyAlias = signingProperties.getProperty("keyAlias")
+                keyPassword = signingProperties.getProperty("keyPassword")
+                storeFile = file(signingProperties.getProperty("storeFile"))
+                storePassword = signingProperties.getProperty("storePassword")
+            }
+        }
+    }
+
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+        getByName("debug") {
+            // Keep default debug behavior.
+            // Uses the standard Android debug keystore.
+        }
+
+        getByName("release") {
+            // If `android/key.properties` exists, use it for release signing.
+            // Otherwise, fall back to debug signing (dummy) so local release builds still work.
+            signingConfig = if (hasSigningProperties) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
+
+            isDebuggable = false
+            isMinifyEnabled = false
+            isShrinkResources = false
+
+            // Standard ProGuard / R8 configuration for release builds.
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
 }

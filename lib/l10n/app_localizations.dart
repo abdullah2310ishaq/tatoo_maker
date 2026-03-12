@@ -773,7 +773,7 @@ abstract class AppLocalizations {
   /// Result screen: Image saved to gallery message
   ///
   /// In en, this message translates to:
-  /// **'Image saved to gallery'**
+  /// **'Successfully Downloaded'**
   String get resultImageSavedToGallery;
 
   /// Result screen: Error saving message

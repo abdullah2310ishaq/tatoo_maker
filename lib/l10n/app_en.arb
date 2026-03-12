@@ -451,7 +451,7 @@
       }
     }
   },
-  "resultImageSavedToGallery": "Image saved to gallery",
+  "resultImageSavedToGallery": "Successfully Downloaded",
   "@resultImageSavedToGallery": {
     "description": "Result screen: Image saved to gallery message"
   },

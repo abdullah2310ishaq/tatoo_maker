@@ -382,7 +382,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get resultImageSavedToGallery => 'Image saved to gallery';
+  String get resultImageSavedToGallery => 'Successfully Downloaded';
 
   @override
   String resultErrorSaving(String error) {

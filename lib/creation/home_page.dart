@@ -398,6 +398,8 @@ class _HomePageState extends State<HomePage> {
     final stylePrompts = _stylePrompts(l10n);
 
     setState(() {
+      final previousIndex = _selectedStyleIndex;
+
       // Toggle selection: tap again to unselect — clear dream ink text too
       if (_selectedStyleIndex == index) {
         _selectedStyleIndex = null;
@@ -408,28 +410,21 @@ class _HomePageState extends State<HomePage> {
 
       _selectedStyleIndex = index;
 
-      // Auto-fill/update prompt when:
-      // - dream ink is empty, OR
-      // - dream ink currently equals the last auto-filled prompt (meaning user didn't customize)
+      // When switching to a different style, always update the prompt
+      // to match the newly selected style's template. This ensures that
+      // changing styles updates the Dream Ink text even if the user
+      // previously edited the prompt.
       final selectedStyle = _styles[index];
       final prompt = stylePrompts[selectedStyle.label];
       if (prompt == null) return;
 
-      final currentText = _dreamInkController.text.trim();
-      final bool shouldReplace =
-          currentText.isEmpty ||
-          (_lastAutoFilledPrompt != null &&
-              currentText == _lastAutoFilledPrompt!.trim());
-
-      if (shouldReplace) {
-        final nextText = prompt.length > _maxCharacters
-            ? prompt.substring(0, _maxCharacters)
-            : prompt;
-        _isSettingDreamInkText = true;
-        _dreamInkController.text = nextText;
-        _isSettingDreamInkText = false;
-        _lastAutoFilledPrompt = nextText.trim();
-      }
+      final nextText = prompt.length > _maxCharacters
+          ? prompt.substring(0, _maxCharacters)
+          : prompt;
+      _isSettingDreamInkText = true;
+      _dreamInkController.text = nextText;
+      _isSettingDreamInkText = false;
+      _lastAutoFilledPrompt = nextText.trim();
     });
   }
 

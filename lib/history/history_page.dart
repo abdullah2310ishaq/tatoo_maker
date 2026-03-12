@@ -319,7 +319,7 @@ class HistoryListPage extends StatefulWidget {
   final List<Map<String, dynamic>> items;
   final String type;
 
-  const HistoryListPage({
+  const HistoryListPage({super.key, 
     required this.title,
     required this.items,
     required this.type,
