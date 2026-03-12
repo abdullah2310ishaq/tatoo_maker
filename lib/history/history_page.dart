@@ -9,6 +9,7 @@ import '../services/history_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../providers/favorites_provider.dart';
+import '../utils/toast.dart';
 import 'package:provider/provider.dart';
 import 'history_tile.dart';
 
@@ -442,6 +443,12 @@ class _HistoryListPageState extends State<HistoryListPage> {
     await HistoryService.deleteEntries(widget.type, entriesToDelete);
 
     if (!mounted) return;
+
+    AppToast.show(
+      context,
+      message: AppLocalizations.of(context)!.tattooDeleted,
+      isSuccess: true,
+    );
 
     setState(() {
       _items.removeWhere(

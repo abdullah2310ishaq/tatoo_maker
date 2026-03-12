@@ -152,6 +152,9 @@ class AppLocalizationsFr extends AppLocalizations {
       'Image enregistrée dans la galerie !';
 
   @override
+  String get tattooDeleted => 'Tatouage supprimé';
+
+  @override
   String get couldntSaveImageTryAgain =>
       'Impossible d\'enregistrer l\'image. Réessayez.';
 

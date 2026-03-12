@@ -86,6 +86,13 @@ class _HistoryTileState extends State<HistoryTile> {
       await HistoryService.deleteEntry(widget.type, widget.entry);
       if (!mounted) return;
 
+      final l10n = AppLocalizations.of(context)!;
+      AppToast.show(
+        context,
+        message: l10n.tattooDeleted,
+        isSuccess: true,
+      );
+
       widget.onDeleted?.call();
       widget.onFavoriteChanged?.call();
     } catch (e) {

@@ -184,6 +184,10 @@
   "@imageSavedToGalleryExcited": {
     "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
   },
+  "tattooDeleted": "타투가 삭제되었습니다",
+  "@tattooDeleted": {
+    "description": "Toast message shown when a history tattoo entry is deleted"
+  },
   "couldntSaveImageTryAgain": "이미지를 저장할 수 없습니다. 다시 시도해 주세요.",
   "@couldntSaveImageTryAgain": {
     "description": "Generic message when saving fails"

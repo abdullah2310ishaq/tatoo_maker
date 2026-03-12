@@ -141,6 +141,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get imageSavedToGalleryExcited => '图片已保存到相册！';
 
   @override
+  String get tattooDeleted => '纹身已删除';
+
+  @override
   String get couldntSaveImageTryAgain => '无法保存图片。请重试。';
 
   @override

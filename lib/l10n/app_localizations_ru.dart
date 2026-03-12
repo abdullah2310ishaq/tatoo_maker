@@ -151,6 +151,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get imageSavedToGalleryExcited => 'Изображение сохранено в галерею!';
 
   @override
+  String get tattooDeleted => 'Татуировка удалена';
+
+  @override
   String get couldntSaveImageTryAgain =>
       'Не удалось сохранить изображение. Попробуйте снова.';
 

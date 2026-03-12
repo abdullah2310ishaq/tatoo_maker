@@ -67,7 +67,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 child: Column(
                   children: [
                     Text(
-                      'InkVision',
+                      'AI Tattoo',
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
@@ -151,7 +151,14 @@ class _AppDrawerState extends State<AppDrawer> {
                       textColor: textColor,
                       iconColor: iconColor,
                       isEnabled: !_isProcessing,
-                      onTap: () {},
+                      onTap: () {
+                        // Close the drawer first
+                        Navigator.of(context).pop();
+                        // Open the app's Play Store page
+                        _openExternalUrl(
+                          'https://play.google.com/store/apps/details?id=com.tattoo.generator.ai.tattoo.tattoo.maker.name.tattoo',
+                        );
+                      },
                     ),
                     _buildMenuItem(
                       context: context,

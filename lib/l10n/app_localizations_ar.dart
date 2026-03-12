@@ -149,6 +149,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get imageSavedToGalleryExcited => 'تم حفظ الصورة في المعرض!';
 
   @override
+  String get tattooDeleted => 'تم حذف الوشم';
+
+  @override
   String get couldntSaveImageTryAgain => 'تعذر حفظ الصورة. حاول مرة أخرى.';
 
   @override

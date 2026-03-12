@@ -380,6 +380,12 @@ abstract class AppLocalizations {
   /// **'Image saved to gallery!'**
   String get imageSavedToGalleryExcited;
 
+  /// Toast message shown when a history tattoo entry is deleted
+  ///
+  /// In en, this message translates to:
+  /// **'Tattoo deleted'**
+  String get tattooDeleted;
+
   /// Generic message when saving fails
   ///
   /// In en, this message translates to:

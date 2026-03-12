@@ -149,6 +149,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get imageSavedToGalleryExcited => 'Image saved to gallery!';
 
   @override
+  String get tattooDeleted => 'Tattoo deleted';
+
+  @override
   String get couldntSaveImageTryAgain => 'Couldn\'t save image. Try again.';
 
   @override

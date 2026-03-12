@@ -184,6 +184,10 @@
   "@imageSavedToGalleryExcited": {
     "description": "SnackBar message shown when an image is saved to gallery (with emphasis)"
   },
+  "tattooDeleted": "纹身已删除",
+  "@tattooDeleted": {
+    "description": "Toast message shown when a history tattoo entry is deleted"
+  },
   "couldntSaveImageTryAgain": "无法保存图片。请重试。",
   "@couldntSaveImageTryAgain": {
     "description": "Generic message when saving fails"

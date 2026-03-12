@@ -144,6 +144,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get imageSavedToGalleryExcited => '이미지가 갤러리에 저장되었습니다!';
 
   @override
+  String get tattooDeleted => '타투가 삭제되었습니다';
+
+  @override
   String get couldntSaveImageTryAgain => '이미지를 저장할 수 없습니다. 다시 시도해 주세요.';
 
   @override

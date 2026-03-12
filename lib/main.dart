@@ -116,7 +116,7 @@ class _MyAppState extends State<MyApp> {
             final locale = context.watch<LocaleService>().getCurrentLocale();
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'InkVision - Tattoo Maker',
+              title: '"AI Tattoo - Tattoo Maker',
               theme: ThemeManager.lightTheme,
               darkTheme: ThemeManager.darkTheme,
               themeMode: _isDarkTheme ? ThemeMode.dark : ThemeMode.light,
