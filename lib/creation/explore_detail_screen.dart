@@ -135,255 +135,268 @@ class _ExploreDetailScreenState extends State<ExploreDetailScreen> {
           decoration: isDark
               ? ThemeManager.darkModeBackgroundGradient
               : ThemeManager.lightModeBackground,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                // Header: X icon on left, title centered
-                Padding(
-                  padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 16.h),
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // Close icon on left
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.close,
-                            color: iconColor,
-                            size: 28.sp,
-                          ),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                      ),
-                      // Title centered - full text, no truncation, wraps dynamically
-                      Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 48.w),
-                          child: Text(
-                            widget.title,
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w600,
-                              color: textColor,
-                              fontFamily: 'Amaranth',
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              // On sufficiently tall screens, keep the page static (no scrolling).
+              // On very small screens, fall back to a scrollable layout to avoid overflows.
+              final bool isTallScreen = constraints.maxHeight >= 700.h;
+
+              final content = Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  // Header: X icon on left, title centered
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 16.h),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Close icon on left
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.close,
+                              color: iconColor,
+                              size: 28.sp,
                             ),
-                            textAlign: TextAlign.center,
-                            softWrap: true,
-                            overflow: TextOverflow.visible,
-                            maxLines: null,
+                            onPressed: () => Navigator.of(context).pop(),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Asset image centered below X (fixed smaller size) - clickable for virtual try on
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: 16.h,
-                  ),
-                  child: Center(
-                    child: GestureDetector(
-                      onTap: _navigateToVirtualTryOn,
-                      child: SizedBox(
-                        width: 265.w, // Fixed width
-                        height: 265.w, // Fixed height (square)
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            _buildImageAsset(
-                              context,
-                              widget.smallImagePath,
-                              widget.smallImagePathDark,
-                              widget.bigImagePath,
-                              isDark,
+                        // Title centered - full text, no truncation, wraps dynamically
+                        Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 48.w),
+                            child: Text(
+                              widget.title,
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w600,
+                                color: textColor,
+                                fontFamily: 'Amaranth',
+                              ),
+                              textAlign: TextAlign.center,
+                              softWrap: true,
+                              overflow: TextOverflow.visible,
+                              maxLines: null,
                             ),
-                            if (_isLoadingImageBytes)
-                              Container(
-                                color: Colors.black.withValues(alpha: 0.3),
-                                child: const Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.cardGlowStart,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Asset image centered below X (fixed smaller size) - clickable for virtual try on
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 16.h,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: _navigateToVirtualTryOn,
+                        child: SizedBox(
+                          width: 265.w, // Fixed width
+                          height: 265.w, // Fixed height (square)
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              _buildImageAsset(
+                                context,
+                                widget.smallImagePath,
+                                widget.smallImagePathDark,
+                                widget.bigImagePath,
+                                isDark,
+                              ),
+                              if (_isLoadingImageBytes)
+                                Container(
+                                  color: Colors.black.withValues(alpha: 0.3),
+                                  child: const Center(
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.cardGlowStart,
+                                    ),
                                   ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                // Prompt Detail Card (styled like homepage input card) - Fixed height with scrollable content
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // "Prompt" label
-                      Text(
-                        l10n.promptLabel,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                          color: textColor,
-                          fontFamily: 'Amaranth',
-                        ),
-                      ),
-                      SizedBox(height: 12.h),
-                      // Prompt card with orange glow - Fixed height with scrollable content
-                      Container(
-                        width: double.infinity,
-                        height: 220.h, // Fixed height
-                        padding: EdgeInsets.all(24.w),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.r),
-                          border: Border.all(
-                            color: AppColors.titleGradientStart,
-                            width: 1.w,
+                  // Prompt Detail Card (styled like homepage input card) - Fixed height with scrollable content
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // "Prompt" label
+                        Text(
+                          l10n.promptLabel,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            color: textColor,
+                            fontFamily: 'Amaranth',
                           ),
-                          color: cardBgColor,
-                          gradient: cardGradient,
                         ),
-                        child: Stack(
-                          children: [
-                            // Orange glow in top-right corner (only in dark mode)
-                            if (isDark)
-                              Positioned(
-                                top: -60.h,
-                                right: -60.w,
-                                child: IgnorePointer(
-                                  child: Container(
-                                    width: 180.w,
-                                    height: 180.h,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      gradient: RadialGradient(
-                                        center: Alignment.topRight,
-                                        radius: 0.9,
-                                        colors: [
-                                          AppColors.cardGlowStart,
-                                          AppColors.cardGlowEnd,
-                                        ],
+                        SizedBox(height: 12.h),
+                        // Prompt card with orange glow - Fixed height with scrollable content
+                        Container(
+                          width: double.infinity,
+                          height: 170.h, // Slightly reduced fixed height
+                          padding: EdgeInsets.all(24.w),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.r),
+                            border: Border.all(
+                              color: AppColors.titleGradientStart,
+                              width: 1.w,
+                            ),
+                            color: cardBgColor,
+                            gradient: cardGradient,
+                          ),
+                          child: Stack(
+                            children: [
+                              // Orange glow in top-right corner (only in dark mode)
+                              if (isDark)
+                                Positioned(
+                                  top: -60.h,
+                                  right: -60.w,
+                                  child: IgnorePointer(
+                                    child: Container(
+                                      width: 180.w,
+                                      height: 180.h,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        gradient: RadialGradient(
+                                          center: Alignment.topRight,
+                                          radius: 0.9,
+                                          colors: [
+                                            AppColors.cardGlowStart,
+                                            AppColors.cardGlowEnd,
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            // Scrollable prompt text
-                            SingleChildScrollView(
-                              child: Text(
-                                widget.prompt,
-                                style: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: promptTextColor,
-                                  fontFamily: 'Amaranth',
-                                  height: 1.6,
-                                  fontWeight: FontWeight.w300,
-                                ),
-                                overflow: TextOverflow.visible,
-                                softWrap: true,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 24.h),
-                // Action buttons: "Try This" and "Virtual Try On"
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 20.w,
-                    right: 20.w,
-                    bottom: bottomPadding > 0 ? bottomPadding : 20.h,
-                  ),
-                  child: Column(
-                    children: [
-                      // "Try This" button
-                      SizedBox(
-                        width: double.infinity,
-                        height: 56.h,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => LoadingScreen(
-                                  selectedStyleAsset: widget.bigImagePath,
-                                  styleName: widget.styleKey ?? widget.title,
-                                  promptText: widget.prompt,
+                              // Scrollable prompt text
+                              SingleChildScrollView(
+                                child: Text(
+                                  widget.prompt,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: promptTextColor,
+                                    fontFamily: 'Amaranth',
+                                    height: 1.5,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                  overflow: TextOverflow.visible,
+                                  softWrap: true,
                                 ),
                               ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(
-                              0xFFA6541D,
-                            ), // Burnt orange
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                8.r,
-                              ), // Stadium shape
-                            ),
+                            ],
                           ),
-                          child: Text(
-                            l10n.tryThis,
-                            style: TextStyle(
-                              fontSize: 25.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              fontFamily: 'Amaranth',
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  // Action buttons: "Try This" and "Virtual Try On"
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 20.w,
+                      right: 20.w,
+                      bottom: bottomPadding > 0 ? bottomPadding : 16.h,
+                    ),
+                    child: Column(
+                      children: [
+                        // "Try This" button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50.h,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => LoadingScreen(
+                                    selectedStyleAsset: widget.bigImagePath,
+                                    styleName: widget.styleKey ?? widget.title,
+                                    promptText: widget.prompt,
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(
+                                0xFFA6541D,
+                              ), // Burnt orange
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  8.r,
+                                ), // Stadium shape
+                              ),
+                            ),
+                            child: Text(
+                              l10n.tryThis,
+                              style: TextStyle(
+                                fontSize: 23.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                                fontFamily: 'Amaranth',
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 12.h),
-                      // "Virtual Try On" button
-                      SizedBox(
-                        width: double.infinity,
-                        height: 56.h,
-                        child: ElevatedButton(
-                          onPressed: _isLoadingImageBytes
-                              ? null
-                              : _navigateToVirtualTryOn,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(
-                              0xFFA6541D,
-                            ), // Burnt orange
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.r),
+                        SizedBox(height: 10.h),
+                        // "Virtual Try On" button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 52.h,
+                          child: ElevatedButton(
+                            onPressed: _isLoadingImageBytes
+                                ? null
+                                : _navigateToVirtualTryOn,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(
+                                0xFFA6541D,
+                              ), // Burnt orange
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.r),
+                              ),
+                              disabledBackgroundColor: Colors.grey,
                             ),
-                            disabledBackgroundColor: Colors.grey,
-                          ),
-                          child: _isLoadingImageBytes
-                              ? const SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white,
+                            child: _isLoadingImageBytes
+                                ? const SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                : Text(
+                                    l10n.virtualTryOn,
+                                    style: TextStyle(
+                                      fontSize: 23.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                      fontFamily: 'Amaranth',
                                     ),
                                   ),
-                                )
-                              : Text(
-                                  l10n.virtualTryOn,
-                                  style: TextStyle(
-                                    fontSize: 25.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                    fontFamily: 'Amaranth',
-                                  ),
-                                ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              );
+
+              if (isTallScreen) {
+                return content;
+              }
+
+              return SingleChildScrollView(child: content);
+            },
           ),
         ),
       ),
