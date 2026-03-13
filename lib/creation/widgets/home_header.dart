@@ -23,6 +23,12 @@ class HomeHeader extends StatelessWidget {
     final buttonBgColor = isDark
         ? AppColors.buttonBackground
         : AppColors.textGrey.withOpacity(0.1);
+    final menuIconAsset =
+        isDark ? 'assets/drawer_dark.svg' : 'assets/drawer_light.svg';
+    final historyIconAsset =
+        isDark ? 'assets/history_dark.svg' : 'assets/history_light.svg';
+    final double menuSize = isDark ? 50.w : 60.w;
+    final double historySize = isDark ? 50.w : 60.w;
 
     // LTR so menu stays left and history right (same as English) in Arabic
     return Directionality(
@@ -31,24 +37,16 @@ class HomeHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Menu button (left)
-          Container(
-            width: 48.w,
-            height: 48.h,
-            decoration: BoxDecoration(
-              color: buttonBgColor,
-              borderRadius: BorderRadius.circular(12.r),
+          IconButton(
+            padding: EdgeInsets.zero,
+            icon: SvgPicture.asset(
+              menuIconAsset,
+              width: menuSize,
+              height: menuSize,
+              placeholderBuilder: (context) =>
+                  Icon(Icons.menu, color: iconColor, size: 32.sp),
             ),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                'assets/one.svg',
-                width: 24.w,
-                height: 24.h,
-                colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-                placeholderBuilder: (context) =>
-                    Icon(Icons.menu, color: iconColor, size: 24.sp),
-              ),
-              onPressed: onMenuTap,
-            ),
+            onPressed: onMenuTap,
           ),
           Expanded(
             child: Column(
@@ -71,17 +69,16 @@ class HomeHeader extends StatelessWidget {
             ),
           ),
           // History button (right)
-          Container(
-            width: 48.w,
-            height: 48.h,
-            decoration: BoxDecoration(
-              color: buttonBgColor,
-              borderRadius: BorderRadius.circular(12.r),
+          IconButton(
+            padding: EdgeInsets.zero,
+            icon: SvgPicture.asset(
+              historyIconAsset,
+              width: historySize,
+              height: historySize,
+              placeholderBuilder: (context) =>
+                  Icon(Icons.history, color: iconColor, size: 32.sp),
             ),
-            child: IconButton(
-              icon: Icon(Icons.history, color: iconColor, size: 24.sp),
-              onPressed: onHistoryTap,
-            ),
+            onPressed: onHistoryTap,
           ),
         ],
       ),
