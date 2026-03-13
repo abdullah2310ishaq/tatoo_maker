@@ -209,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                       pinned: true,
                       backgroundColor: isDark ? Colors.black : Colors.white,
                       elevation: 0,
-                      scrolledUnderElevation: 0,
+                       scrolledUnderElevation: 0,
                       surfaceTintColor: Colors.transparent,
                       automaticallyImplyLeading: false,
                       toolbarHeight: 80.h,
