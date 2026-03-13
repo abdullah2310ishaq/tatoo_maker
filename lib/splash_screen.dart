@@ -14,15 +14,30 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late final Animation<Offset> _slideAnimation;
+  late final AnimationController _introController;
+
   @override
   void initState() {
     super.initState();
+    _introController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    );
+    _slideAnimation =
+        Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero).animate(
+          CurvedAnimation(parent: _introController, curve: Curves.easeOutCubic),
+        );
+
+    _introController.forward();
+
     _checkOnboardingStatus();
   }
 
   Future<void> _checkOnboardingStatus() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
     if (!mounted) return;
 
     try {
@@ -36,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
         // User has completed onboarding, go directly to home
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomeShell()),
-                 );
+        );
       } else {
         // First time - go to language selection
         Navigator.of(context).pushReplacement(
@@ -51,6 +66,12 @@ class _SplashScreenState extends State<SplashScreen> {
         );
       }
     }
+  }
+
+  @override
+  void dispose() {
+    _introController.dispose();
+    super.dispose();
   }
 
   @override
@@ -78,18 +99,32 @@ class _SplashScreenState extends State<SplashScreen> {
             color: widget.isDarkTheme ? null : AppColors.lightBackground,
           ),
           child: Center(
-            child: FractionallySizedBox(
-              widthFactor: 0.7,
-              heightFactor: 0.7,
-              child: Image.asset(
-                widget.isDarkTheme
-                    ? 'assets/splash_black.png'
-                    : 'assets/splash_white.png',
-                fit: BoxFit.contain,
-              ),
+            child: SlideTransition(
+              position: _slideAnimation,
+              child: const _SplashTitle(),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _SplashTitle extends StatelessWidget {
+  const _SplashTitle();
+
+  @override
+  Widget build(BuildContext context) {
+    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+    return Text(
+      'AI Tattoo',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 30,
+        letterSpacing: 2,
+        color: isDarkTheme ? AppColors.lightPrimary : AppColors.darkSecondary,
       ),
     );
   }

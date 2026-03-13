@@ -56,6 +56,7 @@ dependencies:
   provider: ^6.1.5+1
   video_player: ^2.9.2
   lottie: ^3.1.0
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,11 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/logo.png"
+  remove_alpha_ios: true
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -125,6 +131,7 @@ flutter:
     - assets/arrow.svg
     - assets/one.svg
     - assets/two.svg
+    - assets/logo.png
     - assets/video.mp4
     - assets/video_light.mp4
     - assets/one_light.mp4

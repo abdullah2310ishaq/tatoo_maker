@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tatoo_maker/utils/colors.dart';
-import '../utils/theme_manager.dart';
 import '../providers/theme_provider.dart';
 import 'loading_screen.dart';
 import 'models/tattoo_style_item.dart';
@@ -419,7 +418,6 @@ class _HomePageState extends State<HomePage> {
     final stylePrompts = _stylePrompts(l10n);
 
     setState(() {
-      final previousIndex = _selectedStyleIndex;
 
       // Toggle selection: tap again to unselect — clear dream ink text too
       if (_selectedStyleIndex == index) {
