@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
+import 'package:tatoo_maker/utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../providers/theme_provider.dart';
 import 'loading_screen.dart';
@@ -193,88 +194,108 @@ class _HomePageState extends State<HomePage> {
       child: Stack(
         children: [
           Container(
-            decoration: isDark
-                ? ThemeManager.darkModeBackgroundGradient
-                : ThemeManager.lightModeBackground,
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.darkBackground
+                  : AppColors.lightBackground,
+            ),
             child: Builder(
               builder: (context) {
                 final isRtl = _isRtlLocale(Localizations.localeOf(context));
-                // LTR: start=left 20, end=right 0. RTL: start=right 20, end=left 0 (scroll side no padding)
-                final scrollChild = SingleChildScrollView(
-                  padding: EdgeInsetsDirectional.only(
-                    start: 20.w,
-                    bottom: bottomAreaHeight,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 20.h),
-                      // Header: menu + InkVision + notification. In RTL add end padding to shift right
-                      Padding(
-                        padding: _isRtlLocale(Localizations.localeOf(context))
-                            ? EdgeInsetsDirectional.only(end: 16.w)
-                            : EdgeInsets.only(right: 20.w),
-                        child: HomeHeader(
-                          isDark: isDark,
-                          onMenuTap: widget.onMenuTap,
-                          onHistoryTap: widget.onHistoryTap,
-                        ),
-                      ),
-                      SizedBox(height: 30.h),
-                      // Describe Your Dream Ink card (RTL in Arabic, centered like English)
-                      _wrapWithRtlIfNeeded(
-                        context,
+
+                Widget scroll = CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                      pinned: true,
+                      backgroundColor: isDark ? Colors.black : Colors.white,
+                      elevation: 0,
+                      scrolledUnderElevation: 0,
+                      surfaceTintColor: Colors.transparent,
+                      automaticallyImplyLeading: false,
+                      toolbarHeight: 80.h,
+                      flexibleSpace: SafeArea(
+                        bottom: false,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.only(end: 20.w),
-                          child: DreamInkCard(
-                            cardKey: _dreamInkCardKey,
-                            controller: _dreamInkController,
-                            maxCharacters: _maxCharacters,
-                            onChanged: _onDreamInkChanged,
-                            checkAssetExists: _checkAssetExists,
-                            onInspirationTap: _onInspirationTap,
-                            hasSelectedStyle: _selectedStyleIndex != null,
-                            showClearButton: _selectedStyleIndex != null ||
-                                _dreamInkController.text.trim().isNotEmpty,
-                            onClearStyleTap: () {
-                              setState(() {
-                                _selectedStyleIndex = null;
-                                _dreamInkController.clear();
-                                _lastAutoFilledPrompt = null;
-                              });
-                            },
+                          padding: EdgeInsets.only(
+                            top: 20.h,
+                            left: 20.w,
+                            right: 20.w,
+                          ),
+                          child: HomeHeader(
+                            isDark: isDark,
+                            onMenuTap: widget.onMenuTap,
+                            onHistoryTap: widget.onHistoryTap,
                           ),
                         ),
                       ),
-                      SizedBox(height: 32.h),
-                      // Tattoo style selector section (Generate is in bottom navbar)
-                      SizedBox(
-                        key: _tattooStyleSectionKey,
-                        child: TattooStyleSection(
-                          styles: _styles,
-                          selectedIndex: _selectedStyleIndex,
-                          onStyleTap: _onStyleTap,
-                          scrollController: _styleRowScrollController,
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.only(
+                          start: 20.w,
+                          end: 20.w,
+                          bottom: bottomAreaHeight,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 20.h),
+                            // Describe Your Dream Ink card (RTL in Arabic, centered like English)
+                            _wrapWithRtlIfNeeded(
+                              context,
+                              child: DreamInkCard(
+                                cardKey: _dreamInkCardKey,
+                                controller: _dreamInkController,
+                                maxCharacters: _maxCharacters,
+                                onChanged: _onDreamInkChanged,
+                                checkAssetExists: _checkAssetExists,
+                                onInspirationTap: _onInspirationTap,
+                                hasSelectedStyle: _selectedStyleIndex != null,
+                                showClearButton:
+                                    _selectedStyleIndex != null ||
+                                    _dreamInkController.text.trim().isNotEmpty,
+                                onClearStyleTap: () {
+                                  setState(() {
+                                    _selectedStyleIndex = null;
+                                    _dreamInkController.clear();
+                                    _lastAutoFilledPrompt = null;
+                                  });
+                                },
+                              ),
+                            ),
+                            SizedBox(height: 32.h),
+                            // Tattoo style selector section (Generate is in bottom navbar)
+                            SizedBox(
+                              key: _tattooStyleSectionKey,
+                              child: TattooStyleSection(
+                                styles: _styles,
+                                selectedIndex: _selectedStyleIndex,
+                                onStyleTap: _onStyleTap,
+                                scrollController: _styleRowScrollController,
+                              ),
+                            ),
+                            SizedBox(height: 32.h),
+                            // Explore Inspiration section (parent provides start padding in both LTR/RTL)
+                            _wrapWithRtlIfNeeded(
+                              context,
+                              child: const ExploreInspirationSection(),
+                            ),
+                            SizedBox(
+                              height: 40.h,
+                            ), // Extra spacing to ensure last cards are fully visible
+                          ],
                         ),
                       ),
-                      SizedBox(height: 32.h),
-                      // Explore Inspiration section (parent provides start padding in both LTR/RTL)
-                      _wrapWithRtlIfNeeded(
-                        context,
-                        child: const ExploreInspirationSection(),
-                      ),
-                      SizedBox(
-                        height: 40.h,
-                      ), // Extra spacing to ensure last cards are fully visible
-                    ],
-                  ),
+                    ),
+                  ],
                 );
+
                 return isRtl
                     ? Directionality(
                         textDirection: TextDirection.rtl,
-                        child: scrollChild,
+                        child: scroll,
                       )
-                    : scrollChild;
+                    : scroll;
               },
             ),
           ),
