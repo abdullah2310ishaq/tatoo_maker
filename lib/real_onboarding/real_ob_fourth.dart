@@ -23,12 +23,16 @@ class RealOnboardingFourthScreen extends StatelessWidget {
             },
           ),
         ),
+
+        // ✅ BOX OVERLAY (ADDED)
+        const Positioned.fill(child: TattooSelectionBox()),
+
         // Bottom gradient with text + button
         SafeArea(
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 44),
+              padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 30.h),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -48,8 +52,7 @@ class RealOnboardingFourthScreen extends StatelessWidget {
                       child: Text(
                         AppLocalizations.of(context)!.tryOnAiTattoos,
                         textAlign: TextAlign.center,
-                        maxLines: 1,
-                        softWrap: false,
+                        maxLines: 2, // ✅ FIXED (was 1)
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 30.sp,
@@ -92,7 +95,7 @@ class RealOnboardingFourthScreen extends StatelessWidget {
                   SizedBox(height: 20.h),
                   SizedBox(
                     width: double.infinity,
-                    height: 56,
+                    height: 56.h, // ✅ FIXED
                     child: ElevatedButton(
                       onPressed: onNext,
                       style: ElevatedButton.styleFrom(
@@ -118,6 +121,52 @@ class RealOnboardingFourthScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class TattooSelectionBox extends StatelessWidget {
+  const TattooSelectionBox({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Transform.rotate(
+        angle: -0.25,
+        child: Container(
+          width: 230.w,
+          height: 280.h,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.white, width: 2),
+          ),
+          child: Stack(
+            clipBehavior: Clip.none, // ✅ IMPORTANT (allow outside)
+            children: [
+              _dot(Alignment.topLeft, Offset(-8, -8)),
+              _dot(Alignment.topRight, Offset(8, -8)),
+              _dot(Alignment.bottomLeft, Offset(-8, 8)),
+              _dot(Alignment.bottomRight, Offset(8, 8)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _dot(Alignment alignment, Offset offset) {
+    return Align(
+      alignment: alignment,
+      child: Transform.translate(
+        offset: offset, // ✅ pushes dot outside
+        child: Container(
+          width: 16.w,
+          height: 16.w,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
+        ),
+      ),
     );
   }
 }
