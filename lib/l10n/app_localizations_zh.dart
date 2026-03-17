@@ -18,16 +18,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get start => '开始';
 
   @override
-  String get tattooCreation => '纹身创作';
+  String get tattooCreation => '花卉纹身';
 
   @override
-  String get tattooCreationDescription => '创建独特的纹身设计，实时查看它们在你手上的效果。';
+  String get tattooCreationDescription => '把名字变成惊艳花束';
 
   @override
-  String get customCreation => '自定义创作';
+  String get customCreation => '发现灵感';
 
   @override
-  String get customCreationDescription => '创建自定义设计，\n将您的创意想法变为现实。';
+  String get customCreationDescription => '浏览独特的纹身风格。';
 
   @override
   String get tattooMaker => '纹身制作器';
@@ -42,10 +42,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moonOwlSubtitle => '输入一个想法，看看设计效果。';
 
   @override
-  String get tryOnAiTattoos => 'Try On AI Tattoos';
+  String get tryOnAiTattoos => '试戴 AI 纹身';
 
   @override
-  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+  String get tryOnAiTattoosSubtitle => '看看你的纹身在你身上的效果。';
 
   @override
   String get flowerCreation => '花朵创作';

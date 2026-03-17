@@ -12,19 +12,19 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "タトゥー作成",
+  "tattooCreation": "フラワータトゥー",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "ユニークなタトゥーデザインを作成し、手の上でリアルタイムにどのように見えるかを確認できます。",
+  "tattooCreationDescription": "名前を美しい花束に",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "カスタム作成",
+  "customCreation": "インスピレーションを探す",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "カスタムデザインを作成し、\n創造的なアイデアを実現します。",
+  "customCreationDescription": "ユニークなタトゥースタイルを閲覧。",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
@@ -43,6 +43,14 @@
   "moonOwlSubtitle": "アイデアを入力して、デザインを確認しましょう。",
   "@moonOwlSubtitle": {
     "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
+  "tryOnAiTattoos": "AIタトゥーを試着",
+  "@tryOnAiTattoos": {
+    "description": "Title for fourth onboarding screen - try-on flow"
+  },
+  "tryOnAiTattoosSubtitle": "あなたに似合うタトゥーを確認できます。",
+  "@tryOnAiTattoosSubtitle": {
+    "description": "Subtitle for fourth onboarding screen - try-on flow"
   },
   "flowerCreation": "フラワー作成",
   "@flowerCreation": {

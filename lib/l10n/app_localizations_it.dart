@@ -18,18 +18,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get start => 'Inizia';
 
   @override
-  String get tattooCreation => 'Creazione Tatuaggio';
+  String get tattooCreation => 'Tatuaggi floreali';
 
   @override
-  String get tattooCreationDescription =>
-      'Crea design di tatuaggi unici e vedi come appaiono sulla tua mano in tempo reale.';
+  String get tattooCreationDescription => 'Nome in un bouquet stupendo';
 
   @override
-  String get customCreation => 'Creazione Personalizzata';
+  String get customCreation => 'Scopri ispirazione';
 
   @override
-  String get customCreationDescription =>
-      'Crea design personalizzati e dai vita\nalle tue idee creative.';
+  String get customCreationDescription => 'Sfoglia stili di tatuaggi unici.';
 
   @override
   String get tattooMaker => 'Creatore di Tatuaggi';
@@ -44,10 +42,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get moonOwlSubtitle => 'Scrivi un’idea. Guarda il design.';
 
   @override
-  String get tryOnAiTattoos => 'Try On AI Tattoos';
+  String get tryOnAiTattoos => 'Prova tatuaggi con IA';
 
   @override
-  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+  String get tryOnAiTattoosSubtitle => 'Guarda come appare il tuo tatuaggio su di te.';
 
   @override
   String get flowerCreation => 'Creazione Fiori';

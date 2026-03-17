@@ -12,19 +12,19 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "타투 제작",
+  "tattooCreation": "플라워 타투",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "독특한 타투 디자인을 만들고 손에 실시간으로 어떻게 보이는지 확인하세요.",
+  "tattooCreationDescription": "이름을 멋진 부케로",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "커스텀 제작",
+  "customCreation": "영감 찾기",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "커스텀 디자인을 만들고\n창의적인 아이디어를 실현하세요.",
+  "customCreationDescription": "독특한 타투 스타일을 둘러보세요.",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
@@ -43,6 +43,14 @@
   "moonOwlSubtitle": "아이디어를 입력하고 디자인을 확인하세요.",
   "@moonOwlSubtitle": {
     "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
+  "tryOnAiTattoos": "AI 타투 착용해보기",
+  "@tryOnAiTattoos": {
+    "description": "Title for fourth onboarding screen - try-on flow"
+  },
+  "tryOnAiTattoosSubtitle": "내 몸에 타투가 어떻게 보이는지 확인해 보세요.",
+  "@tryOnAiTattoosSubtitle": {
+    "description": "Subtitle for fourth onboarding screen - try-on flow"
   },
   "flowerCreation": "꽃 제작",
   "@flowerCreation": {

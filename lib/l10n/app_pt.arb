@@ -12,19 +12,19 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "Criação de Tatuagem",
+  "tattooCreation": "Tatuagens florais",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "Crie designs de tatuagem únicos e veja como ficam na sua mão em tempo real.",
+  "tattooCreationDescription": "Nome em um buquê deslumbrante",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "Criação Personalizada",
+  "customCreation": "Descubra inspiração",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "Crie designs personalizados e dê vida\nàs suas ideias criativas.",
+  "customCreationDescription": "Explore estilos de tatuagem únicos.",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
@@ -43,6 +43,14 @@
   "moonOwlSubtitle": "Digite uma ideia. Veja o design.",
   "@moonOwlSubtitle": {
     "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
+  "tryOnAiTattoos": "Experimente tatuagens com IA",
+  "@tryOnAiTattoos": {
+    "description": "Title for fourth onboarding screen - try-on flow"
+  },
+  "tryOnAiTattoosSubtitle": "Veja como sua tatuagem fica em você.",
+  "@tryOnAiTattoosSubtitle": {
+    "description": "Subtitle for fourth onboarding screen - try-on flow"
   },
   "flowerCreation": "Criação de Flores",
   "@flowerCreation": {

@@ -18,17 +18,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get start => '시작';
 
   @override
-  String get tattooCreation => '타투 제작';
+  String get tattooCreation => '플라워 타투';
 
   @override
-  String get tattooCreationDescription =>
-      '독특한 타투 디자인을 만들고 손에 실시간으로 어떻게 보이는지 확인하세요.';
+  String get tattooCreationDescription => '이름을 멋진 부케로';
 
   @override
-  String get customCreation => '커스텀 제작';
+  String get customCreation => '영감 찾기';
 
   @override
-  String get customCreationDescription => '커스텀 디자인을 만들고\n창의적인 아이디어를 실현하세요.';
+  String get customCreationDescription => '독특한 타투 스타일을 둘러보세요.';
 
   @override
   String get tattooMaker => '타투 메이커';
@@ -43,10 +42,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get moonOwlSubtitle => '아이디어를 입력하고 디자인을 확인하세요.';
 
   @override
-  String get tryOnAiTattoos => 'Try On AI Tattoos';
+  String get tryOnAiTattoos => 'AI 타투 착용해보기';
 
   @override
-  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+  String get tryOnAiTattoosSubtitle => '내 몸에 타투가 어떻게 보이는지 확인해 보세요.';
 
   @override
   String get flowerCreation => '꽃 제작';

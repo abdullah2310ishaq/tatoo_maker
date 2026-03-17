@@ -12,19 +12,19 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "إنشاء الوشم",
+  "tattooCreation": "وشوم الزهور",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "أنشئ تصميمات وشم فريدة وشاهد كيف تبدو على يدك في الوقت الفعلي.",
+  "tattooCreationDescription": "اسمك في باقة مذهلة",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "إنشاء مخصص",
+  "customCreation": "اكتشف الإلهام",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "أنشئ تصميمات مخصصة وحقق\nأفكارك الإبداعية.",
+  "customCreationDescription": "تصفّح أنماط وشوم فريدة.",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
@@ -43,6 +43,14 @@
   "moonOwlSubtitle": "اكتب فكرة. شاهد التصميم.",
   "@moonOwlSubtitle": {
     "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
+  "tryOnAiTattoos": "جرّب وشوم الذكاء الاصطناعي",
+  "@tryOnAiTattoos": {
+    "description": "Title for fourth onboarding screen - try-on flow"
+  },
+  "tryOnAiTattoosSubtitle": "شاهد كيف سيبدو الوشم عليك.",
+  "@tryOnAiTattoosSubtitle": {
+    "description": "Subtitle for fourth onboarding screen - try-on flow"
   },
   "flowerCreation": "إنشاء الزهور",
   "@flowerCreation": {

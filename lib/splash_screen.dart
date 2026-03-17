@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'utils/colors.dart';
+import 'home_shell.dart';
 import 'language/first_language.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -34,10 +36,6 @@ class _SplashScreenState extends State<SplashScreen>
     _checkOnboardingStatus();
   }
 
-  // Legacy onboarding flow kept for later reuse.
-  // Uncomment this method body (and restore needed imports)
-  // when you want to go back to the original logic.
-  /*
   Future<void> _checkOnboardingStatus() async {
     await Future.delayed(const Duration(seconds: 3));
     if (!mounted) return;
@@ -68,18 +66,6 @@ class _SplashScreenState extends State<SplashScreen>
         );
       }
     }
-  }
-  */
-
-  Future<void> _checkOnboardingStatus() async {
-    await Future.delayed(const Duration(seconds: 3));
-    if (!mounted) return;
-
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const FirstLanguageScreen(),
-      ),
-    );
   }
 
   @override

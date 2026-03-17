@@ -18,18 +18,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get start => 'Начать';
 
   @override
-  String get tattooCreation => 'Создание Татуировки';
+  String get tattooCreation => 'Цветочные татуировки';
 
   @override
-  String get tattooCreationDescription =>
-      'Создавайте уникальные дизайны татуировок и смотрите, как они выглядят на вашей руке в реальном времени.';
+  String get tattooCreationDescription => 'Имя в потрясающий букет';
 
   @override
-  String get customCreation => 'Индивидуальное Создание';
+  String get customCreation => 'Найди вдохновение';
 
   @override
-  String get customCreationDescription =>
-      'Создавайте индивидуальные дизайны и воплощайте\nв жизнь свои творческие идеи.';
+  String get customCreationDescription => 'Просматривайте уникальные стили татуировок.';
 
   @override
   String get tattooMaker => 'Создатель Татуировок';
@@ -44,10 +42,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get moonOwlSubtitle => 'Напишите идею. Увидьте дизайн.';
 
   @override
-  String get tryOnAiTattoos => 'Try On AI Tattoos';
+  String get tryOnAiTattoos => 'Примерьте татуировки с ИИ';
 
   @override
-  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+  String get tryOnAiTattoosSubtitle =>
+      'Посмотрите, как ваша татуировка выглядит на вас.';
 
   @override
   String get flowerCreation => 'Создание Цветов';

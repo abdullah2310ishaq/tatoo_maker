@@ -44,6 +44,14 @@
   "@moonOwlSubtitle": {
     "description": "Subtitle for Moon Owl AI tattoo generator section"
   },
+  "tryOnAiTattoos": "Prova tatuaggi con IA",
+  "@tryOnAiTattoos": {
+    "description": "Title for fourth onboarding screen - try-on flow"
+  },
+  "tryOnAiTattoosSubtitle": "Guarda come appare il tuo tatuaggio su di te.",
+  "@tryOnAiTattoosSubtitle": {
+    "description": "Subtitle for fourth onboarding screen - try-on flow"
+  },
   "flowerCreation": "Creazione Fiori",
   "@flowerCreation": {
     "description": "Feature title for third onboarding screen"

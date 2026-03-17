@@ -12,19 +12,19 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "Создание Татуировки",
+  "tattooCreation": "Цветочные татуировки",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "Создавайте уникальные дизайны татуировок и смотрите, как они выглядят на вашей руке в реальном времени.",
+  "tattooCreationDescription": "Имя в потрясающий букет",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "Индивидуальное Создание",
+  "customCreation": "Найди вдохновение",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "Создавайте индивидуальные дизайны и воплощайте\nв жизнь свои творческие идеи.",
+  "customCreationDescription": "Просматривайте уникальные стили татуировок.",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
@@ -43,6 +43,14 @@
   "moonOwlSubtitle": "Напишите идею. Увидьте дизайн.",
   "@moonOwlSubtitle": {
     "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
+  "tryOnAiTattoos": "Примерьте татуировки с ИИ",
+  "@tryOnAiTattoos": {
+    "description": "Title for fourth onboarding screen - try-on flow"
+  },
+  "tryOnAiTattoosSubtitle": "Посмотрите, как ваша татуировка выглядит на вас.",
+  "@tryOnAiTattoosSubtitle": {
+    "description": "Subtitle for fourth onboarding screen - try-on flow"
   },
   "flowerCreation": "Создание Цветов",
   "@flowerCreation": {

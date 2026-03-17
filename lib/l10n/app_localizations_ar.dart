@@ -18,18 +18,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get start => 'بدء';
 
   @override
-  String get tattooCreation => 'إنشاء الوشم';
+  String get tattooCreation => 'وشوم الزهور';
 
   @override
-  String get tattooCreationDescription =>
-      'أنشئ تصميمات وشم فريدة وشاهد كيف تبدو على يدك في الوقت الفعلي.';
+  String get tattooCreationDescription => 'اسمك في باقة مذهلة';
 
   @override
-  String get customCreation => 'إنشاء مخصص';
+  String get customCreation => 'اكتشف الإلهام';
 
   @override
-  String get customCreationDescription =>
-      'أنشئ تصميمات مخصصة وحقق\nأفكارك الإبداعية.';
+  String get customCreationDescription => 'تصفّح أنماط وشوم فريدة.';
 
   @override
   String get tattooMaker => 'صانع الوشم';
@@ -44,10 +42,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get moonOwlSubtitle => 'اكتب فكرة. شاهد التصميم.';
 
   @override
-  String get tryOnAiTattoos => 'Try On AI Tattoos';
+  String get tryOnAiTattoos => 'جرّب وشوم الذكاء الاصطناعي';
 
   @override
-  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+  String get tryOnAiTattoosSubtitle => 'شاهد كيف سيبدو الوشم عليك.';
 
   @override
   String get flowerCreation => 'إنشاء الزهور';

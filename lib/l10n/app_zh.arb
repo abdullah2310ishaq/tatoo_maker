@@ -12,19 +12,19 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "纹身创作",
+  "tattooCreation": "花卉纹身",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "创建独特的纹身设计，实时查看它们在你手上的效果。",
+  "tattooCreationDescription": "把名字变成惊艳花束",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "自定义创作",
+  "customCreation": "发现灵感",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "创建自定义设计，\n将您的创意想法变为现实。",
+  "customCreationDescription": "浏览独特的纹身风格。",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
@@ -43,6 +43,14 @@
   "moonOwlSubtitle": "输入一个想法，看看设计效果。",
   "@moonOwlSubtitle": {
     "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
+  "tryOnAiTattoos": "试戴 AI 纹身",
+  "@tryOnAiTattoos": {
+    "description": "Title for fourth onboarding screen - try-on flow"
+  },
+  "tryOnAiTattoosSubtitle": "看看你的纹身在你身上的效果。",
+  "@tryOnAiTattoosSubtitle": {
+    "description": "Subtitle for fourth onboarding screen - try-on flow"
   },
   "flowerCreation": "花朵创作",
   "@flowerCreation": {

@@ -28,7 +28,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isDarkTheme = true; // Default to light theme
+  bool _isDarkTheme = true; // Default to dark theme
   bool _isLoading = true;
 
   @override
@@ -47,18 +47,18 @@ class _MyAppState extends State<MyApp> {
           _isLoading = false;
         });
       } else {
-        // No saved preference, use default (light theme)
+        // No saved preference, use default (dark theme)
         setState(() {
-          _isDarkTheme = false;
+          _isDarkTheme = true;
           _isLoading = false;
         });
         // Save the default theme preference
-        await prefs.setBool('isDarkTheme', false);
+        await prefs.setBool('isDarkTheme', true);
       }
     } catch (e) {
-      // If there's an error, use default theme (light)
+      // If there's an error, use default theme (dark)
       setState(() {
-        _isDarkTheme = false;
+        _isDarkTheme = true;
         _isLoading = false;
       });
       debugPrint('Error loading theme preference: $e');
