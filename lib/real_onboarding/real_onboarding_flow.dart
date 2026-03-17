@@ -1,10 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../home_shell.dart';
-import 'real_ob_first.dart';
 import 'real_ob_second.dart';
 import 'real_ob_third.dart';
 import 'real_ob_fourth.dart';
@@ -20,9 +20,31 @@ class RealOnboardingFlow extends StatefulWidget {
 class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  Timer? _autoScrollTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoScroll();
+  }
+
+  void _startAutoScroll() {
+    _autoScrollTimer?.cancel();
+    _autoScrollTimer = Timer.periodic(const Duration(seconds: 3), (_) {
+      if (!mounted) return;
+      if (_currentPage >= 2) return; // last page: only proceed on Start tap
+      if (!_pageController.hasClients) return;
+
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
 
   @override
   void dispose() {
+    _autoScrollTimer?.cancel();
     _pageController.dispose();
     super.dispose();
   }
@@ -43,7 +65,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   }
 
   void _onContinue() async {
-    if (_currentPage < 3) {
+    if (_currentPage < 2) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -77,16 +99,15 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: Scaffold(
-          backgroundColor: AppColors.lightBackground,
+          backgroundColor: Colors.black,
           body: Stack(
             children: [
               // PageView for swiping
               PageView(
                 controller: _pageController,
                 onPageChanged: _onPageChanged,
-                physics: const BouncingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 children: [
-                  RealOnboardingFirstScreen(onNext: _onContinue),
                   RealOnboardingSecondScreen(onNext: _onContinue),
                   RealOnboardingThirdScreen(onNext: _onContinue),
                   RealOnboardingFourthScreen(onNext: _onContinue),
@@ -102,54 +123,40 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
                   ),
                 ),
               ),
-              // Skip button (only show on first three pages) - Stack on top
-              if (_currentPage < 3)
+              // Skip button (only show on first two pages) - Stack on top
+              if (_currentPage < 2)
                 SafeArea(
                   child: Align(
                     alignment: Alignment.topRight,
                     child: Padding(
                       padding: EdgeInsets.all(16.w),
-                      child: _currentPage <= 1
-                          ? Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 16.w,
-                                vertical: 8.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withValues(alpha: 0.3),
-                                borderRadius: BorderRadius.circular(20.r),
-                              ),
-                              child: TextButton(
-                                onPressed: _onSkip,
-                                style: TextButton.styleFrom(
-                                  padding: EdgeInsets.zero,
-                                  minimumSize: Size.zero,
-                                  tapTargetSize:
-                                      MaterialTapTargetSize.shrinkWrap,
-                                ),
-                                child: Text(
-                                  AppLocalizations.of(context)!.skip,
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontFamily: 'Amaranth',
-                                  ),
-                                ),
-                              ),
-                            )
-                          : TextButton(
-                              onPressed: _onSkip,
-                              child: Text(
-                                AppLocalizations.of(context)!.skip,
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
-                                  fontFamily: 'Amaranth',
-                                ),
-                              ),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 8.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.3),
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: TextButton(
+                          onPressed: _onSkip,
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            minimumSize: Size.zero,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
+                          child: Text(
+                            AppLocalizations.of(context)!.skip,
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontFamily: 'Amaranth',
                             ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -164,7 +171,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   Widget _buildPaginationDots() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(4, (index) {
+      children: List.generate(3, (index) {
         final isActive = index == _currentPage;
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),
