@@ -32,6 +32,18 @@
   "@tattooMaker": {
     "description": "Title for third onboarding screen"
   },
+  "moonOwl": "Moon Owl",
+  "@moonOwl": {
+    "description": "Title label for Moon Owl onboarding screen"
+  },
+  "moonOwlTitle": "AI 타투 생성기",
+  "@moonOwlTitle": {
+    "description": "Title for Moon Owl AI tattoo generator section"
+  },
+  "moonOwlSubtitle": "아이디어를 입력하고 디자인을 확인하세요.",
+  "@moonOwlSubtitle": {
+    "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
   "flowerCreation": "꽃 제작",
   "@flowerCreation": {
     "description": "Feature title for third onboarding screen"

@@ -18,21 +18,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get start => 'Start';
 
   @override
-  String get tattooCreation => 'Tattoo Creation';
+  String get tattooCreation => 'Flower Tattoos';
 
   @override
-  String get tattooCreationDescription =>
-      'Create unique tattoo designs and see how they look on your hand in real time.';
+  String get tattooCreationDescription => 'Name into stunning bouquet';
 
   @override
-  String get customCreation => 'Custom Creation';
+  String get customCreation => 'Discover Inspiration';
 
   @override
-  String get customCreationDescription =>
-      'Create custom designs and bring\nyour creative ideas to life.';
+  String get customCreationDescription => 'Browse unique tattoo styles.';
 
   @override
   String get tattooMaker => 'Tattoo Maker';
+
+  @override
+  String get moonOwl => 'Moon Owl';
+
+  @override
+  String get moonOwlTitle => 'AI Tattoo Generator';
+
+  @override
+  String get moonOwlSubtitle => 'Type an idea. See the design.';
+
+  @override
+  String get tryOnAiTattoos => 'Try On AI Tattoos';
+
+  @override
+  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
 
   @override
   String get flowerCreation => 'Flower Creation';

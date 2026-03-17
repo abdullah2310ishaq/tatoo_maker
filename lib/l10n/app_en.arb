@@ -12,25 +12,45 @@
   "@start": {
     "description": "Start button text for final onboarding screen"
   },
-  "tattooCreation": "Tattoo Creation",
+  "tattooCreation": "Flower Tattoos",
   "@tattooCreation": {
     "description": "Title for first onboarding screen"
   },
-  "tattooCreationDescription": "Create unique tattoo designs and see how they look on your hand in real time.",
+  "tattooCreationDescription": "Name into stunning bouquet",
   "@tattooCreationDescription": {
     "description": "Description text for first onboarding screen"
   },
-  "customCreation": "Custom Creation",
+  "customCreation": "Discover Inspiration",
   "@customCreation": {
     "description": "Title for second onboarding screen"
   },
-  "customCreationDescription": "Create custom designs and bring\nyour creative ideas to life.",
+  "customCreationDescription": "Browse unique tattoo styles.",
   "@customCreationDescription": {
     "description": "Description text for second onboarding screen"
   },
   "tattooMaker": "Tattoo Maker",
   "@tattooMaker": {
     "description": "Title for third onboarding screen"
+  },
+  "moonOwl": "Moon Owl",
+  "@moonOwl": {
+    "description": "Title label for Moon Owl onboarding screen"
+  },
+  "moonOwlTitle": "AI Tattoo Generator",
+  "@moonOwlTitle": {
+    "description": "Title for Moon Owl AI tattoo generator section"
+  },
+  "moonOwlSubtitle": "Type an idea. See the design.",
+  "@moonOwlSubtitle": {
+    "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
+  "tryOnAiTattoos": "Try On AI Tattoos",
+  "@tryOnAiTattoos": {
+    "description": "Title for fourth onboarding screen - try-on flow"
+  },
+  "tryOnAiTattoosSubtitle": "See how your tattoo looks on you.",
+  "@tryOnAiTattoosSubtitle": {
+    "description": "Subtitle for fourth onboarding screen - try-on flow"
   },
   "flowerCreation": "Flower Creation",
   "@flowerCreation": {

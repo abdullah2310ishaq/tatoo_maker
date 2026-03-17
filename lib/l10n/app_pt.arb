@@ -32,6 +32,18 @@
   "@tattooMaker": {
     "description": "Title for third onboarding screen"
   },
+  "moonOwl": "Moon Owl",
+  "@moonOwl": {
+    "description": "Title label for Moon Owl onboarding screen"
+  },
+  "moonOwlTitle": "Gerador de Tatuagens com IA",
+  "@moonOwlTitle": {
+    "description": "Title for Moon Owl AI tattoo generator section"
+  },
+  "moonOwlSubtitle": "Digite uma ideia. Veja o design.",
+  "@moonOwlSubtitle": {
+    "description": "Subtitle for Moon Owl AI tattoo generator section"
+  },
   "flowerCreation": "Criação de Flores",
   "@flowerCreation": {
     "description": "Feature title for third onboarding screen"

@@ -137,25 +137,25 @@ abstract class AppLocalizations {
   /// Title for first onboarding screen
   ///
   /// In en, this message translates to:
-  /// **'Tattoo Creation'**
+  /// **'Flower Tattoos'**
   String get tattooCreation;
 
   /// Description text for first onboarding screen
   ///
   /// In en, this message translates to:
-  /// **'Create unique tattoo designs and see how they look on your hand in real time.'**
+  /// **'Name into stunning bouquet'**
   String get tattooCreationDescription;
 
   /// Title for second onboarding screen
   ///
   /// In en, this message translates to:
-  /// **'Custom Creation'**
+  /// **'Discover Inspiration'**
   String get customCreation;
 
   /// Description text for second onboarding screen
   ///
   /// In en, this message translates to:
-  /// **'Create custom designs and bring\nyour creative ideas to life.'**
+  /// **'Browse unique tattoo styles.'**
   String get customCreationDescription;
 
   /// Title for third onboarding screen
@@ -163,6 +163,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tattoo Maker'**
   String get tattooMaker;
+
+  /// Title label for Moon Owl onboarding screen
+  ///
+  /// In en, this message translates to:
+  /// **'Moon Owl'**
+  String get moonOwl;
+
+  /// Title for Moon Owl AI tattoo generator section
+  ///
+  /// In en, this message translates to:
+  /// **'AI Tattoo Generator'**
+  String get moonOwlTitle;
+
+  /// Subtitle for Moon Owl AI tattoo generator section
+  ///
+  /// In en, this message translates to:
+  /// **'Type an idea. See the design.'**
+  String get moonOwlSubtitle;
+
+  /// Title for fourth onboarding screen - try-on flow
+  ///
+  /// In en, this message translates to:
+  /// **'Try On AI Tattoos'**
+  String get tryOnAiTattoos;
+
+  /// Subtitle for fourth onboarding screen - try-on flow
+  ///
+  /// In en, this message translates to:
+  /// **'See how your tattoo looks on you.'**
+  String get tryOnAiTattoosSubtitle;
 
   /// Feature title for third onboarding screen
   ///

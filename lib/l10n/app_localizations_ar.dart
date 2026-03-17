@@ -35,6 +35,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tattooMaker => 'صانع الوشم';
 
   @override
+  String get moonOwl => 'Moon Owl';
+
+  @override
+  String get moonOwlTitle => 'مولّد وشوم بالذكاء الاصطناعي';
+
+  @override
+  String get moonOwlSubtitle => 'اكتب فكرة. شاهد التصميم.';
+
+  @override
+  String get tryOnAiTattoos => 'Try On AI Tattoos';
+
+  @override
+  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+
+  @override
   String get flowerCreation => 'إنشاء الزهور';
 
   @override

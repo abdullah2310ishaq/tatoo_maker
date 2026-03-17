@@ -35,6 +35,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get tattooMaker => 'Создатель Татуировок';
 
   @override
+  String get moonOwl => 'Moon Owl';
+
+  @override
+  String get moonOwlTitle => 'Генератор татуировок с ИИ';
+
+  @override
+  String get moonOwlSubtitle => 'Напишите идею. Увидьте дизайн.';
+
+  @override
+  String get tryOnAiTattoos => 'Try On AI Tattoos';
+
+  @override
+  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+
+  @override
   String get flowerCreation => 'Создание Цветов';
 
   @override

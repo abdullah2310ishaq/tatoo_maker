@@ -40,6 +40,7 @@ class AppColors {
   static const Color textGrey = Color(0xFF8E8E8E);
   static const Color textPrimary = Color(
     0xFF565656,
+
   ); // #565656 for text in both themes
   static const Color lightCardBackground = Color(
     0xFFF5F5F5,

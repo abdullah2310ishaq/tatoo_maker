@@ -34,6 +34,21 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tattooMaker => '타투 메이커';
 
   @override
+  String get moonOwl => 'Moon Owl';
+
+  @override
+  String get moonOwlTitle => 'AI 타투 생성기';
+
+  @override
+  String get moonOwlSubtitle => '아이디어를 입력하고 디자인을 확인하세요.';
+
+  @override
+  String get tryOnAiTattoos => 'Try On AI Tattoos';
+
+  @override
+  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+
+  @override
   String get flowerCreation => '꽃 제작';
 
   @override

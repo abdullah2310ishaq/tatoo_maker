@@ -33,6 +33,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tattooMaker => '纹身制作器';
 
   @override
+  String get moonOwl => 'Moon Owl';
+
+  @override
+  String get moonOwlTitle => 'AI 纹身生成器';
+
+  @override
+  String get moonOwlSubtitle => '输入一个想法，看看设计效果。';
+
+  @override
+  String get tryOnAiTattoos => 'Try On AI Tattoos';
+
+  @override
+  String get tryOnAiTattoosSubtitle => 'See how your tattoo looks on you.';
+
+  @override
   String get flowerCreation => '花朵创作';
 
   @override

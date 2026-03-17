@@ -4,8 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../home_shell.dart';
-import 'real_ob.dart';
+import 'real_ob_first.dart';
+import 'real_ob_second.dart';
 import 'real_ob_third.dart';
+import 'real_ob_fourth.dart';
 
 /// Main onboarding flow with PageView for swiping between screens
 class RealOnboardingFlow extends StatefulWidget {
@@ -41,7 +43,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   }
 
   void _onContinue() async {
-    if (_currentPage < 2) {
+    if (_currentPage < 3) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -77,229 +79,106 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
         child: Scaffold(
           backgroundColor: AppColors.lightBackground,
           body: Stack(
-          children: [
-            // PageView for swiping
-            SafeArea(
-              child: Column(
+            children: [
+              // PageView for swiping
+              PageView(
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                physics: const BouncingScrollPhysics(),
                 children: [
-                  Expanded(
-                    child: PageView(
-                      controller: _pageController,
-                      onPageChanged: _onPageChanged,
-                      physics: const BouncingScrollPhysics(),
-                      children: const [
-                        // First screen (placeholder - to be created)
-                        _FirstOnboardingScreen(),
-                        // Second screen
-                        RealOnboardingScreen(),
-                        // Third screen
-                        RealOnboardingThirdScreen(),
-                      ],
-                    ),
-                  ),
-                  // Bottom navigation (Continue/Start button + pagination)
-                  _buildBottomNavigation(),
+                  RealOnboardingFirstScreen(onNext: _onContinue),
+                  RealOnboardingSecondScreen(onNext: _onContinue),
+                  RealOnboardingThirdScreen(onNext: _onContinue),
+                  RealOnboardingFourthScreen(onNext: _onContinue),
                 ],
               ),
-            ),
-            // Skip button (only show on first two pages) - Stack on top
-            if (_currentPage < 2)
+              // Pagination dots overlaid at bottom (extra space above)
               SafeArea(
                 child: Align(
-                  alignment: Alignment.topRight,
+                  alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: EdgeInsets.all(16.w),
-                    child: _currentPage == 0
-                        ? Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16.w,
-                              vertical: 8.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.3),
-                              borderRadius: BorderRadius.circular(20.r),
-                            ),
-                            child: TextButton(
-                              onPressed: _onSkip,
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.zero,
-                                minimumSize: Size.zero,
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    padding: const EdgeInsets.only(bottom: 6),
+                    child: _buildPaginationDots(),
+                  ),
+                ),
+              ),
+              // Skip button (only show on first three pages) - Stack on top
+              if (_currentPage < 3)
+                SafeArea(
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: EdgeInsets.all(16.w),
+                      child: _currentPage <= 1
+                          ? Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16.w,
+                                vertical: 8.h,
                               ),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withValues(alpha: 0.3),
+                                borderRadius: BorderRadius.circular(20.r),
+                              ),
+                              child: TextButton(
+                                onPressed: _onSkip,
+                                style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  minimumSize: Size.zero,
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                ),
+                                child: Text(
+                                  AppLocalizations.of(context)!.skip,
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontFamily: 'Amaranth',
+                                  ),
+                                ),
+                              ),
+                            )
+                          : TextButton(
+                              onPressed: _onSkip,
                               child: Text(
                                 AppLocalizations.of(context)!.skip,
                                 style: TextStyle(
                                   fontSize: 20.sp,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w500,
                                   color: Colors.white,
                                   fontFamily: 'Amaranth',
                                 ),
                               ),
                             ),
-                          )
-                        : TextButton(
-                            onPressed: _onSkip,
-                            child: Text(
-                              AppLocalizations.of(context)!.skip,
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.textPrimary,
-                                fontFamily: 'Amaranth',
-                              ),
-                            ),
-                          ),
+                    ),
                   ),
                 ),
-              ),
-          ],
-        ),
-      ),
-        ),
-    );
-  }
-
-  Widget _buildBottomNavigation() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Continue/Start button
-          SizedBox(
-            width: double.infinity,
-            height: 56,
-            child: ElevatedButton(
-              onPressed: _onContinue,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFA6541D), // Burnt orange
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Text(
-                _currentPage == 2
-                    ? AppLocalizations.of(context)!.start
-                    : AppLocalizations.of(context)!.continue_,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                  fontFamily: 'Amaranth',
-                ),
-              ),
-            ),
+            ],
           ),
-          const SizedBox(height: 24),
-          // Pagination dots
-          _buildPaginationDots(),
-        ],
+        ),
       ),
     );
   }
 
+  // Three-dot page indicator
   Widget _buildPaginationDots() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(3, (index) {
+      children: List.generate(4, (index) {
         final isActive = index == _currentPage;
-        return Container(
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
           margin: const EdgeInsets.symmetric(horizontal: 4.0),
           width: isActive ? 10 : 8,
           height: isActive ? 10 : 8,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: isActive
-                ? const Color(0xFFA6541D) // Orange for active
-                : AppColors.textGrey.withValues(alpha: 0.3),
+                ? const Color(0xFFA6541D) // active orange
+                : AppColors.textGrey.withOpacity(0.5),
           ),
         );
       }),
-    );
-  }
-}
-
-/// First onboarding screen with onboarding_one.png
-class _FirstOnboardingScreen extends StatelessWidget {
-  const _FirstOnboardingScreen();
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // Background image - full cover
-        Positioned.fill(
-          child: Image.asset(
-            'assets/splash/onboarding_one.png',
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(color: AppColors.lightBackground);
-            },
-          ),
-        ),
-        // Gradient fade to white at bottom
-        Positioned.fill(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.transparent,
-                  AppColors.lightBackground.withValues(alpha: 0.5),
-                  AppColors.lightBackground,
-                ],
-                stops: const [0.0, 0.5, 0.7, 1.0],
-              ),
-            ),
-          ),
-        ),
-        // Content at bottom - simple positioning
-        SafeArea(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Title
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40.w),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.tattooCreation,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 42.sp,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textPrimary,
-                        fontFamily: 'Amaranth',
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                // Description
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40.w),
-                  child: Text(
-                    AppLocalizations.of(context)!.tattooCreationDescription,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.textPrimary,
-                      fontFamily: 'Amaranth',
-                      height: 1.5,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
