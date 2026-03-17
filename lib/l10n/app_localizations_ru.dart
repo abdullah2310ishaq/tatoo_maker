@@ -27,7 +27,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get customCreation => 'Найди вдохновение';
 
   @override
-  String get customCreationDescription => 'Просматривайте уникальные стили татуировок.';
+  String get customCreationDescription =>
+      'Просматривайте уникальные стили татуировок.';
 
   @override
   String get tattooMaker => 'Создатель Татуировок';
