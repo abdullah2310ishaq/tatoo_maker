@@ -108,11 +108,11 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Force light theme for first language selection (one-time onboarding)
+    // Follow dark theme (default theme is dark)
     return Theme(
-      data: ThemeData.light(),
+      data: ThemeData.dark(),
       child: Scaffold(
-        backgroundColor: AppColors.lightBackground,
+        backgroundColor: AppColors.darkBackground,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(16.w),
@@ -126,7 +126,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                   style: TextStyle(
                     fontSize: 32.sp,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
+                    color: AppColors.textWhite,
                     fontFamily: 'Amaranth',
                   ),
                 ),
@@ -177,7 +177,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.lightPrimary,
+                      backgroundColor: AppColors.darkPrimary,
                       foregroundColor: AppColors.textWhite,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),
@@ -216,18 +216,18 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
       borderRadius: BorderRadius.circular(12.r),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.lightBackground,
+          color: AppColors.navBarBackground,
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(
             color: isSelected
-                ? AppColors.lightPrimary
-                : AppColors.textGrey.withOpacity(0.3),
+                ? AppColors.darkPrimary
+                : AppColors.textGrey.withOpacity(0.35),
             width: isSelected ? 2.w : 1.w,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: AppColors.lightPrimary.withOpacity(0.2),
+                    color: AppColors.darkPrimary.withOpacity(0.25),
                     blurRadius: 8.r,
                     offset: Offset(0, 2.h),
                   ),
@@ -252,7 +252,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                           language['name'] as String,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: AppColors.textPrimary.withOpacity(0.6),
+                            color: AppColors.textGrey,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -268,7 +268,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                           language['name'] as String,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: AppColors.textPrimary.withOpacity(0.6),
+                            color: AppColors.textGrey,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -285,8 +285,8 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                         ? FontWeight.w600
                         : FontWeight.normal,
                     color: isSelected
-                        ? AppColors.lightPrimary
-                        : AppColors.textPrimary,
+                        ? AppColors.darkPrimary
+                        : AppColors.textWhite,
                     fontFamily: 'Amaranth',
                   ),
                 ),
@@ -295,7 +295,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
               if (isSelected)
                 Icon(
                   Icons.check_circle,
-                  color: AppColors.lightPrimary,
+                  color: AppColors.darkPrimary,
                   size: 20.sp,
                 ),
             ],
