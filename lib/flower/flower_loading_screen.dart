@@ -89,10 +89,9 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
         'FlowerLoadingScreen: Saved image to temp file: ${tempImageFile.path}',
       );
 
-      // Mask background using Prodia API (matches provided CURL, JPEG output)
-      // Then refine in an isolate to produce a PNG with proper alpha.
+      // Mask background and refine alpha for transparent output.
       Uint8List finalImageBytes =
-          imageBytes; // Fallback to original if removal fails
+          imageBytes; // Fallback to original if masking fails
       try {
         print('FlowerLoadingScreen: Starting background mask...');
         final maskedImage = await _apiService.maskBackground(
@@ -103,7 +102,6 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
           'FlowerLoadingScreen: Masked image size: ${maskedImage.length} bytes',
         );
 
-        // Run heavy pixel work off the UI thread.
         final alphaApplied = await compute(applyAlphaMaskToImageIsolate, {
           'inputImageBytes': imageBytes,
           'maskBytes': maskedImage,
@@ -119,7 +117,6 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
         print(
           'FlowerLoadingScreen: Using original image without background mask',
         );
-        // Continue with original image
       }
 
       // Clean up temp file

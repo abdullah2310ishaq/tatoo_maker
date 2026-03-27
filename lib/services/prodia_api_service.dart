@@ -7,8 +7,12 @@ import 'package:http_parser/http_parser.dart';
 /// API Service for Prodia text-to-image and image-to-image generation
 class ProdiaApiService {
   static const String _baseUrl = 'https://inference.prodia.com/v2/job';
+  static const String _togetherImageGenUrl =
+      'https://api.together.xyz/v1/images/generations';
   static const String _apiToken =
       'eyJhbGciOiJkaXIiLCJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIn0.._k05Twd72f3VpXEH.NTMw5WDFlsZQqc67PCWmPZKER_yUMNeUdR63goeffclZVsaEsMSnZu8_8KKNWmBH0KCWS3eeuoIoNxo7rAA6BPdtMXyM9rwHq2n3_L9dai9Abps_0ids6xAsA5Wo_WiGhwuxc_3eM1nWWYc_AmMz5zapabbOe3LwriCIGGpABnlSfw7fa8frQtNPyMFuBYGxUeScbk9H88c01R0-7ZMvIeEh_RfluDOgKeQY7MYAnbJOAAl1vkTKmo770ATG8MHkM5sP2Dno-ifMSpLyvzVfxNkoRXHAQ5mwykoQaCgYZu7y8DUiAZtb6S9JZB12GN8sF7Inj2PWfsAHd1p7bFboFiW1at8dQgLerWPOLY0IBNKChbCkez2wmqZ-bRkPz6nANz5Vez2hQ4UPudY6etNo0eIyXYF_jLO1LLbZ2ywC-4SgIU_SZOME4voli39IkmpWfk1_slFnh1GYI5cpZbmgKtjvRB9fKmVoc2WnkHxO6KXindAgIUMvOAjchQ9jN185p7gync-_gGki6CNNSaZFIikou2bJ946kNhf8Ev3uXcJqt1g.dPB0ImNvlLDFk3mBz9Xm2g';
+  static const String _togetherApiToken =
+      '627e8feafb5fea1872f66e9b0e886fc104116b8132bc43ad20fddde9673f64ae';
 
   final Map<String, String> _headers = {'Authorization': 'Bearer $_apiToken'};
 
@@ -27,51 +31,64 @@ class ProdiaApiService {
     int steps = 4,
   }) async {
     try {
-      print('ProdiaApiService: Starting text-to-image API call...');
+      print('ProdiaApiService: Starting Together text-to-image API call...');
       print('ProdiaApiService: Prompt: $prompt');
-      print('ProdiaApiService: Dimensions: ${width}x$height, Steps: $steps');
-
-      final job = {
-        'type': 'inference.flux-fast.schnell.txt2img.v2',
-        'config': {
-          'prompt': prompt,
-          'width': width,
-          'height': height,
-          'steps': steps,
-        },
-      };
-
-      print('ProdiaApiService: Sending request to API...');
-      // Match provided CURL: request JPEG from txt2img.
-      final headers = {
-        ..._headers,
-        'Accept': 'image/jpeg',
-        'Content-Type': 'application/json',
-      };
-
-      final response = await http.post(
-        Uri.parse(_baseUrl),
-        headers: headers,
-        body: jsonEncode(job),
+      print(
+        'ProdiaApiService: Dimensions: ${width}x$height (steps ignored for Together schnell)',
       );
 
-      print('ProdiaApiService: Response received');
-      print('ProdiaApiService: Status Code: ${response.statusCode}');
+      final requestBody = {
+        'model': 'black-forest-labs/FLUX.1-schnell',
+        'prompt': prompt,
+        'disable_safety_checker': false,
+      };
 
+      print('ProdiaApiService: Sending request to Together API...');
+      final response = await http.post(
+        Uri.parse(_togetherImageGenUrl),
+        headers: {
+          'Authorization': 'Bearer $_togetherApiToken',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(requestBody),
+      );
+
+      print('ProdiaApiService: Together response status: ${response.statusCode}');
       if (response.statusCode != 200) {
-        print('ProdiaApiService: Error - Status: ${response.statusCode}');
-        print('ProdiaApiService: Error - Body: ${response.body}');
+        print('ProdiaApiService: Together error body: ${response.body}');
         throw Exception(
-          'API Error: ${response.statusCode} - ${response.reasonPhrase}',
+          'Together API Error: ${response.statusCode} - ${response.reasonPhrase}',
         );
       }
 
-      final requestId = response.headers['x-request-id'];
-      print('ProdiaApiService: Request ID: $requestId');
-      print('ProdiaApiService: Image size: ${response.bodyBytes.length} bytes');
-      print('ProdiaApiService: Text-to-image API call successful!');
+      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+      final data = decoded['data'];
+      if (data is! List || data.isEmpty) {
+        throw Exception('Together API Error: No image data returned');
+      }
 
-      return response.bodyBytes;
+      final first = data.first;
+      if (first is! Map<String, dynamic>) {
+        throw Exception('Together API Error: Invalid image payload');
+      }
+
+      final imageUrl = first['url'] as String?;
+      if (imageUrl == null || imageUrl.isEmpty) {
+        throw Exception('Together API Error: Missing image URL');
+      }
+
+      print('ProdiaApiService: Downloading image from URL...');
+      final imageResponse = await http.get(Uri.parse(imageUrl));
+      if (imageResponse.statusCode != 200 || imageResponse.bodyBytes.isEmpty) {
+        throw Exception(
+          'Together API Error: Failed to download generated image',
+        );
+      }
+
+      print(
+        'ProdiaApiService: Together text-to-image successful, bytes=${imageResponse.bodyBytes.length}',
+      );
+      return imageResponse.bodyBytes;
     } catch (e) {
       print('ProdiaApiService: Error in text-to-image: $e');
       rethrow;

@@ -417,23 +417,29 @@ class _HomePageState extends State<HomePage> {
     final l10n = AppLocalizations.of(context)!;
     final stylePrompts = _stylePrompts(l10n);
     final currentText = _dreamInkController.text.trim();
-    final hadSelectedStyle = _selectedStyleIndex != null;
+    final isAutoFilledText =
+        _lastAutoFilledPrompt != null &&
+        currentText == _lastAutoFilledPrompt!.trim();
+    final isUserTypedText =
+        currentText.isNotEmpty && _lastAutoFilledPrompt == null;
 
     setState(() {
       // Toggle selection: tap again to unselect — clear dream ink text too
       if (_selectedStyleIndex == index) {
         _selectedStyleIndex = null;
-        _dreamInkController.clear();
+        // Preserve user text; clear only auto-filled style text.
+        if (isAutoFilledText) {
+          _dreamInkController.clear();
+        }
         _lastAutoFilledPrompt = null;
         return;
       }
 
       _selectedStyleIndex = index;
 
-      // Special case only:
-      // If user typed custom idea first (no prior style), then selecting style
-      // should keep their text as-is. Style still remains selected for backend.
-      if (!hadSelectedStyle && currentText.isNotEmpty) {
+      // If user has custom text in Dream Ink, never replace it with style text.
+      // Style remains selected and will still be used in backend prompt.
+      if (isUserTypedText) {
         _lastAutoFilledPrompt = null;
         return;
       }
