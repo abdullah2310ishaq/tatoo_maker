@@ -5,9 +5,7 @@ import '../utils/colors.dart';
 
 /// Second onboarding screen - Custom creation
 class RealOnboardingSecondScreen extends StatelessWidget {
-  const RealOnboardingSecondScreen({super.key, required this.onNext});
-
-  final VoidCallback onNext;
+  const RealOnboardingSecondScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,7 @@ class RealOnboardingSecondScreen extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: const EdgeInsets.fromLTRB(20, 2, 20, 44),
+              padding: const EdgeInsets.fromLTRB(20, 2, 20, 124),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -87,29 +85,6 @@ class RealOnboardingSecondScreen extends StatelessWidget {
                             blurRadius: 3,
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: ElevatedButton(
-                      onPressed: onNext,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFA6541D),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: Text(
-                        AppLocalizations.of(context)!.continue_,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                          fontFamily: 'Amaranth',
-                        ),
                       ),
                     ),
                   ),

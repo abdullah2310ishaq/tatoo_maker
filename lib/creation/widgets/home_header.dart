@@ -23,10 +23,12 @@ class HomeHeader extends StatelessWidget {
     final buttonBgColor = isDark
         ? AppColors.buttonBackground
         : AppColors.textGrey.withOpacity(0.1);
-    final menuIconAsset =
-        isDark ? 'assets/drawer_dark.svg' : 'assets/drawer_light.svg';
-    final historyIconAsset =
-        isDark ? 'assets/history_dark.svg' : 'assets/history_light.svg';
+    final menuIconAsset = isDark
+        ? 'assets/drawer_dark.svg'
+        : 'assets/drawer_light.svg';
+    final historyIconAsset = isDark
+        ? 'assets/history_dark.svg'
+        : 'assets/history_light.svg';
     final double menuSize = isDark ? 50.w : 60.w;
     final double historySize = isDark ? 50.w : 60.w;
 

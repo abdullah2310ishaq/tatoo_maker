@@ -108,21 +108,12 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
                 onPageChanged: _onPageChanged,
                 physics: const ClampingScrollPhysics(),
                 children: [
-                  RealOnboardingSecondScreen(onNext: _onContinue),
-                  RealOnboardingThirdScreen(onNext: _onContinue),
-                  RealOnboardingFourthScreen(onNext: _onContinue),
+                  const RealOnboardingSecondScreen(),
+                  const RealOnboardingThirdScreen(),
+                  const RealOnboardingFourthScreen(),
                 ],
               ),
-              // Pagination dots overlaid at bottom (extra space above)
-              SafeArea(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: _buildPaginationDots(),
-                  ),
-                ),
-              ),
+              _buildBottomActionArea(context),
               // Skip button (only show on first two pages) - Stack on top
               if (_currentPage < 2)
                 SafeArea(
@@ -168,6 +159,49 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   }
 
   // Three-dot page indicator
+  Widget _buildBottomActionArea(BuildContext context) {
+    final isLastPage = _currentPage == 2;
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 6.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: _onContinue,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFA6541D),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    isLastPage
+                        ? AppLocalizations.of(context)!.start
+                        : AppLocalizations.of(context)!.continue_,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      fontFamily: 'Amaranth',
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 12.h),
+              _buildPaginationDots(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildPaginationDots() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

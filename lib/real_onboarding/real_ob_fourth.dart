@@ -5,9 +5,7 @@ import '../utils/colors.dart';
 
 /// Fourth onboarding screen - Try-on preview
 class RealOnboardingFourthScreen extends StatelessWidget {
-  const RealOnboardingFourthScreen({super.key, required this.onNext});
-
-  final VoidCallback onNext;
+  const RealOnboardingFourthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +25,12 @@ class RealOnboardingFourthScreen extends StatelessWidget {
         // ✅ BOX OVERLAY (ADDED)
         const Positioned.fill(child: TattooSelectionBox()),
 
-        // Bottom gradient with text + button
+        // Bottom gradient text area
         SafeArea(
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 30.h),
+              padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 124.h),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -52,7 +50,7 @@ class RealOnboardingFourthScreen extends StatelessWidget {
                       child: Text(
                         AppLocalizations.of(context)!.tryOnAiTattoos,
                         textAlign: TextAlign.center,
-                        maxLines: 2, // ✅ FIXED (was 1)
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 30.sp,
@@ -89,29 +87,6 @@ class RealOnboardingFourthScreen extends StatelessWidget {
                             blurRadius: 3,
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56.h, // ✅ FIXED
-                    child: ElevatedButton(
-                      onPressed: onNext,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFA6541D),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: Text(
-                        AppLocalizations.of(context)!.start,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                          fontFamily: 'Amaranth',
-                        ),
                       ),
                     ),
                   ),

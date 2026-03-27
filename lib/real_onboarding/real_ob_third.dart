@@ -5,9 +5,7 @@ import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 
 class RealOnboardingThirdScreen extends StatelessWidget {
-  const RealOnboardingThirdScreen({super.key, required this.onNext});
-
-  final VoidCallback onNext;
+  const RealOnboardingThirdScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,30 +79,7 @@ class RealOnboardingThirdScreen extends StatelessWidget {
                     color: Colors.white.withOpacity(0.9),
                   ),
                 ),
-                SizedBox(height: 32.h),
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: ElevatedButton(
-                    onPressed: onNext,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA6541D),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.continue_,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                        fontFamily: 'Amaranth',
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 44.h),
+                SizedBox(height: 124.h),
               ],
             ),
           ),
