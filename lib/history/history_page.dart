@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../creation/result_screen.dart';
 import '../flower/flower_result_screen.dart';
@@ -11,7 +10,7 @@ import '../utils/theme_manager.dart';
 import '../providers/favorites_provider.dart';
 import '../utils/toast.dart';
 import 'package:provider/provider.dart';
-import 'history_tile.dart';
+import '../utils/style_localization.dart';
 
 /// [tabIndex] 0 = show 3 options (Creation, Tattoo, Flower); 1 = Tattoo only; 2 = Flower only.
 class HistoryPage extends StatefulWidget {
@@ -214,18 +213,24 @@ class _HistoryPageState extends State<HistoryPage> {
         ),
       );
     }
-    return ListView.builder(
+    return GridView.builder(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 12.w,
+        mainAxisSpacing: 12.h,
+        childAspectRatio: 1,
+      ),
       itemCount: items.length,
       itemBuilder: (context, index) {
-        return HistoryTile(
-          entry: items[index],
+        final entry = items[index];
+        return _HistoryGridItem(
+          entry: entry,
           type: type,
           isDark: isDark,
-          onTap: () => _openResult(context, items[index], type, l10n),
-          // Always reload history data when a favorite is toggled so counts
-          // and the favorites section stay in sync across the whole app.
-          onFavoriteChanged: () => _load(),
+          isSelectionMode: false,
+          isSelected: false,
+          onTap: () => _openResult(context, entry, type, l10n),
         );
       },
     );
@@ -289,18 +294,16 @@ class _SectionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
         onTap: onTap,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset('assets/folder.svg', width: 24.w, height: 24.w),
-              SizedBox(height: 8.h),
               Text(
                 title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
                   color: isDark ? AppColors.textWhite : AppColors.textPrimary,
                 ),
@@ -309,6 +312,107 @@ class _SectionCard extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HistoryGridItem extends StatelessWidget {
+  final Map<String, dynamic> entry;
+  final bool isDark;
+  final String type;
+  final bool isSelectionMode;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _HistoryGridItem({
+    required this.entry,
+    required this.isDark,
+    required this.type,
+    required this.isSelectionMode,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final bytes = HistoryService.imageBytesFromEntry(entry);
+    final label = type == 'flower'
+        ? (entry['name'] as String? ?? '')
+        : getLocalizedStyleName(l10n, entry['styleName'] as String?);
+
+    return Material(
+      color: isDark ? const Color(0xFF151411) : AppColors.lightCardBackground,
+      borderRadius: BorderRadius.circular(12.r),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12.r),
+        onTap: onTap,
+        child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: bytes == null
+                          ? Container(
+                              color: AppColors.textGrey.withValues(alpha: 0.2),
+                              child: Icon(
+                                Icons.image_not_supported,
+                                color: AppColors.textGrey,
+                                size: 28.sp,
+                              ),
+                            )
+                          : Image.memory(bytes, fit: BoxFit.cover),
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    label.isEmpty ? '—' : label,
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            if (isSelectionMode)
+              PositionedDirectional(
+                top: 10.h,
+                end: 10.w,
+                child: Container(
+                  width: 22.w,
+                  height: 22.w,
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? const Color(0xFFFE8B3A)
+                        : Colors.black.withValues(alpha: 0.35),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: isSelected
+                          ? const Color(0xFFFE8B3A)
+                          : AppColors.textGrey.withValues(alpha: 0.6),
+                      width: 1,
+                    ),
+                  ),
+                  child: Icon(
+                    Icons.check,
+                    size: 14.sp,
+                    color: isSelected ? Colors.white : Colors.transparent,
+                  ),
+                ),
+              ),
+          ],
         ),
       ),
     );
@@ -340,29 +444,6 @@ class _HistoryListPageState extends State<HistoryListPage> {
   void initState() {
     super.initState();
     _items = widget.items;
-  }
-
-  Future<void> _reloadFavorites() async {
-    if (widget.type == 'favorites') {
-      final favs = await HistoryService.getFavorites();
-      if (mounted) {
-        setState(() => _items = favs);
-        // Clear selection if items changed significantly or just clear to be safe
-        if (_isSelectionMode) {
-          // We might want to keep selection if possible, but for simplicity let's re-validate or clear
-          // For now, let's just remove IDs that are no longer in the list
-          final currentIds = favs.map(HistoryService.generateEntryId).toSet();
-          _selectedIds.removeWhere((id) => !currentIds.contains(id));
-        }
-      }
-    }
-  }
-
-  void _removeEntryLocally(Map<String, dynamic> entry) {
-    if (!mounted) return;
-    setState(() {
-      _items.remove(entry);
-    });
   }
 
   void _toggleSelectionMode() {
@@ -570,27 +651,34 @@ class _HistoryListPageState extends State<HistoryListPage> {
                           ),
                         ),
                       )
-                    : ListView.builder(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    : GridView.builder(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.w,
+                          vertical: 8.h,
+                        ),
+                        gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 12.w,
+                          mainAxisSpacing: 12.h,
+                          childAspectRatio: 1,
+                        ),
                         itemCount: _items.length,
                         itemBuilder: (context, index) {
                           final entry = _items[index];
                           final entryId = HistoryService.generateEntryId(entry);
-                          return HistoryTile(
+                          return _HistoryGridItem(
                             entry: entry,
-                            type: widget.type,
                             isDark: isDark,
+                            type: widget.type,
                             isSelectionMode: _isSelectionMode,
                             isSelected: _selectedIds.contains(entryId),
-                            onSelectionChanged: (_) =>
-                                _toggleSelection(entryId),
-                            onFavoriteChanged: widget.type == 'favorites'
-                                ? _reloadFavorites
-                                : null,
-                            onDeleted: widget.type == 'favorites'
-                                ? null
-                                : () => _removeEntryLocally(entry),
                             onTap: () {
+                              if (_isSelectionMode) {
+                                _toggleSelection(entryId);
+                                return;
+                              }
+
                               final bytes = HistoryService.imageBytesFromEntry(
                                 entry,
                               );
