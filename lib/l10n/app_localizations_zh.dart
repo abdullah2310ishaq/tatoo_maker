@@ -195,7 +195,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get promptLabel => '描述';
 
   @override
-  String get tryThis => '试试这个';
+  String get tryThis => '试试这个提示词';
 
   @override
   String get tattooStylePromptWolf => '极简部落狼纹身，用粗体白线绘制，抽象锐利曲线，干净线条艺术，纹身闪光风格。';

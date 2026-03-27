@@ -208,7 +208,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get promptLabel => 'Descrição';
 
   @override
-  String get tryThis => 'Experimente Isso';
+  String get tryThis => 'Experimente este prompt';
 
   @override
   String get tattooStylePromptWolf =>

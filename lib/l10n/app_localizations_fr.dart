@@ -211,7 +211,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get promptLabel => 'Description';
 
   @override
-  String get tryThis => 'Essayer Ceci';
+  String get tryThis => 'Essayer ce prompt';
 
   @override
   String get tattooStylePromptWolf =>

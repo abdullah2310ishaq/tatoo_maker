@@ -248,7 +248,7 @@
   "@promptLabel": {
     "description": "Label for the prompt section in explore detail"
   },
-  "tryThis": "Try This",
+  "tryThis": "Try This Prompt",
   "@tryThis": {
     "description": "Button text for trying an explore preset"
   },

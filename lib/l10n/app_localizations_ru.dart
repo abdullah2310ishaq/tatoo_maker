@@ -210,7 +210,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get promptLabel => 'Описание';
 
   @override
-  String get tryThis => 'Попробовать Это';
+  String get tryThis => 'Попробовать этот промпт';
 
   @override
   String get tattooStylePromptWolf =>

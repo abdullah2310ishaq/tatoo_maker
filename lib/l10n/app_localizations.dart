@@ -491,7 +491,7 @@ abstract class AppLocalizations {
   /// Button text for trying an explore preset
   ///
   /// In en, this message translates to:
-  /// **'Try This'**
+  /// **'Try This Prompt'**
   String get tryThis;
 
   /// Home: style prompt for Wolf

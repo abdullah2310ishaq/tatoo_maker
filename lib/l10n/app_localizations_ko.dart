@@ -198,7 +198,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get promptLabel => '설명';
 
   @override
-  String get tryThis => '이것 시도하기';
+  String get tryThis => '이 프롬프트 시도하기';
 
   @override
   String get tattooStylePromptWolf =>

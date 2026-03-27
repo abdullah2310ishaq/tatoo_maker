@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:tatoo_maker/history/favorites_page.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/language/language_screen.dart';
@@ -50,7 +51,7 @@ class _AppDrawerState extends State<AppDrawer> {
     final l10n = AppLocalizations.of(context)!;
     final textColor = isDark ? AppColors.textWhite : AppColors.buttonBackground;
     final backgroundColor = isDark
-        ? AppColors.drawerDarkBackground
+        ? AppColors.darkBackground
         : AppColors.lightBackground;
     final iconColor = isDark ? AppColors.textWhite : AppColors.buttonBackground;
 
@@ -180,7 +181,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       textColor: textColor,
                       iconColor: iconColor,
                       isEnabled: !_isProcessing,
-                      onTap: () {},
+                      onTap: _shareApp,
                     ),
                     _buildMenuItem(
                       context: context,
@@ -252,6 +253,16 @@ class _AppDrawerState extends State<AppDrawer> {
 
     try {
       await launchUrl(uri);
+    } catch (_) {
+      // Intentionally ignore errors to avoid crashing the app.
+    }
+  }
+
+  Future<void> _shareApp() async {
+    const appUrl =
+        'https://play.google.com/store/apps/details?id=com.tattoo.generator.ai.tattoo.tattoo.maker.name.tattoo';
+    try {
+      await Share.share(appUrl);
     } catch (_) {
       // Intentionally ignore errors to avoid crashing the app.
     }

@@ -138,32 +138,37 @@ class _HistoryPageState extends State<HistoryPage> {
     AppLocalizations l10n,
   ) {
     return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
       padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _SectionCard(
-            title: l10n.creation,
-            count: _creation.length,
-            isDark: isDark,
-            onTap: () => _openListPage(context, 0, l10n.creation),
+          SizedBox(
+            width: 105.w,
+            child: _SectionCard(
+              title: l10n.creation,
+              isDark: isDark,
+              onTap: () => _openListPage(context, 0, l10n.creation),
+            ),
           ),
-          SizedBox(height: 12.h),
-          _SectionCard(
-            title: l10n.tattoo,
-            count: _tattoo.length,
-            isDark: isDark,
-            onTap: () => _openListPage(context, 1, l10n.tattoo),
+          SizedBox(width: 12.w),
+          SizedBox(
+            width: 105.w,
+            child: _SectionCard(
+              title: l10n.tattoo,
+              isDark: isDark,
+              onTap: () => _openListPage(context, 1, l10n.tattoo),
+            ),
           ),
-          SizedBox(height: 12.h),
-          _SectionCard(
-            title: l10n.flower,
-            count: _flower.length,
-            isDark: isDark,
-            onTap: () => _openListPage(context, 2, l10n.flower),
+          SizedBox(width: 12.w),
+          SizedBox(
+            width: 105.w,
+            child: _SectionCard(
+              title: l10n.flower,
+              isDark: isDark,
+              onTap: () => _openListPage(context, 2, l10n.flower),
+            ),
           ),
-          SizedBox(height: 12.h),
-          // Favorites Section REMOVED
         ],
       ),
     );
@@ -266,13 +271,11 @@ class _HistoryPageState extends State<HistoryPage> {
 
 class _SectionCard extends StatelessWidget {
   final String title;
-  final int count;
   final bool isDark;
   final VoidCallback onTap;
 
   const _SectionCard({
     required this.title,
-    required this.count,
     required this.isDark,
     required this.onTap,
   });
@@ -286,27 +289,24 @@ class _SectionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
         onTap: onTap,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-          child: Row(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SvgPicture.asset('assets/folder.svg', width: 24.w, height: 24.w),
-              SizedBox(width: 12.w),
-              Expanded(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-                  ),
-                ),
-              ),
+              SizedBox(height: 8.h),
               Text(
-                '$count',
-                style: TextStyle(fontSize: 14.sp, color: AppColors.textGrey),
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w600,
+                  color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(width: 8.w),
-              Icon(Icons.chevron_right, color: AppColors.textGrey, size: 24.sp),
             ],
           ),
         ),
@@ -320,7 +320,8 @@ class HistoryListPage extends StatefulWidget {
   final List<Map<String, dynamic>> items;
   final String type;
 
-  const HistoryListPage({super.key, 
+  const HistoryListPage({
+    super.key,
     required this.title,
     required this.items,
     required this.type,
