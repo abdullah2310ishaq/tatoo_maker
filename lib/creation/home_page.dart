@@ -14,6 +14,7 @@ import 'widgets/explore_inspiration_section.dart';
 import 'widgets/home_header.dart';
 import 'widgets/tattoo_style_section.dart';
 import 'widgets/tutorial_overlay.dart';
+import '../utils/toast.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
@@ -312,8 +313,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  bool get _canGenerate =>
-      _selectedStyleIndex != null && _dreamInkController.text.trim().isNotEmpty;
+  bool get _canGenerate => _dreamInkController.text.trim().isNotEmpty;
 
   void _maybeUpdatePromptForLocale(AppLocalizations l10n) {
     if (_selectedStyleIndex == null) return;
@@ -416,9 +416,10 @@ class _HomePageState extends State<HomePage> {
   void _onStyleTap(int index) {
     final l10n = AppLocalizations.of(context)!;
     final stylePrompts = _stylePrompts(l10n);
+    final currentText = _dreamInkController.text.trim();
+    final hadSelectedStyle = _selectedStyleIndex != null;
 
     setState(() {
-
       // Toggle selection: tap again to unselect — clear dream ink text too
       if (_selectedStyleIndex == index) {
         _selectedStyleIndex = null;
@@ -429,10 +430,14 @@ class _HomePageState extends State<HomePage> {
 
       _selectedStyleIndex = index;
 
-      // When switching to a different style, always update the prompt
-      // to match the newly selected style's template. This ensures that
-      // changing styles updates the Dream Ink text even if the user
-      // previously edited the prompt.
+      // Special case only:
+      // If user typed custom idea first (no prior style), then selecting style
+      // should keep their text as-is. Style still remains selected for backend.
+      if (!hadSelectedStyle && currentText.isNotEmpty) {
+        _lastAutoFilledPrompt = null;
+        return;
+      }
+
       final selectedStyle = _styles[index];
       final prompt = stylePrompts[selectedStyle.label];
       if (prompt == null) return;
@@ -449,6 +454,15 @@ class _HomePageState extends State<HomePage> {
 
   void _onGenerateTap() {
     if (!_canGenerate) return;
+    final l10n = AppLocalizations.of(context)!;
+    if (_selectedStyleIndex == null) {
+      AppToast.show(
+        context,
+        message: l10n.stepStylePickYourTitleStyle,
+        isSuccess: false,
+      );
+      return;
+    }
 
     final selectedStyle = _selectedStyleIndex != null
         ? _styles[_selectedStyleIndex!]
