@@ -170,6 +170,7 @@ class _HomeShellState extends State<HomeShell> {
               ),
             );
           },
+          // alwaysShowTutorialOverlay: true,
           onRegisterGenerateAction: (enabled, onTap) {
             _onGenerateTap = onTap;
             if (_generateEnabled != enabled) {
@@ -223,6 +224,7 @@ class _HomeShellState extends State<HomeShell> {
               ),
             );
           },
+          // alwaysShowTutorialOverlay: true,
         );
     }
   }

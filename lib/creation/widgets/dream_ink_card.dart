@@ -16,6 +16,7 @@ class DreamInkCard extends StatelessWidget {
   /// When set, tapping the Inspiration label/icon triggers this (e.g. random style selection).
   final VoidCallback? onInspirationTap;
   final bool hasSelectedStyle;
+
   /// When true, the clear (X) button is shown so user can clear prompt text (e.g. after typing).
   final bool showClearButton;
   final VoidCallback? onClearStyleTap;
@@ -88,7 +89,7 @@ class DreamInkCard extends StatelessWidget {
                         fontFamily: 'Amaranth',
                       ),
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 2.h),
                     Expanded(
                       child: TextField(
                         controller: controller,

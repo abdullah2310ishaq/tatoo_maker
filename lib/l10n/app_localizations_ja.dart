@@ -236,7 +236,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'パステルフラワーブーケ、ピーチ＆ブラッシュローズ、ワイルドフラワー、ゴールデンフォリッジ、カスケードリボン、非対称の涙滴、ロマンチックビンテージ、柔らかい照明、高リアリズム、ダークバックグラウンド。';
 
   @override
-  String get homeDescribeYourDreamInk => 'あなたの夢のタトゥーを説明し';
+  String get homeDescribeYourDreamInk => 'あなたのタトゥーのアイデアを説明してください';
 
   @override
   String get homeDreamInkHint => 'あなたが思い描くものを教えてください...';

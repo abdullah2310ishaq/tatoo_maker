@@ -10,7 +10,7 @@ class TutorialOverlay extends StatefulWidget {
   final Future<void> Function() onDismiss;
   final Future<bool> Function(String assetPath) checkAssetExists;
 
-// 
+  //
   const TutorialOverlay({
     super.key,
     required this.highlightKey,
@@ -91,7 +91,7 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
             ),
           ),
           Positioned(
-            top: cardLocalPosition.dy + cardSize.height - 10.h,
+            top: cardLocalPosition.dy + cardSize.height - 5.h,
             left: 0,
             right: 0,
             bottom: 100.h,
@@ -106,8 +106,8 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
                       if (snapshot.hasData && snapshot.data == true) {
                         return SvgPicture.asset(
                           'assets/arrow.svg',
-                          width: 60.w,
-                          height: 60.h,
+                          width: 40.w,
+                          height: 40.h,
                           colorFilter: const ColorFilter.mode(
                             AppColors.titleGradientStart,
                             BlendMode.srcIn,
@@ -131,8 +131,8 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
                       l10n.homeTutorialOverlayText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
                         color: Colors.white,
                         fontFamily: 'Amaranth',
                         height: 1.4,

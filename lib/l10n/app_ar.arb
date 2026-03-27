@@ -288,7 +288,7 @@
   "@tattooStylePromptFloral": {
     "description": "Home: style prompt for Floral"
   },
-  "homeDescribeYourDreamInk": "صف وشمك المثالي",
+  "homeDescribeYourDreamInk": "صف فكرة الوشم الخاصة بك",
   "@homeDescribeYourDreamInk": {
     "description": "Home: \"Describe Your Dream Ink\" title"
   },

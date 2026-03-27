@@ -245,7 +245,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Pastell-Blumenstrauß, Pfirsich- und Blush-Rosen, Wildblumen, goldenes Laub, kaskadierende Bänder, asymmetrische Träne, romantisches Vintage, weiches Licht, hoher Realismus, dunkler Hintergrund.';
 
   @override
-  String get homeDescribeYourDreamInk => 'Beschreibe dein Traum-Tattoo';
+  String get homeDescribeYourDreamInk => 'Beschreibe deine Tattoo-Idee';
 
   @override
   String get homeDreamInkHint => 'Erzähle uns, was du dir vorstellst...';

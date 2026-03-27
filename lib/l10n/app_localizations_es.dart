@@ -245,7 +245,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Ramo floral pastel, rosas melocotón y rubor, flores silvestres, follaje dorado, cintas en cascada, lágrima asimétrica, vintage romántico, iluminación suave, alto realismo, fondo oscuro.';
 
   @override
-  String get homeDescribeYourDreamInk => 'Describe Tu Tatuaje Soñado';
+  String get homeDescribeYourDreamInk => 'Describe tu idea de tatuaje';
 
   @override
   String get homeDreamInkHint => 'Cuéntanos lo que imaginas...';

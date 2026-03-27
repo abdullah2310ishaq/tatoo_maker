@@ -243,7 +243,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Create a tattoo design based on the Floral Style. Use muted, natural colors such as blush pinks, soft whites, and earthy greens. The design should incorporate delicate, intricate petals, soft lines, and flowing, graceful curves. Focus on gentle shading with realistic textures to evoke a sense of natural beauty and serenity. The design should have an elegant, organic aesthetic, emphasizing delicacy and peacefulness. Now, incorporate the subject into this style. The subject should have soft, floral details, with petals or leaves subtly woven into the design, graceful curves, and natural textures. The design should reflect calmness and beauty, with a sense of elegance and natural harmony. The subject should be surrounded by floral elements, making it appear delicate, feminine, and natural, with gentle shading and light highlights.';
 
   @override
-  String get homeDescribeYourDreamInk => 'Describe Your Dream Ink';
+  String get homeDescribeYourDreamInk => 'Describe Your Tattoo Idea';
 
   @override
   String get homeDreamInkHint => 'Tell us what you envision...';

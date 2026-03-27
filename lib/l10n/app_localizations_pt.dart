@@ -247,7 +247,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Buquê floral pastel, rosas pêssego e blush, flores silvestres, folhagem dourada, fitas em cascata, lágrima assimétrica, vintage romântico, iluminação suave, alto realismo, fundo escuro.';
 
   @override
-  String get homeDescribeYourDreamInk => 'Descreva Sua Tatuagem dos Sonhos';
+  String get homeDescribeYourDreamInk => 'Descreva sua ideia de tatuagem';
 
   @override
   String get homeDreamInkHint => 'Conte-nos o que você imagina...';

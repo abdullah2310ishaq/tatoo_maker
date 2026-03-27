@@ -232,7 +232,7 @@ class AppLocalizationsZh extends AppLocalizations {
       '柔和的 floral 花束，桃色和腮红玫瑰，野花，金色叶子，层叠的丝带，不对称的泪滴，浪漫复古，柔和灯光，高真实感，深色背景。';
 
   @override
-  String get homeDescribeYourDreamInk => '描述您的梦想纹身';
+  String get homeDescribeYourDreamInk => '描述您的纹身想法';
 
   @override
   String get homeDreamInkHint => '告诉我们您的想法...';

@@ -249,7 +249,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Пастельный цветочный букет, персиковые и румяные розы, полевые цветы, золотая листва, каскадные ленты, асимметричная слеза, романтичный винтаж, мягкое освещение, высокий реализм, темный фон.';
 
   @override
-  String get homeDescribeYourDreamInk => 'Опишите Вашу Татуировку Мечты';
+  String get homeDescribeYourDreamInk => 'Опишите вашу идею татуировки';
 
   @override
   String get homeDreamInkHint => 'Расскажите нам, что вы представляете...';

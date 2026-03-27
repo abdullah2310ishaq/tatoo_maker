@@ -237,7 +237,7 @@ class AppLocalizationsKo extends AppLocalizations {
       '파스텔 꽃다발, 복숭아 & 블러시 로즈, 야생화, 황금 잎사귀, 폭포처럼 흐르는 리본, 비대칭 눈물 방울, 로맨틱 빈티지, 부드러운 조명, 높은 사실감, 어두운 배경.';
 
   @override
-  String get homeDescribeYourDreamInk => '꿈의 타투를 설명하세요';
+  String get homeDescribeYourDreamInk => '타투 아이디어를 설명하세요';
 
   @override
   String get homeDreamInkHint => '상상하는 것을 알려주세요...';

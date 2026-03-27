@@ -288,7 +288,7 @@
   "@tattooStylePromptFloral": {
     "description": "Home: style prompt for Floral"
   },
-  "homeDescribeYourDreamInk": "Descreva Sua Tatuagem dos Sonhos",
+  "homeDescribeYourDreamInk": "Descreva sua ideia de tatuagem",
   "@homeDescribeYourDreamInk": {
     "description": "Home: \"Describe Your Dream Ink\" title"
   },

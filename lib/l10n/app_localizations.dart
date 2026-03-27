@@ -551,7 +551,7 @@ abstract class AppLocalizations {
   /// Home: "Describe Your Dream Ink" title
   ///
   /// In en, this message translates to:
-  /// **'Describe Your Dream Ink'**
+  /// **'Describe Your Tattoo Idea'**
   String get homeDescribeYourDreamInk;
 
   /// Home: Dream ink input hint

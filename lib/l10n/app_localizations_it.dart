@@ -250,7 +250,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Mazzo floreale pastello, rose pesca e rosa, fiori selvatici, fogliame dorato, nastri a cascata, lacrima asimmetrica, vintage romantico, illuminazione morbida, alto realismo, sfondo scuro.';
 
   @override
-  String get homeDescribeYourDreamInk => 'Descrivi il Tuo Tatuaggio dei Sogni';
+  String get homeDescribeYourDreamInk => 'Descrivi la tua idea di tatuaggio';
 
   @override
   String get homeDreamInkHint => 'Raccontaci cosa immagini...';
