@@ -78,9 +78,6 @@ class TattooPage extends StatelessWidget {
 
   Widget _buildHeader(BuildContext context, {required bool isDark}) {
     final iconColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
-    final buttonBgColor = isDark
-        ? AppColors.buttonBackground
-        : AppColors.textGrey.withOpacity(0.1);
     final menuIconAsset = isDark
         ? 'assets/drawer_dark.svg'
         : 'assets/drawer_light.svg';
