@@ -233,7 +233,7 @@ class _HomeShellState extends State<HomeShell> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
     final navBarBgColor = isDark
-        ? AppColors.navBarBackground
+        ? AppColors.darkBackground
         : AppColors.lightBackground;
 
     return Directionality(
