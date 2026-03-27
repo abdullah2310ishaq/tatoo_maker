@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tatoo_maker/history/favorites_page.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
@@ -70,7 +71,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     Text(
                       'AI Tattoo',
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 32.sp,
                         fontWeight: FontWeight.bold,
                         color: textColor,
                         fontFamily: 'Tomorrow',

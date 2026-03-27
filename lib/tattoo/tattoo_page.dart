@@ -112,7 +112,7 @@ class TattooPage extends StatelessWidget {
                 Text(
                   'AI Tattoo',
                   style: TextStyle(
-                    fontSize: 28.sp,
+                    fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                     color: isDark
                         ? AppColors.textWhite
