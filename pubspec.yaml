@@ -161,3 +161,13 @@ flutter:
       fonts:
         - asset: assets/fonts/Tomorrow-Regular.ttf
           weight: 400
+
+    - family: Antonio
+      fonts:
+        - asset: assets/fonts/Antonio.ttf
+          weight: 400
+        - asset: assets/fonts/Antonio.ttf
+          weight: 700
+        - asset: assets/fonts/Antonio.ttf
+          weight: 900
+
