@@ -1115,5 +1115,18 @@
   "historySelected": "{count} Выбрано",
   "historySelectAll": "Выбрать все",
   "historyDeselectAll": "Отменить выбор",
-  "historySelect": "Выбрать"
+  "historySelect": "Выбрать",
+  "proAccessTitleGet": "Получите",
+  "proAccessTitlePro": "PRO",
+  "proAccessTitleAccess": "доступ",
+  "proAccessSubtitle": "Раскройте свою креативность с PRO",
+  "proAccessFeatureUnlimitedTattooCreation": "Безлимитное создание тату",
+  "proAccessFeatureFastProcessing": "Быстрая обработка",
+  "proAccessFeatureUnlockAllStyles": "Откройте все стили",
+  "proAccessFeatureRemoveWatermarks": "Удалите водяные знаки",
+  "proAccessPlanFreeTrial": "Бесплатный пробный период",
+  "proAccessPlanWeekly": "ЕЖЕНЕДЕЛЬНО",
+  "proAccessPlanWeeklyPrice": "Rs 1960/неделя",
+  "proAccessAutoRenewableCancelAnytime": "Автопродление, отмена в любой момент",
+  "proAccessLegalNote": "После 3 бесплатных дней начнется годовая подписка за Rs 6,900. Отмена в любой момент не позднее чем за 24 часа до продления"
 }

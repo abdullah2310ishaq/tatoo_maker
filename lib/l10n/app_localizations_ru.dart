@@ -1535,4 +1535,46 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get exploreItemMythologyWarriorPrompt =>
       'Мощный воин фэнтези с чешуйками дракона покрывающими лицо и шею и сияющими синими глазами и длинной детализированной бородой и острыми чертами и тонкостями пламени оранжевого синего закручивающимися вокруг и зубчатой острой броней и поднятыми плавниками от спины и держащим трезубец в одной руке и драматическим затенением с высоким контрастом и детализированной текстурой кожи и оружия и яркими цветами огня льда и сильной мифической атмосферой и смелыми чистыми линиями и профессиональным флешем татуировки и простым фоном с фокусом на фигуре и пламени。';
+
+  @override
+  String get proAccessTitleGet => 'Получите';
+
+  @override
+  String get proAccessTitlePro => 'PRO';
+
+  @override
+  String get proAccessTitleAccess => 'доступ';
+
+  @override
+  String get proAccessSubtitle => 'Раскройте свою креативность с PRO';
+
+  @override
+  String get proAccessFeatureUnlimitedTattooCreation =>
+      'Безлимитное создание тату';
+
+  @override
+  String get proAccessFeatureFastProcessing => 'Быстрая обработка';
+
+  @override
+  String get proAccessFeatureUnlockAllStyles => 'Откройте все стили';
+
+  @override
+  String get proAccessFeatureRemoveWatermarks => 'Удалите водяные знаки';
+
+  @override
+  String get proAccessPlanFreeTrial => 'Бесплатный пробный период';
+
+  @override
+  String get proAccessPlanWeekly => 'ЕЖЕНЕДЕЛЬНО';
+
+  @override
+  String get proAccessPlanWeeklyPrice => 'Rs 1960/неделя';
+
+  @override
+  String get proAccessAutoRenewableCancelAnytime =>
+      'Автопродление, отмена в любой момент';
+
+  @override
+  String get proAccessLegalNote =>
+      'После 3 бесплатных дней начнется годовая подписка за Rs 6,900. Отмена в любой момент не позднее чем за 24 часа до продления';
 }

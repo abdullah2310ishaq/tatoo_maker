@@ -1534,4 +1534,46 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get exploreItemMythologyWarriorPrompt =>
       'Mächtiger Fantasy-Krieger-Tattoo-Design, drachenähnliche Figur mit Schuppen, die Gesicht und Hals bedecken, glühende blaue Augen, langer detaillierter Bart und scharfe Gesichtszüge, feurige orange und blaue Flammenakzente wirbeln um die Figur, scharfe gezackte Rüstung und Flossen ragen vom Rücken hervor, hält einen Dreizack in einer Hand, dramatische Schattierung mit hohem Kontrast, detaillierte Texturen auf Haut und Waffe, lebhafte Farben von Feuer und Eis, starke mythische Atmosphäre, kühne saubere Umrisse, professionelle Tattoo-Flash-Illustration, minimaler Hintergrund mit Fokus auf Figur und Flammen.';
+
+  @override
+  String get proAccessTitleGet => 'Hol dir';
+
+  @override
+  String get proAccessTitlePro => 'PRO';
+
+  @override
+  String get proAccessTitleAccess => 'Zugang';
+
+  @override
+  String get proAccessSubtitle => 'Entfalte deine Kreativitat mit PRO';
+
+  @override
+  String get proAccessFeatureUnlimitedTattooCreation =>
+      'Unbegrenzte Tattoo-Erstellung';
+
+  @override
+  String get proAccessFeatureFastProcessing => 'Schnelle Verarbeitung';
+
+  @override
+  String get proAccessFeatureUnlockAllStyles => 'Alle Stile freischalten';
+
+  @override
+  String get proAccessFeatureRemoveWatermarks => 'Wasserzeichen entfernen';
+
+  @override
+  String get proAccessPlanFreeTrial => 'Kostenlose Testphase';
+
+  @override
+  String get proAccessPlanWeekly => 'WOCHENTLICH';
+
+  @override
+  String get proAccessPlanWeeklyPrice => 'Rs 1960/Woche';
+
+  @override
+  String get proAccessAutoRenewableCancelAnytime =>
+      'Automatisch verlangerbar, jederzeit kundbar';
+
+  @override
+  String get proAccessLegalNote =>
+      'Nach 3 kostenlosen Tagen startet ein Jahresabo fur Rs 6,900. Jederzeit bis 24 Stunden vor Verlangerung kundbar';
 }

@@ -1492,4 +1492,44 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get exploreItemMythologyWarriorPrompt =>
       '强大的奇幻战士纹身设计，角色拥有龙类特征，面部与颈部覆盖鳞片，双眼发出蓝色光芒，长而细致的胡须与锐利五官，火焰般的橙色与蓝色能量在周围盘旋，身披尖刺盔甲，背后突出鳍状结构，一手持三叉戟，整体采用戏剧性高对比阴影，皮肤与武器纹理细腻，火与冰的鲜艳色彩交织，神话氛围浓烈，轮廓大胆干净，专业纹身闪图插画风格，背景极简，重点突出角色与火焰。';
+
+  @override
+  String get proAccessTitleGet => '获取';
+
+  @override
+  String get proAccessTitlePro => 'PRO';
+
+  @override
+  String get proAccessTitleAccess => '权益';
+
+  @override
+  String get proAccessSubtitle => '用 PRO 释放你的创造力';
+
+  @override
+  String get proAccessFeatureUnlimitedTattooCreation => '无限纹身创作';
+
+  @override
+  String get proAccessFeatureFastProcessing => '快速处理';
+
+  @override
+  String get proAccessFeatureUnlockAllStyles => '解锁全部风格';
+
+  @override
+  String get proAccessFeatureRemoveWatermarks => '去除水印';
+
+  @override
+  String get proAccessPlanFreeTrial => '免费试用';
+
+  @override
+  String get proAccessPlanWeekly => '每周';
+
+  @override
+  String get proAccessPlanWeeklyPrice => 'Rs 1960/周';
+
+  @override
+  String get proAccessAutoRenewableCancelAnytime => '自动续费，随时取消';
+
+  @override
+  String get proAccessLegalNote =>
+      '3 天免费期后，将开始每年 Rs 6,900 的订阅。可在续费前 24 小时内随时取消';
 }

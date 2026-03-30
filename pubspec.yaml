@@ -59,6 +59,7 @@ dependencies:
   video_player: ^2.9.2
   lottie: ^3.1.0
   flutter_launcher_icons: ^0.14.4
+  in_app_purchase: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -170,4 +171,18 @@ flutter:
           weight: 700
         - asset: assets/fonts/Antonio.ttf
           weight: 900
-
+          
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter.ttf
+          weight: 400
+        - asset: assets/fonts/Inter.ttf
+          weight: 500
+        - asset: assets/fonts/Inter.ttf
+          weight: 600
+        - asset: assets/fonts/Inter.ttf
+          weight: 700
+        - asset: assets/fonts/Inter.ttf
+          weight: 800
+        - asset: assets/fonts/Inter.ttf
+          weight: 900

@@ -1115,4 +1115,18 @@
   "exploreItemMythologyTrident": "三叉戟",
   "exploreItemMythologyTridentPrompt": "哥特风三叉戟纹身设计，尖锐且细节繁复，三叉戟顶部装饰有黑暗荆棘般的棘刺与优雅曲线，一条蛇缠绕在三叉戟杆身上，蛇身鳞片光滑并带有细腻阴影，花卉藤蔓元素缠绕其间，既精致又有力量感，采用黑灰高对比阴影、戏剧性暗部、锐利轮廓与丰富细节，专业纹身闪图风格，背景极简，重点突出武器与蛇，整体为对称设计。",
   "exploreItemMythologyWarrior": "战士",
-  "exploreItemMythologyWarriorPrompt": "强大的奇幻战士纹身设计，角色拥有龙类特征，面部与颈部覆盖鳞片，双眼发出蓝色光芒，长而细致的胡须与锐利五官，火焰般的橙色与蓝色能量在周围盘旋，身披尖刺盔甲，背后突出鳍状结构，一手持三叉戟，整体采用戏剧性高对比阴影，皮肤与武器纹理细腻，火与冰的鲜艳色彩交织，神话氛围浓烈，轮廓大胆干净，专业纹身闪图插画风格，背景极简，重点突出角色与火焰。"}
+  "exploreItemMythologyWarriorPrompt": "强大的奇幻战士纹身设计，角色拥有龙类特征，面部与颈部覆盖鳞片，双眼发出蓝色光芒，长而细致的胡须与锐利五官，火焰般的橙色与蓝色能量在周围盘旋，身披尖刺盔甲，背后突出鳍状结构，一手持三叉戟，整体采用戏剧性高对比阴影，皮肤与武器纹理细腻，火与冰的鲜艳色彩交织，神话氛围浓烈，轮廓大胆干净，专业纹身闪图插画风格，背景极简，重点突出角色与火焰。",
+  "proAccessTitleGet": "获取",
+  "proAccessTitlePro": "PRO",
+  "proAccessTitleAccess": "权益",
+  "proAccessSubtitle": "用 PRO 释放你的创造力",
+  "proAccessFeatureUnlimitedTattooCreation": "无限纹身创作",
+  "proAccessFeatureFastProcessing": "快速处理",
+  "proAccessFeatureUnlockAllStyles": "解锁全部风格",
+  "proAccessFeatureRemoveWatermarks": "去除水印",
+  "proAccessPlanFreeTrial": "免费试用",
+  "proAccessPlanWeekly": "每周",
+  "proAccessPlanWeeklyPrice": "Rs 1960/周",
+  "proAccessAutoRenewableCancelAnytime": "自动续费，随时取消",
+  "proAccessLegalNote": "3 天免费期后，将开始每年 Rs 6,900 的订阅。可在续费前 24 小时内随时取消"
+}

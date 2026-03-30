@@ -2755,6 +2755,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Powerful fantasy warrior tattoo design, dragon-like figure with scales covering the face and neck, glowing blue eyes, long, detailed beard and sharp features, fiery orange and blue flame accents swirling around the character, sharp spiked armor and fins protruding from the back, holding a trident in one hand, dramatic shading with high contrast, detailed textures on the skin and weapon, vivid colors of fire and ice, strong mythical atmosphere, bold clean outlines, professional tattoo flash illustration, minimal background with focus on the character and flames.'**
   String get exploreItemMythologyWarriorPrompt;
+
+  /// Pro access title first word
+  ///
+  /// In en, this message translates to:
+  /// **'Get'**
+  String get proAccessTitleGet;
+
+  /// Pro access title highlighted word
+  ///
+  /// In en, this message translates to:
+  /// **'PRO'**
+  String get proAccessTitlePro;
+
+  /// Pro access title last word
+  ///
+  /// In en, this message translates to:
+  /// **'Access'**
+  String get proAccessTitleAccess;
+
+  /// Pro access subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Unleash your creativity with PRO'**
+  String get proAccessSubtitle;
+
+  /// Pro access feature: unlimited tattoo creation
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited tattoo creation'**
+  String get proAccessFeatureUnlimitedTattooCreation;
+
+  /// Pro access feature: fast processing
+  ///
+  /// In en, this message translates to:
+  /// **'Fast processing'**
+  String get proAccessFeatureFastProcessing;
+
+  /// Pro access feature: unlock all styles
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock all styles'**
+  String get proAccessFeatureUnlockAllStyles;
+
+  /// Pro access feature: remove watermarks
+  ///
+  /// In en, this message translates to:
+  /// **'Remove watermarks'**
+  String get proAccessFeatureRemoveWatermarks;
+
+  /// Pro access free trial plan label
+  ///
+  /// In en, this message translates to:
+  /// **'Free Trial'**
+  String get proAccessPlanFreeTrial;
+
+  /// Pro access weekly plan label
+  ///
+  /// In en, this message translates to:
+  /// **'WEEKLY'**
+  String get proAccessPlanWeekly;
+
+  /// Pro access weekly plan price
+  ///
+  /// In en, this message translates to:
+  /// **'Rs 1960/week'**
+  String get proAccessPlanWeeklyPrice;
+
+  /// Pro access auto-renew text
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-renewable, Cancel anytime'**
+  String get proAccessAutoRenewableCancelAnytime;
+
+  /// Pro access legal subscription note
+  ///
+  /// In en, this message translates to:
+  /// **'After 3 days free - then yearly subscription for Rs 6,900 will start. Cancel anytime 24 hours before renewal'**
+  String get proAccessLegalNote;
 }
 
 class _AppLocalizationsDelegate

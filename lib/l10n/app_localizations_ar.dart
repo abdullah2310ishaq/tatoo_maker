@@ -1521,4 +1521,46 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get exploreItemMythologyWarriorPrompt =>
       'محارب خيال قوي مع قشور تنين تغطي وجه ورقبة وعيون زرقاء متوهجة ولحية طويلة مفصلة وملامح حادة وخفايا نار برتقالية زرقاء تدور حوله ودروع مسننة حادة وزعانف مرتفعة من الظهر ويحمل ترايدنت في يد واحدة وتظليل درامي بتباين عالٍ وملمس جلد وسلاح مفصل وألوان نار جليد حيوية وجو أسطوري قوي وخطوط جريئة نظيفة ووميض وشم احترافي وخلفية بسيطة بتركيز على شكل ولهب.';
+
+  @override
+  String get proAccessTitleGet => 'احصل على';
+
+  @override
+  String get proAccessTitlePro => 'PRO';
+
+  @override
+  String get proAccessTitleAccess => 'الوصول';
+
+  @override
+  String get proAccessSubtitle => 'أطلق إبداعك مع PRO';
+
+  @override
+  String get proAccessFeatureUnlimitedTattooCreation =>
+      'إنشاء غير محدود للوشوم';
+
+  @override
+  String get proAccessFeatureFastProcessing => 'معالجة سريعة';
+
+  @override
+  String get proAccessFeatureUnlockAllStyles => 'افتح جميع الأنماط';
+
+  @override
+  String get proAccessFeatureRemoveWatermarks => 'إزالة العلامات المائية';
+
+  @override
+  String get proAccessPlanFreeTrial => 'تجربة مجانية';
+
+  @override
+  String get proAccessPlanWeekly => 'أسبوعي';
+
+  @override
+  String get proAccessPlanWeeklyPrice => 'Rs 1960/أسبوع';
+
+  @override
+  String get proAccessAutoRenewableCancelAnytime =>
+      'تجديد تلقائي، والإلغاء في أي وقت';
+
+  @override
+  String get proAccessLegalNote =>
+      'بعد 3 أيام مجانية، سيبدأ اشتراك سنوي بقيمة Rs 6,900. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد';
 }

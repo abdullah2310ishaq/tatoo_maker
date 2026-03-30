@@ -1527,4 +1527,46 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get exploreItemMythologyWarriorPrompt =>
       'Powerful fantasy warrior tattoo design, dragon-like figure with scales covering the face and neck, glowing blue eyes, long, detailed beard and sharp features, fiery orange and blue flame accents swirling around the character, sharp spiked armor and fins protruding from the back, holding a trident in one hand, dramatic shading with high contrast, detailed textures on the skin and weapon, vivid colors of fire and ice, strong mythical atmosphere, bold clean outlines, professional tattoo flash illustration, minimal background with focus on the character and flames.';
+
+  @override
+  String get proAccessTitleGet => 'Get';
+
+  @override
+  String get proAccessTitlePro => 'PRO';
+
+  @override
+  String get proAccessTitleAccess => 'Access';
+
+  @override
+  String get proAccessSubtitle => 'Unleash your creativity with PRO';
+
+  @override
+  String get proAccessFeatureUnlimitedTattooCreation =>
+      'Unlimited tattoo creation';
+
+  @override
+  String get proAccessFeatureFastProcessing => 'Fast processing';
+
+  @override
+  String get proAccessFeatureUnlockAllStyles => 'Unlock all styles';
+
+  @override
+  String get proAccessFeatureRemoveWatermarks => 'Remove watermarks';
+
+  @override
+  String get proAccessPlanFreeTrial => 'Free Trial';
+
+  @override
+  String get proAccessPlanWeekly => 'WEEKLY';
+
+  @override
+  String get proAccessPlanWeeklyPrice => 'Rs 1960/week';
+
+  @override
+  String get proAccessAutoRenewableCancelAnytime =>
+      'Auto-renewable, Cancel anytime';
+
+  @override
+  String get proAccessLegalNote =>
+      'After 3 days free - then yearly subscription for Rs 6,900 will start. Cancel anytime 24 hours before renewal';
 }

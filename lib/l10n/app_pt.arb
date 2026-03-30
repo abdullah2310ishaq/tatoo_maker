@@ -1115,5 +1115,18 @@
   "historySelected": "{count} Selecionado",
   "historySelectAll": "Selecionar tudo",
   "historyDeselectAll": "Desmarcar tudo",
-  "historySelect": "Selecionar"
+  "historySelect": "Selecionar",
+  "proAccessTitleGet": "Tenha",
+  "proAccessTitlePro": "PRO",
+  "proAccessTitleAccess": "Acesso",
+  "proAccessSubtitle": "Liberte sua criatividade com PRO",
+  "proAccessFeatureUnlimitedTattooCreation": "Criação ilimitada de tatuagens",
+  "proAccessFeatureFastProcessing": "Processamento rápido",
+  "proAccessFeatureUnlockAllStyles": "Desbloqueie todos os estilos",
+  "proAccessFeatureRemoveWatermarks": "Remova marcas d'água",
+  "proAccessPlanFreeTrial": "Teste grátis",
+  "proAccessPlanWeekly": "SEMANAL",
+  "proAccessPlanWeeklyPrice": "Rs 1960/semana",
+  "proAccessAutoRenewableCancelAnytime": "Renovação automática, cancele quando quiser",
+  "proAccessLegalNote": "Após 3 dias grátis, começará uma assinatura anual de Rs 6,900. Cancele quando quiser até 24 horas antes da renovação"
 }

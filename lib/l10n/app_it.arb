@@ -1811,5 +1811,57 @@
   "exploreItemMythologyWarriorPrompt": "Guerriero potente di fantasy con scaglie di drago ricoprenti volto e collo e occhi blu rilucenti e barba lunga dettagliata e tratti affilati e sottigliezze di fiamme arancioni blu turbinanti attorno e armatura dentata affilata e pinne elevate da schiena e tenendo tridente in una mano e ombreggiatura drammatica con alto contrasto e texture dettagliata di pelle e arma e colori vibranti di fuoco ghiaccio e atmosfera mitica forte e linee audaci pulite e flash professionale di tatuaggio e sfondo semplice con focus su figura e fiamme.",
   "@exploreItemMythologyWarriorPrompt": {
     "description": "Explore item prompt: Warrior"
+  },
+  "proAccessTitleGet": "Ottieni",
+  "@proAccessTitleGet": {
+    "description": "Pro access title first word"
+  },
+  "proAccessTitlePro": "PRO",
+  "@proAccessTitlePro": {
+    "description": "Pro access title highlighted word"
+  },
+  "proAccessTitleAccess": "Accesso",
+  "@proAccessTitleAccess": {
+    "description": "Pro access title last word"
+  },
+  "proAccessSubtitle": "Libera la tua creativita con PRO",
+  "@proAccessSubtitle": {
+    "description": "Pro access subtitle"
+  },
+  "proAccessFeatureUnlimitedTattooCreation": "Creazione tattoo illimitata",
+  "@proAccessFeatureUnlimitedTattooCreation": {
+    "description": "Pro access feature: unlimited tattoo creation"
+  },
+  "proAccessFeatureFastProcessing": "Elaborazione rapida",
+  "@proAccessFeatureFastProcessing": {
+    "description": "Pro access feature: fast processing"
+  },
+  "proAccessFeatureUnlockAllStyles": "Sblocca tutti gli stili",
+  "@proAccessFeatureUnlockAllStyles": {
+    "description": "Pro access feature: unlock all styles"
+  },
+  "proAccessFeatureRemoveWatermarks": "Rimuovi filigrane",
+  "@proAccessFeatureRemoveWatermarks": {
+    "description": "Pro access feature: remove watermarks"
+  },
+  "proAccessPlanFreeTrial": "Prova gratuita",
+  "@proAccessPlanFreeTrial": {
+    "description": "Pro access free trial plan label"
+  },
+  "proAccessPlanWeekly": "SETTIMANALE",
+  "@proAccessPlanWeekly": {
+    "description": "Pro access weekly plan label"
+  },
+  "proAccessPlanWeeklyPrice": "Rs 1960/settimana",
+  "@proAccessPlanWeeklyPrice": {
+    "description": "Pro access weekly plan price"
+  },
+  "proAccessAutoRenewableCancelAnytime": "Rinnovo automatico, annulla quando vuoi",
+  "@proAccessAutoRenewableCancelAnytime": {
+    "description": "Pro access auto-renew text"
+  },
+  "proAccessLegalNote": "Dopo 3 giorni gratuiti, partira l'abbonamento annuale da Rs 6,900. Annulla quando vuoi fino a 24 ore prima del rinnovo",
+  "@proAccessLegalNote": {
+    "description": "Pro access legal subscription note"
   }
 }

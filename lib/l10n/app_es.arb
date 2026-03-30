@@ -1811,5 +1811,57 @@
   "exploreItemMythologyWarriorPrompt": "Guerrero poderoso de fantasía con escamas de dragón cubriendo rostro y cuello y ojos azules resplandecientes y barba larga detallada y rasgos afilados y sutilezas de llamas naranjas azules arremolinándose alrededor y armadura dentada afilada y aletas elevadas desde espalda y sosteniendo tridente en una mano y sombreado dramático con alto contraste y textura detallada de piel y arma y colores vibrantes de fuego hielo y atmósfera mítica fuerte y líneas audaces limpias y flash profesional de tatuaje y fondo simple con enfoque en figura y llamas.",
   "@exploreItemMythologyWarriorPrompt": {
     "description": "Explore item prompt: Warrior"
+  },
+  "proAccessTitleGet": "Obten",
+  "@proAccessTitleGet": {
+    "description": "Pro access title first word"
+  },
+  "proAccessTitlePro": "PRO",
+  "@proAccessTitlePro": {
+    "description": "Pro access title highlighted word"
+  },
+  "proAccessTitleAccess": "Acceso",
+  "@proAccessTitleAccess": {
+    "description": "Pro access title last word"
+  },
+  "proAccessSubtitle": "Desata tu creatividad con PRO",
+  "@proAccessSubtitle": {
+    "description": "Pro access subtitle"
+  },
+  "proAccessFeatureUnlimitedTattooCreation": "Creacion ilimitada de tatuajes",
+  "@proAccessFeatureUnlimitedTattooCreation": {
+    "description": "Pro access feature: unlimited tattoo creation"
+  },
+  "proAccessFeatureFastProcessing": "Procesamiento rapido",
+  "@proAccessFeatureFastProcessing": {
+    "description": "Pro access feature: fast processing"
+  },
+  "proAccessFeatureUnlockAllStyles": "Desbloquea todos los estilos",
+  "@proAccessFeatureUnlockAllStyles": {
+    "description": "Pro access feature: unlock all styles"
+  },
+  "proAccessFeatureRemoveWatermarks": "Quita las marcas de agua",
+  "@proAccessFeatureRemoveWatermarks": {
+    "description": "Pro access feature: remove watermarks"
+  },
+  "proAccessPlanFreeTrial": "Prueba gratis",
+  "@proAccessPlanFreeTrial": {
+    "description": "Pro access free trial plan label"
+  },
+  "proAccessPlanWeekly": "SEMANAL",
+  "@proAccessPlanWeekly": {
+    "description": "Pro access weekly plan label"
+  },
+  "proAccessPlanWeeklyPrice": "Rs 1960/semana",
+  "@proAccessPlanWeeklyPrice": {
+    "description": "Pro access weekly plan price"
+  },
+  "proAccessAutoRenewableCancelAnytime": "Renovacion automatica, cancela cuando quieras",
+  "@proAccessAutoRenewableCancelAnytime": {
+    "description": "Pro access auto-renew text"
+  },
+  "proAccessLegalNote": "Despues de 3 dias gratis, se iniciara una suscripcion anual de Rs 6,900. Cancela cuando quieras hasta 24 horas antes de la renovacion",
+  "@proAccessLegalNote": {
+    "description": "Pro access legal subscription note"
   }
 }

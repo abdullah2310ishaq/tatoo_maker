@@ -1811,5 +1811,57 @@
   "exploreItemMythologyWarriorPrompt": "محارب خيال قوي مع قشور تنين تغطي وجه ورقبة وعيون زرقاء متوهجة ولحية طويلة مفصلة وملامح حادة وخفايا نار برتقالية زرقاء تدور حوله ودروع مسننة حادة وزعانف مرتفعة من الظهر ويحمل ترايدنت في يد واحدة وتظليل درامي بتباين عالٍ وملمس جلد وسلاح مفصل وألوان نار جليد حيوية وجو أسطوري قوي وخطوط جريئة نظيفة ووميض وشم احترافي وخلفية بسيطة بتركيز على شكل ولهب.",
   "@exploreItemMythologyWarriorPrompt": {
     "description": "Explore item prompt: Warrior"
+  },
+  "proAccessTitleGet": "احصل على",
+  "@proAccessTitleGet": {
+    "description": "Pro access title first word"
+  },
+  "proAccessTitlePro": "PRO",
+  "@proAccessTitlePro": {
+    "description": "Pro access title highlighted word"
+  },
+  "proAccessTitleAccess": "الوصول",
+  "@proAccessTitleAccess": {
+    "description": "Pro access title last word"
+  },
+  "proAccessSubtitle": "أطلق إبداعك مع PRO",
+  "@proAccessSubtitle": {
+    "description": "Pro access subtitle"
+  },
+  "proAccessFeatureUnlimitedTattooCreation": "إنشاء غير محدود للوشوم",
+  "@proAccessFeatureUnlimitedTattooCreation": {
+    "description": "Pro access feature: unlimited tattoo creation"
+  },
+  "proAccessFeatureFastProcessing": "معالجة سريعة",
+  "@proAccessFeatureFastProcessing": {
+    "description": "Pro access feature: fast processing"
+  },
+  "proAccessFeatureUnlockAllStyles": "افتح جميع الأنماط",
+  "@proAccessFeatureUnlockAllStyles": {
+    "description": "Pro access feature: unlock all styles"
+  },
+  "proAccessFeatureRemoveWatermarks": "إزالة العلامات المائية",
+  "@proAccessFeatureRemoveWatermarks": {
+    "description": "Pro access feature: remove watermarks"
+  },
+  "proAccessPlanFreeTrial": "تجربة مجانية",
+  "@proAccessPlanFreeTrial": {
+    "description": "Pro access free trial plan label"
+  },
+  "proAccessPlanWeekly": "أسبوعي",
+  "@proAccessPlanWeekly": {
+    "description": "Pro access weekly plan label"
+  },
+  "proAccessPlanWeeklyPrice": "Rs 1960/أسبوع",
+  "@proAccessPlanWeeklyPrice": {
+    "description": "Pro access weekly plan price"
+  },
+  "proAccessAutoRenewableCancelAnytime": "تجديد تلقائي، والإلغاء في أي وقت",
+  "@proAccessAutoRenewableCancelAnytime": {
+    "description": "Pro access auto-renew text"
+  },
+  "proAccessLegalNote": "بعد 3 أيام مجانية، سيبدأ اشتراك سنوي بقيمة Rs 6,900. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد",
+  "@proAccessLegalNote": {
+    "description": "Pro access legal subscription note"
   }
 }

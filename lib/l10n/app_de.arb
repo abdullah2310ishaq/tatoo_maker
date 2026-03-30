@@ -1812,5 +1812,57 @@
   "exploreItemMythologyWarriorPrompt": "Mächtiger Fantasy-Krieger-Tattoo-Design, drachenähnliche Figur mit Schuppen, die Gesicht und Hals bedecken, glühende blaue Augen, langer detaillierter Bart und scharfe Gesichtszüge, feurige orange und blaue Flammenakzente wirbeln um die Figur, scharfe gezackte Rüstung und Flossen ragen vom Rücken hervor, hält einen Dreizack in einer Hand, dramatische Schattierung mit hohem Kontrast, detaillierte Texturen auf Haut und Waffe, lebhafte Farben von Feuer und Eis, starke mythische Atmosphäre, kühne saubere Umrisse, professionelle Tattoo-Flash-Illustration, minimaler Hintergrund mit Fokus auf Figur und Flammen.",
   "@exploreItemMythologyWarriorPrompt": {
     "description": "Explore item prompt: Warrior"
+  },
+  "proAccessTitleGet": "Hol dir",
+  "@proAccessTitleGet": {
+    "description": "Pro access title first word"
+  },
+  "proAccessTitlePro": "PRO",
+  "@proAccessTitlePro": {
+    "description": "Pro access title highlighted word"
+  },
+  "proAccessTitleAccess": "Zugang",
+  "@proAccessTitleAccess": {
+    "description": "Pro access title last word"
+  },
+  "proAccessSubtitle": "Entfalte deine Kreativitat mit PRO",
+  "@proAccessSubtitle": {
+    "description": "Pro access subtitle"
+  },
+  "proAccessFeatureUnlimitedTattooCreation": "Unbegrenzte Tattoo-Erstellung",
+  "@proAccessFeatureUnlimitedTattooCreation": {
+    "description": "Pro access feature: unlimited tattoo creation"
+  },
+  "proAccessFeatureFastProcessing": "Schnelle Verarbeitung",
+  "@proAccessFeatureFastProcessing": {
+    "description": "Pro access feature: fast processing"
+  },
+  "proAccessFeatureUnlockAllStyles": "Alle Stile freischalten",
+  "@proAccessFeatureUnlockAllStyles": {
+    "description": "Pro access feature: unlock all styles"
+  },
+  "proAccessFeatureRemoveWatermarks": "Wasserzeichen entfernen",
+  "@proAccessFeatureRemoveWatermarks": {
+    "description": "Pro access feature: remove watermarks"
+  },
+  "proAccessPlanFreeTrial": "Kostenlose Testphase",
+  "@proAccessPlanFreeTrial": {
+    "description": "Pro access free trial plan label"
+  },
+  "proAccessPlanWeekly": "WOCHENTLICH",
+  "@proAccessPlanWeekly": {
+    "description": "Pro access weekly plan label"
+  },
+  "proAccessPlanWeeklyPrice": "Rs 1960/Woche",
+  "@proAccessPlanWeeklyPrice": {
+    "description": "Pro access weekly plan price"
+  },
+  "proAccessAutoRenewableCancelAnytime": "Automatisch verlangerbar, jederzeit kundbar",
+  "@proAccessAutoRenewableCancelAnytime": {
+    "description": "Pro access auto-renew text"
+  },
+  "proAccessLegalNote": "Nach 3 kostenlosen Tagen startet ein Jahresabo fur Rs 6,900. Jederzeit bis 24 Stunden vor Verlangerung kundbar",
+  "@proAccessLegalNote": {
+    "description": "Pro access legal subscription note"
   }
 }

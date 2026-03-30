@@ -1532,4 +1532,46 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get exploreItemMythologyWarriorPrompt =>
       'Guerrero poderoso de fantasía con escamas de dragón cubriendo rostro y cuello y ojos azules resplandecientes y barba larga detallada y rasgos afilados y sutilezas de llamas naranjas azules arremolinándose alrededor y armadura dentada afilada y aletas elevadas desde espalda y sosteniendo tridente en una mano y sombreado dramático con alto contraste y textura detallada de piel y arma y colores vibrantes de fuego hielo y atmósfera mítica fuerte y líneas audaces limpias y flash profesional de tatuaje y fondo simple con enfoque en figura y llamas.';
+
+  @override
+  String get proAccessTitleGet => 'Obten';
+
+  @override
+  String get proAccessTitlePro => 'PRO';
+
+  @override
+  String get proAccessTitleAccess => 'Acceso';
+
+  @override
+  String get proAccessSubtitle => 'Desata tu creatividad con PRO';
+
+  @override
+  String get proAccessFeatureUnlimitedTattooCreation =>
+      'Creacion ilimitada de tatuajes';
+
+  @override
+  String get proAccessFeatureFastProcessing => 'Procesamiento rapido';
+
+  @override
+  String get proAccessFeatureUnlockAllStyles => 'Desbloquea todos los estilos';
+
+  @override
+  String get proAccessFeatureRemoveWatermarks => 'Quita las marcas de agua';
+
+  @override
+  String get proAccessPlanFreeTrial => 'Prueba gratis';
+
+  @override
+  String get proAccessPlanWeekly => 'SEMANAL';
+
+  @override
+  String get proAccessPlanWeeklyPrice => 'Rs 1960/semana';
+
+  @override
+  String get proAccessAutoRenewableCancelAnytime =>
+      'Renovacion automatica, cancela cuando quieras';
+
+  @override
+  String get proAccessLegalNote =>
+      'Despues de 3 dias gratis, se iniciara una suscripcion anual de Rs 6,900. Cancela cuando quieras hasta 24 horas antes de la renovacion';
 }

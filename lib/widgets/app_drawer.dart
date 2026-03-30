@@ -5,8 +5,10 @@ import 'package:share_plus/share_plus.dart';
 import 'package:tatoo_maker/history/favorites_page.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/language/language_screen.dart';
+import 'package:tatoo_maker/pro_access_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../home_shell.dart';
 import '../utils/colors.dart';
 import 'inkvision_underline.dart';
 
@@ -148,6 +150,24 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     _buildMenuItem(
                       context: context,
+                      icon: Icons.workspace_premium,
+                      title:
+                          '${l10n.proAccessTitlePro} ${l10n.proAccessTitleAccess}',
+                      textColor: textColor,
+                      iconColor: iconColor,
+                      isEnabled: !_isProcessing,
+                      onTap: () {
+                        Navigator.of(context).pop(); // close drawer
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const ProAccessScreen(nextScreen: HomeShell()),
+                          ),
+                        );
+                      },
+                    ),
+                    _buildMenuItem(
+                      context: context,
                       icon: Icons.star,
                       title: l10n.rateUs,
                       textColor: textColor,
@@ -237,20 +257,14 @@ class _AppDrawerState extends State<AppDrawer> {
     }
 
     try {
-      await launchUrl(
-        uri,
-        mode: LaunchMode.externalApplication,
-      );
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (_) {
       // Intentionally ignore errors to avoid crashing the app.
     }
   }
 
   Future<void> _sendFeedbackEmail() async {
-    final uri = Uri(
-      scheme: 'mailto',
-      path: 'islam24hoursstudio@gmail.com',
-    );
+    final uri = Uri(scheme: 'mailto', path: 'islam24hoursstudio@gmail.com');
 
     try {
       await launchUrl(uri);

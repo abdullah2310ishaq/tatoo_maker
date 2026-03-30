@@ -1507,4 +1507,44 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get exploreItemMythologyWarriorPrompt =>
       '강력 판타지 전사 용 비늘 얼굴 목 덮는 파란 빛나는 눈 긴 세부 수염 날카로운 특징 불꽃 오렌지 파란 소용돌이 주변 날카로운 갑옷 이빨 지느러미 등에서 상승 삼지창 한 손 들음 그림자 드라마틱 높은 대비 세부 피부 무기 텍스처 생생한 불 얼음 색 강력 신화 분위기 대담 깨끗한 라인 프로페셔널 타투 플래시 단순 배경 인물 불꽃 초점。';
+
+  @override
+  String get proAccessTitleGet => '지금';
+
+  @override
+  String get proAccessTitlePro => 'PRO';
+
+  @override
+  String get proAccessTitleAccess => '이용';
+
+  @override
+  String get proAccessSubtitle => 'PRO로 창의력을 펼쳐보세요';
+
+  @override
+  String get proAccessFeatureUnlimitedTattooCreation => '무제한 타투 생성';
+
+  @override
+  String get proAccessFeatureFastProcessing => '빠른 처리';
+
+  @override
+  String get proAccessFeatureUnlockAllStyles => '모든 스타일 잠금 해제';
+
+  @override
+  String get proAccessFeatureRemoveWatermarks => '워터마크 제거';
+
+  @override
+  String get proAccessPlanFreeTrial => '무료 체험';
+
+  @override
+  String get proAccessPlanWeekly => '주간';
+
+  @override
+  String get proAccessPlanWeeklyPrice => 'Rs 1960/주';
+
+  @override
+  String get proAccessAutoRenewableCancelAnytime => '자동 갱신, 언제든지 취소 가능';
+
+  @override
+  String get proAccessLegalNote =>
+      '3일 무료 후 Rs 6,900 연간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다';
 }

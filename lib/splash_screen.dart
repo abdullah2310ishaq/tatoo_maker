@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'utils/colors.dart';
 import 'home_shell.dart';
 import 'language/first_language.dart';
-import 'pro_access_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   final bool isDarkTheme;
@@ -48,25 +47,22 @@ class _SplashScreenState extends State<SplashScreen>
 
       if (!mounted) return;
 
-      final nextScreen = isOnboardingCompleted
-          ? const HomeShell()
-          : const FirstLanguageScreen();
-
-      // Temporary: show Pro Access screen first.
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => ProAccessScreen(nextScreen: nextScreen),
-        ),
-      );
+      if (isOnboardingCompleted) {
+        // User has completed onboarding, go directly to home
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeShell()),
+        );
+      } else {
+        // First time - go to language selection
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const FirstLanguageScreen()),
+        );
+      }
     } catch (e) {
       // On error, assume first time and go to language selection
       if (mounted) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const ProAccessScreen(
-              nextScreen: FirstLanguageScreen(),
-            ),
-          ),
+          MaterialPageRoute(builder: (context) => const FirstLanguageScreen()),
         );
       }
     }

@@ -1121,6 +1121,19 @@
   "historySelected": "{count} 選択済み",
   "historySelectAll": "全て選択",
   "historyDeselectAll": "全て選択解除",
-  "historySelect": "選択"
+  "historySelect": "選択",
+  "proAccessTitleGet": "今すぐ",
+  "proAccessTitlePro": "PRO",
+  "proAccessTitleAccess": "アクセス",
+  "proAccessSubtitle": "PROで創造力を解き放とう",
+  "proAccessFeatureUnlimitedTattooCreation": "タトゥー作成が無制限",
+  "proAccessFeatureFastProcessing": "高速処理",
+  "proAccessFeatureUnlockAllStyles": "すべてのスタイルを解放",
+  "proAccessFeatureRemoveWatermarks": "透かしを削除",
+  "proAccessPlanFreeTrial": "無料トライアル",
+  "proAccessPlanWeekly": "週間",
+  "proAccessPlanWeeklyPrice": "Rs 1960/週",
+  "proAccessAutoRenewableCancelAnytime": "自動更新、いつでも解約可能",
+  "proAccessLegalNote": "3日間の無料期間後、Rs 6,900 の年額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます"
 }
 

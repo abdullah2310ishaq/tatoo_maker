@@ -1115,5 +1115,18 @@
   "historySelected": "{count}개 선택됨",
   "historySelectAll": "전체 선택",
   "historyDeselectAll": "전체 선택 해제",
-  "historySelect": "선택"
+  "historySelect": "선택",
+  "proAccessTitleGet": "지금",
+  "proAccessTitlePro": "PRO",
+  "proAccessTitleAccess": "이용",
+  "proAccessSubtitle": "PRO로 창의력을 펼쳐보세요",
+  "proAccessFeatureUnlimitedTattooCreation": "무제한 타투 생성",
+  "proAccessFeatureFastProcessing": "빠른 처리",
+  "proAccessFeatureUnlockAllStyles": "모든 스타일 잠금 해제",
+  "proAccessFeatureRemoveWatermarks": "워터마크 제거",
+  "proAccessPlanFreeTrial": "무료 체험",
+  "proAccessPlanWeekly": "주간",
+  "proAccessPlanWeeklyPrice": "Rs 1960/주",
+  "proAccessAutoRenewableCancelAnytime": "자동 갱신, 언제든지 취소 가능",
+  "proAccessLegalNote": "3일 무료 후 Rs 6,900 연간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다"
 }
