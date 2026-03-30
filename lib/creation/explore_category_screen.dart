@@ -85,8 +85,8 @@ class _CategoryDetailCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
+      onTap: () async {
+        final result = await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => ExploreDetailScreen(
               title: title,
@@ -98,6 +98,10 @@ class _CategoryDetailCard extends StatelessWidget {
             ),
           ),
         );
+        if (result is String && result.trim().isNotEmpty && context.mounted) {
+          // Bubble the selected prompt back to Home.
+          Navigator.of(context).pop(result);
+        }
       },
       child: Container(
         decoration: BoxDecoration(

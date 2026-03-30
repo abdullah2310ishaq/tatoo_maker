@@ -120,7 +120,7 @@ class TattooPage extends StatelessWidget {
                     fontFamily: 'Tomorrow',
                   ),
                 ),
-                SizedBox(height: 6.h),
+                SizedBox(height: 6.h),  
                 InkVisionUnderline(width: 120.w, height: 3.h),
               ],
             ),

@@ -15,6 +15,7 @@ import 'widgets/home_header.dart';
 import 'widgets/tattoo_style_section.dart';
 import 'widgets/tutorial_overlay.dart';
 import '../utils/toast.dart';
+import '../utils/route_observer.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
@@ -37,7 +38,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with RouteAware {
   int? _selectedStyleIndex;
   final TextEditingController _dreamInkController = TextEditingController();
   static const int _maxCharacters = 600;
@@ -159,10 +160,32 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context);
+    if (route is PageRoute) {
+      routeObserver.subscribe(this, route);
+    }
+  }
+
+  @override
   void dispose() {
+    routeObserver.unsubscribe(this);
     _dreamInkController.dispose();
     _styleRowScrollController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didPushNext() {
+    // Navigating away from HomePage → close keyboard.
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
+
+  @override
+  void didPopNext() {
+    // Returning to HomePage → ensure keyboard stays closed.
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 
   void _onDreamInkChanged(String _) {
@@ -223,7 +246,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: HomeHeader(
                             isDark: isDark,
-                            onMenuTap: widget.onMenuTap,
+                            onMenuTap: _onMenuTap,
                             onHistoryTap: widget.onHistoryTap,
                           ),
                         ),
@@ -278,7 +301,9 @@ class _HomePageState extends State<HomePage> {
                             // Explore Inspiration section (parent provides start padding in both LTR/RTL)
                             _wrapWithRtlIfNeeded(
                               context,
-                              child: const ExploreInspirationSection(),
+                              child: ExploreInspirationSection(
+                                onPromptSelected: _onExplorePromptSelected,
+                              ),
                             ),
                             SizedBox(
                               height: 40.h,
@@ -470,6 +495,9 @@ class _HomePageState extends State<HomePage> {
       return;
     }
 
+    // Close keyboard before navigating away so it won't remain open on return.
+    FocusScope.of(context).unfocus();
+
     final selectedStyle = _selectedStyleIndex != null
         ? _styles[_selectedStyleIndex!]
         : null;
@@ -486,6 +514,51 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void _onExplorePromptSelected(String prompt) {
+    final trimmed = prompt.trim();
+    if (trimmed.isEmpty) return;
+
+    final nextText = trimmed.length > _maxCharacters
+        ? trimmed.substring(0, _maxCharacters)
+        : trimmed;
+
+    _isSettingDreamInkText = true;
+    _dreamInkController.text = nextText;
+    _isSettingDreamInkText = false;
+    _lastAutoFilledPrompt = null; // treat as user text so style won't override
+
+    setState(() {});
+
+    // Bring focus/visibility to the Dream Ink card.
+    final targetContext = _dreamInkCardKey.currentContext;
+    if (targetContext != null) {
+      Scrollable.ensureVisible(
+        targetContext,
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeInOut,
+        alignment: 0.2,
+      );
+    }
+
+    final l10n = AppLocalizations.of(context)!;
+    AppToast.show(
+      context,
+      message: l10n.stepStylePickYourTitleStyle,
+      isSuccess: false,
+    );
+  }
+
+  void _onMenuTap() {
+    // Requested: opening drawer should reset Dream Ink + style and close keyboard.
+    FocusManager.instance.primaryFocus?.unfocus();
+    setState(() {
+      _selectedStyleIndex = null;
+      _dreamInkController.clear();
+      _lastAutoFilledPrompt = null;
+    });
+    widget.onMenuTap?.call();
   }
 
   Future<void> _dismissTutorialOverlay() async {

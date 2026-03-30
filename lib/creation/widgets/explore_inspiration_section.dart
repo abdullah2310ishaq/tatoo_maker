@@ -8,7 +8,12 @@ import '../../models/explore_category.dart';
 import '../../utils/colors.dart';
 
 class ExploreInspirationSection extends StatelessWidget {
-  const ExploreInspirationSection({super.key});
+  final ValueChanged<String> onPromptSelected;
+
+  const ExploreInspirationSection({
+    super.key,
+    required this.onPromptSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,11 @@ class ExploreInspirationSection extends StatelessWidget {
             final category = categories[index];
             return Padding(
               padding: EdgeInsets.only(bottom: 16.h),
-              child: _CategoryRow(category: category, textColor: textColor),
+              child: _CategoryRow(
+                category: category,
+                textColor: textColor,
+                onPromptSelected: onPromptSelected,
+              ),
             );
           }),
         ),
@@ -38,19 +47,27 @@ class ExploreInspirationSection extends StatelessWidget {
 class _CategoryRow extends StatelessWidget {
   final ExploreCategory category;
   final Color textColor;
+  final ValueChanged<String> onPromptSelected;
 
-  const _CategoryRow({required this.category, required this.textColor});
+  const _CategoryRow({
+    required this.category,
+    required this.textColor,
+    required this.onPromptSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
+      onTap: () async {
+        final result = await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => ExploreCategoryScreen(category: category),
           ),
         );
+        if (result is String && result.trim().isNotEmpty && context.mounted) {
+          onPromptSelected(result);
+        }
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,9 +109,9 @@ class _CategoryRow extends StatelessWidget {
               children: [
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (category.items.isNotEmpty) {
-                        Navigator.of(context).push(
+                        final result = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ExploreDetailScreen(
                               title: category.items[0].title(l10n),
@@ -107,6 +124,11 @@ class _CategoryRow extends StatelessWidget {
                             ),
                           ),
                         );
+                        if (result is String &&
+                            result.trim().isNotEmpty &&
+                            context.mounted) {
+                          onPromptSelected(result);
+                        }
                       }
                     },
                     child: _CategoryImage(
@@ -119,9 +141,9 @@ class _CategoryRow extends StatelessWidget {
                 SizedBox(width: 8.w),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (category.items.length > 1) {
-                        Navigator.of(context).push(
+                        final result = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ExploreDetailScreen(
                               title: category.items[1].title(l10n),
@@ -134,6 +156,11 @@ class _CategoryRow extends StatelessWidget {
                             ),
                           ),
                         );
+                        if (result is String &&
+                            result.trim().isNotEmpty &&
+                            context.mounted) {
+                          onPromptSelected(result);
+                        }
                       }
                     },
                     child: _CategoryImage(

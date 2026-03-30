@@ -9,6 +9,7 @@ import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/services/locale_service.dart';
 import 'splash_screen.dart';
 import 'utils/theme_manager.dart';
+import 'utils/route_observer.dart';
 import 'providers/theme_provider.dart';
 import 'providers/favorites_provider.dart';
 
@@ -123,6 +124,7 @@ class _MyAppState extends State<MyApp> {
               darkTheme: ThemeManager.darkTheme,
               themeMode: _isDarkTheme ? ThemeMode.dark : ThemeMode.light,
               locale: locale,
+              navigatorObservers: [routeObserver],
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,

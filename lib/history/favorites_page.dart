@@ -86,7 +86,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(true),
-              child: Text(l10n.delete, style: const TextStyle(color: Colors.red)),
+              child: Text(
+                l10n.delete,
+                style: const TextStyle(color: Colors.red),
+              ),
             ),
           ],
         );
@@ -110,11 +113,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
     if (!mounted) return;
 
-    AppToast.show(
-      context,
-      message: l10n.tattooDeleted,
-      isSuccess: true,
-    );
+    AppToast.show(context, message: l10n.tattooDeleted, isSuccess: true);
 
     setState(() {
       _selectedIds.clear();
@@ -172,15 +171,15 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         _isSelectionMode
                             ? l10n.historySelected(_selectedIds.length)
                             : l10n.favorites,
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                        fontFamily: 'Amaranth',
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                          color: isDark
+                              ? AppColors.textWhite
+                              : AppColors.textPrimary,
+                          fontFamily: 'Amaranth',
+                        ),
                       ),
-                    ),
                     ),
                     Consumer<FavoritesProvider>(
                       builder: (context, favoritesProvider, _) {
@@ -262,8 +261,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         horizontal: 20.w,
                         vertical: 8.h,
                       ),
-                      gridDelegate:
-                          SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 12.w,
                         mainAxisSpacing: 12.h,
@@ -356,7 +354,8 @@ class _FavoriteGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final bytes = HistoryService.imageBytesFromEntry(entry);
-    final hasName = entry['name'] != null && (entry['name'] as String).isNotEmpty;
+    final hasName =
+        entry['name'] != null && (entry['name'] as String).isNotEmpty;
     final hasStyleName =
         entry['styleName'] != null && (entry['styleName'] as String).isNotEmpty;
     final type = (hasName && !hasStyleName) ? 'flower' : 'tattoo';
@@ -398,7 +397,9 @@ class _FavoriteGridItem extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w600,
-                      color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                      color: isDark
+                          ? AppColors.textWhite
+                          : AppColors.textPrimary,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

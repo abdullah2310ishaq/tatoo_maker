@@ -33,10 +33,19 @@ class _HistoryPageState extends State<HistoryPage> {
   List<Map<String, dynamic>> _flower = [];
 
   bool _loading = true;
+  int _activeTab = 0; // 0=Creation, 1=Tattoo, 2=Flower (for tabIndex==0)
+
+  bool _isSelectionMode = false;
+  final Set<String> _selectedIds = {};
 
   @override
   void initState() {
     super.initState();
+    _activeTab = widget.tabIndex == 1
+        ? 1
+        : widget.tabIndex == 2
+        ? 2
+        : 0;
     _load();
   }
 
@@ -66,6 +75,8 @@ class _HistoryPageState extends State<HistoryPage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
+    final items = _currentItems;
+    final type = _currentType;
 
     return Scaffold(
       backgroundColor: isDark
@@ -94,20 +105,67 @@ class _HistoryPageState extends State<HistoryPage> {
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                     SizedBox(width: 8.w),
-                    Text(
-                      l10n.history,
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
-                        color: isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary,
-                        fontFamily: 'Amaranth',
+                    Expanded(
+                      child: Text(
+                        _isSelectionMode
+                            ? l10n.historySelected(_selectedIds.length)
+                            : l10n.history,
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                          color: isDark
+                              ? AppColors.textWhite
+                              : AppColors.textPrimary,
+                          fontFamily: 'Amaranth',
+                        ),
                       ),
                     ),
+                    if (!_loading && items.isNotEmpty) ...[
+                      if (_isSelectionMode) ...[
+                        TextButton(
+                          onPressed: _selectAllCurrent,
+                          child: Text(
+                            _selectedIds.length == items.length
+                                ? l10n.historyDeselectAll
+                                : l10n.historySelectAll,
+                            style: TextStyle(
+                              color: AppColors.navBarActive,
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.delete_outline,
+                            color: Colors.red,
+                            size: 24.sp,
+                          ),
+                          onPressed: _selectedIds.isEmpty
+                              ? null
+                              : _deleteSelected,
+                        ),
+                      ] else ...[
+                        TextButton(
+                          onPressed: _toggleSelectionMode,
+                          child: Text(
+                            l10n.historySelect,
+                            style: TextStyle(
+                              color: AppColors.navBarActive,
+                              fontSize: 16.sp,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
                   ],
                 ),
               ),
+              if (!_loading && widget.tabIndex == 0)
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: _buildTabs(context, isDark, l10n),
+                ),
+              if (!_loading && widget.tabIndex == 0) SizedBox(height: 10.h),
               if (_loading)
                 Expanded(
                   child: Center(
@@ -119,10 +177,10 @@ class _HistoryPageState extends State<HistoryPage> {
               else
                 Expanded(
                   child: widget.tabIndex == 0
-                      ? _buildFourOptions(context, isDark, l10n)
+                      ? _buildGrid(context, isDark, l10n, items, type)
                       : widget.tabIndex == 1
-                      ? _buildList(context, isDark, l10n, _tattoo, 'tattoo')
-                      : _buildList(context, isDark, l10n, _flower, 'flower'),
+                      ? _buildGrid(context, isDark, l10n, _tattoo, 'tattoo')
+                      : _buildGrid(context, isDark, l10n, _flower, 'flower'),
                 ),
             ],
           ),
@@ -131,74 +189,170 @@ class _HistoryPageState extends State<HistoryPage> {
     );
   }
 
-  Widget _buildFourOptions(
-    BuildContext context,
-    bool isDark,
-    AppLocalizations l10n,
-  ) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  List<Map<String, dynamic>> get _currentItems {
+    if (widget.tabIndex == 1) return _tattoo;
+    if (widget.tabIndex == 2) return _flower;
+    return _activeTab == 0
+        ? _creation
+        : _activeTab == 1
+        ? _tattoo
+        : _flower;
+  }
+
+  String get _currentType {
+    if (widget.tabIndex == 1) return 'tattoo';
+    if (widget.tabIndex == 2) return 'flower';
+    return _activeTab == 0
+        ? 'creation'
+        : _activeTab == 1
+        ? 'tattoo'
+        : 'flower';
+  }
+
+  void _toggleSelectionMode() {
+    setState(() {
+      _isSelectionMode = !_isSelectionMode;
+      _selectedIds.clear();
+    });
+  }
+
+  void _toggleSelection(String id) {
+    setState(() {
+      if (_selectedIds.contains(id)) {
+        _selectedIds.remove(id);
+      } else {
+        _selectedIds.add(id);
+      }
+    });
+  }
+
+  void _selectAllCurrent() {
+    final items = _currentItems;
+    setState(() {
+      if (_selectedIds.length == items.length) {
+        _selectedIds.clear();
+      } else {
+        _selectedIds
+          ..clear()
+          ..addAll(items.map(HistoryService.generateEntryId));
+      }
+    });
+  }
+
+  Future<void> _deleteSelected() async {
+    final items = _currentItems;
+    if (_selectedIds.isEmpty) return;
+
+    final l10n = AppLocalizations.of(context)!;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).cardColor,
+          title: Text(l10n.deleteConfirmationTitle),
+          content: Text(
+            '${l10n.deleteConfirmationContent} (${_selectedIds.length})',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(
+                l10n.cancel,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(
+                l10n.delete,
+                style: const TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed != true) return;
+
+    final entriesToDelete = items
+        .where((e) => _selectedIds.contains(HistoryService.generateEntryId(e)))
+        .toList();
+
+    await HistoryService.deleteEntries(_currentType, entriesToDelete);
+
+    if (!mounted) return;
+    AppToast.show(context, message: l10n.tattooDeleted, isSuccess: true);
+
+    setState(() {
+      _selectedIds.clear();
+      _isSelectionMode = false;
+    });
+
+    await _load();
+  }
+
+  Widget _buildTabs(BuildContext context, bool isDark, AppLocalizations l10n) {
+    return Center(
+      child: Wrap(
+        spacing: 9.w,
+        runSpacing: 10.h,
+        alignment: WrapAlignment.center,
         children: [
-          SizedBox(
-            width: 105.w,
-            child: _SectionCard(
-              title: l10n.creation,
-              isDark: isDark,
-              onTap: () => _openListPage(context, 0, l10n.creation),
-            ),
-          ),
-          SizedBox(width: 12.w),
-          SizedBox(
-            width: 105.w,
-            child: _SectionCard(
-              title: l10n.tattoo,
-              isDark: isDark,
-              onTap: () => _openListPage(context, 1, l10n.tattoo),
-            ),
-          ),
-          SizedBox(width: 12.w),
-          SizedBox(
-            width: 105.w,
-            child: _SectionCard(
-              title: l10n.flower,
-              isDark: isDark,
-              onTap: () => _openListPage(context, 2, l10n.flower),
-            ),
-          ),
+          _chip(l10n.creation, 0, isDark),
+          _chip(l10n.tattoo, 1, isDark),
+          _chip(l10n.flower, 2, isDark),
         ],
       ),
     );
   }
 
-  void _openListPage(BuildContext context, int type, String title) {
-    final list = type == 0
-        ? _creation
-        : type == 1
-        ? _tattoo
-        : _flower;
-    final typeStr = type == 0
-        ? 'creation'
-        : type == 1
-        ? 'tattoo'
-        : 'flower';
-    Navigator.of(context)
-        .push(
-          MaterialPageRoute(
-            builder: (context) =>
-                HistoryListPage(title: title, items: list, type: typeStr),
+  Widget _chip(String label, int tab, bool isDark) {
+    final selected = _activeTab == tab;
+    return SizedBox(
+      width: 100.w,
+      height: 38.h,
+      child: ChoiceChip(
+        label: SizedBox(
+          width: double.infinity,
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w600,
+              color: selected
+                  ? Colors.white
+                  : (isDark ? AppColors.textGrey : AppColors.textPrimary),
+              fontFamily: 'Amaranth',
+            ),
           ),
-        )
-        .then((_) {
-          // When returning from any list page, reload data so counts and
-          // favorites status are up to date on the main history screen.
-          if (mounted) _load();
-        });
+        ),
+        selected: selected,
+        onSelected: (_) {
+          setState(() {
+            _activeTab = tab;
+            _isSelectionMode = false;
+            _selectedIds.clear();
+          });
+        },
+        selectedColor: const Color(0xFFA6541D),
+        backgroundColor: isDark
+            ? const Color(0xFF151411)
+            : AppColors.lightCardBackground,
+        side: BorderSide(
+          color: selected
+              ? const Color(0xFFA6541D)
+              : AppColors.textGrey.withValues(alpha: 0.3),
+        ),
+        showCheckmark: false,
+      ),
+    );
   }
 
-  Widget _buildList(
+  Widget _buildGrid(
     BuildContext context,
     bool isDark,
     AppLocalizations l10n,
@@ -224,13 +378,20 @@ class _HistoryPageState extends State<HistoryPage> {
       itemCount: items.length,
       itemBuilder: (context, index) {
         final entry = items[index];
+        final entryId = HistoryService.generateEntryId(entry);
         return _HistoryGridItem(
           entry: entry,
           type: type,
           isDark: isDark,
-          isSelectionMode: false,
-          isSelected: false,
-          onTap: () => _openResult(context, entry, type, l10n),
+          isSelectionMode: _isSelectionMode,
+          isSelected: _selectedIds.contains(entryId),
+          onTap: () {
+            if (_isSelectionMode) {
+              _toggleSelection(entryId);
+              return;
+            }
+            _openResult(context, entry, type, l10n);
+          },
         );
       },
     );
@@ -271,50 +432,6 @@ class _HistoryPageState extends State<HistoryPage> {
         ),
       );
     }
-  }
-}
-
-class _SectionCard extends StatelessWidget {
-  final String title;
-  final bool isDark;
-  final VoidCallback onTap;
-
-  const _SectionCard({
-    required this.title,
-    required this.isDark,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: isDark ? const Color(0xFF151411) : AppColors.lightCardBackground,
-      borderRadius: BorderRadius.circular(16.r),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16.r),
-        onTap: onTap,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.h),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }
 
@@ -377,7 +494,9 @@ class _HistoryGridItem extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w600,
-                      color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                      color: isDark
+                          ? AppColors.textWhite
+                          : AppColors.textPrimary,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -656,8 +775,7 @@ class _HistoryListPageState extends State<HistoryListPage> {
                           horizontal: 20.w,
                           vertical: 8.h,
                         ),
-                        gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 12.w,
                           mainAxisSpacing: 12.h,

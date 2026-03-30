@@ -92,6 +92,7 @@ flutter:
   assets:
     - assets/
     - assets/language/
+    - assets/in_app/
     - assets/splash/
     - assets/flower/
     - assets/flower/light/

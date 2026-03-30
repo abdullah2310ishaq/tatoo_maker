@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
-import 'loading_screen.dart';
 import 'virtual_try_on.dart';
 
 class ExploreDetailScreen extends StatefulWidget {
@@ -191,32 +190,29 @@ class _ExploreDetailScreenState extends State<ExploreDetailScreen> {
                       vertical: 16.h,
                     ),
                     child: Center(
-                      child: GestureDetector(
-                        onTap: _navigateToVirtualTryOn,
-                        child: SizedBox(
-                          width: 265.w, // Fixed width
-                          height: 265.w, // Fixed height (square)
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              _buildImageAsset(
-                                context,
-                                widget.smallImagePath,
-                                widget.smallImagePathDark,
-                                widget.bigImagePath,
-                                isDark,
-                              ),
-                              if (_isLoadingImageBytes)
-                                Container(
-                                  color: Colors.black.withValues(alpha: 0.3),
-                                  child: const Center(
-                                    child: CircularProgressIndicator(
-                                      color: AppColors.cardGlowStart,
-                                    ),
+                      child: SizedBox(
+                        width: 265.w, // Fixed width
+                        height: 265.w, // Fixed height (square)
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            _buildImageAsset(
+                              context,
+                              widget.smallImagePath,
+                              widget.smallImagePathDark,
+                              widget.bigImagePath,
+                              isDark,
+                            ),
+                            if (_isLoadingImageBytes)
+                              Container(
+                                color: Colors.black.withValues(alpha: 0.3),
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.cardGlowStart,
                                   ),
                                 ),
-                            ],
-                          ),
+                              ),
+                          ],
                         ),
                       ),
                     ),
@@ -314,15 +310,8 @@ class _ExploreDetailScreenState extends State<ExploreDetailScreen> {
                           height: 50.h,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => LoadingScreen(
-                                    selectedStyleAsset: widget.bigImagePath,
-                                    styleName: widget.styleKey ?? widget.title,
-                                    promptText: widget.prompt,
-                                  ),
-                                ),
-                              );
+                              // Return the prompt to Home (no auto-generate).
+                              Navigator.of(context).pop(widget.prompt);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(
