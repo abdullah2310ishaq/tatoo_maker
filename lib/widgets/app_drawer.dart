@@ -148,24 +148,24 @@ class _AppDrawerState extends State<AppDrawer> {
                         );
                       },
                     ),
-                    _buildMenuItem(
-                      context: context,
-                      icon: Icons.workspace_premium,
-                      title:
-                          '${l10n.proAccessTitlePro} ${l10n.proAccessTitleAccess}',
-                      textColor: textColor,
-                      iconColor: iconColor,
-                      isEnabled: !_isProcessing,
-                      onTap: () {
-                        Navigator.of(context).pop(); // close drawer
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const ProAccessScreen(nextScreen: HomeShell()),
-                          ),
-                        );
-                      },
-                    ),
+                    // _buildMenuItem(
+                    //   context: context,
+                    //   icon: Icons.workspace_premium,
+                    //   title:
+                    //       '${l10n.proAccessTitlePro} ${l10n.proAccessTitleAccess}',
+                    //   textColor: textColor,
+                    //   iconColor: iconColor,
+                    //   isEnabled: !_isProcessing,
+                    //   onTap: () {
+                    //     Navigator.of(context).pop(); // close drawer
+                    //     Navigator.of(context).push(
+                    //       MaterialPageRoute(
+                    //         builder: (context) =>
+                    //             const ProAccessScreen(nextScreen: HomeShell()),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                     _buildMenuItem(
                       context: context,
                       icon: Icons.star,

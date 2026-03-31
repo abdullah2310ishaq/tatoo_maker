@@ -12,10 +12,11 @@ import 'utils/theme_manager.dart';
 import 'utils/route_observer.dart';
 import 'providers/theme_provider.dart';
 import 'providers/favorites_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   // Lock app orientation so it does not rotate.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
