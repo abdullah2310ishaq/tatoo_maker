@@ -458,21 +458,29 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                                 : Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        (_selectedPlan == PlanVariant.freeTrial
-                                                ? l10n.proAccessContinueForFree
-                                                : l10n.continue_)
-                                            .toUpperCase(),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColors.textWhite,
-                                          fontFamily: 'Inter',
+                                      Flexible(
+                                        child: Text(
+                                          (_selectedPlan ==
+                                                      PlanVariant.freeTrial
+                                                  ? l10n.proAccessContinueForFree
+                                                  : l10n.continue_)
+                                              .toUpperCase(),
+                                          maxLines: 1,
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontSize:
+                                                _selectedPlan ==
+                                                    PlanVariant.freeTrial
+                                                ? 16.sp
+                                                : 18.sp,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.textWhite,
+                                            fontFamily: 'Inter',
+                                          ),
                                         ),
                                       ),
-                                      SizedBox(width: 12.w),
+                                      SizedBox(width: 8.w),
                                       Icon(
                                         Icons.arrow_forward,
                                         color: AppColors.textWhite,
@@ -572,18 +580,25 @@ class _PlanCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isFree = variant == PlanVariant.freeTrial;
+    final horizontalPadding = isSelected ? 16.w : 15.w;
+    final resolvedVerticalPadding =
+        (verticalPadding ?? 13.h) + (isSelected ? 2.h : 0);
+    final leftTextSize = isSelected ? 14.sp : 13.sp;
+    final rightTextSize = isSelected ? 13.sp : 12.sp;
     final borderColor = isSelected
         ? AppColors.darkPrimary
         : AppColors.navBarBackground.withOpacity(0);
-    final borderWidth = isSelected ? 1.2.w : 0.0;
+    final borderWidth = isSelected ? 1.6.w : 0.0;
 
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 170),
+        curve: Curves.easeOut,
         width: double.infinity,
         padding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: verticalPadding ?? 13.h,
+          horizontal: horizontalPadding,
+          vertical: resolvedVerticalPadding,
         ),
         decoration: BoxDecoration(
           color: isSelected
@@ -591,7 +606,7 @@ class _PlanCard extends StatelessWidget {
               : (isFree
                     ? AppColors.navBarBackground
                     : AppColors.navBarBackground),
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(isSelected ? 12.r : 12.r),
           border: Border.all(color: borderColor, width: borderWidth),
         ),
         child: Stack(
@@ -607,7 +622,7 @@ class _PlanCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 12.sp,
+                      fontSize: leftTextSize,
                       fontWeight: FontWeight.w600,
                       color: isSelected
                           ? AppColors.darkPrimary
@@ -617,18 +632,20 @@ class _PlanCard extends StatelessWidget {
                   ),
                 ),
                 if (rightText != null)
-                  Text(
-                    rightText!,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w500,
-                      color: isSelected
-                          ? AppColors.textWhite
-                          : AppColors.textGrey.withOpacity(0.95),
-                      fontFamily: 'Inter',
+                  Flexible(
+                    child: Text(
+                      rightText!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: rightTextSize,
+                        fontWeight: FontWeight.w500,
+                        color: isSelected
+                            ? AppColors.textWhite
+                            : AppColors.textGrey.withOpacity(0.95),
+                        fontFamily: 'Inter',
+                      ),
                     ),
                   ),
               ],
