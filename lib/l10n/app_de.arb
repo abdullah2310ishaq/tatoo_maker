@@ -1877,7 +1877,7 @@
   "@proAccessLifetimeLegalNoPrice": {
     "description": "Pro access lifetime note without price"
   },
-  "proAccessLifetimeLegalWithPrice": "Uberspringe die Wochengebuhr - fur immer fur {price}",
+  "proAccessLifetimeLegalWithPrice": "Überspringe die Wochengebühr - für immer für {price}",
   "@proAccessLifetimeLegalWithPrice": {
     "description": "Pro access lifetime note with price",
     "placeholders": {

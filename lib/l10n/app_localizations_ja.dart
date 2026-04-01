@@ -1557,6 +1557,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return '週額料金をスキップ - $price で生涯利用';
+    return '週額料金をスキップ - $price で生涯利用可能';
   }
 }

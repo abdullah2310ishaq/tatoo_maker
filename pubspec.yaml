@@ -166,6 +166,9 @@ flutter:
       fonts:
         - asset: assets/fonts/Tomorrow-Regular.ttf
           weight: 400
+        - asset: assets/fonts/Tomorrow-Bold.ttf
+          weight: 700
+        
 
     - family: Antonio
       fonts:

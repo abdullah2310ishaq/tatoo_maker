@@ -1590,6 +1590,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Uberspringe die Wochengebuhr - fur immer fur $price';
+    return 'Überspringe die Wochengebühr - für immer für $price';
   }
 }

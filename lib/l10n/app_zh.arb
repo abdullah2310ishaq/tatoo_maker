@@ -1132,5 +1132,5 @@
   "proAccessPlanLifetimeSubscription": "终身订阅",
   "proAccessContinueForFree": "免费继续",
   "proAccessLifetimeLegalNoPrice": "跳过年费 - 终身拥有",
-  "proAccessLifetimeLegalWithPrice": "跳过每周费用 - 以 {price} 终身拥有"
+  "proAccessLifetimeLegalWithPrice": "跳过每周费用 - 仅需 {price} 即可终身拥有"
 }

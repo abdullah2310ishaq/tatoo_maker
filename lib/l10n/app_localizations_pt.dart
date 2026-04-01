@@ -1593,6 +1593,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Pule a taxa semanal - para sempre seu por $price';
+    return 'Pule a taxa semanal - seu para toda a vida por $price';
   }
 }

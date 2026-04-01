@@ -51,19 +51,19 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     _pageController = PageController();
     _billingService = BillingService();
 
-    _sliderTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+    _sliderTimer = Timer.periodic(const Duration(seconds: 2), (_) {
       if (!mounted) return;
 
       _index = (_index + 1) % _images.length;
 
       _pageController.animateToPage(
         _index,
-        duration: const Duration(milliseconds: 700),
+        duration: const Duration(seconds: 2),
         curve: Curves.easeInOut,
       );
     });
 
-    _closeButtonTimer = Timer(const Duration(seconds: 4), () {
+    _closeButtonTimer = Timer(const Duration(seconds: 2), () {
       if (!mounted) return;
       setState(() {
         _canClose = true;
@@ -412,6 +412,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                         _PlanCard(
                           variant: PlanVariant.lifetime,
                           leftText: l10n.proAccessPlanLifetimeSubscription,
+
                           rightText: _lifetimeDisplayPrice(),
                           originalRightText: _lifetimeOriginalDisplayPrice(),
                           verticalPadding: 17.h,
@@ -567,7 +568,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                         icon: Icon(
                           Icons.close,
                           color: AppColors.textWhite,
-                          size: 32.sp,
+                          size: 28.sp,
                         ),
                       ),
                     ),
@@ -650,7 +651,7 @@ class _PlanCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: leftTextSize,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.bold,
                       color: isSelected
                           ? AppColors.darkPrimary
                           : AppColors.textWhite,

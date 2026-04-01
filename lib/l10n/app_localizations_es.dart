@@ -1588,6 +1588,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Omite la cuota semanal: es tuyo para siempre por $price';
+    return 'Omite la cuota semanal: es tuyo de por vida por $price';
   }
 }

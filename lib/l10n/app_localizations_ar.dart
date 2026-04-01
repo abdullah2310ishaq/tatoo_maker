@@ -1577,6 +1577,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'تخط الرسوم الأسبوعية - امتلكه مدى الحياة مقابل $price';
+    return 'تخط الرسوم الأسبوعية - امتلكه مدى الحياة مقابل سعر $price';
   }
 }

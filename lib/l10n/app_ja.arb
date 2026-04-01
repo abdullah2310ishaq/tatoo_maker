@@ -1138,6 +1138,6 @@
   "proAccessPlanLifetimeSubscription": "リプション",
   "proAccessContinueForFree": "無料で続行",
   "proAccessLifetimeLegalNoPrice": "年額料金をスキップ - 生涯利用",
-  "proAccessLifetimeLegalWithPrice": "週額料金をスキップ - {price} で生涯利用"
+  "proAccessLifetimeLegalWithPrice": "週額料金をスキップ - {price} で生涯利用可能"
 }
 

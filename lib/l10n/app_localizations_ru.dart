@@ -1591,6 +1591,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Пропустите недельную плату - навсегда ваша за $price';
+    return 'Пропустите еженедельную плату - навсегда ваша за $price';
   }
 }

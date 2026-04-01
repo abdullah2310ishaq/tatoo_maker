@@ -1876,7 +1876,7 @@
   "@proAccessLifetimeLegalNoPrice": {
     "description": "Pro access lifetime note without price"
   },
-  "proAccessLifetimeLegalWithPrice": "Salta la quota settimanale - tuo per sempre a {price}",
+  "proAccessLifetimeLegalWithPrice": "Salta la quota settimanale - tuo a vita per {price}",
   "@proAccessLifetimeLegalWithPrice": {
     "description": "Pro access lifetime note with price",
     "placeholders": {

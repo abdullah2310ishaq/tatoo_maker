@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -31,7 +30,8 @@ class HomeHeader extends StatelessWidget {
         : 'assets/history_light.svg';
     final double menuSize = isDark ? 50.w : 60.w;
     final double historySize = isDark ? 50.w : 60.w;
-    final double crownSize = isDark ? 40.w : 35.w;
+    final double proBadgeHeight = isDark ? 32.w : 36.w;
+    final double proBadgeWidth = isDark ? 40.w : 45.w;
 
     // LTR so menu stays left and history right (same as English) in Arabic
     return Directionality(
@@ -78,13 +78,21 @@ class HomeHeader extends StatelessWidget {
               InkWell(
                 borderRadius: BorderRadius.circular(24.r),
                 onTap: onProTap,
-                child: SizedBox(
-                  width: crownSize,
-                  height: crownSize,
-                  child: Lottie.asset(
-                    'assets/crown.json',
-                    fit: BoxFit.contain,
-                    repeat: true,
+                child: Container(
+                  width: proBadgeWidth,
+                  height: proBadgeHeight,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: AppColors.proBadgeBackground,
+                    borderRadius: BorderRadius.circular(4.r),
+                  ),
+                  child: Text(
+                    'Pro',
+                    style: TextStyle(
+                      color: AppColors.textWhite,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),

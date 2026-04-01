@@ -1876,7 +1876,7 @@
   "@proAccessLifetimeLegalNoPrice": {
     "description": "Pro access lifetime note without price"
   },
-  "proAccessLifetimeLegalWithPrice": "تخط الرسوم الأسبوعية - امتلكه مدى الحياة مقابل {price}",
+  "proAccessLifetimeLegalWithPrice": "تخط الرسوم الأسبوعية - امتلكه مدى الحياة مقابل سعر {price}",
   "@proAccessLifetimeLegalWithPrice": {
     "description": "Pro access lifetime note with price",
     "placeholders": {

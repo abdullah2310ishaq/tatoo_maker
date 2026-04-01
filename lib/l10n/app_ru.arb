@@ -1132,5 +1132,5 @@
   "proAccessPlanLifetimeSubscription": "Подписка",
   "proAccessContinueForFree": "Продолжить бесплатно",
   "proAccessLifetimeLegalNoPrice": "Пропустите ежегодную плату - навсегда ваша",
-  "proAccessLifetimeLegalWithPrice": "Пропустите недельную плату - навсегда ваша за {price}"
+  "proAccessLifetimeLegalWithPrice": "Пропустите еженедельную плату - навсегда ваша за {price}"
 }

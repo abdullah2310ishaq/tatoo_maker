@@ -58,4 +58,5 @@ class AppColors {
     0xFF353A40,
   ); // #2D3136 with 30% opacity (darker)
   static const Color gradientBlack = Color(0xFF000000); // #000000
+  static const Color proBadgeBackground = Color(0xFFAD5A1E); // #AD5A1E
 }
