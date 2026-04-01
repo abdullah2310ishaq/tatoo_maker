@@ -703,18 +703,40 @@ class _PlanCard extends StatelessWidget {
             ),
             if (showLifetimeBadge)
               Positioned(
-                top: -42.h,
-                right: -5.w,
-                child: IgnorePointer(
-                  child: Image.asset(
-                    'assets/splash/20off.png',
-                    width: 50.w,
-                    height: 50.w,
-                    fit: BoxFit.contain,
-                  ),
-                ),
+                top: -35.h,
+                right: -3.w,
+                child: IgnorePointer(child: const _LifetimeDiscountBadge()),
               ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LifetimeDiscountBadge extends StatelessWidget {
+  const _LifetimeDiscountBadge();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 56.w,
+      height: 28.h,
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: AppColors.proBadgeBackground,
+          borderRadius: BorderRadius.circular(8.r),
+        ),
+        child: Text(
+          '20%',
+          style: TextStyle(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w500,
+
+            color: AppColors.textWhite,
+            fontFamily: 'Inter',
+          ),
         ),
       ),
     );
