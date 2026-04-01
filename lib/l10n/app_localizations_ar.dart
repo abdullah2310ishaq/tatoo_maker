@@ -1564,4 +1564,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String proAccessLegalNote(Object price) {
     return 'بعد 3 أيام مجانية، سيبدأ اشتراك سنوي بقيمة $price. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد';
   }
+
+  @override
+  String get proAccessPlanLifetimeSubscription => 'اشتراك';
+
+  @override
+  String get proAccessContinueForFree => 'المتابعة مجانا';
+
+  @override
+  String get proAccessLifetimeLegalNoPrice =>
+      'تخط الرسوم السنوية - امتلكه مدى الحياة';
+
+  @override
+  String proAccessLifetimeLegalWithPrice(Object price) {
+    return 'تخط الرسوم السنوية - امتلكه مدى الحياة مقابل $price';
+  }
 }

@@ -1128,5 +1128,9 @@
   "proAccessPlanWeekly": "주간",
   "proAccessPlanWeeklyPrice": "Rs 1960/주",
   "proAccessAutoRenewableCancelAnytime": "자동 갱신, 언제든지 취소 가능",
-  "proAccessLegalNote": "3일 무료 후 {price} 연간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다"
+  "proAccessLegalNote": "3일 무료 후 {price} 연간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다",
+  "proAccessPlanLifetimeSubscription": "구독",
+  "proAccessContinueForFree": "무료로 계속하기",
+  "proAccessLifetimeLegalNoPrice": "연간 요금을 건너뛰고 평생 소유",
+  "proAccessLifetimeLegalWithPrice": "연간 요금을 건너뛰고 {price}에 평생 소유"
 }

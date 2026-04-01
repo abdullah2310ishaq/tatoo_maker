@@ -1864,5 +1864,24 @@
   "proAccessLegalNote": "Nach 3 kostenlosen Tagen startet ein Jahresabo fur {price}. Jederzeit bis 24 Stunden vor Verlangerung kundbar",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
+  },
+  "proAccessPlanLifetimeSubscription": "Dauerhaftes",
+  "@proAccessPlanLifetimeSubscription": {
+    "description": "Pro access lifetime plan label"
+  },
+  "proAccessContinueForFree": "Kostenlos fortfahren",
+  "@proAccessContinueForFree": {
+    "description": "Pro access CTA for free trial plan"
+  },
+  "proAccessLifetimeLegalNoPrice": "Uberspringe die Jahresgebuhr - fur immer besitzen",
+  "@proAccessLifetimeLegalNoPrice": {
+    "description": "Pro access lifetime note without price"
+  },
+  "proAccessLifetimeLegalWithPrice": "Uberspringe die Jahresgebuhr - fur immer besitzen fur {price}",
+  "@proAccessLifetimeLegalWithPrice": {
+    "description": "Pro access lifetime note with price",
+    "placeholders": {
+      "price": {}
+    }
   }
 }

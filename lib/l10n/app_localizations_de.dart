@@ -1577,4 +1577,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String proAccessLegalNote(Object price) {
     return 'Nach 3 kostenlosen Tagen startet ein Jahresabo fur $price. Jederzeit bis 24 Stunden vor Verlangerung kundbar';
   }
+
+  @override
+  String get proAccessPlanLifetimeSubscription => 'Dauerhaftes';
+
+  @override
+  String get proAccessContinueForFree => 'Kostenlos fortfahren';
+
+  @override
+  String get proAccessLifetimeLegalNoPrice =>
+      'Uberspringe die Jahresgebuhr - fur immer besitzen';
+
+  @override
+  String proAccessLifetimeLegalWithPrice(Object price) {
+    return 'Uberspringe die Jahresgebuhr - fur immer besitzen fur $price';
+  }
 }

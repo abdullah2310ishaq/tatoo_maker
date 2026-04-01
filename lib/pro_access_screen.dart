@@ -140,9 +140,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     if (_selectedPlan == PlanVariant.lifetime) {
       final lifetimePrice = _lifetimeDisplayPrice();
       if (lifetimePrice == '--') {
-        return 'Skip the yearly fee - own it for life';
+        return l10n.proAccessLifetimeLegalNoPrice;
       }
-      return 'Skip the yearly fee - own it for life $lifetimePrice';
+      return l10n.proAccessLifetimeLegalWithPrice(lifetimePrice);
     }
     return l10n.proAccessLegalNote(_freeTrialDisplayPrice(l10n));
   }
@@ -391,7 +391,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
 
                           _PlanCard(
                             variant: PlanVariant.lifetime,
-                            leftText: 'LIFETIME SUBSCRIPTION',
+                            leftText: l10n.proAccessPlanLifetimeSubscription,
                             rightText: _lifetimeDisplayPrice(),
                             verticalPadding: 17.h,
                             isSelected: _selectedPlan == PlanVariant.lifetime,
@@ -407,7 +407,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
 
                           _PlanCard(
                             variant: PlanVariant.freeTrial,
-                            leftText: 'FREE TRIAL',
+                            leftText: l10n.proAccessPlanFreeTrial,
                             rightText: _freeTrialDisplayPrice(l10n),
                             verticalPadding: 17.h,
                             isSelected: _selectedPlan == PlanVariant.freeTrial,
@@ -460,7 +460,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                                     children: [
                                       Text(
                                         (_selectedPlan == PlanVariant.freeTrial
-                                                ? 'Continue for free'
+                                                ? l10n.proAccessContinueForFree
                                                 : l10n.continue_)
                                             .toUpperCase(),
                                         maxLines: 1,

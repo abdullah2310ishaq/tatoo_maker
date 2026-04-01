@@ -1863,5 +1863,24 @@
   "proAccessLegalNote": "After 3 days free - then yearly subscription for {price} will start. Cancel anytime 24 hours before renewal",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
+  },
+  "proAccessPlanLifetimeSubscription": "Lifetime",
+  "@proAccessPlanLifetimeSubscription": {
+    "description": "Pro access lifetime plan label"
+  },
+  "proAccessContinueForFree": "Continue for free",
+  "@proAccessContinueForFree": {
+    "description": "Pro access CTA for free trial plan"
+  },
+  "proAccessLifetimeLegalNoPrice": "Skip the yearly fee - own it for life",
+  "@proAccessLifetimeLegalNoPrice": {
+    "description": "Pro access lifetime note without price"
+  },
+  "proAccessLifetimeLegalWithPrice": "Skip the yearly fee - own it for life for {price}",
+  "@proAccessLifetimeLegalWithPrice": {
+    "description": "Pro access lifetime note with price",
+    "placeholders": {
+      "price": {}
+    }
   }
 }

@@ -1128,5 +1128,9 @@
   "proAccessPlanWeekly": "SEMANAL",
   "proAccessPlanWeeklyPrice": "Rs 1960/semana",
   "proAccessAutoRenewableCancelAnytime": "Renovação automática, cancele quando quiser",
-  "proAccessLegalNote": "Após 3 dias grátis, começará uma assinatura anual de {price}. Cancele quando quiser até 24 horas antes da renovação"
+  "proAccessLegalNote": "Após 3 dias grátis, começará uma assinatura anual de {price}. Cancele quando quiser até 24 horas antes da renovação",
+  "proAccessPlanLifetimeSubscription": "Vitalícia",
+  "proAccessContinueForFree": "Continuar grátis",
+  "proAccessLifetimeLegalNoPrice": "Pule a taxa anual - para sempre seu",
+  "proAccessLifetimeLegalWithPrice": "Pule a taxa anual - para sempre seu por {price}"
 }

@@ -2833,6 +2833,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'After 3 days free - then yearly subscription for {price} will start. Cancel anytime 24 hours before renewal'**
   String proAccessLegalNote(Object price);
+
+  /// Pro access lifetime plan label
+  ///
+  /// In en, this message translates to:
+  /// **'Lifetime'**
+  String get proAccessPlanLifetimeSubscription;
+
+  /// Pro access CTA for free trial plan
+  ///
+  /// In en, this message translates to:
+  /// **'Continue for free'**
+  String get proAccessContinueForFree;
+
+  /// Pro access lifetime note without price
+  ///
+  /// In en, this message translates to:
+  /// **'Skip the yearly fee - own it for life'**
+  String get proAccessLifetimeLegalNoPrice;
+
+  /// Pro access lifetime note with price
+  ///
+  /// In en, this message translates to:
+  /// **'Skip the yearly fee - own it for life for {price}'**
+  String proAccessLifetimeLegalWithPrice(Object price);
 }
 
 class _AppLocalizationsDelegate

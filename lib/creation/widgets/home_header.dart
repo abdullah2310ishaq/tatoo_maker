@@ -31,7 +31,7 @@ class HomeHeader extends StatelessWidget {
         : 'assets/history_light.svg';
     final double menuSize = isDark ? 50.w : 60.w;
     final double historySize = isDark ? 50.w : 60.w;
-    final double crownSize = isDark ? 30.w : 30.w;
+    final double crownSize = isDark ? 40.w : 35.w;
 
     // LTR so menu stays left and history right (same as English) in Arabic
     return Directionality(

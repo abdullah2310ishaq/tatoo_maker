@@ -1580,4 +1580,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String proAccessLegalNote(Object price) {
     return 'Após 3 dias grátis, começará uma assinatura anual de $price. Cancele quando quiser até 24 horas antes da renovação';
   }
+
+  @override
+  String get proAccessPlanLifetimeSubscription => 'Vitalícia';
+
+  @override
+  String get proAccessContinueForFree => 'Continuar grátis';
+
+  @override
+  String get proAccessLifetimeLegalNoPrice =>
+      'Pule a taxa anual - para sempre seu';
+
+  @override
+  String proAccessLifetimeLegalWithPrice(Object price) {
+    return 'Pule a taxa anual - para sempre seu por $price';
+  }
 }

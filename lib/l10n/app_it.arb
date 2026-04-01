@@ -1863,5 +1863,24 @@
   "proAccessLegalNote": "Dopo 3 giorni gratuiti, partira l'abbonamento annuale da {price}. Annulla quando vuoi fino a 24 ore prima del rinnovo",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
+  },
+  "proAccessPlanLifetimeSubscription": "Vita",
+  "@proAccessPlanLifetimeSubscription": {
+    "description": "Pro access lifetime plan label"
+  },
+  "proAccessContinueForFree": "Continua gratis",
+  "@proAccessContinueForFree": {
+    "description": "Pro access CTA for free trial plan"
+  },
+  "proAccessLifetimeLegalNoPrice": "Salta la quota annuale - tuo per sempre",
+  "@proAccessLifetimeLegalNoPrice": {
+    "description": "Pro access lifetime note without price"
+  },
+  "proAccessLifetimeLegalWithPrice": "Salta la quota annuale - tuo per sempre a {price}",
+  "@proAccessLifetimeLegalWithPrice": {
+    "description": "Pro access lifetime note with price",
+    "placeholders": {
+      "price": {}
+    }
   }
 }

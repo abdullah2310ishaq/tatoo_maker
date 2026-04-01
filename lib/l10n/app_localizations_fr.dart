@@ -1582,4 +1582,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String proAccessLegalNote(Object price) {
     return 'Apres 3 jours gratuits, un abonnement annuel de $price commencera. Annulez a tout moment jusqu\'a 24 h avant le renouvellement';
   }
+
+  @override
+  String get proAccessPlanLifetimeSubscription => 'A vie';
+
+  @override
+  String get proAccessContinueForFree => 'Continuer gratuitement';
+
+  @override
+  String get proAccessLifetimeLegalNoPrice =>
+      'Evitez les frais annuels - a vous pour toujours';
+
+  @override
+  String proAccessLifetimeLegalWithPrice(Object price) {
+    return 'Evitez les frais annuels - a vous pour toujours pour $price';
+  }
 }
