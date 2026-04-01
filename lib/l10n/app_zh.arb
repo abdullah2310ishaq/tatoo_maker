@@ -1128,9 +1128,9 @@
   "proAccessPlanWeekly": "每周",
   "proAccessPlanWeeklyPrice": "Rs 1960/周",
   "proAccessAutoRenewableCancelAnytime": "自动续费，随时取消",
-  "proAccessLegalNote": "3 天免费期后，将开始每年 {price} 的订阅。可在续费前 24 小时内随时取消",
+  "proAccessLegalNote": "3 天免费期后，将开始每周 {price} 的订阅。可在续费前 24 小时内随时取消",
   "proAccessPlanLifetimeSubscription": "终身订阅",
   "proAccessContinueForFree": "免费继续",
   "proAccessLifetimeLegalNoPrice": "跳过年费 - 终身拥有",
-  "proAccessLifetimeLegalWithPrice": "跳过年费 - 以 {price} 终身拥有"
+  "proAccessLifetimeLegalWithPrice": "跳过每周费用 - 以 {price} 终身拥有"
 }

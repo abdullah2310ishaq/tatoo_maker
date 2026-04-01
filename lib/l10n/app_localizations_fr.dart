@@ -1580,7 +1580,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String proAccessLegalNote(Object price) {
-    return 'Apres 3 jours gratuits, un abonnement annuel de $price commencera. Annulez a tout moment jusqu\'a 24 h avant le renouvellement';
+    return 'Apres 3 jours gratuits, un abonnement hebdomadaire de $price commencera. Annulez a tout moment jusqu\'a 24 h avant le renouvellement';
   }
 
   @override
@@ -1595,6 +1595,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Evitez les frais annuels - a vous pour toujours pour $price';
+    return 'Evitez les frais hebdomadaires - a vous pour toujours pour $price';
   }
 }

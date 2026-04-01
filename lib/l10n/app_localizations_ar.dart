@@ -1562,7 +1562,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String proAccessLegalNote(Object price) {
-    return 'بعد 3 أيام مجانية، سيبدأ اشتراك سنوي بقيمة $price. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد';
+    return 'بعد 3 أيام مجانية، سيبدأ اشتراك أسبوعي بقيمة $price. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد';
   }
 
   @override
@@ -1577,6 +1577,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'تخط الرسوم السنوية - امتلكه مدى الحياة مقابل $price';
+    return 'تخط الرسوم الأسبوعية - امتلكه مدى الحياة مقابل $price';
   }
 }

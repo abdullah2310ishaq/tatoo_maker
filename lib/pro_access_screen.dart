@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 import 'l10n/app_localizations.dart';
 import 'services/billing_service.dart';
@@ -136,6 +137,22 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     return _billingService.productForPlan(BillingPlan.lifetime)?.price ?? '--';
   }
 
+  String? _lifetimeOriginalDisplayPrice() {
+    final lifetimeProduct = _billingService.productForPlan(
+      BillingPlan.lifetime,
+    );
+    if (lifetimeProduct == null) return null;
+
+    final originalRawPrice = lifetimeProduct.rawPrice / 0.8;
+    try {
+      return NumberFormat.simpleCurrency(
+        name: lifetimeProduct.currencyCode,
+      ).format(originalRawPrice);
+    } catch (_) {
+      return null;
+    }
+  }
+
   String _bottomFooterText(AppLocalizations l10n) {
     if (_selectedPlan == PlanVariant.lifetime) {
       final lifetimePrice = _lifetimeDisplayPrice();
@@ -222,11 +239,18 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
         body: LayoutBuilder(
           builder: (context, constraints) {
             final screenHeight = constraints.maxHeight;
+            final isArabic =
+                Localizations.localeOf(context).languageCode == 'ar';
+            final isFreeTrialSelected = _selectedPlan == PlanVariant.freeTrial;
             // Increase image height by ~10% for stronger background presence.
             final imageHeight = screenHeight * 0.67;
 
-            final bottomReservedHeight = screenHeight * 0.12;
-            final headerTopOffset = screenHeight * 0.305;
+            final bottomReservedHeight =
+                screenHeight *
+                (isArabic
+                    ? (isFreeTrialSelected ? 0.16 : 0.16)
+                    : (isFreeTrialSelected ? 0.12 : 0.12));
+            final headerTopOffset = screenHeight * (isArabic ? 0.235 : 0.275);
 
             // Gradient should start fading exactly where the text starts.
             final fadeStartFraction = headerTopOffset / screenHeight;
@@ -295,132 +319,132 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                       20.w,
                       bottomReservedHeight,
                     ),
-                    child: SingleChildScrollView(
-                      physics: const ClampingScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: headerTopOffset),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: headerTopOffset),
 
-                          /// TITLE (single line: Get [PRO] Access)
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  l10n.proAccessTitleGet,
+                        /// TITLE (single line: Get [PRO] Access)
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                l10n.proAccessTitleGet,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: isArabic ? 40.sp : 46.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.textWhite,
+                                  fontFamily: 'Antonio',
+                                ),
+                              ),
+                              SizedBox(width: 15.w),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                decoration: BoxDecoration(
+                                  color: AppColors.darkPrimary,
+                                  borderRadius: BorderRadius.circular(4.r),
+                                ),
+                                child: Text(
+                                  l10n.proAccessTitlePro,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                    fontSize: 46.sp,
+                                    fontSize: isArabic ? 40.sp : 46.sp,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.textWhite,
                                     fontFamily: 'Antonio',
                                   ),
                                 ),
-                                SizedBox(width: 15.w),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 5.w,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.darkPrimary,
-                                    borderRadius: BorderRadius.circular(4.r),
-                                  ),
-                                  child: Text(
-                                    l10n.proAccessTitlePro,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: 46.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: AppColors.textWhite,
-                                      fontFamily: 'Antonio',
-                                    ),
-                                  ),
+                              ),
+                              SizedBox(width: 15.w),
+                              Text(
+                                l10n.proAccessTitleAccess,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: isArabic ? 40.sp : 46.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.textWhite,
+                                  fontFamily: 'Antonio',
                                 ),
-                                SizedBox(width: 15.w),
-                                Text(
-                                  l10n.proAccessTitleAccess,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 46.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.textWhite,
-                                    fontFamily: 'Antonio',
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+                        ),
 
-                          SizedBox(height: 8.h),
+                        SizedBox(height: 8.h),
 
-                          Text(
-                            l10n.proAccessSubtitle,
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 25.sp,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.textWhite,
-                              fontFamily: 'Antonio',
-                            ),
+                        Text(
+                          l10n.proAccessSubtitle,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: isArabic ? 22.sp : 25.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textWhite,
+                            fontFamily: 'Antonio',
                           ),
+                        ),
 
-                          SizedBox(height: 22.h),
+                        SizedBox(
+                          height: _selectedPlan == PlanVariant.freeTrial
+                              ? 18.h
+                              : 22.h,
+                        ),
 
-                          _FeatureRow(
-                            text: l10n.proAccessFeatureUnlimitedTattooCreation,
-                          ),
-                          _FeatureRow(
-                            text: l10n.proAccessFeatureFastProcessing,
-                          ),
-                          _FeatureRow(
-                            text: l10n.proAccessFeatureUnlockAllStyles,
-                          ),
-                          _FeatureRow(
-                            text: l10n.proAccessFeatureRemoveWatermarks,
-                          ),
+                        _FeatureRow(
+                          text: l10n.proAccessFeatureUnlimitedTattooCreation,
+                        ),
+                        _FeatureRow(text: l10n.proAccessFeatureFastProcessing),
+                        _FeatureRow(text: l10n.proAccessFeatureUnlockAllStyles),
+                        _FeatureRow(
+                          text: l10n.proAccessFeatureRemoveWatermarks,
+                        ),
 
-                          SizedBox(height: 18.h),
+                        SizedBox(height: 18.h),
 
-                          _PlanCard(
-                            variant: PlanVariant.lifetime,
-                            leftText: l10n.proAccessPlanLifetimeSubscription,
-                            rightText: _lifetimeDisplayPrice(),
-                            verticalPadding: 17.h,
-                            isSelected: _selectedPlan == PlanVariant.lifetime,
-                            onTap: () {
-                              _log('Plan selected: lifetime');
-                              setState(() {
-                                _selectedPlan = PlanVariant.lifetime;
-                              });
-                            },
-                          ),
+                        _PlanCard(
+                          variant: PlanVariant.lifetime,
+                          leftText: l10n.proAccessPlanLifetimeSubscription,
+                          rightText: _lifetimeDisplayPrice(),
+                          originalRightText: _lifetimeOriginalDisplayPrice(),
+                          verticalPadding: 17.h,
+                          isSelected: _selectedPlan == PlanVariant.lifetime,
+                          onTap: () {
+                            _log('Plan selected: lifetime');
+                            setState(() {
+                              _selectedPlan = PlanVariant.lifetime;
+                            });
+                          },
+                        ),
 
-                          SizedBox(height: 10.h),
+                        SizedBox(height: 10.h),
 
-                          _PlanCard(
-                            variant: PlanVariant.freeTrial,
-                            leftText: l10n.proAccessPlanFreeTrial,
-                            rightText: _freeTrialDisplayPrice(l10n),
-                            verticalPadding: 17.h,
-                            isSelected: _selectedPlan == PlanVariant.freeTrial,
-                            onTap: () {
-                              _log('Plan selected: free trial');
-                              setState(() {
-                                _selectedPlan = PlanVariant.freeTrial;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 22.h),
-                        ],
-                      ),
+                        _PlanCard(
+                          variant: PlanVariant.freeTrial,
+                          leftText: l10n.proAccessPlanFreeTrial,
+                          rightText: _freeTrialDisplayPrice(l10n),
+                          verticalPadding: 17.h,
+                          isSelected: _selectedPlan == PlanVariant.freeTrial,
+                          onTap: () {
+                            _log('Plan selected: free trial');
+                            setState(() {
+                              _selectedPlan = PlanVariant.freeTrial;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          height: _selectedPlan == PlanVariant.freeTrial
+                              ? (isArabic ? 30.h : 40.h)
+                              : 22.h,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -564,6 +588,7 @@ class _PlanCard extends StatelessWidget {
   final PlanVariant variant;
   final String leftText;
   final String? rightText;
+  final String? originalRightText;
   final bool isSelected;
   final VoidCallback? onTap;
   final double? verticalPadding;
@@ -572,6 +597,7 @@ class _PlanCard extends StatelessWidget {
     required this.variant,
     required this.leftText,
     this.rightText,
+    this.originalRightText,
     this.isSelected = false,
     this.onTap,
     this.verticalPadding,
@@ -580,6 +606,7 @@ class _PlanCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isFree = variant == PlanVariant.freeTrial;
+    final showLifetimeBadge = variant == PlanVariant.lifetime;
     final horizontalPadding = isSelected ? 16.w : 15.w;
     final resolvedVerticalPadding =
         (verticalPadding ?? 13.h) + (isSelected ? 2.h : 0);
@@ -633,23 +660,59 @@ class _PlanCard extends StatelessWidget {
                 ),
                 if (rightText != null)
                   Flexible(
-                    child: Text(
-                      rightText!,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.end,
-                      style: TextStyle(
-                        fontSize: rightTextSize,
-                        fontWeight: FontWeight.w500,
-                        color: isSelected
-                            ? AppColors.textWhite
-                            : AppColors.textGrey.withOpacity(0.95),
-                        fontFamily: 'Inter',
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (originalRightText != null)
+                          Text(
+                            originalRightText!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.textGrey.withOpacity(0.9),
+                              decoration: TextDecoration.lineThrough,
+                              decorationColor: AppColors.textGrey.withOpacity(
+                                0.9,
+                              ),
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                        Text(
+                          rightText!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            fontSize: rightTextSize,
+                            fontWeight: FontWeight.w500,
+                            color: isSelected
+                                ? AppColors.textWhite
+                                : AppColors.textGrey.withOpacity(0.95),
+                            fontFamily: 'Inter',
+                          ),
+                        ),
+                      ],
                     ),
                   ),
               ],
             ),
+            if (showLifetimeBadge)
+              Positioned(
+                top: -42.h,
+                right: -5.w,
+                child: IgnorePointer(
+                  child: Image.asset(
+                    'assets/splash/20off.png',
+                    width: 50.w,
+                    height: 50.w,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
           ],
         ),
       ),

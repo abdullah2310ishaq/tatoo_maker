@@ -110,6 +110,8 @@ flutter:
     - assets/minimal/
     - assets/oldschool/
     - assets/tribal_designs/
+    - assets/20off.png
+    - assets/splash/20off.png
     - assets/splash_black.png
     - assets/splash_white.png
     - assets/creation.svg

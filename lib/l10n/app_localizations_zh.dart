@@ -1531,7 +1531,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String proAccessLegalNote(Object price) {
-    return '3 天免费期后，将开始每年 $price 的订阅。可在续费前 24 小时内随时取消';
+    return '3 天免费期后，将开始每周 $price 的订阅。可在续费前 24 小时内随时取消';
   }
 
   @override
@@ -1545,6 +1545,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return '跳过年费 - 以 $price 终身拥有';
+    return '跳过每周费用 - 以 $price 终身拥有';
   }
 }

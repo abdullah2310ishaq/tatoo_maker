@@ -1543,7 +1543,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String proAccessLegalNote(Object price) {
-    return '3日間の無料期間後、$price の年額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます';
+    return '3日間の無料期間後、$price の週額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます';
   }
 
   @override
@@ -1557,6 +1557,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return '年額料金をスキップ - $price で生涯利用';
+    return '週額料金をスキップ - $price で生涯利用';
   }
 }

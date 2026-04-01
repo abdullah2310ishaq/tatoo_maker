@@ -1576,7 +1576,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String proAccessLegalNote(Object price) {
-    return 'После 3 бесплатных дней начнется годовая подписка за $price. Отмена в любой момент не позднее чем за 24 часа до продления';
+    return 'После 3 бесплатных дней начнется недельная подписка за $price. Отмена в любой момент не позднее чем за 24 часа до продления';
   }
 
   @override
@@ -1591,6 +1591,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Пропустите ежегодную плату - навсегда ваша за $price';
+    return 'Пропустите недельную плату - навсегда ваша за $price';
   }
 }

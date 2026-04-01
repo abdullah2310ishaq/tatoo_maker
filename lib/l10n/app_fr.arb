@@ -1860,7 +1860,7 @@
   "@proAccessAutoRenewableCancelAnytime": {
     "description": "Pro access auto-renew text"
   },
-  "proAccessLegalNote": "Apres 3 jours gratuits, un abonnement annuel de {price} commencera. Annulez a tout moment jusqu'a 24 h avant le renouvellement",
+  "proAccessLegalNote": "Apres 3 jours gratuits, un abonnement hebdomadaire de {price} commencera. Annulez a tout moment jusqu'a 24 h avant le renouvellement",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
   },
@@ -1876,7 +1876,7 @@
   "@proAccessLifetimeLegalNoPrice": {
     "description": "Pro access lifetime note without price"
   },
-  "proAccessLifetimeLegalWithPrice": "Evitez les frais annuels - a vous pour toujours pour {price}",
+  "proAccessLifetimeLegalWithPrice": "Evitez les frais hebdomadaires - a vous pour toujours pour {price}",
   "@proAccessLifetimeLegalWithPrice": {
     "description": "Pro access lifetime note with price",
     "placeholders": {

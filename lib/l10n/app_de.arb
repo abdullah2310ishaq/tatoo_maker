@@ -1861,7 +1861,7 @@
   "@proAccessAutoRenewableCancelAnytime": {
     "description": "Pro access auto-renew text"
   },
-  "proAccessLegalNote": "Nach 3 kostenlosen Tagen startet ein Jahresabo fur {price}. Jederzeit bis 24 Stunden vor Verlangerung kundbar",
+  "proAccessLegalNote": "Nach 3 kostenlosen Tagen startet ein Wochenabo fur {price}. Jederzeit bis 24 Stunden vor Verlangerung kundbar",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
   },
@@ -1877,7 +1877,7 @@
   "@proAccessLifetimeLegalNoPrice": {
     "description": "Pro access lifetime note without price"
   },
-  "proAccessLifetimeLegalWithPrice": "Uberspringe die Jahresgebuhr - fur immer besitzen fur {price}",
+  "proAccessLifetimeLegalWithPrice": "Uberspringe die Wochengebuhr - fur immer fur {price}",
   "@proAccessLifetimeLegalWithPrice": {
     "description": "Pro access lifetime note with price",
     "placeholders": {

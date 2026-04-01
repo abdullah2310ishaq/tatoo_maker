@@ -1546,7 +1546,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String proAccessLegalNote(Object price) {
-    return '3일 무료 후 $price 연간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다';
+    return '3일 무료 후 $price 주간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다';
   }
 
   @override
@@ -1560,6 +1560,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return '연간 요금을 건너뛰고 $price에 평생 소유';
+    return '주간 요금을 건너뛰고 $price에 평생 소유';
   }
 }
