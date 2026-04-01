@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
@@ -12,7 +13,9 @@ import '../utils/toast.dart';
 import '../utils/style_localization.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/favorites_provider.dart';
-import 'package:provider/provider.dart';
+import '../providers/usage_limit_provider.dart';
+import '../home_shell.dart';
+import '../pro_access_screen.dart';
 import 'virtual_try_on.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -494,6 +497,17 @@ class _ResultScreenState extends State<ResultScreen> {
           context,
           message: l10n.resultImageSavedToGallery,
           isSuccess: true,
+        );
+
+        final shouldShowPaywall = await context
+            .read<UsageLimitProvider>()
+            .shouldShowPostActionPaywall();
+        if (!context.mounted || !shouldShowPaywall) return;
+
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+          ),
         );
       }
     } catch (e) {

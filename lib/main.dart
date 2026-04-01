@@ -12,6 +12,7 @@ import 'utils/theme_manager.dart';
 import 'utils/route_observer.dart';
 import 'providers/theme_provider.dart';
 import 'providers/favorites_provider.dart';
+import 'providers/usage_limit_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -108,6 +109,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => FavoritesProvider()..loadFavorites(),
         ),
+        ChangeNotifierProvider(create: (_) => UsageLimitProvider()),
       ],
       child: ThemeProvider(
         isDarkTheme: _isDarkTheme,

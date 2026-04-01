@@ -5,10 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import '../utils/image_processing_isolates.dart';
+import '../providers/usage_limit_provider.dart';
 import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
 import '../l10n/app_localizations.dart';
@@ -91,7 +93,9 @@ class _LoadingScreenState extends State<LoadingScreen>
         'LoadingScreen: No name or prompt text provided, using placeholder',
       );
       _navigationTimer = Timer(const Duration(seconds: 5000), () {
-        if (mounted) _navigateToResult();
+        if (mounted) {
+          unawaited(_navigateToResult());
+        }
       });
       return;
     }
@@ -258,7 +262,7 @@ class _LoadingScreenState extends State<LoadingScreen>
           'LoadingScreen: Final image ready, size: ${finalImageBytes.length} bytes',
         );
         print('LoadingScreen: Navigating to result screen...');
-        _navigateToResult();
+        await _navigateToResult();
       }
     } catch (e) {
       print('LoadingScreen: Error generating image: $e');
@@ -286,17 +290,18 @@ class _LoadingScreenState extends State<LoadingScreen>
       // Still navigate after 3 seconds even on error
       _navigationTimer = Timer(const Duration(seconds: 3), () {
         if (mounted) {
-          _navigateToResult();
+          unawaited(_navigateToResult());
         }
       });
     }
   }
 
-  void _navigateToResult() {
+  Future<void> _navigateToResult() async {
     if (!mounted) return;
     // Use key 'generic' when no style so history/result can show localized title
     final styleName = widget.styleName ?? 'generic';
     if (_generatedImageBytes != null) {
+      await context.read<UsageLimitProvider>().recordGenerationSuccess();
       final name = widget.name?.trim() ?? '';
       if (name.isNotEmpty) {
         HistoryService.addTattooEntry(

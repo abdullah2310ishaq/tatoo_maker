@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
+import '../../home_shell.dart';
+import '../../pro_access_screen.dart';
+import '../../providers/usage_limit_provider.dart';
 import '../../utils/colors.dart';
 import '../flower_loading_screen.dart';
 
@@ -21,7 +25,22 @@ class GenerateButton extends StatelessWidget {
         height: 56.h,
         child: ElevatedButton(
           onPressed: enabled && name.isNotEmpty
-              ? () {
+              ? () async {
+                  final usageLimitProvider = context.read<UsageLimitProvider>();
+                  final canStartGeneration =
+                      await usageLimitProvider.canStartGeneration();
+                  if (!context.mounted) return;
+
+                  if (!canStartGeneration) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            const ProAccessScreen(nextScreen: HomeShell()),
+                      ),
+                    );
+                    return;
+                  }
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => FlowerLoadingScreen(name: name),

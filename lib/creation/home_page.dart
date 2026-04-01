@@ -2,11 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tatoo_maker/utils/colors.dart';
 import '../providers/theme_provider.dart';
+import '../providers/usage_limit_provider.dart';
 import 'loading_screen.dart';
 import 'models/tattoo_style_item.dart';
 import 'widgets/dream_ink_card.dart';
@@ -486,8 +488,16 @@ class _HomePageState extends State<HomePage> with RouteAware {
     });
   }
 
-  void _onGenerateTap() {
+  Future<void> _onGenerateTap() async {
     if (!_canGenerate) return;
+    final usageLimitProvider = context.read<UsageLimitProvider>();
+    final canStartGeneration = await usageLimitProvider.canStartGeneration();
+    if (!mounted) return;
+    if (!canStartGeneration) {
+      widget.onProTap?.call();
+      return;
+    }
+
     final l10n = AppLocalizations.of(context)!;
     if (_selectedStyleIndex == null) {
       AppToast.show(

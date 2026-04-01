@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../creation/loading_screen.dart';
+import '../home_shell.dart';
+import '../pro_access_screen.dart';
+import '../providers/usage_limit_provider.dart';
 import 'onboarding/utils/zodiac_utils.dart';
 import 'onboarding/pages/step_name_page.dart';
 import 'onboarding/pages/step_birthday_page.dart';
@@ -146,7 +150,19 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     'December',
   ];
 
-  void _startGenerationFlow(BuildContext context) {
+  Future<void> _startGenerationFlow(BuildContext context) async {
+    final usageLimitProvider = context.read<UsageLimitProvider>();
+    final canStartGeneration = await usageLimitProvider.canStartGeneration();
+    if (!context.mounted) return;
+    if (!canStartGeneration) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+        ),
+      );
+      return;
+    }
+
     final name = _controllers[0].text.trim();
     final tattooIdea = _controllers[3].text.trim();
     final placeOfBirth = _controllers[2].text.trim();

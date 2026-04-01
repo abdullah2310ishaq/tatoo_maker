@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/usage_limit_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/image_processing_isolates.dart';
@@ -49,7 +51,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     if (widget.name.isEmpty) {
       _navigationTimer = Timer(const Duration(seconds: 3), () {
         if (mounted) {
-          _navigateToResult();
+          unawaited(_navigateToResult());
         }
       });
       return;
@@ -135,20 +137,21 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
           'FlowerLoadingScreen: Final image ready, size: ${finalImageBytes.length} bytes',
         );
         print('FlowerLoadingScreen: Navigating to result screen...');
-        _navigateToResult();
+        await _navigateToResult();
       }
     } catch (e) {
       print('FlowerLoadingScreen: Error generating floral tattoo: $e');
       if (mounted) {
         // Navigate even on error, result screen will handle it
-        _navigateToResult();
+        await _navigateToResult();
       }
     }
   }
 
-  void _navigateToResult() {
+  Future<void> _navigateToResult() async {
     if (!mounted) return;
     if (_generatedImageBytes != null) {
+      await context.read<UsageLimitProvider>().recordGenerationSuccess();
       HistoryService.addFlowerEntry(
         name: widget.name,
         imageBytes: _generatedImageBytes!,

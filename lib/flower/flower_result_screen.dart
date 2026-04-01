@@ -9,10 +9,13 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/favorites_provider.dart';
+import '../providers/usage_limit_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import '../creation/virtual_try_on.dart';
+import '../home_shell.dart';
+import '../pro_access_screen.dart';
 
 /// Result screen for displaying generated floral tattoo
 class FlowerResultScreen extends StatefulWidget {
@@ -402,6 +405,17 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
           context,
           message: l10n.resultImageSavedToGallery,
           isSuccess: true,
+        );
+
+        final shouldShowPaywall = await context
+            .read<UsageLimitProvider>()
+            .shouldShowPostActionPaywall();
+        if (!context.mounted || !shouldShowPaywall) return;
+
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+          ),
         );
       }
     } catch (e) {

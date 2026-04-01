@@ -1583,6 +1583,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Skip the weekly fee - own it for life for $price';
+    return 'Skip the weekly fee - own it for lifetime in $price';
   }
 }

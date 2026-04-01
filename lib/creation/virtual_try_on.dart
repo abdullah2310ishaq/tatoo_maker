@@ -6,7 +6,11 @@ import 'package:flutter/rendering.dart';
 import 'package:gal/gal.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
+import '../home_shell.dart';
+import '../pro_access_screen.dart';
+import '../providers/usage_limit_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
@@ -207,6 +211,17 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
         _processedTryOnBytes = result;
       });
 
+      final shouldShowPaywall = await context
+          .read<UsageLimitProvider>()
+          .shouldShowPostActionPaywall();
+      if (mounted && shouldShowPaywall) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+          ),
+        );
+      }
+
       debugPrint('VirtualTryOn: Preview capture completed');
     } catch (e) {
       debugPrint('VirtualTryOn: Error processing image: $e');
@@ -254,6 +269,17 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
           message: l10n.imageSavedToGalleryExcited,
           isSuccess: true,
         );
+
+        final shouldShowPaywall = await context
+            .read<UsageLimitProvider>()
+            .shouldShowPostActionPaywall();
+        if (shouldShowPaywall) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+            ),
+          );
+        }
       }
     } catch (e) {
       debugPrint('Error saving image: $e');

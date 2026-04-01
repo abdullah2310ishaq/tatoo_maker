@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import 'l10n/app_localizations.dart';
+import 'providers/usage_limit_provider.dart';
 import 'services/billing_service.dart';
 import 'utils/colors.dart';
 
@@ -186,6 +188,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
         });
         break;
       case BillingPurchaseStatus.purchased:
+        unawaited(context.read<UsageLimitProvider>().unlockPro());
         _goNext();
         break;
       case BillingPurchaseStatus.canceled:

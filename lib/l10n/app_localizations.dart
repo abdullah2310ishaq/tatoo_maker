@@ -2855,7 +2855,7 @@ abstract class AppLocalizations {
   /// Pro access lifetime note with price
   ///
   /// In en, this message translates to:
-  /// **'Skip the weekly fee - own it for life for {price}'**
+  /// **'Skip the weekly fee - own it for lifetime in {price}'**
   String proAccessLifetimeLegalWithPrice(Object price);
 }
 
