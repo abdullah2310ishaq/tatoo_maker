@@ -1542,6 +1542,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get proAccessAutoRenewableCancelAnytime => '自動更新、いつでも解約可能';
 
   @override
-  String get proAccessLegalNote =>
-      '3日間の無料期間後、Rs 6,900 の年額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます';
+  String proAccessLegalNote(Object price) {
+    return '3日間の無料期間後、$price の年額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます';
+  }
 }

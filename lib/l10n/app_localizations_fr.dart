@@ -1579,6 +1579,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Renouvellement auto, annulation a tout moment';
 
   @override
-  String get proAccessLegalNote =>
-      'Apres 3 jours gratuits, un abonnement annuel de Rs 6,900 commencera. Annulez a tout moment jusqu\'a 24 h avant le renouvellement';
+  String proAccessLegalNote(Object price) {
+    return 'Apres 3 jours gratuits, un abonnement annuel de $price commencera. Annulez a tout moment jusqu\'a 24 h avant le renouvellement';
+  }
 }

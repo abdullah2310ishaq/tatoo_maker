@@ -1545,6 +1545,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proAccessAutoRenewableCancelAnytime => '자동 갱신, 언제든지 취소 가능';
 
   @override
-  String get proAccessLegalNote =>
-      '3일 무료 후 Rs 6,900 연간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다';
+  String proAccessLegalNote(Object price) {
+    return '3일 무료 후 $price 연간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다';
+  }
 }

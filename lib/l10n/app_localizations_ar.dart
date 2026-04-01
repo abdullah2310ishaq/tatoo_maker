@@ -1561,6 +1561,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'تجديد تلقائي، والإلغاء في أي وقت';
 
   @override
-  String get proAccessLegalNote =>
-      'بعد 3 أيام مجانية، سيبدأ اشتراك سنوي بقيمة Rs 6,900. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد';
+  String proAccessLegalNote(Object price) {
+    return 'بعد 3 أيام مجانية، سيبدأ اشتراك سنوي بقيمة $price. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد';
+  }
 }

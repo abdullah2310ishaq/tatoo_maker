@@ -1576,6 +1576,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Rinnovo automatico, annulla quando vuoi';
 
   @override
-  String get proAccessLegalNote =>
-      'Dopo 3 giorni gratuiti, partira l\'abbonamento annuale da Rs 6,900. Annulla quando vuoi fino a 24 ore prima del rinnovo';
+  String proAccessLegalNote(Object price) {
+    return 'Dopo 3 giorni gratuiti, partira l\'abbonamento annuale da $price. Annulla quando vuoi fino a 24 ore prima del rinnovo';
+  }
 }

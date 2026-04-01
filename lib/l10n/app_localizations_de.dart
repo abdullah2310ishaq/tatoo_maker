@@ -1574,6 +1574,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Automatisch verlangerbar, jederzeit kundbar';
 
   @override
-  String get proAccessLegalNote =>
-      'Nach 3 kostenlosen Tagen startet ein Jahresabo fur Rs 6,900. Jederzeit bis 24 Stunden vor Verlangerung kundbar';
+  String proAccessLegalNote(Object price) {
+    return 'Nach 3 kostenlosen Tagen startet ein Jahresabo fur $price. Jederzeit bis 24 Stunden vor Verlangerung kundbar';
+  }
 }

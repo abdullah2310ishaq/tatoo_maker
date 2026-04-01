@@ -137,6 +137,7 @@ flutter:
     - assets/one.svg
     - assets/two.svg
     - assets/logo.png
+    - assets/20off.png
     - assets/video.mp4
     - assets/video_light.mp4
     - assets/one_light.mp4

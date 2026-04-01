@@ -1860,7 +1860,7 @@
   "@proAccessAutoRenewableCancelAnytime": {
     "description": "Pro access auto-renew text"
   },
-  "proAccessLegalNote": "بعد 3 أيام مجانية، سيبدأ اشتراك سنوي بقيمة Rs 6,900. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد",
+  "proAccessLegalNote": "بعد 3 أيام مجانية، سيبدأ اشتراك سنوي بقيمة {price}. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
   }

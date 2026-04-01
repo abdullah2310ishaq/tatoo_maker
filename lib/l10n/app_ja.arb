@@ -1134,6 +1134,6 @@
   "proAccessPlanWeekly": "週間",
   "proAccessPlanWeeklyPrice": "Rs 1960/週",
   "proAccessAutoRenewableCancelAnytime": "自動更新、いつでも解約可能",
-  "proAccessLegalNote": "3日間の無料期間後、Rs 6,900 の年額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます"
+  "proAccessLegalNote": "3日間の無料期間後、{price} の年額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます"
 }
 

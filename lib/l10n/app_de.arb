@@ -1861,7 +1861,7 @@
   "@proAccessAutoRenewableCancelAnytime": {
     "description": "Pro access auto-renew text"
   },
-  "proAccessLegalNote": "Nach 3 kostenlosen Tagen startet ein Jahresabo fur Rs 6,900. Jederzeit bis 24 Stunden vor Verlangerung kundbar",
+  "proAccessLegalNote": "Nach 3 kostenlosen Tagen startet ein Jahresabo fur {price}. Jederzeit bis 24 Stunden vor Verlangerung kundbar",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
   }

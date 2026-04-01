@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
-/// Placeholder IDs for now. Replace these with real store product IDs.
-const String kProTrial3DaysProductId = 'pro_trial_3days_placeholder';
-const String kProWeeklyProductId = 'pro_weekly_placeholder';
+/// Store product IDs.
+/// - tatooweekly: includes 3-day free trial, then recurring billing by store config.
+/// - lifetime: one-time non-consumable purchase.
+const String kProTrial3DaysProductId = 'tatooweekly';
+const String kProLifetimeProductId = 'lifetime';
 
-enum BillingPlan { freeTrial, weekly }
+enum BillingPlan { freeTrial, lifetime }
 
 enum BillingPurchaseStatus { pending, purchased, canceled, error }
 
@@ -21,7 +23,7 @@ class BillingPurchaseEvent {
 class BillingService {
   static const Set<String> _productIds = <String>{
     kProTrial3DaysProductId,
-    kProWeeklyProductId,
+    kProLifetimeProductId,
   };
 
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
@@ -40,7 +42,7 @@ class BillingService {
 
   bool get hasProducts =>
       _productsById.containsKey(kProTrial3DaysProductId) ||
-      _productsById.containsKey(kProWeeklyProductId);
+      _productsById.containsKey(kProLifetimeProductId);
 
   void _log(String message) {
     debugPrint('[BillingService] $message');
@@ -137,8 +139,8 @@ class BillingService {
     switch (plan) {
       case BillingPlan.freeTrial:
         return kProTrial3DaysProductId;
-      case BillingPlan.weekly:
-        return kProWeeklyProductId;
+      case BillingPlan.lifetime:
+        return kProLifetimeProductId;
     }
   }
 

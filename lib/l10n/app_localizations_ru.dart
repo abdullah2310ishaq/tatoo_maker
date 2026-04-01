@@ -1575,6 +1575,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Автопродление, отмена в любой момент';
 
   @override
-  String get proAccessLegalNote =>
-      'После 3 бесплатных дней начнется годовая подписка за Rs 6,900. Отмена в любой момент не позднее чем за 24 часа до продления';
+  String proAccessLegalNote(Object price) {
+    return 'После 3 бесплатных дней начнется годовая подписка за $price. Отмена в любой момент не позднее чем за 24 часа до продления';
+  }
 }

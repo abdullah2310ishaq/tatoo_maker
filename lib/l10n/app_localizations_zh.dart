@@ -1530,6 +1530,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proAccessAutoRenewableCancelAnytime => '自动续费，随时取消';
 
   @override
-  String get proAccessLegalNote =>
-      '3 天免费期后，将开始每年 Rs 6,900 的订阅。可在续费前 24 小时内随时取消';
+  String proAccessLegalNote(Object price) {
+    return '3 天免费期后，将开始每年 $price 的订阅。可在续费前 24 小时内随时取消';
+  }
 }

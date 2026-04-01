@@ -1860,7 +1860,7 @@
   "@proAccessAutoRenewableCancelAnytime": {
     "description": "Pro access auto-renew text"
   },
-  "proAccessLegalNote": "Dopo 3 giorni gratuiti, partira l'abbonamento annuale da Rs 6,900. Annulla quando vuoi fino a 24 ore prima del rinnovo",
+  "proAccessLegalNote": "Dopo 3 giorni gratuiti, partira l'abbonamento annuale da {price}. Annulla quando vuoi fino a 24 ore prima del rinnovo",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
   }

@@ -2831,8 +2831,8 @@ abstract class AppLocalizations {
   /// Pro access legal subscription note
   ///
   /// In en, this message translates to:
-  /// **'After 3 days free - then yearly subscription for Rs 6,900 will start. Cancel anytime 24 hours before renewal'**
-  String get proAccessLegalNote;
+  /// **'After 3 days free - then yearly subscription for {price} will start. Cancel anytime 24 hours before renewal'**
+  String proAccessLegalNote(Object price);
 }
 
 class _AppLocalizationsDelegate

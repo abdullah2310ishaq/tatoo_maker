@@ -20,6 +20,7 @@ import '../utils/route_observer.dart';
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
   final VoidCallback? onHistoryTap;
+  final VoidCallback? onProTap;
   final bool alwaysShowTutorialOverlay;
 
   /// Notifies the shell when generate state changes (enabled + tap callback for navbar).
@@ -30,6 +31,7 @@ class HomePage extends StatefulWidget {
     super.key,
     this.onMenuTap,
     this.onHistoryTap,
+    this.onProTap,
     this.alwaysShowTutorialOverlay = false,
     this.onRegisterGenerateAction,
   });
@@ -248,6 +250,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
                             isDark: isDark,
                             onMenuTap: _onMenuTap,
                             onHistoryTap: widget.onHistoryTap,
+                            onProTap: widget.onProTap,
                           ),
                         ),
                       ),

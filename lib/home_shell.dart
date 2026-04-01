@@ -15,6 +15,7 @@ import 'widgets/app_drawer.dart';
 import 'widgets/exit_confirmation_dialog.dart';
 import 'providers/theme_provider.dart';
 import 'services/history_service.dart';
+import 'pro_access_screen.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
@@ -163,6 +164,14 @@ class _HomeShellState extends State<HomeShell> {
       case 0:
         return HomePage(
           onMenuTap: openDrawer,
+          onProTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    const ProAccessScreen(nextScreen: const HomeShell()),
+              ),
+            );
+          },
           onHistoryTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -217,6 +226,14 @@ class _HomeShellState extends State<HomeShell> {
       default:
         return HomePage(
           onMenuTap: openDrawer,
+          onProTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    const ProAccessScreen(nextScreen: const HomeShell()),
+              ),
+            );
+          },
           onHistoryTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(

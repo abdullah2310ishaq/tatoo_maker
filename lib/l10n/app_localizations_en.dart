@@ -1567,6 +1567,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Auto-renewable, Cancel anytime';
 
   @override
-  String get proAccessLegalNote =>
-      'After 3 days free - then yearly subscription for Rs 6,900 will start. Cancel anytime 24 hours before renewal';
+  String proAccessLegalNote(Object price) {
+    return 'After 3 days free - then yearly subscription for $price will start. Cancel anytime 24 hours before renewal';
+  }
 }
