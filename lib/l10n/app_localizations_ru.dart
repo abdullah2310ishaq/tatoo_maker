@@ -1546,20 +1546,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get proAccessTitleAccess => 'доступ';
 
   @override
-  String get proAccessSubtitle => 'Раскройте свою креативность с PRO';
+  String get proAccessSubtitle => 'Мгновенно примеряйте тату на себе';
 
   @override
   String get proAccessFeatureUnlimitedTattooCreation =>
-      'Безлимитное создание тату';
+      'Безлимитная генерация промптов';
 
   @override
-  String get proAccessFeatureFastProcessing => 'Быстрая обработка';
+  String get proAccessFeatureFastProcessing => 'Доступ ко всем стилям тату';
 
   @override
-  String get proAccessFeatureUnlockAllStyles => 'Откройте все стили';
+  String get proAccessFeatureUnlockAllStyles =>
+      'Безлимитная виртуальная примерка';
 
   @override
-  String get proAccessFeatureRemoveWatermarks => 'Удалите водяные знаки';
+  String get proAccessFeatureRemoveWatermarks => 'Без водяных знаков';
 
   @override
   String get proAccessPlanFreeTrial => 'Бесплатный пробный период';

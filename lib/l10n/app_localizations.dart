@@ -2777,31 +2777,31 @@ abstract class AppLocalizations {
   /// Pro access subtitle
   ///
   /// In en, this message translates to:
-  /// **'Unleash your creativity with PRO'**
+  /// **'Preview Tattoos On Yourself Instantly'**
   String get proAccessSubtitle;
 
   /// Pro access feature: unlimited tattoo creation
   ///
   /// In en, this message translates to:
-  /// **'Unlimited tattoo creation'**
+  /// **'Unlimited Prompt Generation'**
   String get proAccessFeatureUnlimitedTattooCreation;
 
   /// Pro access feature: fast processing
   ///
   /// In en, this message translates to:
-  /// **'Fast processing'**
+  /// **'Access All Tattoo Styles'**
   String get proAccessFeatureFastProcessing;
 
   /// Pro access feature: unlock all styles
   ///
   /// In en, this message translates to:
-  /// **'Unlock all styles'**
+  /// **' Unlimited Try-On\'s'**
   String get proAccessFeatureUnlockAllStyles;
 
   /// Pro access feature: remove watermarks
   ///
   /// In en, this message translates to:
-  /// **'Remove watermarks'**
+  /// **'No Watermarks'**
   String get proAccessFeatureRemoveWatermarks;
 
   /// Pro access free trial plan label

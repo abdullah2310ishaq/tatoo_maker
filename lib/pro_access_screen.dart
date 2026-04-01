@@ -388,7 +388,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: isArabic ? 22.sp : 25.sp,
+                            fontSize: isArabic ? 22.sp : 22.sp,
                             fontWeight: FontWeight.bold,
                             color: AppColors.textWhite,
                             fontFamily: 'Antonio',
@@ -773,7 +773,7 @@ class _FeatureRow extends StatelessWidget {
                   ),
                   child: Icon(
                     Icons.check,
-                    size: 14.sp,
+                    size: 12.sp,
                     color: AppColors.textWhite,
                   ),
                 ),
@@ -784,8 +784,8 @@ class _FeatureRow extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.bold,
                       color: AppColors.textWhite,
                       fontFamily: 'Antonio',
                     ),

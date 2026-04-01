@@ -1518,19 +1518,19 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proAccessTitleAccess => '이용';
 
   @override
-  String get proAccessSubtitle => 'PRO로 창의력을 펼쳐보세요';
+  String get proAccessSubtitle => '내 몸에 타투를 즉시 미리보기';
 
   @override
-  String get proAccessFeatureUnlimitedTattooCreation => '무제한 타투 생성';
+  String get proAccessFeatureUnlimitedTattooCreation => '프롬프트 무제한 생성';
 
   @override
-  String get proAccessFeatureFastProcessing => '빠른 처리';
+  String get proAccessFeatureFastProcessing => '모든 타투 스타일 이용';
 
   @override
-  String get proAccessFeatureUnlockAllStyles => '모든 스타일 잠금 해제';
+  String get proAccessFeatureUnlockAllStyles => '가상 착용 무제한';
 
   @override
-  String get proAccessFeatureRemoveWatermarks => '워터마크 제거';
+  String get proAccessFeatureRemoveWatermarks => '워터마크 없음';
 
   @override
   String get proAccessPlanFreeTrial => '무료 체험';

@@ -1824,23 +1824,23 @@
   "@proAccessTitleAccess": {
     "description": "Pro access title last word"
   },
-  "proAccessSubtitle": "أطلق إبداعك مع PRO",
+  "proAccessSubtitle": "عاين الوشوم عليك فوراً",
   "@proAccessSubtitle": {
     "description": "Pro access subtitle"
   },
-  "proAccessFeatureUnlimitedTattooCreation": "إنشاء غير محدود للوشوم",
+  "proAccessFeatureUnlimitedTattooCreation": "إنشاء غير محدود للموجهات",
   "@proAccessFeatureUnlimitedTattooCreation": {
     "description": "Pro access feature: unlimited tattoo creation"
   },
-  "proAccessFeatureFastProcessing": "معالجة سريعة",
+  "proAccessFeatureFastProcessing": "الوصول إلى جميع أنماط الوشوم",
   "@proAccessFeatureFastProcessing": {
     "description": "Pro access feature: fast processing"
   },
-  "proAccessFeatureUnlockAllStyles": "افتح جميع الأنماط",
+  "proAccessFeatureUnlockAllStyles": "تجارب افتراضية غير محدودة",
   "@proAccessFeatureUnlockAllStyles": {
     "description": "Pro access feature: unlock all styles"
   },
-  "proAccessFeatureRemoveWatermarks": "إزالة العلامات المائية",
+  "proAccessFeatureRemoveWatermarks": "بدون علامات مائية",
   "@proAccessFeatureRemoveWatermarks": {
     "description": "Pro access feature: remove watermarks"
   },

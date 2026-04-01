@@ -1824,23 +1824,23 @@
   "@proAccessTitleAccess": {
     "description": "Pro access title last word"
   },
-  "proAccessSubtitle": "Desata tu creatividad con PRO",
+  "proAccessSubtitle": "Previsualiza tatuajes en ti al instante",
   "@proAccessSubtitle": {
     "description": "Pro access subtitle"
   },
-  "proAccessFeatureUnlimitedTattooCreation": "Creacion ilimitada de tatuajes",
+  "proAccessFeatureUnlimitedTattooCreation": "Generación ilimitada de prompts",
   "@proAccessFeatureUnlimitedTattooCreation": {
     "description": "Pro access feature: unlimited tattoo creation"
   },
-  "proAccessFeatureFastProcessing": "Procesamiento rapido",
+  "proAccessFeatureFastProcessing": "Accede a todos los estilos de tatuaje",
   "@proAccessFeatureFastProcessing": {
     "description": "Pro access feature: fast processing"
   },
-  "proAccessFeatureUnlockAllStyles": "Desbloquea todos los estilos",
+  "proAccessFeatureUnlockAllStyles": "Pruebas virtuales ilimitadas",
   "@proAccessFeatureUnlockAllStyles": {
     "description": "Pro access feature: unlock all styles"
   },
-  "proAccessFeatureRemoveWatermarks": "Quita las marcas de agua",
+  "proAccessFeatureRemoveWatermarks": "Sin marcas de agua",
   "@proAccessFeatureRemoveWatermarks": {
     "description": "Pro access feature: remove watermarks"
   },

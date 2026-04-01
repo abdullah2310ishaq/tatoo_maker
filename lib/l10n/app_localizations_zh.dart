@@ -1503,19 +1503,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proAccessTitleAccess => '权益';
 
   @override
-  String get proAccessSubtitle => '用 PRO 释放你的创造力';
+  String get proAccessSubtitle => '即刻在自己身上预览纹身';
 
   @override
-  String get proAccessFeatureUnlimitedTattooCreation => '无限纹身创作';
+  String get proAccessFeatureUnlimitedTattooCreation => '无限提示词生成';
 
   @override
-  String get proAccessFeatureFastProcessing => '快速处理';
+  String get proAccessFeatureFastProcessing => '访问全部纹身风格';
 
   @override
-  String get proAccessFeatureUnlockAllStyles => '解锁全部风格';
+  String get proAccessFeatureUnlockAllStyles => '无限虚拟试纹';
 
   @override
-  String get proAccessFeatureRemoveWatermarks => '去除水印';
+  String get proAccessFeatureRemoveWatermarks => '无水印';
 
   @override
   String get proAccessPlanFreeTrial => '免费试用';

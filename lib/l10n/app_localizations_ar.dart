@@ -1532,20 +1532,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get proAccessTitleAccess => 'الوصول';
 
   @override
-  String get proAccessSubtitle => 'أطلق إبداعك مع PRO';
+  String get proAccessSubtitle => 'عاين الوشوم عليك فوراً';
 
   @override
   String get proAccessFeatureUnlimitedTattooCreation =>
-      'إنشاء غير محدود للوشوم';
+      'إنشاء غير محدود للموجهات';
 
   @override
-  String get proAccessFeatureFastProcessing => 'معالجة سريعة';
+  String get proAccessFeatureFastProcessing => 'الوصول إلى جميع أنماط الوشوم';
 
   @override
-  String get proAccessFeatureUnlockAllStyles => 'افتح جميع الأنماط';
+  String get proAccessFeatureUnlockAllStyles => 'تجارب افتراضية غير محدودة';
 
   @override
-  String get proAccessFeatureRemoveWatermarks => 'إزالة العلامات المائية';
+  String get proAccessFeatureRemoveWatermarks => 'بدون علامات مائية';
 
   @override
   String get proAccessPlanFreeTrial => 'تجربة مجانية';

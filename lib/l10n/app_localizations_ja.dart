@@ -1515,19 +1515,19 @@ class AppLocalizationsJa extends AppLocalizations {
   String get proAccessTitleAccess => 'アクセス';
 
   @override
-  String get proAccessSubtitle => 'PROで創造力を解き放とう';
+  String get proAccessSubtitle => '自分にタトゥーをすぐプレビュー';
 
   @override
-  String get proAccessFeatureUnlimitedTattooCreation => 'タトゥー作成が無制限';
+  String get proAccessFeatureUnlimitedTattooCreation => 'プロンプト生成が無制限';
 
   @override
-  String get proAccessFeatureFastProcessing => '高速処理';
+  String get proAccessFeatureFastProcessing => 'すべてのタトゥースタイルにアクセス';
 
   @override
-  String get proAccessFeatureUnlockAllStyles => 'すべてのスタイルを解放';
+  String get proAccessFeatureUnlockAllStyles => 'バーチャル試着が無制限';
 
   @override
-  String get proAccessFeatureRemoveWatermarks => '透かしを削除';
+  String get proAccessFeatureRemoveWatermarks => '透かしなし';
 
   @override
   String get proAccessPlanFreeTrial => '無料トライアル';

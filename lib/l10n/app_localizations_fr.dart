@@ -1550,20 +1550,22 @@ class AppLocalizationsFr extends AppLocalizations {
   String get proAccessTitleAccess => 'Premium';
 
   @override
-  String get proAccessSubtitle => 'Liberez votre creativite avec PRO';
+  String get proAccessSubtitle =>
+      'Prévisualisez instantanément les tatouages sur vous';
 
   @override
   String get proAccessFeatureUnlimitedTattooCreation =>
-      'Creation de tatouages illimitee';
+      'Génération illimitée de prompts';
 
   @override
-  String get proAccessFeatureFastProcessing => 'Traitement rapide';
+  String get proAccessFeatureFastProcessing =>
+      'Accédez à tous les styles de tatouage';
 
   @override
-  String get proAccessFeatureUnlockAllStyles => 'Debloquez tous les styles';
+  String get proAccessFeatureUnlockAllStyles => 'Essais virtuels illimités';
 
   @override
-  String get proAccessFeatureRemoveWatermarks => 'Supprimez les filigranes';
+  String get proAccessFeatureRemoveWatermarks => 'Aucun filigrane';
 
   @override
   String get proAccessPlanFreeTrial => 'Essai gratuit';

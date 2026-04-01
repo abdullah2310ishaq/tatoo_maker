@@ -1538,20 +1538,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proAccessTitleAccess => 'Access';
 
   @override
-  String get proAccessSubtitle => 'Unleash your creativity with PRO';
+  String get proAccessSubtitle => 'Preview Tattoos On Yourself Instantly';
 
   @override
   String get proAccessFeatureUnlimitedTattooCreation =>
-      'Unlimited tattoo creation';
+      'Unlimited Prompt Generation';
 
   @override
-  String get proAccessFeatureFastProcessing => 'Fast processing';
+  String get proAccessFeatureFastProcessing => 'Access All Tattoo Styles';
 
   @override
-  String get proAccessFeatureUnlockAllStyles => 'Unlock all styles';
+  String get proAccessFeatureUnlockAllStyles => ' Unlimited Try-On\'s';
 
   @override
-  String get proAccessFeatureRemoveWatermarks => 'Remove watermarks';
+  String get proAccessFeatureRemoveWatermarks => 'No Watermarks';
 
   @override
   String get proAccessPlanFreeTrial => 'Free Trial';
