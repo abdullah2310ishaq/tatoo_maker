@@ -16,6 +16,7 @@ import '../services/history_service.dart';
 import '../l10n/app_localizations.dart';
 import 'result_screen.dart';
 import '../widgets/creative_loading_spinner.dart';
+import '../pro_access_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
   final String?
@@ -300,9 +301,10 @@ class _LoadingScreenState extends State<LoadingScreen>
     if (!mounted) return;
     // Use key 'generic' when no style so history/result can show localized title
     final styleName = widget.styleName ?? 'generic';
+    final name = widget.name?.trim() ?? '';
+    final isTattooGeneration = name.isNotEmpty;
     if (_generatedImageBytes != null) {
       await context.read<UsageLimitProvider>().recordGenerationSuccess();
-      final name = widget.name?.trim() ?? '';
       if (name.isNotEmpty) {
         HistoryService.addTattooEntry(
           styleName: styleName,
@@ -319,13 +321,30 @@ class _LoadingScreenState extends State<LoadingScreen>
       }
     }
     if (mounted) {
+      final nextResult = ResultScreen(
+        styleName: styleName,
+        promptText: widget.promptText,
+        generatedImageBytes: _generatedImageBytes,
+      );
+
+      if (isTattooGeneration && _generatedImageBytes != null) {
+        final shouldShowPaywall = await context
+            .read<UsageLimitProvider>()
+            .shouldShowPostActionPaywall();
+        if (!mounted) return;
+        if (shouldShowPaywall) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => ProAccessScreen(nextScreen: nextResult),
+            ),
+          );
+          return;
+        }
+      }
+
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => ResultScreen(
-            styleName: styleName,
-            promptText: widget.promptText,
-            generatedImageBytes: _generatedImageBytes,
-          ),
+          builder: (context) => nextResult,
         ),
       );
     }

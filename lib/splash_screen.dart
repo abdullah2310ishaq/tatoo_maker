@@ -40,14 +40,20 @@ class _SplashScreenState extends State<SplashScreen>
     _introController.forward();
 
     _billingService = BillingService();
-    unawaited(_restorePurchasesInBackground());
-    _checkOnboardingStatus();
+
+    // Start async work only after first frame so Provider/Navigator are ready.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(_restorePurchasesInBackground());
+      unawaited(_checkOnboardingStatus());
+    });
   }
 
   Future<void> _restorePurchasesInBackground() async {
     try {
-      // Important for subscriptions: reset local entitlement on launch.
-      // Active subscriptions will be restored; expired ones won't, so PRO revokes.
+      if (!mounted) return;
+
+      // Reset local entitlement on launch; restore will re-unlock if active.
       await context.read<UsageLimitProvider>().setProUnlocked(false);
 
       await _billingService.initialize();
@@ -57,7 +63,6 @@ class _SplashScreenState extends State<SplashScreen>
         if (!mounted) return;
         if (event.status != BillingPurchaseStatus.purchased) return;
 
-        // Restore/unlock for both lifetime and subscription.
         if (event.productId == kProLifetimeProductId ||
             event.productId == kProTrial3DaysProductId) {
           unawaited(context.read<UsageLimitProvider>().unlockPro());
@@ -66,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
 
       await _billingService.restorePurchases();
     } catch (_) {
-      // Intentionally silent: restore should never block app entry.
+      // Restore should never block app entry.
     }
   }
 

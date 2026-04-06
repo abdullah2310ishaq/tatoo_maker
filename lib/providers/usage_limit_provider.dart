@@ -4,6 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UsageLimitProvider extends ChangeNotifier {
+
+  static const bool kForceProUser = false;
+
   static const int freeGenerationLimit = 3;
   static const String _generationCountKey = 'usage_generation_count';
   static const String _proUnlockedKey = 'usage_pro_unlocked';
@@ -17,13 +20,13 @@ class UsageLimitProvider extends ChangeNotifier {
   }
 
   int get generationCount => _generationCount;
-  bool get isProUnlocked => _proUnlocked;
+  bool get isProUnlocked => kForceProUser ? true : _proUnlocked;
 
   bool get hasReachedFreeLimit =>
-      !_proUnlocked && _generationCount >= freeGenerationLimit;
+      !isProUnlocked && _generationCount >= freeGenerationLimit;
 
   bool get shouldPromptAfterResultAction =>
-      !_proUnlocked && _generationCount >= 2;
+      !isProUnlocked && _generationCount >= 2;
 
   Future<void> _ensureLoaded() {
     _loadFuture ??= _loadState();
@@ -45,7 +48,7 @@ class UsageLimitProvider extends ChangeNotifier {
 
   Future<void> recordGenerationSuccess() async {
     await _ensureLoaded();
-    if (_proUnlocked) return;
+    if (isProUnlocked) return;
 
     _generationCount += 1;
     await _persistState();
@@ -59,12 +62,13 @@ class UsageLimitProvider extends ChangeNotifier {
 
   Future<bool> shouldShowPostActionPaywall() async {
     await _ensureLoaded();
+    if (kForceProUser) return false;
     return shouldPromptAfterResultAction;
   }
 
   Future<void> unlockPro() async {
     await _ensureLoaded();
-    if (_proUnlocked) return;
+    if (isProUnlocked) return;
 
     _proUnlocked = true;
     await _persistState();
@@ -77,6 +81,7 @@ class UsageLimitProvider extends ChangeNotifier {
 
   Future<void> setProUnlocked(bool value) async {
     await _ensureLoaded();
+    if (kForceProUser) return;
     if (_proUnlocked == value) return;
 
     _proUnlocked = value;
