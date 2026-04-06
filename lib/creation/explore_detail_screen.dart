@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
+import '../utils/toast.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import 'virtual_try_on.dart';
@@ -82,22 +83,20 @@ class _ExploreDetailScreenState extends State<ExploreDetailScreen> {
       } else {
         if (!mounted) return;
         final l10n = AppLocalizations.of(context)!;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.virtualTryOnProcessingFailedTryAgain),
-            backgroundColor: Colors.red,
-          ),
+        AppToast.show(
+          context,
+          message: l10n.virtualTryOnProcessingFailedTryAgain,
+          isSuccess: false,
         );
       }
     } catch (e) {
       debugPrint('Error navigating to virtual try on: $e');
       if (!mounted) return;
       final l10n = AppLocalizations.of(context)!;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(l10n.virtualTryOnProcessingFailedTryAgain),
-          backgroundColor: Colors.red,
-        ),
+      AppToast.show(
+        context,
+        message: l10n.virtualTryOnProcessingFailedTryAgain,
+        isSuccess: false,
       );
     } finally {
       if (mounted) {

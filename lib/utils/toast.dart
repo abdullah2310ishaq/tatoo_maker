@@ -78,9 +78,7 @@ class _AppToastWidget extends StatelessWidget {
               .textWhite // White text for dark theme
         : AppColors.textPrimary; // Dark text for light theme
 
-    final accentColor = isSuccess
-        ? const Color(0xFF2E7D32) // Green for success
-        : AppColors.lightPrimary; // Orange for error/warning
+    final accentColor = isSuccess ? AppColors.success : AppColors.lightPrimary;
 
     return Stack(
       children: [
@@ -91,7 +89,7 @@ class _AppToastWidget extends StatelessWidget {
           child: SafeArea(
             child: Center(
               child: Material(
-                color: Colors.transparent,
+                color: const Color(0x00000000),
                 child: Container(
                   constraints: BoxConstraints(maxWidth: 1.sw - 32.w),
                   padding: EdgeInsets.symmetric(
@@ -100,11 +98,11 @@ class _AppToastWidget extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: backgroundColor,
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(24.r),
                     border: Border.all(color: accentColor, width: 1.5.w),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.2),
+                        color: AppColors.toastShadow,
                         blurRadius: 8.r,
                         offset: Offset(0, 2.h),
                       ),
@@ -130,7 +128,11 @@ class _AppToastWidget extends StatelessWidget {
                       ),
                       if (isSuccess) ...[
                         SizedBox(width: 6.w),
-                        Text('🔥', style: TextStyle(fontSize: 16.sp)),
+                        Icon(
+                          Icons.check_circle,
+                          color: accentColor,
+                          size: 16.sp,
+                        ),
                       ] else ...[
                         SizedBox(width: 6.w),
                         Icon(

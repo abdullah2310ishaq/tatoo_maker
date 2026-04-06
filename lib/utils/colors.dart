@@ -59,4 +59,8 @@ class AppColors {
   ); // #2D3136 with 30% opacity (darker)
   static const Color gradientBlack = Color(0xFF000000); // #000000
   static const Color proBadgeBackground = Color(0xFFAD5A1E); // #AD5A1E
+
+  // Feedback / Toast colors
+  static const Color success = Color(0xFF2E7D32);
+  static const Color toastShadow = Color(0x33000000);
 }

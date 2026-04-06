@@ -131,12 +131,12 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   }
 
   String _freeTrialDisplayPrice(AppLocalizations l10n) {
-    return _billingService.productForPlan(BillingPlan.freeTrial)?.price ??
+    return _billingService.displayPriceForPlan(BillingPlan.freeTrial) ??
         l10n.proAccessPlanWeeklyPrice;
   }
 
   String _lifetimeDisplayPrice() {
-    return _billingService.productForPlan(BillingPlan.lifetime)?.price ?? '--';
+    return _billingService.displayPriceForPlan(BillingPlan.lifetime) ?? '--';
   }
 
   String? _lifetimeOriginalDisplayPrice() {
@@ -204,18 +204,16 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     if (_isPurchasing) return;
     _log('Continue tapped. selectedPlan=$_selectedPlan');
 
-    setState(() {
-      _isPurchasing = true;
-    });
-
     // While IDs are placeholders, purchase might fail to launch.
     if (!_isBillingReady) {
       _log('Billing not ready. Keeping user on paywall.');
-      setState(() {
-        _isPurchasing = false;
-      });
       return;
     }
+
+    // Only show progress when we're actually attempting a purchase.
+    setState(() {
+      _isPurchasing = true;
+    });
 
     final bool started = await _billingService.purchasePlan(
       _toBillingPlan(_selectedPlan),
@@ -234,17 +232,24 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.darkBackground,
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-            final screenHeight = constraints.maxHeight;
-            final isArabic =
-                Localizations.localeOf(context).languageCode == 'ar';
-            final isFreeTrialSelected = _selectedPlan == PlanVariant.freeTrial;
-            // Increase image height by ~10% for stronger background presence.
-            final imageHeight = screenHeight * 0.67;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        _closeScreen();
+      },
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.darkBackground,
+          body: LayoutBuilder(
+            builder: (context, constraints) {
+              final screenHeight = constraints.maxHeight;
+              final isArabic =
+                  Localizations.localeOf(context).languageCode == 'ar';
+              final isFreeTrialSelected =
+                  _selectedPlan == PlanVariant.freeTrial;
+              // Increase image height by ~10% for stronger background presence.
+              final imageHeight = screenHeight * 0.67;
 
             final bottomReservedHeight =
                 screenHeight *
@@ -260,8 +265,8 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
               0.75,
             );
 
-            return Stack(
-              children: [
+              return Stack(
+                children: [
                 /// TOP IMAGE SLIDER
                 Align(
                   alignment: Alignment.topCenter,
@@ -463,7 +468,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                           width: double.infinity,
                           height: 56.h,
                           child: ElevatedButton(
-                            onPressed: _onContinuePressed,
+                            onPressed: _isPurchasing ? null : _onContinuePressed,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.darkPrimary,
                               shape: RoundedRectangleBorder(
@@ -575,9 +580,10 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                     ),
                   ),
                 ),
-              ],
-            );
-          },
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -645,7 +651,7 @@ class _PlanCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Flexible(
+                Expanded(
                   child: Text(
                     leftText,
                     maxLines: 1,
@@ -661,7 +667,8 @@ class _PlanCard extends StatelessWidget {
                   ),
                 ),
                 if (rightText != null)
-                  Flexible(
+                  ConstrainedBox(
+                    constraints: BoxConstraints(minWidth: 86.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,

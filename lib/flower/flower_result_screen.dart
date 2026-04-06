@@ -33,6 +33,42 @@ class FlowerResultScreen extends StatefulWidget {
 }
 
 class _FlowerResultScreenState extends State<FlowerResultScreen> {
+  bool _didAutoShowPaywall = false;
+  bool _didShowPaywallAfterDownload = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.generatedImageBytes == null) {
+      debugPrint('[FlowerResultScreen] skip auto paywall: hasImage=false');
+      return;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || _didAutoShowPaywall) return;
+      _didAutoShowPaywall = true;
+
+      final usage = context.read<UsageLimitProvider>();
+      if (usage.isProUnlocked) {
+        debugPrint('[FlowerResultScreen] skip auto paywall: user is PRO');
+        return;
+      }
+
+      debugPrint('[FlowerResultScreen] showing ProAccessScreen on open');
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => ProAccessScreen(
+            nextScreen: _FlowerResultAfterPaywall(
+              name: widget.name,
+              generatedImageBytes: widget.generatedImageBytes!,
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
   Map<String, dynamic> _buildEntry() {
     return {
       'name': widget.name,
@@ -407,16 +443,15 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
           isSuccess: true,
         );
 
-        final shouldShowPaywall = await context
-            .read<UsageLimitProvider>()
-            .shouldShowPostActionPaywall();
-        if (!context.mounted || !shouldShowPaywall) return;
-
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
-          ),
-        );
+        final usage = context.read<UsageLimitProvider>();
+        if (!usage.isProUnlocked && !_didShowPaywallAfterDownload) {
+          _didShowPaywallAfterDownload = true;
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+            ),
+          );
+        }
       }
     } catch (e) {
       debugPrint('Error saving image: $e');
@@ -429,5 +464,20 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
         );
       }
     }
+  }
+}
+
+class _FlowerResultAfterPaywall extends StatelessWidget {
+  final String name;
+  final Uint8List generatedImageBytes;
+
+  const _FlowerResultAfterPaywall({
+    required this.name,
+    required this.generatedImageBytes,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FlowerResultScreen(name: name, generatedImageBytes: generatedImageBytes);
   }
 }

@@ -23,6 +23,7 @@ class ResultScreen extends StatefulWidget {
   final Uint8List? generatedImageBytes;
   final List<Uint8List>? variationImages;
   final String? promptText;
+  final bool showProAccessOnOpen;
 
   const ResultScreen({
     super.key,
@@ -30,6 +31,7 @@ class ResultScreen extends StatefulWidget {
     this.generatedImageBytes,
     this.variationImages,
     this.promptText,
+    this.showProAccessOnOpen = false,
   });
 
   @override
@@ -37,6 +39,49 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
+  bool _didAutoShowPaywall = false;
+  bool _didShowPaywallAfterDownload = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Auto-show paywall on result when an image exists.
+    // (Fixes cases where upstream flow forgets to pass the flag.)
+    if (widget.generatedImageBytes == null) {
+      debugPrint(
+        '[ResultScreen] skip auto paywall: hasImage=false',
+      );
+      return;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted || _didAutoShowPaywall) return;
+      _didAutoShowPaywall = true;
+
+      final usage = context.read<UsageLimitProvider>();
+      if (usage.isProUnlocked) {
+        debugPrint('[ResultScreen] skip auto paywall: user is PRO');
+        return;
+      }
+      debugPrint('[ResultScreen] showing ProAccessScreen on open');
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => ProAccessScreen(
+            nextScreen: ResultScreen(
+              styleName: widget.styleName,
+              generatedImageBytes: widget.generatedImageBytes,
+              variationImages: widget.variationImages,
+              promptText: widget.promptText,
+              showProAccessOnOpen: false,
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
   Map<String, dynamic> _buildEntry() {
     return {
       'styleName': widget.styleName,
@@ -499,16 +544,15 @@ class _ResultScreenState extends State<ResultScreen> {
           isSuccess: true,
         );
 
-        final shouldShowPaywall = await context
-            .read<UsageLimitProvider>()
-            .shouldShowPostActionPaywall();
-        if (!context.mounted || !shouldShowPaywall) return;
-
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
-          ),
-        );
+        final usage = context.read<UsageLimitProvider>();
+        if (!usage.isProUnlocked && !_didShowPaywallAfterDownload) {
+          _didShowPaywallAfterDownload = true;
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+            ),
+          );
+        }
       }
     } catch (e) {
       if (context.mounted) {

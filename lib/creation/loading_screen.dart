@@ -16,7 +16,6 @@ import '../services/history_service.dart';
 import '../l10n/app_localizations.dart';
 import 'result_screen.dart';
 import '../widgets/creative_loading_spinner.dart';
-import '../pro_access_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
   final String?
@@ -302,7 +301,11 @@ class _LoadingScreenState extends State<LoadingScreen>
     // Use key 'generic' when no style so history/result can show localized title
     final styleName = widget.styleName ?? 'generic';
     final name = widget.name?.trim() ?? '';
-    final isTattooGeneration = name.isNotEmpty;
+    final dob = widget.dobFormatted?.trim() ?? '';
+    final zodiac = widget.zodiacSign?.trim() ?? '';
+    final place = widget.placeOfBirth?.trim() ?? '';
+    final isTattooModule = dob.isNotEmpty || zodiac.isNotEmpty || place.isNotEmpty;
+    final isTattooGeneration = name.isNotEmpty || isTattooModule;
     if (_generatedImageBytes != null) {
       await context.read<UsageLimitProvider>().recordGenerationSuccess();
       if (name.isNotEmpty) {
@@ -325,22 +328,9 @@ class _LoadingScreenState extends State<LoadingScreen>
         styleName: styleName,
         promptText: widget.promptText,
         generatedImageBytes: _generatedImageBytes,
+        // Show paywall AFTER landing on ResultScreen (not for History opens).
+        showProAccessOnOpen: isTattooGeneration,
       );
-
-      if (isTattooGeneration && _generatedImageBytes != null) {
-        final shouldShowPaywall = await context
-            .read<UsageLimitProvider>()
-            .shouldShowPostActionPaywall();
-        if (!mounted) return;
-        if (shouldShowPaywall) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => ProAccessScreen(nextScreen: nextResult),
-            ),
-          );
-          return;
-        }
-      }
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(

@@ -35,6 +35,7 @@ class BillingService {
   bool _isStoreAvailable = false;
   bool _isInitialized = false;
   Map<String, ProductDetails> _productsById = const {};
+  String? _trialPaidPriceFallback;
 
   Stream<BillingPurchaseEvent> get purchaseEvents =>
       _purchaseEventsController.stream;
@@ -91,6 +92,22 @@ class BillingService {
           'Store query error: code=${response.error!.code}, message=${response.error!.message}',
         );
       }
+
+      // Some Play Billing configurations return multiple ProductDetails for the
+      // same subscription productId (trial offer vs paid offer). Keep the paid
+      // price around for UI display on the "Free trial" card.
+      _trialPaidPriceFallback = null;
+      final paidVariants =
+          response.productDetails
+              .where((p) => p.id == kProTrial3DaysProductId && p.rawPrice > 0)
+              .toList()
+            ..sort((a, b) => a.rawPrice.compareTo(b.rawPrice));
+      if (paidVariants.isNotEmpty) {
+        _trialPaidPriceFallback = paidVariants.first.price.trim().isEmpty
+            ? null
+            : paidVariants.first.price.trim();
+      }
+
       _productsById = _buildProductsById(response.productDetails);
 
       for (final ProductDetails product in response.productDetails) {
@@ -111,6 +128,57 @@ class BillingService {
 
   ProductDetails? productForPlan(BillingPlan plan) {
     return _productsById[_toProductId(plan)];
+  }
+
+  /// Best-effort display price for UI.
+  ///
+  /// For Android subscriptions, `ProductDetails.price` can reflect a free-trial
+  /// phase or be empty depending on the selected base plan/offer. In that case,
+  /// we derive the first non-free pricing phase and format it.
+  String? displayPriceForPlan(BillingPlan plan) {
+    final details = productForPlan(plan);
+    if (details == null) return null;
+
+    final direct = details.price.trim();
+    if (direct.isNotEmpty && direct != '0' && direct.toLowerCase() != 'free') {
+      return direct;
+    }
+
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      return direct.isEmpty ? null : direct;
+    }
+
+    if (details is! GooglePlayProductDetails) {
+      return direct.isEmpty ? null : direct;
+    }
+
+    final subscriptionIndex = details.subscriptionIndex;
+    final offers = details.productDetails.subscriptionOfferDetails;
+    if (subscriptionIndex == null || offers == null) return null;
+    if (subscriptionIndex >= offers.length) return null;
+
+    final offer = offers[subscriptionIndex];
+    final paidPhase = offer.pricingPhases.firstWhere(
+      (p) => p.priceAmountMicros > 0,
+      orElse: () => offer.pricingPhases.isNotEmpty
+          ? offer.pricingPhases.last
+          : offer.pricingPhases.first,
+    );
+
+    final formatted = paidPhase.formattedPrice;
+    if (formatted.isNotEmpty) {
+      return formatted;
+    }
+
+    if (plan == BillingPlan.freeTrial &&
+        _trialPaidPriceFallback != null &&
+        _trialPaidPriceFallback!.isNotEmpty) {
+      return _trialPaidPriceFallback;
+    }
+
+    // Fallback: use ProductDetails fields when formatted phase price missing.
+    final fallback = details.price.trim();
+    return fallback.isEmpty ? null : fallback;
   }
 
   Future<bool> purchasePlan(BillingPlan plan) async {
@@ -255,7 +323,22 @@ class BillingService {
 
       final isManagedProduct = _productIds.contains(productId);
       if (!isManagedProduct) {
-        _log('Ignoring purchase update for unmanaged productId=$productId');
+        // Some devices/flows can deliver a canceled/error update with an empty
+        // productId. Still emit an event so UI can stop showing progress.
+        if (productId.isEmpty &&
+            (purchaseDetails.status == PurchaseStatus.canceled ||
+                purchaseDetails.status == PurchaseStatus.error)) {
+          _purchaseEventsController.add(
+            BillingPurchaseEvent(
+              status: purchaseDetails.status == PurchaseStatus.canceled
+                  ? BillingPurchaseStatus.canceled
+                  : BillingPurchaseStatus.error,
+              productId: productId,
+            ),
+          );
+        } else {
+          _log('Ignoring purchase update for unmanaged productId=$productId');
+        }
         continue;
       }
 

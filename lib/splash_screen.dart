@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/providers/usage_limit_provider.dart';
 import 'package:tatoo_maker/services/billing_service.dart';
+import 'package:tatoo_maker/pro_access_screen.dart';
 import 'utils/colors.dart';
 import 'home_shell.dart';
 import 'language/first_language.dart';
@@ -55,7 +56,22 @@ class _SplashScreenState extends State<SplashScreen>
 
       // Reset local entitlement on launch; restore will re-unlock if active.
       await context.read<UsageLimitProvider>().setProUnlocked(false);
-
+      // help me to understand this code
+      // this code is used to initialize the billing service and restore purchases
+      // the billing service is used to purchase and restore purchases
+      // the billing service is used to get the products and prices
+      // the billing service is used to get the purchase events
+      // the billing service is used to get the purchase details
+      // the billing service is used to get the purchase status
+      // the billing service is used to get the purchase error
+      // the billing service is used to get the purchase stack trace
+      // the billing service is used to get the purchase time
+      // the billing service is used to get the purchase date
+      // the billing service is used to get the purchase amount
+      // the billing service is used to get the purchase currency
+      // the billing service is used to get the purchase currency code
+      // the billing service is used to get the purchase currency symbol
+      // the billing service is used to get the purchase currency symbol code
       await _billingService.initialize();
       _billingEventsSubscription = _billingService.purchaseEvents.listen((
         event,
@@ -87,10 +103,15 @@ class _SplashScreenState extends State<SplashScreen>
       if (!mounted) return;
 
       if (isOnboardingCompleted) {
-        // User has completed onboarding, go directly to home
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeShell()),
-        );
+        // User has completed onboarding.
+        // Show in-app screen after splash (if not Pro); then continue to Home.
+        final usage = context.read<UsageLimitProvider>();
+        final next = usage.isProUnlocked
+            ? const HomeShell()
+            : ProAccessScreen(nextScreen: const HomeShell());
+        Navigator.of(
+          context,
+        ).pushReplacement(MaterialPageRoute(builder: (context) => next));
       } else {
         // First time - go to language selection
         Navigator.of(context).pushReplacement(
