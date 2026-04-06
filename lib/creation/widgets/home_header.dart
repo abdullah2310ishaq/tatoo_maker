@@ -28,32 +28,35 @@ class HomeHeader extends StatelessWidget {
     final historyIconAsset = isDark
         ? 'assets/history_dark.svg'
         : 'assets/history_light.svg';
-    final double menuSize = isDark ? 50.w : 60.w;
-    final double historySize = isDark ? 50.w : 60.w;
-    final double proBadgeHeight = isDark ? 32.w : 36.w;
-    final double proBadgeWidth = isDark ? 40.w : 45.w;
+    // Keep header actions aligned across light/dark themes.
+    final double actionSize = 40.w;
+    final double menuIconSize = 46.w;
+    final double historyIconSize = 52.w;
+    final double proBadgeSize = actionSize;
 
     // LTR so menu stays left and history right (same as English) in Arabic
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Menu button (left)
           IconButton(
             padding: EdgeInsets.zero,
+
             icon: SvgPicture.asset(
               menuIconAsset,
-              width: menuSize,
-              height: menuSize,
+              width: menuIconSize,
+              height: menuIconSize,
               placeholderBuilder: (context) =>
-                  Icon(Icons.menu, color: iconColor, size: 32.sp),
+                  Icon(Icons.menu, color: iconColor, size: 28.sp),
             ),
             onPressed: onMenuTap,
           ),
           Expanded(
             child: Column(
-              mainAxisSize: MainAxisSize.min, 
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   'AI Tattoo',
@@ -75,38 +78,50 @@ class HomeHeader extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              InkWell(
-                borderRadius: BorderRadius.circular(24.r),
-                onTap: onProTap,
-                child: Container(
-                  width: proBadgeWidth,
-                  height: proBadgeHeight,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppColors.proBadgeBackground,
-                    borderRadius: BorderRadius.circular(4.r),
-                  ),
-                  child: Text(
-                    'Pro',
-                    style: TextStyle(
-                      color: AppColors.textWhite,
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: 8.w),
               IconButton(
                 padding: EdgeInsets.zero,
                 icon: SvgPicture.asset(
                   historyIconAsset,
-                  width: historySize,
-                  height: historySize,
+                  width: historyIconSize,
+                  height: historyIconSize,
                   placeholderBuilder: (context) =>
-                      Icon(Icons.history, color: iconColor, size: 32.sp),
+                      Icon(Icons.history, color: iconColor, size: 28.sp),
                 ),
                 onPressed: onHistoryTap,
+              ),
+              SizedBox(width: 6.w),
+              Transform.translate(
+                offset: Offset(0, -2.h),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(proBadgeSize / 2),
+                    onTap: onProTap,
+                    child: SizedBox(
+                      width: proBadgeSize,
+                      height: proBadgeSize,
+                      child: Center(
+                        child: Container(
+                          width: proBadgeSize,
+                          height: proBadgeSize,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            color: AppColors.proBadgeBackground,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            'Pro',
+                            style: TextStyle(
+                              color: AppColors.textWhite,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

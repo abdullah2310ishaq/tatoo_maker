@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
 /// Store product IDs.
 /// - tatooweekly: includes 3-day free trial, then recurring billing by store config.
@@ -43,6 +44,8 @@ class BillingService {
   bool get hasProducts =>
       _productsById.containsKey(kProTrial3DaysProductId) ||
       _productsById.containsKey(kProLifetimeProductId);
+
+  bool get isInitialized => _isInitialized;
 
   void _log(String message) {
     debugPrint('[BillingService] $message');
@@ -88,10 +91,7 @@ class BillingService {
           'Store query error: code=${response.error!.code}, message=${response.error!.message}',
         );
       }
-      _productsById = <String, ProductDetails>{
-        for (final ProductDetails product in response.productDetails)
-          product.id: product,
-      };
+      _productsById = _buildProductsById(response.productDetails);
 
       for (final ProductDetails product in response.productDetails) {
         _log(
@@ -123,7 +123,8 @@ class BillingService {
       'Starting purchase for plan=$plan, productId=${productDetails.id}, price=${productDetails.price}',
     );
 
-    final PurchaseParam purchaseParam = PurchaseParam(
+    final PurchaseParam purchaseParam = _buildPurchaseParam(
+      plan: plan,
       productDetails: productDetails,
     );
     try {
@@ -133,6 +134,104 @@ class BillingService {
       _log('Purchase launch stack trace: $stackTrace');
       return false;
     }
+  }
+
+  Future<void> restorePurchases() async {
+    if (!_isInitialized) {
+      await initialize();
+    }
+    if (!_isStoreAvailable) return;
+
+    try {
+      _log('Restoring purchases...');
+      await _inAppPurchase.restorePurchases();
+    } catch (error, stackTrace) {
+      _log('Restore purchases failed: $error');
+      _log('Restore purchases stack trace: $stackTrace');
+    }
+  }
+
+  Map<String, ProductDetails> _buildProductsById(
+    List<ProductDetails> products,
+  ) {
+    final resolved = <String, ProductDetails>{};
+
+    for (final product in products) {
+      final existing = resolved[product.id];
+      if (existing == null) {
+        resolved[product.id] = product;
+        continue;
+      }
+
+      // Android subscriptions can return multiple ProductDetails entries for the
+      // same productId (different base plans / offers). For the weekly trial,
+      // prefer the offer that actually contains a free phase.
+      if (product.id == kProTrial3DaysProductId &&
+          defaultTargetPlatform == TargetPlatform.android) {
+        resolved[product.id] = _preferTrialOffer(existing, product);
+        continue;
+      }
+
+      // Keep the first by default.
+      resolved[product.id] = existing;
+    }
+
+    return resolved;
+  }
+
+  ProductDetails _preferTrialOffer(ProductDetails a, ProductDetails b) {
+    final aHasTrial = _hasAndroidFreeTrialPhase(a);
+    final bHasTrial = _hasAndroidFreeTrialPhase(b);
+
+    if (aHasTrial && !bHasTrial) return a;
+    if (!aHasTrial && bHasTrial) return b;
+
+    // If both (or neither) have a trial phase, prefer the one with the lower
+    // first paid price (rawPrice is the first pricing phase's rawPrice).
+    return b.rawPrice < a.rawPrice ? b : a;
+  }
+
+  bool _hasAndroidFreeTrialPhase(ProductDetails details) {
+    if (details is! GooglePlayProductDetails) return false;
+    final subscriptionIndex = details.subscriptionIndex;
+    if (subscriptionIndex == null) return false;
+
+    final offers = details.productDetails.subscriptionOfferDetails;
+    if (offers == null || subscriptionIndex >= offers.length) return false;
+
+    final offer = offers[subscriptionIndex];
+    return offer.pricingPhases.any((p) => p.priceAmountMicros == 0);
+  }
+
+  PurchaseParam _buildPurchaseParam({
+    required BillingPlan plan,
+    required ProductDetails productDetails,
+  }) {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      return PurchaseParam(productDetails: productDetails);
+    }
+
+    // Lifetime is a one-time product; do not pass offerToken.
+    if (plan != BillingPlan.freeTrial) {
+      return PurchaseParam(productDetails: productDetails);
+    }
+
+    if (productDetails is! GooglePlayProductDetails) {
+      return PurchaseParam(productDetails: productDetails);
+    }
+
+    final offerToken = productDetails.offerToken;
+    if (offerToken == null || offerToken.isEmpty) {
+      _log(
+        'No subscription offer token found for productId=${productDetails.id}. Proceeding without offer token.',
+      );
+      return PurchaseParam(productDetails: productDetails);
+    }
+
+    return GooglePlayPurchaseParam(
+      productDetails: productDetails,
+      offerToken: offerToken,
+    );
   }
 
   String _toProductId(BillingPlan plan) {
@@ -154,6 +253,12 @@ class BillingService {
         'Purchase update => productId=$productId, status=${purchaseDetails.status}, pendingComplete=${purchaseDetails.pendingCompletePurchase}, error=${purchaseDetails.error}',
       );
 
+      final isManagedProduct = _productIds.contains(productId);
+      if (!isManagedProduct) {
+        _log('Ignoring purchase update for unmanaged productId=$productId');
+        continue;
+      }
+
       switch (purchaseDetails.status) {
         case PurchaseStatus.pending:
           _purchaseEventsController.add(
@@ -165,6 +270,35 @@ class BillingService {
           break;
         case PurchaseStatus.purchased:
         case PurchaseStatus.restored:
+          if (purchaseDetails.pendingCompletePurchase) {
+            try {
+              _log('Completing purchase for productId=$productId');
+              await _inAppPurchase.completePurchase(purchaseDetails);
+            } catch (error, stackTrace) {
+              _log('Complete purchase failed for productId=$productId: $error');
+              _log('Complete purchase stack trace: $stackTrace');
+              _purchaseEventsController.add(
+                BillingPurchaseEvent(
+                  status: BillingPurchaseStatus.error,
+                  productId: productId,
+                ),
+              );
+              break;
+            }
+          }
+
+          if (!_isPurchaseVerificationDataValid(purchaseDetails)) {
+            _log(
+              'Purchase verification data missing. productId=$productId, status=${purchaseDetails.status}',
+            );
+            _purchaseEventsController.add(
+              BillingPurchaseEvent(
+                status: BillingPurchaseStatus.error,
+                productId: productId,
+              ),
+            );
+            break;
+          }
           _purchaseEventsController.add(
             BillingPurchaseEvent(
               status: BillingPurchaseStatus.purchased,
@@ -189,12 +323,12 @@ class BillingService {
           );
           break;
       }
-
-      if (purchaseDetails.pendingCompletePurchase) {
-        _log('Completing purchase for productId=$productId');
-        await _inAppPurchase.completePurchase(purchaseDetails);
-      }
     }
+  }
+
+  bool _isPurchaseVerificationDataValid(PurchaseDetails purchaseDetails) {
+    final data = purchaseDetails.verificationData.serverVerificationData;
+    return data.isNotEmpty;
   }
 
   Future<void> dispose() async {

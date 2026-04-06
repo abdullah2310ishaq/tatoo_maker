@@ -1,5 +1,7 @@
 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="16.5713" y="14.4443" width="16.8575" height="1.37022" rx="0.685112" fill="#F88532"/>
-<rect x="16.5713" y="20.3154" width="16.8574" height="1.37022" rx="0.685112" fill="#F88532"/>
-<rect x="16.5713" y="26.1865" width="16.8574" height="1.37022" rx="0.685112" fill="#F88532"/>
+<g transform="scale(1.25)">
+<rect x="11.5713" y="13.4443" width="16.8575" height="1.37022" rx="0.685112" fill="#F88532"/>
+<rect x="11.5713" y="19.3154" width="16.8574" height="1.37022" rx="0.685112" fill="#F88532"/>
+<rect x="11.5713" y="25.1865" width="16.8574" height="1.37022" rx="0.685112" fill="#F88532"/>
+</g>
 </svg>

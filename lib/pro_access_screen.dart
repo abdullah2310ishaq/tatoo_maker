@@ -210,11 +210,10 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
 
     // While IDs are placeholders, purchase might fail to launch.
     if (!_isBillingReady) {
-      _log('Billing not ready. Falling back to next screen.');
+      _log('Billing not ready. Keeping user on paywall.');
       setState(() {
         _isPurchasing = false;
       });
-      _goNext();
       return;
     }
 
@@ -224,11 +223,10 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     if (!mounted) return;
 
     if (!started) {
-      _log('Purchase did not start. Falling back to next screen.');
+      _log('Purchase did not start. Keeping user on paywall.');
       setState(() {
         _isPurchasing = false;
       });
-      _goNext();
     }
   }
 

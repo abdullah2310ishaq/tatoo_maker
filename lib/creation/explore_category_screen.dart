@@ -43,7 +43,8 @@ class ExploreCategoryScreen extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 12.h,
             crossAxisSpacing: 12.w,
-            childAspectRatio: 0.8,
+            // Higher ratio => shorter cards (less height).
+            childAspectRatio: 1.02,
           ),
           itemCount: category.items.length,
           itemBuilder: (context, index) {

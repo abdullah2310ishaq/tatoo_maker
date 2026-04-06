@@ -71,6 +71,19 @@ class UsageLimitProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> lockPro() async {
+    await setProUnlocked(false);
+  }
+
+  Future<void> setProUnlocked(bool value) async {
+    await _ensureLoaded();
+    if (_proUnlocked == value) return;
+
+    _proUnlocked = value;
+    await _persistState();
+    notifyListeners();
+  }
+
   Future<void> _persistState() async {
     try {
       final prefs = await SharedPreferences.getInstance();

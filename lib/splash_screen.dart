@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tatoo_maker/providers/usage_limit_provider.dart';
+import 'package:tatoo_maker/services/billing_service.dart';
 import 'utils/colors.dart';
 import 'home_shell.dart';
 import 'language/first_language.dart';
@@ -19,6 +22,9 @@ class _SplashScreenState extends State<SplashScreen>
   late final Animation<Offset> _slideAnimation;
   late final AnimationController _introController;
 
+  late final BillingService _billingService;
+  StreamSubscription<BillingPurchaseEvent>? _billingEventsSubscription;
+
   @override
   void initState() {
     super.initState();
@@ -33,7 +39,35 @@ class _SplashScreenState extends State<SplashScreen>
 
     _introController.forward();
 
+    _billingService = BillingService();
+    unawaited(_restorePurchasesInBackground());
     _checkOnboardingStatus();
+  }
+
+  Future<void> _restorePurchasesInBackground() async {
+    try {
+      // Important for subscriptions: reset local entitlement on launch.
+      // Active subscriptions will be restored; expired ones won't, so PRO revokes.
+      await context.read<UsageLimitProvider>().setProUnlocked(false);
+
+      await _billingService.initialize();
+      _billingEventsSubscription = _billingService.purchaseEvents.listen((
+        event,
+      ) {
+        if (!mounted) return;
+        if (event.status != BillingPurchaseStatus.purchased) return;
+
+        // Restore/unlock for both lifetime and subscription.
+        if (event.productId == kProLifetimeProductId ||
+            event.productId == kProTrial3DaysProductId) {
+          unawaited(context.read<UsageLimitProvider>().unlockPro());
+        }
+      });
+
+      await _billingService.restorePurchases();
+    } catch (_) {
+      // Intentionally silent: restore should never block app entry.
+    }
   }
 
   Future<void> _checkOnboardingStatus() async {
@@ -70,6 +104,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
+    _billingEventsSubscription?.cancel();
+    unawaited(_billingService.dispose());
     _introController.dispose();
     super.dispose();
   }
