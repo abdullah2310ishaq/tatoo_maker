@@ -36,7 +36,6 @@ class _CreativeLoadingSpinnerState extends State<CreativeLoadingSpinner>
     final size = widget.size ?? 200.w;
 
     final segmentColor = isDark ? Colors.white : const Color(0xFF1C1C1E);
-;
 
     return SizedBox(
       width: size,

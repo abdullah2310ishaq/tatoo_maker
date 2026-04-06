@@ -5,10 +5,8 @@ import 'package:share_plus/share_plus.dart';
 import 'package:tatoo_maker/history/favorites_page.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/language/language_screen.dart';
-import 'package:tatoo_maker/pro_access_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../home_shell.dart';
 import '../utils/colors.dart';
 import 'inkvision_underline.dart';
 
