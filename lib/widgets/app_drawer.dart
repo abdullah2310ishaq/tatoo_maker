@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:tatoo_maker/history/favorites_page.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/language/language_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -126,22 +125,6 @@ class _AppDrawerState extends State<AppDrawer> {
                           MaterialPageRoute(
                             builder: (context) =>
                                 const LanguageSelectionScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    _buildMenuItem(
-                      context: context,
-                      icon: Icons.favorite,
-                      title: l10n.favorites,
-                      textColor: textColor,
-                      iconColor: iconColor,
-                      isEnabled: !_isProcessing,
-                      onTap: () {
-                        Navigator.of(context).pop(); // close drawer
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const FavoritesPage(),
                           ),
                         );
                       },

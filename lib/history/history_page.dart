@@ -31,6 +31,7 @@ class _HistoryPageState extends State<HistoryPage> {
   List<Map<String, dynamic>> _creation = [];
   List<Map<String, dynamic>> _tattoo = [];
   List<Map<String, dynamic>> _flower = [];
+  List<Map<String, dynamic>> _favorites = [];
 
   bool _loading = true;
   int _activeTab = 0; // 0=Creation, 1=Tattoo, 2=Flower (for tabIndex==0)
@@ -41,7 +42,9 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   void initState() {
     super.initState();
-    _activeTab = widget.tabIndex == 1
+    _activeTab = widget.openFavorites
+        ? 3
+        : widget.tabIndex == 1
         ? 1
         : widget.tabIndex == 2
         ? 2
@@ -66,6 +69,7 @@ class _HistoryPageState extends State<HistoryPage> {
         _creation = creation;
         _tattoo = tattoo;
         _flower = flower;
+        _favorites = favoritesProvider.favorites;
         _loading = false;
       });
     }
@@ -196,7 +200,9 @@ class _HistoryPageState extends State<HistoryPage> {
         ? _creation
         : _activeTab == 1
         ? _tattoo
-        : _flower;
+        : _activeTab == 2
+        ? _flower
+        : _favorites;
   }
 
   String get _currentType {
@@ -206,7 +212,9 @@ class _HistoryPageState extends State<HistoryPage> {
         ? 'creation'
         : _activeTab == 1
         ? 'tattoo'
-        : 'flower';
+        : _activeTab == 2
+        ? 'flower'
+        : 'favorites';
   }
 
   void _toggleSelectionMode() {
@@ -281,6 +289,16 @@ class _HistoryPageState extends State<HistoryPage> {
         .where((e) => _selectedIds.contains(HistoryService.generateEntryId(e)))
         .toList();
 
+    if (_currentType == 'favorites') {
+      final favoritesProvider = Provider.of<FavoritesProvider>(
+        context,
+        listen: false,
+      );
+      for (final entry in entriesToDelete) {
+        await favoritesProvider.removeFromFavorites(entry);
+      }
+    }
+
     await HistoryService.deleteEntries(_currentType, entriesToDelete);
 
     if (!mounted) return;
@@ -295,15 +313,17 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   Widget _buildTabs(BuildContext context, bool isDark, AppLocalizations l10n) {
-    return Center(
-      child: Wrap(
-        spacing: 9.w,
-        runSpacing: 10.h,
-        alignment: WrapAlignment.center,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
         children: [
           _chip(l10n.creation, 0, isDark),
+          SizedBox(width: 9.w),
           _chip(l10n.tattoo, 1, isDark),
+          SizedBox(width: 9.w),
           _chip(l10n.flower, 2, isDark),
+          SizedBox(width: 9.w),
+          _chip(l10n.favorites, 3, isDark),
         ],
       ),
     );
@@ -312,7 +332,7 @@ class _HistoryPageState extends State<HistoryPage> {
   Widget _chip(String label, int tab, bool isDark) {
     final selected = _activeTab == tab;
     return SizedBox(
-      width: 100.w,
+      width: 106.w,
       height: 38.h,
       child: ChoiceChip(
         label: SizedBox(
@@ -456,7 +476,13 @@ class _HistoryGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final bytes = HistoryService.imageBytesFromEntry(entry);
-    final label = type == 'flower'
+    final hasName =
+        entry['name'] != null && (entry['name'] as String).isNotEmpty;
+    final hasStyleName =
+        entry['styleName'] != null && (entry['styleName'] as String).isNotEmpty;
+    final isFlowerType =
+        type == 'flower' || (type == 'favorites' && hasName && !hasStyleName);
+    final label = isFlowerType
         ? (entry['name'] as String? ?? '')
         : getLocalizedStyleName(l10n, entry['styleName'] as String?);
 
