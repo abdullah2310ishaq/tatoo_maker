@@ -31,7 +31,6 @@ class _HistoryPageState extends State<HistoryPage> {
   List<Map<String, dynamic>> _creation = [];
   List<Map<String, dynamic>> _tattoo = [];
   List<Map<String, dynamic>> _flower = [];
-  List<Map<String, dynamic>> _favorites = [];
 
   bool _loading = true;
   int _activeTab = 0; // 0=Creation, 1=Tattoo, 2=Flower (for tabIndex==0)
@@ -69,7 +68,6 @@ class _HistoryPageState extends State<HistoryPage> {
         _creation = creation;
         _tattoo = tattoo;
         _flower = flower;
-        _favorites = favoritesProvider.favorites;
         _loading = false;
       });
     }
@@ -181,7 +179,20 @@ class _HistoryPageState extends State<HistoryPage> {
               else
                 Expanded(
                   child: widget.tabIndex == 0
-                      ? _buildGrid(context, isDark, l10n, items, type)
+                      ? (_activeTab == 3
+                          ? Consumer<FavoritesProvider>(
+                              builder: (context, favoritesProvider, _) {
+                                final favItems = favoritesProvider.favorites;
+                                return _buildGrid(
+                                  context,
+                                  isDark,
+                                  l10n,
+                                  favItems,
+                                  'favorites',
+                                );
+                              },
+                            )
+                          : _buildGrid(context, isDark, l10n, items, type))
                       : widget.tabIndex == 1
                       ? _buildGrid(context, isDark, l10n, _tattoo, 'tattoo')
                       : _buildGrid(context, isDark, l10n, _flower, 'flower'),
@@ -202,7 +213,7 @@ class _HistoryPageState extends State<HistoryPage> {
         ? _tattoo
         : _activeTab == 2
         ? _flower
-        : _favorites;
+        : const <Map<String, dynamic>>[];
   }
 
   String get _currentType {
