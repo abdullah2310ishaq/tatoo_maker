@@ -748,6 +748,9 @@ class AppLocalizationsPt extends AppLocalizations {
       'Sem conexão com a Internet. Verifique sua rede.';
 
   @override
+  String get splashAdMayShowNotice => 'This action may perform an ad.';
+
+  @override
   String get exploreCategoryMinimal => 'Tatuagens minimalistas';
 
   @override

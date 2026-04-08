@@ -751,6 +751,9 @@ class AppLocalizationsFr extends AppLocalizations {
       'Pas de connexion Internet. Veuillez vérifier votre réseau.';
 
   @override
+  String get splashAdMayShowNotice => 'This action may perform an ad.';
+
+  @override
   String get exploreCategoryMinimal => 'Tatouages minimalistes';
 
   @override

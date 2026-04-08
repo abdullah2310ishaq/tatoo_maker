@@ -872,6 +872,10 @@
   },
   "noInternetConnectionSomeFeatures": "インターネットに接続されていません。一部の機能は使用できない場合があります。",
   "noInternetConnectionPleaseCheckNetwork": "インターネットに接続されていません。ネットワークを確認してください。",
+  "splashAdMayShowNotice": "This action may perform an ad.",
+  "@splashAdMayShowNotice": {
+    "description": "Splash screen notice shown only for second-time users when splash ads may run"
+  },
   "homeSeeAll": "すべて表示",
   "@homeSeeAll": {
     "description": "Home: See all link for category row"

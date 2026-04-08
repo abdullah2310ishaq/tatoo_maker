@@ -2,14 +2,13 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
-import '../services/admob_ids.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../utils/toast.dart';
 import '../utils/image_processing_isolates.dart';
 import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
@@ -144,7 +143,24 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     } catch (e) {
       print('FlowerLoadingScreen: Error generating floral tattoo: $e');
       if (mounted) {
-        // Navigate even on error, result screen will handle it
+        final isNetworkError =
+            e is SocketException ||
+            e.toString().contains('SocketException') ||
+            e.toString().contains('host lookup') ||
+            e.toString().contains('Failed host lookup');
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          final l10n = AppLocalizations.of(context)!;
+          AppToast.show(
+            context,
+            message: isNetworkError
+                ? l10n.noInternetConnectionPleaseCheckNetwork
+                : 'Error generating. Try again after sometime.',
+            isSuccess: false,
+            duration: const Duration(seconds: 3),
+          );
+        });
+        // Navigate immediately on error: show fallback ResultScreen without ads/paywall.
         await _navigateToResult();
       }
     }
@@ -163,16 +179,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
         imageBytes: _generatedImageBytes!,
       );
     }
-    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-    if (!isPro) {
-      debugPrint(
-        '[FlowerLoadingScreen] step 1/3: loading interstitial before result',
-      );
-      await _showInterstitialAdIfAvailable();
-      debugPrint('[FlowerLoadingScreen] step 2/3: interstitial flow completed');
-    } else {
-      debugPrint('[FlowerLoadingScreen] skip interstitial: user is PRO');
-    }
+    // Ads removed from this flow for now.
     if (mounted) {
       debugPrint('[FlowerLoadingScreen] step 3/3: opening FlowerResultScreen');
       Navigator.of(context).pushReplacement(
@@ -184,53 +191,6 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
         ),
       );
     }
-  }
-
-  Future<void> _showInterstitialAdIfAvailable() async {
-    if (!mounted) return;
-    final unitId = AdmobIds.interstitialUnitId();
-    if (unitId.isEmpty) {
-      debugPrint('[FlowerLoadingScreen] interstitial skipped: empty unit id');
-      return;
-    }
-
-    final completer = Completer<void>();
-    InterstitialAd.load(
-      adUnitId: unitId,
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          debugPrint('[FlowerLoadingScreen] interstitial loaded');
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdShowedFullScreenContent: (_) {
-              debugPrint('[FlowerLoadingScreen] interstitial shown');
-            },
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              debugPrint('[FlowerLoadingScreen] interstitial dismissed');
-              if (!completer.isCompleted) completer.complete();
-            },
-            onAdFailedToShowFullScreenContent: (ad, _) {
-              ad.dispose();
-              debugPrint('[FlowerLoadingScreen] interstitial failed to show');
-              if (!completer.isCompleted) completer.complete();
-            },
-          );
-          try {
-            ad.show();
-          } catch (_) {
-            ad.dispose();
-            if (!completer.isCompleted) completer.complete();
-          }
-        },
-        onAdFailedToLoad: (error) {
-          debugPrint('[FlowerLoadingScreen] interstitial failed to load: $error');
-          if (!completer.isCompleted) completer.complete();
-        },
-      ),
-    );
-
-    await completer.future;
   }
 
   @override

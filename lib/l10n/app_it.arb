@@ -916,6 +916,10 @@
   "@noInternetConnectionPleaseCheckNetwork": {
     "description": "Toast during generation when network fails"
   },
+  "splashAdMayShowNotice": "This action may perform an ad.",
+  "@splashAdMayShowNotice": {
+    "description": "Splash screen notice shown only for second-time users when splash ads may run"
+  },
   "exploreCategoryMinimal": "Tatuaggi minimalisti",
   "@exploreCategoryMinimal": {
     "description": "Explore category: Minimal Tattoos"

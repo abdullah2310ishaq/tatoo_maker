@@ -56,6 +56,10 @@ class _ResultScreenState extends State<ResultScreen> {
         debugPrint('[ResultScreen] skip auto paywall: showProAccessOnOpen=false');
         return;
       }
+      if (widget.generatedImageBytes == null) {
+        debugPrint('[ResultScreen] skip auto paywall: hasImage=false');
+        return;
+      }
 
       final usage = context.read<UsageLimitProvider>();
       if (usage.isProUnlocked) {

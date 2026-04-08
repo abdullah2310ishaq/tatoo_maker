@@ -14,9 +14,13 @@ class RemoteConfigService extends ChangeNotifier {
 
   /// Defaults: birthday flags, **production** IDs, and Google **test** IDs (same as [AdmobIds]).
   static const Map<String, dynamic> defaults = <String, dynamic>{
+    // Boolean feature flags — FOR NOW default ON (can be overridden in Firebase).
     RemoteConfigKeys.tattooBirthdayAdsAll: true,
     RemoteConfigKeys.tattooBirthdayBanner: true,
     RemoteConfigKeys.tattooBirthdayNative: true,
+    RemoteConfigKeys.tattooIdeaAdsAll: true,
+    RemoteConfigKeys.tattooIdeaBanner: true,
+    RemoteConfigKeys.tattooIdeaNative: true,
     RemoteConfigKeys.tattooStyleSelectionAdsAll: true,
     RemoteConfigKeys.tattooStyleSelectionBanner: true,
     RemoteConfigKeys.tattooStyleSelectionNative: true,
@@ -26,7 +30,7 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.admobAndroidNative:
         'ca-app-pub-5408098781737794/3919748102',
     RemoteConfigKeys.admobAndroidAppOpen:
-        'ca-app-pub-5408098781737794/4589831949',
+        'ca-app-pub-5408098781737794/2580813955',
     RemoteConfigKeys.admobAndroidInterstitial:
         'ca-app-pub-5408098781737794/5232829779',
     // Google sample test units (Android) — debug / QA
@@ -35,9 +39,20 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.admobAndroidNativeTest:
         'ca-app-pub-3940256099942544/2247696110',
     RemoteConfigKeys.admobAndroidAppOpenTest:
-        'ca-app-pub-3940256099942544/3419835294',
+        // Use the official Google demo App Open unit that works reliably in debug.
+        // (Some AdMob sample IDs can fail with "doesn't match format" depending on setup.)
+        'ca-app-pub-3940256099942544/9257395921',
     RemoteConfigKeys.admobAndroidInterstitialTest:
         'ca-app-pub-3940256099942544/1033173712',
+
+    // Splash screen ad/text toggles.
+    // FOR NOW default ON (can be overridden in Firebase).
+    RemoteConfigKeys.splashAdsAndTextEnabled: true,
+    // App Open has priority on splash (interstitial can be enabled via Firebase).
+    RemoteConfigKeys.splashShowInterstitial: false,
+    RemoteConfigKeys.splashShowAppOpen: true,
+
+    RemoteConfigKeys.firstLanguageOnboardingEnabled: true,
   };
 
   Future<void> initialize() async {
@@ -75,6 +90,15 @@ class RemoteConfigService extends ChangeNotifier {
   bool get tattooBirthdayShowNative =>
       tattooBirthdayAdsAll &&
       _rc.getBool(RemoteConfigKeys.tattooBirthdayNative);
+
+  /// Master: `false` ⇒ no banner and no native on tattoo idea (step 4) screen.
+  bool get tattooIdeaAdsAll => _rc.getBool(RemoteConfigKeys.tattooIdeaAdsAll);
+
+  bool get tattooIdeaShowBanner =>
+      tattooIdeaAdsAll && _rc.getBool(RemoteConfigKeys.tattooIdeaBanner);
+
+  bool get tattooIdeaShowNative =>
+      tattooIdeaAdsAll && _rc.getBool(RemoteConfigKeys.tattooIdeaNative);
 
   /// Master: `false` ⇒ no banner and no native on style selection (last) step.
   bool get tattooStyleSelectionAdsAll =>
@@ -114,4 +138,20 @@ class RemoteConfigService extends ChangeNotifier {
 
   String get admobAndroidInterstitialTestUnitId =>
       _admobString(RemoteConfigKeys.admobAndroidInterstitialTest);
+
+  bool get splashAdsAndTextEnabled =>
+      _rc.getBool(RemoteConfigKeys.splashAdsAndTextEnabled);
+
+  bool get splashShowInterstitial =>
+      splashAdsAndTextEnabled &&
+      _rc.getBool(RemoteConfigKeys.splashShowInterstitial);
+
+  bool get splashShowAppOpen =>
+      splashAdsAndTextEnabled &&
+      _rc.getBool(RemoteConfigKeys.splashShowAppOpen);
+
+  /// When `false`, skip the first language selection onboarding screen and go
+  /// directly to the main onboarding flow.
+  bool get firstLanguageOnboardingEnabled =>
+      _rc.getBool(RemoteConfigKeys.firstLanguageOnboardingEnabled);
 }

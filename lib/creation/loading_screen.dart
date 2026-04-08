@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import '../utils/colors.dart';
@@ -12,7 +11,6 @@ import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import '../utils/image_processing_isolates.dart';
 import '../providers/usage_limit_provider.dart';
-import '../services/admob_ids.dart';
 import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
 import '../l10n/app_localizations.dart';
@@ -276,25 +274,25 @@ class _LoadingScreenState extends State<LoadingScreen>
           e.toString().contains('SocketException') ||
           e.toString().contains('host lookup') ||
           e.toString().contains('Failed host lookup');
-      if (mounted && isNetworkError) {
+      if (mounted) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
           final l10n = AppLocalizations.of(context)!;
           AppToast.show(
             context,
-            message: l10n.noInternetConnectionPleaseCheckNetwork,
+            message: isNetworkError
+                ? l10n.noInternetConnectionPleaseCheckNetwork
+                : 'Error generating. Try again after sometime.',
             isSuccess: false,
             duration: const Duration(seconds: 3),
           );
         });
       }
 
-      // Still navigate after 3 seconds even on error
-      _navigationTimer = Timer(const Duration(seconds: 3), () {
-        if (mounted) {
-          unawaited(_navigateToResult());
-        }
-      });
+      // Navigate immediately on error: show fallback ResultScreen without ads/paywall.
+      if (mounted) {
+        unawaited(_navigateToResult());
+      }
     }
   }
 
@@ -324,21 +322,14 @@ class _LoadingScreenState extends State<LoadingScreen>
         );
       }
     }
-    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-    if (!isPro) {
-      debugPrint('[LoadingScreen] step 1/3: loading interstitial before result');
-      await _showInterstitialAdIfAvailable();
-      debugPrint('[LoadingScreen] step 2/3: interstitial flow completed');
-    } else {
-      debugPrint('[LoadingScreen] skip interstitial: user is PRO');
-    }
+    // Ads removed from this flow for now.
     if (mounted) {
       final nextResult = ResultScreen(
         styleName: styleName,
         promptText: widget.promptText,
         generatedImageBytes: _generatedImageBytes,
-        // From generation flow: always allow ResultScreen to show paywall for non-PRO.
-        showProAccessOnOpen: true,
+        // Show paywall only when an image actually exists.
+        showProAccessOnOpen: _generatedImageBytes != null,
       );
       debugPrint('[LoadingScreen] step 3/3: opening ResultScreen');
 
@@ -348,53 +339,6 @@ class _LoadingScreenState extends State<LoadingScreen>
         ),
       );
     }
-  }
-
-  Future<void> _showInterstitialAdIfAvailable() async {
-    if (!mounted) return;
-    final unitId = AdmobIds.interstitialUnitId();
-    if (unitId.isEmpty) {
-      debugPrint('[LoadingScreen] interstitial skipped: empty unit id');
-      return;
-    }
-
-    final completer = Completer<void>();
-    InterstitialAd.load(
-      adUnitId: unitId,
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          debugPrint('[LoadingScreen] interstitial loaded');
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdShowedFullScreenContent: (_) {
-              debugPrint('[LoadingScreen] interstitial shown');
-            },
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              debugPrint('[LoadingScreen] interstitial dismissed');
-              if (!completer.isCompleted) completer.complete();
-            },
-            onAdFailedToShowFullScreenContent: (ad, _) {
-              ad.dispose();
-              debugPrint('[LoadingScreen] interstitial failed to show');
-              if (!completer.isCompleted) completer.complete();
-            },
-          );
-          try {
-            ad.show();
-          } catch (_) {
-            ad.dispose();
-            if (!completer.isCompleted) completer.complete();
-          }
-        },
-        onAdFailedToLoad: (error) {
-          debugPrint('[LoadingScreen] interstitial failed to load: $error');
-          if (!completer.isCompleted) completer.complete();
-        },
-      ),
-    );
-
-    await completer.future;
   }
 
   @override

@@ -1412,6 +1412,12 @@ abstract class AppLocalizations {
   /// **'No internet connection. Please check your network.'**
   String get noInternetConnectionPleaseCheckNetwork;
 
+  /// Splash screen notice shown only for second-time users when splash ads may run
+  ///
+  /// In en, this message translates to:
+  /// **'This action may perform an ad.'**
+  String get splashAdMayShowNotice;
+
   /// Explore category: Minimal Tattoos
   ///
   /// In en, this message translates to:

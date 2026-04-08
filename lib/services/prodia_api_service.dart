@@ -12,7 +12,7 @@ class ProdiaApiService {
   static const String _apiToken =
       'eyJhbGciOiJkaXIiLCJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIn0.._k05Twd72f3VpXEH.NTMw5WDFlsZQqc67PCWmPZKER_yUMNeUdR63goeffclZVsaEsMSnZu8_8KKNWmBH0KCWS3eeuoIoNxo7rAA6BPdtMXyM9rwHq2n3_L9dai9Abps_0ids6xAsA5Wo_WiGhwuxc_3eM1nWWYc_AmMz5zapabbOe3LwriCIGGpABnlSfw7fa8frQtNPyMFuBYGxUeScbk9H88c01R0-7ZMvIeEh_RfluDOgKeQY7MYAnbJOAAl1vkTKmo770ATG8MHkM5sP2Dno-ifMSpLyvzVfxNkoRXHAQ5mwykoQaCgYZu7y8DUiAZtb6S9JZB12GN8sF7Inj2PWfsAHd1p7bFboFiW1at8dQgLerWPOLY0IBNKChbCkez2wmqZ-bRkPz6nANz5Vez2hQ4UPudY6etNo0eIyXYF_jLO1LLbZ2ywC-4SgIU_SZOME4voli39IkmpWfk1_slFnh1GYI5cpZbmgKtjvRB9fKmVoc2WnkHxO6KXindAgIUMvOAjchQ9jN185p7gync-_gGki6CNNSaZFIikou2bJ946kNhf8Ev3uXcJqt1g.dPB0ImNvlLDFk3mBz9Xm2g';
   static const String _togetherApiToken =
-      '627e8feafb5fea1872f66e9b0e886fc104116b8132bc43ad20fddde9673f64ae';
+      'tgp_v1_PBiwOrgnqKgNKkewNBb2O4Uu67TGjJCXGPCM99j1eN4';
 
   final Map<String, String> _headers = {'Authorization': 'Bearer $_apiToken'};
 
@@ -53,7 +53,9 @@ class ProdiaApiService {
         body: jsonEncode(requestBody),
       );
 
-      print('ProdiaApiService: Together response status: ${response.statusCode}');
+      print(
+        'ProdiaApiService: Together response status: ${response.statusCode}',
+      );
       if (response.statusCode != 200) {
         print('ProdiaApiService: Together error body: ${response.body}');
         throw Exception(

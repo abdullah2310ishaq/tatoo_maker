@@ -1,9 +1,12 @@
 import 'dart:io';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'utils/colors.dart';
 import 'utils/toast.dart';
@@ -14,6 +17,8 @@ import 'flower/flower_home.dart';
 import 'widgets/app_drawer.dart';
 import 'widgets/exit_confirmation_dialog.dart';
 import 'providers/theme_provider.dart';
+import 'providers/usage_limit_provider.dart';
+import 'services/admob_ids.dart';
 import 'services/history_service.dart';
 import 'pro_access_screen.dart';
 
@@ -30,6 +35,8 @@ class _HomeShellState extends State<HomeShell> {
   bool _generateEnabled = false;
   VoidCallback? _onGenerateTap;
   bool _hasShownConnectivityToast = false;
+  int _navBarTapCount = 0;
+  bool _isShowingNavInterstitial = false;
 
   @override
   void initState() {
@@ -76,13 +83,87 @@ class _HomeShellState extends State<HomeShell> {
     });
   }
 
-  void _onItemTapped(int index) {
+  Future<void> _onItemTapped(int index) async {
     // When switching tabs, remove focus from any text fields so the keyboard
     // does not automatically open when returning to the home screen.
     FocusScope.of(context).unfocus();
+
+    _navBarTapCount += 1;
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    final shouldShowInterstitial =
+        !isPro && _navBarTapCount % 4 == 0 && !_isShowingNavInterstitial;
+
+    if (shouldShowInterstitial) {
+      _isShowingNavInterstitial = true;
+      try {
+        await _showInterstitialAdIfAvailable();
+      } finally {
+        _isShowingNavInterstitial = false;
+      }
+    }
+
+    if (!mounted) return;
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  Future<void> _showInterstitialAdIfAvailable({
+    bool didRetry = false,
+    String? unitIdOverride,
+  }) async {
+    final unitId = unitIdOverride ?? AdmobIds.interstitialUnitId();
+    if (unitId.isEmpty) return;
+
+    final testUnitId = AdmobIds.interstitialTestUnitId();
+    int? errorCode;
+
+    final completer = Completer<void>();
+    InterstitialAd.load(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              if (!completer.isCompleted) completer.complete();
+            },
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              ad.dispose();
+              errorCode = error.code;
+              if (!completer.isCompleted) completer.complete();
+            },
+          );
+          try {
+            ad.show();
+          } catch (_) {
+            ad.dispose();
+            if (!completer.isCompleted) completer.complete();
+          }
+        },
+        onAdFailedToLoad: (error) {
+          errorCode = error.code;
+          if (!completer.isCompleted) completer.complete();
+        },
+      ),
+    );
+
+    try {
+      await completer.future.timeout(const Duration(seconds: 5));
+    } catch (_) {
+      // Avoid blocking navigation forever.
+    }
+
+    if (!didRetry &&
+        errorCode == 3 &&
+        testUnitId.isNotEmpty &&
+        testUnitId != unitId) {
+      await _showInterstitialAdIfAvailable(
+        didRetry: true,
+        unitIdOverride: testUnitId,
+      );
+    }
   }
 
   void openDrawer() {
@@ -369,7 +450,7 @@ class _HomeShellState extends State<HomeShell> {
 
     return Expanded(
       child: GestureDetector(
-        onTap: () => _onItemTapped(index),
+        onTap: () => unawaited(_onItemTapped(index)),
         behavior: HitTestBehavior.opaque,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 12.w),

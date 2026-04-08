@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,6 +24,13 @@ void main() async {
   await Firebase.initializeApp();
   await RemoteConfigService.instance.initialize();
   await MobileAds.instance.initialize();
+  if (kDebugMode) {
+    await MobileAds.instance.updateRequestConfiguration(
+      RequestConfiguration(
+        testDeviceIds: const ['70CF55242CE18F7DA1D476CAEEB9E92F'],
+      ),
+    );
+  }
   // Lock app orientation so it does not rotate.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -41,14 +49,22 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   late final AppOpenAdService _appOpenAdService;
   late final UsageLimitProvider _usageLimitProvider;
   DateTime? _pausedAt;
+  static const String _prefsProUnlockedKey = 'usage_pro_unlocked';
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _appOpenAdService = AppOpenAdService();
+    // Show on every meaningful "resume from background" without a long throttle.
+    // Cold start won't show because `_pausedAt` is null then.
+    _appOpenAdService = AppOpenAdService.instance
+      ..configure(minIntervalBetweenShows: Duration.zero);
     _usageLimitProvider = UsageLimitProvider();
-    _appOpenAdService.preload();
+    // Avoid hammering startup with an AppOpen load during heavy init.
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future<void>.delayed(const Duration(seconds: 3));
+      await _appOpenAdService.preload();
+    });
     _loadThemePreference();
   }
 
@@ -57,6 +73,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     switch (state) {
       case AppLifecycleState.paused:
         _pausedAt = DateTime.now();
+        // Preload while app is backgrounded so it's ready on resume.
+        _appOpenAdService.preload();
         break;
       case AppLifecycleState.resumed:
         _maybeShowAppOpenAdOnResume();
@@ -71,14 +89,27 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     final pausedAt = _pausedAt;
     if (pausedAt == null) return;
 
-    final elapsed = DateTime.now().difference(pausedAt);
-    // Ignore super quick interruptions (e.g. permission dialogs / system overlays).
-    if (elapsed < const Duration(seconds: 3)) return;
+    // Ignore super-quick task switching (prevents spammy show attempts).
+    if (DateTime.now().difference(pausedAt) < const Duration(seconds: 2)) {
+      return;
+    }
 
     if (!mounted) return;
-    final isPro = _usageLimitProvider.isProUnlocked;
-    if (isPro) return;
 
+    // IMPORTANT: UsageLimitProvider loads async; on a fresh resume it might still
+    // be on the default `false` value. Read from prefs to avoid showing to PRO.
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final isPro = prefs.getBool(_prefsProUnlockedKey) ?? false;
+      if (isPro) return;
+    } catch (_) {
+      // If prefs fails, fall back to in-memory provider value.
+      if (_usageLimitProvider.isProUnlocked) return;
+    }
+
+    if (kDebugMode) {
+      debugPrint('[AppOpen] resume->show');
+    }
     await _appOpenAdService.showIfAvailable();
   }
 

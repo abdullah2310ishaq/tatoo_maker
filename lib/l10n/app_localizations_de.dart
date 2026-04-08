@@ -744,6 +744,9 @@ class AppLocalizationsDe extends AppLocalizations {
       'Keine Internetverbindung. Bitte überprüfe dein Netzwerk.';
 
   @override
+  String get splashAdMayShowNotice => 'This action may perform an ad.';
+
+  @override
   String get exploreCategoryMinimal => 'Minimale Tattoos';
 
   @override

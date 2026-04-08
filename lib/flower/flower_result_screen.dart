@@ -46,6 +46,11 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || _didAutoShowPaywall) return;
 
+      if (widget.generatedImageBytes == null) {
+        debugPrint('[FlowerResultScreen] skip auto paywall: hasImage=false');
+        return;
+      }
+
       final usage = context.read<UsageLimitProvider>();
       if (usage.isProUnlocked) {
         debugPrint('[FlowerResultScreen] skip auto paywall: user is PRO');

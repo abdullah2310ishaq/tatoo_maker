@@ -138,7 +138,8 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                     physics: const ClampingScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 2.5,
+                      // Slightly shorter cards.
+                      childAspectRatio: 2.6,
                       crossAxisSpacing: 16.w,
                       mainAxisSpacing: 16.h,
                     ),
@@ -239,18 +240,18 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
               : null,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
           child: Row(
             children: [
               // Flag Icon
               SizedBox(
-                width: 32.w,
-                height: 32.h,
+                width: 30.w,
+                height: 30.h,
                 child: (language['isPng'] as bool? ?? false)
                     ? Image.asset(
                         language['imageAsset'] as String,
-                        width: 32.w,
-                        height: 32.h,
+                        width: 30.w,
+                        height: 30.h,
                         fit: BoxFit.contain,
                         errorBuilder: (context, _, __) => Text(
                           language['name'] as String,
@@ -263,8 +264,8 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                       )
                     : SvgPicture.asset(
                         language['imageAsset'] as String,
-                        width: 32.w,
-                        height: 32.h,
+                        width: 30.w,
+                        height: 30.h,
                         fit: BoxFit.contain,
                         placeholderBuilder: (context) =>
                             const SizedBox.shrink(),

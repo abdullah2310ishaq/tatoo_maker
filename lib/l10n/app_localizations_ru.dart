@@ -748,6 +748,9 @@ class AppLocalizationsRu extends AppLocalizations {
       'Нет подключения к интернету. Проверьте сеть.';
 
   @override
+  String get splashAdMayShowNotice => 'This action may perform an ad.';
+
+  @override
   String get exploreCategoryMinimal => 'Минималистические татуировки';
 
   @override

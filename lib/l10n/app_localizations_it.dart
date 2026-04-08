@@ -749,6 +749,9 @@ class AppLocalizationsIt extends AppLocalizations {
       'Nessuna connessione Internet. Controlla la connessione di rete.';
 
   @override
+  String get splashAdMayShowNotice => 'This action may perform an ad.';
+
+  @override
   String get exploreCategoryMinimal => 'Tatuaggi minimalisti';
 
   @override

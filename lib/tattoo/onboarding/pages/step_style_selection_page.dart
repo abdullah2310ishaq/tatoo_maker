@@ -113,7 +113,8 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
               setState(() => _nativeLoaded = visible);
             },
           ),
-          if (_nativeLoaded) SizedBox(height: 8.h),
+          // Keep it close to the button (more down) without leaving gaps when hidden.
+          if (_nativeLoaded) SizedBox(height: 6.h),
         ],
         // Next button
         OnboardingNextButton(

@@ -730,6 +730,9 @@ class AppLocalizationsKo extends AppLocalizations {
       '인터넷에 연결되어 있지 않습니다. 네트워크를 확인해 주세요.';
 
   @override
+  String get splashAdMayShowNotice => 'This action may perform an ad.';
+
+  @override
   String get exploreCategoryMinimal => '미니멀리스트 타투';
 
   @override

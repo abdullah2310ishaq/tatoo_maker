@@ -4,6 +4,10 @@ abstract final class RemoteConfigKeys {
   static const String tattooBirthdayBanner = 'tattoo_birthday_banner';
   static const String tattooBirthdayNative = 'tattoo_birthday_native';
 
+  static const String tattooIdeaAdsAll = 'tattoo_idea_ads_all';
+  static const String tattooIdeaBanner = 'tattoo_idea_banner';
+  static const String tattooIdeaNative = 'tattoo_idea_native';
+
   static const String tattooStyleSelectionAdsAll =
       'tattoo_style_selection_ads_all';
   static const String tattooStyleSelectionBanner =
@@ -27,4 +31,14 @@ abstract final class RemoteConfigKeys {
       'admob_android_app_open_test_unit_id';
   static const String admobAndroidInterstitialTest =
       'admob_android_interstitial_test_unit_id';
+
+  /// Splash screen ad/text toggles.
+  static const String splashAdsAndTextEnabled =
+      'splash_ads_and_text_enabled';
+  static const String splashShowInterstitial =
+      'splash_show_interstitial';
+  static const String splashShowAppOpen = 'splash_show_app_open';
+
+  static const String firstLanguageOnboardingEnabled =
+      'first_language_onboarding_enabled';
 }

@@ -872,6 +872,10 @@
   },
   "noInternetConnectionSomeFeatures": "Нет подключения к интернету. Некоторые функции могут быть недоступны.",
   "noInternetConnectionPleaseCheckNetwork": "Нет подключения к интернету. Проверьте сеть.",
+  "splashAdMayShowNotice": "This action may perform an ad.",
+  "@splashAdMayShowNotice": {
+    "description": "Splash screen notice shown only for second-time users when splash ads may run"
+  },
   "homeSeeAll": "Посмотреть все",
   "@homeSeeAll": {
     "description": "Home: See all link for category row"
