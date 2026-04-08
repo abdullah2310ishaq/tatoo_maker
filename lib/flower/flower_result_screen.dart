@@ -39,15 +39,12 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
   @override
   void initState() {
     super.initState();
-
-    if (widget.generatedImageBytes == null) {
-      debugPrint('[FlowerResultScreen] skip auto paywall: hasImage=false');
-      return;
-    }
+    debugPrint(
+      '[FlowerResultScreen] opened (hasImage=${widget.generatedImageBytes != null})',
+    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || _didAutoShowPaywall) return;
-      _didAutoShowPaywall = true;
 
       final usage = context.read<UsageLimitProvider>();
       if (usage.isProUnlocked) {
@@ -55,13 +52,17 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
         return;
       }
 
-      debugPrint('[FlowerResultScreen] showing ProAccessScreen on open');
+      if (!mounted || _didAutoShowPaywall) return;
+      _didAutoShowPaywall = true;
+      debugPrint(
+        '[FlowerResultScreen] showing ProAccessScreen after interstitial step',
+      );
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
-            nextScreen: _FlowerResultAfterPaywall(
+            nextScreen: FlowerResultScreen(
               name: widget.name,
-              generatedImageBytes: widget.generatedImageBytes!,
+              generatedImageBytes: widget.generatedImageBytes,
             ),
           ),
         ),
@@ -464,20 +465,5 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
         );
       }
     }
-  }
-}
-
-class _FlowerResultAfterPaywall extends StatelessWidget {
-  final String name;
-  final Uint8List generatedImageBytes;
-
-  const _FlowerResultAfterPaywall({
-    required this.name,
-    required this.generatedImageBytes,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return FlowerResultScreen(name: name, generatedImageBytes: generatedImageBytes);
   }
 }

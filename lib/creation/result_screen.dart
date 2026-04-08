@@ -45,26 +45,26 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   void initState() {
     super.initState();
-
-    // Auto-show paywall on result when an image exists.
-    // (Fixes cases where upstream flow forgets to pass the flag.)
-    if (widget.generatedImageBytes == null) {
-      debugPrint(
-        '[ResultScreen] skip auto paywall: hasImage=false',
-      );
-      return;
-    }
+    debugPrint(
+      '[ResultScreen] opened (hasImage=${widget.generatedImageBytes != null}, '
+      'showProAccessOnOpen=${widget.showProAccessOnOpen})',
+    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted || _didAutoShowPaywall) return;
-      _didAutoShowPaywall = true;
+      if (!widget.showProAccessOnOpen) {
+        debugPrint('[ResultScreen] skip auto paywall: showProAccessOnOpen=false');
+        return;
+      }
 
       final usage = context.read<UsageLimitProvider>();
       if (usage.isProUnlocked) {
         debugPrint('[ResultScreen] skip auto paywall: user is PRO');
         return;
       }
-      debugPrint('[ResultScreen] showing ProAccessScreen on open');
+      if (!mounted || _didAutoShowPaywall) return;
+      _didAutoShowPaywall = true;
+      debugPrint('[ResultScreen] showing ProAccessScreen after interstitial step');
 
       Navigator.of(context).push(
         MaterialPageRoute(

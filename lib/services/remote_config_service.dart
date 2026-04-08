@@ -17,6 +17,9 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.tattooBirthdayAdsAll: true,
     RemoteConfigKeys.tattooBirthdayBanner: true,
     RemoteConfigKeys.tattooBirthdayNative: true,
+    RemoteConfigKeys.tattooStyleSelectionAdsAll: true,
+    RemoteConfigKeys.tattooStyleSelectionBanner: true,
+    RemoteConfigKeys.tattooStyleSelectionNative: true,
     // Production (Android)
     RemoteConfigKeys.admobAndroidBanner:
         'ca-app-pub-5408098781737794/4430049847',
@@ -34,7 +37,7 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.admobAndroidAppOpenTest:
         'ca-app-pub-3940256099942544/3419835294',
     RemoteConfigKeys.admobAndroidInterstitialTest:
-        'ca-app-pub-3940256099942544/1044960115',
+        'ca-app-pub-3940256099942544/1033173712',
   };
 
   Future<void> initialize() async {
@@ -72,6 +75,18 @@ class RemoteConfigService extends ChangeNotifier {
   bool get tattooBirthdayShowNative =>
       tattooBirthdayAdsAll &&
       _rc.getBool(RemoteConfigKeys.tattooBirthdayNative);
+
+  /// Master: `false` ⇒ no banner and no native on style selection (last) step.
+  bool get tattooStyleSelectionAdsAll =>
+      _rc.getBool(RemoteConfigKeys.tattooStyleSelectionAdsAll);
+
+  bool get tattooStyleSelectionShowBanner =>
+      tattooStyleSelectionAdsAll &&
+      _rc.getBool(RemoteConfigKeys.tattooStyleSelectionBanner);
+
+  bool get tattooStyleSelectionShowNative =>
+      tattooStyleSelectionAdsAll &&
+      _rc.getBool(RemoteConfigKeys.tattooStyleSelectionNative);
 
   /// Trimmed AdMob unit id from Remote Config, or empty if missing (caller uses code fallback).
   String _admobString(String key) => _rc.getString(key).trim();

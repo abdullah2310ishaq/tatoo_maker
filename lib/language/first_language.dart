@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
+import '../providers/usage_limit_provider.dart';
+import '../services/admob_ids.dart';
 import '../services/locale_service.dart';
 import '../utils/colors.dart';
-import '../widgets/language_native_ad.dart';
 import '../real_onboarding/real_onboarding_flow.dart';
 
 /// First language selection screen - Light theme only (one-time onboarding)
@@ -153,7 +155,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                 ),
                 // Thin gap — less empty black strip above native.
                 SizedBox(height: 8.h),
-                LanguageNativeAd(isDark: true, compact: true),
+                const _FirstLanguageNativeAd(),
                 SizedBox(height: 10.h),
                 SizedBox(
                   width: double.infinity,
@@ -302,6 +304,86 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                 ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _FirstLanguageNativeAd extends StatefulWidget {
+  const _FirstLanguageNativeAd();
+
+  @override
+  State<_FirstLanguageNativeAd> createState() => _FirstLanguageNativeAdState();
+}
+
+class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
+  NativeAd? _nativeAd;
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  void _load() {
+    final unitId = AdmobIds.nativeUnitId();
+    if (unitId.isEmpty) return;
+
+    final ad = NativeAd(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      nativeTemplateStyle: NativeTemplateStyle(
+        templateType: TemplateType.small,
+        mainBackgroundColor: AppColors.navBarBackground,
+        cornerRadius: 12,
+      ),
+      listener: NativeAdListener(
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() {
+            _nativeAd = ad as NativeAd;
+            _loaded = true;
+          });
+        },
+        onAdFailedToLoad: (ad, _) {
+          ad.dispose();
+          if (!mounted) return;
+          setState(() {
+            _nativeAd = null;
+            _loaded = false;
+          });
+        },
+      ),
+    );
+
+    _nativeAd = ad;
+    ad.load();
+  }
+
+  @override
+  void dispose() {
+    _nativeAd?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    if (isPro) return const SizedBox.shrink();
+
+    final ad = _nativeAd;
+    if (!_loaded || ad == null) return SizedBox(height: 4.h);
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: 4.h),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.r),
+        child: SizedBox(
+          width: double.infinity,
+          height: 81.h,
+          child: AdWidget(ad: ad),
         ),
       ),
     );

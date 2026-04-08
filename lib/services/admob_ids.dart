@@ -5,7 +5,7 @@ import 'remote_config_service.dart';
 /// AdMob unit IDs for **Android only** (this app does not ship on iOS).
 ///
 /// **Release / profile:** production IDs from Remote Config when initialized, else compile-time prod.
-/// **Debug:** Remote Config **test** keys ([RemoteConfigKeys.admobAndroid*Test]), else compile-time test IDs.
+/// **Debug:** always Google sample **test** IDs (Remote Config test overrides disabled for stability).
 class AdmobIds {
   // Production — from `admob_ids.md` / AdMob (Android).
   static const String _prodBanner = 'ca-app-pub-5408098781737794/4430049847';
@@ -17,13 +17,12 @@ class AdmobIds {
   static const String _testBanner = 'ca-app-pub-3940256099942544/6300978111';
   static const String _testAppOpen = 'ca-app-pub-3940256099942544/3419835294';
   static const String _testNative = 'ca-app-pub-3940256099942544/2247696110'; 
-  static const String _testInterstitial = 'ca-app-pub-3940256099942544/1044960115';
+  static const String _testInterstitial = 'ca-app-pub-3940256099942544/1033173712';
 
   static String bannerUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
     if (kDebugMode) {
-      final o = _rcBannerTest();
-      return o.isNotEmpty ? o : _testBanner;
+      return _testBanner;
     }
     final o = _rcBanner();
     return o.isNotEmpty ? o : _prodBanner;
@@ -32,8 +31,7 @@ class AdmobIds {
   static String appOpenUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
     if (kDebugMode) {
-      final o = _rcAppOpenTest();
-      return o.isNotEmpty ? o : _testAppOpen;
+      return _testAppOpen;
     }
     final o = _rcAppOpen();
     return o.isNotEmpty ? o : _prodAppOpen;
@@ -42,8 +40,7 @@ class AdmobIds {
   static String nativeUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
     if (kDebugMode) {
-      final o = _rcNativeTest();
-      return o.isNotEmpty ? o : _testNative;
+      return _testNative;
     }
     final o = _rcNative();
     return o.isNotEmpty ? o : _prodNative;
@@ -52,8 +49,7 @@ class AdmobIds {
   static String interstitialUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
     if (kDebugMode) {
-      final o = _rcInterstitialTest();
-      return o.isNotEmpty ? o : _testInterstitial;
+      return _testInterstitial;
     }
     final o = _rcInterstitial();
     return o.isNotEmpty ? o : _prodInterstitial;
@@ -79,23 +75,4 @@ class AdmobIds {
     return RemoteConfigService.instance.admobAndroidInterstitialUnitId;
   }
 
-  static String _rcBannerTest() {
-    if (!RemoteConfigService.instance.isInitialized) return '';
-    return RemoteConfigService.instance.admobAndroidBannerTestUnitId;
-  }
-
-  static String _rcNativeTest() {
-    if (!RemoteConfigService.instance.isInitialized) return '';
-    return RemoteConfigService.instance.admobAndroidNativeTestUnitId;
-  }
-
-  static String _rcAppOpenTest() {
-    if (!RemoteConfigService.instance.isInitialized) return '';
-    return RemoteConfigService.instance.admobAndroidAppOpenTestUnitId;
-  }
-
-  static String _rcInterstitialTest() {
-    if (!RemoteConfigService.instance.isInitialized) return '';
-    return RemoteConfigService.instance.admobAndroidInterstitialTestUnitId;
-  }
 }

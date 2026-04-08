@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../providers/usage_limit_provider.dart';
+import '../../../services/admob_ids.dart';
+import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
-import '../widgets/tattoo_birthday_ads.dart';
 
 class StepBirthdayPage extends StatefulWidget {
   final int selectedMonth;
@@ -77,7 +81,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OnboardingHeader(currentStep: 2, onBack: widget.onBack),
-        const TattooBirthdayBannerAd(),
+        const _BirthdayBannerAd(),
         SizedBox(height: 40.h),
         // Question and date
         Column(
@@ -113,7 +117,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
           ),
         ),
         const Spacer(),
-        TattooBirthdayNativeAd(isDark: isDark),
+        _BirthdayNativeAd(isDark: isDark),
         // Next button
         OnboardingNextButton(
           enabled: _isDateValid(), // Disabled if date is in future or invalid
@@ -249,6 +253,183 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
             },
             childCount: items.length,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BirthdayBannerAd extends StatefulWidget {
+  const _BirthdayBannerAd();
+
+  @override
+  State<_BirthdayBannerAd> createState() => _BirthdayBannerAdState();
+}
+
+class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
+  BannerAd? _ad;
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  void _load() {
+    final unitId = AdmobIds.bannerUnitId();
+    if (unitId.isEmpty) return;
+
+    final ad = BannerAd(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() {
+            _ad = ad as BannerAd;
+            _loaded = true;
+          });
+        },
+        onAdFailedToLoad: (ad, _) {
+          ad.dispose();
+          if (!mounted) return;
+          setState(() {
+            _ad = null;
+            _loaded = false;
+          });
+        },
+      ),
+    );
+
+    _ad = ad;
+    ad.load();
+  }
+
+  @override
+  void dispose() {
+    _ad?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final rc = context.watch<RemoteConfigService>();
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    if (isPro || !rc.tattooBirthdayShowBanner) return const SizedBox.shrink();
+
+    final ad = _ad;
+    if (!_loaded || ad == null) return const SizedBox.shrink();
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SafeArea(
+          bottom: false,
+          child: Center(
+            child: SizedBox(
+              width: ad.size.width.toDouble(),
+              height: ad.size.height.toDouble(),
+              child: AdWidget(ad: ad),
+            ),
+          ),
+        ),
+        SizedBox(height: 12.h),
+      ],
+    );
+  }
+}
+
+class _BirthdayNativeAd extends StatefulWidget {
+  const _BirthdayNativeAd({required this.isDark});
+
+  final bool isDark;
+
+  @override
+  State<_BirthdayNativeAd> createState() => _BirthdayNativeAdState();
+}
+
+class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
+  NativeAd? _ad;
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  @override
+  void didUpdateWidget(covariant _BirthdayNativeAd oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isDark == widget.isDark) return;
+    _ad?.dispose();
+    _ad = null;
+    _loaded = false;
+    _load();
+  }
+
+  void _load() {
+    final unitId = AdmobIds.nativeUnitId();
+    if (unitId.isEmpty) return;
+
+    final ad = NativeAd(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      nativeTemplateStyle: NativeTemplateStyle(
+        templateType: TemplateType.small,
+        mainBackgroundColor: widget.isDark
+            ? AppColors.navBarBackground
+            : AppColors.lightBackground,
+        cornerRadius: 12,
+      ),
+      listener: NativeAdListener(
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() {
+            _ad = ad as NativeAd;
+            _loaded = true;
+          });
+        },
+        onAdFailedToLoad: (ad, _) {
+          ad.dispose();
+          if (!mounted) return;
+          setState(() {
+            _ad = null;
+            _loaded = false;
+          });
+        },
+      ),
+    );
+
+    _ad = ad;
+    ad.load();
+  }
+
+  @override
+  void dispose() {
+    _ad?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final rc = context.watch<RemoteConfigService>();
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    if (isPro || !rc.tattooBirthdayShowNative) return const SizedBox.shrink();
+
+    final ad = _ad;
+    if (!_loaded || ad == null) return const SizedBox.shrink();
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8.h),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.r),
+        child: SizedBox(
+          width: double.infinity,
+          height: 81.h,
+          child: AdWidget(ad: ad),
         ),
       ),
     );

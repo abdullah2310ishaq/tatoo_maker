@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../providers/usage_limit_provider.dart';
+import '../../../services/admob_ids.dart';
+import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../models/onboarding_models.dart';
 import '../utils/zodiac_utils.dart';
@@ -26,16 +31,53 @@ class StepStyleSelectionPage extends StatefulWidget {
 }
 
 class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
+  bool _bannerLoaded = false;
+  bool _nativeLoaded = false;
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final styles = getTattooStyles(context, isDark);
 
+    final rc = context.watch<RemoteConfigService>();
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    final shouldShowBanner = !isPro && rc.tattooStyleSelectionShowBanner;
+    final shouldShowNative = !isPro && rc.tattooStyleSelectionShowNative;
+
+    // If Remote Config/Pro disables ads while we previously marked them visible,
+    // reset state after this frame to keep "no ads" layout identical.
+    if (!shouldShowBanner && _bannerLoaded) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (_bannerLoaded) setState(() => _bannerLoaded = false);
+      });
+    }
+    if (!shouldShowNative && _nativeLoaded) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (_nativeLoaded) setState(() => _nativeLoaded = false);
+      });
+    }
+
+    // Exactly original when no ads are actually visible.
+    final adsActuallyVisible = _bannerLoaded || _nativeLoaded;
+    // Original when no ads, noticeably bigger only when ads show.
+    final styleRowHeight = adsActuallyVisible ? 225.h : 190.h;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OnboardingHeader(currentStep: 5, onBack: widget.onBack),
+        if (shouldShowBanner) ...[
+          _StyleSelectionBannerAd(
+            onVisibilityChanged: (visible) {
+              if (_bannerLoaded == visible) return;
+              setState(() => _bannerLoaded = visible);
+            },
+          ),
+          if (_bannerLoaded) SizedBox(height: 12.h),
+        ],
         SizedBox(height: 40.h),
         // Question
         Text(
@@ -49,22 +91,30 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
         ),
         SizedBox(height: 30.h),
         // Style selection
-        Expanded(
-          child: SizedBox(
-            height: 190.h,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: styles.length,
-              separatorBuilder: (_, __) => SizedBox(width: 16.w),
-              itemBuilder: (context, index) {
-                final item = styles[index];
-                final bool isSelected = widget.selectedStyleIndex == index;
-                return _buildStyleCard(item, index, isSelected, isDark);
-              },
-            ),
+        SizedBox(
+          height: styleRowHeight,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: styles.length,
+            separatorBuilder: (_, __) => SizedBox(width: 16.w),
+            itemBuilder: (context, index) {
+              final item = styles[index];
+              final bool isSelected = widget.selectedStyleIndex == index;
+              return _buildStyleCard(item, index, isSelected, isDark);
+            },
           ),
         ),
         const Spacer(),
+        if (shouldShowNative) ...[
+          _StyleSelectionNativeAd(
+            isDark: isDark,
+            onVisibilityChanged: (visible) {
+              if (_nativeLoaded == visible) return;
+              setState(() => _nativeLoaded = visible);
+            },
+          ),
+          if (_nativeLoaded) SizedBox(height: 8.h),
+        ],
         // Next button
         OnboardingNextButton(
           enabled: widget.selectedStyleIndex != null,
@@ -145,6 +195,208 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Dedicated banner ad for style-selection step (page-specific implementation).
+class _StyleSelectionBannerAd extends StatefulWidget {
+  const _StyleSelectionBannerAd({required this.onVisibilityChanged});
+
+  final ValueChanged<bool> onVisibilityChanged;
+
+  @override
+  State<_StyleSelectionBannerAd> createState() =>
+      _StyleSelectionBannerAdState();
+}
+
+class _StyleSelectionBannerAdState extends State<_StyleSelectionBannerAd> {
+  BannerAd? _ad;
+  bool _loaded = false;
+  bool _lastEmitted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAd();
+  }
+
+  void _emit(bool visible) {
+    if (_lastEmitted == visible) return;
+    _lastEmitted = visible;
+    widget.onVisibilityChanged(visible);
+  }
+
+  void _loadAd() {
+    final unitId = AdmobIds.bannerUnitId();
+    if (unitId.isEmpty) return;
+
+    final ad = BannerAd(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() {
+            _ad = ad as BannerAd;
+            _loaded = true;
+          });
+          _emit(true);
+        },
+        onAdFailedToLoad: (ad, _) {
+          ad.dispose();
+          if (!mounted) return;
+          setState(() {
+            _ad = null;
+            _loaded = false;
+          });
+          _emit(false);
+        },
+      ),
+    );
+
+    _ad = ad;
+    ad.load();
+  }
+
+  @override
+  void dispose() {
+    _emit(false);
+    _ad?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    if (isPro || !_loaded || _ad == null) {
+      _emit(false);
+      return const SizedBox.shrink();
+    }
+
+    _emit(true);
+    return SafeArea(
+      bottom: false,
+      child: Center(
+        child: SizedBox(
+          width: _ad!.size.width.toDouble(),
+          height: _ad!.size.height.toDouble(),
+          child: AdWidget(ad: _ad!),
+        ),
+      ),
+    );
+  }
+}
+
+/// Dedicated native ad for style-selection step (page-specific implementation).
+class _StyleSelectionNativeAd extends StatefulWidget {
+  const _StyleSelectionNativeAd({
+    required this.isDark,
+    required this.onVisibilityChanged,
+  });
+
+  final bool isDark;
+  final ValueChanged<bool> onVisibilityChanged;
+
+  @override
+  State<_StyleSelectionNativeAd> createState() =>
+      _StyleSelectionNativeAdState();
+}
+
+class _StyleSelectionNativeAdState extends State<_StyleSelectionNativeAd> {
+  NativeAd? _ad;
+  bool _loaded = false;
+  bool _lastEmitted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAd();
+  }
+
+  @override
+  void didUpdateWidget(covariant _StyleSelectionNativeAd oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isDark == widget.isDark) return;
+    _ad?.dispose();
+    _ad = null;
+    _loaded = false;
+    _emit(false);
+    _loadAd();
+  }
+
+  void _emit(bool visible) {
+    if (_lastEmitted == visible) return;
+    _lastEmitted = visible;
+    widget.onVisibilityChanged(visible);
+  }
+
+  void _loadAd() {
+    final unitId = AdmobIds.nativeUnitId();
+    if (unitId.isEmpty) return;
+
+    final ad = NativeAd(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      nativeTemplateStyle: NativeTemplateStyle(
+        templateType: TemplateType.small,
+        mainBackgroundColor: widget.isDark
+            ? AppColors.navBarBackground
+            : AppColors.lightBackground,
+        cornerRadius: 12,
+      ),
+      listener: NativeAdListener(
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() {
+            _ad = ad as NativeAd;
+            _loaded = true;
+          });
+          _emit(true);
+        },
+        onAdFailedToLoad: (ad, _) {
+          ad.dispose();
+          if (!mounted) return;
+          setState(() {
+            _ad = null;
+            _loaded = false;
+          });
+          _emit(false);
+        },
+      ),
+    );
+
+    _ad = ad;
+    ad.load();
+  }
+
+  @override
+  void dispose() {
+    _emit(false);
+    _ad?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    if (isPro || !_loaded || _ad == null) {
+      _emit(false);
+      return const SizedBox.shrink();
+    }
+
+    _emit(true);
+    return Padding(
+      padding: EdgeInsets.only(bottom: 4.h),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.r),
+        child: SizedBox(
+          width: double.infinity,
+          height: 81.h,
+          child: AdWidget(ad: _ad!),
         ),
       ),
     );

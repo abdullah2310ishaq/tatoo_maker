@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import '../utils/colors.dart';
@@ -11,6 +12,7 @@ import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import '../utils/image_processing_isolates.dart';
 import '../providers/usage_limit_provider.dart';
+import '../services/admob_ids.dart';
 import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
 import '../l10n/app_localizations.dart';
@@ -301,11 +303,10 @@ class _LoadingScreenState extends State<LoadingScreen>
     // Use key 'generic' when no style so history/result can show localized title
     final styleName = widget.styleName ?? 'generic';
     final name = widget.name?.trim() ?? '';
-    final dob = widget.dobFormatted?.trim() ?? '';
-    final zodiac = widget.zodiacSign?.trim() ?? '';
-    final place = widget.placeOfBirth?.trim() ?? '';
-    final isTattooModule = dob.isNotEmpty || zodiac.isNotEmpty || place.isNotEmpty;
-    final isTattooGeneration = name.isNotEmpty || isTattooModule;
+    debugPrint(
+      '[LoadingScreen] generation finished -> preparing result navigation '
+      '(hasImage=${_generatedImageBytes != null})',
+    );
     if (_generatedImageBytes != null) {
       await context.read<UsageLimitProvider>().recordGenerationSuccess();
       if (name.isNotEmpty) {
@@ -323,14 +324,23 @@ class _LoadingScreenState extends State<LoadingScreen>
         );
       }
     }
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    if (!isPro) {
+      debugPrint('[LoadingScreen] step 1/3: loading interstitial before result');
+      await _showInterstitialAdIfAvailable();
+      debugPrint('[LoadingScreen] step 2/3: interstitial flow completed');
+    } else {
+      debugPrint('[LoadingScreen] skip interstitial: user is PRO');
+    }
     if (mounted) {
       final nextResult = ResultScreen(
         styleName: styleName,
         promptText: widget.promptText,
         generatedImageBytes: _generatedImageBytes,
-        // Show paywall AFTER landing on ResultScreen (not for History opens).
-        showProAccessOnOpen: isTattooGeneration,
+        // From generation flow: always allow ResultScreen to show paywall for non-PRO.
+        showProAccessOnOpen: true,
       );
+      debugPrint('[LoadingScreen] step 3/3: opening ResultScreen');
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -338,6 +348,53 @@ class _LoadingScreenState extends State<LoadingScreen>
         ),
       );
     }
+  }
+
+  Future<void> _showInterstitialAdIfAvailable() async {
+    if (!mounted) return;
+    final unitId = AdmobIds.interstitialUnitId();
+    if (unitId.isEmpty) {
+      debugPrint('[LoadingScreen] interstitial skipped: empty unit id');
+      return;
+    }
+
+    final completer = Completer<void>();
+    InterstitialAd.load(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          debugPrint('[LoadingScreen] interstitial loaded');
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (_) {
+              debugPrint('[LoadingScreen] interstitial shown');
+            },
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              debugPrint('[LoadingScreen] interstitial dismissed');
+              if (!completer.isCompleted) completer.complete();
+            },
+            onAdFailedToShowFullScreenContent: (ad, _) {
+              ad.dispose();
+              debugPrint('[LoadingScreen] interstitial failed to show');
+              if (!completer.isCompleted) completer.complete();
+            },
+          );
+          try {
+            ad.show();
+          } catch (_) {
+            ad.dispose();
+            if (!completer.isCompleted) completer.complete();
+          }
+        },
+        onAdFailedToLoad: (error) {
+          debugPrint('[LoadingScreen] interstitial failed to load: $error');
+          if (!completer.isCompleted) completer.complete();
+        },
+      ),
+    );
+
+    await completer.future;
   }
 
   @override

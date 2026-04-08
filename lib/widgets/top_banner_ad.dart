@@ -83,4 +83,3 @@ class _TopBannerAdState extends State<TopBannerAd> {
     );
   }
 }
-

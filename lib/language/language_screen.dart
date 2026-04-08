@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
+import '../providers/usage_limit_provider.dart';
+import '../services/admob_ids.dart';
 import '../services/locale_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
-import '../widgets/language_native_ad.dart';
 
 /// Language selection screen - Supports both light and dark themes
 class LanguageSelectionScreen extends StatefulWidget {
@@ -211,7 +213,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
               padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 28.h),
               child: Transform.translate(
                 offset: Offset(0, -15.h),
-                child: LanguageNativeAd(isDark: isDark),
+                child: _LanguageScreenNativeAd(isDark: isDark),
               ),
             ),
           ],
@@ -324,6 +326,101 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _LanguageScreenNativeAd extends StatefulWidget {
+  const _LanguageScreenNativeAd({required this.isDark});
+
+  final bool isDark;
+
+  @override
+  State<_LanguageScreenNativeAd> createState() =>
+      _LanguageScreenNativeAdState();
+}
+
+class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
+  NativeAd? _nativeAd;
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  @override
+  void didUpdateWidget(covariant _LanguageScreenNativeAd oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isDark == widget.isDark) return;
+    _nativeAd?.dispose();
+    _nativeAd = null;
+    _loaded = false;
+    _load();
+  }
+
+  void _load() {
+    final unitId = AdmobIds.nativeUnitId();
+    if (unitId.isEmpty) return;
+
+    final ad = NativeAd(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      nativeTemplateStyle: NativeTemplateStyle(
+        templateType: TemplateType.small,
+        mainBackgroundColor: widget.isDark
+            ? AppColors.navBarBackground
+            : AppColors.lightBackground,
+        cornerRadius: 12,
+      ),
+      listener: NativeAdListener(
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() {
+            _nativeAd = ad as NativeAd;
+            _loaded = true;
+          });
+        },
+        onAdFailedToLoad: (ad, _) {
+          ad.dispose();
+          if (!mounted) return;
+          setState(() {
+            _nativeAd = null;
+            _loaded = false;
+          });
+        },
+      ),
+    );
+
+    _nativeAd = ad;
+    ad.load();
+  }
+
+  @override
+  void dispose() {
+    _nativeAd?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    if (isPro) return const SizedBox.shrink();
+
+    final ad = _nativeAd;
+    if (!_loaded || ad == null) return SizedBox(height: 8.h);
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8.h),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.r),
+        child: SizedBox(
+          width: double.infinity,
+          height: 100.h,
+          child: AdWidget(ad: ad),
         ),
       ),
     );
