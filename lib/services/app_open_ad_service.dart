@@ -16,10 +16,12 @@ class AppOpenAdService {
   AppOpenAd? _ad;
   bool _isLoading = false;
   bool _isShowing = false;
+  DateTime? _loadedAt;
   DateTime? _lastShownAt;
 
   /// Prevents repeated showing on quick resume cycles.
   Duration minIntervalBetweenShows;
+  static const Duration _maxAdAge = Duration(hours: 4);
 
   void configure({Duration? minIntervalBetweenShows}) {
     if (minIntervalBetweenShows != null) {
@@ -33,7 +35,14 @@ class AppOpenAdService {
     await _loadIfNeeded();
   }
 
-  Future<void> showIfAvailable({String? unitIdOverride, String? testUnitIdOverride}) async {
+  /// When [waitForLoad] is false, this will NEVER wait on network loading.
+  /// This is ideal for "resume from cache" where you want the ad to appear ASAP,
+  /// and otherwise just preload for next time.
+  Future<void> showIfAvailable({
+    String? unitIdOverride,
+    String? testUnitIdOverride,
+    bool waitForLoad = true,
+  }) async {
     if (_isShowing) return;
 
     final now = DateTime.now();
@@ -42,8 +51,20 @@ class AppOpenAdService {
       return;
     }
 
-    // Ensure an ad is loaded; if it wasn't, load and then attempt to show.
+    _dropExpiredIfNeeded();
+
+    // Ensure an ad is loaded; if it wasn't, optionally load and then attempt to show.
     if (_ad == null) {
+      if (!waitForLoad) {
+        unawaited(
+          _loadIfNeeded(
+            primaryUnitIdOverride: unitIdOverride,
+            testUnitIdOverride: testUnitIdOverride,
+          ),
+        );
+        return;
+      }
+
       await _loadIfNeeded(
         primaryUnitIdOverride: unitIdOverride,
         testUnitIdOverride: testUnitIdOverride,
@@ -65,12 +86,14 @@ class AppOpenAdService {
       onAdDismissedFullScreenContent: (ad) {
         ad.dispose();
         _ad = null;
+        _loadedAt = null;
         _isShowing = false;
         unawaited(_loadIfNeeded());
       },
       onAdFailedToShowFullScreenContent: (ad, error) {
         ad.dispose();
         _ad = null;
+        _loadedAt = null;
         _isShowing = false;
         if (kDebugMode) {
           debugPrint('[AppOpenAdService] failed to show: $error');
@@ -88,6 +111,7 @@ class AppOpenAdService {
       _isShowing = false;
       _ad?.dispose();
       _ad = null;
+      _loadedAt = null;
       if (kDebugMode) {
         debugPrint('[AppOpenAdService] show failed: $e');
       }
@@ -99,6 +123,7 @@ class AppOpenAdService {
     String? primaryUnitIdOverride,
     String? testUnitIdOverride,
   }) async {
+    _dropExpiredIfNeeded();
     if (_ad != null) return;
     if (_isLoading) return;
 
@@ -107,12 +132,12 @@ class AppOpenAdService {
     if (primaryUnitId.isEmpty) return;
 
     final testUnitId = (testUnitIdOverride ?? AdmobIds.appOpenTestUnitId()).trim();
-    String _mask(String id) {
+    String mask(String id) {
       if (id.length <= 10) return id;
       return '${id.substring(0, 18)}…${id.substring(id.length - 8)}';
     }
 
-    Future<LoadAdError?> _loadWithUnitId(String unitId) async {
+    Future<LoadAdError?> loadWithUnitId(String unitId) async {
       _isLoading = true;
       final completer = Completer<LoadAdError?>();
 
@@ -120,7 +145,7 @@ class AppOpenAdService {
         if (kDebugMode) {
           final isGoogleTest = unitId.startsWith('ca-app-pub-3940256099942544/');
           debugPrint(
-            '[AppOpenAdService] loading app open (${isGoogleTest ? 'TEST' : 'PROD'}): ${_mask(unitId)}',
+            '[AppOpenAdService] loading app open (${isGoogleTest ? 'TEST' : 'PROD'}): ${mask(unitId)}',
           );
         }
         await AppOpenAd.load(
@@ -129,6 +154,7 @@ class AppOpenAdService {
           adLoadCallback: AppOpenAdLoadCallback(
             onAdLoaded: (ad) {
               _ad = ad;
+              _loadedAt = DateTime.now();
               _isLoading = false;
               if (kDebugMode) {
                 debugPrint('[AppOpenAdService] loaded app open');
@@ -137,6 +163,7 @@ class AppOpenAdService {
             },
             onAdFailedToLoad: (error) {
               _ad = null;
+              _loadedAt = null;
               _isLoading = false;
               if (kDebugMode) {
                 debugPrint('[AppOpenAdService] load failed: $error');
@@ -147,6 +174,7 @@ class AppOpenAdService {
         );
       } catch (e) {
         _ad = null;
+        _loadedAt = null;
         _isLoading = false;
         if (kDebugMode) {
           debugPrint('[AppOpenAdService] load threw: $e');
@@ -157,7 +185,7 @@ class AppOpenAdService {
       return completer.future;
     }
 
-    final primaryError = await _loadWithUnitId(primaryUnitId);
+    final primaryError = await loadWithUnitId(primaryUnitId);
 
     // Hard fallback: if primary fails (for any reason), retry with Google test unit.
     // This keeps App Open working even before Firebase RC is configured correctly.
@@ -169,7 +197,7 @@ class AppOpenAdService {
           '[AppOpenAdService] retrying with test unit after primary failure',
         );
       }
-      final retryError = await _loadWithUnitId(testUnitId);
+      final retryError = await loadWithUnitId(testUnitId);
       if (kDebugMode && retryError != null) {
         debugPrint('[AppOpenAdService] retry failed: $retryError');
       }
@@ -179,6 +207,21 @@ class AppOpenAdService {
   Future<void> dispose() async {
     _ad?.dispose();
     _ad = null;
+    _loadedAt = null;
+  }
+
+  void _dropExpiredIfNeeded() {
+    final loadedAt = _loadedAt;
+    if (_ad == null || loadedAt == null) return;
+    if (DateTime.now().difference(loadedAt) <= _maxAdAge) return;
+
+    try {
+      _ad?.dispose();
+    } catch (_) {
+      // Ignore dispose failures.
+    }
+    _ad = null;
+    _loadedAt = null;
   }
 }
 

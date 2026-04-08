@@ -5,8 +5,6 @@ import 'ad_mode.dart';
 class AdmobIds {
   // Google sample ad units (Android) — safe for debug / QA.
   static const String _testBanner = 'ca-app-pub-3940256099942544/6300978111';
-  // Official Google demo unit for App Open (Android).
-  // Ref: https://developers.google.com/admob/android/app-open
   static const String _testAppOpen = 'ca-app-pub-3940256099942544/9257395921';
   static const String _testNative = 'ca-app-pub-3940256099942544/2247696110';
   static const String _testInterstitial = 'ca-app-pub-3940256099942544/1033173712';

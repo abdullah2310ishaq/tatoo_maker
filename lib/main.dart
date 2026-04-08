@@ -61,9 +61,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     _appOpenAdService = AppOpenAdService.instance
       ..configure(minIntervalBetweenShows: Duration.zero);
     _usageLimitProvider = UsageLimitProvider();
-    // Avoid hammering startup with an AppOpen load during heavy init.
+    // Preload early so "resume from cache" can show ASAP.
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future<void>.delayed(const Duration(seconds: 3));
       await _appOpenAdService.preload();
     });
     _loadThemePreference();
@@ -72,6 +71,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
+      case AppLifecycleState.inactive:
+        // Some Android flows (e.g., opening Gallery / permission dialogs) can go
+        // inactive without a reliable paused. Treat it as "background started"
+        // so App Open can show on resume consistently.
+        _pausedAt ??= DateTime.now();
+        _appOpenAdService.preload();
+        break;
       case AppLifecycleState.paused:
         _pausedAt = DateTime.now();
         // Preload while app is backgrounded so it's ready on resume.
@@ -111,7 +117,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     if (kDebugMode) {
       debugPrint('[AppOpen] resume->show');
     }
-    await _appOpenAdService.showIfAvailable();
+    // Show on every resume; if needed, wait for load.
+    await _appOpenAdService.showIfAvailable(waitForLoad: true);
+
+    // Reset so next resume requires a fresh background.
+    _pausedAt = null;
   }
 
   Future<void> _loadThemePreference() async {

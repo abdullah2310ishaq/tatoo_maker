@@ -9,6 +9,7 @@ import 'package:tatoo_maker/services/app_open_ad_service.dart';
 import 'package:tatoo_maker/services/billing_service.dart';
 import 'package:tatoo_maker/services/admob_ids.dart';
 import 'package:tatoo_maker/services/remote_config_service.dart';
+import 'package:tatoo_maker/services/ad_mode.dart';
 import 'package:tatoo_maker/pro_access_screen.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'utils/colors.dart';
@@ -223,14 +224,18 @@ class _SplashScreenState extends State<SplashScreen>
     required bool showInterstitial,
   }) async {
     final rc = context.read<RemoteConfigService>();
-    final appOpenUnitId =
-        kDebugMode ? rc.admobAndroidAppOpenTestUnitId : rc.admobAndroidAppOpenUnitId;
-    final interstitialUnitId = kDebugMode
+    final appOpenUnitId = AdMode.useTestAds
+        ? rc.admobAndroidAppOpenTestUnitId
+        : rc.admobAndroidAppOpenUnitId;
+    final interstitialUnitId = AdMode.useTestAds
         ? rc.admobAndroidInterstitialTestUnitId
         : rc.admobAndroidInterstitialUnitId;
 
     // Priority rule: If App Open is enabled, show it and skip interstitial.
     if (showAppOpen) {
+      // Give the splash UI a moment to settle so App Open doesn't appear
+      // "inside the app" after navigation has already started.
+      await Future<void>.delayed(const Duration(seconds: 2));
       await _showAppOpenAdIfAvailable(
         unitIdOverride: appOpenUnitId,
         testUnitIdOverride: rc.admobAndroidAppOpenTestUnitId,
