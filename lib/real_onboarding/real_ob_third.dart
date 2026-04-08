@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../widgets/remote_or_asset_image.dart';
 
 class RealOnboardingThirdScreen extends StatelessWidget {
   const RealOnboardingThirdScreen({super.key});
@@ -48,10 +49,12 @@ class RealOnboardingThirdScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 // Big owl image centered
-                Image.asset(
-                  'assets/splash/owl.png',
+                SizedBox(
                   height: 340.h,
-                  fit: BoxFit.contain,
+                  child: RemoteOrAssetImage(
+                    assetPath: 'assets/splash/owl.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 SizedBox(height: 15.h),
                 // Title and subtitle

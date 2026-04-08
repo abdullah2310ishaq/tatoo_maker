@@ -14,6 +14,7 @@ import 'utils/route_observer.dart';
 import 'providers/theme_provider.dart';
 import 'providers/favorites_provider.dart';
 import 'providers/usage_limit_provider.dart';
+import 'providers/asset_sync_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'services/app_open_ad_service.dart';
@@ -192,6 +193,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           create: (_) => FavoritesProvider()..loadFavorites(),
         ),
         ChangeNotifierProvider.value(value: _usageLimitProvider),
+        ChangeNotifierProvider(
+          create: (_) => AssetSyncProvider()..load(),
+        ),
       ],
       child: ThemeProvider(
         isDarkTheme: _isDarkTheme,

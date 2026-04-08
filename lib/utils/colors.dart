@@ -62,5 +62,6 @@ class AppColors {
 
   // Feedback / Toast colors
   static const Color success = Color(0xFF2E7D32);
+  static const Color error = Color(0xFFD32F2F);
   static const Color toastShadow = Color(0x33000000);
 }

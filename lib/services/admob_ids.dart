@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import 'ad_mode.dart';
+
 class AdmobIds {
   // Google sample ad units (Android) — safe for debug / QA.
   static const String _testBanner = 'ca-app-pub-3940256099942544/6300978111';
@@ -23,22 +25,22 @@ class AdmobIds {
 
   static String bannerUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
-    return kDebugMode ? _testBanner : _prodBanner;
+    return AdMode.useTestAds ? _testBanner : _prodBanner;
   }
 
   static String appOpenUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
-    return kDebugMode ? _testAppOpen : _prodAppOpen;
+    return AdMode.useTestAds ? _testAppOpen : _prodAppOpen;
   }
 
   static String nativeUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
-    return kDebugMode ? _testNative : _prodNative;
+    return AdMode.useTestAds ? _testNative : _prodNative;
   }
 
   static String interstitialUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
-    return kDebugMode ? _testInterstitial : _prodInterstitial;
+    return AdMode.useTestAds ? _testInterstitial : _prodInterstitial;
   }
 
 }

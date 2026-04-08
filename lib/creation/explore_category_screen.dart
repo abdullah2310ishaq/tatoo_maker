@@ -6,6 +6,7 @@ import '../models/explore_category.dart';
 import '../utils/colors.dart';
 import 'explore_detail_screen.dart';
 import '../widgets/top_banner_ad.dart';
+import '../widgets/remote_or_asset_image.dart';
 
 class ExploreCategoryScreen extends StatelessWidget {
   final ExploreCategory category;
@@ -122,21 +123,19 @@ class _CategoryDetailCard extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12.r),
-          child: Image.asset(
-            bigImagePath,
+          child: RemoteOrAssetImage(
+            assetPath: bigImagePath,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                color: AppColors.cardGradientStart,
-                child: Center(
-                  child: Icon(
-                    Icons.image_not_supported,
-                    color: AppColors.textGrey,
-                    size: 24.sp,
-                  ),
+            errorWidget: Container(
+              color: AppColors.cardGradientStart,
+              child: Center(
+                child: Icon(
+                  Icons.image_not_supported,
+                  color: AppColors.textGrey,
+                  size: 24.sp,
                 ),
-              );
-            },
+              ),
+            ),
           ),
         ),
       ),

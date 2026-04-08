@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/language/language_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../providers/asset_sync_provider.dart';
 import '../utils/colors.dart';
 import 'inkvision_underline.dart';
 
@@ -25,6 +28,7 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> {
   bool _isProcessing = false;
+  bool _showDeveloperTools = false;
 
   void _handleTap(VoidCallback onTap) {
     if (_isProcessing) return;
@@ -67,13 +71,22 @@ class _AppDrawerState extends State<AppDrawer> {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    Text(
-                      'AI Tattoo',
-                      style: TextStyle(
-                        fontSize: 32.sp,
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
-                        fontFamily: 'Tomorrow',
+                    GestureDetector(
+                      onLongPress: kDebugMode
+                          ? () {
+                              setState(() {
+                                _showDeveloperTools = !_showDeveloperTools;
+                              });
+                            }
+                          : null,
+                      child: Text(
+                        'AI Tattoo',
+                        style: TextStyle(
+                          fontSize: 32.sp,
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                          fontFamily: 'Tomorrow',
+                        ),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -221,6 +234,21 @@ class _AppDrawerState extends State<AppDrawer> {
                         );
                       },
                     ),
+                    if (kDebugMode && _showDeveloperTools) ...[
+                      const Divider(height: 1),
+                      _buildMenuItem(
+                        context: context,
+                        icon: Icons.cloud_upload,
+                        title: 'Developer: Sync assets to Firebase',
+                        textColor: textColor,
+                        iconColor: iconColor,
+                        isEnabled: !_isProcessing,
+                        onTap: () async {
+                          Navigator.of(context).pop();
+                          await _showAssetSyncDialog(context);
+                        },
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -228,6 +256,106 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _showAssetSyncDialog(BuildContext context) async {
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          backgroundColor: Theme.of(dialogContext).brightness == Brightness.dark
+              ? AppColors.darkBackground
+              : AppColors.lightBackground,
+          title: const Text('Asset sync'),
+          content: Consumer<AssetSyncProvider>(
+            builder: (context, provider, _) {
+              final error = provider.errorMessage;
+              return SizedBox(
+                width: 420,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      provider.isSyncDone
+                          ? 'Status: synced'
+                          : 'Status: not synced',
+                      style: TextStyle(color: AppColors.textGrey),
+                    ),
+                    const SizedBox(height: 12),
+                    if (provider.isSyncing) ...[
+                      LinearProgressIndicator(value: provider.progress),
+                      const SizedBox(height: 8),
+                      Text(
+                        provider.currentAsset ?? 'Working…',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: AppColors.textGrey),
+                      ),
+                    ],
+                    if (!provider.isSyncing && error != null) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        error,
+                        style: TextStyle(color: AppColors.error),
+                      ),
+                    ],
+                  ],
+                ),
+              );
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: const Text('Close'),
+            ),
+            Consumer<AssetSyncProvider>(
+              builder: (context, provider, _) {
+                return TextButton(
+                  onPressed: provider.isSyncing
+                      ? null
+                      : () async {
+                          final result =
+                              await provider.syncAllAssets(force: false);
+                          if (!dialogContext.mounted || result == null) return;
+                          final failedCount = result.failed.length;
+                          final message = failedCount == 0
+                              ? 'Asset sync completed (${result.uploaded} uploaded, ${result.skipped} skipped).'
+                              : 'Asset sync completed with issues (${result.uploaded} uploaded, ${result.skipped} skipped, $failedCount failed).';
+                          ScaffoldMessenger.of(dialogContext).showSnackBar(
+                            SnackBar(content: Text(message)),
+                          );
+                        },
+                  child: const Text('Sync'),
+                );
+              },
+            ),
+            Consumer<AssetSyncProvider>(
+              builder: (context, provider, _) {
+                return TextButton(
+                  onPressed: provider.isSyncing
+                      ? null
+                      : () async {
+                          final result =
+                              await provider.syncAllAssets(force: true);
+                          if (!dialogContext.mounted || result == null) return;
+                          final failedCount = result.failed.length;
+                          final message = failedCount == 0
+                              ? 'Asset sync completed (${result.uploaded} uploaded).'
+                              : 'Asset sync completed with issues (${result.uploaded} uploaded, $failedCount failed).';
+                          ScaffoldMessenger.of(dialogContext).showSnackBar(
+                            SnackBar(content: Text(message)),
+                          );
+                        },
+                  child: const Text('Force re-sync'),
+                );
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -306,7 +434,7 @@ class _AppDrawerState extends State<AppDrawer> {
               child: Text(
                 AppLocalizations.of(context)!.ad,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: AppColors.textWhite,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),
