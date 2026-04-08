@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../services/locale_service.dart';
 import '../utils/colors.dart';
+import '../widgets/language_native_ad.dart';
 import '../real_onboarding/real_onboarding_flow.dart';
 
 /// First language selection screen - Light theme only (one-time onboarding)
@@ -119,8 +120,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 40.h),
-                // Title
+                SizedBox(height: 20.h),
                 Text(
                   AppLocalizations.of(context)!.chooseALanguage,
                   style: TextStyle(
@@ -130,10 +130,10 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                     fontFamily: 'Amaranth',
                   ),
                 ),
-                SizedBox(height: 32.h),
-                // Language Grid
+                SizedBox(height: 20.h),
                 Expanded(
                   child: GridView.builder(
+                    physics: const ClampingScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 2.5,
@@ -151,8 +151,10 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                     },
                   ),
                 ),
-                SizedBox(height: 24.h),
-                // Continue Button
+                // Thin gap — less empty black strip above native.
+                SizedBox(height: 8.h),
+                LanguageNativeAd(isDark: true, compact: true),
+                SizedBox(height: 10.h),
                 SizedBox(
                   width: double.infinity,
                   height: 56.h,
@@ -194,7 +196,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 24.h),
+                SizedBox(height: 16.h),
               ],
             ),
           ),

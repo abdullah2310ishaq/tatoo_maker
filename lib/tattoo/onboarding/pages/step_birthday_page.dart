@@ -4,6 +4,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
+import '../widgets/tattoo_birthday_ads.dart';
 
 class StepBirthdayPage extends StatefulWidget {
   final int selectedMonth;
@@ -76,6 +77,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OnboardingHeader(currentStep: 2, onBack: widget.onBack),
+        const TattooBirthdayBannerAd(),
         SizedBox(height: 40.h),
         // Question and date
         Column(
@@ -111,6 +113,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
           ),
         ),
         const Spacer(),
+        TattooBirthdayNativeAd(isDark: isDark),
         // Next button
         OnboardingNextButton(
           enabled: _isDateValid(), // Disabled if date is in future or invalid

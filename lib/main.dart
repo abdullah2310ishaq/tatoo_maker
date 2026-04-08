@@ -16,10 +16,12 @@ import 'providers/usage_limit_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'services/app_open_ad_service.dart';
+import 'services/remote_config_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await RemoteConfigService.instance.initialize();
   await MobileAds.instance.initialize();
   // Lock app orientation so it does not rotate.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -153,6 +155,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(value: RemoteConfigService.instance),
         ChangeNotifierProvider(create: (_) => LocaleService()),
         ChangeNotifierProvider(
           create: (_) => FavoritesProvider()..loadFavorites(),

@@ -6,6 +6,7 @@ import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../services/locale_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../widgets/language_native_ad.dart';
 
 /// Language selection screen - Supports both light and dark themes
 class LanguageSelectionScreen extends StatefulWidget {
@@ -181,26 +182,39 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
         decoration: isDark
             ? ThemeManager.darkModeBackgroundGradient
             : ThemeManager.lightModeBackground,
-        child: Padding(
-          padding: EdgeInsets.all(16.w),
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 2.5,
-              crossAxisSpacing: 16.w,
-              mainAxisSpacing: 16.h,
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(16.w),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 2.5,
+                    crossAxisSpacing: 16.w,
+                    mainAxisSpacing: 16.h,
+                  ),
+                  itemCount: _languages.length,
+                  itemBuilder: (context, index) {
+                    final language = _languages[index];
+                    final isSelected = _selectedLanguage == language['code'];
+                    return _buildLanguageCard(
+                      language: language,
+                      isSelected: isSelected,
+                      isDark: isDark,
+                    );
+                  },
+                ),
+              ),
             ),
-            itemCount: _languages.length,
-            itemBuilder: (context, index) {
-              final language = _languages[index];
-              final isSelected = _selectedLanguage == language['code'];
-              return _buildLanguageCard(
-                language: language,
-                isSelected: isSelected,
-                isDark: isDark,
-              );
-            },
-          ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 28.h),
+              child: Transform.translate(
+                offset: Offset(0, -15.h),
+                child: LanguageNativeAd(isDark: isDark),
+              ),
+            ),
+          ],
         ),
       ),
     );
