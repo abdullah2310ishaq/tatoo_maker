@@ -5,6 +5,7 @@ import '../l10n/app_localizations.dart';
 import '../models/explore_category.dart';
 import '../utils/colors.dart';
 import 'explore_detail_screen.dart';
+import '../widgets/top_banner_ad.dart';
 
 class ExploreCategoryScreen extends StatelessWidget {
   final ExploreCategory category;
@@ -36,29 +37,36 @@ class ExploreCategoryScreen extends StatelessWidget {
       backgroundColor: isDark
           ? AppColors.darkBackground
           : AppColors.lightBackground,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 12.h,
-            crossAxisSpacing: 12.w,
-            // Higher ratio => shorter cards (less height).
-            childAspectRatio: 1.02,
+      body: Column(
+        children: [
+          const TopBannerAd(),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12.h,
+                  crossAxisSpacing: 12.w,
+                  // Higher ratio => shorter cards (less height).
+                  childAspectRatio: 1.02,
+                ),
+                itemCount: category.items.length,
+                itemBuilder: (context, index) {
+                  final item = category.items[index];
+                  return _CategoryDetailCard(
+                    title: item.title(l10n),
+                    prompt: item.prompt(l10n),
+                    bigImagePath: item.bigImagePath,
+                    smallImagePath: item.smallImagePath,
+                    smallImagePathDark: item.smallImagePathDark,
+                    styleKey: item.id,
+                  );
+                },
+              ),
+            ),
           ),
-          itemCount: category.items.length,
-          itemBuilder: (context, index) {
-            final item = category.items[index];
-            return _CategoryDetailCard(
-              title: item.title(l10n),
-              prompt: item.prompt(l10n),
-              bigImagePath: item.bigImagePath,
-              smallImagePath: item.smallImagePath,
-              smallImagePathDark: item.smallImagePathDark,
-              styleKey: item.id,
-            );
-          },
-        ),
+        ],
       ),
     );
   }

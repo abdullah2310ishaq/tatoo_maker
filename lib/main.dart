@@ -14,10 +14,13 @@ import 'providers/theme_provider.dart';
 import 'providers/favorites_provider.dart';
 import 'providers/usage_limit_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'services/app_open_ad_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await MobileAds.instance.initialize();
   // Lock app orientation so it does not rotate.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -30,14 +33,51 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   bool _isDarkTheme = true; // Default to dark theme
   bool _isLoading = true;
+  late final AppOpenAdService _appOpenAdService;
+  late final UsageLimitProvider _usageLimitProvider;
+  DateTime? _pausedAt;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _appOpenAdService = AppOpenAdService();
+    _usageLimitProvider = UsageLimitProvider();
+    _appOpenAdService.preload();
     _loadThemePreference();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.paused:
+        _pausedAt = DateTime.now();
+        break;
+      case AppLifecycleState.resumed:
+        _maybeShowAppOpenAdOnResume();
+        break;
+      default:
+        break;
+    }
+  }
+
+  Future<void> _maybeShowAppOpenAdOnResume() async {
+    // Only show when coming back from background ("cache"), not on cold start.
+    final pausedAt = _pausedAt;
+    if (pausedAt == null) return;
+
+    final elapsed = DateTime.now().difference(pausedAt);
+    // Ignore super quick interruptions (e.g. permission dialogs / system overlays).
+    if (elapsed < const Duration(seconds: 3)) return;
+
+    if (!mounted) return;
+    final isPro = _usageLimitProvider.isProUnlocked;
+    if (isPro) return;
+
+    await _appOpenAdService.showIfAvailable();
   }
 
   Future<void> _loadThemePreference() async {
@@ -85,6 +125,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _appOpenAdService.dispose();
+    _usageLimitProvider.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // Show a loading screen while theme preference is being loaded
     if (_isLoading) {
@@ -109,7 +157,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => FavoritesProvider()..loadFavorites(),
         ),
-        ChangeNotifierProvider(create: (_) => UsageLimitProvider()),
+        ChangeNotifierProvider.value(value: _usageLimitProvider),
       ],
       child: ThemeProvider(
         isDarkTheme: _isDarkTheme,
