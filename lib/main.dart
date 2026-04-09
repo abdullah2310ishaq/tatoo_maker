@@ -92,26 +92,50 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   Future<void> _maybeShowAppOpenAdOnResume() async {
+    if (UsageLimitProvider.forceProForTesting) {
+      _pausedAt = null;
+      return;
+    }
     // Only show when coming back from background ("cache"), not on cold start.
     final pausedAt = _pausedAt;
     if (pausedAt == null) return;
 
     // Ignore super-quick task switching (prevents spammy show attempts).
     if (DateTime.now().difference(pausedAt) < const Duration(seconds: 2)) {
+      if (kDebugMode) {
+        debugPrint('[AppOpen] skip: resumed too quickly');
+      }
+      _pausedAt = null;
       return;
     }
 
     if (!mounted) return;
+    if (_appOpenAdService.isTemporarilyDisabled) {
+      if (kDebugMode) {
+        debugPrint('[AppOpen] skip: temporarily disabled by active screen');
+      }
+      _pausedAt = null;
+      return;
+    }
 
     // IMPORTANT: UsageLimitProvider loads async; on a fresh resume it might still
     // be on the default `false` value. Read from prefs to avoid showing to PRO.
     try {
       final prefs = await SharedPreferences.getInstance();
       final isPro = prefs.getBool(_prefsProUnlockedKey) ?? false;
-      if (isPro) return;
+      if (isPro) {
+        if (kDebugMode) {
+          debugPrint('[AppOpen] skip: user is pro');
+        }
+        _pausedAt = null;
+        return;
+      }
     } catch (_) {
       // If prefs fails, fall back to in-memory provider value.
-      if (_usageLimitProvider.isProUnlocked) return;
+      if (_usageLimitProvider.isProUnlocked) {
+        _pausedAt = null;
+        return;
+      }
     }
 
     if (kDebugMode) {

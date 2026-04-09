@@ -378,7 +378,7 @@ class _StyleSelectionNativeAdState extends State<_StyleSelectionNativeAd> {
   @override
   Widget build(BuildContext context) {
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    final slotH = 108.h;
+    final slotH = 120.h;
 
     if (isPro) {
       _emit(false);

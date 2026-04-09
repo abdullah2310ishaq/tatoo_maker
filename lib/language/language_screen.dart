@@ -135,7 +135,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
         title: Text(
           AppLocalizations.of(context)!.chooseALanguage,
           style: TextStyle(
-            fontSize: 20.sp,
+            fontSize: 24.sp,
             fontWeight: FontWeight.bold,
             color: isDark ? AppColors.textWhite : AppColors.textPrimary,
             fontFamily: 'Amaranth',
@@ -193,7 +193,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 2.5,
+                    childAspectRatio: 2.15,
                     crossAxisSpacing: 16.w,
                     mainAxisSpacing: 16.h,
                   ),
@@ -258,18 +258,18 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
               : null,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
           child: Row(
             children: [
               // Flag Icon
               SizedBox(
-                width: 32.w,
-                height: 32.h,
+                width: 36.w,
+                height: 36.h,
                 child: (language['isPng'] as bool? ?? false)
                     ? Image.asset(
                         language['imageAsset'] as String,
-                        width: 32.w,
-                        height: 32.h,
+                        width: 36.w,
+                        height: 36.h,
                         fit: BoxFit.contain,
                         errorBuilder: (context, _, __) => Text(
                           language['name'] as String,
@@ -283,8 +283,8 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                       )
                     : SvgPicture.asset(
                         language['imageAsset'] as String,
-                        width: 32.w,
-                        height: 32.h,
+                        width: 36.w,
+                        height: 36.h,
                         fit: BoxFit.contain,
                         placeholderBuilder: (context) =>
                             const SizedBox.shrink(),
@@ -305,7 +305,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 child: Text(
                   language['nativeName'] as String,
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 18.sp,
                     fontWeight: isSelected
                         ? FontWeight.w600
                         : FontWeight.normal,
@@ -323,7 +323,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 Icon(
                   Icons.check_circle,
                   color: AppColors.lightPrimary,
-                  size: 20.sp,
+                  size: 22.sp,
                 ),
             ],
           ),

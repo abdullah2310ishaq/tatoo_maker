@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import 'l10n/app_localizations.dart';
 import 'providers/usage_limit_provider.dart';
+import 'services/app_open_ad_service.dart';
 import 'services/billing_service.dart';
 import 'utils/colors.dart';
 
@@ -49,6 +50,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   void initState() {
     super.initState();
     _log('initState: screen opened.');
+    AppOpenAdService.instance.setTemporarilyDisabled(true);
 
     _pageController = PageController();
     _billingService = BillingService();
@@ -77,6 +79,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
 
   @override
   void dispose() {
+    AppOpenAdService.instance.setTemporarilyDisabled(false);
     _sliderTimer.cancel();
     _closeButtonTimer?.cancel();
     _billingEventsSubscription?.cancel();

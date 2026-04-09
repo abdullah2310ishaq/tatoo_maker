@@ -270,16 +270,13 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
           isSuccess: true,
         );
 
-        final shouldShowPaywall = await context
-            .read<UsageLimitProvider>()
-            .shouldShowPostActionPaywall();
-        if (shouldShowPaywall) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
-            ),
-          );
-        }
+        // After final try-on download, return user to home.
+        await Future<void>.delayed(const Duration(milliseconds: 250));
+        if (!mounted) return;
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const HomeShell()),
+          (route) => false,
+        );
       }
     } catch (e) {
       debugPrint('Error saving image: $e');

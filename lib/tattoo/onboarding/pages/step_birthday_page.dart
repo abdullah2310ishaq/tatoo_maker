@@ -413,7 +413,7 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
     if (isPro || !rc.tattooBirthdayShowNative) return const SizedBox.shrink();
 
-    final slotH = 95.h;
+    final slotH = 122.h;
     final ad = _ad;
     if (!_loaded || ad == null) return SizedBox(height: slotH);
 

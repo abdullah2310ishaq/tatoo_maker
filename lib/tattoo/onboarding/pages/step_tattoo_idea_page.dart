@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../providers/usage_limit_provider.dart';
-import '../../../services/admob_ids.dart';
-import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
@@ -95,7 +90,8 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
           )
         : null;
     final keyboardOpen =
-        MediaQuery.of(context).viewInsets.bottom > 0 || _keyboardVisibleByMetrics;
+        MediaQuery.of(context).viewInsets.bottom > 0 ||
+        _keyboardVisibleByMetrics;
     final isWriting = keyboardOpen;
 
     return Column(
@@ -108,7 +104,7 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 OnboardingHeader(currentStep: 4, onBack: widget.onBack),
-                if (!isWriting) const _TattooIdeaBannerAd(),
+                // if (!isWriting) const _TattooIdeaBannerAd(),
                 SizedBox(height: 20.h),
                 Text(
                   AppLocalizations.of(
@@ -169,7 +165,7 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
           ),
         ),
         if (!isWriting) ...[
-          _TattooIdeaNativeAd(isDark: isDark),
+          // _TattooIdeaNativeAd(isDark: isDark),
           SizedBox(height: 8.h),
           OnboardingNextButton(
             enabled: widget.controller.text.trim().isNotEmpty,
@@ -184,6 +180,8 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
   }
 }
 
+/*
+// Native and banner ads are intentionally disabled on this screen.
 class _TattooIdeaBannerAd extends StatefulWidget {
   const _TattooIdeaBannerAd();
 
@@ -265,7 +263,9 @@ class _TattooIdeaBannerAdState extends State<_TattooIdeaBannerAd> {
     );
   }
 }
+*/
 
+/*
 class _TattooIdeaNativeAd extends StatefulWidget {
   const _TattooIdeaNativeAd({required this.isDark});
 
@@ -369,3 +369,4 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
     );
   }
 }
+*/

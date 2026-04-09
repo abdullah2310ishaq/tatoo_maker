@@ -301,9 +301,12 @@ class ProdiaApiService {
     try {
       print('ProdiaApiService: Starting Together background removal...');
       print('ProdiaApiService: Image file: ${imageFile.path}');
-      return await _togetherImageEditFromFile(
+      return await _togetherImageEditWithModelFallback(
         imageFile: imageFile,
-        model: 'black-forest-labs/FLUX.2-dev',
+        modelFallbackOrder: const [
+          'black-forest-labs/FLUX.2-dev',
+          'black-forest-labs/FLUX.2-flex',
+        ],
         prompt:
             'Remove the background completely. Keep only the tattoo design subject with clean edges on a plain white background. No extra elements.',
       );
@@ -320,9 +323,12 @@ class ProdiaApiService {
     try {
       print('ProdiaApiService: Starting Together background mask...');
       print('ProdiaApiService: Image file: ${imageFile.path}');
-      return await _togetherImageEditFromFile(
+      return await _togetherImageEditWithModelFallback(
         imageFile: imageFile,
-        model: 'black-forest-labs/FLUX.2-flex',
+        modelFallbackOrder: const [
+          'black-forest-labs/FLUX.2-flex',
+          'black-forest-labs/FLUX.2-dev',
+        ],
         prompt:
             'Create a clean binary mask of the tattoo subject: subject in white, background in black, high contrast, sharp edges, no gray shades.',
       );
@@ -330,6 +336,32 @@ class ProdiaApiService {
       print('ProdiaApiService: Error in background mask: $e');
       rethrow;
     }
+  }
+
+  Future<Uint8List> _togetherImageEditWithModelFallback({
+    required File imageFile,
+    required String prompt,
+    required List<String> modelFallbackOrder,
+  }) async {
+    Object? lastError;
+
+    for (final model in modelFallbackOrder) {
+      try {
+        print('ProdiaApiService: Trying Together model: $model');
+        return await _togetherImageEditFromFile(
+          imageFile: imageFile,
+          model: model,
+          prompt: prompt,
+        );
+      } catch (e) {
+        lastError = e;
+        print('ProdiaApiService: Model failed ($model): $e');
+      }
+    }
+
+    throw Exception(
+      'Together image edit failed for all fallback models. Last error: $lastError',
+    );
   }
 
   Future<Uint8List> _togetherImageEditFromFile({
@@ -348,16 +380,17 @@ class ProdiaApiService {
         : 'image/png';
     final imageDataUrl = 'data:$mimeType;base64,${base64Encode(imageBytes)}';
 
-    final requestBody = {
+    Map<String, dynamic> requestBody = {
       'model': model,
       'prompt': prompt,
       'disable_safety_checker': true,
+      // Prefer image_url format (as Together curl examples show).
       'image_url': imageDataUrl,
     };
 
     print('ProdiaApiService: Sending Together image edit request...');
     print('ProdiaApiService: Model: $model');
-    final response = await http.post(
+    var response = await http.post(
       Uri.parse(_togetherImageGenUrl),
       headers: {
         'Authorization': 'Bearer $_togetherApiToken',
@@ -365,6 +398,27 @@ class ProdiaApiService {
       },
       body: jsonEncode(requestBody),
     );
+
+    if (response.statusCode != 200) {
+      // Fallback payload for models/accounts that expect reference_images.
+      print(
+        'ProdiaApiService: image_url request failed, retrying with reference_images...',
+      );
+      requestBody = {
+        'model': model,
+        'prompt': prompt,
+        'disable_safety_checker': true,
+        'reference_images': [imageDataUrl],
+      };
+      response = await http.post(
+        Uri.parse(_togetherImageGenUrl),
+        headers: {
+          'Authorization': 'Bearer $_togetherApiToken',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(requestBody),
+      );
+    }
 
     print('ProdiaApiService: Together response status: ${response.statusCode}');
     if (response.statusCode != 200) {

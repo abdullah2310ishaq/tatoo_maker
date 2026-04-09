@@ -16,12 +16,15 @@ class AppOpenAdService {
   AppOpenAd? _ad;
   bool _isLoading = false;
   bool _isShowing = false;
+  bool _temporarilyDisabled = false;
   DateTime? _loadedAt;
   DateTime? _lastShownAt;
 
   /// Prevents repeated showing on quick resume cycles.
   Duration minIntervalBetweenShows;
   static const Duration _maxAdAge = Duration(hours: 4);
+  static const Duration _loadTimeout = Duration(seconds: 12);
+  static const Duration _showFallbackResetDelay = Duration(seconds: 15);
 
   void configure({Duration? minIntervalBetweenShows}) {
     if (minIntervalBetweenShows != null) {
@@ -30,6 +33,16 @@ class AppOpenAdService {
   }
 
   bool get isShowing => _isShowing;
+  bool get isTemporarilyDisabled => _temporarilyDisabled;
+
+  /// Temporarily disable app-open display for sensitive screens
+  /// (for example: paywall/pro screen). Preloading can continue.
+  void setTemporarilyDisabled(bool disabled) {
+    _temporarilyDisabled = disabled;
+    if (kDebugMode) {
+      debugPrint('[AppOpenAdService] temporarilyDisabled=$disabled');
+    }
+  }
 
   Future<void> preload() async {
     await _loadIfNeeded();
@@ -43,11 +56,25 @@ class AppOpenAdService {
     String? testUnitIdOverride,
     bool waitForLoad = true,
   }) async {
-    if (_isShowing) return;
+    if (_temporarilyDisabled) {
+      if (kDebugMode) {
+        debugPrint('[AppOpenAdService] skip show: temporarily disabled');
+      }
+      return;
+    }
+    if (_isShowing) {
+      if (kDebugMode) {
+        debugPrint('[AppOpenAdService] skip show: ad already showing');
+      }
+      return;
+    }
 
     final now = DateTime.now();
     final last = _lastShownAt;
     if (last != null && now.difference(last) < minIntervalBetweenShows) {
+      if (kDebugMode) {
+        debugPrint('[AppOpenAdService] skip show: min interval not reached');
+      }
       return;
     }
 
@@ -56,6 +83,9 @@ class AppOpenAdService {
     // Ensure an ad is loaded; if it wasn't, optionally load and then attempt to show.
     if (_ad == null) {
       if (!waitForLoad) {
+        if (kDebugMode) {
+          debugPrint('[AppOpenAdService] no cached ad; preload only');
+        }
         unawaited(
           _loadIfNeeded(
             primaryUnitIdOverride: unitIdOverride,
@@ -72,10 +102,28 @@ class AppOpenAdService {
     }
 
     final ad = _ad;
-    if (ad == null) return;
+    if (ad == null) {
+      if (kDebugMode) {
+        debugPrint('[AppOpenAdService] skip show: ad still unavailable');
+      }
+      return;
+    }
 
     _isShowing = true;
     _lastShownAt = now;
+
+    // Safety watchdog: if SDK misses callbacks, never stay stuck in showing=true.
+    Timer(_showFallbackResetDelay, () {
+      if (!_isShowing) return;
+      _isShowing = false;
+      _ad?.dispose();
+      _ad = null;
+      _loadedAt = null;
+      if (kDebugMode) {
+        debugPrint('[AppOpenAdService] show watchdog reset triggered');
+      }
+      unawaited(_loadIfNeeded());
+    });
 
     ad.fullScreenContentCallback = FullScreenContentCallback(
       onAdShowedFullScreenContent: (_) {
@@ -182,14 +230,28 @@ class AppOpenAdService {
         if (!completer.isCompleted) completer.complete(null);
       }
 
-      return completer.future;
+      try {
+        return await completer.future.timeout(_loadTimeout);
+      } on TimeoutException {
+        _isLoading = false;
+        _ad?.dispose();
+        _ad = null;
+        _loadedAt = null;
+        if (kDebugMode) {
+          debugPrint(
+            '[AppOpenAdService] load timeout after ${_loadTimeout.inSeconds}s',
+          );
+        }
+        return null;
+      }
     }
 
     final primaryError = await loadWithUnitId(primaryUnitId);
+    final primaryDidFail = primaryError != null || _ad == null;
 
     // Hard fallback: if primary fails (for any reason), retry with Google test unit.
     // This keeps App Open working even before Firebase RC is configured correctly.
-    if (primaryError != null &&
+    if (primaryDidFail &&
         testUnitId.isNotEmpty &&
         testUnitId != primaryUnitId) {
       if (kDebugMode) {

@@ -39,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen>
   bool _shouldShowSplashAdText = false;
 
   static const String _prefsSplashHasRunBeforeKey = 'splash_has_run_before';
+  static const String _prefsProUnlockedKey = 'usage_pro_unlocked';
 
   @override
   void initState() {
@@ -75,6 +76,11 @@ class _SplashScreenState extends State<SplashScreen>
   Future<void> _restorePurchasesInBackground() async {
     try {
       if (!mounted) return;
+
+      if (UsageLimitProvider.forceProForTesting) {
+        await context.read<UsageLimitProvider>().setProUnlocked(true);
+        return;
+      }
 
       // Reset local entitlement on launch; restore will re-unlock if active.
       await context.read<UsageLimitProvider>().setProUnlocked(false);
@@ -165,16 +171,19 @@ class _SplashScreenState extends State<SplashScreen>
       final prefs = await SharedPreferences.getInstance();
       final hasRunBefore =
           prefs.getBool(_prefsSplashHasRunBeforeKey) ?? false;
+      final isProUnlocked = prefs.getBool(_prefsProUnlockedKey) ?? false;
+      final forcePro = UsageLimitProvider.forceProForTesting;
 
       final rc = context.read<RemoteConfigService>();
       final adsAndTextEnabled = rc.splashAdsAndTextEnabled;
       // First-ever splash: no ad. Every splash after that: ad can be shown.
-      final shouldAttemptAds = hasRunBefore && adsAndTextEnabled;
+      final shouldAttemptAds =
+          hasRunBefore && adsAndTextEnabled && !isProUnlocked && !forcePro;
 
       if (kDebugMode) {
         debugPrint(
           '[SplashScreen] first-run check: hasRunBefore=$hasRunBefore, '
-          'adsEnabled=$adsAndTextEnabled, showAppOpen=${rc.splashShowAppOpen}, '
+          'isPro=$isProUnlocked, forcePro=$forcePro, adsEnabled=$adsAndTextEnabled, showAppOpen=${rc.splashShowAppOpen}, '
           'showInterstitial=${rc.splashShowInterstitial}',
         );
       }
@@ -225,7 +234,7 @@ class _SplashScreenState extends State<SplashScreen>
     if (showAppOpen) {
       // Give the splash UI a moment to settle so App Open doesn't appear
       // "inside the app" after navigation has already started.
-      await Future<void>.delayed(const Duration(seconds: 2));
+      await Future<void>.delayed(const Duration(seconds: 3));
       await _showAppOpenAdIfAvailable(
         unitIdOverride: appOpenUnitId,
         testUnitIdOverride: rc.admobAndroidAppOpenTestUnitId,
