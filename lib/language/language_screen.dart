@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -345,10 +346,16 @@ class _LanguageScreenNativeAd extends StatefulWidget {
 class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
   NativeAd? _nativeAd;
   bool _loaded = false;
+  bool _loggedLayoutOnce = false;
+
+  static void _log(String message) {
+    debugPrint('[NativeAd][LanguageScreen] $message');
+  }
 
   @override
   void initState() {
     super.initState();
+    _log('initState isDark=${widget.isDark} → _load()');
     _load();
   }
 
@@ -356,6 +363,8 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
   void didUpdateWidget(covariant _LanguageScreenNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
+    _log('didUpdateWidget theme changed → reload ad');
+    _loggedLayoutOnce = false;
     _nativeAd?.dispose();
     _nativeAd = null;
     _loaded = false;
@@ -364,27 +373,31 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
 
   void _load() {
     final unitId = AdmobIds.nativeUnitId();
-    if (unitId.isEmpty) return;
+    if (unitId.isEmpty) {
+      _log('skip load: native unit id is empty');
+      return;
+    }
+
+    _log('load() factoryId=listTileLanguage unitIdLen=${unitId.length}');
 
     final ad = NativeAd(
       adUnitId: unitId,
       request: const AdRequest(),
-      nativeTemplateStyle: NativeTemplateStyle(
-        templateType: TemplateType.small,
-        mainBackgroundColor: widget.isDark
-            ? AppColors.navBarBackground
-            : AppColors.lightBackground,
-        cornerRadius: 12,
-      ),
+      factoryId: 'listTileLanguage',
       listener: NativeAdListener(
         onAdLoaded: (ad) {
+          _log('onAdLoaded');
           if (!mounted) return;
           setState(() {
             _nativeAd = ad as NativeAd;
             _loaded = true;
           });
         },
-        onAdFailedToLoad: (ad, _) {
+        onAdFailedToLoad: (ad, LoadAdError error) {
+          _log(
+            'onAdFailedToLoad code=${error.code} domain=${error.domain} '
+            'message=${error.message}',
+          );
           ad.dispose();
           if (!mounted) return;
           setState(() {
@@ -401,6 +414,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
 
   @override
   void dispose() {
+    _log('dispose');
     _nativeAd?.dispose();
     super.dispose();
   }
@@ -411,16 +425,39 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
     if (isPro) return const SizedBox.shrink();
 
     final ad = _nativeAd;
-    if (!_loaded || ad == null) return SizedBox(height: 8.h);
+    if (!_loaded || ad == null) return SizedBox(height: 108.h);
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: 8.h),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.r),
-        child: SizedBox(
-          width: double.infinity,
-          height: 100.h,
-          child: AdWidget(ad: ad),
+    // Compact native_ads_language.xml (≈40dp CTA); tweak XML + slot together.
+    final slotH = 108.h;
+    if (kDebugMode && !_loggedLayoutOnce) {
+      _loggedLayoutOnce = true;
+      _log(
+        'AdWidget slot height=${slotH.toStringAsFixed(1)} '
+        'screenH=${MediaQuery.sizeOf(context).height.toStringAsFixed(0)}',
+      );
+    }
+
+    final cardColor = widget.isDark
+        ? AppColors.inputCardDarkBackground
+        : AppColors.lightBackground;
+
+    final radius = BorderRadius.circular(14.r);
+
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 8.h),
+        child: Material(
+          color: cardColor,
+          elevation: 4,
+          shadowColor: AppColors.toastShadow,
+          borderRadius: radius,
+          clipBehavior: Clip.antiAlias,
+          child: SizedBox(
+            width: double.infinity,
+            height: slotH,
+            child: AdWidget(ad: ad),
+          ),
         ),
       ),
     );

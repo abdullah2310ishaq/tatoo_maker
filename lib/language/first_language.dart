@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -118,11 +119,11 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
         backgroundColor: AppColors.darkBackground,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16.w),
+            padding: EdgeInsets.fromLTRB(14.w, 10.h, 14.w, 12.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 20.h),
+                SizedBox(height: 8.h),
                 Text(
                   AppLocalizations.of(context)!.chooseALanguage,
                   style: TextStyle(
@@ -132,16 +133,16 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                     fontFamily: 'Amaranth',
                   ),
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 14.h),
                 Expanded(
                   child: GridView.builder(
                     physics: const ClampingScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      // Slightly shorter cards.
-                      childAspectRatio: 2.6,
-                      crossAxisSpacing: 16.w,
-                      mainAxisSpacing: 16.h,
+                      // Lower ratio = taller cards (height = width / ratio).
+                      childAspectRatio: 2.5,
+                      crossAxisSpacing: 12.w,
+                      mainAxisSpacing: 12.h,
                     ),
                     itemCount: _languages.length,
                     itemBuilder: (context, index) {
@@ -154,13 +155,12 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                     },
                   ),
                 ),
-                // Thin gap — less empty black strip above native.
-                SizedBox(height: 8.h),
+                SizedBox(height: 4.h),
                 const _FirstLanguageNativeAd(),
-                SizedBox(height: 10.h),
+                SizedBox(height: 6.h),
                 SizedBox(
                   width: double.infinity,
-                  height: 56.h,
+                  height: 48.h,
                   child: ElevatedButton(
                     onPressed: _selectedLanguage != null
                         ? () async {
@@ -185,21 +185,21 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                       backgroundColor: AppColors.darkPrimary,
                       foregroundColor: AppColors.textWhite,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.r),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                       elevation: 0,
                     ),
                     child: Text(
                       AppLocalizations.of(context)!.continue_,
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
                         fontFamily: 'Amaranth',
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 16.h),
+                SizedBox(height: 8.h),
               ],
             ),
           ),
@@ -240,18 +240,18 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
               : null,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
           child: Row(
             children: [
               // Flag Icon
               SizedBox(
-                width: 30.w,
-                height: 30.h,
+                width: 26.w,
+                height: 26.h,
                 child: (language['isPng'] as bool? ?? false)
                     ? Image.asset(
                         language['imageAsset'] as String,
-                        width: 30.w,
-                        height: 30.h,
+                        width: 26.w,
+                        height: 26.h,
                         fit: BoxFit.contain,
                         errorBuilder: (context, _, __) => Text(
                           language['name'] as String,
@@ -264,8 +264,8 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                       )
                     : SvgPicture.asset(
                         language['imageAsset'] as String,
-                        width: 30.w,
-                        height: 30.h,
+                        width: 22.w,
+                        height: 22.h,
                         fit: BoxFit.contain,
                         placeholderBuilder: (context) =>
                             const SizedBox.shrink(),
@@ -279,8 +279,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                         ),
                       ),
               ),
-              SizedBox(width: 12.w),
-              // Language Name
+              SizedBox(width: 10.w), // Language Name
               Expanded(
                 child: Text(
                   language['nativeName'] as String,
@@ -301,7 +300,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                 Icon(
                   Icons.check_circle,
                   color: AppColors.darkPrimary,
-                  size: 20.sp,
+                  size: 18.sp,
                 ),
             ],
           ),
@@ -321,34 +320,46 @@ class _FirstLanguageNativeAd extends StatefulWidget {
 class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
   NativeAd? _nativeAd;
   bool _loaded = false;
+  bool _loggedLayoutOnce = false;
+
+  static void _log(String message) {
+    debugPrint('[NativeAd][FirstLanguage] $message');
+  }
 
   @override
   void initState() {
     super.initState();
+    _log('initState → _load()');
     _load();
   }
 
   void _load() {
     final unitId = AdmobIds.nativeUnitId();
-    if (unitId.isEmpty) return;
+    if (unitId.isEmpty) {
+      _log('skip load: native unit id is empty');
+      return;
+    }
+
+    _log('load() start factoryId=listTileLanguage unitIdLen=${unitId.length}');
 
     final ad = NativeAd(
       adUnitId: unitId,
       request: const AdRequest(),
-      nativeTemplateStyle: NativeTemplateStyle(
-        templateType: TemplateType.small,
-        mainBackgroundColor: AppColors.navBarBackground,
-        cornerRadius: 12,
-      ),
+      factoryId: 'listTileLanguage',
       listener: NativeAdListener(
         onAdLoaded: (ad) {
+          _log('onAdLoaded');
           if (!mounted) return;
           setState(() {
             _nativeAd = ad as NativeAd;
             _loaded = true;
           });
         },
-        onAdFailedToLoad: (ad, _) {
+        onAdFailedToLoad: (ad, LoadAdError error) {
+          _log(
+            'onAdFailedToLoad code=${error.code} domain=${error.domain} '
+            'message=${error.message}',
+          );
           ad.dispose();
           if (!mounted) return;
           setState(() {
@@ -365,6 +376,7 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
 
   @override
   void dispose() {
+    _log('dispose');
     _nativeAd?.dispose();
     super.dispose();
   }
@@ -375,15 +387,32 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
     if (isPro) return const SizedBox.shrink();
 
     final ad = _nativeAd;
-    if (!_loaded || ad == null) return SizedBox(height: 4.h);
+    // Tight layout in native_ads_language.xml; keep slot in sync with other screens.
+    final slotH = 96.h;
+    if (!_loaded || ad == null) return SizedBox(height: slotH);
+
+    if (kDebugMode && !_loggedLayoutOnce) {
+      _loggedLayoutOnce = true;
+      _log(
+        'AdWidget slot height=${slotH.toStringAsFixed(1)} '
+        'screenH=${MediaQuery.sizeOf(context).height.toStringAsFixed(0)}',
+      );
+    }
+
+    final cardColor = AppColors.inputCardDarkBackground;
+    final radius = BorderRadius.circular(14.r);
 
     return Padding(
       padding: EdgeInsets.only(bottom: 4.h),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.r),
+      child: Material(
+        color: cardColor,
+        elevation: 4,
+        shadowColor: AppColors.toastShadow,
+        borderRadius: radius,
+        clipBehavior: Clip.antiAlias,
         child: SizedBox(
           width: double.infinity,
-          height: 81.h,
+          height: slotH,
           child: AdWidget(ad: ad),
         ),
       ),

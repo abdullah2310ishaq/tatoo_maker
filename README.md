@@ -1,2 +1,0 @@
-tatoomaker:
-flutter:3.38.1

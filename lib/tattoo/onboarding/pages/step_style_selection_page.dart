@@ -342,13 +342,7 @@ class _StyleSelectionNativeAdState extends State<_StyleSelectionNativeAd> {
     final ad = NativeAd(
       adUnitId: unitId,
       request: const AdRequest(),
-      nativeTemplateStyle: NativeTemplateStyle(
-        templateType: TemplateType.small,
-        mainBackgroundColor: widget.isDark
-            ? AppColors.navBarBackground
-            : AppColors.lightBackground,
-        cornerRadius: 12,
-      ),
+      factoryId: 'listTileLanguage',
       listener: NativeAdListener(
         onAdLoaded: (ad) {
           if (!mounted) return;
@@ -384,19 +378,36 @@ class _StyleSelectionNativeAdState extends State<_StyleSelectionNativeAd> {
   @override
   Widget build(BuildContext context) {
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    if (isPro || !_loaded || _ad == null) {
+    final slotH = 108.h;
+
+    if (isPro) {
       _emit(false);
       return const SizedBox.shrink();
     }
 
+    if (!_loaded || _ad == null) {
+      _emit(false);
+      return SizedBox(height: slotH);
+    }
+
     _emit(true);
+
+    final cardColor = widget.isDark
+        ? AppColors.inputCardDarkBackground
+        : AppColors.lightBackground;
+    final radius = BorderRadius.circular(14.r);
+
     return Padding(
       padding: EdgeInsets.only(bottom: 4.h),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.r),
+      child: Material(
+        color: cardColor,
+        elevation: 4,
+        shadowColor: AppColors.toastShadow,
+        borderRadius: radius,
+        clipBehavior: Clip.antiAlias,
         child: SizedBox(
           width: double.infinity,
-          height: 81.h,
+          height: slotH,
           child: AdWidget(ad: _ad!),
         ),
       ),
