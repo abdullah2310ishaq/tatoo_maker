@@ -425,10 +425,10 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
     if (isPro) return const SizedBox.shrink();
 
     final ad = _nativeAd;
-    if (!_loaded || ad == null) return SizedBox(height: 108.h);
+    if (!_loaded || ad == null) return SizedBox(height: 115.h);
 
-    // Compact native_ads_language.xml (≈40dp CTA); tweak XML + slot together.
-    final slotH = 95.h;
+    // Keep in sync with native_ads_language.xml CTA-heavy layout.
+    final slotH = 128.h;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(

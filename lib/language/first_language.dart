@@ -9,6 +9,7 @@ import '../providers/usage_limit_provider.dart';
 import '../services/admob_ids.dart';
 import '../services/locale_service.dart';
 import '../utils/colors.dart';
+import '../utils/theme_manager.dart';
 import '../real_onboarding/real_onboarding_flow.dart';
 
 /// First language selection screen - Light theme only (one-time onboarding)
@@ -112,97 +113,106 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Follow dark theme (default theme is dark)
-    return Theme(
-      data: ThemeData.dark(),
-      child: Scaffold(
-        backgroundColor: AppColors.darkBackground,
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(14.w, 10.h, 14.w, 12.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 8.h),
-                Text(
-                  AppLocalizations.of(context)!.chooseALanguage,
-                  style: TextStyle(
-                    fontSize: 32.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textWhite,
-                    fontFamily: 'Amaranth',
-                  ),
-                ),
-                SizedBox(height: 14.h),
-                Expanded(
-                  child: GridView.builder(
-                    physics: const ClampingScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      // Lower ratio = taller cards (height = width / ratio).
-                      childAspectRatio: 2.5,
-                      crossAxisSpacing: 12.w,
-                      mainAxisSpacing: 12.h,
-                    ),
-                    itemCount: _languages.length,
-                    itemBuilder: (context, index) {
-                      final language = _languages[index];
-                      final isSelected = _selectedLanguage == language['code'];
-                      return _buildLanguageCard(
-                        language: language,
-                        isSelected: isSelected,
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Scaffold(
+      backgroundColor: isDark
+          ? AppColors.darkBackground
+          : AppColors.lightBackground,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: isDark
+            ? AppColors.darkBackground
+            : AppColors.lightBackground,
+        elevation: 0,
+        title: Text(
+          AppLocalizations.of(context)!.chooseALanguage,
+          style: TextStyle(
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+            color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+            fontFamily: 'Amaranth',
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 16.w),
+            child: ElevatedButton(
+              onPressed: _selectedLanguage != null
+                  ? () async {
+                      final localeService = Provider.of<LocaleService>(
+                        context,
+                        listen: false,
                       );
-                    },
-                  ),
+                      await localeService.setLocaleByCode(_selectedLanguage!);
+                      if (context.mounted) {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const RealOnboardingFlow(),
+                          ),
+                        );
+                      }
+                    }
+                  : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.lightPrimary,
+                foregroundColor: AppColors.textWhite,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.r),
                 ),
-                SizedBox(height: 4.h),
-                const _FirstLanguageNativeAd(),
-                SizedBox(height: 6.h),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48.h,
-                  child: ElevatedButton(
-                    onPressed: _selectedLanguage != null
-                        ? () async {
-                            final localeService = Provider.of<LocaleService>(
-                              context,
-                              listen: false,
-                            );
-                            await localeService.setLocaleByCode(
-                              _selectedLanguage!,
-                            );
-                            if (context.mounted) {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const RealOnboardingFlow(),
-                                ),
-                              );
-                            }
-                          }
-                        : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.darkPrimary,
-                      foregroundColor: AppColors.textWhite,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.continue_,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Amaranth',
-                      ),
-                    ),
-                  ),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                elevation: 0,
+              ),
+              child: Text(
+                AppLocalizations.of(context)!.next,
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Amaranth',
                 ),
-                SizedBox(height: 8.h),
-              ],
+              ),
             ),
           ),
+        ],
+      ),
+      body: Container(
+        decoration: isDark
+            ? ThemeManager.darkModeBackgroundGradient
+            : ThemeManager.lightModeBackground,
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(16.w),
+                child: GridView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 2.5,
+                    crossAxisSpacing: 16.w,
+                    mainAxisSpacing: 16.h,
+                  ),
+                  itemCount: _languages.length,
+                  itemBuilder: (context, index) {
+                    final language = _languages[index];
+                    final isSelected = _selectedLanguage == language['code'];
+                    return _buildLanguageCard(
+                      language: language,
+                      isSelected: isSelected,
+                      isDark: isDark,
+                    );
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 28.h),
+              child: Transform.translate(
+                offset: Offset(0, -15.h),
+                child: _FirstLanguageNativeAd(isDark: isDark),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -211,6 +221,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
   Widget _buildLanguageCard({
     required Map<String, dynamic> language,
     required bool isSelected,
+    required bool isDark,
   }) {
     return InkWell(
       onTap: () {
@@ -221,18 +232,20 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
       borderRadius: BorderRadius.circular(12.r),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.navBarBackground,
+          color: isDark
+              ? AppColors.buttonBackground
+              : AppColors.lightBackground,
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(
             color: isSelected
-                ? AppColors.darkPrimary
-                : AppColors.textGrey.withOpacity(0.35),
+                ? AppColors.lightPrimary
+                : (isDark ? Colors.grey[700]! : Colors.grey[300]!),
             width: isSelected ? 2.w : 1.w,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: AppColors.darkPrimary.withOpacity(0.25),
+                    color: AppColors.lightPrimary.withOpacity(0.25),
                     blurRadius: 8.r,
                     offset: Offset(0, 2.h),
                   ),
@@ -245,27 +258,28 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
             children: [
               // Flag Icon
               SizedBox(
-                width: 26.w,
-                height: 26.h,
+                width: 32.w,
+                height: 32.h,
                 child: (language['isPng'] as bool? ?? false)
                     ? Image.asset(
                         language['imageAsset'] as String,
-                        width: 26.w,
-                        height: 26.h,
+                        width: 32.w,
+                        height: 32.h,
                         fit: BoxFit.contain,
                         errorBuilder: (context, _, __) => Text(
                           language['name'] as String,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: AppColors.textGrey,
+                            color: isDark ? AppColors.textGrey : Colors.black54,
                             fontWeight: FontWeight.w600,
+                            fontFamily: 'Amaranth',
                           ),
                         ),
                       )
                     : SvgPicture.asset(
                         language['imageAsset'] as String,
-                        width: 22.w,
-                        height: 22.h,
+                        width: 32.w,
+                        height: 32.h,
                         fit: BoxFit.contain,
                         placeholderBuilder: (context) =>
                             const SizedBox.shrink(),
@@ -273,13 +287,14 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                           language['name'] as String,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: AppColors.textGrey,
+                            color: isDark ? AppColors.textGrey : Colors.black54,
                             fontWeight: FontWeight.w600,
+                            fontFamily: 'Amaranth',
                           ),
                         ),
                       ),
               ),
-              SizedBox(width: 10.w), // Language Name
+              SizedBox(width: 12.w), // Language Name
               Expanded(
                 child: Text(
                   language['nativeName'] as String,
@@ -289,8 +304,10 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                         ? FontWeight.w600
                         : FontWeight.normal,
                     color: isSelected
-                        ? AppColors.darkPrimary
-                        : AppColors.textWhite,
+                        ? AppColors.lightPrimary
+                        : (isDark
+                              ? AppColors.textWhite
+                              : AppColors.textPrimary),
                     fontFamily: 'Amaranth',
                   ),
                 ),
@@ -299,8 +316,8 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
               if (isSelected)
                 Icon(
                   Icons.check_circle,
-                  color: AppColors.darkPrimary,
-                  size: 18.sp,
+                  color: AppColors.lightPrimary,
+                  size: 20.sp,
                 ),
             ],
           ),
@@ -311,7 +328,9 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
 }
 
 class _FirstLanguageNativeAd extends StatefulWidget {
-  const _FirstLanguageNativeAd();
+  const _FirstLanguageNativeAd({required this.isDark});
+
+  final bool isDark;
 
   @override
   State<_FirstLanguageNativeAd> createState() => _FirstLanguageNativeAdState();
@@ -375,6 +394,18 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
   }
 
   @override
+  void didUpdateWidget(covariant _FirstLanguageNativeAd oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isDark == widget.isDark) return;
+    _log('didUpdateWidget theme changed → reload ad');
+    _loggedLayoutOnce = false;
+    _nativeAd?.dispose();
+    _nativeAd = null;
+    _loaded = false;
+    _load();
+  }
+
+  @override
   void dispose() {
     _log('dispose');
     _nativeAd?.dispose();
@@ -387,10 +418,10 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
     if (isPro) return const SizedBox.shrink();
 
     final ad = _nativeAd;
-    // Tight layout in native_ads_language.xml; keep slot in sync with other screens.
-    final slotH = 95.h;
-    if (!_loaded || ad == null) return SizedBox(height: slotH);
+    if (!_loaded || ad == null) return SizedBox(height: 115.h);
 
+    // Tight layout in native_ads_language.xml; keep slot in sync with other screens.
+    final slotH = 122.h;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(
@@ -399,21 +430,26 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
       );
     }
 
-    final cardColor = AppColors.inputCardDarkBackground;
+    final cardColor = widget.isDark
+        ? AppColors.inputCardDarkBackground
+        : AppColors.lightBackground;
     final radius = BorderRadius.circular(14.r);
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: 4.h),
-      child: Material(
-        color: cardColor,
-        elevation: 4,
-        shadowColor: AppColors.toastShadow,
-        borderRadius: radius,
-        clipBehavior: Clip.antiAlias,
-        child: SizedBox(
-          width: double.infinity,
-          height: slotH,
-          child: AdWidget(ad: ad),
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 8.h),
+        child: Material(
+          color: cardColor,
+          elevation: 4,
+          shadowColor: AppColors.toastShadow,
+          borderRadius: radius,
+          clipBehavior: Clip.antiAlias,
+          child: SizedBox(
+            width: double.infinity,
+            height: slotH,
+            child: AdWidget(ad: ad),
+          ),
         ),
       ),
     );

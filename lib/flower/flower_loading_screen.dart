@@ -187,6 +187,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
           builder: (context) => FlowerResultScreen(
             name: widget.name,
             generatedImageBytes: _generatedImageBytes,
+            showProAccessOnOpen: _generatedImageBytes != null,
           ),
         ),
       );

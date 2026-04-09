@@ -53,7 +53,9 @@ class _ResultScreenState extends State<ResultScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted || _didAutoShowPaywall) return;
       if (!widget.showProAccessOnOpen) {
-        debugPrint('[ResultScreen] skip auto paywall: showProAccessOnOpen=false');
+        debugPrint(
+          '[ResultScreen] skip auto paywall: showProAccessOnOpen=false',
+        );
         return;
       }
       if (widget.generatedImageBytes == null) {
@@ -68,7 +70,7 @@ class _ResultScreenState extends State<ResultScreen> {
       }
       if (!mounted || _didAutoShowPaywall) return;
       _didAutoShowPaywall = true;
-      debugPrint('[ResultScreen] showing ProAccessScreen after interstitial step');
+      debugPrint('[ResultScreen] showing ProAccessScreen after loading');
 
       Navigator.of(context).push(
         MaterialPageRoute(

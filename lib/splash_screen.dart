@@ -39,8 +39,6 @@ class _SplashScreenState extends State<SplashScreen>
   bool _shouldShowSplashAdText = false;
 
   static const String _prefsSplashHasRunBeforeKey = 'splash_has_run_before';
-  static const String _prefsSplashSecondTimeAdsShownKey =
-      'splash_second_time_ads_shown';
 
   @override
   void initState() {
@@ -162,24 +160,20 @@ class _SplashScreenState extends State<SplashScreen>
 
   Future<void> _runSplashSequence() async {
     // Keep the same min splash time as before (3 seconds) while optionally
-    // showing full-screen ads on second app open only.
+    // showing full-screen ads after the first app open.
     try {
       final prefs = await SharedPreferences.getInstance();
       final hasRunBefore =
           prefs.getBool(_prefsSplashHasRunBeforeKey) ?? false;
-      final secondTimeAdsShown =
-          prefs.getBool(_prefsSplashSecondTimeAdsShownKey) ?? false;
-
-      final isSecondTimeUser = hasRunBefore && !secondTimeAdsShown;
 
       final rc = context.read<RemoteConfigService>();
       final adsAndTextEnabled = rc.splashAdsAndTextEnabled;
-      final shouldAttemptAds = isSecondTimeUser && adsAndTextEnabled;
+      // First-ever splash: no ad. Every splash after that: ad can be shown.
+      final shouldAttemptAds = hasRunBefore && adsAndTextEnabled;
 
       if (kDebugMode) {
         debugPrint(
-          '[SplashScreen] second-time check: hasRunBefore=$hasRunBefore, '
-          'secondTimeAdsShown=$secondTimeAdsShown, isSecondTimeUser=$isSecondTimeUser, '
+          '[SplashScreen] first-run check: hasRunBefore=$hasRunBefore, '
           'adsEnabled=$adsAndTextEnabled, showAppOpen=${rc.splashShowAppOpen}, '
           'showInterstitial=${rc.splashShowInterstitial}',
         );
@@ -207,10 +201,6 @@ class _SplashScreenState extends State<SplashScreen>
       if (!mounted) return;
 
       await prefs.setBool(_prefsSplashHasRunBeforeKey, true);
-      if (isSecondTimeUser) {
-        // Even if Remote Config disables ads/text, treat the 2nd run as done.
-        await prefs.setBool(_prefsSplashSecondTimeAdsShownKey, true);
-      }
 
       await _checkOnboardingStatus();
     } catch (_) {
@@ -368,22 +358,25 @@ class _SplashScreenState extends State<SplashScreen>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const _SplashTitle(),
-                  const SizedBox(height: 22),
-                  SizedBox(
-                    width: 260,
-                    child: AnimatedBuilder(
-                      animation: _progressController,
-                      builder: (context, _) {
-                        return LinearProgressIndicator(
+                  const SizedBox(height: 30),
+                  AnimatedBuilder(
+                    animation: _progressController,
+                    builder: (context, _) {
+                      return SizedBox(
+                        width: 34,
+                        height: 34,
+                        child: CircularProgressIndicator(
                           value: _progressAnimation.value,
-                          minHeight: 6,
-                          backgroundColor:
-                              AppColors.textGrey.withOpacity(isDarkTheme ? 0.25 : 0.12),
-                          valueColor:
-                              const AlwaysStoppedAnimation<Color>(AppColors.lightPrimary),
-                        );
-                      },
-                    ),
+                          strokeWidth: 3.2,
+                          backgroundColor: AppColors.textGrey.withOpacity(
+                            isDarkTheme ? 0.25 : 0.12,
+                          ),
+                          valueColor: const AlwaysStoppedAnimation<Color>(
+                            AppColors.lightPrimary,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 14),
                   if (_shouldShowSplashAdText)

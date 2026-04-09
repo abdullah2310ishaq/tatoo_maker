@@ -328,7 +328,7 @@ class _LoadingScreenState extends State<LoadingScreen>
         styleName: styleName,
         promptText: widget.promptText,
         generatedImageBytes: _generatedImageBytes,
-        // Show paywall only when an image actually exists.
+        // For allowed free generations, show paywall right after loading.
         showProAccessOnOpen: _generatedImageBytes != null,
       );
       debugPrint('[LoadingScreen] step 3/3: opening ResultScreen');

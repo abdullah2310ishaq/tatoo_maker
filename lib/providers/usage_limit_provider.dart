@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UsageLimitProvider extends ChangeNotifier {
-  static const int freeGenerationLimit = 3;
+  static const int freeGenerationLimit = 2;
   static const String _generationCountKey = 'usage_generation_count';
   static const String _proUnlockedKey = 'usage_pro_unlocked';
 
@@ -23,7 +23,7 @@ class UsageLimitProvider extends ChangeNotifier {
       !isProUnlocked && _generationCount >= freeGenerationLimit;
 
   bool get shouldPromptAfterResultAction =>
-      !isProUnlocked && _generationCount >= 2;
+      !isProUnlocked && _generationCount >= freeGenerationLimit;
 
   Future<void> _ensureLoaded() {
     _loadFuture ??= _loadState();
@@ -54,12 +54,12 @@ class UsageLimitProvider extends ChangeNotifier {
 
   Future<bool> canStartGeneration() async {
     await _ensureLoaded();
-    return true;
+    return isProUnlocked || _generationCount < freeGenerationLimit;
   }
 
   Future<bool> shouldShowPostActionPaywall() async {
     await _ensureLoaded();
-    return false;
+    return !isProUnlocked && _generationCount >= freeGenerationLimit;
   }
 
   Future<void> unlockPro() async {

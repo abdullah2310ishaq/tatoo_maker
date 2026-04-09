@@ -21,11 +21,13 @@ import '../pro_access_screen.dart';
 class FlowerResultScreen extends StatefulWidget {
   final String name;
   final Uint8List? generatedImageBytes;
+  final bool showProAccessOnOpen;
 
   const FlowerResultScreen({
     super.key,
     required this.name,
     this.generatedImageBytes,
+    this.showProAccessOnOpen = false,
   });
 
   @override
@@ -40,12 +42,18 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
   void initState() {
     super.initState();
     debugPrint(
-      '[FlowerResultScreen] opened (hasImage=${widget.generatedImageBytes != null})',
+      '[FlowerResultScreen] opened (hasImage=${widget.generatedImageBytes != null}, '
+      'showProAccessOnOpen=${widget.showProAccessOnOpen})',
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || _didAutoShowPaywall) return;
-
+      if (!widget.showProAccessOnOpen) {
+        debugPrint(
+          '[FlowerResultScreen] skip auto paywall: showProAccessOnOpen=false',
+        );
+        return;
+      }
       if (widget.generatedImageBytes == null) {
         debugPrint('[FlowerResultScreen] skip auto paywall: hasImage=false');
         return;
@@ -57,17 +65,15 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
         return;
       }
 
-      if (!mounted || _didAutoShowPaywall) return;
       _didAutoShowPaywall = true;
-      debugPrint(
-        '[FlowerResultScreen] showing ProAccessScreen after interstitial step',
-      );
+      debugPrint('[FlowerResultScreen] showing ProAccessScreen after loading');
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
             nextScreen: FlowerResultScreen(
               name: widget.name,
               generatedImageBytes: widget.generatedImageBytes,
+              showProAccessOnOpen: false,
             ),
           ),
         ),
