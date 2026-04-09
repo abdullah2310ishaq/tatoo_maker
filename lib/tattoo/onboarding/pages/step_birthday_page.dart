@@ -117,7 +117,8 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
           ),
         ),
         const Spacer(),
-        _BirthdayNativeAd(isDark: isDark),
+        // Native ad disabled on this screen; keep only banner ad.
+        // _BirthdayNativeAd(isDark: isDark),
         // Next button
         OnboardingNextButton(
           enabled: _isDateValid(), // Disabled if date is in future or invalid
@@ -341,6 +342,9 @@ class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
   }
 }
 
+// Native ad intentionally disabled in this step.
+// Keep this code commented for quick re-enable if needed.
+/*
 class _BirthdayNativeAd extends StatefulWidget {
   const _BirthdayNativeAd({required this.isDark});
 
@@ -439,3 +443,4 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
     );
   }
 }
+*/

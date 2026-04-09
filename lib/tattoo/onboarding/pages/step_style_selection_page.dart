@@ -105,17 +105,18 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
           ),
         ),
         const Spacer(),
-        if (shouldShowNative) ...[
-          _StyleSelectionNativeAd(
-            isDark: isDark,
-            onVisibilityChanged: (visible) {
-              if (_nativeLoaded == visible) return;
-              setState(() => _nativeLoaded = visible);
-            },
-          ),
-          // Keep it close to the button (more down) without leaving gaps when hidden.
-          if (_nativeLoaded) SizedBox(height: 6.h),
-        ],
+        // Native ad disabled on this step; keep only banner ad.
+        // if (shouldShowNative) ...[
+        //   _StyleSelectionNativeAd(
+        //     isDark: isDark,
+        //     onVisibilityChanged: (visible) {
+        //       if (_nativeLoaded == visible) return;
+        //       setState(() => _nativeLoaded = visible);
+        //     },
+        //   ),
+        //   // Keep it close to the button (more down) without leaving gaps when hidden.
+        //   if (_nativeLoaded) SizedBox(height: 6.h),
+        // ],
         // Next button
         OnboardingNextButton(
           enabled: widget.selectedStyleIndex != null,
@@ -292,6 +293,9 @@ class _StyleSelectionBannerAdState extends State<_StyleSelectionBannerAd> {
   }
 }
 
+// Native ad intentionally disabled in this step.
+// Keep this code commented for quick re-enable if needed.
+/*
 /// Dedicated native ad for style-selection step (page-specific implementation).
 class _StyleSelectionNativeAd extends StatefulWidget {
   const _StyleSelectionNativeAd({
@@ -414,3 +418,4 @@ class _StyleSelectionNativeAdState extends State<_StyleSelectionNativeAd> {
     );
   }
 }
+*/
