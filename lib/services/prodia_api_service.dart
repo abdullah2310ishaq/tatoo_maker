@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
 
 /// API Service for Prodia text-to-image and image-to-image generation
 class ProdiaApiService {
@@ -293,186 +292,113 @@ class ProdiaApiService {
     return response.bodyBytes;
   }
 
-  /// Remove background from image using Prodia API
+  /// Remove background from image using Together image edit API.
   ///
   /// [imageFile] - The input image file
   ///
-  /// Returns the image with removed background as Uint8List bytes (PNG format)
+  /// Returns the image bytes after background removal.
   Future<Uint8List> removeBackground({required File imageFile}) async {
     try {
-      print('ProdiaApiService: Starting background removal...');
+      print('ProdiaApiService: Starting Together background removal...');
       print('ProdiaApiService: Image file: ${imageFile.path}');
-
-      final imageName = imageFile.path.split(Platform.pathSeparator).last;
-
-      // Read image file bytes
-      final imageBytes = await imageFile.readAsBytes();
-      print('ProdiaApiService: Image size: ${imageBytes.length} bytes');
-
-      // Create multipart request
-      final request = http.MultipartRequest('POST', Uri.parse(_baseUrl));
-
-      // Add headers
-      request.headers.addAll(_headers);
-      request.headers['Accept'] = 'image/png'; // PNG for transparency
-
-      // Add image file
-      request.files.add(
-        http.MultipartFile.fromBytes('input', imageBytes, filename: imageName),
+      return await _togetherImageEditFromFile(
+        imageFile: imageFile,
+        model: 'black-forest-labs/FLUX.2-dev',
+        prompt:
+            'Remove the background completely. Keep only the tattoo design subject with clean edges on a plain white background. No extra elements.',
       );
-
-      // Create job JSON for background removal
-      final jobJson = jsonEncode({
-        'type': 'inference.remove-background.v1',
-        'config': {},
-      });
-
-      print('ProdiaApiService: Job JSON: $jobJson');
-
-      // Add job as a file
-      request.files.add(
-        http.MultipartFile.fromString('job', jobJson, filename: 'job.json'),
-      );
-
-      print('ProdiaApiService: Sending background removal request...');
-      final streamedResponse = await request.send();
-      final response = await http.Response.fromStream(streamedResponse);
-
-      print('ProdiaApiService: Response received');
-      print('ProdiaApiService: Status Code: ${response.statusCode}');
-      print(
-        'ProdiaApiService: Response Body: ${response.body.substring(0, response.body.length > 200 ? 200 : response.body.length)}',
-      );
-
-      if (response.statusCode != 200 &&
-          response.statusCode != 201 &&
-          response.statusCode != 202) {
-        print('ProdiaApiService: Error - Status: ${response.statusCode}');
-        print('ProdiaApiService: Error - Full Body: ${response.body}');
-        throw Exception(
-          'API Error: ${response.statusCode} - ${response.reasonPhrase}',
-        );
-      }
-
-      // Check if response is a job object or direct image
-      if (response.headers['content-type']?.contains('application/json') ??
-          false) {
-        // It's a job object, need to poll
-        print('ProdiaApiService: Received job object, starting polling...');
-        final jobResponse = jsonDecode(response.body) as Map<String, dynamic>;
-        final jobId = jobResponse['id'] as String?;
-
-        if (jobId == null) {
-          throw Exception('No job ID returned from API');
-        }
-
-        print('ProdiaApiService: Background removal Job ID: $jobId');
-        print(
-          'ProdiaApiService: Job State: ${jobResponse['state']?['current']}',
-        );
-
-        // Poll for job completion
-        return await _pollJobStatus(jobId, acceptPng: true);
-      } else {
-        // Direct image response
-        final requestId = response.headers['x-request-id'];
-        print('ProdiaApiService: Request ID: $requestId');
-        print(
-          'ProdiaApiService: Image size: ${response.bodyBytes.length} bytes',
-        );
-        print('ProdiaApiService: Background removal successful!');
-        return response.bodyBytes;
-      }
     } catch (e) {
       print('ProdiaApiService: Error in background removal: $e');
       rethrow;
     }
   }
 
-  /// Mask background using Prodia API
+  /// Mask background using Together image edit API.
   ///
-  /// This follows the provided CURL:
-  /// - multipart form with `input` and `job` as `job.json`
-  /// - Accept: image/jpeg
-  ///
-  /// Returns the masked image as Uint8List bytes (JPEG)
+  /// Returns a high-contrast mask-like image as Uint8List bytes.
   Future<Uint8List> maskBackground({required File imageFile}) async {
     try {
-      print('ProdiaApiService: Starting background mask...');
+      print('ProdiaApiService: Starting Together background mask...');
       print('ProdiaApiService: Image file: ${imageFile.path}');
-
-      final imageName = imageFile.path.split(Platform.pathSeparator).last;
-      final imageBytes = await imageFile.readAsBytes();
-      print('ProdiaApiService: Image size: ${imageBytes.length} bytes');
-
-      final request = http.MultipartRequest('POST', Uri.parse(_baseUrl));
-      request.headers.addAll(_headers);
-      request.headers['Accept'] = 'image/jpeg';
-
-      request.files.add(
-        http.MultipartFile.fromBytes('input', imageBytes, filename: imageName),
+      return await _togetherImageEditFromFile(
+        imageFile: imageFile,
+        model: 'black-forest-labs/FLUX.2-flex',
+        prompt:
+            'Create a clean binary mask of the tattoo subject: subject in white, background in black, high contrast, sharp edges, no gray shades.',
       );
-
-      final jobJson = jsonEncode({
-        'type': 'inference.mask-background.v1',
-        'config': {},
-      });
-      print('ProdiaApiService: Job JSON: $jobJson');
-
-      request.files.add(
-        http.MultipartFile.fromString(
-          'job',
-          jobJson,
-          filename: 'job.json',
-          contentType: MediaType('application', 'json'),
-        ),
-      );
-
-      print('ProdiaApiService: Sending background mask request...');
-      final streamedResponse = await request.send();
-      final response = await http.Response.fromStream(streamedResponse);
-
-      print('ProdiaApiService: Response received');
-      print('ProdiaApiService: Status Code: ${response.statusCode}');
-      print(
-        'ProdiaApiService: Response Body: ${response.body.substring(0, response.body.length > 200 ? 200 : response.body.length)}',
-      );
-
-      if (response.statusCode != 200 &&
-          response.statusCode != 201 &&
-          response.statusCode != 202) {
-        print('ProdiaApiService: Error - Status: ${response.statusCode}');
-        print('ProdiaApiService: Error - Full Body: ${response.body}');
-        throw Exception(
-          'API Error: ${response.statusCode} - ${response.reasonPhrase}',
-        );
-      }
-
-      if (response.headers['content-type']?.contains('application/json') ??
-          false) {
-        print('ProdiaApiService: Received job object, starting polling...');
-        final jobResponse = jsonDecode(response.body) as Map<String, dynamic>;
-        final jobId = jobResponse['id'] as String?;
-        if (jobId == null) {
-          throw Exception('No job ID returned from API');
-        }
-
-        print('ProdiaApiService: Background mask Job ID: $jobId');
-        print(
-          'ProdiaApiService: Job State: ${jobResponse['state']?['current']}',
-        );
-
-        return await _pollJobStatus(jobId, acceptPng: false);
-      }
-
-      final requestId = response.headers['x-request-id'];
-      print('ProdiaApiService: Request ID: $requestId');
-      print('ProdiaApiService: Image size: ${response.bodyBytes.length} bytes');
-      print('ProdiaApiService: Background mask successful!');
-      return response.bodyBytes;
     } catch (e) {
       print('ProdiaApiService: Error in background mask: $e');
       rethrow;
     }
+  }
+
+  Future<Uint8List> _togetherImageEditFromFile({
+    required File imageFile,
+    required String model,
+    required String prompt,
+  }) async {
+    final imageBytes = await imageFile.readAsBytes();
+    if (imageBytes.isEmpty) {
+      throw Exception('Together API Error: Input image file is empty');
+    }
+
+    final lowerPath = imageFile.path.toLowerCase();
+    final mimeType = lowerPath.endsWith('.jpg') || lowerPath.endsWith('.jpeg')
+        ? 'image/jpeg'
+        : 'image/png';
+    final imageDataUrl = 'data:$mimeType;base64,${base64Encode(imageBytes)}';
+
+    final requestBody = {
+      'model': model,
+      'prompt': prompt,
+      'disable_safety_checker': true,
+      'image_url': imageDataUrl,
+    };
+
+    print('ProdiaApiService: Sending Together image edit request...');
+    print('ProdiaApiService: Model: $model');
+    final response = await http.post(
+      Uri.parse(_togetherImageGenUrl),
+      headers: {
+        'Authorization': 'Bearer $_togetherApiToken',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+
+    print('ProdiaApiService: Together response status: ${response.statusCode}');
+    if (response.statusCode != 200) {
+      print('ProdiaApiService: Together error body: ${response.body}');
+      throw Exception(
+        'Together API Error: ${response.statusCode} - ${response.reasonPhrase}',
+      );
+    }
+
+    final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+    final data = decoded['data'];
+    if (data is! List || data.isEmpty) {
+      throw Exception('Together API Error: No image data returned');
+    }
+
+    final first = data.first;
+    if (first is! Map<String, dynamic>) {
+      throw Exception('Together API Error: Invalid image payload');
+    }
+
+    final imageUrl = first['url'] as String?;
+    if (imageUrl == null || imageUrl.isEmpty) {
+      throw Exception('Together API Error: Missing image URL');
+    }
+
+    print('ProdiaApiService: Downloading edited image from URL...');
+    final imageResponse = await http.get(Uri.parse(imageUrl));
+    if (imageResponse.statusCode != 200 || imageResponse.bodyBytes.isEmpty) {
+      throw Exception('Together API Error: Failed to download edited image');
+    }
+
+    print(
+      'ProdiaApiService: Together image edit successful, bytes=${imageResponse.bodyBytes.length}',
+    );
+    return imageResponse.bodyBytes;
   }
 }
