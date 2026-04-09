@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import 'admob_ids.dart';
-
 class AppOpenAdService {
   AppOpenAdService._internal({this.minIntervalBetweenShows = Duration.zero});
 
@@ -86,19 +84,11 @@ class AppOpenAdService {
         if (kDebugMode) {
           debugPrint('[AppOpenAdService] no cached ad; preload only');
         }
-        unawaited(
-          _loadIfNeeded(
-            primaryUnitIdOverride: unitIdOverride,
-            testUnitIdOverride: testUnitIdOverride,
-          ),
-        );
+        unawaited(_loadIfNeeded(primaryUnitIdOverride: unitIdOverride));
         return;
       }
 
-      await _loadIfNeeded(
-        primaryUnitIdOverride: unitIdOverride,
-        testUnitIdOverride: testUnitIdOverride,
-      );
+      await _loadIfNeeded(primaryUnitIdOverride: unitIdOverride);
     }
 
     final ad = _ad;
@@ -169,17 +159,13 @@ class AppOpenAdService {
 
   Future<void> _loadIfNeeded({
     String? primaryUnitIdOverride,
-    String? testUnitIdOverride,
   }) async {
     _dropExpiredIfNeeded();
     if (_ad != null) return;
     if (_isLoading) return;
 
-    final primaryUnitId =
-        (primaryUnitIdOverride ?? AdmobIds.appOpenUnitId()).trim();
+    final primaryUnitId = (primaryUnitIdOverride ?? '').trim();
     if (primaryUnitId.isEmpty) return;
-
-    final testUnitId = (testUnitIdOverride ?? AdmobIds.appOpenTestUnitId()).trim();
     String mask(String id) {
       if (id.length <= 10) return id;
       return '${id.substring(0, 18)}…${id.substring(id.length - 8)}';
@@ -248,21 +234,8 @@ class AppOpenAdService {
 
     final primaryError = await loadWithUnitId(primaryUnitId);
     final primaryDidFail = primaryError != null || _ad == null;
-
-    // Hard fallback: if primary fails (for any reason), retry with Google test unit.
-    // This keeps App Open working even before Firebase RC is configured correctly.
-    if (primaryDidFail &&
-        testUnitId.isNotEmpty &&
-        testUnitId != primaryUnitId) {
-      if (kDebugMode) {
-        debugPrint(
-          '[AppOpenAdService] retrying with test unit after primary failure',
-        );
-      }
-      final retryError = await loadWithUnitId(testUnitId);
-      if (kDebugMode && retryError != null) {
-        debugPrint('[AppOpenAdService] retry failed: $retryError');
-      }
+    if (primaryDidFail && kDebugMode) {
+      debugPrint('[AppOpenAdService] primary load failed (no fallback).');
     }
   }
 

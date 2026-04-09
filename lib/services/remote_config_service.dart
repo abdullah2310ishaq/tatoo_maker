@@ -12,7 +12,7 @@ class RemoteConfigService extends ChangeNotifier {
   bool _initialized = false;
   bool get isInitialized => _initialized;
 
-  /// Defaults: birthday flags, **production** IDs, and Google **test** IDs (same as [AdmobIds]).
+  /// Defaults: feature flags + production IDs.
   static const Map<String, dynamic> defaults = <String, dynamic>{
     // Boolean feature flags — FOR NOW default ON (can be overridden in Firebase).
     RemoteConfigKeys.tattooBirthdayAdsAll: true,
@@ -33,17 +33,12 @@ class RemoteConfigService extends ChangeNotifier {
         'ca-app-pub-5408098781737794/2580813955',
     RemoteConfigKeys.admobAndroidInterstitial:
         'ca-app-pub-5408098781737794/5232829779',
-    // Google sample test units (Android) — debug / QA
-    RemoteConfigKeys.admobAndroidBannerTest:
-        'ca-app-pub-3940256099942544/6300978111',
-    RemoteConfigKeys.admobAndroidNativeTest:
-        'ca-app-pub-3940256099942544/2247696110',
-    RemoteConfigKeys.admobAndroidAppOpenTest:
-        // Use the official Google demo App Open unit that works reliably in debug.
-        // (Some AdMob sample IDs can fail with "doesn't match format" depending on setup.)
-        'ca-app-pub-3940256099942544/9257395921',
-    RemoteConfigKeys.admobAndroidInterstitialTest:
-        'ca-app-pub-3940256099942544/1033173712',
+    // Test IDs are not used via Remote Config anymore.
+    // Debug/QA uses hardcoded Google sample IDs via [AdmobIds] when [AdMode.useTestAds] is true.
+    RemoteConfigKeys.admobAndroidBannerTest: '',
+    RemoteConfigKeys.admobAndroidNativeTest: '',
+    RemoteConfigKeys.admobAndroidAppOpenTest: '',
+    RemoteConfigKeys.admobAndroidInterstitialTest: '',
 
     // Splash screen ad/text toggles.
     // FOR NOW default ON (can be overridden in Firebase).
@@ -53,6 +48,7 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.splashShowAppOpen: true,
 
     RemoteConfigKeys.firstLanguageOnboardingEnabled: true,
+    RemoteConfigKeys.firstLanguageShowNativeAd: true,
   };
 
   Future<void> initialize() async {
@@ -112,7 +108,7 @@ class RemoteConfigService extends ChangeNotifier {
       tattooStyleSelectionAdsAll &&
       _rc.getBool(RemoteConfigKeys.tattooStyleSelectionNative);
 
-  /// Trimmed AdMob unit id from Remote Config, or empty if missing (caller uses code fallback).
+  /// Trimmed AdMob unit id from Remote Config, or empty if missing.
   String _admobString(String key) => _rc.getString(key).trim();
 
   String get admobAndroidBannerUnitId =>
@@ -154,4 +150,7 @@ class RemoteConfigService extends ChangeNotifier {
   /// directly to the main onboarding flow.
   bool get firstLanguageOnboardingEnabled =>
       _rc.getBool(RemoteConfigKeys.firstLanguageOnboardingEnabled);
+
+  bool get firstLanguageShowNativeAd =>
+      _rc.getBool(RemoteConfigKeys.firstLanguageShowNativeAd);
 }

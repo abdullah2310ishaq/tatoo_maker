@@ -4,7 +4,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/usage_limit_provider.dart';
-import '../../../services/admob_ids.dart';
 import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../models/onboarding_models.dart';
@@ -71,6 +70,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
         OnboardingHeader(currentStep: 5, onBack: widget.onBack),
         if (shouldShowBanner) ...[
           _StyleSelectionBannerAd(
+            unitId: rc.admobAndroidBannerUnitId,
             onVisibilityChanged: (visible) {
               if (_bannerLoaded == visible) return;
               setState(() => _bannerLoaded = visible);
@@ -205,8 +205,12 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
 
 /// Dedicated banner ad for style-selection step (page-specific implementation).
 class _StyleSelectionBannerAd extends StatefulWidget {
-  const _StyleSelectionBannerAd({required this.onVisibilityChanged});
+  const _StyleSelectionBannerAd({
+    required this.unitId,
+    required this.onVisibilityChanged,
+  });
 
+  final String unitId;
   final ValueChanged<bool> onVisibilityChanged;
 
   @override
@@ -232,7 +236,7 @@ class _StyleSelectionBannerAdState extends State<_StyleSelectionBannerAd> {
   }
 
   void _loadAd() {
-    final unitId = AdmobIds.bannerUnitId();
+    final unitId = widget.unitId.trim();
     if (unitId.isEmpty) return;
 
     final ad = BannerAd(

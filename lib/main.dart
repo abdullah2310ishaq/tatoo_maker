@@ -18,6 +18,7 @@ import 'providers/asset_sync_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'services/app_open_ad_service.dart';
+import 'services/admob_ids.dart';
 import 'services/remote_config_service.dart';
 
 void main() async {
@@ -142,7 +143,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       debugPrint('[AppOpen] resume->show');
     }
     // Show on every resume; if needed, wait for load.
-    await _appOpenAdService.showIfAvailable(waitForLoad: true);
+    await _appOpenAdService.showIfAvailable(
+      waitForLoad: true,
+      unitIdOverride: AdmobIds.appOpenUnitId(),
+    );
 
     // Reset so next resume requires a fresh background.
     _pausedAt = null;

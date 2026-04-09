@@ -324,6 +324,15 @@ class _AppDrawerState extends State<AppDrawer> {
                           final message = failedCount == 0
                               ? 'Asset sync completed (${result.uploaded} uploaded, ${result.skipped} skipped).'
                               : 'Asset sync completed with issues (${result.uploaded} uploaded, ${result.skipped} skipped, $failedCount failed).';
+                          if (kDebugMode && failedCount > 0) {
+                            debugPrint(
+                              '[AssetSync][UI] failed examples: ${result.failed.take(5).toList()}',
+                            );
+                            final first = result.failed.first;
+                            debugPrint(
+                              '[AssetSync][UI] first failure reason: $first => ${result.failureReasons[first]}',
+                            );
+                          }
                           ScaffoldMessenger.of(dialogContext).showSnackBar(
                             SnackBar(content: Text(message)),
                           );
@@ -345,6 +354,15 @@ class _AppDrawerState extends State<AppDrawer> {
                           final message = failedCount == 0
                               ? 'Asset sync completed (${result.uploaded} uploaded).'
                               : 'Asset sync completed with issues (${result.uploaded} uploaded, $failedCount failed).';
+                          if (kDebugMode && failedCount > 0) {
+                            debugPrint(
+                              '[AssetSync][UI] failed examples: ${result.failed.take(5).toList()}',
+                            );
+                            final first = result.failed.first;
+                            debugPrint(
+                              '[AssetSync][UI] first failure reason: $first => ${result.failureReasons[first]}',
+                            );
+                          }
                           ScaffoldMessenger.of(dialogContext).showSnackBar(
                             SnackBar(content: Text(message)),
                           );

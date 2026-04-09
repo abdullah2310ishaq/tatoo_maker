@@ -22,7 +22,10 @@ abstract final class RemoteConfigKeys {
   static const String admobAndroidInterstitial =
       'admob_android_interstitial_unit_id';
 
-  /// Google **test** ad units (Android) — used in debug / internal QA via Remote Config.
+  /// Google **test** ad units (Android).
+  ///
+  /// NOTE: app no longer relies on Remote Config for these in debug/QA;
+  /// debug uses hardcoded Google sample IDs via `AdmobIds`.
   static const String admobAndroidBannerTest =
       'admob_android_banner_test_unit_id';
   static const String admobAndroidNativeTest =
@@ -41,4 +44,8 @@ abstract final class RemoteConfigKeys {
 
   static const String firstLanguageOnboardingEnabled =
       'first_language_onboarding_enabled';
+
+  /// First language onboarding screen: control native ad visibility.
+  static const String firstLanguageShowNativeAd =
+      'first_language_show_native_ad';
 }

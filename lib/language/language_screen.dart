@@ -6,8 +6,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
-import '../services/admob_ids.dart';
 import '../services/locale_service.dart';
+import '../services/remote_config_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 
@@ -372,7 +372,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
   }
 
   void _load() {
-    final unitId = AdmobIds.nativeUnitId();
+    final unitId = RemoteConfigService.instance.admobAndroidNativeUnitId;
     if (unitId.isEmpty) {
       _log('skip load: native unit id is empty');
       return;

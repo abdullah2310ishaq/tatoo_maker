@@ -8,6 +8,7 @@ import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/admob_ids.dart';
 import '../services/locale_service.dart';
+import '../services/remote_config_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../real_onboarding/real_onboarding_flow.dart';
@@ -415,7 +416,10 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
   @override
   Widget build(BuildContext context) {
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    if (isPro) return const SizedBox.shrink();
+    final rc = context.watch<RemoteConfigService>();
+    if (isPro || !rc.firstLanguageShowNativeAd) {
+      return const SizedBox.shrink();
+    }
 
     final ad = _nativeAd;
     if (!_loaded || ad == null) return SizedBox(height: 115.h);

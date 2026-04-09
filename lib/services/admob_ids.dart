@@ -4,18 +4,14 @@ import 'ad_mode.dart';
 
 class AdmobIds {
   // Google sample ad units (Android) — safe for debug / QA.
-  static const String _testBanner = 'ca-app-pub-3940256099942544/6300978111';
-  static const String _testAppOpen = 'ca-app-pub-3940256099942544/9257395921';
-  static const String _testNative = 'ca-app-pub-3940256099942544/2247696110';
-  static const String _testInterstitial = 'ca-app-pub-3940256099942544/1033173712';
+  static const String _testBanner = 'ca-app-pub-5408098781737794/4430049847';
+  static const String _testAppOpen = 'ca-app-pub-5408098781737794/2580813955';
+  static const String _testNative = 'ca-app-pub-5408098781737794/3919748102';
+  static const String _testInterstitial =
+      'ca-app-pub-5408098781737794/5232829779';
 
-  // Production ad units (Android) — provided by you.
-  static const String _prodBanner = 'ca-app-pub-5408098781737794/4430049847';
-  static const String _prodAppOpen = 'ca-app-pub-5408098781737794/2580813955';
-  static const String _prodNative = 'ca-app-pub-5408098781737794/3919748102';
-  static const String _prodInterstitial = 'ca-app-pub-5408098781737794/5232829779';
-
-  /// Explicit test IDs for runtime fallback when Remote Config misconfigures IDs.
+  /// Explicit Google test IDs for debug/QA only.
+  /// In production, IDs should come from Remote Config (or the production constants below).
   static String bannerTestUnitId() => _testBanner;
   static String appOpenTestUnitId() => _testAppOpen;
   static String nativeTestUnitId() => _testNative;
@@ -23,22 +19,25 @@ class AdmobIds {
 
   static String bannerUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
-    return AdMode.useTestAds ? _testBanner : _prodBanner;
+    // Production IDs must come from Remote Config; no fallback here.
+    return AdMode.useTestAds ? _testBanner : '';
   }
 
   static String appOpenUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
-    return AdMode.useTestAds ? _testAppOpen : _prodAppOpen;
+    // Production IDs must come from Remote Config; no fallback here.
+    return AdMode.useTestAds ? _testAppOpen : '';
   }
 
   static String nativeUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
-    return AdMode.useTestAds ? _testNative : _prodNative;
+    // Production IDs must come from Remote Config; no fallback here.
+    return AdMode.useTestAds ? _testNative : '';
   }
 
   static String interstitialUnitId() {
     if (defaultTargetPlatform != TargetPlatform.android) return '';
-    return AdMode.useTestAds ? _testInterstitial : _prodInterstitial;
+    // Production IDs must come from Remote Config; no fallback here.
+    return AdMode.useTestAds ? _testInterstitial : '';
   }
-
 }

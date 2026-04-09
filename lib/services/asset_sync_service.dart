@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class AssetSyncProgress {
@@ -22,17 +23,24 @@ class AssetSyncResult {
   final int uploaded;
   final int skipped;
   final List<String> failed;
+  final Map<String, String> failureReasons;
 
   const AssetSyncResult({
     required this.total,
     required this.uploaded,
     required this.skipped,
     required this.failed,
+    required this.failureReasons,
   });
 }
 
 class AssetSyncService {
   final FirebaseStorage _storage;
+
+  static void _log(String message) {
+    if (!kDebugMode) return;
+    debugPrint('[AssetSync] $message');
+  }
 
   AssetSyncService({
     FirebaseStorage? storage,
@@ -42,24 +50,42 @@ class AssetSyncService {
     required bool force,
     void Function(AssetSyncProgress progress)? onProgress,
   }) async {
-    final manifestJson = await rootBundle.loadString('AssetManifest.json');
-    final manifest = jsonDecode(manifestJson);
-    if (manifest is! Map<String, dynamic>) {
-      throw StateError('AssetManifest.json has unexpected format.');
+    _log('syncAllAssets(force=$force) start');
+    List<String> assetPaths;
+    try {
+      // Preferred: compatible across Flutter versions/build modes.
+      final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+      assetPaths = manifest
+          .listAssets()
+          .where((k) => k.startsWith('assets/'))
+          .toList(growable: false)
+        ..sort();
+    } catch (e) {
+      // Fallback for older builds where `AssetManifest` APIs behave differently.
+      _log('AssetManifest API failed, falling back to AssetManifest.json: $e');
+      final manifestJson = await rootBundle.loadString('AssetManifest.json');
+      final decoded = jsonDecode(manifestJson);
+      if (decoded is! Map<String, dynamic>) {
+        throw StateError('AssetManifest.json has unexpected format.');
+      }
+      assetPaths = decoded.keys
+          .where((k) => k.startsWith('assets/'))
+          .toList(growable: false)
+        ..sort();
     }
 
-    final assetPaths = manifest.keys
-        .where((k) => k.startsWith('assets/'))
-        .toList(growable: false)
-      ..sort();
-
     final total = assetPaths.length;
+    _log('found $total assets (assets/...)');
     int uploaded = 0;
     int skipped = 0;
     final failed = <String>[];
+    final failureReasons = <String, String>{};
 
     for (int i = 0; i < assetPaths.length; i++) {
       final assetPath = assetPaths[i];
+      if (kDebugMode && (i == 0 || i % 25 == 0 || i == total - 1)) {
+        _log('progress ${i + 1}/$total: $assetPath');
+      }
       onProgress?.call(
         AssetSyncProgress(
           completed: i,
@@ -83,6 +109,7 @@ class AssetSyncService {
           byteData.offsetInBytes,
           byteData.lengthInBytes,
         );
+        _log('uploading $assetPath (${bytes.length} bytes)');
         await ref.putData(
           bytes,
           SettableMetadata(
@@ -91,8 +118,23 @@ class AssetSyncService {
           ),
         );
         uploaded += 1;
-      } catch (_) {
+      } on FirebaseException catch (e) {
         failed.add(assetPath);
+        failureReasons[assetPath] = '${e.code}: ${e.message ?? ''}'.trim();
+        _log('FAILED $assetPath => ${failureReasons[assetPath]}');
+
+        // If we don't have permission, fail fast with a clear message.
+        if (e.code == 'permission-denied' || e.code == 'unauthorized') {
+          throw StateError(
+            'Firebase Storage upload blocked (${e.code}). '
+            'Fix Storage Rules (or sign-in) then retry. '
+            'Example failing path: $assetPath',
+          );
+        }
+      } catch (e) {
+        failed.add(assetPath);
+        failureReasons[assetPath] = e.toString();
+        _log('FAILED $assetPath => ${failureReasons[assetPath]}');
       } finally {
         onProgress?.call(
           AssetSyncProgress(
@@ -104,11 +146,15 @@ class AssetSyncService {
       }
     }
 
+    _log(
+      'done. uploaded=$uploaded skipped=$skipped failed=${failed.length} (force=$force)',
+    );
     return AssetSyncResult(
       total: total,
       uploaded: uploaded,
       skipped: skipped,
       failed: failed,
+      failureReasons: failureReasons,
     );
   }
 
@@ -118,6 +164,7 @@ class AssetSyncService {
       return true;
     } on FirebaseException catch (e) {
       if (e.code == 'object-not-found') return false;
+      _log('getMetadata failed (${ref.fullPath}) => ${e.code}: ${e.message ?? ''}');
       rethrow;
     }
   }

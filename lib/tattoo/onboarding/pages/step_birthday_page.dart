@@ -4,7 +4,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/usage_limit_provider.dart';
-import '../../../services/admob_ids.dart';
 import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
@@ -76,12 +75,14 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
+    final rc = context.watch<RemoteConfigService>();
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OnboardingHeader(currentStep: 2, onBack: widget.onBack),
-        const _BirthdayBannerAd(),
+        if (!isPro && rc.tattooBirthdayShowBanner) const _BirthdayBannerAd(),
         SizedBox(height: 40.h),
         // Question and date
         Column(
@@ -274,11 +275,16 @@ class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
   @override
   void initState() {
     super.initState();
-    _load();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final rc = context.read<RemoteConfigService>();
+      final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+      if (isPro || !rc.tattooBirthdayShowBanner) return;
+      _load(unitId: rc.admobAndroidBannerUnitId);
+    });
   }
 
-  void _load() {
-    final unitId = AdmobIds.bannerUnitId();
+  void _load({required String unitId}) {
     if (unitId.isEmpty) return;
 
     final ad = BannerAd(

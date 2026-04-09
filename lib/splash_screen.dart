@@ -7,9 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/providers/usage_limit_provider.dart';
 import 'package:tatoo_maker/services/app_open_ad_service.dart';
 import 'package:tatoo_maker/services/billing_service.dart';
-import 'package:tatoo_maker/services/admob_ids.dart';
 import 'package:tatoo_maker/services/remote_config_service.dart';
-import 'package:tatoo_maker/services/ad_mode.dart';
 import 'package:tatoo_maker/pro_access_screen.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'utils/colors.dart';
@@ -28,7 +26,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  late final Animation<Offset> _slideAnimation;
   late final AnimationController _introController;
   late final AnimationController _progressController;
   late final Animation<double> _progressAnimation;
@@ -48,10 +45,6 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
       duration: const Duration(milliseconds: 1500),
     );
-    _slideAnimation =
-        Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero).animate(
-          CurvedAnimation(parent: _introController, curve: Curves.easeOutCubic),
-        );
 
     _introController.forward();
 
@@ -169,8 +162,7 @@ class _SplashScreenState extends State<SplashScreen>
     // showing full-screen ads after the first app open.
     try {
       final prefs = await SharedPreferences.getInstance();
-      final hasRunBefore =
-          prefs.getBool(_prefsSplashHasRunBeforeKey) ?? false;
+      final hasRunBefore = prefs.getBool(_prefsSplashHasRunBeforeKey) ?? false;
       final isProUnlocked = prefs.getBool(_prefsProUnlockedKey) ?? false;
       final forcePro = UsageLimitProvider.forceProForTesting;
 
@@ -223,22 +215,15 @@ class _SplashScreenState extends State<SplashScreen>
     required bool showInterstitial,
   }) async {
     final rc = context.read<RemoteConfigService>();
-    final appOpenUnitId = AdMode.useTestAds
-        ? rc.admobAndroidAppOpenTestUnitId
-        : rc.admobAndroidAppOpenUnitId;
-    final interstitialUnitId = AdMode.useTestAds
-        ? rc.admobAndroidInterstitialTestUnitId
-        : rc.admobAndroidInterstitialUnitId;
+    final appOpenUnitId = rc.admobAndroidAppOpenUnitId;
+    final interstitialUnitId = rc.admobAndroidInterstitialUnitId;
 
     // Priority rule: If App Open is enabled, show it and skip interstitial.
     if (showAppOpen) {
       // Give the splash UI a moment to settle so App Open doesn't appear
       // "inside the app" after navigation has already started.
       await Future<void>.delayed(const Duration(seconds: 3));
-      await _showAppOpenAdIfAvailable(
-        unitIdOverride: appOpenUnitId,
-        testUnitIdOverride: rc.admobAndroidAppOpenTestUnitId,
-      );
+      await _showAppOpenAdIfAvailable(unitIdOverride: appOpenUnitId);
       return;
     }
     if (showInterstitial) {
@@ -246,15 +231,9 @@ class _SplashScreenState extends State<SplashScreen>
     }
   }
 
-  Future<void> _showInterstitialAdIfAvailable({
-    bool didRetry = false,
-    String? unitIdOverride,
-  }) async {
-    final unitId = unitIdOverride ?? AdmobIds.interstitialUnitId();
+  Future<void> _showInterstitialAdIfAvailable({String? unitIdOverride}) async {
+    final unitId = (unitIdOverride ?? '').trim();
     if (unitId.isEmpty) return;
-
-    final testUnitId = AdmobIds.interstitialTestUnitId();
-    int? errorCode;
 
     final completer = Completer<void>();
     InterstitialAd.load(
@@ -272,10 +251,7 @@ class _SplashScreenState extends State<SplashScreen>
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               ad.dispose();
-              errorCode = error.code;
-              debugPrint(
-                '[SplashScreen] interstitial failed to show: $error',
-              );
+              debugPrint('[SplashScreen] interstitial failed to show: $error');
               if (!completer.isCompleted) completer.complete();
             },
           );
@@ -287,7 +263,6 @@ class _SplashScreenState extends State<SplashScreen>
           }
         },
         onAdFailedToLoad: (error) {
-          errorCode = error.code;
           debugPrint('[SplashScreen] interstitial failed to load: $error');
           if (!completer.isCompleted) completer.complete();
         },
@@ -295,22 +270,9 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     try {
-      await completer.future.timeout(
-        const Duration(seconds: 5),
-      );
+      await completer.future.timeout(const Duration(seconds: 5));
     } catch (_) {
       // Avoid blocking splash navigation forever.
-    }
-
-    // Retry with test unit when the primary ID is misconfigured.
-    if (!didRetry &&
-        errorCode == 3 &&
-        testUnitId.isNotEmpty &&
-        testUnitId != unitId) {
-      await _showInterstitialAdIfAvailable(
-        didRetry: true,
-        unitIdOverride: testUnitId,
-      );
     }
   }
 
@@ -337,7 +299,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    final isDarkTheme = widget.isDarkTheme || Theme.of(context).brightness == Brightness.dark;
+    final isDarkTheme =
+        widget.isDarkTheme || Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
         backgroundColor: widget.isDarkTheme
@@ -361,35 +324,35 @@ class _SplashScreenState extends State<SplashScreen>
             color: widget.isDarkTheme ? null : AppColors.lightBackground,
           ),
           child: Center(
-            child: SlideTransition(
-              position: _slideAnimation,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const _SplashTitle(),
-                  const SizedBox(height: 30),
-                  AnimatedBuilder(
-                    animation: _progressController,
-                    builder: (context, _) {
-                      return SizedBox(
-                        width: 34,
-                        height: 34,
-                        child: CircularProgressIndicator(
-                          value: _progressAnimation.value,
-                          strokeWidth: 3.2,
-                          backgroundColor: AppColors.textGrey.withOpacity(
-                            isDarkTheme ? 0.25 : 0.12,
-                          ),
-                          valueColor: const AlwaysStoppedAnimation<Color>(
-                            AppColors.lightPrimary,
-                          ),
+            child: Column(
+              children: [
+                const SizedBox(height: 86),
+                const _SplashTitle(),
+                const Spacer(),
+                AnimatedBuilder(
+                  animation: _progressController,
+                  builder: (context, _) {
+                    return SizedBox(
+                      width: 34,
+                      height: 34,
+                      child: CircularProgressIndicator(
+                        value: _progressAnimation.value,
+                        strokeWidth: 3.2,
+                        backgroundColor: AppColors.textGrey.withOpacity(
+                          isDarkTheme ? 0.25 : 0.12,
                         ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 14),
-                  if (_shouldShowSplashAdText)
-                    Text(
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                          AppColors.lightPrimary,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 14),
+                if (_shouldShowSplashAdText)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Text(
                       AppLocalizations.of(context)!.splashAdMayShowNotice,
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -399,8 +362,9 @@ class _SplashScreenState extends State<SplashScreen>
                         letterSpacing: 0.2,
                       ),
                     ),
-                ],
-              ),
+                  ),
+                const SizedBox(height: 58),
+              ],
             ),
           ),
         ),
@@ -421,7 +385,7 @@ class _SplashTitle extends StatelessWidget {
       textAlign: TextAlign.center,
       style: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 30,
+        fontSize: 34,
         letterSpacing: 2,
         color: isDarkTheme ? AppColors.lightPrimary : AppColors.darkSecondary,
       ),
