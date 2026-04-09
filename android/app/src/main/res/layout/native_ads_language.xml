@@ -11,7 +11,7 @@
     android:background="#FFFFFF"
     android:paddingStart="6dp"
     android:paddingTop="6dp"
-    android:paddingEnd="20dp"
+    android:paddingEnd="8dp"
     android:paddingBottom="6dp">
 
     <LinearLayout
@@ -20,7 +20,7 @@
         android:orientation="vertical"
         android:paddingLeft="2dp"
         android:paddingTop="2dp"
-        android:paddingRight="2dp"
+        android:paddingRight="0dp"
         android:paddingBottom="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

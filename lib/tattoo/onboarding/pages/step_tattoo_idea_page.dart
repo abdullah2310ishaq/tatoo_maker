@@ -10,7 +10,7 @@ import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 import '../widgets/onboarding_next_button.dart';
 
-class StepTattooIdeaPage extends StatelessWidget {
+class StepTattooIdeaPage extends StatefulWidget {
   final TextEditingController controller;
   final VoidCallback onBack;
   final VoidCallback onNext;
@@ -21,6 +21,66 @@ class StepTattooIdeaPage extends StatelessWidget {
     required this.onBack,
     required this.onNext,
   });
+
+  @override
+  State<StepTattooIdeaPage> createState() => _StepTattooIdeaPageState();
+}
+
+class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
+    with WidgetsBindingObserver {
+  static const int _maxCharacters = 500;
+  final FocusNode _ideaFocusNode = FocusNode();
+  bool _keyboardVisibleByMetrics = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    widget.controller.addListener(_handleTextChanged);
+    _syncKeyboardVisibility();
+  }
+
+  @override
+  void didUpdateWidget(covariant StepTattooIdeaPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller == widget.controller) return;
+    oldWidget.controller.removeListener(_handleTextChanged);
+    widget.controller.addListener(_handleTextChanged);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    widget.controller.removeListener(_handleTextChanged);
+    _ideaFocusNode.dispose();
+    super.dispose();
+  }
+
+  void _handleTextChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    _syncKeyboardVisibility();
+  }
+
+  void _syncKeyboardVisibility() {
+    final views = WidgetsBinding.instance.platformDispatcher.views;
+    if (views.isEmpty) return;
+    final keyboardVisible = views.first.viewInsets.bottom > 0.0;
+    if (keyboardVisible == _keyboardVisibleByMetrics) return;
+
+    if (!mounted) {
+      _keyboardVisibleByMetrics = keyboardVisible;
+      return;
+    }
+
+    setState(() {
+      _keyboardVisibleByMetrics = keyboardVisible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,103 +94,92 @@ class StepTattooIdeaPage extends StatelessWidget {
             colors: [AppColors.cardGradientStart, AppColors.cardGradientEnd],
           )
         : null;
-    const int maxCharacters = 500;
+    final keyboardOpen =
+        MediaQuery.of(context).viewInsets.bottom > 0 || _keyboardVisibleByMetrics;
+    final isWriting = keyboardOpen;
 
-    return StatefulBuilder(
-      builder: (context, setState) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Scrollable content — prevents overflow when keyboard opens
-            Flexible(
-              child: SingleChildScrollView(
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    OnboardingHeader(currentStep: 4, onBack: onBack),
-                    const _TattooIdeaBannerAd(),
-                    SizedBox(height: 28.h),
-                    Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.stepTattooIdeaWhatYourTattooIdea,
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
-                        fontFamily: 'Amaranth',
-                      ),
-                    ),
-                    SizedBox(height: 20.h),
-                    SizedBox(
-                      height: 150.h,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.r),
-                          border: Border.all(
-                            color: AppColors.titleGradientStart,
-                            width: 1.w,
-                          ),
-                          color: cardBgColor,
-                          gradient: cardGradient,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16.r),
-                          child: Padding(
-                            padding: EdgeInsets.all(16.w),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Expanded(
-                                  child: TextField(
-                                    controller: controller,
-                                    maxLength: maxCharacters,
-                                    maxLines: null,
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: textColor,
-                                    ),
-                                    decoration: InputDecoration(
-                                      hintText: AppLocalizations.of(
-                                        context,
-                                      )!.stepTattooIdeaHint,
-                                      hintStyle: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: AppColors.textGrey,
-                                      ),
-                                      border: InputBorder.none,
-                                      counterText: '',
-                                      contentPadding: EdgeInsets.zero,
-                                    ),
-                                    onChanged: (_) => setState(() {}),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 265.h),
-                  ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OnboardingHeader(currentStep: 4, onBack: widget.onBack),
+                if (!isWriting) const _TattooIdeaBannerAd(),
+                SizedBox(height: 20.h),
+                Text(
+                  AppLocalizations.of(
+                    context,
+                  )!.stepTattooIdeaWhatYourTattooIdea,
+                  style: TextStyle(
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                    fontFamily: 'Amaranth',
+                  ),
                 ),
-              ),
+                SizedBox(height: 16.h),
+                Container(
+                  constraints: BoxConstraints(minHeight: 150.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.r),
+                    border: Border.all(
+                      color: AppColors.titleGradientStart,
+                      width: 1.w,
+                    ),
+                    color: cardBgColor,
+                    gradient: cardGradient,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.r),
+                    child: Padding(
+                      padding: EdgeInsets.all(16.w),
+                      child: TextField(
+                        controller: widget.controller,
+                        focusNode: _ideaFocusNode,
+                        onTapOutside: (_) => _ideaFocusNode.unfocus(),
+                        maxLength: _maxCharacters,
+                        maxLines: null,
+                        minLines: 6,
+                        keyboardType: TextInputType.multiline,
+                        textInputAction: TextInputAction.newline,
+                        style: TextStyle(fontSize: 14.sp, color: textColor),
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(
+                            context,
+                          )!.stepTattooIdeaHint,
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: AppColors.textGrey,
+                          ),
+                          border: InputBorder.none,
+                          counterText: '',
+                          contentPadding: EdgeInsets.zero,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.h),
+              ],
             ),
-            SizedBox(height: 24.h),
-            _TattooIdeaNativeAd(isDark: isDark),
-            OnboardingNextButton(
-              enabled: controller.text.trim().isNotEmpty,
-              isLastStep: false,
-              onPressed: onNext,
-            ),
-            SizedBox(height: 35.h),
-          ],
-        );
-      },
+          ),
+        ),
+        if (!isWriting) ...[
+          _TattooIdeaNativeAd(isDark: isDark),
+          SizedBox(height: 8.h),
+          OnboardingNextButton(
+            enabled: widget.controller.text.trim().isNotEmpty,
+            isLastStep: false,
+            onPressed: widget.onNext,
+          ),
+          SizedBox(height: 35.h),
+        ] else
+          SizedBox(height: 12.h),
+      ],
     );
   }
 }

@@ -1,6 +1,7 @@
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:shape="rectangle">
-    <gradient android:startColor="#1976D2" android:endColor="#0D47A1" android:angle="270"/>
+    <!-- Match app primary orange (#FF6B35) -->
+    <gradient android:startColor="#FF8C42" android:endColor="#FF6B35" android:angle="270"/>
     <corners android:radius="10dp"/>
 </shape>
   

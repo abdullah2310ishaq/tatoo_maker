@@ -388,7 +388,7 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
 
     final ad = _nativeAd;
     // Tight layout in native_ads_language.xml; keep slot in sync with other screens.
-    final slotH = 96.h;
+    final slotH = 95.h;
     if (!_loaded || ad == null) return SizedBox(height: slotH);
 
     if (kDebugMode && !_loggedLayoutOnce) {
