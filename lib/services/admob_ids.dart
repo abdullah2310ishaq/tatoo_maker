@@ -6,11 +6,11 @@ import 'ad_mode.dart';
 /// placements on/off (booleans).
 class AdmobIds {
   // Production (Android).
-  static const String _prodBanner = 'ca-app-pub-5408098781737794/4430049847';
-  static const String _prodNative = 'ca-app-pub-5408098781737794/3919748102';
-  static const String _prodAppOpen = 'ca-app-pub-5408098781737794/2580813955';
+  static const String _prodBanner = 'ca-app-pub-3940256099942544/6300978111';
+  static const String _prodNative = 'ca-app-pub-3940256099942544/2247696110';
+  static const String _prodAppOpen = 'ca-app-pub-3940256099942544/9257395921';
   static const String _prodInterstitial =
-      'ca-app-pub-5408098781737794/5232829779';
+      'ca-app-pub-3940256099942544/1033173712';
 
   // Google sample units (Android) — debug / `FORCE_TEST_ADS` only.
   static const String _testBanner = 'ca-app-pub-3940256099942544/6300978111';

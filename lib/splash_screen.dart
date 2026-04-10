@@ -350,10 +350,7 @@ class _SplashScreenState extends State<SplashScreen>
           ),
           child: Stack(
             children: [
-              const Align(
-                alignment: Alignment.center,
-                child: _SplashTitle(),
-              ),
+              const Align(alignment: Alignment.center, child: _SplashTitle()),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
@@ -384,9 +381,7 @@ class _SplashScreenState extends State<SplashScreen>
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: Text(
-                            AppLocalizations.of(
-                              context,
-                            )!.splashAdMayShowNotice,
+                            AppLocalizations.of(context)!.splashAdMayShowNotice,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 13,
