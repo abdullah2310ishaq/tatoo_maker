@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/colors.dart';
+import '../../../widgets/remote_or_asset_image.dart';
 import '../models/onboarding_models.dart';
 import '../widgets/onboarding_next_button.dart';
 
@@ -58,24 +59,9 @@ class ZodiacDisplayPage extends StatelessWidget {
                   SizedBox(
                     width: imageSize,
                     height: imageSize,
-                    child: Image.asset(
-                      zodiacInfo.assetPath,
+                    child: RemoteOrAssetImage(
+                      assetPath: zodiacInfo.assetPath,
                       fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.cardGradientStart.withOpacity(0.1),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: Icon(
-                              Icons.image_not_supported,
-                              color: AppColors.textGrey,
-                              size: 48.sp,
-                            ),
-                          ),
-                        );
-                      },
                     ),
                   ),
                   SizedBox(height: (availableHeight * 0.05).clamp(12.h, 20.h)),

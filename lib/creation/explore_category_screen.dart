@@ -126,16 +126,6 @@ class _CategoryDetailCard extends StatelessWidget {
           child: RemoteOrAssetImage(
             assetPath: bigImagePath,
             fit: BoxFit.cover,
-            errorWidget: Container(
-              color: AppColors.cardGradientStart,
-              child: Center(
-                child: Icon(
-                  Icons.image_not_supported,
-                  color: AppColors.textGrey,
-                  size: 24.sp,
-                ),
-              ),
-            ),
           ),
         ),
       ),

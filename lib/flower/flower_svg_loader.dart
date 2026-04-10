@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/remote_or_asset_image.dart';
 
 /// Utility class for loading flower SVG assets based on theme
 class FlowerSvgLoader {
@@ -95,27 +95,7 @@ class FlowerSvgLoader {
     return SizedBox(
       width: finalWidth,
       height: finalHeight,
-      child: Image.asset(
-        imagePath,
-        width: finalWidth,
-        height: finalHeight,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          debugPrint('❌ Image Error (Floral) for path: $imagePath');
-          // Try SVG as fallback
-          final svgPath = imagePath.replaceAll('.png', '.svg');
-          return SvgPicture.asset(
-            svgPath,
-            width: finalWidth,
-            height: finalHeight,
-            fit: BoxFit.contain,
-            errorBuilder: (context, error, stackTrace) {
-              debugPrint('❌ SVG Fallback also failed: $svgPath');
-              return const SizedBox.shrink();
-            },
-          );
-        },
-      ),
+      child: RemoteOrAssetImage(assetPath: imagePath, fit: BoxFit.contain),
     );
   }
 
@@ -140,27 +120,7 @@ class FlowerSvgLoader {
     return SizedBox(
       width: finalWidth,
       height: finalHeight,
-      child: Image.asset(
-        imagePath,
-        width: finalWidth,
-        height: finalHeight,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          debugPrint('❌ Image Error for path: $imagePath - $error');
-          // Try SVG as fallback
-          final svgPath = imagePath.replaceAll('.png', '.svg');
-          return SvgPicture.asset(
-            svgPath,
-            width: finalWidth,
-            height: finalHeight,
-            fit: BoxFit.contain,
-            errorBuilder: (context, error, stackTrace) {
-              debugPrint('❌ SVG Fallback also failed: $svgPath');
-              return const SizedBox.shrink();
-            },
-          );
-        },
-      ),
+      child: RemoteOrAssetImage(assetPath: imagePath, fit: BoxFit.contain),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'dart:developer' as developer;
 import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
@@ -11,6 +12,7 @@ import '../services/locale_service.dart';
 import '../services/remote_config_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../widgets/remote_or_asset_image.dart';
 import '../real_onboarding/real_onboarding_flow.dart';
 
 /// First language selection screen - Light theme only (one-time onboarding)
@@ -189,7 +191,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                   physics: const ClampingScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 2.15,
+                    childAspectRatio: 2.25,
                     crossAxisSpacing: 16.w,
                     mainAxisSpacing: 16.h,
                   ),
@@ -262,29 +264,16 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                 width: 36.w,
                 height: 36.h,
                 child: (language['isPng'] as bool? ?? false)
-                    ? Image.asset(
-                        language['imageAsset'] as String,
-                        width: 36.w,
-                        height: 36.h,
+                    ? RemoteOrAssetImage(
+                        assetPath: language['imageAsset'] as String,
                         fit: BoxFit.contain,
-                        errorBuilder: (context, _, __) => Text(
-                          language['name'] as String,
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: isDark ? AppColors.textGrey : Colors.black54,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Amaranth',
-                          ),
-                        ),
                       )
                     : SvgPicture.asset(
                         language['imageAsset'] as String,
                         width: 36.w,
                         height: 36.h,
                         fit: BoxFit.contain,
-                        placeholderBuilder: (context) =>
-                            const SizedBox.shrink(),
-                        errorBuilder: (context, _, __) => Text(
+                        placeholderBuilder: (context) => Text(
                           language['name'] as String,
                           style: TextStyle(
                             fontSize: 14.sp,
@@ -341,9 +330,14 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
   NativeAd? _nativeAd;
   bool _loaded = false;
   bool _loggedLayoutOnce = false;
+  bool? _lastLoggedShouldShowGate;
 
   static void _log(String message) {
-    debugPrint('[NativeAd][FirstLanguage] $message');
+    final tagged = '[NativeAd][FirstLanguage] $message';
+    developer.log(tagged, name: 'FirstLanguageNativeAd');
+    if (kDebugMode) {
+      debugPrint(tagged);
+    }
   }
 
   @override
@@ -417,7 +411,18 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
   Widget build(BuildContext context) {
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
     final rc = context.watch<RemoteConfigService>();
-    if (isPro || !rc.firstLanguageShowNativeAd) {
+    final shouldShowByGate = !isPro && rc.firstLanguageShowNativeAd;
+    if (_lastLoggedShouldShowGate != shouldShowByGate) {
+      _lastLoggedShouldShowGate = shouldShowByGate;
+      _log(
+        'gate changed: '
+        'isPro=$isPro, '
+        'firstLanguageShowNativeAd=${rc.firstLanguageShowNativeAd}, '
+        'shouldShow=$shouldShowByGate',
+      );
+    }
+
+    if (!shouldShowByGate) {
       return const SizedBox.shrink();
     }
 
@@ -425,7 +430,7 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
     if (!_loaded || ad == null) return SizedBox(height: 115.h);
 
     // Tight layout in native_ads_language.xml; keep slot in sync with other screens.
-    final slotH = 122.h;
+    final slotH = 135.h;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(

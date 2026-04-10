@@ -247,8 +247,7 @@ class _HomeShellState extends State<HomeShell> {
           onProTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) =>
-                    const ProAccessScreen(nextScreen: HomeShell()),
+                builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
               ),
             );
           },
@@ -309,8 +308,7 @@ class _HomeShellState extends State<HomeShell> {
           onProTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) =>
-                    const ProAccessScreen(nextScreen: HomeShell()),
+                builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
               ),
             );
           },

@@ -4,6 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/usage_limit_provider.dart';
+import '../../../services/admob_ids.dart';
 import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
@@ -280,7 +281,7 @@ class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
       final rc = context.read<RemoteConfigService>();
       final isPro = context.read<UsageLimitProvider>().isProUnlocked;
       if (isPro || !rc.tattooBirthdayShowBanner) return;
-      _load(unitId: rc.admobAndroidBannerUnitId);
+      _load(unitId: AdmobIds.bannerUnitId());
     });
   }
 

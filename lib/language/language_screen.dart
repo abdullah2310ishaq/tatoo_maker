@@ -6,10 +6,11 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
+import '../services/admob_ids.dart';
 import '../services/locale_service.dart';
-import '../services/remote_config_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../widgets/remote_or_asset_image.dart';
 
 /// Language selection screen - Supports both light and dark themes
 class LanguageSelectionScreen extends StatefulWidget {
@@ -193,7 +194,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 2.15,
+                    childAspectRatio: 2.35,
                     crossAxisSpacing: 16.w,
                     mainAxisSpacing: 16.h,
                   ),
@@ -266,29 +267,16 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 width: 36.w,
                 height: 36.h,
                 child: (language['isPng'] as bool? ?? false)
-                    ? Image.asset(
-                        language['imageAsset'] as String,
-                        width: 36.w,
-                        height: 36.h,
+                    ? RemoteOrAssetImage(
+                        assetPath: language['imageAsset'] as String,
                         fit: BoxFit.contain,
-                        errorBuilder: (context, _, __) => Text(
-                          language['name'] as String,
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: isDark ? AppColors.textGrey : Colors.black54,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Amaranth',
-                          ),
-                        ),
                       )
                     : SvgPicture.asset(
                         language['imageAsset'] as String,
                         width: 36.w,
                         height: 36.h,
                         fit: BoxFit.contain,
-                        placeholderBuilder: (context) =>
-                            const SizedBox.shrink(),
-                        errorBuilder: (context, _, __) => Text(
+                        placeholderBuilder: (context) => Text(
                           language['name'] as String,
                           style: TextStyle(
                             fontSize: 14.sp,
@@ -372,7 +360,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
   }
 
   void _load() {
-    final unitId = RemoteConfigService.instance.admobAndroidNativeUnitId;
+    final unitId = AdmobIds.nativeUnitId();
     if (unitId.isEmpty) {
       _log('skip load: native unit id is empty');
       return;
@@ -428,7 +416,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
     if (!_loaded || ad == null) return SizedBox(height: 115.h);
 
     // Keep in sync with native_ads_language.xml CTA-heavy layout.
-    final slotH = 128.h;
+    final slotH = 135.h;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(

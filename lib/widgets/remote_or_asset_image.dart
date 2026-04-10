@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../providers/asset_sync_provider.dart';
 import '../services/firebase_asset_url_service.dart';
 import '../services/remote_asset_cache_service.dart';
 import '../utils/colors.dart';
@@ -11,56 +9,38 @@ import '../utils/colors.dart';
 class RemoteOrAssetImage extends StatelessWidget {
   final String assetPath;
   final BoxFit fit;
-  final Widget? errorWidget;
 
   const RemoteOrAssetImage({
     super.key,
     required this.assetPath,
     this.fit = BoxFit.cover,
-    this.errorWidget,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isSynced = context.watch<AssetSyncProvider>().isSyncDone;
-    if (!isSynced) {
+    if (_isFontAsset(assetPath)) {
       return Image.asset(
         assetPath,
         fit: fit,
-        errorBuilder: (context, error, stackTrace) {
-          return errorWidget ?? _defaultError();
-        },
       );
     }
 
     return _RemoteCachedFileImage(
       assetPath: assetPath,
       fit: fit,
-      errorWidget: errorWidget,
     );
   }
 
-  Widget _defaultError() {
-    return Container(
-      color: AppColors.cardGradientStart,
-      alignment: Alignment.center,
-      child: const Icon(
-        Icons.image_not_supported,
-        color: AppColors.textGrey,
-      ),
-    );
-  }
+  bool _isFontAsset(String path) => path.startsWith('assets/fonts/');
 }
 
 class _RemoteCachedFileImage extends StatefulWidget {
   final String assetPath;
   final BoxFit fit;
-  final Widget? errorWidget;
 
   const _RemoteCachedFileImage({
     required this.assetPath,
     required this.fit,
-    required this.errorWidget,
   });
 
   @override
@@ -68,15 +48,18 @@ class _RemoteCachedFileImage extends StatefulWidget {
 }
 
 class _RemoteCachedFileImageState extends State<_RemoteCachedFileImage> {
-  late final FirebaseAssetUrlService _urlService;
-  late final RemoteAssetCacheService _cacheService;
+  static final FirebaseAssetUrlService _sharedUrlService =
+      FirebaseAssetUrlService();
+  static final RemoteAssetCacheService _sharedCacheService =
+      RemoteAssetCacheService();
+  static final Map<String, Future<File>> _fileFutureCache =
+      <String, Future<File>>{};
+
   Future<File>? _futureFile;
 
   @override
   void initState() {
     super.initState();
-    _urlService = FirebaseAssetUrlService();
-    _cacheService = RemoteAssetCacheService();
     _futureFile = _load();
   }
 
@@ -89,8 +72,27 @@ class _RemoteCachedFileImageState extends State<_RemoteCachedFileImage> {
   }
 
   Future<File> _load() async {
-    final url = await _urlService.getDownloadUrl(widget.assetPath);
-    return _cacheService.getOrDownload(assetPath: widget.assetPath, url: url);
+    final assetPath = widget.assetPath;
+    final cachedFuture = _fileFutureCache[assetPath];
+    if (cachedFuture != null) return cachedFuture;
+
+    final future = _loadAndCacheFile(assetPath);
+    _fileFutureCache[assetPath] = future;
+    return future;
+  }
+
+  Future<File> _loadAndCacheFile(String assetPath) async {
+    try {
+      final url = await _sharedUrlService.getDownloadUrl(assetPath);
+      return await _sharedCacheService.getOrDownload(
+        assetPath: assetPath,
+        url: url,
+      );
+    } catch (e) {
+      // Remove failed futures so a later rebuild can retry.
+      _fileFutureCache.remove(assetPath);
+      rethrow;
+    }
   }
 
   @override
@@ -104,37 +106,29 @@ class _RemoteCachedFileImageState extends State<_RemoteCachedFileImage> {
             file,
             fit: widget.fit,
             errorBuilder: (context, error, stackTrace) {
-              return widget.errorWidget ?? _defaultError();
+              return _loadingPlaceholder();
             },
           );
         }
 
         if (snapshot.hasError) {
-          return widget.errorWidget ?? _defaultError();
+          return _loadingPlaceholder();
         }
 
-        return Container(
-          color: AppColors.cardGradientStart,
-          alignment: Alignment.center,
-          child: const SizedBox(
-            width: 22,
-            height: 22,
-            child: CircularProgressIndicator(strokeWidth: 2),
-          ),
-        );
+        return _loadingPlaceholder();
       },
     );
   }
 
-  Widget _defaultError() {
+  Widget _loadingPlaceholder() {
     return Container(
       color: AppColors.cardGradientStart,
       alignment: Alignment.center,
-      child: const Icon(
-        Icons.image_not_supported,
-        color: AppColors.textGrey,
+      child: const SizedBox(
+        width: 22,
+        height: 22,
+        child: CircularProgressIndicator(strokeWidth: 2),
       ),
     );
   }
 }
-

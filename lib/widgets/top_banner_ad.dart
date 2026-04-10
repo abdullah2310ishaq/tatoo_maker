@@ -4,7 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/usage_limit_provider.dart';
-import '../services/remote_config_service.dart';
+import '../services/admob_ids.dart';
 
 class TopBannerAd extends StatefulWidget {
   const TopBannerAd({super.key});
@@ -24,8 +24,7 @@ class _TopBannerAdState extends State<TopBannerAd> {
       if (!mounted) return;
       final isPro = context.read<UsageLimitProvider>().isProUnlocked;
       if (isPro) return;
-      final rc = context.read<RemoteConfigService>();
-      final unitId = rc.admobAndroidBannerUnitId;
+      final unitId = AdmobIds.bannerUnitId();
       _load(unitId: unitId);
     });
   }

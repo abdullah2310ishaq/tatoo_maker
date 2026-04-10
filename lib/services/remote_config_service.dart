@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 
@@ -12,67 +14,122 @@ class RemoteConfigService extends ChangeNotifier {
   bool _initialized = false;
   bool get isInitialized => _initialized;
 
+  static const String _logTag = 'RemoteConfigService';
+
+  static void _log(String message) {
+    final tagged = '[$_logTag] $message';
+    developer.log(tagged, name: _logTag);
+    // Keep `print` for release visibility in plain logcat streams.
+    print(tagged);
+    // Keep debugPrint too, so logs are visible in debug console.
+    if (kDebugMode) {
+      debugPrint(tagged);
+    }
+  }
+
   /// Defaults: feature flags + production IDs.
   static const Map<String, dynamic> defaults = <String, dynamic>{
-    // Boolean feature flags — FOR NOW default ON (can be overridden in Firebase).
-    RemoteConfigKeys.tattooBirthdayAdsAll: true,
-    RemoteConfigKeys.tattooBirthdayBanner: true,
-    RemoteConfigKeys.tattooBirthdayNative: true,
-    RemoteConfigKeys.tattooIdeaAdsAll: true,
-    RemoteConfigKeys.tattooIdeaBanner: true,
-    RemoteConfigKeys.tattooIdeaNative: true,
-    RemoteConfigKeys.tattooStyleSelectionAdsAll: true,
-    RemoteConfigKeys.tattooStyleSelectionBanner: true,
-    RemoteConfigKeys.tattooStyleSelectionNative: true,
-    // Production (Android)
-    RemoteConfigKeys.admobAndroidBanner:
-        'ca-app-pub-5408098781737794/4430049847',
-    RemoteConfigKeys.admobAndroidNative:
-        'ca-app-pub-5408098781737794/3919748102',
-    RemoteConfigKeys.admobAndroidAppOpen:
-        'ca-app-pub-5408098781737794/2580813955',
-    RemoteConfigKeys.admobAndroidInterstitial:
-        'ca-app-pub-5408098781737794/5232829779',
-    // Test IDs are not used via Remote Config anymore.
-    // Debug/QA uses hardcoded Google sample IDs via [AdmobIds] when [AdMode.useTestAds] is true.
-    RemoteConfigKeys.admobAndroidBannerTest: '',
-    RemoteConfigKeys.admobAndroidNativeTest: '',
-    RemoteConfigKeys.admobAndroidAppOpenTest: '',
-    RemoteConfigKeys.admobAndroidInterstitialTest: '',
+    // Boolean feature flags — default OFF (can be overridden in Firebase).
+    RemoteConfigKeys.tattooBirthdayAdsAll: false,
+    RemoteConfigKeys.tattooBirthdayBanner: false,
+    RemoteConfigKeys.tattooBirthdayNative: false,
+    RemoteConfigKeys.tattooIdeaAdsAll: false,
+    RemoteConfigKeys.tattooIdeaBanner: false,
+    RemoteConfigKeys.tattooIdeaNative: false,
+    RemoteConfigKeys.tattooStyleSelectionAdsAll: false,
+    RemoteConfigKeys.tattooStyleSelectionBanner: false,
+    RemoteConfigKeys.tattooStyleSelectionNative: false,
 
-    // Splash screen ad/text toggles.
-    // FOR NOW default ON (can be overridden in Firebase).
-    RemoteConfigKeys.splashAdsAndTextEnabled: true,
+    // Splash screen ad/text toggles (default OFF).
+    RemoteConfigKeys.splashAdsAndTextEnabled: false,
     // App Open has priority on splash (interstitial can be enabled via Firebase).
     RemoteConfigKeys.splashShowInterstitial: false,
-    RemoteConfigKeys.splashShowAppOpen: true,
+    RemoteConfigKeys.splashShowAppOpen: false,
 
     RemoteConfigKeys.firstLanguageOnboardingEnabled: true,
     RemoteConfigKeys.firstLanguageShowNativeAd: true,
   };
 
   Future<void> initialize() async {
-    if (_initialized) return;
+    if (_initialized) {
+      _log('initialize skipped: already initialized.');
+      return;
+    }
+
+    _log('initialize start.');
+    _log('setting config settings: fetchTimeout=12s, minimumFetchInterval=0s');
 
     await _rc.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 12),
-        minimumFetchInterval: kDebugMode
-            ? Duration.zero
-            : const Duration(hours: 1),
+        // Always allow immediate refetch so flag updates are not delayed by throttle.
+        minimumFetchInterval: Duration.zero,
       ),
     );
 
     await _rc.setDefaults(defaults);
+    _log('defaults applied: $defaults');
 
     try {
-      await _rc.fetchAndActivate();
+      _log('fetchAndActivate start...');
+      final changed = await _rc.fetchAndActivate();
+      _log('fetchAndActivate success. changed=$changed');
+      _logLastFetchMeta();
     } catch (e, st) {
-      debugPrint('[RemoteConfigService] fetchAndActivate failed: $e\n$st');
+      _log('fetchAndActivate failed: $e');
+      _log('fetchAndActivate stack: $st');
+      _logLastFetchMeta();
     }
 
     _initialized = true;
+    _logResolvedFlags();
+    _logKeyDetails();
+    _log('initialize complete. isInitialized=$_initialized');
     notifyListeners();
+  }
+
+  void _logLastFetchMeta() {
+    final status = _rc.lastFetchStatus;
+    final lastFetchTime = _rc.lastFetchTime;
+    _log('lastFetchStatus=$status, lastFetchTime=$lastFetchTime');
+  }
+
+  void _logResolvedFlags() {
+    _log(
+      'resolved flags => '
+      'tattooBirthdayAdsAll=$tattooBirthdayAdsAll, '
+      'tattooBirthdayShowBanner=$tattooBirthdayShowBanner, '
+      'tattooBirthdayShowNative=$tattooBirthdayShowNative, '
+      'tattooIdeaAdsAll=$tattooIdeaAdsAll, '
+      'tattooIdeaShowBanner=$tattooIdeaShowBanner, '
+      'tattooIdeaShowNative=$tattooIdeaShowNative, '
+      'tattooStyleSelectionAdsAll=$tattooStyleSelectionAdsAll, '
+      'tattooStyleSelectionShowBanner=$tattooStyleSelectionShowBanner, '
+      'tattooStyleSelectionShowNative=$tattooStyleSelectionShowNative, '
+      'splashAdsAndTextEnabled=$splashAdsAndTextEnabled, '
+      'splashShowInterstitial=$splashShowInterstitial, '
+      'splashShowAppOpen=$splashShowAppOpen, '
+      'firstLanguageOnboardingEnabled=$firstLanguageOnboardingEnabled, '
+      'firstLanguageShowNativeAd=$firstLanguageShowNativeAd',
+    );
+  }
+
+  void _logKeyDetails() {
+    _logKeyDetail(RemoteConfigKeys.splashAdsAndTextEnabled);
+    _logKeyDetail(RemoteConfigKeys.splashShowAppOpen);
+    _logKeyDetail(RemoteConfigKeys.splashShowInterstitial);
+    _logKeyDetail(RemoteConfigKeys.firstLanguageOnboardingEnabled);
+    _logKeyDetail(RemoteConfigKeys.firstLanguageShowNativeAd);
+  }
+
+  void _logKeyDetail(String key) {
+    final value = _rc.getValue(key);
+    _log(
+      'key="$key" => '
+      'asBool=${value.asBool()}, '
+      'asString="${value.asString()}", '
+      'source=${value.source}',
+    );
   }
 
   /// Master: `false` ⇒ no banner and no native on birthday screen.
@@ -108,33 +165,6 @@ class RemoteConfigService extends ChangeNotifier {
       tattooStyleSelectionAdsAll &&
       _rc.getBool(RemoteConfigKeys.tattooStyleSelectionNative);
 
-  /// Trimmed AdMob unit id from Remote Config, or empty if missing.
-  String _admobString(String key) => _rc.getString(key).trim();
-
-  String get admobAndroidBannerUnitId =>
-      _admobString(RemoteConfigKeys.admobAndroidBanner);
-
-  String get admobAndroidNativeUnitId =>
-      _admobString(RemoteConfigKeys.admobAndroidNative);
-
-  String get admobAndroidAppOpenUnitId =>
-      _admobString(RemoteConfigKeys.admobAndroidAppOpen);
-
-  String get admobAndroidInterstitialUnitId =>
-      _admobString(RemoteConfigKeys.admobAndroidInterstitial);
-
-  String get admobAndroidBannerTestUnitId =>
-      _admobString(RemoteConfigKeys.admobAndroidBannerTest);
-
-  String get admobAndroidNativeTestUnitId =>
-      _admobString(RemoteConfigKeys.admobAndroidNativeTest);
-
-  String get admobAndroidAppOpenTestUnitId =>
-      _admobString(RemoteConfigKeys.admobAndroidAppOpenTest);
-
-  String get admobAndroidInterstitialTestUnitId =>
-      _admobString(RemoteConfigKeys.admobAndroidInterstitialTest);
-
   bool get splashAdsAndTextEnabled =>
       _rc.getBool(RemoteConfigKeys.splashAdsAndTextEnabled);
 
@@ -148,9 +178,15 @@ class RemoteConfigService extends ChangeNotifier {
 
   /// When `false`, skip the first language selection onboarding screen and go
   /// directly to the main onboarding flow.
-  bool get firstLanguageOnboardingEnabled =>
-      _rc.getBool(RemoteConfigKeys.firstLanguageOnboardingEnabled);
+  bool get firstLanguageOnboardingEnabled {
+    final value = _rc.getBool(RemoteConfigKeys.firstLanguageOnboardingEnabled);
+    _log('getter firstLanguageOnboardingEnabled=$value');
+    return value;
+  }
 
-  bool get firstLanguageShowNativeAd =>
-      _rc.getBool(RemoteConfigKeys.firstLanguageShowNativeAd);
+  bool get firstLanguageShowNativeAd {
+    final value = _rc.getBool(RemoteConfigKeys.firstLanguageShowNativeAd);
+    _log('getter firstLanguageShowNativeAd=$value');
+    return value;
+  }
 }

@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/providers/usage_limit_provider.dart';
+import 'package:tatoo_maker/services/admob_ids.dart';
 import 'package:tatoo_maker/services/app_open_ad_service.dart';
 import 'package:tatoo_maker/services/billing_service.dart';
 import 'package:tatoo_maker/services/remote_config_service.dart';
@@ -37,6 +39,15 @@ class _SplashScreenState extends State<SplashScreen>
 
   static const String _prefsSplashHasRunBeforeKey = 'splash_has_run_before';
   static const String _prefsProUnlockedKey = 'usage_pro_unlocked';
+  static const String _logTag = 'SplashScreen';
+
+  static void _log(String message) {
+    final tagged = '[$_logTag] $message';
+    developer.log(tagged, name: _logTag);
+    if (kDebugMode) {
+      debugPrint(tagged);
+    }
+  }
 
   @override
   void initState() {
@@ -50,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _progressController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 6),
     );
     _progressAnimation = _progressController.drive(
       Tween<double>(begin: 0.0, end: 1.0),
@@ -119,6 +130,7 @@ class _SplashScreenState extends State<SplashScreen>
       final prefs = await SharedPreferences.getInstance();
       final isOnboardingCompleted =
           prefs.getBool('onboarding_completed') ?? false;
+      _log('onboarding_completed=$isOnboardingCompleted');
 
       if (!mounted) return;
 
@@ -138,6 +150,10 @@ class _SplashScreenState extends State<SplashScreen>
         // - otherwise skip to main onboarding flow directly.
         final rc = context.read<RemoteConfigService>();
         final bool showLanguageScreen = rc.firstLanguageOnboardingEnabled;
+        _log(
+          'routing first-time user by Remote Config: '
+          'firstLanguageOnboardingEnabled=$showLanguageScreen',
+        );
 
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
@@ -149,6 +165,7 @@ class _SplashScreenState extends State<SplashScreen>
       }
     } catch (e) {
       // On error, assume first time and go to language selection
+      _log('check onboarding status failed: $e');
       if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const FirstLanguageScreen()),
@@ -172,13 +189,16 @@ class _SplashScreenState extends State<SplashScreen>
       final shouldAttemptAds =
           hasRunBefore && adsAndTextEnabled && !isProUnlocked && !forcePro;
 
-      if (kDebugMode) {
-        debugPrint(
-          '[SplashScreen] first-run check: hasRunBefore=$hasRunBefore, '
-          'isPro=$isProUnlocked, forcePro=$forcePro, adsEnabled=$adsAndTextEnabled, showAppOpen=${rc.splashShowAppOpen}, '
-          'showInterstitial=${rc.splashShowInterstitial}',
-        );
-      }
+      _log(
+        'first-run/ad gate: '
+        'hasRunBefore=$hasRunBefore, '
+        'isPro=$isProUnlocked, '
+        'forcePro=$forcePro, '
+        'adsEnabled=$adsAndTextEnabled, '
+        'showAppOpen=${rc.splashShowAppOpen}, '
+        'showInterstitial=${rc.splashShowInterstitial}, '
+        'shouldAttemptAds=$shouldAttemptAds',
+      );
 
       if (mounted) {
         setState(() {
@@ -205,6 +225,7 @@ class _SplashScreenState extends State<SplashScreen>
 
       await _checkOnboardingStatus();
     } catch (_) {
+      _log('runSplashSequence failed, continuing to onboarding check');
       if (!mounted) return;
       await _checkOnboardingStatus();
     }
@@ -214,20 +235,26 @@ class _SplashScreenState extends State<SplashScreen>
     required bool showAppOpen,
     required bool showInterstitial,
   }) async {
-    final rc = context.read<RemoteConfigService>();
-    final appOpenUnitId = rc.admobAndroidAppOpenUnitId;
-    final interstitialUnitId = rc.admobAndroidInterstitialUnitId;
+    final appOpenUnitId = AdmobIds.appOpenUnitId();
+    final interstitialUnitId = AdmobIds.interstitialUnitId();
+    _log(
+      'showSplashAds called: showAppOpen=$showAppOpen, showInterstitial=$showInterstitial',
+    );
 
     // Priority rule: If App Open is enabled, show it and skip interstitial.
     if (showAppOpen) {
       // Give the splash UI a moment to settle so App Open doesn't appear
       // "inside the app" after navigation has already started.
       await Future<void>.delayed(const Duration(seconds: 3));
+      _log('attempting splash app-open ad...');
       await _showAppOpenAdIfAvailable(unitIdOverride: appOpenUnitId);
+      _log('splash app-open flow complete.');
       return;
     }
     if (showInterstitial) {
+      _log('attempting splash interstitial ad...');
       await _showInterstitialAdIfAvailable(unitIdOverride: interstitialUnitId);
+      _log('splash interstitial flow complete.');
     }
   }
 
@@ -243,7 +270,7 @@ class _SplashScreenState extends State<SplashScreen>
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdShowedFullScreenContent: (_) {
-              debugPrint('[SplashScreen] interstitial shown');
+              _log('interstitial shown');
             },
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
@@ -251,7 +278,7 @@ class _SplashScreenState extends State<SplashScreen>
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               ad.dispose();
-              debugPrint('[SplashScreen] interstitial failed to show: $error');
+              _log('interstitial failed to show: $error');
               if (!completer.isCompleted) completer.complete();
             },
           );
@@ -263,7 +290,7 @@ class _SplashScreenState extends State<SplashScreen>
           }
         },
         onAdFailedToLoad: (error) {
-          debugPrint('[SplashScreen] interstitial failed to load: $error');
+          _log('interstitial failed to load: $error');
           if (!completer.isCompleted) completer.complete();
         },
       ),

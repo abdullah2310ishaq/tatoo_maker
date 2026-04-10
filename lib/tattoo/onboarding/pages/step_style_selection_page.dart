@@ -4,8 +4,10 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/usage_limit_provider.dart';
+import '../../../services/admob_ids.dart';
 import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
+import '../../../widgets/remote_or_asset_image.dart';
 import '../models/onboarding_models.dart';
 import '../utils/zodiac_utils.dart';
 import '../widgets/onboarding_header.dart';
@@ -70,7 +72,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
         OnboardingHeader(currentStep: 5, onBack: widget.onBack),
         if (shouldShowBanner) ...[
           _StyleSelectionBannerAd(
-            unitId: rc.admobAndroidBannerUnitId,
+            unitId: AdmobIds.bannerUnitId(),
             onVisibilityChanged: (visible) {
               if (_bannerLoaded == visible) return;
               setState(() => _bannerLoaded = visible);
@@ -164,24 +166,9 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12.r),
-                  child: Image.asset(
-                    item.assetPath,
+                  child: RemoteOrAssetImage(
+                    assetPath: item.assetPath,
                     fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.cardGradientStart.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(12.r),
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.image_not_supported,
-                            color: AppColors.textGrey,
-                            size: 32.sp,
-                          ),
-                        ),
-                      );
-                    },
                   ),
                 ),
               ),

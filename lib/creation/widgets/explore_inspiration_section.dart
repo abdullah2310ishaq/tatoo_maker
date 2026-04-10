@@ -6,6 +6,7 @@ import '../../creation/explore_detail_screen.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/explore_category.dart';
 import '../../utils/colors.dart';
+import '../../widgets/remote_or_asset_image.dart';
 
 class ExploreInspirationSection extends StatelessWidget {
   final ValueChanged<String> onPromptSelected;
@@ -197,22 +198,9 @@ class _CategoryImage extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.r),
-          child: Image.asset(
-            imagePath,
-            width: double.infinity,
+          child: RemoteOrAssetImage(
+            assetPath: imagePath,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                color: AppColors.cardGradientStart,
-                child: Center(
-                  child: Icon(
-                    Icons.image_not_supported,
-                    color: AppColors.textGrey,
-                    size: 24.sp,
-                  ),
-                ),
-              );
-            },
           ),
         ),
       ),

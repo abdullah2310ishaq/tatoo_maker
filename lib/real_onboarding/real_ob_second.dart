@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
-import '../utils/colors.dart';
-import '../widgets/remote_or_asset_image.dart';
 
 /// Second onboarding screen - Custom creation
 class RealOnboardingSecondScreen extends StatelessWidget {
@@ -13,10 +11,9 @@ class RealOnboardingSecondScreen extends StatelessWidget {
     return Stack(
       children: [
         Positioned.fill(
-          child: RemoteOrAssetImage(
-            assetPath: 'assets/splash/splash_two.png',
+          child: Image.asset(
+            'assets/splash/splash_two.png',
             fit: BoxFit.cover,
-            errorWidget: Container(color: AppColors.lightBackground),
           ),
         ),
         SafeArea(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
-import '../utils/colors.dart';
-import '../widgets/remote_or_asset_image.dart';
 
 /// Fourth onboarding screen - Try-on preview
 class RealOnboardingFourthScreen extends StatelessWidget {
@@ -14,10 +12,9 @@ class RealOnboardingFourthScreen extends StatelessWidget {
       children: [
         // Background image - full cover
         Positioned.fill(
-          child: RemoteOrAssetImage(
-            assetPath: 'assets/splash/splash_four.png',
+          child: Image.asset(
+            'assets/splash/splash_four.png',
             fit: BoxFit.cover,
-            errorWidget: Container(color: AppColors.lightBackground),
           ),
         ),
 

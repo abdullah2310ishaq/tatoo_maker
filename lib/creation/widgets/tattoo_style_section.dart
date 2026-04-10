@@ -5,6 +5,7 @@ import '../../creation/models/tattoo_style_item.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/theme_provider.dart';
 import '../../utils/colors.dart';
+import '../../widgets/remote_or_asset_image.dart';
 
 class TattooStyleSection extends StatelessWidget {
   final List<TattooStyleItem> styles;
@@ -164,7 +165,10 @@ class _StyleCard extends StatelessWidget {
                   child: Center(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10.r),
-                      child: Image.asset(item.assetPath, fit: BoxFit.contain),
+                      child: RemoteOrAssetImage(
+                        assetPath: item.assetPath,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),

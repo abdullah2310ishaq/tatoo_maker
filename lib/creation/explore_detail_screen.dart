@@ -5,6 +5,7 @@ import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/toast.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../widgets/remote_or_asset_image.dart';
 import 'virtual_try_on.dart';
 
 class ExploreDetailScreen extends StatefulWidget {
@@ -399,37 +400,10 @@ class _ExploreDetailScreenState extends State<ExploreDetailScreen> {
     String bigImagePath,
     bool isDark,
   ) {
-    if (isDark && smallImagePathDark != null) {
-      // Use explicit dark image path if provided
-      return Image.asset(
-        smallImagePathDark,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          // Fallback to light image if dark doesn't exist
-          if (smallImagePath != null) {
-            return Image.asset(
-              smallImagePath,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                return Image.asset(bigImagePath, fit: BoxFit.contain);
-              },
-            );
-          }
-          return Image.asset(bigImagePath, fit: BoxFit.contain);
-        },
-      );
-    } else if (smallImagePath != null) {
-      // Use light image path (or fallback for dark theme if no dark path provided)
-      return Image.asset(
-        smallImagePath,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return Image.asset(bigImagePath, fit: BoxFit.contain);
-        },
-      );
-    } else {
-      // No small image, use big image
-      return Image.asset(bigImagePath, fit: BoxFit.contain);
-    }
+    final resolvedPath = (isDark && smallImagePathDark != null)
+        ? smallImagePathDark
+        : (smallImagePath ?? bigImagePath);
+
+    return RemoteOrAssetImage(assetPath: resolvedPath, fit: BoxFit.contain);
   }
 }

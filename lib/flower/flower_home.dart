@@ -7,7 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/inkvision_underline.dart';
-import '../widgets/asset_video_controller_cache.dart';
+import '../widgets/remote_or_asset_image.dart';
 import 'flower_input_screen.dart';
 
 /// Video section size on flower home. Adjust to change player area.
@@ -227,7 +227,7 @@ class _FlowerHomeVideo extends StatefulWidget {
 }
 
 class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
-  late VideoPlayerController _controller;
+  VideoPlayerController? _controller;
   bool _initError = false;
   bool _hadValidSize = false;
   String _currentAssetPath = '';
@@ -246,7 +246,7 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
   void didUpdateWidget(covariant _FlowerHomeVideo oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.assetPath != widget.assetPath) {
-      _controller.removeListener(_onControllerUpdate);
+      _disposeController();
       _currentAssetPath = widget.assetPath;
       _initError = false;
       _hadValidSize = false;
@@ -256,52 +256,65 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
     }
   }
 
-  void _initController() {
-    _controller = AssetVideoControllerCache.controllerFor(_currentAssetPath);
-    _controller.addListener(_onControllerUpdate);
-    AssetVideoControllerCache.ensureInitialized(_currentAssetPath)
-        .then((_) {
-          if (mounted && !_initError) setState(() {});
-        })
-        .catchError((Object e) {
-          if (kDebugMode) {
-            debugPrint('FlowerHome video failed to load: $e');
-          }
-          if (mounted) {
-            setState(() => _initError = true);
-          }
-        });
+  Future<void> _initController() async {
+    final requestedPath = _currentAssetPath;
+    try {
+      final controller = VideoPlayerController.asset(requestedPath);
+      await controller.initialize();
+      await controller.setLooping(true);
+      await controller.play();
+      if (!mounted || _disposed || requestedPath != _currentAssetPath) {
+        await controller.dispose();
+        return;
+      }
+
+      controller.addListener(_onControllerUpdate);
+      _controller = controller;
+      setState(() => _initError = false);
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('FlowerHome video failed to load: $e');
+      }
+      if (mounted) {
+        setState(() => _initError = true);
+      }
+    }
   }
 
   void _scheduleLoadingPlaceholder() {
     Future.delayed(const Duration(seconds: 1), () {
       if (!mounted || _disposed) return;
-      if (!_initError && !_controller.value.isInitialized) {
+      if (!_initError && !(_controller?.value.isInitialized ?? false)) {
         setState(() => _showLoadingPlaceholder = true);
       }
     });
   }
 
   void _onControllerUpdate() {
-    if (!mounted || !_controller.value.isInitialized) return;
-    final size = _controller.value.size;
+    final controller = _controller;
+    if (!mounted || controller == null || !controller.value.isInitialized) return;
+    final size = controller.value.size;
     if (!_hadValidSize && size.width > 0 && size.height > 0) {
       _hadValidSize = true;
       setState(() {});
     }
   }
 
+  void _disposeController() {
+    final controller = _controller;
+    if (controller == null) return;
+    controller.removeListener(_onControllerUpdate);
+    try {
+      controller.pause();
+    } catch (_) {}
+    controller.dispose();
+    _controller = null;
+  }
+
   @override
   void dispose() {
     _disposed = true;
-    try {
-      if (_controller.value.isPlaying) {
-        _controller.pause();
-      }
-    } catch (_) {
-      // Ignore pause errors.
-    }
-    _controller.removeListener(_onControllerUpdate);
+    _disposeController();
     super.dispose();
   }
 
@@ -338,10 +351,9 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
           child: SizedBox(
             height: h,
             width: w,
-            child: Image.asset(
-              widget.fallbackImagePath!,
+            child: RemoteOrAssetImage(
+              assetPath: widget.fallbackImagePath!,
               fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) => _buildErrorPlaceholder(h, w),
             ),
           ),
         );
@@ -349,7 +361,8 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
       return _buildErrorPlaceholder(h, w);
     }
 
-    if (!_controller.value.isInitialized) {
+    final controller = _controller;
+    if (controller == null || !controller.value.isInitialized) {
       // No fallback while loading: transparent for 1 second to avoid flicker.
       if (!_showLoadingPlaceholder) {
         return SizedBox(height: h, width: w);
@@ -368,20 +381,21 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
 
     // If the controller is initialized but not currently playing (for example,
     // after switching tabs or returning to this page), ensure it resumes.
-    if (!_controller.value.isPlaying) {
+    if (!controller.value.isPlaying) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        if (!mounted || !_controller.value.isInitialized) return;
+        final activeController = _controller;
+        if (!mounted || activeController == null || !activeController.value.isInitialized) return;
         try {
-          if (!_controller.value.isLooping) {
-            await _controller.setLooping(true);
+          if (!activeController.value.isLooping) {
+            await activeController.setLooping(true);
           }
-          await _controller.play();
+          await activeController.play();
         } catch (_) {
           // Ignore playback errors; UI will still show the last frame.
         }
       });
     }
-    final size = _controller.value.size;
+    final size = controller.value.size;
     final ratio = (size.width > 0 && size.height > 0)
         ? (size.width / size.height)
         : 16 / 9;
@@ -396,7 +410,7 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
           child: SizedBox(
             width: 160,
             height: 160 / ratio,
-            child: VideoPlayer(_controller),
+            child: VideoPlayer(controller),
           ),
         ),
       ),

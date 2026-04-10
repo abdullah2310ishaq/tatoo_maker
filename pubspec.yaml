@@ -95,54 +95,21 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
-    - assets/language/
     - assets/in_app/
-    - assets/splash/
-    - assets/flower/
-    - assets/flower/light/
-    - assets/flower/dark/
-    - assets/signs/
-    - assets/explore/
-    - assets/realism_and_portrait/
-    - assets/letters/
-    - assets/floral/
-    - assets/japanese/
-    - assets/myths/
-    - assets/geometrical/
-    - assets/minimal/
-    - assets/oldschool/
-    - assets/tribal_designs/
-    - assets/20off.png
-    - assets/splash/20off.png
-    - assets/splash_black.png
-    - assets/splash_white.png
+    - assets/language/
+    - assets/splash/splash_two.png
+    - assets/splash/splash_four.png
+    - assets/splash/owl.png
     - assets/creation.svg
     - assets/tatoo.svg
     - assets/flower.svg
     - assets/inspiration.svg
-    - assets/dragon.png
-    - assets/unicorn.png
-    - assets/floral.png
-    - assets/abstract_dark.png
-    - assets/abstract_light.png
-    - assets/butterfly_dark.png
-    - assets/butterfly_light.png
-    - assets/eagle_dark.png
-    - assets/eagle_light.png
-    - assets/lion_dark.png
-    - assets/lion_light.png
-    - assets/spider_dark.png
-    - assets/spider_light.png
-    - assets/wolf_dark.png
-    - assets/wolf_light.png
-    - assets/inspiration_one.png
-    - assets/inspiration_two.png
     - assets/arrow.svg
-    - assets/one.svg
-    - assets/two.svg
+    - assets/drawer_dark.svg
+    - assets/drawer_light.svg
+    - assets/history_dark.svg
+    - assets/history_light.svg
     - assets/logo.png
-    - assets/20off.png
     - assets/video.mp4
     - assets/video_light.mp4
     - assets/one_light.mp4
