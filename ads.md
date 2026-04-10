@@ -5,6 +5,7 @@ Remote Config keys to create (Firebase)
 - splash_ads_and_text_enabled = true
 - splash_show_app_open = true
 - splash_show_interstitial = false
+- splash_show_paywall = true
 
 - tattoo_birthday_ads_all = true
 - tattoo_birthday_banner = true

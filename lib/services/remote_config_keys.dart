@@ -21,6 +21,9 @@ abstract final class RemoteConfigKeys {
   static const String splashShowInterstitial =
       'splash_show_interstitial';
   static const String splashShowAppOpen = 'splash_show_app_open';
+  /// When `true`, show paywall (`ProAccessScreen`) after splash for non‑Pro users
+  /// who already completed onboarding. When `false`, go straight to `HomeShell`.
+  static const String splashShowPaywall = 'splash_show_paywall';
 
   static const String firstLanguageOnboardingEnabled =
       'first_language_onboarding_enabled';

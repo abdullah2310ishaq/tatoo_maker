@@ -6,11 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:gal/gal.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../home_shell.dart';
-import '../pro_access_screen.dart';
-import '../providers/usage_limit_provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
@@ -210,17 +207,6 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       setState(() {
         _processedTryOnBytes = result;
       });
-
-      final shouldShowPaywall = await context
-          .read<UsageLimitProvider>()
-          .shouldShowPostActionPaywall();
-      if (mounted && shouldShowPaywall) {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
-          ),
-        );
-      }
 
       debugPrint('VirtualTryOn: Preview capture completed');
     } catch (e) {

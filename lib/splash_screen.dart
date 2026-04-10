@@ -30,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final AnimationController _introController;
   late final AnimationController _progressController;
-  late final Animation<double> _progressAnimation;
 
   late final BillingService _billingService;
   StreamSubscription<BillingPurchaseEvent>? _billingEventsSubscription;
@@ -62,9 +61,6 @@ class _SplashScreenState extends State<SplashScreen>
     _progressController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 6),
-    );
-    _progressAnimation = _progressController.drive(
-      Tween<double>(begin: 0.0, end: 1.0),
     );
 
     _billingService = BillingService();
@@ -138,9 +134,13 @@ class _SplashScreenState extends State<SplashScreen>
         // User has completed onboarding.
         // Show in-app screen after splash (if not Pro); then continue to Home.
         final usage = context.read<UsageLimitProvider>();
+        final rc = context.read<RemoteConfigService>();
+        final shouldShowPaywall = rc.splashShowPaywall;
         final next = usage.isProUnlocked
             ? const HomeShell()
-            : ProAccessScreen(nextScreen: const HomeShell());
+            : (shouldShowPaywall
+                  ? ProAccessScreen(nextScreen: const HomeShell())
+                  : const HomeShell());
         Navigator.of(
           context,
         ).pushReplacement(MaterialPageRoute(builder: (context) => next));
@@ -326,8 +326,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    final isDarkTheme =
-        widget.isDarkTheme || Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
         backgroundColor: widget.isDarkTheme
@@ -350,49 +348,59 @@ class _SplashScreenState extends State<SplashScreen>
                 : null,
             color: widget.isDarkTheme ? null : AppColors.lightBackground,
           ),
-          child: Center(
-            child: Column(
-              children: [
-                const SizedBox(height: 86),
-                const _SplashTitle(),
-                const Spacer(),
-                AnimatedBuilder(
-                  animation: _progressController,
-                  builder: (context, _) {
-                    return SizedBox(
-                      width: 34,
-                      height: 34,
-                      child: CircularProgressIndicator(
-                        value: _progressAnimation.value,
-                        strokeWidth: 3.2,
-                        backgroundColor: AppColors.textGrey.withOpacity(
-                          isDarkTheme ? 0.25 : 0.12,
-                        ),
-                        valueColor: const AlwaysStoppedAnimation<Color>(
-                          AppColors.lightPrimary,
-                        ),
+          child: Stack(
+            children: [
+              const Align(
+                alignment: Alignment.center,
+                child: _SplashTitle(),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 58),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AnimatedBuilder(
+                        animation: _progressController,
+                        builder: (context, _) {
+                          return SizedBox(
+                            width: 34,
+                            height: 34,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 3.2,
+                              backgroundColor: AppColors.textGrey.withOpacity(
+                                0.0,
+                              ),
+                              valueColor: const AlwaysStoppedAnimation<Color>(
+                                AppColors.lightPrimary,
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 14),
-                if (_shouldShowSplashAdText)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Text(
-                      AppLocalizations.of(context)!.splashAdMayShowNotice,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.textGrey,
-                        letterSpacing: 0.2,
-                      ),
-                    ),
+                      const SizedBox(height: 14),
+                      if (_shouldShowSplashAdText)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.splashAdMayShowNotice,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.textGrey,
+                              letterSpacing: 0.2,
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
-                const SizedBox(height: 58),
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -405,16 +413,14 @@ class _SplashTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
-
     return Text(
       'AI Tattoo',
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 34,
-        letterSpacing: 2,
-        color: isDarkTheme ? AppColors.lightPrimary : AppColors.darkSecondary,
+        fontWeight: FontWeight.w800,
+        fontSize: 46,
+        letterSpacing: 1.6,
+        color: AppColors.lightPrimary,
       ),
     );
   }

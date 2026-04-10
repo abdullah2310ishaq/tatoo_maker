@@ -99,6 +99,11 @@ class AppOpenAdService {
       return;
     }
 
+    // We must not navigate to another full-screen UI (e.g. paywall) while the ad
+    // is on-screen. The Google Mobile Ads `show()` Future can complete before the
+    // user dismisses the ad, so we await the fullScreenContent callbacks instead.
+    final dismissCompleter = Completer<void>();
+
     _isShowing = true;
     _lastShownAt = now;
 
@@ -111,6 +116,9 @@ class AppOpenAdService {
       _loadedAt = null;
       if (kDebugMode) {
         debugPrint('[AppOpenAdService] show watchdog reset triggered');
+      }
+      if (!dismissCompleter.isCompleted) {
+        dismissCompleter.complete();
       }
       unawaited(_loadIfNeeded());
     });
@@ -126,6 +134,9 @@ class AppOpenAdService {
         _ad = null;
         _loadedAt = null;
         _isShowing = false;
+        if (!dismissCompleter.isCompleted) {
+          dismissCompleter.complete();
+        }
         unawaited(_loadIfNeeded());
       },
       onAdFailedToShowFullScreenContent: (ad, error) {
@@ -136,6 +147,9 @@ class AppOpenAdService {
         if (kDebugMode) {
           debugPrint('[AppOpenAdService] failed to show: $error');
         }
+        if (!dismissCompleter.isCompleted) {
+          dismissCompleter.complete();
+        }
         unawaited(_loadIfNeeded());
       },
     );
@@ -144,7 +158,10 @@ class AppOpenAdService {
       if (kDebugMode) {
         debugPrint('[AppOpenAdService] showing app open now');
       }
+      // Wait for "show" call to be issued (can complete early).
       await ad.show();
+      // Wait until the ad is dismissed/failed (or watchdog fires).
+      await dismissCompleter.future;
     } catch (e) {
       _isShowing = false;
       _ad?.dispose();
@@ -152,6 +169,9 @@ class AppOpenAdService {
       _loadedAt = null;
       if (kDebugMode) {
         debugPrint('[AppOpenAdService] show failed: $e');
+      }
+      if (!dismissCompleter.isCompleted) {
+        dismissCompleter.complete();
       }
       unawaited(_loadIfNeeded());
     }

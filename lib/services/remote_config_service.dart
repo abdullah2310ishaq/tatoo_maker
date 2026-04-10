@@ -30,21 +30,23 @@ class RemoteConfigService extends ChangeNotifier {
   /// Defaults: feature flags + production IDs.
   static const Map<String, dynamic> defaults = <String, dynamic>{
     // Boolean feature flags — default OFF (can be overridden in Firebase).
-    RemoteConfigKeys.tattooBirthdayAdsAll: false,
-    RemoteConfigKeys.tattooBirthdayBanner: false,
+    RemoteConfigKeys.tattooBirthdayAdsAll: true,
+    RemoteConfigKeys.tattooBirthdayBanner: true,
     RemoteConfigKeys.tattooBirthdayNative: false,
     RemoteConfigKeys.tattooIdeaAdsAll: false,
     RemoteConfigKeys.tattooIdeaBanner: false,
     RemoteConfigKeys.tattooIdeaNative: false,
-    RemoteConfigKeys.tattooStyleSelectionAdsAll: false,
-    RemoteConfigKeys.tattooStyleSelectionBanner: false,
+    RemoteConfigKeys.tattooStyleSelectionAdsAll: true,
+    RemoteConfigKeys.tattooStyleSelectionBanner: true,
     RemoteConfigKeys.tattooStyleSelectionNative: false,
 
     // Splash screen ad/text toggles (default OFF).
-    RemoteConfigKeys.splashAdsAndTextEnabled: false,
+    RemoteConfigKeys.splashAdsAndTextEnabled: true,
     // App Open has priority on splash (interstitial can be enabled via Firebase).
-    RemoteConfigKeys.splashShowInterstitial: false,
-    RemoteConfigKeys.splashShowAppOpen: false,
+    RemoteConfigKeys.splashShowInterstitial: true,
+    RemoteConfigKeys.splashShowAppOpen: true,
+    // Paywall after splash for returning (onboarding completed) free users.
+    RemoteConfigKeys.splashShowPaywall: true,
 
     RemoteConfigKeys.firstLanguageOnboardingEnabled: true,
     RemoteConfigKeys.firstLanguageShowNativeAd: true,
@@ -109,6 +111,7 @@ class RemoteConfigService extends ChangeNotifier {
       'splashAdsAndTextEnabled=$splashAdsAndTextEnabled, '
       'splashShowInterstitial=$splashShowInterstitial, '
       'splashShowAppOpen=$splashShowAppOpen, '
+      'splashShowPaywall=$splashShowPaywall, '
       'firstLanguageOnboardingEnabled=$firstLanguageOnboardingEnabled, '
       'firstLanguageShowNativeAd=$firstLanguageShowNativeAd',
     );
@@ -118,6 +121,7 @@ class RemoteConfigService extends ChangeNotifier {
     _logKeyDetail(RemoteConfigKeys.splashAdsAndTextEnabled);
     _logKeyDetail(RemoteConfigKeys.splashShowAppOpen);
     _logKeyDetail(RemoteConfigKeys.splashShowInterstitial);
+    _logKeyDetail(RemoteConfigKeys.splashShowPaywall);
     _logKeyDetail(RemoteConfigKeys.firstLanguageOnboardingEnabled);
     _logKeyDetail(RemoteConfigKeys.firstLanguageShowNativeAd);
   }
@@ -175,6 +179,10 @@ class RemoteConfigService extends ChangeNotifier {
   bool get splashShowAppOpen =>
       splashAdsAndTextEnabled &&
       _rc.getBool(RemoteConfigKeys.splashShowAppOpen);
+
+  /// When `false`, skip the paywall after splash for returning free users.
+  bool get splashShowPaywall =>
+      _rc.getBool(RemoteConfigKeys.splashShowPaywall);
 
   /// When `false`, skip the first language selection onboarding screen and go
   /// directly to the main onboarding flow.
