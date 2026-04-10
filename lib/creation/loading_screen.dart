@@ -332,12 +332,10 @@ class _LoadingScreenState extends State<LoadingScreen>
         showProAccessOnOpen: _generatedImageBytes != null,
       );
       debugPrint('[LoadingScreen] step 3/3: opening ResultScreen');
-
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => nextResult,
-        ),
-      );
+// 
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (context) => nextResult));
     }
   }
 
