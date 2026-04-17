@@ -1616,6 +1616,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Salta la quota settimanale - tuo a vita per $price';
+    return 'L\'abbonamento a vita per $price inizierà';
   }
 }

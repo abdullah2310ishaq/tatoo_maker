@@ -1142,5 +1142,5 @@
   "proAccessPlanLifetimeSubscription": "Vitalícia",
   "proAccessContinueForFree": "Continuar grátis",
   "proAccessLifetimeLegalNoPrice": "Pule a taxa anual - para sempre seu",
-  "proAccessLifetimeLegalWithPrice": "Pule a taxa semanal - seu para toda a vida por {price}"
+  "proAccessLifetimeLegalWithPrice": "A assinatura vitalícia por {price} será iniciada"
 }

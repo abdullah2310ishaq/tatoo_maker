@@ -1568,6 +1568,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return '跳过每周费用 - 仅需 $price 即可终身拥有';
+    return '将开始价格为 $price 的终身订阅';
   }
 }

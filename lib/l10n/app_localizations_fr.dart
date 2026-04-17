@@ -1620,6 +1620,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Évitez les frais hebdomadaires - à vous à vie pour $price';
+    return 'L\'abonnement à vie pour $price commencera';
   }
 }

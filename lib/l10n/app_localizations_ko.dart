@@ -1583,6 +1583,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return '주간 요금을 건너뛰고 $price로 평생 소유';
+    return '$price의 평생 구독이 시작됩니다';
   }
 }
