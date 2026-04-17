@@ -1548,6 +1548,26 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proAccessAutoRenewableCancelAnytime => '자동 갱신, 언제든지 취소 가능';
 
   @override
+  String get proAccessCancelAnytime => '언제든지 취소 가능';
+
+  @override
+  String get proAccessEnableTrial => '체험판 활성화';
+
+  @override
+  String get proAccessTrialEnabled => '체험판 활성화됨';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3일 무료 체험';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/주';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return '3일 무료 후 $price 주간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다';
   }

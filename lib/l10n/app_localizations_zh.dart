@@ -1533,6 +1533,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proAccessAutoRenewableCancelAnytime => '自动续费，随时取消';
 
   @override
+  String get proAccessCancelAnytime => '随时取消';
+
+  @override
+  String get proAccessEnableTrial => '启用试用';
+
+  @override
+  String get proAccessTrialEnabled => '试用已启用';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3天免费试用';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/周';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return '3 天免费期后，将开始每周 $price 的订阅。可在续费前 24 小时内随时取消';
   }

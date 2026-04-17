@@ -1864,6 +1864,33 @@
   "@proAccessAutoRenewableCancelAnytime": {
     "description": "Pro access auto-renew text"
   },
+  "proAccessCancelAnytime": "Annulla quando vuoi",
+  "@proAccessCancelAnytime": {
+    "description": "Pro access helper text for lifetime plan"
+  },
+  "proAccessEnableTrial": "Attiva prova",
+  "@proAccessEnableTrial": {
+    "description": "Label shown when trial toggle is off"
+  },
+  "proAccessTrialEnabled": "Prova attiva",
+  "@proAccessTrialEnabled": {
+    "description": "Label shown when trial toggle is on"
+  },
+  "proAccessWeeklyTrialSubtitle": "3 giorni di prova gratuita",
+  "@proAccessWeeklyTrialSubtitle": {
+    "description": "Subtitle shown under weekly plan title"
+  },
+  "proAccessWeeklyPriceWithPeriod": "{price}/settimana",
+  "@proAccessWeeklyPriceWithPeriod": {
+    "description": "Weekly price with period suffix",
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "proAccessLifetimeDiscountBadge": "20%",
+  "@proAccessLifetimeDiscountBadge": {
+    "description": "Discount badge text shown on lifetime plan"
+  },
   "proAccessLegalNote": "Dopo 3 giorni gratuiti, partira l'abbonamento settimanale da {price}. Annulla quando vuoi fino a 24 ore prima del rinnovo",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"

@@ -1584,6 +1584,26 @@ class AppLocalizationsFr extends AppLocalizations {
       'Renouvellement auto, annulation a tout moment';
 
   @override
+  String get proAccessCancelAnytime => 'Annulation a tout moment';
+
+  @override
+  String get proAccessEnableTrial => 'Activer l\'essai';
+
+  @override
+  String get proAccessTrialEnabled => 'Essai active';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3 jours d\'essai gratuit';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/semaine';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return 'Apres 3 jours gratuits, un abonnement hebdomadaire de $price commencera. Annulez a tout moment jusqu\'a 24 h avant le renouvellement';
   }

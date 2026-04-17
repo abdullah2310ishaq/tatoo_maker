@@ -1564,6 +1564,26 @@ class AppLocalizationsAr extends AppLocalizations {
       'تجديد تلقائي، والإلغاء في أي وقت';
 
   @override
+  String get proAccessCancelAnytime => 'الإلغاء في أي وقت';
+
+  @override
+  String get proAccessEnableTrial => 'تفعيل التجربة';
+
+  @override
+  String get proAccessTrialEnabled => 'التجربة مفعلة';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3 أيام تجربة مجانية';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/أسبوع';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return 'بعد 3 أيام مجانية، سيبدأ اشتراك أسبوعي بقيمة $price. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد';
   }

@@ -1579,6 +1579,26 @@ class AppLocalizationsRu extends AppLocalizations {
       'Автопродление, отмена в любой момент';
 
   @override
+  String get proAccessCancelAnytime => 'Отмена в любой момент';
+
+  @override
+  String get proAccessEnableTrial => 'Включить пробный период';
+
+  @override
+  String get proAccessTrialEnabled => 'Пробный период включен';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3 дня бесплатно';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/неделя';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return 'После 3 бесплатных дней начнется недельная подписка за $price. Отмена в любой момент не позднее чем за 24 часа до продления';
   }

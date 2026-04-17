@@ -22,6 +22,7 @@ class AppColors {
   static const Color navBarBackground = Color(0xFF1A1A1A); // Dark charcoal
   static const Color navBarActive = Color(0xFFFF8C42); // Orange for active
   static const Color navBarInactive = Color(0xFF8E8E8E); // Gray for inactive
+  static const Color proAccessOptionBackground = Color(0xFF2A2827);
 
   // Home page colors
   static const Color titleGradientStart = Color(0xFFF88532); // Orange
@@ -40,7 +41,6 @@ class AppColors {
   static const Color textGrey = Color(0xFF8E8E8E);
   static const Color textPrimary = Color(
     0xFF565656,
-
   ); // #565656 for text in both themes
   static const Color lightCardBackground = Color(
     0xFFF5F5F5,

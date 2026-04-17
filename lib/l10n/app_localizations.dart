@@ -2834,6 +2834,42 @@ abstract class AppLocalizations {
   /// **'Auto-renewable, Cancel anytime'**
   String get proAccessAutoRenewableCancelAnytime;
 
+  /// Pro access helper text for lifetime plan
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel anytime'**
+  String get proAccessCancelAnytime;
+
+  /// Label shown when trial toggle is off
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Trial'**
+  String get proAccessEnableTrial;
+
+  /// Label shown when trial toggle is on
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Enabled'**
+  String get proAccessTrialEnabled;
+
+  /// Subtitle shown under weekly plan title
+  ///
+  /// In en, this message translates to:
+  /// **'3 days free trial'**
+  String get proAccessWeeklyTrialSubtitle;
+
+  /// Weekly price with period suffix
+  ///
+  /// In en, this message translates to:
+  /// **'{price}/week'**
+  String proAccessWeeklyPriceWithPeriod(Object price);
+
+  /// Discount badge text shown on lifetime plan
+  ///
+  /// In en, this message translates to:
+  /// **'20%'**
+  String get proAccessLifetimeDiscountBadge;
+
   /// Pro access legal subscription note
   ///
   /// In en, this message translates to:
@@ -2861,7 +2897,7 @@ abstract class AppLocalizations {
   /// Pro access lifetime note with price
   ///
   /// In en, this message translates to:
-  /// **'Skip the weekly fee - own it for lifetime in {price}'**
+  /// **'Lifetime subscription for {price} will start'**
   String proAccessLifetimeLegalWithPrice(Object price);
 }
 

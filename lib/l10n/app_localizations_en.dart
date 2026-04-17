@@ -1570,6 +1570,26 @@ class AppLocalizationsEn extends AppLocalizations {
       'Auto-renewable, Cancel anytime';
 
   @override
+  String get proAccessCancelAnytime => 'Cancel anytime';
+
+  @override
+  String get proAccessEnableTrial => 'Enable Trial';
+
+  @override
+  String get proAccessTrialEnabled => 'Trial Enabled';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3 days free trial';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/week';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return 'After 3 days free - then weekly subscription for $price will start. Cancel anytime 24 hours before renewal';
   }
@@ -1586,6 +1606,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Skip the weekly fee - own it for lifetime in $price';
+    return 'Lifetime subscription for $price will start';
   }
 }

@@ -1864,6 +1864,33 @@
   "@proAccessAutoRenewableCancelAnytime": {
     "description": "Pro access auto-renew text"
   },
+  "proAccessCancelAnytime": "الإلغاء في أي وقت",
+  "@proAccessCancelAnytime": {
+    "description": "Pro access helper text for lifetime plan"
+  },
+  "proAccessEnableTrial": "تفعيل التجربة",
+  "@proAccessEnableTrial": {
+    "description": "Label shown when trial toggle is off"
+  },
+  "proAccessTrialEnabled": "التجربة مفعلة",
+  "@proAccessTrialEnabled": {
+    "description": "Label shown when trial toggle is on"
+  },
+  "proAccessWeeklyTrialSubtitle": "3 أيام تجربة مجانية",
+  "@proAccessWeeklyTrialSubtitle": {
+    "description": "Subtitle shown under weekly plan title"
+  },
+  "proAccessWeeklyPriceWithPeriod": "{price}/أسبوع",
+  "@proAccessWeeklyPriceWithPeriod": {
+    "description": "Weekly price with period suffix",
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "proAccessLifetimeDiscountBadge": "20%",
+  "@proAccessLifetimeDiscountBadge": {
+    "description": "Discount badge text shown on lifetime plan"
+  },
   "proAccessLegalNote": "بعد 3 أيام مجانية، سيبدأ اشتراك أسبوعي بقيمة {price}. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد",
   "@proAccessLegalNote": {
     "description": "Pro access legal subscription note"
@@ -1880,7 +1907,7 @@
   "@proAccessLifetimeLegalNoPrice": {
     "description": "Pro access lifetime note without price"
   },
-  "proAccessLifetimeLegalWithPrice": "تخط الرسوم الأسبوعية - امتلكه مدى الحياة مقابل سعر {price}",
+  "proAccessLifetimeLegalWithPrice": "سيبدأ اشتراك مدى الحياة بسعر {price}",
   "@proAccessLifetimeLegalWithPrice": {
     "description": "Pro access lifetime note with price",
     "placeholders": {

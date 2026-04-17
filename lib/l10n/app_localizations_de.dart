@@ -1577,6 +1577,26 @@ class AppLocalizationsDe extends AppLocalizations {
       'Automatisch verlangerbar, jederzeit kundbar';
 
   @override
+  String get proAccessCancelAnytime => 'Jederzeit kundbar';
+
+  @override
+  String get proAccessEnableTrial => 'Testphase aktivieren';
+
+  @override
+  String get proAccessTrialEnabled => 'Testphase aktiviert';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3 Tage gratis testen';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/Woche';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return 'Nach 3 kostenlosen Tagen startet ein Wochenabo fur $price. Jederzeit bis 24 Stunden vor Verlangerung kundbar';
   }

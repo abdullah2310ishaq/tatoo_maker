@@ -135,8 +135,19 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   }
 
   String _freeTrialDisplayPrice(AppLocalizations l10n) {
-    return _billingService.displayPriceForPlan(BillingPlan.freeTrial) ??
-        l10n.proAccessPlanWeeklyPrice;
+    final storePrice = _billingService.displayPriceForPlan(
+      BillingPlan.freeTrial,
+    );
+    if (storePrice == null || storePrice.isEmpty) {
+      return l10n.proAccessPlanWeeklyPrice;
+    }
+    if (storePrice.contains('/')) {
+      return storePrice;
+    }
+    if (!RegExp(r'\d').hasMatch(storePrice)) {
+      return storePrice;
+    }
+    return l10n.proAccessWeeklyPriceWithPeriod(storePrice);
   }
 
   String _lifetimeDisplayPrice() {
@@ -168,6 +179,13 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
       return l10n.proAccessLifetimeLegalWithPrice(lifetimePrice);
     }
     return l10n.proAccessLegalNote(_freeTrialDisplayPrice(l10n));
+  }
+
+  String _preCtaText(AppLocalizations l10n) {
+    if (_selectedPlan == PlanVariant.freeTrial) {
+      return l10n.proAccessAutoRenewableCancelAnytime;
+    }
+    return l10n.proAccessCancelAnytime;
   }
 
   void _selectPlan(PlanVariant plan) {
@@ -474,7 +492,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                           _PlanCard(
                             variant: PlanVariant.freeTrial,
                             leftText: l10n.proAccessPlanWeekly,
-                            leftSubText: '3 days free trial',
+                            leftSubText: l10n.proAccessWeeklyTrialSubtitle,
                             leftSubTextColor: AppColors.textGrey.withOpacity(
                               0.85,
                             ),
@@ -499,6 +517,19 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          Text(
+                            _preCtaText(l10n),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.textGrey.withOpacity(0.85),
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                          SizedBox(height: 6.h),
                           SizedBox(
                             width: double.infinity,
                             height: 56.h,
@@ -558,20 +589,6 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                                         ),
                                       ],
                                     ),
-                            ),
-                          ),
-
-                          SizedBox(height: 6.h),
-                          Text(
-                            l10n.proAccessAutoRenewableCancelAnytime,
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.textGrey.withOpacity(0.85),
-                              fontFamily: 'Inter',
                             ),
                           ),
                           SizedBox(height: 6.h),
@@ -644,6 +661,8 @@ class _TrialToggleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -651,14 +670,16 @@ class _TrialToggleCard extends StatelessWidget {
         vertical: verticalPadding,
       ),
       decoration: BoxDecoration(
-        color: AppColors.navBarBackground,
+        color: AppColors.proAccessOptionBackground,
         borderRadius: BorderRadius.circular(4.r),
       ),
       child: Row(
         children: [
           Expanded(
             child: Text(
-              isEnabled ? 'Trial Enabled' : 'Enable Trial',
+              isEnabled
+                  ? l10n.proAccessTrialEnabled
+                  : l10n.proAccessEnableTrial,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -709,7 +730,6 @@ class _PlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isFree = variant == PlanVariant.freeTrial;
     final showLifetimeBadge = variant == PlanVariant.lifetime;
     final horizontalPadding = isSelected ? 16.w : 15.w;
     final resolvedVerticalPadding =
@@ -734,9 +754,7 @@ class _PlanCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected
               ? AppColors.darkBackground.withOpacity(0.01)
-              : (isFree
-                    ? AppColors.navBarBackground
-                    : AppColors.navBarBackground),
+              : AppColors.proAccessOptionBackground,
           borderRadius: BorderRadius.circular(isSelected ? 4.r : 4.r),
           border: Border.all(color: borderColor, width: borderWidth),
         ),
@@ -845,6 +863,8 @@ class _LifetimeDiscountBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return SizedBox(
       width: 32.w,
       height: 16.h,
@@ -855,7 +875,7 @@ class _LifetimeDiscountBadge extends StatelessWidget {
           borderRadius: BorderRadius.circular(6.r),
         ),
         child: Text(
-          '20%',
+          l10n.proAccessLifetimeDiscountBadge,
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,

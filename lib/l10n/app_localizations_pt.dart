@@ -1581,6 +1581,26 @@ class AppLocalizationsPt extends AppLocalizations {
       'Renovação automática, cancele quando quiser';
 
   @override
+  String get proAccessCancelAnytime => 'Cancele quando quiser';
+
+  @override
+  String get proAccessEnableTrial => 'Ativar teste';
+
+  @override
+  String get proAccessTrialEnabled => 'Teste ativado';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3 dias de teste gratis';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/semana';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return 'Após 3 dias grátis, começará uma assinatura semanal de $price. Cancele quando quiser até 24 horas antes da renovação';
   }

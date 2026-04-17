@@ -1545,6 +1545,26 @@ class AppLocalizationsJa extends AppLocalizations {
   String get proAccessAutoRenewableCancelAnytime => '自動更新、いつでも解約可能';
 
   @override
+  String get proAccessCancelAnytime => 'いつでも解約可能';
+
+  @override
+  String get proAccessEnableTrial => 'トライアルを有効化';
+
+  @override
+  String get proAccessTrialEnabled => 'トライアル有効';
+
+  @override
+  String get proAccessWeeklyTrialSubtitle => '3日間無料トライアル';
+
+  @override
+  String proAccessWeeklyPriceWithPeriod(Object price) {
+    return '$price/週';
+  }
+
+  @override
+  String get proAccessLifetimeDiscountBadge => '20%';
+
+  @override
   String proAccessLegalNote(Object price) {
     return '3日間の無料期間後、$price の週額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます';
   }
