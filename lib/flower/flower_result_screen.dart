@@ -70,6 +70,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
+            showInterstitialOnClose: true,
             nextScreen: FlowerResultScreen(
               name: widget.name,
               generatedImageBytes: widget.generatedImageBytes,
@@ -135,12 +136,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
           child: Column(
             children: [
               // Header: Close button + Title + Favorite
-              _buildHeader(
-                context,
-                isDark,
-                isFavorited,
-                isLoadingFavorite,
-              ),
+              _buildHeader(context, isDark, isFavorited, isLoadingFavorite),
               // Main image display
               Expanded(
                 child: Center(
@@ -221,8 +217,8 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                     color: isFavorited
                         ? Colors.red
                         : (isDark
-                            ? AppColors.textWhite
-                            : AppColors.textPrimary),
+                              ? AppColors.textWhite
+                              : AppColors.textPrimary),
                     size: 28.sp,
                   ),
             onPressed: () => _toggleFavorite(context),
@@ -432,11 +428,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
 
     if (widget.generatedImageBytes == null) {
       if (context.mounted) {
-        AppToast.show(
-          context,
-          message: l10n.noImageToSave,
-          isSuccess: false,
-        );
+        AppToast.show(context, message: l10n.noImageToSave, isSuccess: false);
       }
       return;
     }
@@ -460,7 +452,10 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
           _didShowPaywallAfterDownload = true;
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+              builder: (_) => const ProAccessScreen(
+                nextScreen: HomeShell(),
+                showInterstitialOnClose: true,
+              ),
             ),
           );
         }

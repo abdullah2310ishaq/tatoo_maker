@@ -2,19 +2,26 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'l10n/app_localizations.dart';
 import 'providers/usage_limit_provider.dart';
+import 'services/admob_ids.dart';
 import 'services/app_open_ad_service.dart';
 import 'services/billing_service.dart';
 import 'utils/colors.dart';
 
 class ProAccessScreen extends StatefulWidget {
   final Widget nextScreen;
+  final bool showInterstitialOnClose;
 
-  const ProAccessScreen({super.key, required this.nextScreen});
+  const ProAccessScreen({
+    super.key,
+    required this.nextScreen,
+    this.showInterstitialOnClose = false,
+  });
 
   @override
   State<ProAccessScreen> createState() => _ProAccessScreenState();
@@ -32,6 +39,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   bool _canClose = false;
   bool _isPurchasing = false;
   bool _isBillingReady = false;
+  bool _isClosing = false;
   PlanVariant _selectedPlan = PlanVariant.freeTrial;
   bool get _isTrialEnabled => _selectedPlan == PlanVariant.freeTrial;
 
@@ -96,13 +104,67 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     ).pushReplacement(MaterialPageRoute(builder: (_) => widget.nextScreen));
   }
 
-  void _closeScreen() {
+  Future<void> _closeScreen() async {
+    if (_isClosing) return;
+    _isClosing = true;
+    try {
+      if (widget.showInterstitialOnClose) {
+        await _showInterstitialOnCloseIfAvailable();
+      }
+    } finally {
+      if (!mounted) return;
+      _isClosing = false;
+    }
+
     final navigator = Navigator.of(context);
     if (navigator.canPop()) {
       navigator.pop();
       return;
     }
     _goNext();
+  }
+
+  Future<void> _showInterstitialOnCloseIfAvailable() async {
+    final unitId = AdmobIds.interstitialUnitId().trim();
+    if (unitId.isEmpty) return;
+
+    final completer = Completer<void>();
+    InterstitialAd.load(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              if (!completer.isCompleted) completer.complete();
+            },
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              ad.dispose();
+              _log('Interstitial failed to show on close: $error');
+              if (!completer.isCompleted) completer.complete();
+            },
+          );
+          try {
+            ad.show();
+          } catch (error) {
+            ad.dispose();
+            _log('Interstitial show threw on close: $error');
+            if (!completer.isCompleted) completer.complete();
+          }
+        },
+        onAdFailedToLoad: (error) {
+          _log('Interstitial failed to load on close: $error');
+          if (!completer.isCompleted) completer.complete();
+        },
+      ),
+    );
+
+    try {
+      await completer.future.timeout(const Duration(seconds: 4));
+    } on TimeoutException {
+      _log('Interstitial timeout on close; continuing.');
+    }
   }
 
   Future<void> _initializeBilling() async {
@@ -272,7 +334,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
-        _closeScreen();
+        unawaited(_closeScreen());
       },
       child: SafeArea(
         child: Scaffold(

@@ -75,6 +75,7 @@ class _ResultScreenState extends State<ResultScreen> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
+            showInterstitialOnClose: true,
             nextScreen: ResultScreen(
               styleName: widget.styleName,
               generatedImageBytes: widget.generatedImageBytes,
@@ -555,7 +556,10 @@ class _ResultScreenState extends State<ResultScreen> {
           _didShowPaywallAfterDownload = true;
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+              builder: (_) => const ProAccessScreen(
+                nextScreen: HomeShell(),
+                showInterstitialOnClose: true,
+              ),
             ),
           );
         }
