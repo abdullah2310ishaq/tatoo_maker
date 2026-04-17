@@ -61,7 +61,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     // Show on every meaningful "resume from background" without a long throttle.
     // Cold start won't show because `_pausedAt` is null then.
     _appOpenAdService = AppOpenAdService.instance
-      ..configure(minIntervalBetweenShows: Duration.zero);
+      ..configure(
+        minIntervalBetweenShows: Duration.zero,
+        defaultUnitId: AdmobIds.appOpenUnitId(),
+      );
     _usageLimitProvider = UsageLimitProvider();
     // Preload early so "resume from cache" can show ASAP.
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -154,9 +157,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       if (kDebugMode) {
         debugPrint('[AppOpen] resume->show');
       }
-      // Show on every resume; if needed, wait for load.
+      // Resume path should be instant: show only cached ad and never block
+      // resume flow waiting for dismiss callbacks.
       await _appOpenAdService.showIfAvailable(
-        waitForLoad: true,
+        waitForLoad: false,
+        waitForDismiss: false,
         unitIdOverride: AdmobIds.appOpenUnitId(),
       );
 
@@ -246,9 +251,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           create: (_) => FavoritesProvider()..loadFavorites(),
         ),
         ChangeNotifierProvider.value(value: _usageLimitProvider),
-        ChangeNotifierProvider(
-          create: (_) => AssetSyncProvider()..load(),
-        ),
+        ChangeNotifierProvider(create: (_) => AssetSyncProvider()..load()),
       ],
       child: ThemeProvider(
         isDarkTheme: _isDarkTheme,

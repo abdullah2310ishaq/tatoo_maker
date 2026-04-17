@@ -15,6 +15,7 @@ class AppOpenAdService {
   bool _isLoading = false;
   bool _isShowing = false;
   bool _temporarilyDisabled = false;
+  String? _defaultUnitId;
   DateTime? _loadedAt;
   DateTime? _lastShownAt;
 
@@ -24,9 +25,13 @@ class AppOpenAdService {
   static const Duration _loadTimeout = Duration(seconds: 12);
   static const Duration _showFallbackResetDelay = Duration(seconds: 15);
 
-  void configure({Duration? minIntervalBetweenShows}) {
+  void configure({Duration? minIntervalBetweenShows, String? defaultUnitId}) {
     if (minIntervalBetweenShows != null) {
       this.minIntervalBetweenShows = minIntervalBetweenShows;
+    }
+    if (defaultUnitId != null) {
+      final normalizedUnitId = defaultUnitId.trim();
+      _defaultUnitId = normalizedUnitId.isEmpty ? null : normalizedUnitId;
     }
   }
 
@@ -42,17 +47,15 @@ class AppOpenAdService {
     }
   }
 
-  Future<void> preload() async {
-    await _loadIfNeeded();
+  Future<void> preload({String? unitIdOverride}) async {
+    await _loadIfNeeded(primaryUnitIdOverride: unitIdOverride);
   }
 
-  /// When [waitForLoad] is false, this will NEVER wait on network loading.
-  /// This is ideal for "resume from cache" where you want the ad to appear ASAP,
-  /// and otherwise just preload for next time.
   Future<void> showIfAvailable({
     String? unitIdOverride,
     String? testUnitIdOverride,
     bool waitForLoad = true,
+    bool waitForDismiss = true,
   }) async {
     if (_temporarilyDisabled) {
       if (kDebugMode) {
@@ -99,9 +102,7 @@ class AppOpenAdService {
       return;
     }
 
-    // We must not navigate to another full-screen UI (e.g. paywall) while the ad
-    // is on-screen. The Google Mobile Ads `show()` Future can complete before the
-    // user dismisses the ad, so we await the fullScreenContent callbacks instead.
+
     final dismissCompleter = Completer<void>();
 
     _isShowing = true;
@@ -160,8 +161,10 @@ class AppOpenAdService {
       }
       // Wait for "show" call to be issued (can complete early).
       await ad.show();
-      // Wait until the ad is dismissed/failed (or watchdog fires).
-      await dismissCompleter.future;
+      if (waitForDismiss) {
+        // Wait until the ad is dismissed/failed (or watchdog fires).
+        await dismissCompleter.future;
+      }
     } catch (e) {
       _isShowing = false;
       _ad?.dispose();
@@ -177,15 +180,19 @@ class AppOpenAdService {
     }
   }
 
-  Future<void> _loadIfNeeded({
-    String? primaryUnitIdOverride,
-  }) async {
+  Future<void> _loadIfNeeded({String? primaryUnitIdOverride}) async {
     _dropExpiredIfNeeded();
     if (_ad != null) return;
     if (_isLoading) return;
 
-    final primaryUnitId = (primaryUnitIdOverride ?? '').trim();
-    if (primaryUnitId.isEmpty) return;
+    final primaryUnitId = (primaryUnitIdOverride ?? _defaultUnitId ?? '')
+        .trim();
+    if (primaryUnitId.isEmpty) {
+      if (kDebugMode) {
+        debugPrint('[AppOpenAdService] skip load: missing app open unit id');
+      }
+      return;
+    }
     String mask(String id) {
       if (id.length <= 10) return id;
       return '${id.substring(0, 18)}…${id.substring(id.length - 8)}';
@@ -197,7 +204,9 @@ class AppOpenAdService {
 
       try {
         if (kDebugMode) {
-          final isGoogleTest = unitId.startsWith('ca-app-pub-3940256099942544/');
+          final isGoogleTest = unitId.startsWith(
+            'ca-app-pub-3940256099942544/',
+          );
           debugPrint(
             '[AppOpenAdService] loading app open (${isGoogleTest ? 'TEST' : 'PROD'}): ${mask(unitId)}',
           );
@@ -279,4 +288,3 @@ class AppOpenAdService {
     _loadedAt = null;
   }
 }
-
