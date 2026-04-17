@@ -1,5 +1,3 @@
-
--add app open whenever user comes back from gallery or capturing image from camera
 -add inter ad on the back of categories screen on the counter of 2, 1st user will also be shown. first back ad, 3rd back ad
 -on birthday screen add adaptive banner and native on remote config. ad will be shown at the bottom and "Next" CTA will move up on the top right corner
 -move prompt screen CTA up and add adaptive banner and native ad on remote config
