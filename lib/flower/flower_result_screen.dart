@@ -22,12 +22,14 @@ class FlowerResultScreen extends StatefulWidget {
   final String name;
   final Uint8List? generatedImageBytes;
   final bool showProAccessOnOpen;
+  final bool enablePaywallPrompts;
 
   const FlowerResultScreen({
     super.key,
     required this.name,
     this.generatedImageBytes,
     this.showProAccessOnOpen = false,
+    this.enablePaywallPrompts = true,
   });
 
   @override
@@ -48,6 +50,12 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || _didAutoShowPaywall) return;
+      if (!widget.enablePaywallPrompts) {
+        debugPrint(
+          '[FlowerResultScreen] paywall prompts disabled for this flow',
+        );
+        return;
+      }
       if (!widget.showProAccessOnOpen) {
         debugPrint(
           '[FlowerResultScreen] skip auto paywall: showProAccessOnOpen=false',
@@ -448,7 +456,9 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
         );
 
         final usage = context.read<UsageLimitProvider>();
-        if (!usage.isProUnlocked && !_didShowPaywallAfterDownload) {
+        if (widget.enablePaywallPrompts &&
+            !usage.isProUnlocked &&
+            !_didShowPaywallAfterDownload) {
           _didShowPaywallAfterDownload = true;
           Navigator.of(context).push(
             MaterialPageRoute(

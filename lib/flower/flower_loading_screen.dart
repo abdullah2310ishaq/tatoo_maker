@@ -2,16 +2,21 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
+import '../services/admob_ids.dart';
+import '../services/remote_config_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import '../utils/image_processing_isolates.dart';
 import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
+import '../widgets/creative_loading_spinner.dart';
 import 'flower_result_screen.dart';
 
 /// Loading screen for generating floral tattoo based on name
@@ -31,6 +36,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
   Timer? _navigationTimer;
   Uint8List? _generatedImageBytes;
   final ProdiaApiService _apiService = ProdiaApiService();
+  bool _isShowingInterstitial = false;
 
   @override
   void initState() {
@@ -70,7 +76,12 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
           'and the florals for each letter ($lettersDesc), '
           'elegant calligraphy, botanical illustration, delicate flowers and leaves, '
           'line art style, black and white, minimalist tattoo design, '
-          'intricate floral patterns, beautiful typography integrated with nature';
+          'intricate floral patterns, beautiful typography integrated with nature, '
+          // Keep artwork isolated, clean, and never printed on skin.
+          'clean standalone tattoo flash artwork, centered composition, white paper background, '
+          '2d illustration only, isolated design, no mockup, no photo, '
+          // Strict body-part exclusion instructions (no negative prompt support).
+          'STRICTLY NO human body parts, no skin, no person, no portrait, no tattooed body photo';
 
       final imageBytes = await _apiService.textToImage(
         prompt: prompt,
@@ -179,7 +190,12 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
         imageBytes: _generatedImageBytes!,
       );
     }
-    // Ads removed from this flow for now.
+
+    // Show only an interstitial (no paywall) when enabled in Remote Config.
+    if (_generatedImageBytes != null) {
+      await _maybeShowInterstitialAfterGeneration();
+    }
+
     if (mounted) {
       debugPrint('[FlowerLoadingScreen] step 3/3: opening FlowerResultScreen');
       Navigator.of(context).pushReplacement(
@@ -187,10 +203,69 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
           builder: (context) => FlowerResultScreen(
             name: widget.name,
             generatedImageBytes: _generatedImageBytes,
-            showProAccessOnOpen: _generatedImageBytes != null,
+            showProAccessOnOpen: false,
+            enablePaywallPrompts: false,
           ),
         ),
       );
+    }
+  }
+
+  Future<void> _maybeShowInterstitialAfterGeneration() async {
+    if (!mounted) return;
+    if (_isShowingInterstitial) return;
+
+    final rc = context.read<RemoteConfigService>();
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    if (isPro || !rc.flowerShowInterstitialAfterGeneration) return;
+
+    _isShowingInterstitial = true;
+    try {
+      await _showInterstitialAdIfAvailable(
+        unitIdOverride: AdmobIds.interstitialUnitId(),
+      );
+    } finally {
+      _isShowingInterstitial = false;
+    }
+  }
+
+  Future<void> _showInterstitialAdIfAvailable({String? unitIdOverride}) async {
+    final unitId = (unitIdOverride ?? '').trim();
+    if (unitId.isEmpty) return;
+
+    final completer = Completer<void>();
+    InterstitialAd.load(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              if (!completer.isCompleted) completer.complete();
+            },
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              ad.dispose();
+              if (!completer.isCompleted) completer.complete();
+            },
+          );
+          try {
+            ad.show();
+          } catch (_) {
+            ad.dispose();
+            if (!completer.isCompleted) completer.complete();
+          }
+        },
+        onAdFailedToLoad: (error) {
+          if (!completer.isCompleted) completer.complete();
+        },
+      ),
+    );
+
+    try {
+      await completer.future.timeout(const Duration(seconds: 5));
+    } catch (_) {
+      // Never block navigation forever.
     }
   }
 
@@ -206,55 +281,109 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      backgroundColor: isDark
-          ? AppColors.darkBackground
-          : AppColors.lightBackground,
-      body: Container(
+    return SafeArea(
+      child: Container(
         decoration: isDark
             ? ThemeManager.darkModeBackgroundGradient
             : ThemeManager.lightModeBackground,
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AnimatedBuilder(
-                  animation: _progressAnimation,
-                  builder: (context, child) {
-                    return CircularProgressIndicator(
-                      value: _progressAnimation.value,
-                      strokeWidth: 4,
-                      color: AppColors.titleGradientStart,
-                    );
-                  },
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  l10n.flowerLoadingCreatingYourFloralTattoo,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-                    fontFamily: 'Amaranth',
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  l10n.flowerLoadingDesigningWithBeautifulFlowers(widget.name),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: isDark
-                        ? AppColors.textGrey
-                        : AppColors.textGrey.withOpacity(0.7),
-                    fontFamily: 'Amaranth',
-                  ),
-                ),
-              ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 3,
+              child: Center(child: const CreativeLoadingSpinner()),
             ),
-          ),
+            Expanded(
+              flex: 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    l10n.flowerLoadingCreatingYourFloralTattoo,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? AppColors.textWhite
+                          : AppColors.textPrimary,
+                      fontFamily: 'Amaranth',
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                  SizedBox(height: 6.h),
+                  Text(
+                    l10n.flowerLoadingDesigningWithBeautifulFlowers(
+                      widget.name,
+                    ),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: isDark
+                          ? AppColors.textGrey
+                          : AppColors.textGrey.withOpacity(0.7),
+                      fontFamily: 'Amaranth',
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  SizedBox(
+                    width: 178.w,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        return AnimatedBuilder(
+                          animation: _progressAnimation,
+                          builder: (context, child) {
+                            final barWidth = 80.w;
+                            final maxPosition = constraints.maxWidth - barWidth;
+                            final position =
+                                _progressAnimation.value * maxPosition;
+
+                            return Container(
+                              height: 2.h,
+                              decoration: BoxDecoration(
+                                color: AppColors.textGrey.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(1.r),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    left: position,
+                                    child: Container(
+                                      width: barWidth,
+                                      height: 2.h,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            AppColors.cardGlowStart.withOpacity(
+                                              0.0,
+                                            ),
+                                            AppColors.cardGlowStart,
+                                            AppColors.cardGlowStart.withOpacity(
+                                              0.0,
+                                            ),
+                                          ],
+                                          stops: const [0.0, 0.5, 1.0],
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                          1.r,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

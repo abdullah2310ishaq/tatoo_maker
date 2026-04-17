@@ -41,6 +41,10 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.tattooStyleSelectionBanner: true,
     RemoteConfigKeys.tattooStyleSelectionNative: false,
 
+    // Flower module (default OFF; control via Firebase).
+    RemoteConfigKeys.flowerAdsAll: true,
+    RemoteConfigKeys.flowerShowInterstitialAfterGeneration: true,
+
     // Splash screen ad/text toggles (default OFF).
     RemoteConfigKeys.splashAdsAndTextEnabled: true,
     // App Open has priority on splash (interstitial can be enabled via Firebase).
@@ -169,6 +173,14 @@ class RemoteConfigService extends ChangeNotifier {
   bool get tattooStyleSelectionShowNative =>
       tattooStyleSelectionAdsAll &&
       _rc.getBool(RemoteConfigKeys.tattooStyleSelectionNative);
+
+  /// Master: `false` ⇒ no ads in flower module.
+  bool get flowerAdsAll => _rc.getBool(RemoteConfigKeys.flowerAdsAll);
+
+  /// When `true`, show interstitial after flower generation completes.
+  bool get flowerShowInterstitialAfterGeneration =>
+      flowerAdsAll &&
+      _rc.getBool(RemoteConfigKeys.flowerShowInterstitialAfterGeneration);
 
   bool get splashAdsAndTextEnabled =>
       _rc.getBool(RemoteConfigKeys.splashAdsAndTextEnabled);
