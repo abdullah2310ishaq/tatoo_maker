@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:provider/provider.dart';
+// import 'package:google_mobile_ads/google_mobile_ads.dart';
+// import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../providers/usage_limit_provider.dart';
-import '../../../services/admob_ids.dart';
-import '../../../services/remote_config_service.dart';
+// import '../../../providers/usage_limit_provider.dart';
+// import '../../../services/admob_ids.dart';
+// import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../../../widgets/remote_or_asset_image.dart';
 import '../models/onboarding_models.dart';
@@ -32,8 +32,10 @@ class StepStyleSelectionPage extends StatefulWidget {
 }
 
 class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
-  bool _bannerLoaded = false;
-  bool _nativeLoaded = false;
+  // Ads are intentionally disabled on this step.
+  // Keep the implementation commented for quick re-enable.
+  // bool _bannerLoaded = false;
+  // bool _nativeLoaded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,45 +43,45 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final styles = getTattooStyles(context, isDark);
 
-    final rc = context.watch<RemoteConfigService>();
-    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    final shouldShowBanner = !isPro && rc.tattooStyleSelectionShowBanner;
-    final shouldShowNative = !isPro && rc.tattooStyleSelectionShowNative;
+    // --- ADS DISABLED (kept for quick re-enable) ---
+    // final rc = context.watch<RemoteConfigService>();
+    // final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    // final shouldShowBanner = !isPro && rc.tattooStyleSelectionShowBanner;
+    // final shouldShowNative = !isPro && rc.tattooStyleSelectionShowNative;
+    //
+    // if (!shouldShowBanner && _bannerLoaded) {
+    //   WidgetsBinding.instance.addPostFrameCallback((_) {
+    //     if (!mounted) return;
+    //     if (_bannerLoaded) setState(() => _bannerLoaded = false);
+    //   });
+    // }
+    // if (!shouldShowNative && _nativeLoaded) {
+    //   WidgetsBinding.instance.addPostFrameCallback((_) {
+    //     if (!mounted) return;
+    //     if (_nativeLoaded) setState(() => _nativeLoaded = false);
+    //   });
+    // }
+    //
+    // final adsActuallyVisible = _bannerLoaded || _nativeLoaded;
+    // final styleRowHeight = adsActuallyVisible ? 225.h : 190.h;
 
-    // If Remote Config/Pro disables ads while we previously marked them visible,
-    // reset state after this frame to keep "no ads" layout identical.
-    if (!shouldShowBanner && _bannerLoaded) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        if (_bannerLoaded) setState(() => _bannerLoaded = false);
-      });
-    }
-    if (!shouldShowNative && _nativeLoaded) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        if (_nativeLoaded) setState(() => _nativeLoaded = false);
-      });
-    }
-
-    // Exactly original when no ads are actually visible.
-    final adsActuallyVisible = _bannerLoaded || _nativeLoaded;
-    // Original when no ads, noticeably bigger only when ads show.
-    final styleRowHeight = adsActuallyVisible ? 225.h : 190.h;
+    final styleRowHeight = 190.h;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OnboardingHeader(currentStep: 5, onBack: widget.onBack),
-        if (shouldShowBanner) ...[
-          _StyleSelectionBannerAd(
-            unitId: AdmobIds.bannerUnitId(),
-            onVisibilityChanged: (visible) {
-              if (_bannerLoaded == visible) return;
-              setState(() => _bannerLoaded = visible);
-            },
-          ),
-          if (_bannerLoaded) SizedBox(height: 12.h),
-        ],
+        // Ads intentionally disabled.
+        // if (shouldShowBanner) ...[
+        //   _StyleSelectionBannerAd(
+        //     unitId: AdmobIds.bannerUnitId(),
+        //     onVisibilityChanged: (visible) {
+        //       if (_bannerLoaded == visible) return;
+        //       setState(() => _bannerLoaded = visible);
+        //     },
+        //   ),
+        //   if (_bannerLoaded) SizedBox(height: 12.h),
+        // ],
         SizedBox(height: 40.h),
         // Question
         Text(
@@ -190,6 +192,8 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
   }
 }
 
+// --- ADS DISABLED (kept for quick re-enable) ---
+/*
 /// Dedicated banner ad for style-selection step (page-specific implementation).
 class _StyleSelectionBannerAd extends StatefulWidget {
   const _StyleSelectionBannerAd({
@@ -283,6 +287,7 @@ class _StyleSelectionBannerAdState extends State<_StyleSelectionBannerAd> {
     );
   }
 }
+*/
 
 // Native ad intentionally disabled in this step.
 // Keep this code commented for quick re-enable if needed.

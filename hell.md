@@ -1,4 +1,3 @@
--move prompt screen CTA up and add adaptive banner and native ad on remote config
 -remove banner from the style screen
 -add inter ad on the cross and back button of in-app screen that is shown before showing the results
 -change the flower icon
