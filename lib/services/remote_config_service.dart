@@ -34,9 +34,9 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.tattooBirthdayBanner: true,
     RemoteConfigKeys.tattooBirthdayNative: true,
 
-    RemoteConfigKeys.tattooIdeaAdsAll: false,
-    RemoteConfigKeys.tattooIdeaBanner: false,
-    RemoteConfigKeys.tattooIdeaNative: false,
+    RemoteConfigKeys.tattooIdeaAdsAll: true,
+    RemoteConfigKeys.tattooIdeaBanner: true,
+    RemoteConfigKeys.tattooIdeaNative: true,
     RemoteConfigKeys.tattooStyleSelectionAdsAll: true,
     RemoteConfigKeys.tattooStyleSelectionBanner: true,
     RemoteConfigKeys.tattooStyleSelectionNative: false,
