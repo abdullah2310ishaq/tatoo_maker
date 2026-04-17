@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
@@ -6,8 +7,12 @@ import 'package:flutter/rendering.dart';
 import 'package:gal/gal.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../home_shell.dart';
+import '../providers/usage_limit_provider.dart';
+import '../services/admob_ids.dart';
+import '../services/app_open_ad_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
@@ -40,6 +45,20 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
   double _tattooScale = 1.0;
   double _tattooRotation = 0.0;
   final GlobalKey _previewRepaintKey = GlobalKey();
+
+  void _showAppOpenAfterMediaReturn() {
+    if (!mounted) return;
+    final isProUnlocked = context.read<UsageLimitProvider>().isProUnlocked;
+    if (isProUnlocked) return;
+
+    unawaited(
+      AppOpenAdService.instance.showIfAvailable(
+        unitIdOverride: AdmobIds.appOpenUnitId(),
+        waitForLoad: false,
+        waitForDismiss: false,
+      ),
+    );
+  }
 
   Future<void> _requestPermissions() async {
     final l10n = AppLocalizations.of(context)!;
@@ -143,6 +162,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
         _tattooScale = 1.0;
         _tattooRotation = 0.0;
       });
+      _showAppOpenAfterMediaReturn();
     }
   }
 
@@ -166,6 +186,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       _tattooScale = 1.0;
       _tattooRotation = 0.0;
     });
+    _showAppOpenAfterMediaReturn();
   }
 
   /// Automatically process image: combine body image + tattoo overlay and send to API
