@@ -9,11 +9,6 @@ class ProdiaApiService {
   static const String _baseUrl = 'https://inference.prodia.com/v2/job';
   static const String _apiToken =
       'eyJhbGciOiJkaXIiLCJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIn0.._k05Twd72f3VpXEH.NTMw5WDFlsZQqc67PCWmPZKER_yUMNeUdR63goeffclZVsaEsMSnZu8_8KKNWmBH0KCWS3eeuoIoNxo7rAA6BPdtMXyM9rwHq2n3_L9dai9Abps_0ids6xAsA5Wo_WiGhwuxc_3eM1nWWYc_AmMz5zapabbOe3LwriCIGGpABnlSfw7fa8frQtNPyMFuBYGxUeScbk9H88c01R0-7ZMvIeEh_RfluDOgKeQY7MYAnbJOAAl1vkTKmo770ATG8MHkM5sP2Dno-ifMSpLyvzVfxNkoRXHAQ5mwykoQaCgYZu7y8DUiAZtb6S9JZB12GN8sF7Inj2PWfsAHd1p7bFboFiW1at8dQgLerWPOLY0IBNKChbCkez2wmqZ-bRkPz6nANz5Vez2hQ4UPudY6etNo0eIyXYF_jLO1LLbZ2ywC-4SgIU_SZOME4voli39IkmpWfk1_slFnh1GYI5cpZbmgKtjvRB9fKmVoc2WnkHxO6KXindAgIUMvOAjchQ9jN185p7gync-_gGki6CNNSaZFIikou2bJ946kNhf8Ev3uXcJqt1g.dPB0ImNvlLDFk3mBz9Xm2g';
-  static const String _textToImageModel =
-      'inference.flux-fast.schnell.txt2img.v2';
-  static const String _imageToImageModel = 'inference.flux-2.klein.img2img.v1';
-  static const String _removeBackgroundModel = 'inference.remove-background.v1';
-  static const String _maskBackgroundModel = 'inference.mask-background.v1';
 
   final Map<String, String> _headers = {'Authorization': 'Bearer $_apiToken'};
 
@@ -32,35 +27,37 @@ class ProdiaApiService {
     int steps = 4,
   }) async {
     try {
-      _validateToken();
-      final normalizedPrompt = _normalizePrompt(prompt);
-      print('ProdiaApiService: Starting tattoo text-to-image API call...');
-      print('ProdiaApiService: Prompt: $normalizedPrompt');
+      print('ProdiaApiService: Starting text-to-image API call...');
+      print('ProdiaApiService: Prompt: $prompt');
       print('ProdiaApiService: Dimensions: ${width}x$height, Steps: $steps');
 
       final job = {
-        'type': _textToImageModel,
+        'type': 'inference.flux-fast.schnell.txt2img.v2',
         'config': {
-          'prompt': normalizedPrompt,
+          'prompt': prompt,
           'width': width,
           'height': height,
           'steps': steps,
         },
       };
 
-      print('ProdiaApiService: Sending request to Prodia API...');
+      print('ProdiaApiService: Sending request to API...');
+      // Match provided CURL: request JPEG from txt2img.
+      final headers = {
+        ..._headers,
+        'Accept': 'image/jpeg',
+        'Content-Type': 'application/json',
+      };
+
       final response = await http.post(
         Uri.parse(_baseUrl),
-        headers: {
-          ..._headers,
-          'Accept': 'image/jpeg',
-          'Content-Type': 'application/json',
-        },
+        headers: headers,
         body: jsonEncode(job),
       );
 
       print('ProdiaApiService: Response received');
       print('ProdiaApiService: Status Code: ${response.statusCode}');
+
       if (response.statusCode != 200) {
         print('ProdiaApiService: Error - Status: ${response.statusCode}');
         print('ProdiaApiService: Error - Body: ${response.body}');
@@ -71,9 +68,9 @@ class ProdiaApiService {
 
       final requestId = response.headers['x-request-id'];
       print('ProdiaApiService: Request ID: $requestId');
-      print(
-        'ProdiaApiService: Tattoo text-to-image successful, bytes=${response.bodyBytes.length}',
-      );
+      print('ProdiaApiService: Image size: ${response.bodyBytes.length} bytes');
+      print('ProdiaApiService: Text-to-image API call successful!');
+
       return response.bodyBytes;
     } catch (e) {
       print('ProdiaApiService: Error in text-to-image: $e');
@@ -96,11 +93,9 @@ class ProdiaApiService {
     double guidanceScale = 1,
   }) async {
     try {
-      _validateToken();
-      final normalizedPrompt = _normalizePrompt(prompt);
-      print('ProdiaApiService: Starting tattoo image-to-image API call...');
+      print('ProdiaApiService: Starting image-to-image API call...');
       print('ProdiaApiService: Image file: ${imageFile.path}');
-      print('ProdiaApiService: Prompt: $normalizedPrompt');
+      print('ProdiaApiService: Prompt: $prompt');
       print('ProdiaApiService: Steps: $steps, Guidance Scale: $guidanceScale');
 
       // Use actual filename - must match what's uploaded
@@ -124,9 +119,9 @@ class ProdiaApiService {
 
       // Create job JSON - images array must contain the exact filename
       final jobJson = jsonEncode({
-        'type': _imageToImageModel,
+        'type': 'inference.flux-2.klein.img2img.v1',
         'config': {
-          'prompt': normalizedPrompt,
+          'prompt': prompt,
           'steps': steps,
           'guidance_scale': guidanceScale,
           'images': [imageName], // Use actual filename, not timestamp
@@ -286,29 +281,36 @@ class ProdiaApiService {
   /// Returns the image with removed background as Uint8List bytes (PNG format)
   Future<Uint8List> removeBackground({required File imageFile}) async {
     try {
-      _validateToken();
       print('ProdiaApiService: Starting background removal...');
       print('ProdiaApiService: Image file: ${imageFile.path}');
 
       final imageName = imageFile.path.split(Platform.pathSeparator).last;
 
+      // Read image file bytes
       final imageBytes = await imageFile.readAsBytes();
       print('ProdiaApiService: Image size: ${imageBytes.length} bytes');
 
+      // Create multipart request
       final request = http.MultipartRequest('POST', Uri.parse(_baseUrl));
-      request.headers.addAll(_headers);
-      request.headers['Accept'] = 'image/png';
 
+      // Add headers
+      request.headers.addAll(_headers);
+      request.headers['Accept'] = 'image/png'; // PNG for transparency
+
+      // Add image file
       request.files.add(
         http.MultipartFile.fromBytes('input', imageBytes, filename: imageName),
       );
 
+      // Create job JSON for background removal
       final jobJson = jsonEncode({
-        'type': _removeBackgroundModel,
+        'type': 'inference.remove-background.v1',
         'config': {},
       });
 
       print('ProdiaApiService: Job JSON: $jobJson');
+
+      // Add job as a file
       request.files.add(
         http.MultipartFile.fromString('job', jobJson, filename: 'job.json'),
       );
@@ -333,8 +335,10 @@ class ProdiaApiService {
         );
       }
 
+      // Check if response is a job object or direct image
       if (response.headers['content-type']?.contains('application/json') ??
           false) {
+        // It's a job object, need to poll
         print('ProdiaApiService: Received job object, starting polling...');
         final jobResponse = jsonDecode(response.body) as Map<String, dynamic>;
         final jobId = jobResponse['id'] as String?;
@@ -348,8 +352,10 @@ class ProdiaApiService {
           'ProdiaApiService: Job State: ${jobResponse['state']?['current']}',
         );
 
+        // Poll for job completion
         return await _pollJobStatus(jobId, acceptPng: true);
       } else {
+        // Direct image response
         final requestId = response.headers['x-request-id'];
         print('ProdiaApiService: Request ID: $requestId');
         print(
@@ -373,7 +379,6 @@ class ProdiaApiService {
   /// Returns the masked image as Uint8List bytes (JPEG)
   Future<Uint8List> maskBackground({required File imageFile}) async {
     try {
-      _validateToken();
       print('ProdiaApiService: Starting background mask...');
       print('ProdiaApiService: Image file: ${imageFile.path}');
 
@@ -389,7 +394,10 @@ class ProdiaApiService {
         http.MultipartFile.fromBytes('input', imageBytes, filename: imageName),
       );
 
-      final jobJson = jsonEncode({'type': _maskBackgroundModel, 'config': {}});
+      final jobJson = jsonEncode({
+        'type': 'inference.mask-background.v1',
+        'config': {},
+      });
       print('ProdiaApiService: Job JSON: $jobJson');
 
       request.files.add(
@@ -447,21 +455,5 @@ class ProdiaApiService {
       print('ProdiaApiService: Error in background mask: $e');
       rethrow;
     }
-  }
-
-  void _validateToken() {
-    if (_apiToken.trim().isEmpty || _apiToken == 'PUT_YOUR_PRODIA_TOKEN_HERE') {
-      throw Exception(
-        'Prodia API token is missing. Please set _apiToken in ProdiaApiService.',
-      );
-    }
-  }
-
-  String _normalizePrompt(String rawPrompt) {
-    final compactWhitespace = rawPrompt.replaceAll(RegExp(r'\s+'), ' ').trim();
-    final normalizedCommas = compactWhitespace
-        .replaceAll(RegExp(r'\s*,\s*'), ', ')
-        .replaceAll(RegExp(r'(,\s*){2,}'), ', ');
-    return normalizedCommas;
   }
 }

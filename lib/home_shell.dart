@@ -81,8 +81,6 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   Future<void> _onItemTapped(int index) async {
-    // When switching tabs, remove focus from any text fields so the keyboard
-    // does not automatically open when returning to the home screen.
     FocusScope.of(context).unfocus();
 
     // Ad logic temporarily commented out (as requested).

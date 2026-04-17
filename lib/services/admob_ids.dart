@@ -2,8 +2,6 @@ import 'package:flutter/foundation.dart';
 
 import 'ad_mode.dart';
 
-/// All AdMob unit IDs live in app code. Firebase Remote Config only toggles
-/// placements on/off (booleans).
 class AdmobIds {
   // Production (Android).
   static const String _prodBanner = 'ca-app-pub-3940256099942544/6300978111';

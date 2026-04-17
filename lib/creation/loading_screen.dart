@@ -87,6 +87,8 @@ class _LoadingScreenState extends State<LoadingScreen>
 
     final isTattooModule =
         dob.isNotEmpty || zodiac.isNotEmpty || place.isNotEmpty;
+    final normalizedStyle = style.toLowerCase();
+    final wantsColorful = _shouldUseColorPrompt(normalizedStyle, idea);
 
     if (name.isEmpty && idea.isEmpty && !isTattooModule) {
       print(
@@ -122,9 +124,7 @@ class _LoadingScreenState extends State<LoadingScreen>
         promptParts.add('place of birth $place');
       }
       if (style.isNotEmpty) {
-        promptParts.add(
-          'inspired by ${style.toLowerCase()} style, aesthetic only',
-        );
+        promptParts.add('inspired by $normalizedStyle style, aesthetic only');
       }
     } else {
       // Creation / other: user idea = main subject, style = inspiration only
@@ -137,23 +137,21 @@ class _LoadingScreenState extends State<LoadingScreen>
         promptParts.add('incorporating the name "$name"');
       }
       if (style.isNotEmpty) {
-        promptParts.add(
-          'inspired by ${style.toLowerCase()} style, aesthetic only',
-        );
+        promptParts.add('inspired by $normalizedStyle style, aesthetic only');
         // Dragon: reinforce Eastern fiery dragon aesthetic when user provided a subject
-        if (style.toLowerCase() == 'dragon' && idea.isNotEmpty) {
+        if (normalizedStyle == 'dragon' && idea.isNotEmpty) {
           promptParts.add(
             'incorporate subject with fiery dragon-like details, scales, sharp fierce lines, dramatic shading, flowing powerful design, as if breathing fire, mythical elements, bold red orange gold, Eastern-inspired',
           );
         }
         // Unicorn: reinforce pastel magical whimsical aesthetic when user provided a subject
-        if (style.toLowerCase() == 'unicorn' && idea.isNotEmpty) {
+        if (normalizedStyle == 'unicorn' && idea.isNotEmpty) {
           promptParts.add(
             'incorporate subject with soft flowing lines, magical accents stars sparkles, graceful gentle curves, whimsical highlights, ethereal magical quality, pastel pinks blues purples silvers, lightness and enchantment, fantasy and dreams',
           );
         }
         // Floral: reinforce delicate organic floral aesthetic when user provided a subject
-        if (style.toLowerCase() == 'floral' && idea.isNotEmpty) {
+        if (normalizedStyle == 'floral' && idea.isNotEmpty) {
           promptParts.add(
             'incorporate subject with soft floral details, delicate petals and leaves subtly woven in, flowing graceful curves, muted natural blush pink soft white earthy green, gentle shading, realistic textures, elegant organic serenity, light highlights',
           );
@@ -161,23 +159,31 @@ class _LoadingScreenState extends State<LoadingScreen>
       }
     }
 
-    // Global style: force the model to produce a clean standalone tattoo
-    // flash/stencil artwork — NOT ink on a real body.
+    // Global style rules: keep artwork isolated, clean, and never printed on skin.
     promptParts.add(
-      'clean vector tattoo flash sheet, stencil-ready design, art print on blank white paper, '
-      'black and white, line art, minimalist, intricate details, standalone tattoo design, '
-      'white background, high contrast, 2d only, flat design, isolated artwork',
+      'clean standalone tattoo flash artwork, centered composition, white paper background, '
+      '2d illustration only, isolated design, no mockup, no photo',
     );
+
+    if (wantsColorful) {
+      // Keep colorful styles colorful.
+      promptParts.add(
+        'vibrant colorful tattoo design, rich and balanced colors, clear outlines, '
+        'avoid monochrome, avoid grayscale, color fidelity preserved',
+      );
+    } else {
+      // For black/white results, avoid fully filled black blobs.
+      promptParts.add(
+        'black and white tattoo line art, clean black ink outlines on white background, '
+        'high contrast with visible negative space, controlled shading, '
+        'no fully filled black silhouette, no big solid black patches',
+      );
+    }
 
     // Strict body-part exclusion instructions (Flux has no negative_prompt
     // param, so these must live in the positive prompt).
     promptParts.add(
-      'STRICTLY NO human body parts whatsoever: and white background',
-      // 'no skin, no flesh, no human body, no arms, no legs, no hands, no fingers, no feet, '
-      // 'no torso, no back, no chest, no shoulder, no neck, no face, no head, no ears, no lips, '
-      // 'no eyes, no nails, no veins, no body hair, no tattoo studio, no tattoo machine, '
-      // 'no person, no people, no model, no portrait photo, no photograph of body, '
-      // 'no real skin texture, no wrist, no ankle, no elbow, no muscle, no anatomy',
+      'STRICTLY NO human body parts, no skin, no person, no portrait, no tattooed body photo',
     );
 
     final finalPrompt = promptParts.join(', ');
@@ -296,6 +302,48 @@ class _LoadingScreenState extends State<LoadingScreen>
     }
   }
 
+  bool _shouldUseColorPrompt(String normalizedStyle, String idea) {
+    const colorfulStyles = {
+      'unicorn',
+      'floral',
+      'watercolor',
+      'anime',
+      'neo traditional',
+      'new school',
+      'color',
+      'colour',
+    };
+
+    if (colorfulStyles.contains(normalizedStyle)) {
+      return true;
+    }
+
+    final lowerIdea = idea.toLowerCase();
+    const colorKeywords = [
+      'colorful',
+      'colourful',
+      'vibrant',
+      'neon',
+      'rainbow',
+      'pastel',
+      'red',
+      'blue',
+      'green',
+      'yellow',
+      'purple',
+      'pink',
+      'orange',
+    ];
+
+    for (final keyword in colorKeywords) {
+      if (lowerIdea.contains(keyword)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   Future<void> _navigateToResult() async {
     if (!mounted) return;
     // Use key 'generic' when no style so history/result can show localized title
@@ -332,7 +380,7 @@ class _LoadingScreenState extends State<LoadingScreen>
         showProAccessOnOpen: _generatedImageBytes != null,
       );
       debugPrint('[LoadingScreen] step 3/3: opening ResultScreen');
-// 
+      //
       Navigator.of(
         context,
       ).pushReplacement(MaterialPageRoute(builder: (context) => nextResult));
