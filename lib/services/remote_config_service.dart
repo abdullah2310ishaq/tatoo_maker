@@ -32,7 +32,8 @@ class RemoteConfigService extends ChangeNotifier {
     // Boolean feature flags — default OFF (can be overridden in Firebase).
     RemoteConfigKeys.tattooBirthdayAdsAll: true,
     RemoteConfigKeys.tattooBirthdayBanner: true,
-    RemoteConfigKeys.tattooBirthdayNative: false,
+    RemoteConfigKeys.tattooBirthdayNative: true,
+
     RemoteConfigKeys.tattooIdeaAdsAll: false,
     RemoteConfigKeys.tattooIdeaBanner: false,
     RemoteConfigKeys.tattooIdeaNative: false,
@@ -181,8 +182,7 @@ class RemoteConfigService extends ChangeNotifier {
       _rc.getBool(RemoteConfigKeys.splashShowAppOpen);
 
   /// When `false`, skip the paywall after splash for returning free users.
-  bool get splashShowPaywall =>
-      _rc.getBool(RemoteConfigKeys.splashShowPaywall);
+  bool get splashShowPaywall => _rc.getBool(RemoteConfigKeys.splashShowPaywall);
 
   /// When `false`, skip the first language selection onboarding screen and go
   /// directly to the main onboarding flow.

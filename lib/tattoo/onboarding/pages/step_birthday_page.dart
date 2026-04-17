@@ -8,7 +8,6 @@ import '../../../services/admob_ids.dart';
 import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
-import '../widgets/onboarding_next_button.dart';
 
 class StepBirthdayPage extends StatefulWidget {
   final int selectedMonth;
@@ -37,6 +36,9 @@ class StepBirthdayPage extends StatefulWidget {
 }
 
 class _StepBirthdayPageState extends State<StepBirthdayPage> {
+  bool _bannerVisible = false;
+  bool _nativeVisible = false;
+
   bool _isDateValid() {
     final now = DateTime.now();
     try {
@@ -78,56 +80,94 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final rc = context.watch<RemoteConfigService>();
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    final shouldShowBanner = !isPro && rc.tattooBirthdayShowBanner;
+    final shouldShowNative = !isPro && rc.tattooBirthdayShowNative;
+
+    // If Remote Config/Pro disables ads while we previously marked them visible,
+    // reset state after this frame so the "no ads" layout has no gaps.
+    if (!shouldShowBanner && _bannerVisible) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (_bannerVisible) setState(() => _bannerVisible = false);
+      });
+    }
+    if (!shouldShowNative && _nativeVisible) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (_nativeVisible) setState(() => _nativeVisible = false);
+      });
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        OnboardingHeader(currentStep: 2, onBack: widget.onBack),
-        if (!isPro && rc.tattooBirthdayShowBanner) const _BirthdayBannerAd(),
-        SizedBox(height: 40.h),
-        // Question and date
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.stepBirthdayWhatsYourBirthday,
-              style: TextStyle(
-                fontSize: 24.sp,
-                fontWeight: FontWeight.bold,
-                color: textColor,
-                fontFamily: 'Amaranth',
-              ),
-            ),
-            SizedBox(height: 12.h),
-            Text(
-              _getFormattedDate(context),
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-                color: textColor,
-                fontFamily: 'Amaranth',
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 30.h),
-        // Date picker
         Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(top: 20.h),
-            child: _buildDatePicker(isDark),
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OnboardingHeader(
+                  currentStep: 2,
+                  onBack: widget.onBack,
+                  trailing: Padding(
+                    padding: EdgeInsets.only(top: 6.h),
+                    child: _BirthdayNextTopRightButton(
+                      enabled: _isDateValid(),
+                      onPressed: widget.onNext,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24.h),
+                Text(
+                  AppLocalizations.of(context)!.stepBirthdayWhatsYourBirthday,
+                  style: TextStyle(
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                    fontFamily: 'Amaranth',
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  _getFormattedDate(context),
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                    fontFamily: 'Amaranth',
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                Padding(
+                  padding: EdgeInsets.only(top: 20.h),
+                  child: _buildDatePicker(isDark),
+                ),
+                SizedBox(height: 16.h),
+              ],
+            ),
           ),
         ),
-        const Spacer(),
-        // Native ad disabled on this screen; keep only banner ad.
-        // _BirthdayNativeAd(isDark: isDark),
-        // Next button
-        OnboardingNextButton(
-          enabled: _isDateValid(), // Disabled if date is in future or invalid
-          isLastStep: false,
-          onPressed: widget.onNext,
-        ),
-        SizedBox(height: 40.h),
+        // Bottom ads (no reserved space when not loaded).
+        // Order: Banner first, then Native. Gap only when both visible.
+        if (shouldShowBanner)
+          _BirthdayBannerAd(
+            onVisibilityChanged: (visible) {
+              if (_bannerVisible == visible) return;
+              setState(() => _bannerVisible = visible);
+            },
+          ),
+        if (shouldShowNative) ...[
+          if (_bannerVisible && _nativeVisible) SizedBox(height: 8.h),
+          _BirthdayNativeAd(
+            isDark: isDark,
+            onVisibilityChanged: (visible) {
+              if (_nativeVisible == visible) return;
+              setState(() => _nativeVisible = visible);
+            },
+          ),
+        ],
+        SafeArea(top: false, child: SizedBox(height: 8.h)),
       ],
     );
   }
@@ -153,66 +193,80 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
     // Generate years from current year down to 100 years ago
     final years = List.generate(100, (i) => currentYear - i);
 
-    return Stack(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: _buildPickerColumn(
-                items: months,
-                selectedIndex: widget.selectedMonth,
-                onChanged: (index) {
-                  widget.onMonthChanged(index);
-                  setState(() {}); // Rebuild to update button state
-                },
-                isDark: isDark,
-              ),
-            ),
-            SizedBox(width: 8.w),
-            Expanded(
-              child: _buildPickerColumn(
-                items: days.map((d) => d.toString()).toList(),
-                selectedIndex: widget.selectedDay - 1,
-                onChanged: (index) {
-                  widget.onDayChanged(index + 1);
-                  setState(() {}); // Rebuild to update button state
-                },
-                isDark: isDark,
-              ),
-            ),
-            SizedBox(width: 8.w),
-            Expanded(
-              child: _buildPickerColumn(
-                items: years.map((y) => y.toString()).toList(),
-                selectedIndex: years.contains(widget.selectedYear)
-                    ? years.indexOf(widget.selectedYear)
-                    : 0,
-                onChanged: (index) {
-                  widget.onYearChanged(years[index]);
-                  setState(() {}); // Rebuild to update button state
-                },
-                isDark: isDark,
-              ),
-            ),
-          ],
-        ),
-        Positioned.fill(
-          child: IgnorePointer(
-            child: Center(
-              child: Container(
-                height: 50.h,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xFFFE8B3A),
-                    width: 1.5.w,
+    return SizedBox(
+      height: 200.h,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final pickerHeight = constraints.maxHeight;
+          final selectionHeight = 50.h;
+          // Upward offset so the frame hugs the selected row precisely.
+          // (ListWheel has optical center slightly above geometric center.)
+          final top = (pickerHeight - selectionHeight) / 2 - 1.h;
+
+          return Stack(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildPickerColumn(
+                      items: months,
+                      selectedIndex: widget.selectedMonth,
+                      onChanged: (index) {
+                        widget.onMonthChanged(index);
+                        setState(() {}); // Rebuild to update button state
+                      },
+                      isDark: isDark,
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(12.r),
+                  SizedBox(width: 8.w),
+                  Expanded(
+                    child: _buildPickerColumn(
+                      items: days.map((d) => d.toString()).toList(),
+                      selectedIndex: widget.selectedDay - 1,
+                      onChanged: (index) {
+                        widget.onDayChanged(index + 1);
+                        setState(() {}); // Rebuild to update button state
+                      },
+                      isDark: isDark,
+                    ),
+                  ),
+                  SizedBox(width: 8.w),
+                  Expanded(
+                    child: _buildPickerColumn(
+                      items: years.map((y) => y.toString()).toList(),
+                      selectedIndex: years.contains(widget.selectedYear)
+                          ? years.indexOf(widget.selectedYear)
+                          : 0,
+                      onChanged: (index) {
+                        widget.onYearChanged(years[index]);
+                        setState(() {}); // Rebuild to update button state
+                      },
+                      isDark: isDark,
+                    ),
+                  ),
+                ],
+              ),
+              Positioned(
+                left: 0,
+                right: 0,
+                top: top,
+                height: selectionHeight,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFFE8B3A),
+                        width: 1.5.w,
+                      ),
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ),
-      ],
+            ],
+          );
+        },
+      ),
     );
   }
 
@@ -224,38 +278,33 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
   }) {
     return SizedBox(
       height: 200.h,
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 25.h),
-        child: ListWheelScrollView.useDelegate(
-          controller: FixedExtentScrollController(initialItem: selectedIndex),
-          itemExtent: 50.h,
-          physics: const FixedExtentScrollPhysics(),
-          onSelectedItemChanged: onChanged,
-          perspective: 0.003,
-          diameterRatio: 1.5,
-          childDelegate: ListWheelChildBuilderDelegate(
-            builder: (context, index) {
-              if (index < 0 || index >= items.length) return null;
-              final isSelected = index == selectedIndex;
-              return Center(
-                child: Text(
-                  items[index],
-                  style: TextStyle(
-                    fontSize: isSelected ? 20.sp : 16.sp,
-                    fontWeight: isSelected
-                        ? FontWeight.bold
-                        : FontWeight.normal,
-                    color: isSelected
-                        ? (isDark ? AppColors.textWhite : AppColors.textPrimary)
-                        : (isDark
-                              ? AppColors.textGrey.withOpacity(0.4)
-                              : AppColors.textGrey.withOpacity(0.4)),
-                  ),
+      child: ListWheelScrollView.useDelegate(
+        controller: FixedExtentScrollController(initialItem: selectedIndex),
+        itemExtent: 50.h,
+        physics: const FixedExtentScrollPhysics(),
+        onSelectedItemChanged: onChanged,
+        perspective: 0.003,
+        diameterRatio: 1.5,
+        childDelegate: ListWheelChildBuilderDelegate(
+          builder: (context, index) {
+            if (index < 0 || index >= items.length) return null;
+            final isSelected = index == selectedIndex;
+            return Center(
+              child: Text(
+                items[index],
+                style: TextStyle(
+                  fontSize: isSelected ? 20.sp : 16.sp,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                  color: isSelected
+                      ? (isDark ? AppColors.textWhite : AppColors.textPrimary)
+                      : (isDark
+                            ? AppColors.textGrey.withOpacity(0.4)
+                            : AppColors.textGrey.withOpacity(0.4)),
                 ),
-              );
-            },
-            childCount: items.length,
-          ),
+              ),
+            );
+          },
+          childCount: items.length,
         ),
       ),
     );
@@ -263,7 +312,9 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
 }
 
 class _BirthdayBannerAd extends StatefulWidget {
-  const _BirthdayBannerAd();
+  const _BirthdayBannerAd({required this.onVisibilityChanged});
+
+  final ValueChanged<bool> onVisibilityChanged;
 
   @override
   State<_BirthdayBannerAd> createState() => _BirthdayBannerAdState();
@@ -271,27 +322,68 @@ class _BirthdayBannerAd extends StatefulWidget {
 
 class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
   BannerAd? _ad;
+  int _loadedWidth = 0;
   bool _loaded = false;
+  bool _lastEmitted = false;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      final rc = context.read<RemoteConfigService>();
-      final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-      if (isPro || !rc.tattooBirthdayShowBanner) return;
-      _load(unitId: AdmobIds.bannerUnitId());
+      _loadIfEligibleForCurrentWidth();
     });
   }
 
-  void _load({required String unitId}) {
+  void _emit(bool visible) {
+    if (_lastEmitted == visible) return;
+    _lastEmitted = visible;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      widget.onVisibilityChanged(visible);
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadIfEligibleForCurrentWidth();
+  }
+
+  Future<void> _loadIfEligibleForCurrentWidth() async {
+    if (!mounted) return;
+    final rc = context.read<RemoteConfigService>();
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    if (isPro || !rc.tattooBirthdayShowBanner) return;
+
+    final width = MediaQuery.of(context).size.width.truncate();
+    if (width <= 0) return;
+    if (_loadedWidth == width && _ad != null) return;
+    _loadedWidth = width;
+
+    await _loadAdaptive(unitId: AdmobIds.bannerUnitId(), width: width);
+  }
+
+  Future<void> _loadAdaptive({
+    required String unitId,
+    required int width,
+  }) async {
     if (unitId.isEmpty) return;
+    final adaptiveSize =
+        await AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(width);
+    if (adaptiveSize == null) return;
+
+    _ad?.dispose();
+    _ad = null;
+    if (mounted && _loaded) {
+      setState(() {
+        _loaded = false;
+      });
+    }
 
     final ad = BannerAd(
       adUnitId: unitId,
       request: const AdRequest(),
-      size: AdSize.banner,
+      size: adaptiveSize,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
           if (!mounted) return;
@@ -317,6 +409,7 @@ class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
 
   @override
   void dispose() {
+    _emit(false);
     _ad?.dispose();
     super.dispose();
   }
@@ -325,16 +418,23 @@ class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
   Widget build(BuildContext context) {
     final rc = context.watch<RemoteConfigService>();
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    if (isPro || !rc.tattooBirthdayShowBanner) return const SizedBox.shrink();
+    if (isPro || !rc.tattooBirthdayShowBanner) {
+      _emit(false);
+      return const SizedBox.shrink();
+    }
 
     final ad = _ad;
-    if (!_loaded || ad == null) return const SizedBox.shrink();
+    if (!_loaded || ad == null) {
+      _emit(false);
+      return const SizedBox.shrink();
+    }
 
+    _emit(true);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         SafeArea(
-          bottom: false,
+          top: false,
           child: Center(
             child: SizedBox(
               width: ad.size.width.toDouble(),
@@ -349,13 +449,14 @@ class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
   }
 }
 
-// Native ad intentionally disabled in this step.
-// Keep this code commented for quick re-enable if needed.
-/*
 class _BirthdayNativeAd extends StatefulWidget {
-  const _BirthdayNativeAd({required this.isDark});
+  const _BirthdayNativeAd({
+    required this.isDark,
+    required this.onVisibilityChanged,
+  });
 
   final bool isDark;
+  final ValueChanged<bool> onVisibilityChanged;
 
   @override
   State<_BirthdayNativeAd> createState() => _BirthdayNativeAdState();
@@ -364,11 +465,27 @@ class _BirthdayNativeAd extends StatefulWidget {
 class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
   NativeAd? _ad;
   bool _loaded = false;
+  bool _lastEmitted = false;
 
   @override
   void initState() {
     super.initState();
-    _load();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final rc = context.read<RemoteConfigService>();
+      final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+      if (isPro || !rc.tattooBirthdayShowNative) return;
+      _load();
+    });
+  }
+
+  void _emit(bool visible) {
+    if (_lastEmitted == visible) return;
+    _lastEmitted = visible;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      widget.onVisibilityChanged(visible);
+    });
   }
 
   @override
@@ -378,6 +495,7 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
     _ad?.dispose();
     _ad = null;
     _loaded = false;
+    _emit(false);
     _load();
   }
 
@@ -414,6 +532,7 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
 
   @override
   void dispose() {
+    _emit(false);
     _ad?.dispose();
     super.dispose();
   }
@@ -422,16 +541,23 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
   Widget build(BuildContext context) {
     final rc = context.watch<RemoteConfigService>();
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    if (isPro || !rc.tattooBirthdayShowNative) return const SizedBox.shrink();
+    if (isPro || !rc.tattooBirthdayShowNative) {
+      _emit(false);
+      return const SizedBox.shrink();
+    }
 
-    final slotH = 122.h;
     final ad = _ad;
-    if (!_loaded || ad == null) return SizedBox(height: slotH);
+    if (!_loaded || ad == null) {
+      _emit(false);
+      return const SizedBox.shrink();
+    }
 
+    _emit(true);
     final cardColor = widget.isDark
         ? AppColors.inputCardDarkBackground
         : AppColors.lightBackground;
     final radius = BorderRadius.circular(14.r);
+    final slotHeight = 138.h;
 
     return Padding(
       padding: EdgeInsets.only(bottom: 8.h),
@@ -443,11 +569,56 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
         clipBehavior: Clip.antiAlias,
         child: SizedBox(
           width: double.infinity,
-          height: slotH,
+          height: slotHeight,
           child: AdWidget(ad: ad),
         ),
       ),
     );
   }
 }
-*/
+
+class _BirthdayNextTopRightButton extends StatelessWidget {
+  const _BirthdayNextTopRightButton({
+    required this.enabled,
+    required this.onPressed,
+  });
+
+  final bool enabled;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final enabledBackground = AppColors.darkPrimary;
+    final disabledBackground = isDark
+        ? AppColors.buttonBackground
+        : AppColors.textGrey.withOpacity(0.1);
+    final enabledText = AppColors.textWhite;
+    final disabledText = AppColors.textGrey;
+
+    return SizedBox(
+      height: 44.h,
+      child: ElevatedButton(
+        onPressed: enabled ? onPressed : null,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: enabled ? enabledBackground : disabledBackground,
+          foregroundColor: enabled ? enabledText : disabledText,
+          elevation: enabled ? 4 : 0,
+          padding: EdgeInsets.symmetric(horizontal: 18.w),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+        ),
+        child: Text(
+          l10n.next,
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Amaranth',
+          ),
+        ),
+      ),
+    );
+  }
+}

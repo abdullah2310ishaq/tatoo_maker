@@ -6,12 +6,14 @@ class OnboardingHeader extends StatelessWidget {
   final int currentStep;
   final VoidCallback onBack;
   final bool showProgress;
+  final Widget? trailing;
 
   const OnboardingHeader({
     super.key,
     required this.currentStep,
     required this.onBack,
     this.showProgress = true,
+    this.trailing,
   });
 
   @override
@@ -22,25 +24,31 @@ class OnboardingHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 20),
-        // Back button in circular container
-        Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.buttonBackground
-                : AppColors.textGrey.withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: isDark ? AppColors.textWhite : AppColors.textPrimary,
-              size: 20,
+        // Back button on left, optional action on right.
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: isDark
+                    ? AppColors.buttonBackground
+                    : AppColors.textGrey.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+                  size: 20,
+                ),
+                onPressed: onBack,
+                padding: EdgeInsets.zero,
+              ),
             ),
-            onPressed: onBack,
-            padding: EdgeInsets.zero,
-          ),
+            trailing ?? const SizedBox.shrink(),
+          ],
         ),
         if (showProgress) ...[
           const SizedBox(height: 20),
