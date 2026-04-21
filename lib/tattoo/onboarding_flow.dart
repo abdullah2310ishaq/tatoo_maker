@@ -10,7 +10,6 @@ import 'onboarding/utils/zodiac_utils.dart';
 import 'onboarding/pages/step_name_page.dart';
 import 'onboarding/pages/step_birthday_page.dart';
 import 'onboarding/pages/zodiac_display_page.dart';
-import 'onboarding/pages/step_location_page.dart';
 import 'onboarding/pages/step_tattoo_idea_page.dart';
 import 'onboarding/pages/step_style_selection_page.dart';
 
@@ -25,7 +24,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   int _currentStep = 1;
   bool _showZodiac = false;
   final List<TextEditingController> _controllers = List.generate(
-    5,
+    4,
     (_) => TextEditingController(),
   );
 
@@ -34,7 +33,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   int _selectedDay = 4;
   int _selectedYear = DateTime.now().year - 18;
 
-  // Tattoo style selection for step 5
+  // Tattoo style selection for step 4
   int? _selectedStyleIndex;
 
   @override
@@ -111,18 +110,12 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
           },
         );
       case 3:
-        return StepLocationPage(
+        return StepTattooIdeaPage(
           controller: _controllers[2],
           onBack: () => setState(() => _currentStep--),
           onNext: () => setState(() => _currentStep++),
         );
       case 4:
-        return StepTattooIdeaPage(
-          controller: _controllers[3],
-          onBack: () => setState(() => _currentStep--),
-          onNext: () => setState(() => _currentStep++),
-        );
-      case 5:
         return StepStyleSelectionPage(
           selectedStyleIndex: _selectedStyleIndex,
           onStyleSelected: (index) =>
@@ -174,8 +167,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     }
 
     final name = _controllers[0].text.trim();
-    final tattooIdea = _controllers[3].text.trim();
-    final placeOfBirth = _controllers[2].text.trim();
+    final tattooIdea = _controllers[2].text.trim();
     final zodiacSign = getZodiacSign(_selectedMonth, _selectedDay);
     final dobFormatted =
         '${_monthNames[_selectedMonth - 1]} $_selectedDay, $_selectedYear';
@@ -197,7 +189,6 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
             name: name,
             dobFormatted: dobFormatted,
             zodiacSign: zodiacSign,
-            placeOfBirth: placeOfBirth.isEmpty ? null : placeOfBirth,
           ),
         ),
       );

@@ -70,7 +70,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        OnboardingHeader(currentStep: 5, onBack: widget.onBack),
+        OnboardingHeader(currentStep: 4, onBack: widget.onBack),
         // Ads intentionally disabled.
         // if (shouldShowBanner) ...[
         //   _StyleSelectionBannerAd(

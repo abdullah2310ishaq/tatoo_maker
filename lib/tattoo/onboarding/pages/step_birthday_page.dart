@@ -80,11 +80,11 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final rc = context.watch<RemoteConfigService>();
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    final shouldShowBanner = !isPro && rc.tattooBirthdayShowBanner;
-    final shouldShowNative = !isPro && rc.tattooBirthdayShowNative;
+    final canShowBanner = !isPro && rc.tattooBirthdayShowBanner;
+    final canShowNative = !isPro && rc.tattooBirthdayShowNative;
 
-    // If Remote Config/Pro disables ads while we previously marked them visible,
-    // reset state after this frame so the "no ads" layout has no gaps.
+    final shouldShowNative = canShowNative;
+    final shouldShowBanner = canShowBanner && !canShowNative;
     if (!shouldShowBanner && _bannerVisible) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;

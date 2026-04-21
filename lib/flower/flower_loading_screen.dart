@@ -204,7 +204,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
             name: widget.name,
             generatedImageBytes: _generatedImageBytes,
             showProAccessOnOpen: false,
-            enablePaywallPrompts: false,
+            enablePaywallPrompts: true,
           ),
         ),
       );

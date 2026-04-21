@@ -41,7 +41,8 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
   bool _didAutoCenter = false;
   Offset? _panStartPosition;
   Offset? _panStartLocal;
-  static const String _watermarkAssetPath = 'assets/watermark.png';
+  static const String _watermarkLightAssetPath = 'assets/watermark_light.png';
+  static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
 
   double _scaleStart = 1.0;
   double _rotationStart = 0.0;
@@ -238,6 +239,12 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
                           child: Consumer<UsageLimitProvider>(
                             builder: (context, usage, _) {
                               final showWatermark = !usage.isProUnlocked;
+                              final isDark =
+                                  Theme.of(context).brightness ==
+                                  Brightness.dark;
+                              final watermarkAssetPath = isDark
+                                  ? _watermarkDarkAssetPath
+                                  : _watermarkLightAssetPath;
                               return Stack(
                                 children: [
                                   Image.memory(
@@ -254,7 +261,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
                                         child: Opacity(
                                           opacity: 0.35,
                                           child: Image.asset(
-                                            _watermarkAssetPath,
+                                            watermarkAssetPath,
                                             width: baseTattooSize * 0.85,
                                             fit: BoxFit.contain,
                                             filterQuality: FilterQuality.high,

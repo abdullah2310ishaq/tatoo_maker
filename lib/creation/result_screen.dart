@@ -42,15 +42,21 @@ class ResultScreen extends StatefulWidget {
 class _ResultScreenState extends State<ResultScreen> {
   bool _didAutoShowPaywall = false;
   bool _didShowPaywallAfterDownload = false;
-  static const String _watermarkAssetPath = 'assets/watermark.png';
+  static const String _watermarkLightAssetPath = 'assets/watermark_light.png';
+  static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
   static const String _blurAssetPath = 'assets/asset_blur.png';
+  static const String _paywallLightAssetPath = 'assets/paywall_light.png';
+  static const String _paywallDarkAssetPath = 'assets/paywall_dark.png';
   Size? _generatedImageSize;
 
   Widget _buildLockedBlurCard() {
     return LayoutBuilder(
       builder: (context, constraints) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
         final width = (constraints.maxWidth * 0.78).clamp(260.0, 480.0);
         final height = (constraints.maxHeight * 0.66).clamp(280.0, 560.0);
+        final paywallAssetPath =
+            isDark ? _paywallDarkAssetPath : _paywallLightAssetPath;
 
         return Center(
           child: IgnorePointer(
@@ -64,9 +70,16 @@ class _ResultScreenState extends State<ResultScreen> {
                     width: width,
                     height: height,
                     child: Image.asset(
-                      _blurAssetPath,
+                      paywallAssetPath,
                       fit: BoxFit.contain,
                       filterQuality: FilterQuality.high,
+                      errorBuilder: (_, __, ___) {
+                        return Image.asset(
+                          _blurAssetPath,
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -112,7 +125,7 @@ class _ResultScreenState extends State<ResultScreen> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
-            showInterstitialOnClose: true,
+            showInterstitialOnClose: false,
             nextScreen: ResultScreen(
               styleName: widget.styleName,
               generatedImageBytes: widget.generatedImageBytes,
@@ -169,6 +182,16 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   Future<void> _toggleFavorite(BuildContext context) async {
+    final usage = context.read<UsageLimitProvider>();
+    if (!usage.isProUnlocked && usage.hasReachedFreeLimit) {
+      AppToast.show(
+        context,
+        message: 'Buy Premium to add to favourites',
+        isSuccess: false,
+      );
+      return;
+    }
+
     if (widget.generatedImageBytes == null) return;
 
     final favoritesProvider = Provider.of<FavoritesProvider>(
@@ -330,7 +353,17 @@ class _ResultScreenState extends State<ResultScreen> {
                               : AppColors.textPrimary),
                     size: 28.sp,
                   ),
-            onPressed: () => _toggleFavorite(context),
+            onPressed: () {
+              if (isLocked) {
+                AppToast.show(
+                  context,
+                  message: 'Buy Premium to add to favourites',
+                  isSuccess: false,
+                );
+                return;
+              }
+              _toggleFavorite(context);
+            },
           ),
         ],
       ),
@@ -341,6 +374,8 @@ class _ResultScreenState extends State<ResultScreen> {
     final imageBytes = widget.generatedImageBytes;
     if (imageBytes == null) {
       if (isLocked) {
+        final watermarkAssetPath =
+            isDark ? _watermarkDarkAssetPath : _watermarkLightAssetPath;
         return Stack(
           alignment: Alignment.center,
           children: [
@@ -349,7 +384,7 @@ class _ResultScreenState extends State<ResultScreen> {
               child: Opacity(
                 opacity: 0.35,
                 child: Image.asset(
-                  _watermarkAssetPath,
+                  watermarkAssetPath,
                   width: 320.w,
                   fit: BoxFit.contain,
                   filterQuality: FilterQuality.high,
@@ -386,6 +421,10 @@ class _ResultScreenState extends State<ResultScreen> {
                     constraints.maxWidth <= 0 ||
                     constraints.maxHeight <= 0) {
                   // Fallback: position relative to container.
+                  final watermarkAssetPath =
+                      isDark
+                          ? _watermarkDarkAssetPath
+                          : _watermarkLightAssetPath;
                   final watermarkWidth = (constraints.maxWidth * 0.95).clamp(
                     160.0,
                     300.0,
@@ -407,7 +446,7 @@ class _ResultScreenState extends State<ResultScreen> {
                             child: Opacity(
                               opacity: 0.35,
                               child: Image.asset(
-                                _watermarkAssetPath,
+                                watermarkAssetPath,
                                 width: watermarkWidth,
                                 fit: BoxFit.contain,
                                 filterQuality: FilterQuality.high,
@@ -431,6 +470,8 @@ class _ResultScreenState extends State<ResultScreen> {
                 final offsetX = (constraints.maxWidth - drawnWidth) / 2;
                 // offsetY is intentionally not needed for fixed bottom placement.
 
+                final watermarkAssetPath =
+                    isDark ? _watermarkDarkAssetPath : _watermarkLightAssetPath;
                 final watermarkWidth = (drawnWidth * 0.95).clamp(160.0, 320.0);
                 final padX = (drawnWidth * 0.06).clamp(12.0, 13.0);
                 // Fixed position: 30% of the available image-area height.
@@ -449,7 +490,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           child: Opacity(
                             opacity: 0.35,
                             child: Image.asset(
-                              _watermarkAssetPath,
+                              watermarkAssetPath,
                               width: watermarkWidth,
                               fit: BoxFit.contain,
                               filterQuality: FilterQuality.high,
@@ -538,7 +579,7 @@ class _ResultScreenState extends State<ResultScreen> {
             promptText: widget.promptText,
             showProAccessOnOpen: false,
           ),
-          showInterstitialOnClose: true,
+          showInterstitialOnClose: false,
         ),
       ),
     );
@@ -861,7 +902,7 @@ class _ResultScreenState extends State<ResultScreen> {
             MaterialPageRoute(
               builder: (_) => const ProAccessScreen(
                 nextScreen: HomeShell(),
-                showInterstitialOnClose: true,
+                showInterstitialOnClose: false,
               ),
             ),
           );

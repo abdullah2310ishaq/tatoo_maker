@@ -1,15 +1,19 @@
 import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/usage_limit_provider.dart';
+import '../services/admob_ids.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
@@ -37,8 +41,13 @@ class FlowerResultScreen extends StatefulWidget {
 }
 
 class _FlowerResultScreenState extends State<FlowerResultScreen> {
-  bool _didAutoShowPaywall = false;
   bool _didShowPaywallAfterDownload = false;
+  bool _didShowInterstitialOnOpen = false;
+  static const String _paywallLightAssetPath = 'assets/paywall_light.png';
+  static const String _paywallDarkAssetPath = 'assets/paywall_dark.png';
+  static const String _fallbackBlurAssetPath = 'assets/asset_blur.png';
+  static const String _watermarkLightAssetPath = 'assets/watermark_light.png';
+  static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
 
   @override
   void initState() {
@@ -48,46 +57,169 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
       'showProAccessOnOpen=${widget.showProAccessOnOpen})',
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted || _didAutoShowPaywall) return;
-      if (!widget.enablePaywallPrompts) {
-        debugPrint(
-          '[FlowerResultScreen] paywall prompts disabled for this flow',
-        );
-        return;
-      }
-      if (!widget.showProAccessOnOpen) {
-        debugPrint(
-          '[FlowerResultScreen] skip auto paywall: showProAccessOnOpen=false',
-        );
-        return;
-      }
-      if (widget.generatedImageBytes == null) {
-        debugPrint('[FlowerResultScreen] skip auto paywall: hasImage=false');
-        return;
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted || _didShowInterstitialOnOpen) return;
+      if (!widget.enablePaywallPrompts) return;
+      if (!widget.showProAccessOnOpen) return;
 
       final usage = context.read<UsageLimitProvider>();
-      if (usage.isProUnlocked) {
-        debugPrint('[FlowerResultScreen] skip auto paywall: user is PRO');
-        return;
-      }
+      if (usage.isProUnlocked) return;
 
-      _didAutoShowPaywall = true;
-      debugPrint('[FlowerResultScreen] showing ProAccessScreen after loading');
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => ProAccessScreen(
-            showInterstitialOnClose: true,
-            nextScreen: FlowerResultScreen(
-              name: widget.name,
-              generatedImageBytes: widget.generatedImageBytes,
-              showProAccessOnOpen: false,
+      _didShowInterstitialOnOpen = true;
+      await _showInterstitialIfAvailable();
+    });
+  }
+
+  Future<void> _showInterstitialIfAvailable() async {
+    final unitId = AdmobIds.interstitialUnitId().trim();
+    if (unitId.isEmpty) return;
+
+    final completer = Completer<void>();
+    InterstitialAd.load(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              if (!completer.isCompleted) completer.complete();
+            },
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              ad.dispose();
+              if (!completer.isCompleted) completer.complete();
+            },
+          );
+          try {
+            ad.show();
+          } catch (_) {
+            ad.dispose();
+            if (!completer.isCompleted) completer.complete();
+          }
+        },
+        onAdFailedToLoad: (_) {
+          if (!completer.isCompleted) completer.complete();
+        },
+      ),
+    );
+
+    await completer.future;
+  }
+
+  void _openPaywall() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => ProAccessScreen(
+          nextScreen: FlowerResultScreen(
+            name: widget.name,
+            generatedImageBytes: widget.generatedImageBytes,
+            showProAccessOnOpen: false,
+            enablePaywallPrompts: widget.enablePaywallPrompts,
+          ),
+          // In Flower Result, paywall close should NOT trigger an ad.
+          showInterstitialOnClose: false,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLockedPaywallCard(bool isDark) {
+    final paywallAssetPath =
+        isDark ? _paywallDarkAssetPath : _paywallLightAssetPath;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = (constraints.maxWidth * 0.78).clamp(260.0, 480.0);
+        final height = (constraints.maxHeight * 0.66).clamp(280.0, 560.0);
+
+        return Center(
+          child: IgnorePointer(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(18.r),
+              child: ImageFiltered(
+                imageFilter: ui.ImageFilter.blur(sigmaX: 9, sigmaY: 9),
+                child: Opacity(
+                  opacity: 0.72,
+                  child: SizedBox(
+                    width: width,
+                    height: height,
+                    child: Image.asset(
+                      paywallAssetPath,
+                      fit: BoxFit.contain,
+                      filterQuality: FilterQuality.high,
+                      errorBuilder: (_, __, ___) {
+                        return Image.asset(
+                          _fallbackBlurAssetPath,
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
+        );
+      },
+    );
+  }
+
+  Widget _buildLockedOverlayCard() {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.only(top: 28.h),
+        child: Container(
+          width: double.infinity,
+          constraints: BoxConstraints(maxWidth: 420.w),
+          padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
+          decoration: BoxDecoration(
+            color: AppColors.darkBackground.withOpacity(0.75),
+            borderRadius: BorderRadius.circular(14.r),
+            border: Border.all(color: const Color(0xFFA6541D), width: 1.2.w),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Buy Premium to Continue',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textWhite,
+                  fontFamily: 'Inter',
+                ),
+              ),
+              SizedBox(height: 14.h),
+              SizedBox(
+                width: double.infinity,
+                height: 44.h,
+                child: ElevatedButton(
+                  onPressed: _openPaywall,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFA6541D),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text(
+                    'Buy Premium',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textWhite,
+                      fontFamily: 'Inter',
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      );
-    });
+      ),
+    );
   }
 
   Map<String, dynamic> _buildEntry() {
@@ -102,6 +234,16 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
   }
 
   Future<void> _toggleFavorite(BuildContext context) async {
+    final usage = context.read<UsageLimitProvider>();
+    if (!usage.isProUnlocked && usage.hasReachedFreeLimit) {
+      AppToast.show(
+        context,
+        message: 'Buy Premium to add to favourites',
+        isSuccess: false,
+      );
+      return;
+    }
+
     if (widget.generatedImageBytes == null) return;
 
     final favoritesProvider = Provider.of<FavoritesProvider>(
@@ -128,6 +270,9 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final l10n = AppLocalizations.of(context)!;
     final favoritesProvider = Provider.of<FavoritesProvider>(context);
+    final usage = context.watch<UsageLimitProvider>();
+    final isPro = usage.isProUnlocked;
+    final isLocked = !isPro && usage.hasReachedFreeLimit;
     final entry = _buildEntry();
     final isFavorited = favoritesProvider.isFavorited(entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
@@ -144,13 +289,24 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
           child: Column(
             children: [
               // Header: Close button + Title + Favorite
-              _buildHeader(context, isDark, isFavorited, isLoadingFavorite),
+              _buildHeader(
+                context,
+                isDark,
+                isFavorited,
+                isLoadingFavorite,
+                isLocked: isLocked,
+              ),
               // Main image display
               Expanded(
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: _buildMainImage(context, isDark, l10n),
+                    child: _buildMainImage(
+                      context,
+                      isDark,
+                      l10n,
+                      isLocked: isLocked,
+                    ),
                   ),
                 ),
               ),
@@ -164,9 +320,19 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                 ),
                 child: Column(
                   children: [
-                    _buildVirtualTryOnButton(context, isDark, l10n),
+                    _buildVirtualTryOnButton(
+                      context,
+                      isDark,
+                      l10n,
+                      isPro: isPro,
+                    ),
                     SizedBox(height: 12.h),
-                    _buildSecondaryButtons(context, isDark, l10n),
+                    _buildSecondaryButtons(
+                      context,
+                      isDark,
+                      l10n,
+                      isPro: isPro,
+                    ),
                   ],
                 ),
               ),
@@ -182,6 +348,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     bool isDark,
     bool isFavorited,
     bool isLoadingFavorite,
+    {required bool isLocked}
   ) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
@@ -229,7 +396,17 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                               : AppColors.textPrimary),
                     size: 28.sp,
                   ),
-            onPressed: () => _toggleFavorite(context),
+            onPressed: () {
+              if (isLocked) {
+                AppToast.show(
+                  context,
+                  message: 'Buy Premium to add to favourites',
+                  isSuccess: false,
+                );
+                return;
+              }
+              _toggleFavorite(context);
+            },
           ),
         ],
       ),
@@ -240,17 +417,73 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     BuildContext context,
     bool isDark,
     AppLocalizations l10n,
+    {required bool isLocked}
   ) {
-    if (widget.generatedImageBytes != null) {
-      return Image.memory(
-        widget.generatedImageBytes!,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return _buildPlaceholder(isDark, l10n);
-        },
-      );
+    final watermarkAssetPath =
+        isDark ? _watermarkDarkAssetPath : _watermarkLightAssetPath;
+
+    final imageBytes = widget.generatedImageBytes;
+    if (imageBytes == null) {
+      if (isLocked) {
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned.fill(child: _buildLockedPaywallCard(isDark)),
+            IgnorePointer(
+              child: Opacity(
+                opacity: 0.35,
+                child: Image.asset(
+                  watermarkAssetPath,
+                  width: 320.w,
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            _buildLockedOverlayCard(),
+          ],
+        );
+      }
+      return _buildPlaceholder(isDark, l10n);
     }
-    return _buildPlaceholder(isDark, l10n);
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final watermarkWidth = (constraints.maxWidth * 0.95).clamp(160.0, 320.0);
+        final leftPad = (constraints.maxWidth * 0.06).clamp(12.0, 20.0);
+        final bottom = constraints.maxHeight * 0.1;
+
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: Image.memory(
+                imageBytes,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  return _buildPlaceholder(isDark, l10n);
+                },
+              ),
+            ),
+            if (!context.watch<UsageLimitProvider>().isProUnlocked)
+              Positioned(
+                left: leftPad,
+                bottom: bottom,
+                child: IgnorePointer(
+                  child: Opacity(
+                    opacity: 0.35,
+                    child: Image.asset(
+                      watermarkAssetPath,
+                      width: watermarkWidth,
+                      fit: BoxFit.contain,
+                      filterQuality: FilterQuality.high,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
+    );
   }
 
   Widget _buildPlaceholder(bool isDark, AppLocalizations l10n) {
@@ -291,24 +524,28 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     BuildContext context,
     bool isDark,
     AppLocalizations l10n,
+    {required bool isPro}
   ) {
     return SizedBox(
       width: double.infinity,
       height: 56.h,
       child: ElevatedButton(
-        onPressed: widget.generatedImageBytes != null
-            ? () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => VirtualTryOnScreen(
-                      tattooImageBytes: widget.generatedImageBytes,
-                      styleName: 'Floral: ${widget.name}',
-                    ),
-                  ),
-                );
-              }
-            : null,
+        onPressed: () {
+          if (!isPro) {
+            _openPaywall();
+            return;
+          }
+          if (widget.generatedImageBytes == null) return;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => VirtualTryOnScreen(
+                tattooImageBytes: widget.generatedImageBytes,
+                styleName: 'Floral: ${widget.name}',
+              ),
+            ),
+          );
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFA6541D), // Burnt orange
           shape: RoundedRectangleBorder(
@@ -333,6 +570,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     BuildContext context,
     bool isDark,
     AppLocalizations l10n,
+    {required bool isPro}
   ) {
     return Row(
       children: [
@@ -341,7 +579,13 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
             label: l10n.resultShare,
             icon: Icons.share,
             isDark: isDark,
-            onTap: () => _shareImage(context),
+            onTap: () {
+              if (!isPro) {
+                _openPaywall();
+                return;
+              }
+              _shareImage(context);
+            },
           ),
         ),
         SizedBox(width: 12.w),
@@ -350,7 +594,13 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
             label: l10n.download,
             icon: Icons.download,
             isDark: isDark,
-            onTap: () => _saveImageToGallery(context),
+            onTap: () {
+              if (!isPro) {
+                _openPaywall();
+                return;
+              }
+              _saveImageToGallery(context);
+            },
           ),
         ),
       ],
@@ -464,7 +714,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
             MaterialPageRoute(
               builder: (_) => const ProAccessScreen(
                 nextScreen: HomeShell(),
-                showInterstitialOnClose: true,
+                showInterstitialOnClose: false,
               ),
             ),
           );

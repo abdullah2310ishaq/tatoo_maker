@@ -73,7 +73,7 @@ class OnboardingHeader extends StatelessWidget {
             ),
             child: FractionallySizedBox(
               alignment: Alignment.centerLeft,
-              widthFactor: currentStep / 5,
+              widthFactor: currentStep / 4,
               child: Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFFFE8B3A), // Orange accent

@@ -102,8 +102,12 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
 
     final rc = context.watch<RemoteConfigService>();
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    final shouldShowBanner = !isPro && rc.tattooIdeaShowBanner;
-    final shouldShowNative = !isPro && rc.tattooIdeaShowNative;
+    final canShowBanner = !isPro && rc.tattooIdeaShowBanner;
+    final canShowNative = !isPro && rc.tattooIdeaShowNative;
+
+    // Priority: if both are enabled, show Native only.
+    final shouldShowNative = canShowNative;
+    final shouldShowBanner = canShowBanner && !canShowNative;
 
     // If Remote Config/Pro disables ads while we previously marked them visible,
     // reset state after this frame so the "no ads" layout has no gaps.
@@ -130,7 +134,7 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 OnboardingHeader(
-                  currentStep: 4,
+                  currentStep: 3,
                   onBack: widget.onBack,
                   trailing: Padding(
                     padding: EdgeInsets.only(top: 6.h),
