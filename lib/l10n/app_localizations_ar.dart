@@ -8,6 +8,10 @@ import 'app_localizations.dart';
 class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
+    @override
+  String get buyPremiumToAddToFavourites =>
+      'اشتري النسخة الممتازة لإضافة الوشم إلى المفضلة';
+
   @override
   String get skip => 'تخطي';
 
@@ -662,10 +666,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
     return 'الخطوة $currentStepString/4';
   }
-
-  @override
-  String get buyPremiumToAddToFavourites =>
-      'اشترِ بريميوم لإضافة إلى المفضلة';
 
   @override
   String get onboardingGetStarted => 'ابدأ';
