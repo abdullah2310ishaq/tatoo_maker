@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UsageLimitProvider extends ChangeNotifier {
-  static const int freeGenerationLimit = 2;
+  static const int freeGenerationLimit = 10;
   // for premium version make it true abdullah sb
 
   static const bool forceProForTesting = false;

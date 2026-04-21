@@ -124,8 +124,9 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
   }
 
   Widget _buildLockedPaywallCard(bool isDark) {
-    final paywallAssetPath =
-        isDark ? _paywallDarkAssetPath : _paywallLightAssetPath;
+    final paywallAssetPath = isDark
+        ? _paywallDarkAssetPath
+        : _paywallLightAssetPath;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -332,6 +333,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                       isDark,
                       l10n,
                       isPro: isPro,
+                      isLocked: isLocked,
                     ),
                   ],
                 ),
@@ -347,9 +349,9 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     BuildContext context,
     bool isDark,
     bool isFavorited,
-    bool isLoadingFavorite,
-    {required bool isLocked}
-  ) {
+    bool isLoadingFavorite, {
+    required bool isLocked,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       child: Row(
@@ -400,7 +402,9 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
               if (isLocked) {
                 AppToast.show(
                   context,
-                  message: AppLocalizations.of(context)!.buyPremiumToAddToFavourites,
+                  message: AppLocalizations.of(
+                    context,
+                  )!.buyPremiumToAddToFavourites,
                   isSuccess: false,
                 );
                 return;
@@ -416,11 +420,12 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
   Widget _buildMainImage(
     BuildContext context,
     bool isDark,
-    AppLocalizations l10n,
-    {required bool isLocked}
-  ) {
-    final watermarkAssetPath =
-        isDark ? _watermarkDarkAssetPath : _watermarkLightAssetPath;
+    AppLocalizations l10n, {
+    required bool isLocked,
+  }) {
+    final watermarkAssetPath = isDark
+        ? _watermarkDarkAssetPath
+        : _watermarkLightAssetPath;
 
     final imageBytes = widget.generatedImageBytes;
     if (imageBytes == null) {
@@ -434,7 +439,8 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                 opacity: 0.35,
                 child: Image.asset(
                   watermarkAssetPath,
-                  width: 320.w,
+                  width: 520.w,
+                  height: 320.h,
                   fit: BoxFit.contain,
                   filterQuality: FilterQuality.high,
                 ),
@@ -449,9 +455,11 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final watermarkWidth = (constraints.maxWidth * 0.95).clamp(160.0, 320.0);
-        final leftPad = (constraints.maxWidth * 0.06).clamp(12.0, 20.0);
-        final bottom = constraints.maxHeight * 0.1;
+        final watermarkWidth = (constraints.maxWidth * 1.8).clamp(360.0, 800.0);
+        final watermarkHeight = (watermarkWidth * 0.55).clamp(140.0, 320.0);
+        // Stable overlay placement across devices:
+        // place watermark on top of the generated image area (upper-center).
+        final top = (constraints.maxHeight * 0.10).clamp(12.0, 180.0);
 
         return Stack(
           children: [
@@ -465,17 +473,22 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
               ),
             ),
             if (!context.watch<UsageLimitProvider>().isProUnlocked)
-              Positioned(
-                left: leftPad,
-                bottom: bottom,
+              Positioned.fill(
                 child: IgnorePointer(
-                  child: Opacity(
-                    opacity: 0.35,
-                    child: Image.asset(
-                      watermarkAssetPath,
-                      width: watermarkWidth,
-                      fit: BoxFit.contain,
-                      filterQuality: FilterQuality.high,
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: top),
+                      child: Opacity(
+                        opacity: 0.35,
+                        child: Image.asset(
+                          watermarkAssetPath,
+                          width: watermarkWidth,
+                          height: watermarkHeight,
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -523,14 +536,15 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
   Widget _buildVirtualTryOnButton(
     BuildContext context,
     bool isDark,
-    AppLocalizations l10n,
-    {required bool isPro}
-  ) {
+    AppLocalizations l10n, {
+    required bool isPro,
+  }) {
     return SizedBox(
       width: double.infinity,
       height: 56.h,
       child: ElevatedButton(
         onPressed: () {
+          // Virtual Try On is a premium feature (even for first-time users).
           if (!isPro) {
             _openPaywall();
             return;
@@ -569,9 +583,10 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
   Widget _buildSecondaryButtons(
     BuildContext context,
     bool isDark,
-    AppLocalizations l10n,
-    {required bool isPro}
-  ) {
+    AppLocalizations l10n, {
+    required bool isPro,
+    required bool isLocked,
+  }) {
     return Row(
       children: [
         Expanded(
@@ -580,7 +595,8 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
             icon: Icons.share,
             isDark: isDark,
             onTap: () {
-              if (!isPro) {
+              // Share is available for free users until the usage limit is reached.
+              if (isLocked) {
                 _openPaywall();
                 return;
               }
@@ -595,7 +611,9 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
             icon: Icons.download,
             isDark: isDark,
             onTap: () {
-              if (!isPro) {
+              // If free limit is exceeded -> paywall only.
+              // If not exceeded -> allow download; paywall is shown after download in `_saveImageToGallery`.
+              if (isLocked) {
                 _openPaywall();
                 return;
               }

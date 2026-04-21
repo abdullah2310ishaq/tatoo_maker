@@ -42,54 +42,10 @@ class ResultScreen extends StatefulWidget {
 class _ResultScreenState extends State<ResultScreen> {
   bool _didAutoShowPaywall = false;
   bool _didShowPaywallAfterDownload = false;
+  bool _didShowLimitPaywall = false;
   static const String _watermarkLightAssetPath = 'assets/watermark_light.png';
   static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
-  static const String _blurAssetPath = 'assets/asset_blur.png';
-  static const String _paywallLightAssetPath = 'assets/paywall_light.png';
-  static const String _paywallDarkAssetPath = 'assets/paywall_dark.png';
   Size? _generatedImageSize;
-
-  Widget _buildLockedBlurCard() {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final isDark = Theme.of(context).brightness == Brightness.dark;
-        final width = (constraints.maxWidth * 0.78).clamp(260.0, 480.0);
-        final height = (constraints.maxHeight * 0.66).clamp(280.0, 560.0);
-        final paywallAssetPath =
-            isDark ? _paywallDarkAssetPath : _paywallLightAssetPath;
-
-        return Center(
-          child: IgnorePointer(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(18.r),
-              child: ImageFiltered(
-                imageFilter: ui.ImageFilter.blur(sigmaX: 9, sigmaY: 9),
-                child: Opacity(
-                  opacity: 0.72,
-                  child: SizedBox(
-                    width: width,
-                    height: height,
-                    child: Image.asset(
-                      paywallAssetPath,
-                      fit: BoxFit.contain,
-                      filterQuality: FilterQuality.high,
-                      errorBuilder: (_, __, ___) {
-                        return Image.asset(
-                          _blurAssetPath,
-                          fit: BoxFit.contain,
-                          filterQuality: FilterQuality.high,
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   @override
   void initState() {
@@ -102,6 +58,26 @@ class _ResultScreenState extends State<ResultScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted || _didAutoShowPaywall) return;
+      final usage = context.read<UsageLimitProvider>();
+
+      // When the free usage limit is exceeded, other modules should show only
+      // the in-app paywall (no blurred/dummy result UI).
+      if (!usage.isProUnlocked &&
+          usage.hasReachedFreeLimit &&
+          !_didShowLimitPaywall) {
+        _didShowLimitPaywall = true;
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (_) => const ProAccessScreen(
+              showInterstitialOnClose: true,
+              goToNextScreenOnClose: true,
+              nextScreen: HomeShell(),
+            ),
+          ),
+        );
+        return;
+      }
+
       if (!widget.showProAccessOnOpen) {
         debugPrint(
           '[ResultScreen] skip auto paywall: showProAccessOnOpen=false',
@@ -112,8 +88,6 @@ class _ResultScreenState extends State<ResultScreen> {
         debugPrint('[ResultScreen] skip auto paywall: hasImage=false');
         return;
       }
-
-      final usage = context.read<UsageLimitProvider>();
       if (usage.isProUnlocked) {
         debugPrint('[ResultScreen] skip auto paywall: user is PRO');
         return;
@@ -125,7 +99,7 @@ class _ResultScreenState extends State<ResultScreen> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
-            showInterstitialOnClose: false,
+            showInterstitialOnClose: true,
             nextScreen: ResultScreen(
               styleName: widget.styleName,
               generatedImageBytes: widget.generatedImageBytes,
@@ -357,7 +331,9 @@ class _ResultScreenState extends State<ResultScreen> {
               if (isLocked) {
                 AppToast.show(
                   context,
-                  message: AppLocalizations.of(context)!.buyPremiumToAddToFavourites,
+                  message: AppLocalizations.of(
+                    context,
+                  )!.buyPremiumToAddToFavourites,
                   isSuccess: false,
                 );
                 return;
@@ -373,35 +349,12 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget _buildMainImage(bool isDark, {required bool isLocked}) {
     final imageBytes = widget.generatedImageBytes;
     if (imageBytes == null) {
-      if (isLocked) {
-        final watermarkAssetPath =
-            isDark ? _watermarkDarkAssetPath : _watermarkLightAssetPath;
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned.fill(child: _buildLockedBlurCard()),
-            IgnorePointer(
-              child: Opacity(
-                opacity: 0.35,
-                child: Image.asset(
-                  watermarkAssetPath,
-                  width: 320.w,
-                  fit: BoxFit.contain,
-                  filterQuality: FilterQuality.high,
-                ),
-              ),
-            ),
-            _buildLockedOverlay(context),
-          ],
-        );
-      }
       return _buildPlaceholder(isDark);
     }
 
     return Consumer<UsageLimitProvider>(
       builder: (context, usage, _) {
         final showWatermark = !usage.isProUnlocked;
-        final shouldLock = isLocked;
 
         return Stack(
           alignment: Alignment.center,
@@ -421,40 +374,47 @@ class _ResultScreenState extends State<ResultScreen> {
                     constraints.maxWidth <= 0 ||
                     constraints.maxHeight <= 0) {
                   // Fallback: position relative to container.
-                  final watermarkAssetPath =
-                      isDark
-                          ? _watermarkDarkAssetPath
-                          : _watermarkLightAssetPath;
-                  final watermarkWidth = (constraints.maxWidth * 0.95).clamp(
-                    160.0,
-                    300.0,
+                  final watermarkAssetPath = isDark
+                      ? _watermarkDarkAssetPath
+                      : _watermarkLightAssetPath;
+                  final watermarkWidth = (constraints.maxWidth * 2.8).clamp(
+                    360.0,
+                    1300.0,
+                  );
+                  final watermarkHeight = (watermarkWidth * 0.75).clamp(
+                    140.0,
+                    560.0,
                   );
                   return Stack(
                     alignment: Alignment.center,
                     children: [
                       Positioned.fill(child: imageWidget),
-                      if (shouldLock)
-                        Positioned.fill(child: _buildLockedBlurCard()),
                       if (showWatermark)
-                        Positioned(
-                          left: 12.w,
-                          top: (constraints.maxHeight * 0.55).clamp(
-                            60.0,
-                            220.0,
-                          ),
+                        Positioned.fill(
                           child: IgnorePointer(
-                            child: Opacity(
-                              opacity: 0.35,
-                              child: Image.asset(
-                                watermarkAssetPath,
-                                width: watermarkWidth,
-                                fit: BoxFit.contain,
-                                filterQuality: FilterQuality.high,
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: (constraints.maxHeight * 0.07).clamp(
+                                    0.0,
+                                    90.0,
+                                  ),
+                                ),
+                                child: Opacity(
+                                  opacity: 0.35,
+                                  child: Image.asset(
+                                    watermarkAssetPath,
+                                    width: watermarkWidth,
+                                    height: watermarkHeight,
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.high,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      if (shouldLock) _buildLockedOverlay(context),
                     ],
                   );
                 }
@@ -467,39 +427,43 @@ class _ResultScreenState extends State<ResultScreen> {
                     : (constraints.maxHeight / imageSize.height);
 
                 final drawnWidth = imageSize.width * scale;
-                final offsetX = (constraints.maxWidth - drawnWidth) / 2;
                 // offsetY is intentionally not needed for fixed bottom placement.
 
-                final watermarkAssetPath =
-                    isDark ? _watermarkDarkAssetPath : _watermarkLightAssetPath;
-                final watermarkWidth = (drawnWidth * 0.95).clamp(160.0, 320.0);
-                final padX = (drawnWidth * 0.06).clamp(12.0, 13.0);
-                // Fixed position: 30% of the available image-area height.
-                final bottom = constraints.maxHeight * 0.1;
+                final watermarkAssetPath = isDark
+                    ? _watermarkDarkAssetPath
+                    : _watermarkLightAssetPath;
+                final watermarkWidth = (drawnWidth * 2.8).clamp(360.0, 1300.0);
+                final watermarkHeight = (watermarkWidth * 0.75).clamp(
+                  140.0,
+                  560.0,
+                );
+                // Stable overlay placement across devices (upper-center).
+                final top = (constraints.maxHeight * 0.07).clamp(0.0, 90.0);
 
                 return Stack(
                   children: [
                     Positioned.fill(child: imageWidget),
-                    if (shouldLock)
-                      Positioned.fill(child: _buildLockedBlurCard()),
                     if (showWatermark)
-                      Positioned(
-                        left: offsetX + padX,
-                        bottom: bottom,
+                      Positioned.fill(
                         child: IgnorePointer(
-                          child: Opacity(
-                            opacity: 0.35,
-                            child: Image.asset(
-                              watermarkAssetPath,
-                              width: watermarkWidth,
-                              fit: BoxFit.contain,
-                              filterQuality: FilterQuality.high,
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: top),
+                              child: Opacity(
+                                opacity: 0.35,
+                                child: Image.asset(
+                                  watermarkAssetPath,
+                                  width: watermarkWidth,
+                                  height: watermarkHeight,
+                                  fit: BoxFit.contain,
+                                  filterQuality: FilterQuality.high,
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    if (shouldLock)
-                      Positioned.fill(child: _buildLockedOverlay(context)),
                   ],
                 );
               },
@@ -510,68 +474,12 @@ class _ResultScreenState extends State<ResultScreen> {
     );
   }
 
-  Widget _buildLockedOverlay(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.only(top: 32.h),
-        child: Container(
-          width: double.infinity,
-          constraints: BoxConstraints(maxWidth: 420.w),
-          padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
-          decoration: BoxDecoration(
-            color: AppColors.darkBackground.withOpacity(0.75),
-            borderRadius: BorderRadius.circular(14.r),
-            border: Border.all(color: const Color(0xFFA6541D), width: 1.2.w),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Buy Premium to Continue',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.textWhite,
-                  fontFamily: 'Inter',
-                ),
-              ),
-              SizedBox(height: 14.h),
-              SizedBox(
-                width: double.infinity,
-                height: 44.h,
-                child: ElevatedButton(
-                  onPressed: _openPaywall,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFA6541D),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: Text(
-                    'Buy Premium',
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textWhite,
-                      fontFamily: 'Inter',
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   void _openPaywall() {
     if (!mounted) return;
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => ProAccessScreen(
+          showInterstitialOnClose: true,
           nextScreen: ResultScreen(
             styleName: widget.styleName,
             generatedImageBytes: widget.generatedImageBytes,
@@ -579,7 +487,6 @@ class _ResultScreenState extends State<ResultScreen> {
             promptText: widget.promptText,
             showProAccessOnOpen: false,
           ),
-          showInterstitialOnClose: false,
         ),
       ),
     );
@@ -902,7 +809,7 @@ class _ResultScreenState extends State<ResultScreen> {
             MaterialPageRoute(
               builder: (_) => const ProAccessScreen(
                 nextScreen: HomeShell(),
-                showInterstitialOnClose: false,
+                showInterstitialOnClose: true,
               ),
             ),
           );
