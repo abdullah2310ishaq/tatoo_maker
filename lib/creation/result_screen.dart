@@ -186,7 +186,7 @@ class _ResultScreenState extends State<ResultScreen> {
     if (!usage.isProUnlocked && usage.hasReachedFreeLimit) {
       AppToast.show(
         context,
-        message: 'Buy Premium to add to favourites',
+        message: AppLocalizations.of(context)!.buyPremiumToAddToFavourites,
         isSuccess: false,
       );
       return;
@@ -357,7 +357,7 @@ class _ResultScreenState extends State<ResultScreen> {
               if (isLocked) {
                 AppToast.show(
                   context,
-                  message: 'Buy Premium to add to favourites',
+                  message: AppLocalizations.of(context)!.buyPremiumToAddToFavourites,
                   isSuccess: false,
                 );
                 return;

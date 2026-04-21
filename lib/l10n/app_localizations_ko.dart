@@ -651,8 +651,11 @@ class AppLocalizationsKo extends AppLocalizations {
       currentStep,
     );
 
-    return '단계 $currentStepString/5';
+    return '단계 $currentStepString/4';
   }
+
+  @override
+  String get buyPremiumToAddToFavourites => '즐겨찾기에 추가하려면 프리미엄을 구매하세요';
 
   @override
   String get onboardingGetStarted => '시작하기';

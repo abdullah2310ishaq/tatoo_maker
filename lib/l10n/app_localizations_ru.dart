@@ -669,8 +669,12 @@ class AppLocalizationsRu extends AppLocalizations {
       currentStep,
     );
 
-    return 'Шаг $currentStepString/5';
+    return 'Шаг $currentStepString/4';
   }
+
+  @override
+  String get buyPremiumToAddToFavourites =>
+      'Купите Premium, чтобы добавить в избранное';
 
   @override
   String get onboardingGetStarted => 'Начать';

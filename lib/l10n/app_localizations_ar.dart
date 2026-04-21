@@ -660,8 +660,12 @@ class AppLocalizationsAr extends AppLocalizations {
       currentStep,
     );
 
-    return 'الخطوة $currentStepString/5';
+    return 'الخطوة $currentStepString/4';
   }
+
+  @override
+  String get buyPremiumToAddToFavourites =>
+      'اشترِ بريميوم لإضافة إلى المفضلة';
 
   @override
   String get onboardingGetStarted => 'ابدأ';

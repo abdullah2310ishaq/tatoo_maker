@@ -1280,6 +1280,12 @@ abstract class AppLocalizations {
   /// **'Step {currentStep}/5'**
   String onboardingStep(int currentStep);
 
+  /// Toast shown when user tries to favorite after free limit.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy Premium to add to favourites'**
+  String get buyPremiumToAddToFavourites;
+
   /// Onboarding next button: text for final step
   ///
   /// In en, this message translates to:

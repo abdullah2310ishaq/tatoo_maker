@@ -649,8 +649,11 @@ class AppLocalizationsJa extends AppLocalizations {
       currentStep,
     );
 
-    return 'ステップ $currentStepString/5';
+    return 'ステップ $currentStepString/4';
   }
+
+  @override
+  String get buyPremiumToAddToFavourites => 'お気に入りに追加するにはプレミアムを購入してください';
 
   @override
   String get onboardingGetStarted => '始める';

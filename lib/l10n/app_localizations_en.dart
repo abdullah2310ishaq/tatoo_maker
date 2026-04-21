@@ -663,8 +663,11 @@ class AppLocalizationsEn extends AppLocalizations {
       currentStep,
     );
 
-    return 'Step $currentStepString/5';
+    return 'Step $currentStepString/4';
   }
+
+  @override
+  String get buyPremiumToAddToFavourites => 'Buy Premium to add to favourites';
 
   @override
   String get onboardingGetStarted => 'Get Started';

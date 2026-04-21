@@ -643,8 +643,11 @@ class AppLocalizationsZh extends AppLocalizations {
       currentStep,
     );
 
-    return '步骤 $currentStepString/5';
+    return '步骤 $currentStepString/4';
   }
+
+  @override
+  String get buyPremiumToAddToFavourites => '购买高级版以添加到收藏夹';
 
   @override
   String get onboardingGetStarted => '开始';

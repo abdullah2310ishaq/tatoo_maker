@@ -669,8 +669,12 @@ class AppLocalizationsPt extends AppLocalizations {
       currentStep,
     );
 
-    return 'Passo $currentStepString/5';
+    return 'Passo $currentStepString/4';
   }
+
+  @override
+  String get buyPremiumToAddToFavourites =>
+      'Compre Premium para adicionar aos favoritos';
 
   @override
   String get onboardingGetStarted => 'Começar';
