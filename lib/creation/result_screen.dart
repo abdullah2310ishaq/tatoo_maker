@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'dart:io';
 import 'dart:convert';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -41,10 +42,14 @@ class ResultScreen extends StatefulWidget {
 class _ResultScreenState extends State<ResultScreen> {
   bool _didAutoShowPaywall = false;
   bool _didShowPaywallAfterDownload = false;
+  static const String _watermarkAssetPath = 'assets/watermark.png';
+  static const String _blurAssetPath = 'assets/asset_blur.png';
+  Size? _generatedImageSize;
 
   @override
   void initState() {
     super.initState();
+    _decodeGeneratedImageSize();
     debugPrint(
       '[ResultScreen] opened (hasImage=${widget.generatedImageBytes != null}, '
       'showProAccessOnOpen=${widget.showProAccessOnOpen})',
@@ -75,7 +80,7 @@ class _ResultScreenState extends State<ResultScreen> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
-            showInterstitialOnClose: true,
+            showInterstitialOnClose: false,
             nextScreen: ResultScreen(
               styleName: widget.styleName,
               generatedImageBytes: widget.generatedImageBytes,
@@ -87,6 +92,37 @@ class _ResultScreenState extends State<ResultScreen> {
         ),
       );
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant ResultScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.generatedImageBytes != widget.generatedImageBytes) {
+      _decodeGeneratedImageSize();
+    }
+  }
+
+  void _decodeGeneratedImageSize() {
+    final bytes = widget.generatedImageBytes;
+    if (bytes == null) {
+      _generatedImageSize = null;
+      return;
+    }
+
+    try {
+      ui.decodeImageFromList(bytes, (image) {
+        if (!mounted) return;
+        setState(() {
+          _generatedImageSize = Size(
+            image.width.toDouble(),
+            image.height.toDouble(),
+          );
+        });
+      });
+    } catch (_) {
+      // If decoding fails, we still show watermark using fallback positioning.
+      _generatedImageSize = null;
+    }
   }
 
   Map<String, dynamic> _buildEntry() {
@@ -127,6 +163,8 @@ class _ResultScreenState extends State<ResultScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final favoritesProvider = Provider.of<FavoritesProvider>(context);
+    final usage = context.watch<UsageLimitProvider>();
+    final isLocked = !usage.isProUnlocked && usage.hasReachedFreeLimit;
     final entry = _buildEntry();
     final isFavorited = favoritesProvider.isFavorited(entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
@@ -149,7 +187,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: _buildMainImage(isDark),
+                    child: _buildMainImage(isDark, isLocked: isLocked),
                   ),
                 ),
               ),
@@ -163,9 +201,19 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
                 child: Column(
                   children: [
-                    _buildVirtualTryOnButton(context, isDark, l10n),
+                    _buildVirtualTryOnButton(
+                      context,
+                      isDark,
+                      l10n,
+                      isLocked: isLocked,
+                    ),
                     SizedBox(height: 12.h),
-                    _buildSecondaryButtons(context, isDark, l10n),
+                    _buildSecondaryButtons(
+                      context,
+                      isDark,
+                      l10n,
+                      isLocked: isLocked,
+                    ),
                   ],
                 ),
               ),
@@ -241,18 +289,208 @@ class _ResultScreenState extends State<ResultScreen> {
     );
   }
 
-  Widget _buildMainImage(bool isDark) {
-    if (widget.generatedImageBytes != null) {
-      // Show image directly on background (transparent background)
-      return Image.memory(
-        widget.generatedImageBytes!,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return _buildPlaceholder(isDark);
-        },
-      );
-    }
-    return _buildPlaceholder(isDark);
+  Widget _buildMainImage(bool isDark, {required bool isLocked}) {
+    final imageBytes = widget.generatedImageBytes;
+    if (imageBytes == null) return _buildPlaceholder(isDark);
+
+    return Consumer<UsageLimitProvider>(
+      builder: (context, usage, _) {
+        final showWatermark = !usage.isProUnlocked;
+        final shouldLock = isLocked;
+
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final imageWidget = Image.memory(
+                  imageBytes,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) {
+                    return _buildPlaceholder(isDark);
+                  },
+                );
+
+                final imageSize = _generatedImageSize;
+                if (imageSize == null ||
+                    constraints.maxWidth <= 0 ||
+                    constraints.maxHeight <= 0) {
+                  // Fallback: position relative to container.
+                  final watermarkWidth = (constraints.maxWidth * 0.95).clamp(
+                    160.0,
+                    300.0,
+                  );
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Positioned.fill(child: imageWidget),
+                      if (shouldLock)
+                        Positioned.fill(
+                          child: IgnorePointer(
+                            child: Opacity(
+                              opacity: 0.95,
+                              child: Image.asset(
+                                _blurAssetPath,
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (showWatermark)
+                        Positioned(
+                          left: 12.w,
+                          top: (constraints.maxHeight * 0.55).clamp(
+                            60.0,
+                            220.0,
+                          ),
+                          child: IgnorePointer(
+                            child: Opacity(
+                              opacity: 0.35,
+                              child: Image.asset(
+                                _watermarkAssetPath,
+                                width: watermarkWidth,
+                                fit: BoxFit.contain,
+                                filterQuality: FilterQuality.high,
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (shouldLock) _buildLockedOverlay(context),
+                    ],
+                  );
+                }
+
+                // Exact rect where BoxFit.contain draws the image.
+                final scale =
+                    (constraints.maxWidth / imageSize.width) <
+                        (constraints.maxHeight / imageSize.height)
+                    ? (constraints.maxWidth / imageSize.width)
+                    : (constraints.maxHeight / imageSize.height);
+
+                final drawnWidth = imageSize.width * scale;
+                final offsetX = (constraints.maxWidth - drawnWidth) / 2;
+                // offsetY is intentionally not needed for fixed bottom placement.
+
+                final watermarkWidth = (drawnWidth * 0.95).clamp(160.0, 320.0);
+                final padX = (drawnWidth * 0.06).clamp(12.0, 13.0);
+                // Fixed position: 30% of the available image-area height.
+                final bottom = constraints.maxHeight * 0.1;
+
+                return Stack(
+                  children: [
+                    Positioned.fill(child: imageWidget),
+                    if (shouldLock)
+                      Positioned.fill(
+                        child: IgnorePointer(
+                          child: Opacity(
+                            opacity: 0.95,
+                            child: Image.asset(
+                              _blurAssetPath,
+                              fit: BoxFit.cover,
+                              filterQuality: FilterQuality.high,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (showWatermark)
+                      Positioned(
+                        left: offsetX + padX,
+                        bottom: bottom,
+                        child: IgnorePointer(
+                          child: Opacity(
+                            opacity: 0.35,
+                            child: Image.asset(
+                              _watermarkAssetPath,
+                              width: watermarkWidth,
+                              fit: BoxFit.contain,
+                              filterQuality: FilterQuality.high,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (shouldLock)
+                      Positioned.fill(child: _buildLockedOverlay(context)),
+                  ],
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildLockedOverlay(BuildContext context) {
+    return Center(
+      child: Container(
+        width: double.infinity,
+        constraints: BoxConstraints(maxWidth: 420.w),
+        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
+        decoration: BoxDecoration(
+          color: AppColors.darkBackground.withOpacity(0.75),
+          borderRadius: BorderRadius.circular(14.r),
+          border: Border.all(color: const Color(0xFFA6541D), width: 1.2.w),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Buy Premium to Continue',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w700,
+                color: AppColors.textWhite,
+                fontFamily: 'Inter',
+              ),
+            ),
+            SizedBox(height: 14.h),
+            SizedBox(
+              width: double.infinity,
+              height: 44.h,
+              child: ElevatedButton(
+                onPressed: _openPaywall,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFA6541D),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  elevation: 0,
+                ),
+                child: Text(
+                  'Buy Premium',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textWhite,
+                    fontFamily: 'Inter',
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _openPaywall() {
+    if (!mounted) return;
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => ProAccessScreen(
+          nextScreen: ResultScreen(
+            styleName: widget.styleName,
+            generatedImageBytes: widget.generatedImageBytes,
+            variationImages: widget.variationImages,
+            promptText: widget.promptText,
+            showProAccessOnOpen: false,
+          ),
+          showInterstitialOnClose: false,
+        ),
+      ),
+    );
   }
 
   Widget _buildPlaceholder(bool isDark) {
@@ -389,13 +627,18 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget _buildVirtualTryOnButton(
     BuildContext context,
     bool isDark,
-    AppLocalizations l10n,
-  ) {
+    AppLocalizations l10n, {
+    required bool isLocked,
+  }) {
     return SizedBox(
       width: double.infinity,
       height: 56.h,
       child: ElevatedButton(
         onPressed: () {
+          if (isLocked) {
+            _openPaywall();
+            return;
+          }
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -429,8 +672,9 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget _buildSecondaryButtons(
     BuildContext context,
     bool isDark,
-    AppLocalizations l10n,
-  ) {
+    AppLocalizations l10n, {
+    required bool isLocked,
+  }) {
     return Row(
       children: [
         Expanded(
@@ -439,6 +683,10 @@ class _ResultScreenState extends State<ResultScreen> {
             icon: Icons.share,
             isDark: isDark,
             onTap: () {
+              if (isLocked) {
+                _openPaywall();
+                return;
+              }
               _shareImage(context, l10n); // Direct share, no bottom sheet
             },
           ),
@@ -450,6 +698,10 @@ class _ResultScreenState extends State<ResultScreen> {
             icon: Icons.download,
             isDark: isDark,
             onTap: () {
+              if (isLocked) {
+                _openPaywall();
+                return;
+              }
               _saveImageToGallery(context, l10n);
             },
           ),
@@ -558,7 +810,7 @@ class _ResultScreenState extends State<ResultScreen> {
             MaterialPageRoute(
               builder: (_) => const ProAccessScreen(
                 nextScreen: HomeShell(),
-                showInterstitialOnClose: true,
+                showInterstitialOnClose: false,
               ),
             ),
           );

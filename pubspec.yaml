@@ -97,6 +97,8 @@ flutter:
   assets:
     - assets/in_app/
     - assets/language/
+    - assets/asset_blur.png
+    - assets/watermark.png
     - assets/splash/splash_two.png
     - assets/splash/splash_four.png
     - assets/splash/owl.png
