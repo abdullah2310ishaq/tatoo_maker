@@ -796,7 +796,7 @@
   "@styleWolf": {
     "description": "Tattoo style label: Wolf"
   },
-  "onboardingStep": "步骤 {currentStep}/5",
+  "onboardingStep": "步骤 {currentStep}/4",
   "@onboardingStep": {
     "description": "Onboarding header: step indicator text",
     "placeholders": {
@@ -805,6 +805,10 @@
         "format": "compact"
       }
     }
+  },
+  "buyPremiumToAddToFavourites": "购买高级版以添加到收藏夹",
+  "@buyPremiumToAddToFavourites": {
+    "description": "Toast shown when user tries to favorite after free limit"
   },
   "onboardingGetStarted": "开始",
   "@onboardingGetStarted": {

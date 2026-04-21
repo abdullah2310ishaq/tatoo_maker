@@ -812,7 +812,7 @@
   "@styleWolf": {
     "description": "Tattoo style label: Wolf"
   },
-  "onboardingStep": "Step {currentStep}/5",
+  "onboardingStep": "Step {currentStep}/4",
   "@onboardingStep": {
     "description": "Onboarding header: step indicator text",
     "placeholders": {
@@ -821,6 +821,10 @@
         "format": "compact"
       }
     }
+  },
+  "buyPremiumToAddToFavourites": "Buy Premium to add to favourites",
+  "@buyPremiumToAddToFavourites": {
+    "description": "Toast shown when user tries to favorite after free limit"
   },
   "onboardingGetStarted": "Get Started",
   "@onboardingGetStarted": {

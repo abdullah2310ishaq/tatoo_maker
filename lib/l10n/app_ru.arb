@@ -796,7 +796,7 @@
   "@styleWolf": {
     "description": "Tattoo style label: Wolf"
   },
-  "onboardingStep": "Шаг {currentStep}/5",
+  "onboardingStep": "Шаг {currentStep}/4",
   "@onboardingStep": {
     "description": "Onboarding header: step indicator text",
     "placeholders": {
@@ -805,6 +805,10 @@
         "format": "compact"
       }
     }
+  },
+  "buyPremiumToAddToFavourites": "Купите Premium, чтобы добавить в избранное",
+  "@buyPremiumToAddToFavourites": {
+    "description": "Toast shown when user tries to favorite after free limit"
   },
   "onboardingGetStarted": "Начать",
   "@onboardingGetStarted": {

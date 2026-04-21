@@ -796,7 +796,7 @@
   "@styleWolf": {
     "description": "Tattoo style label: Wolf"
   },
-  "onboardingStep": "단계 {currentStep}/5",
+  "onboardingStep": "단계 {currentStep}/4",
   "@onboardingStep": {
     "description": "Onboarding header: step indicator text",
     "placeholders": {
@@ -805,6 +805,10 @@
         "format": "compact"
       }
     }
+  },
+  "buyPremiumToAddToFavourites": "즐겨찾기에 추가하려면 프리미엄을 구매하세요",
+  "@buyPremiumToAddToFavourites": {
+    "description": "Toast shown when user tries to favorite after free limit"
   },
   "onboardingGetStarted": "시작하기",
   "@onboardingGetStarted": {

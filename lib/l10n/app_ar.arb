@@ -812,7 +812,7 @@
   "@styleWolf": {
     "description": "Tattoo style label: Wolf"
   },
-  "onboardingStep": "الخطوة {currentStep}/5",
+  "onboardingStep": "الخطوة {currentStep}/4",
   "@onboardingStep": {
     "description": "Onboarding header: step indicator text",
     "placeholders": {
@@ -821,6 +821,10 @@
         "format": "compact"
       }
     }
+  },
+  "buyPremiumToAddToFavourites": "اشترِ بريميوم لإضافة إلى المفضلة",
+  "@buyPremiumToAddToFavourites": {
+    "description": "Toast shown when user tries to favorite after free limit"
   },
   "onboardingGetStarted": "ابدأ",
   "@onboardingGetStarted": {

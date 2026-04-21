@@ -1277,10 +1277,10 @@ abstract class AppLocalizations {
   /// Onboarding header: step indicator text
   ///
   /// In en, this message translates to:
-  /// **'Step {currentStep}/5'**
+  /// **'Step {currentStep}/4'**
   String onboardingStep(int currentStep);
 
-  /// Toast shown when user tries to favorite after free limit.
+  /// Toast shown when user tries to favorite after free limit
   ///
   /// In en, this message translates to:
   /// **'Buy Premium to add to favourites'**
