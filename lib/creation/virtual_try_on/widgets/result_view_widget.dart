@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
+import '../../../providers/usage_limit_provider.dart';
 
 class ResultViewWidget extends StatefulWidget {
   final File? bodyPartImage;
@@ -39,6 +41,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
   bool _didAutoCenter = false;
   Offset? _panStartPosition;
   Offset? _panStartLocal;
+  static const String _watermarkAssetPath = 'assets/watermark.png';
 
   double _scaleStart = 1.0;
   double _rotationStart = 0.0;
@@ -232,11 +235,36 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
                         scale: widget.tattooScale,
                         child: Transform.rotate(
                           angle: widget.tattooRotation,
-                          child: Image.memory(
-                            widget.tattooImageBytes!,
-                            width: baseTattooSize,
-                            height: baseTattooSize,
-                            fit: BoxFit.contain,
+                          child: Consumer<UsageLimitProvider>(
+                            builder: (context, usage, _) {
+                              final showWatermark = !usage.isProUnlocked;
+                              return Stack(
+                                children: [
+                                  Image.memory(
+                                    widget.tattooImageBytes!,
+                                    width: baseTattooSize,
+                                    height: baseTattooSize,
+                                    fit: BoxFit.contain,
+                                  ),
+                                  if (showWatermark)
+                                    Positioned(
+                                      left: 10,
+                                      bottom: 70,
+                                      child: IgnorePointer(
+                                        child: Opacity(
+                                          opacity: 0.35,
+                                          child: Image.asset(
+                                            _watermarkAssetPath,
+                                            width: baseTattooSize * 0.85,
+                                            fit: BoxFit.contain,
+                                            filterQuality: FilterQuality.high,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              );
+                            },
                           ),
                         ),
                       ),
