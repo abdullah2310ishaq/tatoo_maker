@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
-import '../../home_shell.dart';
-import '../../pro_access_screen.dart';
+import '../../creation/result_screen.dart';
 import '../../providers/usage_limit_provider.dart';
 import '../../utils/colors.dart';
+import '../../pro_access_screen.dart';
 import '../flower_loading_screen.dart';
 
 /// Generate button widget. Disabled when [enabled] is false (e.g. empty name).
@@ -34,8 +34,17 @@ class GenerateButton extends StatelessWidget {
                   if (!canStartGeneration) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) =>
-                            const ProAccessScreen(nextScreen: HomeShell()),
+                        builder: (_) => ProAccessScreen(
+                          showInterstitialOnClose: true,
+                          goToNextScreenOnClose: true,
+                          nextScreen: const ResultScreen(
+                            styleName: '',
+                            generatedImageBytes: null,
+                            variationImages: null,
+                            promptText: null,
+                            showProAccessOnOpen: false,
+                          ),
+                        ),
                       ),
                     );
                     return;

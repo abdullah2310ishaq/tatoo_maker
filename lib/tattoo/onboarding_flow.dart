@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../creation/loading_screen.dart';
-import '../home_shell.dart';
-import '../pro_access_screen.dart';
+import '../creation/result_screen.dart';
 import '../providers/usage_limit_provider.dart';
+import '../pro_access_screen.dart';
 import 'onboarding/utils/zodiac_utils.dart';
 import 'onboarding/pages/step_name_page.dart';
 import 'onboarding/pages/step_birthday_page.dart';
@@ -157,7 +157,17 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     if (!canStartGeneration) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+          builder: (_) => ProAccessScreen(
+            showInterstitialOnClose: true,
+            goToNextScreenOnClose: true,
+            nextScreen: const ResultScreen(
+              styleName: '',
+              generatedImageBytes: null,
+              variationImages: null,
+              promptText: null,
+              showProAccessOnOpen: false,
+            ),
+          ),
         ),
       );
       return;

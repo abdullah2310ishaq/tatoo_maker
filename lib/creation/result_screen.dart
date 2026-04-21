@@ -46,6 +46,38 @@ class _ResultScreenState extends State<ResultScreen> {
   static const String _blurAssetPath = 'assets/asset_blur.png';
   Size? _generatedImageSize;
 
+  Widget _buildLockedBlurCard() {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = (constraints.maxWidth * 0.78).clamp(260.0, 480.0);
+        final height = (constraints.maxHeight * 0.66).clamp(280.0, 560.0);
+
+        return Center(
+          child: IgnorePointer(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(18.r),
+              child: ImageFiltered(
+                imageFilter: ui.ImageFilter.blur(sigmaX: 9, sigmaY: 9),
+                child: Opacity(
+                  opacity: 0.72,
+                  child: SizedBox(
+                    width: width,
+                    height: height,
+                    child: Image.asset(
+                      _blurAssetPath,
+                      fit: BoxFit.contain,
+                      filterQuality: FilterQuality.high,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -80,7 +112,7 @@ class _ResultScreenState extends State<ResultScreen> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
-            showInterstitialOnClose: false,
+            showInterstitialOnClose: true,
             nextScreen: ResultScreen(
               styleName: widget.styleName,
               generatedImageBytes: widget.generatedImageBytes,
@@ -181,7 +213,13 @@ class _ResultScreenState extends State<ResultScreen> {
           child: Column(
             children: [
               // Header: Close button + Title + Favorite
-              _buildHeader(context, isDark, isFavorited, isLoadingFavorite),
+              _buildHeader(
+                context,
+                isDark,
+                isFavorited,
+                isLoadingFavorite,
+                isLocked: isLocked,
+              ),
               // Main image display - only one big image in center
               Expanded(
                 child: Center(
@@ -228,8 +266,9 @@ class _ResultScreenState extends State<ResultScreen> {
     BuildContext context,
     bool isDark,
     bool isFavorited,
-    bool isLoadingFavorite,
-  ) {
+    bool isLoadingFavorite, {
+    required bool isLocked,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       child: Row(
@@ -242,7 +281,16 @@ class _ResultScreenState extends State<ResultScreen> {
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,
               size: 28.sp,
             ),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              if (isLocked) {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => const HomeShell()),
+                  (route) => false,
+                );
+                return;
+              }
+              Navigator.of(context).pop();
+            },
           ),
           // Title (centered) – localized so it updates when app language changes
           Expanded(
@@ -291,7 +339,29 @@ class _ResultScreenState extends State<ResultScreen> {
 
   Widget _buildMainImage(bool isDark, {required bool isLocked}) {
     final imageBytes = widget.generatedImageBytes;
-    if (imageBytes == null) return _buildPlaceholder(isDark);
+    if (imageBytes == null) {
+      if (isLocked) {
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned.fill(child: _buildLockedBlurCard()),
+            IgnorePointer(
+              child: Opacity(
+                opacity: 0.35,
+                child: Image.asset(
+                  _watermarkAssetPath,
+                  width: 320.w,
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+            _buildLockedOverlay(context),
+          ],
+        );
+      }
+      return _buildPlaceholder(isDark);
+    }
 
     return Consumer<UsageLimitProvider>(
       builder: (context, usage, _) {
@@ -325,18 +395,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     children: [
                       Positioned.fill(child: imageWidget),
                       if (shouldLock)
-                        Positioned.fill(
-                          child: IgnorePointer(
-                            child: Opacity(
-                              opacity: 0.95,
-                              child: Image.asset(
-                                _blurAssetPath,
-                                fit: BoxFit.cover,
-                                filterQuality: FilterQuality.high,
-                              ),
-                            ),
-                          ),
-                        ),
+                        Positioned.fill(child: _buildLockedBlurCard()),
                       if (showWatermark)
                         Positioned(
                           left: 12.w,
@@ -381,18 +440,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   children: [
                     Positioned.fill(child: imageWidget),
                     if (shouldLock)
-                      Positioned.fill(
-                        child: IgnorePointer(
-                          child: Opacity(
-                            opacity: 0.95,
-                            child: Image.asset(
-                              _blurAssetPath,
-                              fit: BoxFit.cover,
-                              filterQuality: FilterQuality.high,
-                            ),
-                          ),
-                        ),
-                      ),
+                      Positioned.fill(child: _buildLockedBlurCard()),
                     if (showWatermark)
                       Positioned(
                         left: offsetX + padX,
@@ -423,53 +471,56 @@ class _ResultScreenState extends State<ResultScreen> {
 
   Widget _buildLockedOverlay(BuildContext context) {
     return Center(
-      child: Container(
-        width: double.infinity,
-        constraints: BoxConstraints(maxWidth: 420.w),
-        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
-        decoration: BoxDecoration(
-          color: AppColors.darkBackground.withOpacity(0.75),
-          borderRadius: BorderRadius.circular(14.r),
-          border: Border.all(color: const Color(0xFFA6541D), width: 1.2.w),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Buy Premium to Continue',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textWhite,
-                fontFamily: 'Inter',
-              ),
-            ),
-            SizedBox(height: 14.h),
-            SizedBox(
-              width: double.infinity,
-              height: 44.h,
-              child: ElevatedButton(
-                onPressed: _openPaywall,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFA6541D),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  elevation: 0,
-                ),
-                child: Text(
-                  'Buy Premium',
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textWhite,
-                    fontFamily: 'Inter',
-                  ),
+      child: Padding(
+        padding: EdgeInsets.only(top: 32.h),
+        child: Container(
+          width: double.infinity,
+          constraints: BoxConstraints(maxWidth: 420.w),
+          padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
+          decoration: BoxDecoration(
+            color: AppColors.darkBackground.withOpacity(0.75),
+            borderRadius: BorderRadius.circular(14.r),
+            border: Border.all(color: const Color(0xFFA6541D), width: 1.2.w),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Buy Premium to Continue',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textWhite,
+                  fontFamily: 'Inter',
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 14.h),
+              SizedBox(
+                width: double.infinity,
+                height: 44.h,
+                child: ElevatedButton(
+                  onPressed: _openPaywall,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFA6541D),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text(
+                    'Buy Premium',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textWhite,
+                      fontFamily: 'Inter',
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -487,7 +538,7 @@ class _ResultScreenState extends State<ResultScreen> {
             promptText: widget.promptText,
             showProAccessOnOpen: false,
           ),
-          showInterstitialOnClose: false,
+          showInterstitialOnClose: true,
         ),
       ),
     );
@@ -810,7 +861,7 @@ class _ResultScreenState extends State<ResultScreen> {
             MaterialPageRoute(
               builder: (_) => const ProAccessScreen(
                 nextScreen: HomeShell(),
-                showInterstitialOnClose: false,
+                showInterstitialOnClose: true,
               ),
             ),
           );

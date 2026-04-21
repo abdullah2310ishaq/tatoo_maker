@@ -16,11 +16,13 @@ import 'utils/colors.dart';
 class ProAccessScreen extends StatefulWidget {
   final Widget nextScreen;
   final bool showInterstitialOnClose;
+  final bool goToNextScreenOnClose;
 
   const ProAccessScreen({
     super.key,
     required this.nextScreen,
     this.showInterstitialOnClose = false,
+    this.goToNextScreenOnClose = false,
   });
 
   @override
@@ -117,6 +119,10 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     }
 
     final navigator = Navigator.of(context);
+    if (widget.goToNextScreenOnClose) {
+      _goNext();
+      return;
+    }
     if (navigator.canPop()) {
       navigator.pop();
       return;

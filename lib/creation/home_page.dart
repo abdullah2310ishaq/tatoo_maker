@@ -10,6 +10,7 @@ import 'package:tatoo_maker/utils/colors.dart';
 import '../providers/theme_provider.dart';
 import '../providers/usage_limit_provider.dart';
 import 'loading_screen.dart';
+import 'result_screen.dart';
 import 'models/tattoo_style_item.dart';
 import 'widgets/dream_ink_card.dart';
 import 'widgets/explore_inspiration_section.dart';
@@ -18,6 +19,7 @@ import 'widgets/tattoo_style_section.dart';
 import 'widgets/tutorial_overlay.dart';
 import '../utils/toast.dart';
 import '../utils/route_observer.dart';
+import '../pro_access_screen.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
@@ -490,14 +492,6 @@ class _HomePageState extends State<HomePage> with RouteAware {
 
   Future<void> _onGenerateTap() async {
     if (!_canGenerate) return;
-    final usageLimitProvider = context.read<UsageLimitProvider>();
-    final canStartGeneration = await usageLimitProvider.canStartGeneration();
-    if (!mounted) return;
-    if (!canStartGeneration) {
-      widget.onProTap?.call();
-      return;
-    }
-
     final l10n = AppLocalizations.of(context)!;
     if (_selectedStyleIndex == null) {
       AppToast.show(
@@ -508,6 +502,10 @@ class _HomePageState extends State<HomePage> with RouteAware {
       return;
     }
 
+    final usageLimitProvider = context.read<UsageLimitProvider>();
+    final canStartGeneration = await usageLimitProvider.canStartGeneration();
+    if (!mounted) return;
+
     // Close keyboard before navigating away so it won't remain open on return.
     FocusScope.of(context).unfocus();
 
@@ -517,6 +515,25 @@ class _HomePageState extends State<HomePage> with RouteAware {
     final assetPath = selectedStyle?.assetPath;
     final styleName = selectedStyle?.label;
     final promptText = _dreamInkController.text.trim();
+
+    if (!canStartGeneration) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => ProAccessScreen(
+            showInterstitialOnClose: true,
+            goToNextScreenOnClose: true,
+            nextScreen: ResultScreen(
+              styleName: styleName ?? '',
+              generatedImageBytes: null,
+              variationImages: null,
+              promptText: promptText,
+              showProAccessOnOpen: false,
+            ),
+          ),
+        ),
+      );
+      return;
+    }
 
     Navigator.of(context).push(
       MaterialPageRoute(
