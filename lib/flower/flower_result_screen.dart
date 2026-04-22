@@ -273,7 +273,13 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     final favoritesProvider = Provider.of<FavoritesProvider>(context);
     final usage = context.watch<UsageLimitProvider>();
     final isPro = usage.isProUnlocked;
-    final isLocked = !isPro && usage.hasReachedFreeLimit;
+    // Flower rule:
+    // - generated image (even if user hit the free limit): show blur + watermark only
+    // - dummy/locked result (no image): show locked overlay + paywall card
+    final isDummyLocked =
+        !isPro &&
+        usage.hasReachedFreeLimit &&
+        widget.generatedImageBytes == null;
     final entry = _buildEntry();
     final isFavorited = favoritesProvider.isFavorited(entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
@@ -295,7 +301,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                 isDark,
                 isFavorited,
                 isLoadingFavorite,
-                isLocked: isLocked,
+                isLocked: !isPro && usage.hasReachedFreeLimit,
               ),
               // Main image display
               Expanded(
@@ -306,7 +312,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                       context,
                       isDark,
                       l10n,
-                      isLocked: isLocked,
+                      isLocked: isDummyLocked,
                     ),
                   ),
                 ),
@@ -328,12 +334,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                       isPro: isPro,
                     ),
                     SizedBox(height: 12.h),
-                    _buildSecondaryButtons(
-                      context,
-                      isDark,
-                      l10n,
-                      isPro: isPro,
-                    ),
+                    _buildSecondaryButtons(context, isDark, l10n, isPro: isPro),
                   ],
                 ),
               ),
@@ -454,20 +455,50 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final watermarkWidth = (constraints.maxWidth * 1.8).clamp(360.0, 800.0);
-        final watermarkHeight = (watermarkWidth * 0.55).clamp(140.0, 320.0);
+        final watermarkWidth = (constraints.maxWidth * 2.35).clamp(
+          420.0,
+          1100.0,
+        );
+        final watermarkHeight = (watermarkWidth * 0.95).clamp(180.0, 520.0);
         // Stable overlay placement across devices:
         // place watermark on top of the generated image area (upper-center).
-        final top = (constraints.maxHeight * 0.10).clamp(12.0, 180.0);
+        final top = (constraints.maxHeight * 0.15).clamp(60.0, 300.0);
 
         return Stack(
           children: [
             Positioned.fill(
-              child: Image.memory(
-                imageBytes,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  return _buildPlaceholder(isDark, l10n);
+              child: Builder(
+                builder: (context) {
+                  final isProUnlocked = context
+                      .watch<UsageLimitProvider>()
+                      .isProUnlocked;
+
+                  final image = Image.memory(
+                    imageBytes,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return _buildPlaceholder(isDark, l10n);
+                    },
+                  );
+
+                  if (isProUnlocked) return image;
+
+                  // Make the blur clearly visible (same strength as locked UI).
+                  return ClipRect(
+                    child: ImageFiltered(
+                      imageFilter: ui.ImageFilter.blur(
+                        sigmaX: 9.0,
+                        sigmaY: 9.0,
+                      ),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          image,
+                          ColoredBox(color: Colors.black.withOpacity(0.10)),
+                        ],
+                      ),
+                    ),
+                  );
                 },
               ),
             ),

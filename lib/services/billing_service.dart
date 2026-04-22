@@ -4,9 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
-/// Store product IDs.
-/// - tatooweekly: includes 3-day free trial, then recurring billing by store config.
-/// - lifetime: one-time non-consumable purchase.
 const String kProTrial3DaysProductId = 'tatooweekly';
 const String kProLifetimeProductId = 'lifetime';
 
@@ -110,9 +107,18 @@ class BillingService {
 
       _productsById = _buildProductsById(response.productDetails);
 
-      for (final ProductDetails product in response.productDetails) {
+      final countsById = <String, int>{};
+      for (final product in response.productDetails) {
+        countsById[product.id] = (countsById[product.id] ?? 0) + 1;
+      }
+
+      // Log the resolved product per ID (what the app will actually use),
+      // then separately note if Play returned multiple variants for that ID.
+      for (final entry in _productsById.entries) {
+        final product = entry.value;
+        final variants = countsById[product.id] ?? 1;
         _log(
-          'Product loaded => id=${product.id}, title=${product.title}, price=${product.price}, currency=${product.currencyCode}, rawPrice=${product.rawPrice}',
+          'Product resolved => id=${product.id}, variants=$variants, title=${product.title}, price=${product.price}, currency=${product.currencyCode}, rawPrice=${product.rawPrice}',
         );
       }
     } catch (error, stackTrace) {
@@ -130,11 +136,7 @@ class BillingService {
     return _productsById[_toProductId(plan)];
   }
 
-  /// Best-effort display price for UI.
-  ///
-  /// For Android subscriptions, `ProductDetails.price` can reflect a free-trial
-  /// phase or be empty depending on the selected base plan/offer. In that case,
-  /// we derive the first non-free pricing phase and format it.
+
   String? displayPriceForPlan(BillingPlan plan) {
     final details = productForPlan(plan);
     if (details == null) return null;
