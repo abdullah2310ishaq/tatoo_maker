@@ -333,7 +333,6 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                       isDark,
                       l10n,
                       isPro: isPro,
-                      isLocked: isLocked,
                     ),
                   ],
                 ),
@@ -585,7 +584,6 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     bool isDark,
     AppLocalizations l10n, {
     required bool isPro,
-    required bool isLocked,
   }) {
     return Row(
       children: [
@@ -595,8 +593,8 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
             icon: Icons.share,
             isDark: isDark,
             onTap: () {
-              // Share is available for free users until the usage limit is reached.
-              if (isLocked) {
+              // Share is a premium feature (even for first-time users).
+              if (!isPro) {
                 _openPaywall();
                 return;
               }
@@ -611,9 +609,8 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
             icon: Icons.download,
             isDark: isDark,
             onTap: () {
-              // If free limit is exceeded -> paywall only.
-              // If not exceeded -> allow download; paywall is shown after download in `_saveImageToGallery`.
-              if (isLocked) {
+              // Download is a premium feature (even for first-time users).
+              if (!isPro) {
                 _openPaywall();
                 return;
               }

@@ -22,8 +22,19 @@ import 'flower_result_screen.dart';
 /// Loading screen for generating floral tattoo based on name
 class FlowerLoadingScreen extends StatefulWidget {
   final String name;
+  final bool showInterstitialAfterGeneration;
 
-  const FlowerLoadingScreen({super.key, required this.name});
+  const FlowerLoadingScreen({
+    super.key,
+    required this.name,
+    this.showInterstitialAfterGeneration = true,
+  });
+
+  const FlowerLoadingScreen.withInterstitialControl({
+    super.key,
+    required this.name,
+    required this.showInterstitialAfterGeneration,
+  });
 
   @override
   State<FlowerLoadingScreen> createState() => _FlowerLoadingScreenState();
@@ -192,7 +203,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     }
 
     // Show only an interstitial (no paywall) when enabled in Remote Config.
-    if (_generatedImageBytes != null) {
+    if (_generatedImageBytes != null && widget.showInterstitialAfterGeneration) {
       await _maybeShowInterstitialAfterGeneration();
     }
 

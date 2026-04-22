@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/usage_limit_provider.dart';
+import '../../services/admob_ids.dart';
 import '../../utils/colors.dart';
-import '../../home_shell.dart';
 import '../flower_loading_screen.dart';
-import '../../pro_access_screen.dart';
+import '../flower_result_screen.dart';
 
 /// Generate button widget. Disabled when [enabled] is false (e.g. empty name).
 class GenerateButton extends StatelessWidget {
@@ -14,6 +17,46 @@ class GenerateButton extends StatelessWidget {
   final bool enabled;
 
   const GenerateButton({super.key, required this.name, this.enabled = true});
+
+  static Future<void> _showInterstitialIfAvailable() async {
+    final unitId = AdmobIds.interstitialUnitId().trim();
+    if (unitId.isEmpty) return;
+
+    final completer = Completer<void>();
+    InterstitialAd.load(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              if (!completer.isCompleted) completer.complete();
+            },
+            onAdFailedToShowFullScreenContent: (ad, _) {
+              ad.dispose();
+              if (!completer.isCompleted) completer.complete();
+            },
+          );
+          try {
+            ad.show();
+          } catch (_) {
+            ad.dispose();
+            if (!completer.isCompleted) completer.complete();
+          }
+        },
+        onAdFailedToLoad: (_) {
+          if (!completer.isCompleted) completer.complete();
+        },
+      ),
+    );
+
+    try {
+      await completer.future.timeout(const Duration(seconds: 5));
+    } catch (_) {
+      // Never block navigation forever.
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +75,18 @@ class GenerateButton extends StatelessWidget {
                   if (!context.mounted) return;
 
                   if (!canStartGeneration) {
-                    // Usage limit exceeded: show in-app paywall (no dummy screen).
+                    // Limit reached: interstitial first, then dummy/locked result UI.
+                    await _showInterstitialIfAvailable();
+                    if (!context.mounted) return;
+
+                    // Usage limit exceeded: show dummy locked UI in Flower result.
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => const ProAccessScreen(
-                          showInterstitialOnClose: true,
-                          goToNextScreenOnClose: true,
-                          nextScreen: HomeShell(),
+                        builder: (context) => FlowerResultScreen(
+                          name: name,
+                          generatedImageBytes: null,
+                          showProAccessOnOpen: false,
+                          enablePaywallPrompts: true,
                         ),
                       ),
                     );
@@ -47,7 +95,11 @@ class GenerateButton extends StatelessWidget {
 
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => FlowerLoadingScreen(name: name),
+                      builder: (context) => FlowerLoadingScreen(
+                        name: name,
+                        // Show interstitial right before opening result screen.
+                        showInterstitialAfterGeneration: true,
+                      ),
                     ),
                   );
                 }

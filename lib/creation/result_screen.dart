@@ -69,7 +69,7 @@ class _ResultScreenState extends State<ResultScreen> {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (_) => const ProAccessScreen(
-              showInterstitialOnClose: true,
+              showInterstitialOnClose: false,
               goToNextScreenOnClose: true,
               nextScreen: HomeShell(),
             ),
@@ -476,6 +476,25 @@ class _ResultScreenState extends State<ResultScreen> {
 
   void _openPaywall() {
     if (!mounted) return;
+    final usage = context.read<UsageLimitProvider>();
+    final hasReachedLimit = !usage.isProUnlocked && usage.hasReachedFreeLimit;
+
+    // When free limit is reached, exiting the paywall must take user home
+    // (no "locked/dummy" result UI for Creation/Tattoo modules).
+    if (hasReachedLimit) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => const ProAccessScreen(
+            showInterstitialOnClose: false,
+            goToNextScreenOnClose: true,
+            nextScreen: HomeShell(),
+          ),
+        ),
+      );
+      return;
+    }
+
+    // Otherwise, paywall can return back to this result screen.
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => ProAccessScreen(
