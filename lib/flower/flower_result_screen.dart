@@ -9,11 +9,9 @@ import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/usage_limit_provider.dart';
-import '../services/admob_ids.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
@@ -42,7 +40,6 @@ class FlowerResultScreen extends StatefulWidget {
 
 class _FlowerResultScreenState extends State<FlowerResultScreen> {
   bool _didShowPaywallAfterDownload = false;
-  bool _didShowInterstitialOnOpen = false;
   static const String _paywallLightAssetPath = 'assets/paywall_light.png';
   static const String _paywallDarkAssetPath = 'assets/paywall_dark.png';
   static const String _fallbackBlurAssetPath = 'assets/asset_blur.png';
@@ -56,54 +53,6 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
       '[FlowerResultScreen] opened (hasImage=${widget.generatedImageBytes != null}, '
       'showProAccessOnOpen=${widget.showProAccessOnOpen})',
     );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (!mounted || _didShowInterstitialOnOpen) return;
-      if (!widget.enablePaywallPrompts) return;
-      if (!widget.showProAccessOnOpen) return;
-
-      final usage = context.read<UsageLimitProvider>();
-      if (usage.isProUnlocked) return;
-
-      _didShowInterstitialOnOpen = true;
-      await _showInterstitialIfAvailable();
-    });
-  }
-
-  Future<void> _showInterstitialIfAvailable() async {
-    final unitId = AdmobIds.interstitialUnitId().trim();
-    if (unitId.isEmpty) return;
-
-    final completer = Completer<void>();
-    InterstitialAd.load(
-      adUnitId: unitId,
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              if (!completer.isCompleted) completer.complete();
-            },
-            onAdFailedToShowFullScreenContent: (ad, error) {
-              ad.dispose();
-              if (!completer.isCompleted) completer.complete();
-            },
-          );
-          try {
-            ad.show();
-          } catch (_) {
-            ad.dispose();
-            if (!completer.isCompleted) completer.complete();
-          }
-        },
-        onAdFailedToLoad: (_) {
-          if (!completer.isCompleted) completer.complete();
-        },
-      ),
-    );
-
-    await completer.future;
   }
 
   void _openPaywall() {
@@ -236,7 +185,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
 
   Future<void> _toggleFavorite(BuildContext context) async {
     final usage = context.read<UsageLimitProvider>();
-    if (!usage.isProUnlocked && usage.hasReachedFreeLimit) {
+    if (!usage.isProUnlocked) {
       AppToast.show(
         context,
         message: AppLocalizations.of(context)!.buyPremiumToAddToFavourites,
@@ -274,12 +223,10 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     final usage = context.watch<UsageLimitProvider>();
     final isPro = usage.isProUnlocked;
     // Flower rule:
-    // - generated image (even if user hit the free limit): show blur + watermark only
-    // - dummy/locked result (no image): show locked overlay + paywall card
-    final isDummyLocked =
-        !isPro &&
-        usage.hasReachedFreeLimit &&
-        widget.generatedImageBytes == null;
+    // - Free users never generate images.
+    // - If a free user opens a screen with an image (e.g. history), show blur+watermark.
+    // - If there's no image, show locked overlay + paywall card.
+    final isDummyLocked = !isPro && widget.generatedImageBytes == null;
     final entry = _buildEntry();
     final isFavorited = favoritesProvider.isFavorited(entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
@@ -301,7 +248,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
                 isDark,
                 isFavorited,
                 isLoadingFavorite,
-                isLocked: !isPro && usage.hasReachedFreeLimit,
+                isLocked: !isPro,
               ),
               // Main image display
               Expanded(

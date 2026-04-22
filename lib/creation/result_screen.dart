@@ -377,13 +377,13 @@ class _ResultScreenState extends State<ResultScreen> {
                   final watermarkAssetPath = isDark
                       ? _watermarkDarkAssetPath
                       : _watermarkLightAssetPath;
-                  final watermarkWidth = (constraints.maxWidth * 2.8).clamp(
-                    360.0,
-                    1300.0,
+                  final watermarkWidth = (constraints.maxWidth * 2.25).clamp(
+                    420.0,
+                    1100.0,
                   );
-                  final watermarkHeight = (watermarkWidth * 0.75).clamp(
-                    140.0,
-                    560.0,
+                  final watermarkHeight = (watermarkWidth * 0.82).clamp(
+                    180.0,
+                    520.0,
                   );
                   return Stack(
                     alignment: Alignment.center,
@@ -396,9 +396,9 @@ class _ResultScreenState extends State<ResultScreen> {
                               alignment: Alignment.topCenter,
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                  top: (constraints.maxHeight * 0.07).clamp(
-                                    0.0,
-                                    90.0,
+                                  top: (constraints.maxHeight * 0.15).clamp(
+                                    60.0,
+                                    300.0,
                                   ),
                                 ),
                                 child: Opacity(
@@ -419,26 +419,21 @@ class _ResultScreenState extends State<ResultScreen> {
                   );
                 }
 
-                // Exact rect where BoxFit.contain draws the image.
-                final scale =
-                    (constraints.maxWidth / imageSize.width) <
-                        (constraints.maxHeight / imageSize.height)
-                    ? (constraints.maxWidth / imageSize.width)
-                    : (constraints.maxHeight / imageSize.height);
-
-                final drawnWidth = imageSize.width * scale;
-                // offsetY is intentionally not needed for fixed bottom placement.
+                // The watermark uses stable placement relative to container size.
 
                 final watermarkAssetPath = isDark
                     ? _watermarkDarkAssetPath
                     : _watermarkLightAssetPath;
-                final watermarkWidth = (drawnWidth * 2.8).clamp(360.0, 1300.0);
-                final watermarkHeight = (watermarkWidth * 0.75).clamp(
-                  140.0,
-                  560.0,
+                final watermarkWidth = (constraints.maxWidth * 2.25).clamp(
+                  420.0,
+                  1100.0,
+                );
+                final watermarkHeight = (watermarkWidth * 0.82).clamp(
+                  180.0,
+                  520.0,
                 );
                 // Stable overlay placement across devices (upper-center).
-                final top = (constraints.maxHeight * 0.07).clamp(0.0, 90.0);
+                final top = (constraints.maxHeight * 0.15).clamp(60.0, 300.0);
 
                 return Stack(
                   children: [

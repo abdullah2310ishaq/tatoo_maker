@@ -12,6 +12,7 @@ import 'package:tatoo_maker/services/billing_service.dart';
 import 'package:tatoo_maker/services/remote_config_service.dart';
 import 'package:tatoo_maker/pro_access_screen.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
+import 'package:tatoo_maker/widgets/interstitial_ad_loading_dialog.dart';
 import 'utils/colors.dart';
 import 'home_shell.dart';
 import 'language/first_language.dart';
@@ -267,25 +268,30 @@ class _SplashScreenState extends State<SplashScreen>
       adUnitId: unitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
+        onAdLoaded: (ad) async {
+          final loadingHandle = await showInterstitialAdLoadingDialog(context);
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdShowedFullScreenContent: (_) {
               _log('interstitial shown');
             },
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
+              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               ad.dispose();
               _log('interstitial failed to show: $error');
+              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
           );
           try {
+            await Future<void>.delayed(const Duration(milliseconds: 150));
             ad.show();
           } catch (e) {
             ad.dispose();
+            loadingHandle.close();
             if (!completer.isCompleted) completer.complete();
           }
         },

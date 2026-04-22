@@ -8,6 +8,7 @@ import '../l10n/app_localizations.dart';
 import '../models/explore_category.dart';
 import '../services/admob_ids.dart';
 import '../utils/colors.dart';
+import '../widgets/interstitial_ad_loading_dialog.dart';
 import 'explore_detail_screen.dart';
 import '../widgets/top_banner_ad.dart';
 import '../widgets/remote_or_asset_image.dart';
@@ -53,21 +54,27 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
       adUnitId: unitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
+        onAdLoaded: (ad) async {
+          final loadingHandle = await showInterstitialAdLoadingDialog(context);
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
+              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               ad.dispose();
+              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
           );
           try {
+            // Give the dialog a moment to paint, then show ad immediately.
+            await Future<void>.delayed(const Duration(milliseconds: 150));
             ad.show();
           } catch (_) {
             ad.dispose();
+            loadingHandle.close();
             if (!completer.isCompleted) completer.complete();
           }
         },

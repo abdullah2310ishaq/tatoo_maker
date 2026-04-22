@@ -17,23 +17,32 @@ import '../utils/image_processing_isolates.dart';
 import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
 import '../widgets/creative_loading_spinner.dart';
+import '../widgets/interstitial_ad_loading_dialog.dart';
 import 'flower_result_screen.dart';
+
+enum FlowerLoadingMode {
+  generate,
+  lockedForFreeUser,
+}
 
 /// Loading screen for generating floral tattoo based on name
 class FlowerLoadingScreen extends StatefulWidget {
   final String name;
   final bool showInterstitialAfterGeneration;
+  final FlowerLoadingMode mode;
 
   const FlowerLoadingScreen({
     super.key,
     required this.name,
     this.showInterstitialAfterGeneration = true,
+    this.mode = FlowerLoadingMode.generate,
   });
 
   const FlowerLoadingScreen.withInterstitialControl({
     super.key,
     required this.name,
     required this.showInterstitialAfterGeneration,
+    this.mode = FlowerLoadingMode.generate,
   });
 
   @override
@@ -61,8 +70,29 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
       CurvedAnimation(parent: _progressController, curve: Curves.linear),
     );
 
-    // Start API call
-    _generateFloralTattoo();
+    // Start flow
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    final shouldLock = !isPro || widget.mode == FlowerLoadingMode.lockedForFreeUser;
+    if (shouldLock) {
+      unawaited(_runLockedFreeUserFlow());
+    } else {
+      _generateFloralTattoo();
+    }
+  }
+
+  Future<void> _runLockedFreeUserFlow() async {
+    // Keep the spinner visible briefly so the screen feels consistent.
+    await Future<void>.delayed(const Duration(milliseconds: 650));
+    if (!mounted) return;
+
+    if (widget.showInterstitialAfterGeneration) {
+      await _showInterstitialAdIfAvailable(
+        unitIdOverride: AdmobIds.interstitialUnitId(),
+      );
+    }
+    if (!mounted) return;
+
+    await _navigateToResult();
   }
 
   Future<void> _generateFloralTattoo() async {
@@ -194,7 +224,8 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
       '[FlowerLoadingScreen] generation finished -> preparing result navigation '
       '(hasImage=${_generatedImageBytes != null})',
     );
-    if (_generatedImageBytes != null) {
+    if (widget.mode == FlowerLoadingMode.generate &&
+        _generatedImageBytes != null) {
       await context.read<UsageLimitProvider>().recordGenerationSuccess();
       HistoryService.addFlowerEntry(
         name: widget.name,
@@ -203,7 +234,8 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     }
 
     // Show only an interstitial (no paywall) when enabled in Remote Config.
-    if (_generatedImageBytes != null && widget.showInterstitialAfterGeneration) {
+    if (_generatedImageBytes != null &&
+        widget.showInterstitialAfterGeneration) {
       await _maybeShowInterstitialAfterGeneration();
     }
 
@@ -249,21 +281,26 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
       adUnitId: unitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
+        onAdLoaded: (ad) async {
+          final loadingHandle = await showInterstitialAdLoadingDialog(context);
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
+              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               ad.dispose();
+              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
           );
           try {
+            await Future<void>.delayed(const Duration(milliseconds: 150));
             ad.show();
           } catch (_) {
             ad.dispose();
+            loadingHandle.close();
             if (!completer.isCompleted) completer.complete();
           }
         },

@@ -12,6 +12,7 @@ import 'services/admob_ids.dart';
 import 'services/app_open_ad_service.dart';
 import 'services/billing_service.dart';
 import 'utils/colors.dart';
+import 'widgets/interstitial_ad_loading_dialog.dart';
 
 class ProAccessScreen extends StatefulWidget {
   final Widget nextScreen;
@@ -139,23 +140,28 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
       adUnitId: unitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
+        onAdLoaded: (ad) async {
+          final loadingHandle = await showInterstitialAdLoadingDialog(context);
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
+              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               ad.dispose();
               _log('Interstitial failed to show on close: $error');
+              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
           );
           try {
+            await Future<void>.delayed(const Duration(milliseconds: 150));
             ad.show();
           } catch (error) {
             ad.dispose();
             _log('Interstitial show threw on close: $error');
+            loadingHandle.close();
             if (!completer.isCompleted) completer.complete();
           }
         },

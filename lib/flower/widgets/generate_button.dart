@@ -1,15 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/usage_limit_provider.dart';
-import '../../services/admob_ids.dart';
 import '../../utils/colors.dart';
 import '../flower_loading_screen.dart';
-import '../flower_result_screen.dart';
 
 /// Generate button widget. Disabled when [enabled] is false (e.g. empty name).
 class GenerateButton extends StatelessWidget {
@@ -17,46 +12,6 @@ class GenerateButton extends StatelessWidget {
   final bool enabled;
 
   const GenerateButton({super.key, required this.name, this.enabled = true});
-
-  static Future<void> _showInterstitialIfAvailable() async {
-    final unitId = AdmobIds.interstitialUnitId().trim();
-    if (unitId.isEmpty) return;
-
-    final completer = Completer<void>();
-    InterstitialAd.load(
-      adUnitId: unitId,
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              if (!completer.isCompleted) completer.complete();
-            },
-            onAdFailedToShowFullScreenContent: (ad, _) {
-              ad.dispose();
-              if (!completer.isCompleted) completer.complete();
-            },
-          );
-          try {
-            ad.show();
-          } catch (_) {
-            ad.dispose();
-            if (!completer.isCompleted) completer.complete();
-          }
-        },
-        onAdFailedToLoad: (_) {
-          if (!completer.isCompleted) completer.complete();
-        },
-      ),
-    );
-
-    try {
-      await completer.future.timeout(const Duration(seconds: 5));
-    } catch (_) {
-      // Never block navigation forever.
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,23 +25,18 @@ class GenerateButton extends StatelessWidget {
           onPressed: enabled && name.isNotEmpty
               ? () async {
                   final usageLimitProvider = context.read<UsageLimitProvider>();
-                  final canStartGeneration = await usageLimitProvider
-                      .canStartGeneration();
                   if (!context.mounted) return;
 
-                  if (!canStartGeneration) {
-                    // Limit reached: interstitial first, then dummy/locked result UI.
-                    await _showInterstitialIfAvailable();
-                    if (!context.mounted) return;
-
-                    // Usage limit exceeded: show dummy locked UI in Flower result.
+                  // Flower module rule:
+                  // - Free users (non-premium) never generate images.
+                  // - They see loading -> "ad loading" -> interstitial -> locked overlay UI.
+                  if (!usageLimitProvider.isProUnlocked) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => FlowerResultScreen(
+                        builder: (context) => FlowerLoadingScreen(
                           name: name,
-                          generatedImageBytes: null,
-                          showProAccessOnOpen: false,
-                          enablePaywallPrompts: true,
+                          showInterstitialAfterGeneration: true,
+                          mode: FlowerLoadingMode.lockedForFreeUser,
                         ),
                       ),
                     );
@@ -99,6 +49,7 @@ class GenerateButton extends StatelessWidget {
                         name: name,
                         // Show interstitial right before opening result screen.
                         showInterstitialAfterGeneration: true,
+                        mode: FlowerLoadingMode.generate,
                       ),
                     ),
                   );
