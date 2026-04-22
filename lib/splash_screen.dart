@@ -264,12 +264,16 @@ class _SplashScreenState extends State<SplashScreen>
     if (unitId.isEmpty) return;
 
     final completer = Completer<void>();
+    final loadingHandle = await showInterstitialAdLoadingDialog(
+      context,
+      minShowDuration: const Duration(seconds: 2),
+      safetyTimeout: const Duration(seconds: 4),
+    );
     InterstitialAd.load(
       adUnitId: unitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) async {
-          final loadingHandle = await showInterstitialAdLoadingDialog(context);
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdShowedFullScreenContent: (_) {
               _log('interstitial shown');
@@ -287,6 +291,7 @@ class _SplashScreenState extends State<SplashScreen>
             },
           );
           try {
+            await loadingHandle.waitForMinShowDuration();
             await Future<void>.delayed(const Duration(milliseconds: 150));
             ad.show();
           } catch (e) {
@@ -297,6 +302,7 @@ class _SplashScreenState extends State<SplashScreen>
         },
         onAdFailedToLoad: (error) {
           _log('interstitial failed to load: $error');
+          loadingHandle.close();
           if (!completer.isCompleted) completer.complete();
         },
       ),
@@ -306,6 +312,7 @@ class _SplashScreenState extends State<SplashScreen>
       await completer.future.timeout(const Duration(seconds: 5));
     } catch (_) {
       // Avoid blocking splash navigation forever.
+      loadingHandle.close();
     }
   }
 

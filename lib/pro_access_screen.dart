@@ -174,6 +174,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
       final completer = Completer<void>();
       final loadingHandle = await showInterstitialAdLoadingDialog(
         context,
+        minShowDuration: const Duration(seconds: 2),
         safetyTimeout: const Duration(seconds: 4),
       );
       cachedAd.fullScreenContentCallback = FullScreenContentCallback(
@@ -190,6 +191,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
         },
       );
       try {
+        _log('close interstitial: waiting 2s loading dialog (cached ad)...');
+        await loadingHandle.waitForMinShowDuration();
+        _log('close interstitial: showing cached interstitial now');
         await Future<void>.delayed(const Duration(milliseconds: 150));
         cachedAd.show();
       } catch (error) {
@@ -210,6 +214,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     final completer = Completer<void>();
     final loadingHandle = await showInterstitialAdLoadingDialog(
       context,
+      minShowDuration: const Duration(seconds: 2),
       safetyTimeout: const Duration(seconds: 4),
     );
     InterstitialAd.load(
@@ -231,6 +236,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
             },
           );
           try {
+            _log('close interstitial: waiting 2s loading dialog (fresh load)...');
+            await loadingHandle.waitForMinShowDuration();
+            _log('close interstitial: showing interstitial now');
             await Future<void>.delayed(const Duration(milliseconds: 150));
             ad.show();
           } catch (error) {

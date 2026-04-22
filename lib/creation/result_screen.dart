@@ -67,6 +67,15 @@ class _ResultScreenState extends State<ResultScreen> {
       if (!mounted || _didAutoShowPaywall) return;
       final usage = context.read<UsageLimitProvider>();
 
+      // If this ResultScreen was opened as the "return target" after closing
+      // the paywall, it must NOT auto-open paywall again (prevents loops).
+      if (!widget.showProAccessOnOpen) {
+        debugPrint(
+          '[ResultScreen] skip all auto paywall: showProAccessOnOpen=false',
+        );
+        return;
+      }
+
       // When the free usage limit is exceeded, other modules should show only
       // the in-app paywall (no blurred/dummy result UI).
       if (!usage.isProUnlocked && usage.hasExceededFreeLimit && !_didShowLimitPaywall) {
@@ -83,12 +92,6 @@ class _ResultScreenState extends State<ResultScreen> {
         return;
       }
 
-      if (!widget.showProAccessOnOpen) {
-        debugPrint(
-          '[ResultScreen] skip auto paywall: showProAccessOnOpen=false',
-        );
-        return;
-      }
       if (widget.generatedImageBytes == null) {
         debugPrint('[ResultScreen] skip auto paywall: hasImage=false');
         return;

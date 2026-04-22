@@ -290,13 +290,20 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     final unitId = (unitIdOverride ?? '').trim();
     if (unitId.isEmpty) return;
 
+    // Strict required flow:
+    // Loading ends -> show loading modal (3s min) -> show interstitial -> then navigate.
+    final loadingHandle = await showInterstitialAdLoadingDialog(
+      context,
+      minShowDuration: const Duration(seconds: 3),
+      safetyTimeout: const Duration(seconds: 6),
+    );
+
     final completer = Completer<void>();
     InterstitialAd.load(
       adUnitId: unitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) async {
-          final loadingHandle = await showInterstitialAdLoadingDialog(context);
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
@@ -310,6 +317,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
             },
           );
           try {
+            await loadingHandle.waitForMinShowDuration();
             await Future<void>.delayed(const Duration(milliseconds: 150));
             ad.show();
           } catch (_) {
@@ -318,16 +326,18 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
             if (!completer.isCompleted) completer.complete();
           }
         },
-        onAdFailedToLoad: (error) {
+        onAdFailedToLoad: (_) {
+          loadingHandle.close();
           if (!completer.isCompleted) completer.complete();
         },
       ),
     );
 
     try {
-      await completer.future.timeout(const Duration(seconds: 5));
+      await completer.future.timeout(const Duration(seconds: 6));
     } catch (_) {
       // Never block navigation forever.
+      loadingHandle.close();
     }
   }
 

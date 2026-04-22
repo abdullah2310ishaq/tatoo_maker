@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../l10n/app_localizations.dart';
@@ -8,16 +9,39 @@ import '../utils/colors.dart';
 
 class InterstitialAdLoadingDialogHandle {
   final BuildContext _context;
+  final DateTime _shownAt;
+  final Duration _minShowDuration;
   bool _closed = false;
 
-  InterstitialAdLoadingDialogHandle._(this._context, {bool isClosed = false})
-      : _closed = isClosed;
+  InterstitialAdLoadingDialogHandle._(
+    this._context, {
+    DateTime? shownAt,
+    Duration minShowDuration = Duration.zero,
+    bool isClosed = false,
+  }) : _shownAt = shownAt ?? DateTime.now(),
+       _minShowDuration = minShowDuration,
+       _closed = isClosed;
 
   bool get isClosed => _closed;
 
+  Future<void> waitForMinShowDuration() async {
+    if (_closed) return;
+    final elapsed = DateTime.now().difference(_shownAt);
+    final remaining = _minShowDuration - elapsed;
+    if (remaining > Duration.zero) {
+      await Future<void>.delayed(remaining);
+    }
+  }
+
   void close() {
+    unawaited(_closeAfterMinDuration());
+  }
+
+  Future<void> _closeAfterMinDuration() async {
     if (_closed) return;
     _closed = true;
+
+    await waitForMinShowDuration();
     final navigator = Navigator.of(_context, rootNavigator: true);
     if (navigator.canPop()) {
       navigator.pop();
@@ -27,7 +51,8 @@ class InterstitialAdLoadingDialogHandle {
 
 Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
   BuildContext context, {
-  Duration safetyTimeout = const Duration(seconds: 2),
+  Duration minShowDuration = const Duration(seconds: 2),
+  Duration safetyTimeout = const Duration(seconds: 4),
 }) async {
   final l10n = AppLocalizations.of(context)!;
   final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -39,25 +64,45 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
     handleCompleter.future.then((h) => h.close());
   });
 
-  // Don't await: we want to keep executing the interstitial load flow.
-  // ignore: unawaited_futures
+  if (kDebugMode) {
+    debugPrint(
+      '[InterstitialLoadingDialog] request show '
+      'minShow=${minShowDuration.inMilliseconds}ms '
+      'timeout=${safetyTimeout.inMilliseconds}ms',
+    );
+  }
+
   showDialog<void>(
     context: context,
     barrierDismissible: false,
     useRootNavigator: true,
     builder: (dialogContext) {
-      final handle = InterstitialAdLoadingDialogHandle._(dialogContext);
+      final shownAt = DateTime.now();
+      final handle = InterstitialAdLoadingDialogHandle._(
+        dialogContext,
+        shownAt: shownAt,
+        minShowDuration: minShowDuration,
+      );
       if (!handleCompleter.isCompleted) {
         handleCompleter.complete(handle);
       }
+      if (kDebugMode) {
+        debugPrint(
+          '[InterstitialLoadingDialog] shown at=${shownAt.toIso8601String()}',
+        );
+      }
       return AlertDialog(
-        backgroundColor: isDark ? AppColors.darkBackground : AppColors.lightBackground,
+        // Requested: use opposite theme colors for this dialog.
+        // Dark theme -> light colors; light theme -> dark colors.
+        backgroundColor: isDark
+            ? AppColors.lightBackground
+            : AppColors.darkBackground,
         title: Text(
           l10n.ad,
           style: TextStyle(
             fontFamily: 'Amaranth',
             fontWeight: FontWeight.w700,
-            color: isDark ? AppColors.textWhite : AppColors.textPrimary,
+            color: isDark ? AppColors.textPrimary : AppColors.textWhite,
           ),
         ),
         content: Row(
@@ -73,9 +118,7 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
                 'Ad is loading...',
                 style: TextStyle(
                   fontFamily: 'Amaranth',
-                  color: isDark
-                      ? AppColors.textGrey
-                      : AppColors.textGrey.withOpacity(0.85),
+                  color: isDark ? AppColors.textGrey : AppColors.textGrey,
                 ),
               ),
             ),
@@ -91,6 +134,8 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
       // Dialog never built; return a no-op closed handle.
       final handle = InterstitialAdLoadingDialogHandle._(
         context,
+        shownAt: DateTime.now(),
+        minShowDuration: Duration.zero,
         isClosed: true,
       );
       handleCompleter.complete(handle);
@@ -99,4 +144,3 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
 
   return handleCompleter.future;
 }
-
