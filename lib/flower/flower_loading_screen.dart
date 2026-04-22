@@ -57,6 +57,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
   Uint8List? _generatedImageBytes;
   final ProdiaApiService _apiService = ProdiaApiService();
   bool _isShowingInterstitial = false;
+  bool _didShowInterstitialForThisFlow = false;
 
   @override
   void initState() {
@@ -80,12 +81,22 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     }
   }
 
+  bool _shouldShowFlowerInterstitial() {
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    if (isPro) return false;
+    if (!widget.showInterstitialAfterGeneration) return false;
+    final rc = context.read<RemoteConfigService>();
+    return rc.flowerShowInterstitialAfterGeneration;
+  }
+
   Future<void> _runLockedFreeUserFlow() async {
     // Keep the spinner visible briefly so the screen feels consistent.
     await Future<void>.delayed(const Duration(milliseconds: 650));
     if (!mounted) return;
 
-    if (widget.showInterstitialAfterGeneration) {
+    // Flower rule: show interstitial before result when enabled via Remote Config.
+    if (_shouldShowFlowerInterstitial()) {
+      _didShowInterstitialForThisFlow = true;
       await _showInterstitialAdIfAvailable(
         unitIdOverride: AdmobIds.interstitialUnitId(),
       );
@@ -233,9 +244,13 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
       );
     }
 
-    // Show only an interstitial (no paywall) when enabled in Remote Config.
-    if (_generatedImageBytes != null &&
-        widget.showInterstitialAfterGeneration) {
+    // Flower rule: show interstitial right before result when enabled via Remote Config.
+    // Ensure it's shown at most once per flow (locked flow also shows it).
+    if (!_didShowInterstitialForThisFlow &&
+        widget.mode == FlowerLoadingMode.generate &&
+        _generatedImageBytes != null &&
+        _shouldShowFlowerInterstitial()) {
+      _didShowInterstitialForThisFlow = true;
       await _maybeShowInterstitialAfterGeneration();
     }
 
@@ -258,9 +273,8 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     if (!mounted) return;
     if (_isShowingInterstitial) return;
 
-    final rc = context.read<RemoteConfigService>();
     final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-    if (isPro || !rc.flowerShowInterstitialAfterGeneration) return;
+    if (isPro) return;
 
     _isShowingInterstitial = true;
     try {

@@ -47,6 +47,13 @@ class _ResultScreenState extends State<ResultScreen> {
   static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
   Size? _generatedImageSize;
 
+  void _goHome() {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const HomeShell()),
+      (route) => false,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -62,9 +69,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
       // When the free usage limit is exceeded, other modules should show only
       // the in-app paywall (no blurred/dummy result UI).
-      if (!usage.isProUnlocked &&
-          usage.hasReachedFreeLimit &&
-          !_didShowLimitPaywall) {
+      if (!usage.isProUnlocked && usage.hasExceededFreeLimit && !_didShowLimitPaywall) {
         _didShowLimitPaywall = true;
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
@@ -96,10 +101,13 @@ class _ResultScreenState extends State<ResultScreen> {
       _didAutoShowPaywall = true;
       debugPrint('[ResultScreen] showing ProAccessScreen after loading');
 
-      Navigator.of(context).push(
+      // Replace the current ResultScreen so we don't end up with:
+      // ResultScreen -> Paywall -> ResultScreen (duplicate stack / double flows).
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (_) => ProAccessScreen(
             showInterstitialOnClose: true,
+            goToNextScreenOnClose: true,
             nextScreen: ResultScreen(
               styleName: widget.styleName,
               generatedImageBytes: widget.generatedImageBytes,
@@ -157,7 +165,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
   Future<void> _toggleFavorite(BuildContext context) async {
     final usage = context.read<UsageLimitProvider>();
-    if (!usage.isProUnlocked && usage.hasReachedFreeLimit) {
+    if (!usage.isProUnlocked && usage.hasExceededFreeLimit) {
       AppToast.show(
         context,
         message: AppLocalizations.of(context)!.buyPremiumToAddToFavourites,
@@ -193,66 +201,73 @@ class _ResultScreenState extends State<ResultScreen> {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final favoritesProvider = Provider.of<FavoritesProvider>(context);
     final usage = context.watch<UsageLimitProvider>();
-    final isLocked = !usage.isProUnlocked && usage.hasReachedFreeLimit;
+    final isLocked = !usage.isProUnlocked && usage.hasExceededFreeLimit;
     final entry = _buildEntry();
     final isFavorited = favoritesProvider.isFavorited(entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: isDark
-            ? AppColors.darkBackground
-            : AppColors.lightBackground,
-        body: Container(
-          decoration: isDark
-              ? ThemeManager.darkModeBackgroundGradient
-              : ThemeManager.lightModeBackground,
-          child: Column(
-            children: [
-              // Header: Close button + Title + Favorite
-              _buildHeader(
-                context,
-                isDark,
-                isFavorited,
-                isLoadingFavorite,
-                isLocked: isLocked,
-              ),
-              // Main image display - only one big image in center
-              Expanded(
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: _buildMainImage(isDark, isLocked: isLocked),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        _goHome();
+      },
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: isDark
+              ? AppColors.darkBackground
+              : AppColors.lightBackground,
+          body: Container(
+            decoration: isDark
+                ? ThemeManager.darkModeBackgroundGradient
+                : ThemeManager.lightModeBackground,
+            child: Column(
+              children: [
+                // Header: Close button + Title + Favorite
+                _buildHeader(
+                  context,
+                  isDark,
+                  isFavorited,
+                  isLoadingFavorite,
+                  isLocked: isLocked,
+                ),
+                // Main image display - only one big image in center
+                Expanded(
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: _buildMainImage(isDark, isLocked: isLocked),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 24.h),
-              // Action buttons
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 20.w,
-                  right: 20.w,
-                  bottom: bottomPadding > 0 ? bottomPadding : 20.h,
+                SizedBox(height: 24.h),
+                // Action buttons
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 20.w,
+                    right: 20.w,
+                    bottom: bottomPadding > 0 ? bottomPadding : 20.h,
+                  ),
+                  child: Column(
+                    children: [
+                      _buildVirtualTryOnButton(
+                        context,
+                        isDark,
+                        l10n,
+                        isLocked: isLocked,
+                      ),
+                      SizedBox(height: 12.h),
+                      _buildSecondaryButtons(
+                        context,
+                        isDark,
+                        l10n,
+                        isLocked: isLocked,
+                      ),
+                    ],
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    _buildVirtualTryOnButton(
-                      context,
-                      isDark,
-                      l10n,
-                      isLocked: isLocked,
-                    ),
-                    SizedBox(height: 12.h),
-                    _buildSecondaryButtons(
-                      context,
-                      isDark,
-                      l10n,
-                      isLocked: isLocked,
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -278,16 +293,7 @@ class _ResultScreenState extends State<ResultScreen> {
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,
               size: 28.sp,
             ),
-            onPressed: () {
-              if (isLocked) {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (_) => const HomeShell()),
-                  (route) => false,
-                );
-                return;
-              }
-              Navigator.of(context).pop();
-            },
+            onPressed: _goHome,
           ),
           // Title (centered) – localized so it updates when app language changes
           Expanded(
@@ -472,7 +478,7 @@ class _ResultScreenState extends State<ResultScreen> {
   void _openPaywall() {
     if (!mounted) return;
     final usage = context.read<UsageLimitProvider>();
-    final hasReachedLimit = !usage.isProUnlocked && usage.hasReachedFreeLimit;
+    final hasReachedLimit = !usage.isProUnlocked && usage.hasExceededFreeLimit;
 
     // When free limit is reached, exiting the paywall must take user home
     // (no "locked/dummy" result UI for Creation/Tattoo modules).
@@ -823,7 +829,8 @@ class _ResultScreenState extends State<ResultScreen> {
             MaterialPageRoute(
               builder: (_) => const ProAccessScreen(
                 nextScreen: HomeShell(),
-                showInterstitialOnClose: true,
+                // Download upsell should close without any ad.
+                showInterstitialOnClose: false,
               ),
             ),
           );

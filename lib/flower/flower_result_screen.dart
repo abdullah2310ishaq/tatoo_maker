@@ -46,6 +46,13 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
   static const String _watermarkLightAssetPath = 'assets/watermark_light.png';
   static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
 
+  void _goHome() {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const HomeShell()),
+      (route) => false,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -231,61 +238,73 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
     final isFavorited = favoritesProvider.isFavorited(entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: isDark
-            ? AppColors.darkBackground
-            : AppColors.lightBackground,
-        body: Container(
-          decoration: isDark
-              ? ThemeManager.darkModeBackgroundGradient
-              : ThemeManager.lightModeBackground,
-          child: Column(
-            children: [
-              // Header: Close button + Title + Favorite
-              _buildHeader(
-                context,
-                isDark,
-                isFavorited,
-                isLoadingFavorite,
-                isLocked: !isPro,
-              ),
-              // Main image display
-              Expanded(
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: _buildMainImage(
-                      context,
-                      isDark,
-                      l10n,
-                      isLocked: isDummyLocked,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        _goHome();
+      },
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: isDark
+              ? AppColors.darkBackground
+              : AppColors.lightBackground,
+          body: Container(
+            decoration: isDark
+                ? ThemeManager.darkModeBackgroundGradient
+                : ThemeManager.lightModeBackground,
+            child: Column(
+              children: [
+                // Header: Close button + Title + Favorite
+                _buildHeader(
+                  context,
+                  isDark,
+                  isFavorited,
+                  isLoadingFavorite,
+                  isLocked: !isPro,
+                ),
+                // Main image display
+                Expanded(
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: _buildMainImage(
+                        context,
+                        isDark,
+                        l10n,
+                        isLocked: isDummyLocked,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 24.h),
-              // Action buttons
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 20.w,
-                  right: 20.w,
-                  bottom: bottomPadding > 0 ? bottomPadding : 20.h,
+                SizedBox(height: 24.h),
+                // Action buttons
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 20.w,
+                    right: 20.w,
+                    bottom: bottomPadding > 0 ? bottomPadding : 20.h,
+                  ),
+                  child: Column(
+                    children: [
+                      _buildVirtualTryOnButton(
+                        context,
+                        isDark,
+                        l10n,
+                        isPro: isPro,
+                      ),
+                      SizedBox(height: 12.h),
+                      _buildSecondaryButtons(
+                        context,
+                        isDark,
+                        l10n,
+                        isPro: isPro,
+                      ),
+                    ],
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    _buildVirtualTryOnButton(
-                      context,
-                      isDark,
-                      l10n,
-                      isPro: isPro,
-                    ),
-                    SizedBox(height: 12.h),
-                    _buildSecondaryButtons(context, isDark, l10n, isPro: isPro),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -310,7 +329,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,
               size: 28.sp,
             ),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: _goHome,
           ),
           Expanded(
             child: Text(

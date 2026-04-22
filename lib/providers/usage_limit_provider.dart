@@ -25,6 +25,12 @@ class UsageLimitProvider extends ChangeNotifier {
   bool get hasReachedFreeLimit =>
       !isProUnlocked && _generationCount >= freeGenerationLimit;
 
+  /// True only when the user has gone beyond the free allowance.
+  /// Example: if limit is 2, then count==2 is still allowed (no lock),
+  /// but count==3 means exceeded.
+  bool get hasExceededFreeLimit =>
+      !isProUnlocked && _generationCount > freeGenerationLimit;
+
   bool get shouldPromptAfterResultAction =>
       !isProUnlocked && _generationCount >= freeGenerationLimit;
 

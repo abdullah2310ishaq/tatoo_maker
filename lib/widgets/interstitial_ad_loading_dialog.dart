@@ -36,7 +36,6 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
   final handleCompleter = Completer<InterstitialAdLoadingDialogHandle>();
   Timer? timer;
   timer = Timer(safetyTimeout, () {
-    if (!handleCompleter.isCompleted) return;
     handleCompleter.future.then((h) => h.close());
   });
 
@@ -71,8 +70,7 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
             SizedBox(width: 12.w),
             Expanded(
               child: Text(
-                // Existing localized copy used across the app.
-                l10n.splashAdMayShowNotice,
+                'Ad is loading...',
                 style: TextStyle(
                   fontFamily: 'Amaranth',
                   color: isDark

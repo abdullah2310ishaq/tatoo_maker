@@ -35,6 +35,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   late final Timer _sliderTimer;
   late final BillingService _billingService;
 
+  InterstitialAd? _closeInterstitialAd;
+  bool _isCloseInterstitialLoadStarted = false;
+
   Timer? _closeButtonTimer;
   StreamSubscription<BillingPurchaseEvent>? _billingEventsSubscription;
 
@@ -86,6 +89,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
       });
     });
 
+    if (widget.showInterstitialOnClose) {
+      _preloadCloseInterstitial();
+    }
     _initializeBilling();
   }
 
@@ -95,9 +101,34 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     _sliderTimer.cancel();
     _closeButtonTimer?.cancel();
     _billingEventsSubscription?.cancel();
+    _closeInterstitialAd?.dispose();
+    _closeInterstitialAd = null;
     unawaited(_billingService.dispose());
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _preloadCloseInterstitial() {
+    if (_isCloseInterstitialLoadStarted) return;
+    _isCloseInterstitialLoadStarted = true;
+
+    final unitId = AdmobIds.interstitialUnitId().trim();
+    if (unitId.isEmpty) return;
+
+    InterstitialAd.load(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          _log('Close interstitial preloaded.');
+          _closeInterstitialAd?.dispose();
+          _closeInterstitialAd = ad;
+        },
+        onAdFailedToLoad: (error) {
+          _log('Close interstitial preload failed: $error');
+        },
+      ),
+    );
   }
 
   void _goNext() {
@@ -135,13 +166,57 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     final unitId = AdmobIds.interstitialUnitId().trim();
     if (unitId.isEmpty) return;
 
+    // If we already have a cached interstitial (preloaded in initState),
+    // show it immediately so the "first close" doesn't feel like it skipped.
+    final cachedAd = _closeInterstitialAd;
+    if (cachedAd != null) {
+      _closeInterstitialAd = null;
+      final completer = Completer<void>();
+      final loadingHandle = await showInterstitialAdLoadingDialog(
+        context,
+        safetyTimeout: const Duration(seconds: 4),
+      );
+      cachedAd.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          loadingHandle.close();
+          if (!completer.isCompleted) completer.complete();
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          ad.dispose();
+          _log('Interstitial failed to show on close: $error');
+          loadingHandle.close();
+          if (!completer.isCompleted) completer.complete();
+        },
+      );
+      try {
+        await Future<void>.delayed(const Duration(milliseconds: 150));
+        cachedAd.show();
+      } catch (error) {
+        cachedAd.dispose();
+        _log('Interstitial show threw on close: $error');
+        loadingHandle.close();
+        if (!completer.isCompleted) completer.complete();
+      }
+
+      try {
+        await completer.future.timeout(const Duration(seconds: 4));
+      } on TimeoutException {
+        _log('Interstitial timeout on close; continuing.');
+      }
+      return;
+    }
+
     final completer = Completer<void>();
+    final loadingHandle = await showInterstitialAdLoadingDialog(
+      context,
+      safetyTimeout: const Duration(seconds: 4),
+    );
     InterstitialAd.load(
       adUnitId: unitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) async {
-          final loadingHandle = await showInterstitialAdLoadingDialog(context);
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
@@ -167,6 +242,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
         },
         onAdFailedToLoad: (error) {
           _log('Interstitial failed to load on close: $error');
+          loadingHandle.close();
           if (!completer.isCompleted) completer.complete();
         },
       ),
@@ -176,6 +252,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
       await completer.future.timeout(const Duration(seconds: 4));
     } on TimeoutException {
       _log('Interstitial timeout on close; continuing.');
+      loadingHandle.close();
     }
   }
 
