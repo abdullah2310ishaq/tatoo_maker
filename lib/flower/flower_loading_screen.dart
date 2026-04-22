@@ -298,22 +298,34 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
       safetyTimeout: const Duration(seconds: 6),
     );
 
-    final completer = Completer<void>();
+    final shownCompleter = Completer<bool>(); // true when ad is shown
+    final dismissedCompleter = Completer<void>(); // completes on dismiss/fail
     InterstitialAd.load(
       adUnitId: unitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) async {
           ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (_) {
+              if (!shownCompleter.isCompleted) {
+                shownCompleter.complete(true);
+              }
+            },
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
               loadingHandle.close();
-              if (!completer.isCompleted) completer.complete();
+              if (!shownCompleter.isCompleted) {
+                shownCompleter.complete(true);
+              }
+              if (!dismissedCompleter.isCompleted) dismissedCompleter.complete();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               ad.dispose();
               loadingHandle.close();
-              if (!completer.isCompleted) completer.complete();
+              if (!shownCompleter.isCompleted) {
+                shownCompleter.complete(false);
+              }
+              if (!dismissedCompleter.isCompleted) dismissedCompleter.complete();
             },
           );
           try {
@@ -323,18 +335,31 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
           } catch (_) {
             ad.dispose();
             loadingHandle.close();
-            if (!completer.isCompleted) completer.complete();
+            if (!shownCompleter.isCompleted) {
+              shownCompleter.complete(false);
+            }
+            if (!dismissedCompleter.isCompleted) dismissedCompleter.complete();
           }
         },
         onAdFailedToLoad: (_) {
           loadingHandle.close();
-          if (!completer.isCompleted) completer.complete();
+          if (!shownCompleter.isCompleted) {
+            shownCompleter.complete(false);
+          }
+          if (!dismissedCompleter.isCompleted) dismissedCompleter.complete();
         },
       ),
     );
 
     try {
-      await completer.future.timeout(const Duration(seconds: 6));
+      // Only time out while waiting for the ad to *start* showing.
+      final didShow = await shownCompleter.future.timeout(
+        const Duration(seconds: 6),
+      );
+      // If the ad did show, wait for user to dismiss it (Result should open after).
+      if (didShow) {
+        await dismissedCompleter.future.timeout(const Duration(minutes: 2));
+      }
     } catch (_) {
       // Never block navigation forever.
       loadingHandle.close();

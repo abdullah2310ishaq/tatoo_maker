@@ -33,4 +33,7 @@ abstract final class RemoteConfigKeys {
   /// First language onboarding screen: control native ad visibility.
   static const String firstLanguageShowNativeAd =
       'first_language_show_native_ad';
+
+  /// Pro / paywall: show or hide the trial toggle card.
+  static const String proAccessShowTrialToggle = 'pro_access_show_trial_toggle';
 }

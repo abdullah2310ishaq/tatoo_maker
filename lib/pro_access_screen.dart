@@ -11,6 +11,7 @@ import 'providers/usage_limit_provider.dart';
 import 'services/admob_ids.dart';
 import 'services/app_open_ad_service.dart';
 import 'services/billing_service.dart';
+import 'services/remote_config_service.dart';
 import 'utils/colors.dart';
 import 'widgets/interstitial_ad_loading_dialog.dart';
 
@@ -626,12 +627,16 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                           ),
 
                           SizedBox(height: featuresToggleSpacing),
-                          _TrialToggleCard(
-                            isEnabled: _isTrialEnabled,
-                            onChanged: _onTrialToggleChanged,
-                            verticalPadding: trialToggleVerticalPadding,
-                          ),
-                          SizedBox(height: togglePlansSpacing),
+                          if (context
+                              .watch<RemoteConfigService>()
+                              .proAccessShowTrialToggle) ...[
+                            _TrialToggleCard(
+                              isEnabled: _isTrialEnabled,
+                              onChanged: _onTrialToggleChanged,
+                              verticalPadding: trialToggleVerticalPadding,
+                            ),
+                            SizedBox(height: togglePlansSpacing),
+                          ],
 
                           _PlanCard(
                             variant: PlanVariant.lifetime,

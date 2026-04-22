@@ -55,6 +55,9 @@ class RemoteConfigService extends ChangeNotifier {
 
     RemoteConfigKeys.firstLanguageOnboardingEnabled: true,
     RemoteConfigKeys.firstLanguageShowNativeAd: true,
+
+    // Paywall UI controls.
+    RemoteConfigKeys.proAccessShowTrialToggle: true,
   };
 
   Future<void> initialize() async {
@@ -118,7 +121,8 @@ class RemoteConfigService extends ChangeNotifier {
       'splashShowAppOpen=$splashShowAppOpen, '
       'splashShowPaywall=$splashShowPaywall, '
       'firstLanguageOnboardingEnabled=$firstLanguageOnboardingEnabled, '
-      'firstLanguageShowNativeAd=$firstLanguageShowNativeAd',
+      'firstLanguageShowNativeAd=$firstLanguageShowNativeAd, '
+      'proAccessShowTrialToggle=$proAccessShowTrialToggle',
     );
   }
 
@@ -129,6 +133,7 @@ class RemoteConfigService extends ChangeNotifier {
     _logKeyDetail(RemoteConfigKeys.splashShowPaywall);
     _logKeyDetail(RemoteConfigKeys.firstLanguageOnboardingEnabled);
     _logKeyDetail(RemoteConfigKeys.firstLanguageShowNativeAd);
+    _logKeyDetail(RemoteConfigKeys.proAccessShowTrialToggle);
   }
 
   void _logKeyDetail(String key) {
@@ -209,4 +214,7 @@ class RemoteConfigService extends ChangeNotifier {
     _log('getter firstLanguageShowNativeAd=$value');
     return value;
   }
+
+  bool get proAccessShowTrialToggle =>
+      _rc.getBool(RemoteConfigKeys.proAccessShowTrialToggle);
 }
