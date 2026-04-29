@@ -18,6 +18,7 @@ class AppOpenAdService {
   String? _defaultUnitId;
   DateTime? _loadedAt;
   DateTime? _lastShownAt;
+  Completer<bool>? _loadCompleter;
 
   /// Prevents repeated showing on quick resume cycles.
   Duration minIntervalBetweenShows;
@@ -49,6 +50,38 @@ class AppOpenAdService {
 
   Future<void> preload({String? unitIdOverride}) async {
     await _loadIfNeeded(primaryUnitIdOverride: unitIdOverride);
+  }
+
+  /// Ensures an App Open ad is loaded (cached) and returns whether it's available.
+  /// This is useful when UI wants to block on "loaded" before calling `showIfAvailable`.
+  Future<bool> ensureLoaded({
+    String? unitIdOverride,
+    Duration timeout = _loadTimeout,
+  }) async {
+    _dropExpiredIfNeeded();
+    if (_ad != null) return true;
+    if (_isLoading) {
+      final completer = _loadCompleter;
+      if (completer == null) return false;
+      try {
+        return await completer.future.timeout(timeout);
+      } catch (_) {
+        return _ad != null;
+      }
+    }
+
+    _loadCompleter = Completer<bool>();
+    unawaited(_loadIfNeeded(primaryUnitIdOverride: unitIdOverride));
+    try {
+      return await _loadCompleter!.future.timeout(timeout);
+    } catch (_) {
+      return _ad != null;
+    } finally {
+      // Keep completer around only while a load is in-flight.
+      if (!(_isLoading)) {
+        _loadCompleter = null;
+      }
+    }
   }
 
   Future<void> showIfAvailable({
@@ -200,6 +233,7 @@ class AppOpenAdService {
 
     Future<LoadAdError?> loadWithUnitId(String unitId) async {
       _isLoading = true;
+      _loadCompleter ??= Completer<bool>();
       final completer = Completer<LoadAdError?>();
 
       try {
@@ -219,6 +253,9 @@ class AppOpenAdService {
               _ad = ad;
               _loadedAt = DateTime.now();
               _isLoading = false;
+              if (_loadCompleter != null && !_loadCompleter!.isCompleted) {
+                _loadCompleter!.complete(true);
+              }
               if (kDebugMode) {
                 debugPrint('[AppOpenAdService] loaded app open');
               }
@@ -228,6 +265,9 @@ class AppOpenAdService {
               _ad = null;
               _loadedAt = null;
               _isLoading = false;
+              if (_loadCompleter != null && !_loadCompleter!.isCompleted) {
+                _loadCompleter!.complete(false);
+              }
               if (kDebugMode) {
                 debugPrint('[AppOpenAdService] load failed: $error');
               }
@@ -239,6 +279,9 @@ class AppOpenAdService {
         _ad = null;
         _loadedAt = null;
         _isLoading = false;
+        if (_loadCompleter != null && !_loadCompleter!.isCompleted) {
+          _loadCompleter!.complete(false);
+        }
         if (kDebugMode) {
           debugPrint('[AppOpenAdService] load threw: $e');
         }
@@ -252,6 +295,9 @@ class AppOpenAdService {
         _ad?.dispose();
         _ad = null;
         _loadedAt = null;
+        if (_loadCompleter != null && !_loadCompleter!.isCompleted) {
+          _loadCompleter!.complete(false);
+        }
         if (kDebugMode) {
           debugPrint(
             '[AppOpenAdService] load timeout after ${_loadTimeout.inSeconds}s',
@@ -266,6 +312,9 @@ class AppOpenAdService {
     if (primaryDidFail && kDebugMode) {
       debugPrint('[AppOpenAdService] primary load failed (no fallback).');
     }
+
+    // Load finished; clear completer for next load cycle.
+    _loadCompleter = null;
   }
 
   Future<void> dispose() async {

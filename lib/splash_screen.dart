@@ -184,6 +184,7 @@ class _SplashScreenState extends State<SplashScreen>
       final isProUnlocked = prefs.getBool(_prefsProUnlockedKey) ?? false;
       final forcePro = UsageLimitProvider.forceProForTesting;
 
+      if (!mounted) return;
       final rc = context.read<RemoteConfigService>();
       final adsAndTextEnabled = rc.splashAdsAndTextEnabled;
       // First-ever splash: no ad. Every splash after that: ad can be shown.
@@ -218,7 +219,14 @@ class _SplashScreenState extends State<SplashScreen>
             )
           : Future<void>.value();
 
-      await Future.wait([adsFuture, progressFuture]);
+      if (shouldAttemptAds) {
+        // Strict requirement: do not delay navigation after the ad finishes.
+        // Let the progress animation run visually, but don't wait for it.
+        await adsFuture;
+      } else {
+        // No ads => keep the original splash timing.
+        await Future.wait([progressFuture]);
+      }
 
       if (!mounted) return;
 
@@ -244,9 +252,6 @@ class _SplashScreenState extends State<SplashScreen>
 
     // Priority rule: If App Open is enabled, show it and skip interstitial.
     if (showAppOpen) {
-      // Give the splash UI a moment to settle so App Open doesn't appear
-      // "inside the app" after navigation has already started.
-      await Future<void>.delayed(const Duration(seconds: 3));
       _log('attempting splash app-open ad...');
       await _showAppOpenAdIfAvailable(unitIdOverride: appOpenUnitId);
       _log('splash app-open flow complete.');
@@ -280,19 +285,20 @@ class _SplashScreenState extends State<SplashScreen>
             },
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
-              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
               ad.dispose();
               _log('interstitial failed to show: $error');
-              loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
           );
           try {
             await loadingHandle.waitForMinShowDuration();
-            await Future<void>.delayed(const Duration(milliseconds: 150));
+            // Strict requirement: close the modal ONLY after ad is loaded,
+            // then show the ad.
+            loadingHandle.close();
+            await Future<void>.delayed(const Duration(milliseconds: 180));
             ad.show();
           } catch (e) {
             ad.dispose();
@@ -322,10 +328,35 @@ class _SplashScreenState extends State<SplashScreen>
   }) async {
     // Centralize AppOpen ads in one place to avoid race conditions:
     // SplashScreen + app resume must share the same instance.
-    await AppOpenAdService.instance.showIfAvailable(
-      unitIdOverride: unitIdOverride,
-      testUnitIdOverride: testUnitIdOverride,
+    //
+    // Strict requirement: show a blocking modal while loading; close it only
+    // once the ad is loaded, then show the cached ad.
+    final loadingHandle = await showInterstitialAdLoadingDialog(
+      context,
+      minShowDuration: const Duration(seconds: 2),
+      safetyTimeout: const Duration(seconds: 6),
     );
+
+    try {
+      final loaded = await AppOpenAdService.instance.ensureLoaded(
+        unitIdOverride: unitIdOverride,
+      );
+      await loadingHandle.waitForMinShowDuration();
+      loadingHandle.close();
+      if (!loaded) return;
+
+      await Future<void>.delayed(const Duration(milliseconds: 180));
+      await AppOpenAdService.instance.showIfAvailable(
+        unitIdOverride: unitIdOverride,
+        testUnitIdOverride: testUnitIdOverride,
+        // Already cached by ensureLoaded; never wait again here.
+        waitForLoad: false,
+        waitForDismiss: true,
+      );
+    } finally {
+      // Ensure the modal never stays up.
+      loadingHandle.close();
+    }
   }
 
   @override

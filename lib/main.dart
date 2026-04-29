@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -20,12 +22,16 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'services/app_open_ad_service.dart';
 import 'services/admob_ids.dart';
 import 'services/remote_config_service.dart';
+import 'services/native_ad_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await RemoteConfigService.instance.initialize();
   await MobileAds.instance.initialize();
+  // Preload ads once at startup so screens only "show" cached ads.
+  unawaited(AppOpenAdService.instance.preload(unitIdOverride: AdmobIds.appOpenUnitId()));
+  unawaited(NativeAdService.instance.preload());
   if (kDebugMode) {
     await MobileAds.instance.updateRequestConfiguration(
       RequestConfiguration(
@@ -252,6 +258,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         ),
         ChangeNotifierProvider.value(value: _usageLimitProvider),
         ChangeNotifierProvider(create: (_) => AssetSyncProvider()..load()),
+        ChangeNotifierProvider.value(value: NativeAdService.instance),
       ],
       child: ThemeProvider(
         isDarkTheme: _isDarkTheme,

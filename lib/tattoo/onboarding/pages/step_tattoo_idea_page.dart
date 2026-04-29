@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -6,6 +8,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/usage_limit_provider.dart';
 import '../../../services/admob_ids.dart';
 import '../../../services/remote_config_service.dart';
+import '../../../services/native_ad_service.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 
@@ -385,8 +388,6 @@ class _TattooIdeaNativeAd extends StatefulWidget {
 }
 
 class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
-  NativeAd? _ad;
-  bool _loaded = false;
   bool _lastEmitted = false;
 
   @override
@@ -397,7 +398,7 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
       final rc = context.read<RemoteConfigService>();
       final isPro = context.read<UsageLimitProvider>().isProUnlocked;
       if (isPro || !rc.tattooIdeaShowNative) return;
-      _load();
+      unawaited(NativeAdService.instance.preload());
     });
   }
 
@@ -405,11 +406,8 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
   void didUpdateWidget(covariant _TattooIdeaNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
-    _ad?.dispose();
-    _ad = null;
-    _loaded = false;
     _emit(false);
-    _load();
+    // No reload required; the cached native ad is shared.
   }
 
   void _emit(bool visible) {
@@ -421,41 +419,9 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
     });
   }
 
-  void _load() {
-    final unitId = AdmobIds.nativeUnitId();
-    if (unitId.isEmpty) return;
-
-    final ad = NativeAd(
-      adUnitId: unitId,
-      request: const AdRequest(),
-      factoryId: 'listTileLanguage',
-      listener: NativeAdListener(
-        onAdLoaded: (ad) {
-          if (!mounted) return;
-          setState(() {
-            _ad = ad as NativeAd;
-            _loaded = true;
-          });
-        },
-        onAdFailedToLoad: (ad, _) {
-          ad.dispose();
-          if (!mounted) return;
-          setState(() {
-            _ad = null;
-            _loaded = false;
-          });
-        },
-      ),
-    );
-
-    _ad = ad;
-    ad.load();
-  }
-
   @override
   void dispose() {
     _emit(false);
-    _ad?.dispose();
     super.dispose();
   }
 
@@ -468,8 +434,9 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
       return const SizedBox.shrink();
     }
 
-    final ad = _ad;
-    if (!_loaded || ad == null) {
+    final nativeService = context.watch<NativeAdService>();
+    final ad = nativeService.ad;
+    if (!nativeService.isLoaded || ad == null) {
       _emit(false);
       return const SizedBox.shrink();
     }

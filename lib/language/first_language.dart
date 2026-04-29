@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,9 +9,9 @@ import 'dart:developer' as developer;
 import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
-import '../services/admob_ids.dart';
 import '../services/locale_service.dart';
 import '../services/remote_config_service.dart';
+import '../services/native_ad_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/remote_or_asset_image.dart';
@@ -327,8 +329,6 @@ class _FirstLanguageNativeAd extends StatefulWidget {
 }
 
 class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
-  NativeAd? _nativeAd;
-  bool _loaded = false;
   bool _loggedLayoutOnce = false;
   bool? _lastLoggedShouldShowGate;
 
@@ -343,67 +343,21 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
   @override
   void initState() {
     super.initState();
-    _log('initState → _load()');
-    _load();
-  }
-
-  void _load() {
-    final unitId = AdmobIds.nativeUnitId();
-    if (unitId.isEmpty) {
-      _log('skip load: native unit id is empty');
-      return;
-    }
-
-    _log('load() start factoryId=listTileLanguage unitIdLen=${unitId.length}');
-
-    final ad = NativeAd(
-      adUnitId: unitId,
-      request: const AdRequest(),
-      factoryId: 'listTileLanguage',
-      listener: NativeAdListener(
-        onAdLoaded: (ad) {
-          _log('onAdLoaded');
-          if (!mounted) return;
-          setState(() {
-            _nativeAd = ad as NativeAd;
-            _loaded = true;
-          });
-        },
-        onAdFailedToLoad: (ad, LoadAdError error) {
-          _log(
-            'onAdFailedToLoad code=${error.code} domain=${error.domain} '
-            'message=${error.message}',
-          );
-          ad.dispose();
-          if (!mounted) return;
-          setState(() {
-            _nativeAd = null;
-            _loaded = false;
-          });
-        },
-      ),
-    );
-
-    _nativeAd = ad;
-    ad.load();
+    // Ensure the shared native ad cache is being warmed.
+    unawaited(NativeAdService.instance.preload());
   }
 
   @override
   void didUpdateWidget(covariant _FirstLanguageNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
-    _log('didUpdateWidget theme changed → reload ad');
+    // Theme change does not require reloading the cached native ad.
     _loggedLayoutOnce = false;
-    _nativeAd?.dispose();
-    _nativeAd = null;
-    _loaded = false;
-    _load();
   }
 
   @override
   void dispose() {
     _log('dispose');
-    _nativeAd?.dispose();
     super.dispose();
   }
 
@@ -426,8 +380,9 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
       return const SizedBox.shrink();
     }
 
-    final ad = _nativeAd;
-    if (!_loaded || ad == null) return SizedBox(height: 115.h);
+    final nativeService = context.watch<NativeAdService>();
+    final ad = nativeService.ad;
+    if (!nativeService.isLoaded || ad == null) return SizedBox(height: 115.h);
 
     // Tight layout in native_ads_language.xml; keep slot in sync with other screens.
     final slotH = 135.h;

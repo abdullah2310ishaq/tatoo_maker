@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -6,6 +8,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/usage_limit_provider.dart';
 import '../../../services/admob_ids.dart';
 import '../../../services/remote_config_service.dart';
+import '../../../services/native_ad_service.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
 
@@ -463,8 +466,6 @@ class _BirthdayNativeAd extends StatefulWidget {
 }
 
 class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
-  NativeAd? _ad;
-  bool _loaded = false;
   bool _lastEmitted = false;
 
   @override
@@ -475,7 +476,7 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
       final rc = context.read<RemoteConfigService>();
       final isPro = context.read<UsageLimitProvider>().isProUnlocked;
       if (isPro || !rc.tattooBirthdayShowNative) return;
-      _load();
+      unawaited(NativeAdService.instance.preload());
     });
   }
 
@@ -492,48 +493,13 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
   void didUpdateWidget(covariant _BirthdayNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
-    _ad?.dispose();
-    _ad = null;
-    _loaded = false;
     _emit(false);
-    _load();
-  }
-
-  void _load() {
-    final unitId = AdmobIds.nativeUnitId();
-    if (unitId.isEmpty) return;
-
-    final ad = NativeAd(
-      adUnitId: unitId,
-      request: const AdRequest(),
-      factoryId: 'listTileLanguage',
-      listener: NativeAdListener(
-        onAdLoaded: (ad) {
-          if (!mounted) return;
-          setState(() {
-            _ad = ad as NativeAd;
-            _loaded = true;
-          });
-        },
-        onAdFailedToLoad: (ad, _) {
-          ad.dispose();
-          if (!mounted) return;
-          setState(() {
-            _ad = null;
-            _loaded = false;
-          });
-        },
-      ),
-    );
-
-    _ad = ad;
-    ad.load();
+    // No reload required; the cached native ad is shared.
   }
 
   @override
   void dispose() {
     _emit(false);
-    _ad?.dispose();
     super.dispose();
   }
 
@@ -546,8 +512,9 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
       return const SizedBox.shrink();
     }
 
-    final ad = _ad;
-    if (!_loaded || ad == null) {
+    final nativeService = context.watch<NativeAdService>();
+    final ad = nativeService.ad;
+    if (!nativeService.isLoaded || ad == null) {
       _emit(false);
       return const SizedBox.shrink();
     }
