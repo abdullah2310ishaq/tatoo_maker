@@ -47,7 +47,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   bool _isPurchasing = false;
   bool _isBillingReady = false;
   bool _isClosing = false;
-  PlanVariant _selectedPlan = PlanVariant.freeTrial;
+  PlanVariant _selectedPlan = PlanVariant.lifetime;
   bool get _isTrialEnabled => _selectedPlan == PlanVariant.freeTrial;
 
   void _log(String message) {
@@ -237,7 +237,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
             },
           );
           try {
-            _log('close interstitial: waiting 2s loading dialog (fresh load)...');
+            _log(
+              'close interstitial: waiting 2s loading dialog (fresh load)...',
+            );
             await loadingHandle.waitForMinShowDuration();
             _log('close interstitial: showing interstitial now');
             await Future<void>.delayed(const Duration(milliseconds: 150));
@@ -443,11 +445,16 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
               final isArabic =
                   Localizations.localeOf(context).languageCode == 'ar';
               final isCompactHeight = screenHeight < 760;
+              final isVeryCompactHeight = screenHeight < 680;
               // Increase image height by ~10% for stronger background presence.
               final imageHeight = screenHeight * 0.67;
               final titleTopFactor = isArabic
-                  ? (isCompactHeight ? 0.205 : 0.235)
-                  : (isCompactHeight ? 0.235 : 0.275);
+                  ? (isVeryCompactHeight
+                        ? 0.165
+                        : (isCompactHeight ? 0.19 : 0.235))
+                  : (isVeryCompactHeight
+                        ? 0.19
+                        : (isCompactHeight ? 0.215 : 0.275));
               final titleSubtitleSpacing = isCompactHeight ? 6.h : 8.h;
               final subtitleFeaturesSpacing =
                   _selectedPlan == PlanVariant.freeTrial
@@ -536,40 +543,22 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                         20.w,
                         bottomReservedHeight,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: headerTopOffset),
+                      child: SingleChildScrollView(
+                        physics: const ClampingScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(height: headerTopOffset),
 
-                          /// TITLE (single line: Get [PRO] Access)
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  l10n.proAccessTitleGet,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: isArabic ? 40.sp : 46.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.textWhite,
-                                    fontFamily: 'Antonio',
-                                  ),
-                                ),
-                                SizedBox(width: 15.w),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 5.w,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.darkPrimary,
-                                    borderRadius: BorderRadius.circular(4.r),
-                                  ),
-                                  child: Text(
-                                    l10n.proAccessTitlePro,
+                            /// TITLE (single line: Get [PRO] Access)
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    l10n.proAccessTitleGet,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -579,96 +568,117 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                                       fontFamily: 'Antonio',
                                     ),
                                   ),
-                                ),
-                                SizedBox(width: 15.w),
-                                Text(
-                                  l10n.proAccessTitleAccess,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: isArabic ? 40.sp : 46.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.textWhite,
-                                    fontFamily: 'Antonio',
+                                  SizedBox(width: 15.w),
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 5.w,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.darkPrimary,
+                                      borderRadius: BorderRadius.circular(4.r),
+                                    ),
+                                    child: Text(
+                                      l10n.proAccessTitlePro,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontSize: isArabic ? 40.sp : 46.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.textWhite,
+                                        fontFamily: 'Antonio',
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(width: 15.w),
+                                  Text(
+                                    l10n.proAccessTitleAccess,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: isArabic ? 40.sp : 46.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.textWhite,
+                                      fontFamily: 'Antonio',
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
 
-                          SizedBox(height: titleSubtitleSpacing),
+                            SizedBox(height: titleSubtitleSpacing),
 
-                          Text(
-                            l10n.proAccessSubtitle,
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: isArabic ? 22.sp : 22.sp,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.textWhite,
-                              fontFamily: 'Antonio',
+                            Text(
+                              l10n.proAccessSubtitle,
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: isArabic ? 22.sp : 22.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.textWhite,
+                                fontFamily: 'Antonio',
+                              ),
                             ),
-                          ),
 
-                          SizedBox(height: subtitleFeaturesSpacing),
+                            SizedBox(height: subtitleFeaturesSpacing),
 
-                          _FeatureRow(
-                            text: l10n.proAccessFeatureUnlimitedTattooCreation,
-                          ),
-                          _FeatureRow(
-                            text: l10n.proAccessFeatureFastProcessing,
-                          ),
-                          _FeatureRow(
-                            text: l10n.proAccessFeatureUnlockAllStyles,
-                          ),
-                          _FeatureRow(
-                            text: l10n.proAccessFeatureRemoveWatermarks,
-                          ),
-
-                          SizedBox(height: featuresToggleSpacing),
-                          if (context
-                              .watch<RemoteConfigService>()
-                              .proAccessShowTrialToggle) ...[
-                            _TrialToggleCard(
-                              isEnabled: _isTrialEnabled,
-                              onChanged: _onTrialToggleChanged,
-                              verticalPadding: trialToggleVerticalPadding,
+                            _FeatureRow(
+                              text: l10n.proAccessFeatureUnlimitedTattooCreation,
                             ),
-                            SizedBox(height: togglePlansSpacing),
+                            _FeatureRow(
+                              text: l10n.proAccessFeatureFastProcessing,
+                            ),
+                            _FeatureRow(
+                              text: l10n.proAccessFeatureUnlockAllStyles,
+                            ),
+                            _FeatureRow(
+                              text: l10n.proAccessFeatureRemoveWatermarks,
+                            ),
+
+                            SizedBox(height: featuresToggleSpacing),
+                            if (context
+                                .watch<RemoteConfigService>()
+                                .proAccessShowTrialToggle) ...[
+                              _TrialToggleCard(
+                                isEnabled: _isTrialEnabled,
+                                onChanged: _onTrialToggleChanged,
+                                verticalPadding: trialToggleVerticalPadding,
+                              ),
+                              SizedBox(height: togglePlansSpacing),
+                            ],
+
+                            _PlanCard(
+                              variant: PlanVariant.lifetime,
+                              leftText: l10n.proAccessPlanLifetimeSubscription,
+
+                              rightText: _lifetimeDisplayPrice(),
+                              originalRightText: _lifetimeOriginalDisplayPrice(),
+                              verticalPadding: planVerticalPadding,
+                              isSelected: _selectedPlan == PlanVariant.lifetime,
+                              onTap: () {
+                                _selectPlan(PlanVariant.lifetime);
+                              },
+                            ),
+
+                            SizedBox(height: plansGapSpacing),
+
+                            _PlanCard(
+                              variant: PlanVariant.freeTrial,
+                              leftText: l10n.proAccessPlanWeekly,
+                              leftSubText: l10n.proAccessWeeklyTrialSubtitle,
+                              leftSubTextColor: AppColors.textGrey.withOpacity(
+                                0.85,
+                              ),
+                              rightText: _freeTrialDisplayPrice(l10n),
+                              verticalPadding: planVerticalPadding,
+                              isSelected: _selectedPlan == PlanVariant.freeTrial,
+                              onTap: () {
+                                _selectPlan(PlanVariant.freeTrial);
+                              },
+                            ),
+                            SizedBox(height: endingSpacing),
                           ],
-
-                          _PlanCard(
-                            variant: PlanVariant.lifetime,
-                            leftText: l10n.proAccessPlanLifetimeSubscription,
-
-                            rightText: _lifetimeDisplayPrice(),
-                            originalRightText: _lifetimeOriginalDisplayPrice(),
-                            verticalPadding: planVerticalPadding,
-                            isSelected: _selectedPlan == PlanVariant.lifetime,
-                            onTap: () {
-                              _selectPlan(PlanVariant.lifetime);
-                            },
-                          ),
-
-                          SizedBox(height: plansGapSpacing),
-
-                          _PlanCard(
-                            variant: PlanVariant.freeTrial,
-                            leftText: l10n.proAccessPlanWeekly,
-                            leftSubText: l10n.proAccessWeeklyTrialSubtitle,
-                            leftSubTextColor: AppColors.textGrey.withOpacity(
-                              0.85,
-                            ),
-                            rightText: _freeTrialDisplayPrice(l10n),
-                            verticalPadding: planVerticalPadding,
-                            isSelected: _selectedPlan == PlanVariant.freeTrial,
-                            onTap: () {
-                              _selectPlan(PlanVariant.freeTrial);
-                            },
-                          ),
-                          SizedBox(height: endingSpacing),
-                        ],
+                        ),
                       ),
                     ),
                   ),

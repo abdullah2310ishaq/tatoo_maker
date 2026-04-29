@@ -34,14 +34,12 @@ class ResultScreen extends StatefulWidget {
     this.promptText,
     this.showProAccessOnOpen = false,
   });
-
   @override
   State<ResultScreen> createState() => _ResultScreenState();
 }
 
 class _ResultScreenState extends State<ResultScreen> {
   bool _didAutoShowPaywall = false;
-  bool _didShowPaywallAfterDownload = false;
   bool _didShowLimitPaywall = false;
   static const String _watermarkLightAssetPath = 'assets/watermark_light.png';
   static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
@@ -824,20 +822,6 @@ class _ResultScreenState extends State<ResultScreen> {
           message: l10n.resultImageSavedToGallery,
           isSuccess: true,
         );
-
-        final usage = context.read<UsageLimitProvider>();
-        if (!usage.isProUnlocked && !_didShowPaywallAfterDownload) {
-          _didShowPaywallAfterDownload = true;
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => const ProAccessScreen(
-                nextScreen: HomeShell(),
-                // Download upsell should close without any ad.
-                showInterstitialOnClose: false,
-              ),
-            ),
-          );
-        }
       }
     } catch (e) {
       if (context.mounted) {

@@ -73,7 +73,10 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
 
     // Start flow
     final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-    final shouldLock = !isPro || widget.mode == FlowerLoadingMode.lockedForFreeUser;
+    // Pro users must always see the real generated flower tattoo.
+    // Only non-pro users can be routed into the locked flow.
+    final shouldLock =
+        !isPro && widget.mode == FlowerLoadingMode.lockedForFreeUser;
     if (shouldLock) {
       unawaited(_runLockedFreeUserFlow());
     } else {

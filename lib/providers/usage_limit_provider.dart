@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UsageLimitProvider extends ChangeNotifier {
   static const int freeGenerationLimit = 2;
   // for premium version make it true abdullah sb
-
   static const bool forceProForTesting = false;
   static const String _generationCountKey = 'usage_generation_count';
   static const String _proUnlockedKey = 'usage_pro_unlocked';
@@ -25,9 +24,7 @@ class UsageLimitProvider extends ChangeNotifier {
   bool get hasReachedFreeLimit =>
       !isProUnlocked && _generationCount >= freeGenerationLimit;
 
-  /// True only when the user has gone beyond the free allowance.
-  /// Example: if limit is 2, then count==2 is still allowed (no lock),
-  /// but count==3 means exceeded.
+
   bool get hasExceededFreeLimit =>
       !isProUnlocked && _generationCount > freeGenerationLimit;
 

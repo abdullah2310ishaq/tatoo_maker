@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 
 import '../l10n/app_localizations.dart';
 import '../models/explore_category.dart';
+import '../providers/usage_limit_provider.dart';
 import '../services/admob_ids.dart';
 import '../utils/colors.dart';
 import '../widgets/interstitial_ad_loading_dialog.dart';
@@ -46,8 +48,17 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
   }
 
   Future<void> _showInterstitialAdIfAvailable() async {
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    if (isPro) return;
+
     final unitId = AdmobIds.interstitialUnitId().trim();
     if (unitId.isEmpty) return;
+
+    final loadingHandle = await showInterstitialAdLoadingDialog(
+      context,
+      minShowDuration: const Duration(seconds: 2),
+      safetyTimeout: const Duration(seconds: 4),
+    );
 
     final completer = Completer<void>();
     InterstitialAd.load(
@@ -55,7 +66,6 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) async {
-          final loadingHandle = await showInterstitialAdLoadingDialog(context);
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
               ad.dispose();
@@ -69,7 +79,7 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
             },
           );
           try {
-            // Give the dialog a moment to paint, then show ad immediately.
+            await loadingHandle.waitForMinShowDuration();
             await Future<void>.delayed(const Duration(milliseconds: 150));
             ad.show();
           } catch (_) {
@@ -79,6 +89,7 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
           }
         },
         onAdFailedToLoad: (error) {
+          loadingHandle.close();
           if (!completer.isCompleted) completer.complete();
         },
       ),
@@ -88,6 +99,7 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
       await completer.future.timeout(const Duration(seconds: 4));
     } on TimeoutException {
       // Do not block back navigation if ad callbacks are delayed.
+      loadingHandle.close();
     }
   }
 
