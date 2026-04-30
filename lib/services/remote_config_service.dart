@@ -36,10 +36,10 @@ class RemoteConfigService extends ChangeNotifier {
 
     RemoteConfigKeys.tattooIdeaAdsAll: true,
     RemoteConfigKeys.tattooIdeaBanner: true,
-    RemoteConfigKeys.tattooIdeaNative: true,
+    RemoteConfigKeys.tattooIdeaNative: false,
     RemoteConfigKeys.tattooStyleSelectionAdsAll: true,
     RemoteConfigKeys.tattooStyleSelectionBanner: true,
-    RemoteConfigKeys.tattooStyleSelectionNative: false,
+    RemoteConfigKeys.tattooStyleSelectionNative: true,
 
     // Flower module (default OFF; control via Firebase).
     RemoteConfigKeys.flowerAdsAll: true,
@@ -134,6 +134,9 @@ class RemoteConfigService extends ChangeNotifier {
     _logKeyDetail(RemoteConfigKeys.firstLanguageOnboardingEnabled);
     _logKeyDetail(RemoteConfigKeys.firstLanguageShowNativeAd);
     _logKeyDetail(RemoteConfigKeys.proAccessShowTrialToggle);
+    _logKeyDetail(RemoteConfigKeys.tattooIdeaAdsAll);
+    _logKeyDetail(RemoteConfigKeys.tattooIdeaBanner);
+    _logKeyDetail(RemoteConfigKeys.tattooIdeaNative);
   }
 
   void _logKeyDetail(String key) {
@@ -159,13 +162,31 @@ class RemoteConfigService extends ChangeNotifier {
       _rc.getBool(RemoteConfigKeys.tattooBirthdayNative);
 
   /// Master: `false` ⇒ no banner and no native on tattoo idea (step 4) screen.
-  bool get tattooIdeaAdsAll => _rc.getBool(RemoteConfigKeys.tattooIdeaAdsAll);
+  bool get tattooIdeaAdsAll {
+    final value = _rc.getBool(RemoteConfigKeys.tattooIdeaAdsAll);
+    _log('getter tattooIdeaAdsAll=$value');
+    return value;
+  }
 
-  bool get tattooIdeaShowBanner =>
-      tattooIdeaAdsAll && _rc.getBool(RemoteConfigKeys.tattooIdeaBanner);
+  bool get tattooIdeaShowBanner {
+    final master = tattooIdeaAdsAll;
+    final raw = _rc.getBool(RemoteConfigKeys.tattooIdeaBanner);
+    final resolved = master && raw;
+    _log(
+      'getter tattooIdeaShowBanner master=$master raw=$raw => resolved=$resolved',
+    );
+    return resolved;
+  }
 
-  bool get tattooIdeaShowNative =>
-      tattooIdeaAdsAll && _rc.getBool(RemoteConfigKeys.tattooIdeaNative);
+  bool get tattooIdeaShowNative {
+    final master = tattooIdeaAdsAll;
+    final raw = _rc.getBool(RemoteConfigKeys.tattooIdeaNative);
+    final resolved = master && raw;
+    _log(
+      'getter tattooIdeaShowNative master=$master raw=$raw => resolved=$resolved',
+    );
+    return resolved;
+  }
 
   /// Master: `false` ⇒ no banner and no native on style selection (last) step.
   bool get tattooStyleSelectionAdsAll =>

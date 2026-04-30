@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/usage_limit_provider.dart';
+import '../../../services/ad_request_factory.dart';
 import '../../../services/admob_ids.dart';
 import '../../../services/remote_config_service.dart';
 import '../../../services/native_ad_service.dart';
@@ -28,20 +30,14 @@ class StepTattooIdeaPage extends StatefulWidget {
   State<StepTattooIdeaPage> createState() => _StepTattooIdeaPageState();
 }
 
-class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
-    with WidgetsBindingObserver {
+class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
   static const int _maxCharacters = 500;
   final FocusNode _ideaFocusNode = FocusNode();
-  bool _keyboardVisibleByMetrics = false;
-  bool _bannerVisible = false;
-  bool _nativeVisible = false;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
     widget.controller.addListener(_handleTextChanged);
-    _syncKeyboardVisibility();
   }
 
   @override
@@ -54,7 +50,6 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     widget.controller.removeListener(_handleTextChanged);
     _ideaFocusNode.dispose();
     super.dispose();
@@ -62,28 +57,6 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
 
   void _handleTextChanged() {
     if (mounted) setState(() {});
-  }
-
-  @override
-  void didChangeMetrics() {
-    super.didChangeMetrics();
-    _syncKeyboardVisibility();
-  }
-
-  void _syncKeyboardVisibility() {
-    final views = WidgetsBinding.instance.platformDispatcher.views;
-    if (views.isEmpty) return;
-    final keyboardVisible = views.first.viewInsets.bottom > 0.0;
-    if (keyboardVisible == _keyboardVisibleByMetrics) return;
-
-    if (!mounted) {
-      _keyboardVisibleByMetrics = keyboardVisible;
-      return;
-    }
-
-    setState(() {
-      _keyboardVisibleByMetrics = keyboardVisible;
-    });
   }
 
   @override
@@ -98,34 +71,10 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
             colors: [AppColors.cardGradientStart, AppColors.cardGradientEnd],
           )
         : null;
-    final keyboardOpen =
-        MediaQuery.of(context).viewInsets.bottom > 0 ||
-        _keyboardVisibleByMetrics;
-    final isWriting = keyboardOpen;
-
     final rc = context.watch<RemoteConfigService>();
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
     final canShowBanner = !isPro && rc.tattooIdeaShowBanner;
     final canShowNative = !isPro && rc.tattooIdeaShowNative;
-
-    // Priority: if both are enabled, show Native only.
-    final shouldShowNative = canShowNative;
-    final shouldShowBanner = canShowBanner && !canShowNative;
-
-    // If Remote Config/Pro disables ads while we previously marked them visible,
-    // reset state after this frame so the "no ads" layout has no gaps.
-    if (!shouldShowBanner && _bannerVisible) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        if (_bannerVisible) setState(() => _bannerVisible = false);
-      });
-    }
-    if (!shouldShowNative && _nativeVisible) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        if (_nativeVisible) setState(() => _nativeVisible = false);
-      });
-    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,28 +155,18 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
             ),
           ),
         ),
-        if (!isWriting) ...[
-          // Bottom ads (no reserved space when not loaded).
-          // Order: Banner first, then Native. Gap only when both visible.
-          if (shouldShowBanner)
-            _TattooIdeaBannerAd(
-              onVisibilityChanged: (visible) {
-                if (_bannerVisible == visible) return;
-                setState(() => _bannerVisible = visible);
-              },
-            ),
-          if (shouldShowNative) ...[
-            if (_bannerVisible && _nativeVisible) SizedBox(height: 8.h),
-            _TattooIdeaNativeAd(
-              isDark: isDark,
-              onVisibilityChanged: (visible) {
-                if (_nativeVisible == visible) return;
-                setState(() => _nativeVisible = visible);
-              },
-            ),
-          ],
+        // Collapsible banners are far more likely to be served when the ad
+        // placement stays stable and doesn't get removed/re-mounted (e.g. on
+        // keyboard open/close). So we keep this bottom slot mounted and simply
+        // decide which ad type occupies it.
+        if (canShowBanner) ...[
+          const _TattooIdeaBannerAd(),
+          SafeArea(top: false, child: SizedBox(height: 8.h)),
+        ] else if (canShowNative) ...[
+          _TattooIdeaNativeAd(isDark: isDark),
           SafeArea(top: false, child: SizedBox(height: 8.h)),
         ] else ...[
+          // Keep a tiny bottom padding to match layout.
           SafeArea(top: false, child: SizedBox(height: 12.h)),
         ],
       ],
@@ -236,9 +175,7 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
 }
 
 class _TattooIdeaBannerAd extends StatefulWidget {
-  const _TattooIdeaBannerAd({required this.onVisibilityChanged});
-
-  final ValueChanged<bool> onVisibilityChanged;
+  const _TattooIdeaBannerAd();
 
   @override
   State<_TattooIdeaBannerAd> createState() => _TattooIdeaBannerAdState();
@@ -246,96 +183,117 @@ class _TattooIdeaBannerAd extends StatefulWidget {
 
 class _TattooIdeaBannerAdState extends State<_TattooIdeaBannerAd> {
   BannerAd? _ad;
-  int _loadedWidth = 0;
-  bool _loaded = false;
-  bool _lastEmitted = false;
+  bool _isLoadedBannerAd = false;
+  bool _isLoadingBannerAd = false;
+  int _requestedWidth = 0;
+  int _scheduledWidth = 0;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _loadIfEligibleForCurrentWidth();
-    });
+    // Load is triggered from build via LayoutBuilder to ensure we always have a
+    // real width and to avoid coupling to MediaQuery in initState.
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _loadIfEligibleForCurrentWidth();
-  }
-
-  void _emit(bool visible) {
-    if (_lastEmitted == visible) return;
-    _lastEmitted = visible;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      widget.onVisibilityChanged(visible);
-    });
-  }
-
-  Future<void> _loadIfEligibleForCurrentWidth() async {
+  Future<void> _loadForWidth(int width) async {
     if (!mounted) return;
+
     final rc = context.read<RemoteConfigService>();
     final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-    if (isPro || !rc.tattooIdeaShowBanner) return;
 
-    final width = MediaQuery.of(context).size.width.truncate();
-    if (width <= 0) return;
-    if (_loadedWidth == width && _ad != null) return;
-    _loadedWidth = width;
-
-    await _loadAdaptive(unitId: AdmobIds.bannerUnitId(), width: width);
-  }
-
-  Future<void> _loadAdaptive({
-    required String unitId,
-    required int width,
-  }) async {
-    final normalizedUnitId = unitId.trim();
-    if (normalizedUnitId.isEmpty) return;
-    final adaptiveSize =
-        await AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(width);
-    if (adaptiveSize == null) return;
-
-    _ad?.dispose();
-    _ad = null;
-    if (mounted && _loaded) {
-      setState(() {
-        _loaded = false;
-      });
+    if (isPro || !rc.tattooIdeaShowBanner) {
+      _disposeAd();
+      return;
     }
 
-    final ad = BannerAd(
-      adUnitId: normalizedUnitId,
-      request: const AdRequest(),
-      size: adaptiveSize,
+    if (width <= 0) return;
+
+    // Skip if we already have (or are loading) a banner for this width.
+    if (_requestedWidth == width && (_isLoadingBannerAd || _isLoadedBannerAd)) {
+      return;
+    }
+
+    _scheduledWidth = 0;
+    _requestedWidth = width;
+
+    // Set loading flag BEFORE any await
+    if (mounted) setState(() => _isLoadingBannerAd = true);
+
+    final size = await AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
+      width,
+    );
+
+    if (!mounted) return;
+
+    if (size == null) {
+      setState(() {
+        _isLoadingBannerAd = false;
+        _isLoadedBannerAd = false;
+      });
+      return;
+    }
+
+    // Dispose old ad only when recreating due to width/orientation change.
+    _disposeAd();
+
+    // _disposeAd() resets flags; re-arm them so concurrent triggers can't sneak
+    // in while the new banner is still loading.
+    _isLoadingBannerAd = true;
+    _requestedWidth = width;
+
+    final banner = BannerAd(
+      adUnitId: AdmobIds.collapsibleBannerUnitId().trim(),
+      request: AdRequestFactory.collapsibleBottom(),
+      size: size,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
+          if (kDebugMode) {
+            final bannerAd = ad as BannerAd;
+            try {
+              final isCollapsible =
+                  (bannerAd as dynamic).isCollapsible as bool? ?? false;
+              debugPrint(
+                'TattooIdea banner loaded: ${isCollapsible ? "" : "not "}collapsible.',
+              );
+            } catch (_) {
+              debugPrint('TattooIdea banner loaded.');
+            }
+          }
           if (!mounted) return;
           setState(() {
             _ad = ad as BannerAd;
-            _loaded = true;
+            _isLoadedBannerAd = true;
+            _isLoadingBannerAd = false;
           });
         },
-        onAdFailedToLoad: (ad, _) {
+        onAdFailedToLoad: (ad, error) {
           ad.dispose();
           if (!mounted) return;
           setState(() {
             _ad = null;
-            _loaded = false;
+            _isLoadedBannerAd = false;
+            _isLoadingBannerAd = false;
           });
         },
       ),
     );
 
-    _ad = ad;
-    ad.load();
+    _ad = banner;
+    banner.load();
+  }
+
+  void _disposeAd() {
+    _ad?.dispose();
+    _ad = null;
+    _isLoadedBannerAd = false;
+    _isLoadingBannerAd = false;
+    _requestedWidth = 0;
+    _scheduledWidth = 0;
   }
 
   @override
   void dispose() {
-    _emit(false);
-    _ad?.dispose();
+    _disposeAd();
     super.dispose();
   }
 
@@ -343,22 +301,32 @@ class _TattooIdeaBannerAdState extends State<_TattooIdeaBannerAd> {
   Widget build(BuildContext context) {
     final rc = context.watch<RemoteConfigService>();
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    if (isPro || !rc.tattooIdeaShowBanner) {
-      _emit(false);
-      return const SizedBox.shrink();
-    }
 
-    final ad = _ad;
-    if (!_loaded || ad == null) {
-      _emit(false);
-      return const SizedBox.shrink();
-    }
+    if (isPro || !rc.tattooIdeaShowBanner) return const SizedBox.shrink();
 
-    _emit(true);
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SafeArea(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth.isFinite
+            ? constraints.maxWidth.truncate()
+            : MediaQuery.of(context).size.width.truncate();
+
+        // Trigger load only when needed and never on keyboard open/close
+        // (this widget stays mounted in the tree).
+        if (width > 0 &&
+            _requestedWidth != width &&
+            !_isLoadingBannerAd &&
+            _scheduledWidth != width) {
+          _scheduledWidth = width;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            unawaited(_loadForWidth(width));
+          });
+        }
+
+        final ad = _ad;
+        if (!_isLoadedBannerAd || ad == null) return const SizedBox.shrink();
+
+        return SafeArea(
           top: false,
           child: Center(
             child: SizedBox(
@@ -367,29 +335,22 @@ class _TattooIdeaBannerAdState extends State<_TattooIdeaBannerAd> {
               child: AdWidget(ad: ad),
             ),
           ),
-        ),
-        SizedBox(height: 12.h),
-      ],
+        );
+      },
     );
   }
 }
 
 class _TattooIdeaNativeAd extends StatefulWidget {
-  const _TattooIdeaNativeAd({
-    required this.isDark,
-    required this.onVisibilityChanged,
-  });
+  const _TattooIdeaNativeAd({required this.isDark});
 
   final bool isDark;
-  final ValueChanged<bool> onVisibilityChanged;
 
   @override
   State<_TattooIdeaNativeAd> createState() => _TattooIdeaNativeAdState();
 }
 
 class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
-  bool _lastEmitted = false;
-
   @override
   void initState() {
     super.initState();
@@ -406,23 +367,7 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
   void didUpdateWidget(covariant _TattooIdeaNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
-    _emit(false);
     // No reload required; the cached native ad is shared.
-  }
-
-  void _emit(bool visible) {
-    if (_lastEmitted == visible) return;
-    _lastEmitted = visible;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      widget.onVisibilityChanged(visible);
-    });
-  }
-
-  @override
-  void dispose() {
-    _emit(false);
-    super.dispose();
   }
 
   @override
@@ -430,18 +375,14 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
     final rc = context.watch<RemoteConfigService>();
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
     if (isPro || !rc.tattooIdeaShowNative) {
-      _emit(false);
       return const SizedBox.shrink();
     }
 
     final nativeService = context.watch<NativeAdService>();
     final ad = nativeService.ad;
     if (!nativeService.isLoaded || ad == null) {
-      _emit(false);
       return const SizedBox.shrink();
     }
-
-    _emit(true);
 
     final cardColor = widget.isDark
         ? AppColors.inputCardDarkBackground

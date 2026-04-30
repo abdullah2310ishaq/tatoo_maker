@@ -85,22 +85,6 @@ class _SplashScreenState extends State<SplashScreen>
 
       // Reset local entitlement on launch; restore will re-unlock if active.
       await context.read<UsageLimitProvider>().setProUnlocked(false);
-      // help me to understand this code
-      // this code is used to initialize the billing service and restore purchases
-      // the billing service is used to purchase and restore purchases
-      // the billing service is used to get the products and prices
-      // the billing service is used to get the purchase events
-      // the billing service is used to get the purchase details
-      // the billing service is used to get the purchase status
-      // the billing service is used to get the purchase error
-      // the billing service is used to get the purchase stack trace
-      // the billing service is used to get the purchase time
-      // the billing service is used to get the purchase date
-      // the billing service is used to get the purchase amount
-      // the billing service is used to get the purchase currency
-      // the billing service is used to get the purchase currency code
-      // the billing service is used to get the purchase currency symbol
-      // the billing service is used to get the purchase currency symbol code
       await _billingService.initialize();
       _billingEventsSubscription = _billingService.purchaseEvents.listen((
         event,
@@ -272,7 +256,8 @@ class _SplashScreenState extends State<SplashScreen>
     final loadingHandle = await showInterstitialAdLoadingDialog(
       context,
       minShowDuration: const Duration(seconds: 2),
-      safetyTimeout: const Duration(seconds: 4),
+      // Keep modal visible until the ad either loads or fails/times out.
+      safetyTimeout: const Duration(seconds: 15),
     );
     InterstitialAd.load(
       adUnitId: unitId,
@@ -315,7 +300,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     try {
-      await completer.future.timeout(const Duration(seconds: 5));
+      await completer.future.timeout(const Duration(seconds: 15));
     } catch (_) {
       // Avoid blocking splash navigation forever.
       loadingHandle.close();
@@ -334,12 +319,14 @@ class _SplashScreenState extends State<SplashScreen>
     final loadingHandle = await showInterstitialAdLoadingDialog(
       context,
       minShowDuration: const Duration(seconds: 2),
-      safetyTimeout: const Duration(seconds: 6),
+      // AppOpen load timeout is 12s in the service; keep modal longer than that.
+      safetyTimeout: const Duration(seconds: 15),
     );
 
     try {
       final loaded = await AppOpenAdService.instance.ensureLoaded(
         unitIdOverride: unitIdOverride,
+        timeout: const Duration(seconds: 12),
       );
       await loadingHandle.waitForMinShowDuration();
       loadingHandle.close();

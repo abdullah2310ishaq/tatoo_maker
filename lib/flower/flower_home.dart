@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:video_player/video_player.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
+import '../utils/route_observer.dart';
 import '../utils/theme_manager.dart';
 import '../widgets/inkvision_underline.dart';
 import '../widgets/remote_or_asset_image.dart';
@@ -226,13 +229,14 @@ class _FlowerHomeVideo extends StatefulWidget {
   State<_FlowerHomeVideo> createState() => _FlowerHomeVideoState();
 }
 
-class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
+class _FlowerHomeVideoState extends State<_FlowerHomeVideo> with RouteAware {
   VideoPlayerController? _controller;
   bool _initError = false;
   bool _hadValidSize = false;
   String _currentAssetPath = '';
   bool _showLoadingPlaceholder = false;
   bool _disposed = false;
+  ModalRoute<void>? _route;
 
   @override
   void initState() {
@@ -240,6 +244,19 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
     _currentAssetPath = widget.assetPath;
     _initController();
     _scheduleLoadingPlaceholder();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context);
+    if (route is PageRoute && route != _route) {
+      if (_route != null) {
+        routeObserver.unsubscribe(this);
+      }
+      _route = route;
+      routeObserver.subscribe(this, route);
+    }
   }
 
   @override
@@ -314,8 +331,42 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
   @override
   void dispose() {
     _disposed = true;
+    routeObserver.unsubscribe(this);
     _disposeController();
     super.dispose();
+  }
+
+  void _pauseIfPlaying() {
+    final controller = _controller;
+    if (controller == null) return;
+    if (!controller.value.isInitialized) return;
+    if (!controller.value.isPlaying) return;
+    try {
+      controller.pause();
+    } catch (_) {}
+  }
+
+  Future<void> _resumeIfPossible() async {
+    final controller = _controller;
+    if (!mounted || controller == null) return;
+    if (!controller.value.isInitialized) return;
+    if (controller.value.isPlaying) return;
+    try {
+      if (!controller.value.isLooping) {
+        await controller.setLooping(true);
+      }
+      await controller.play();
+    } catch (_) {}
+  }
+
+  @override
+  void didPushNext() {
+    _pauseIfPlaying();
+  }
+
+  @override
+  void didPopNext() {
+    unawaited(_resumeIfPossible());
   }
 
   Widget _buildErrorPlaceholder(double h, double w) {
@@ -383,16 +434,7 @@ class _FlowerHomeVideoState extends State<_FlowerHomeVideo> {
     // after switching tabs or returning to this page), ensure it resumes.
     if (!controller.value.isPlaying) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        final activeController = _controller;
-        if (!mounted || activeController == null || !activeController.value.isInitialized) return;
-        try {
-          if (!activeController.value.isLooping) {
-            await activeController.setLooping(true);
-          }
-          await activeController.play();
-        } catch (_) {
-          // Ignore playback errors; UI will still show the last frame.
-        }
+        await _resumeIfPossible();
       });
     }
     final size = controller.value.size;
