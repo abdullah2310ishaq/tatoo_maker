@@ -316,6 +316,50 @@
   "@homeGenerate": {
     "description": "Home: Generate button label"
   },
+  "creationFreeGateTitle": "只差最后一步，你的设计就准备好了！",
+  "@creationFreeGateTitle": {
+    "description": "Creation home: free-user gate dialog main message"
+  },
+  "creationFreeGateRemoveLimits": "移除限制",
+  "@creationFreeGateRemoveLimits": {
+    "description": "Creation: free gate primary CTA to paywall"
+  },
+  "creationFreeGateWatchAd": "观看广告",
+  "@creationFreeGateWatchAd": {
+    "description": "Creation: free gate secondary CTA to watch ad"
+  },
+  "creationFreeGateAdUsesCounter": "{remaining}/{total}",
+  "@creationFreeGateAdUsesCounter": {
+    "description": "Creation: remaining free generations shown on Watch Ad row",
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "creationFreeGateNoGenerationsLeft": "你已用完所有免费设计。移除限制以继续。",
+  "@creationFreeGateNoGenerationsLeft": {
+    "description": "Creation: toast when free tier exhausted"
+  },
+  "creationMultiUnlockAllDesigns": "解锁所有设计！",
+  "@creationMultiUnlockAllDesigns": {
+    "description": "Creation: locked grid card subtitle"
+  },
+  "creationMultiRecreate": "重新生成",
+  "@creationMultiRecreate": {
+    "description": "Creation: free multi-result bottom button"
+  },
+  "creationMultiProBadge": "Pro",
+  "@creationMultiProBadge": {
+    "description": "Creation: short Pro label on locked card"
+  },
+  "rewardedAdNotAvailableTryAgain": "当前无法展示广告，请稍后再试。",
+  "@rewardedAdNotAvailableTryAgain": {
+    "description": "Rewarded ad: shown when the rewarded ad fails to load/show"
+  },
   "homeTutorialOverlayText": "描述您心中的纹身，或点击'灵感'获取想法",
   "@homeTutorialOverlayText": {
     "description": "Home: Tutorial overlay text"

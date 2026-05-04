@@ -644,6 +644,12 @@ abstract class AppLocalizations {
   /// **'Pro'**
   String get creationMultiProBadge;
 
+  /// Rewarded ad: shown when the rewarded ad fails to load/show
+  ///
+  /// In en, this message translates to:
+  /// **'Ad not available right now. Please try again.'**
+  String get rewardedAdNotAvailableTryAgain;
+
   /// Home: Tutorial overlay text
   ///
   /// In en, this message translates to:

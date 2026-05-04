@@ -295,6 +295,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get creationMultiProBadge => 'Pro';
 
   @override
+  String get rewardedAdNotAvailableTryAgain =>
+      'Ad not available right now. Please try again.';
+
+  @override
   String get homeTutorialOverlayText =>
       'Describe the tattoo you have in mind, or tap \'Inspiration\' for ideas';
 

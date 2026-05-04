@@ -25,6 +25,7 @@ class ResultScreen extends StatefulWidget {
   final List<Uint8List>? variationImages;
   final String? promptText;
   final bool showProAccessOnOpen;
+  final bool returnToHomeOnClose;
 
   const ResultScreen({
     super.key,
@@ -33,6 +34,7 @@ class ResultScreen extends StatefulWidget {
     this.variationImages,
     this.promptText,
     this.showProAccessOnOpen = false,
+    this.returnToHomeOnClose = true,
   });
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -50,6 +52,15 @@ class _ResultScreenState extends State<ResultScreen> {
       MaterialPageRoute(builder: (_) => const HomeShell()),
       (route) => false,
     );
+  }
+
+  void _handleClose() {
+    if (!mounted) return;
+    if (widget.returnToHomeOnClose) {
+      _goHome();
+      return;
+    }
+    Navigator.of(context).pop();
   }
 
   @override
@@ -117,6 +128,7 @@ class _ResultScreenState extends State<ResultScreen> {
               variationImages: widget.variationImages,
               promptText: widget.promptText,
               showProAccessOnOpen: false,
+              returnToHomeOnClose: widget.returnToHomeOnClose,
             ),
           ),
         ),
@@ -214,7 +226,7 @@ class _ResultScreenState extends State<ResultScreen> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
-        _goHome();
+        _handleClose();
       },
       child: SafeArea(
         child: Scaffold(
@@ -297,7 +309,7 @@ class _ResultScreenState extends State<ResultScreen> {
               color: isDark ? AppColors.textWhite : AppColors.textPrimary,
               size: 28.sp,
             ),
-            onPressed: _goHome,
+            onPressed: _handleClose,
           ),
           // Title (centered) – localized so it updates when app language changes
           Expanded(
@@ -669,6 +681,7 @@ class _ResultScreenState extends State<ResultScreen> {
               builder: (context) => VirtualTryOnScreen(
                 tattooImageBytes: widget.generatedImageBytes,
                 styleName: widget.styleName,
+                returnToHomeAfterSave: widget.returnToHomeOnClose,
               ),
             ),
           );

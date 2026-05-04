@@ -21,7 +21,7 @@ import '../utils/route_observer.dart';
 import '../pro_access_screen.dart';
 import '../home_shell.dart';
 import '../services/admob_ids.dart';
-import '../services/interstitial_ad_flow.dart';
+import '../services/rewarded_ad_flow.dart';
 import 'widgets/free_creation_generate_gate_dialog.dart';
 
 class HomePage extends StatefulWidget {
@@ -573,11 +573,19 @@ class _HomePageState extends State<HomePage> with RouteAware {
           );
           return;
         }
-        await showInterstitialAdIfAvailable(
+        final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdmobIds.interstitialUnitId(),
+          adUnitId: AdmobIds.rewardedUnitId(),
         );
         if (!mounted) return;
+        if (!earned) {
+          AppToast.show(
+            context,
+            message: l10n.rewardedAdNotAvailableTryAgain,
+            isSuccess: false,
+          );
+          return;
+        }
         openLoadingScreen(freeCreationHomeFlow: true);
         return;
     }
@@ -608,13 +616,6 @@ class _HomePageState extends State<HomePage> with RouteAware {
         alignment: 0.2,
       );
     }
-
-    final l10n = AppLocalizations.of(context)!;
-    AppToast.show(
-      context,
-      message: l10n.stepStylePickYourTitleStyle,
-      isSuccess: false,
-    );
   }
 
   void _onMenuTap() {

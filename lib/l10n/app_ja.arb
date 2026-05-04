@@ -316,6 +316,50 @@
   "@homeGenerate": {
     "description": "Home: Generate button label"
   },
+  "creationFreeGateTitle": "デザイン完成まであと一歩です！",
+  "@creationFreeGateTitle": {
+    "description": "Creation home: free-user gate dialog main message"
+  },
+  "creationFreeGateRemoveLimits": "制限を解除",
+  "@creationFreeGateRemoveLimits": {
+    "description": "Creation: free gate primary CTA to paywall"
+  },
+  "creationFreeGateWatchAd": "広告を見る",
+  "@creationFreeGateWatchAd": {
+    "description": "Creation: free gate secondary CTA to watch ad"
+  },
+  "creationFreeGateAdUsesCounter": "{remaining}/{total}",
+  "@creationFreeGateAdUsesCounter": {
+    "description": "Creation: remaining free generations shown on Watch Ad row",
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "creationFreeGateNoGenerationsLeft": "無料デザインはすべて使用しました。続けるには制限を解除してください。",
+  "@creationFreeGateNoGenerationsLeft": {
+    "description": "Creation: toast when free tier exhausted"
+  },
+  "creationMultiUnlockAllDesigns": "すべてのデザインをアンロック！",
+  "@creationMultiUnlockAllDesigns": {
+    "description": "Creation: locked grid card subtitle"
+  },
+  "creationMultiRecreate": "再作成",
+  "@creationMultiRecreate": {
+    "description": "Creation: free multi-result bottom button"
+  },
+  "creationMultiProBadge": "Pro",
+  "@creationMultiProBadge": {
+    "description": "Creation: short Pro label on locked card"
+  },
+  "rewardedAdNotAvailableTryAgain": "現在広告を表示できません。もう一度お試しください。",
+  "@rewardedAdNotAvailableTryAgain": {
+    "description": "Rewarded ad: shown when the rewarded ad fails to load/show"
+  },
   "homeTutorialOverlayText": "心に描いているタトゥーを説明するか、「インスピレーション」をタップしてアイデアを取得してください",
   "@homeTutorialOverlayText": {
     "description": "Home: Tutorial overlay text"

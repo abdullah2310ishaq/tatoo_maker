@@ -256,14 +256,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeGenerate => '生成';
 
   @override
-  String get creationFreeGateTitle =>
-      'Just one last step before your design is ready!';
+  String get creationFreeGateTitle => '只差最后一步，你的设计就准备好了！';
 
   @override
-  String get creationFreeGateRemoveLimits => 'Remove Limits';
+  String get creationFreeGateRemoveLimits => '移除限制';
 
   @override
-  String get creationFreeGateWatchAd => 'Watch an Ad';
+  String get creationFreeGateWatchAd => '观看广告';
 
   @override
   String creationFreeGateAdUsesCounter(int remaining, int total) {
@@ -271,17 +270,19 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get creationFreeGateNoGenerationsLeft =>
-      'You have used all free designs. Remove limits to continue.';
+  String get creationFreeGateNoGenerationsLeft => '你已用完所有免费设计。移除限制以继续。';
 
   @override
-  String get creationMultiUnlockAllDesigns => 'Unlock all designs!';
+  String get creationMultiUnlockAllDesigns => '解锁所有设计！';
 
   @override
-  String get creationMultiRecreate => 'Recreate';
+  String get creationMultiRecreate => '重新生成';
 
   @override
   String get creationMultiProBadge => 'Pro';
+
+  @override
+  String get rewardedAdNotAvailableTryAgain => '当前无法展示广告，请稍后再试。';
 
   @override
   String get homeTutorialOverlayText => '描述您心中的纹身，或点击\'灵感\'获取想法';

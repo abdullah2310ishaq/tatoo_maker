@@ -4,9 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UsageLimitProvider extends ChangeNotifier {
-  static const int freeGenerationLimit = 5;
+  /// Tattoo onboarding / flower / shared [LoadingScreen] paths (not creation-home gate).
+  static const int freeGenerationLimit = 2;
 
-  /// Free generations from creation home (Dream Ink flow), separate from [freeGenerationLimit].
+  /// Creation home (Dream Ink + gate + multi-result flow) only.
   static const int creationHomeFreeLimit = 5;
   // for premium version make it true abdullah sb
   static const bool forceProForTesting = false;
@@ -50,7 +51,7 @@ class UsageLimitProvider extends ChangeNotifier {
     return left < 0 ? 0 : left;
   }
 
-  /// Free user has used all creation-home quota (5).
+  /// Free user has used all creation-home quota ([creationHomeFreeLimit]).
   bool get isCreationHomeFreeQuotaExhausted =>
       !isProUnlocked && _creationHomeGenerationCount >= creationHomeFreeLimit;
 

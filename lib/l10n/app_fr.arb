@@ -320,6 +320,50 @@
   "@homeGenerate": {
     "description": "Home: Generate button label"
   },
+  "creationFreeGateTitle": "Plus qu’une dernière étape avant que votre design soit prêt !",
+  "@creationFreeGateTitle": {
+    "description": "Creation home: free-user gate dialog main message"
+  },
+  "creationFreeGateRemoveLimits": "Supprimer les limites",
+  "@creationFreeGateRemoveLimits": {
+    "description": "Creation: free gate primary CTA to paywall"
+  },
+  "creationFreeGateWatchAd": "Regarder une pub",
+  "@creationFreeGateWatchAd": {
+    "description": "Creation: free gate secondary CTA to watch ad"
+  },
+  "creationFreeGateAdUsesCounter": "{remaining}/{total}",
+  "@creationFreeGateAdUsesCounter": {
+    "description": "Creation: remaining free generations shown on Watch Ad row",
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "creationFreeGateNoGenerationsLeft": "Vous avez utilisé tous les designs gratuits. Supprimez les limites pour continuer.",
+  "@creationFreeGateNoGenerationsLeft": {
+    "description": "Creation: toast when free tier exhausted"
+  },
+  "creationMultiUnlockAllDesigns": "Débloquez tous les designs !",
+  "@creationMultiUnlockAllDesigns": {
+    "description": "Creation: locked grid card subtitle"
+  },
+  "creationMultiRecreate": "Recréer",
+  "@creationMultiRecreate": {
+    "description": "Creation: free multi-result bottom button"
+  },
+  "creationMultiProBadge": "Pro",
+  "@creationMultiProBadge": {
+    "description": "Creation: short Pro label on locked card"
+  },
+  "rewardedAdNotAvailableTryAgain": "La pub n’est pas disponible pour le moment. Réessayez.",
+  "@rewardedAdNotAvailableTryAgain": {
+    "description": "Rewarded ad: shown when the rewarded ad fails to load/show"
+  },
   "homeTutorialOverlayText": "Décrivez le tatouage que vous avez en tête, ou appuyez sur 'Inspiration' pour des idées",
   "@homeTutorialOverlayText": {
     "description": "Home: Tutorial overlay text"

@@ -320,6 +320,50 @@
   "@homeGenerate": {
     "description": "Home: Generate button label"
   },
+  "creationFreeGateTitle": "Solo un ultimo passo prima che il tuo design sia pronto!",
+  "@creationFreeGateTitle": {
+    "description": "Creation home: free-user gate dialog main message"
+  },
+  "creationFreeGateRemoveLimits": "Rimuovi limiti",
+  "@creationFreeGateRemoveLimits": {
+    "description": "Creation: free gate primary CTA to paywall"
+  },
+  "creationFreeGateWatchAd": "Guarda un annuncio",
+  "@creationFreeGateWatchAd": {
+    "description": "Creation: free gate secondary CTA to watch ad"
+  },
+  "creationFreeGateAdUsesCounter": "{remaining}/{total}",
+  "@creationFreeGateAdUsesCounter": {
+    "description": "Creation: remaining free generations shown on Watch Ad row",
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "creationFreeGateNoGenerationsLeft": "Hai usato tutti i design gratuiti. Rimuovi i limiti per continuare.",
+  "@creationFreeGateNoGenerationsLeft": {
+    "description": "Creation: toast when free tier exhausted"
+  },
+  "creationMultiUnlockAllDesigns": "Sblocca tutti i design!",
+  "@creationMultiUnlockAllDesigns": {
+    "description": "Creation: locked grid card subtitle"
+  },
+  "creationMultiRecreate": "Ricrea",
+  "@creationMultiRecreate": {
+    "description": "Creation: free multi-result bottom button"
+  },
+  "creationMultiProBadge": "Pro",
+  "@creationMultiProBadge": {
+    "description": "Creation: short Pro label on locked card"
+  },
+  "rewardedAdNotAvailableTryAgain": "Annuncio non disponibile al momento. Riprova.",
+  "@rewardedAdNotAvailableTryAgain": {
+    "description": "Rewarded ad: shown when the rewarded ad fails to load/show"
+  },
   "homeTutorialOverlayText": "Descrivi il tatuaggio che hai in mente, o tocca 'Ispirazione' per idee",
   "@homeTutorialOverlayText": {
     "description": "Home: Tutorial overlay text"

@@ -25,11 +25,13 @@ import 'virtual_try_on/widgets/action_buttons_widget.dart';
 class VirtualTryOnScreen extends StatefulWidget {
   final Uint8List? tattooImageBytes;
   final String styleName;
+  final bool returnToHomeAfterSave;
 
   const VirtualTryOnScreen({
     super.key,
     this.tattooImageBytes,
     required this.styleName,
+    this.returnToHomeAfterSave = true,
   });
 
   @override
@@ -277,13 +279,17 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
           isSuccess: true,
         );
 
-        // After final try-on download, return user to home.
+        // After save, either return home (default) or back to previous screen.
         await Future<void>.delayed(const Duration(milliseconds: 250));
         if (!mounted) return;
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => const HomeShell()),
-          (route) => false,
-        );
+        if (widget.returnToHomeAfterSave) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (_) => const HomeShell()),
+            (route) => false,
+          );
+        } else {
+          Navigator.of(context).pop();
+        }
       }
     } catch (e) {
       debugPrint('Error saving image: $e');

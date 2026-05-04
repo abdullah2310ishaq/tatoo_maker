@@ -7,15 +7,15 @@ import 'package:provider/provider.dart';
 
 import '../home_shell.dart';
 import '../l10n/app_localizations.dart';
-import '../pro_access_screen.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/admob_ids.dart';
-import '../services/interstitial_ad_flow.dart';
+import '../services/rewarded_ad_flow.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import 'loading_screen.dart';
 import 'result_screen.dart';
+import 'widgets/free_creation_generate_gate_dialog.dart';
 
 /// Free-tier creation: one real design + three locked previews, then full [ResultScreen] on tap.
 class FreeCreationMultiResultScreen extends StatefulWidget {
@@ -40,6 +40,8 @@ class FreeCreationMultiResultScreen extends StatefulWidget {
 class _FreeCreationMultiResultScreenState
     extends State<FreeCreationMultiResultScreen> {
   bool _isRecreating = false;
+  int _unlockedCardsCount = 1;
+  late final List<Uint8List> _unlockedImages = [widget.generatedImageBytes];
 
   Future<void> _onRecreatePressed() async {
     if (_isRecreating) return;
@@ -58,11 +60,19 @@ class _FreeCreationMultiResultScreenState
 
     setState(() => _isRecreating = true);
     try {
-      await showInterstitialAdIfAvailable(
+      final earned = await showRewardedAdIfAvailable(
         context,
-        adUnitId: AdmobIds.interstitialUnitId(),
+        adUnitId: AdmobIds.rewardedUnitId(),
       );
       if (!mounted) return;
+      if (!earned) {
+        AppToast.show(
+          context,
+          message: l10n.rewardedAdNotAvailableTryAgain,
+          isSuccess: false,
+        );
+        return;
+      }
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (_) => LoadingScreen(
@@ -78,26 +88,91 @@ class _FreeCreationMultiResultScreenState
     }
   }
 
-  void _openPaywall() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => ProAccessScreen(
-          showInterstitialOnClose: false,
-          goToNextScreenOnClose: true,
-          nextScreen: const HomeShell(),
-        ),
-      ),
+  Future<void> _onLockedCardTap() async {
+    if (_unlockedCardsCount >= 4) {
+      _openFullResult();
+      return;
+    }
+    final usage = context.read<UsageLimitProvider>();
+    final canStart = await usage.canStartCreationHomeGeneration();
+    if (!mounted) return;
+
+    final l10n = AppLocalizations.of(context)!;
+    if (!canStart) {
+      AppToast.show(
+        context,
+        message: l10n.creationFreeGateNoGenerationsLeft,
+        isSuccess: false,
+      );
+      return;
+    }
+
+    final gateChoice = await showFreeCreationGenerateGateDialog(
+      context: context,
+      freeGenerationsRemaining: usage.freeCreationHomeGenerationsRemaining,
+      freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
     );
+    if (!mounted) return;
+
+    switch (gateChoice) {
+      case FreeCreationGenerateGateChoice.dismissed:
+        return;
+      case FreeCreationGenerateGateChoice.removeLimits:
+        // Requested: no in-app/paywall from this screen.
+        return;
+      case FreeCreationGenerateGateChoice.watchAd:
+        final earned = await showRewardedAdIfAvailable(
+          context,
+          adUnitId: AdmobIds.rewardedUnitId(),
+        );
+        if (!mounted) return;
+        if (!earned) {
+          AppToast.show(
+            context,
+            message: l10n.rewardedAdNotAvailableTryAgain,
+            isSuccess: false,
+          );
+          return;
+        }
+        final nextBytes = await Navigator.of(context).push<Uint8List?>(
+          MaterialPageRoute(
+            builder: (_) => LoadingScreen(
+              selectedStyleAsset: widget.selectedStyleAsset,
+              styleName: widget.styleName == 'generic' ? null : widget.styleName,
+              promptText: widget.promptText,
+              freeCreationHomeFlow: true,
+              popWithResultOnComplete: true,
+            ),
+          ),
+        );
+        if (!mounted) return;
+        if (nextBytes == null || nextBytes.isEmpty) return;
+
+        setState(() {
+          if (_unlockedImages.length < 4) {
+            _unlockedImages.add(nextBytes);
+          } else {
+            _unlockedImages[_unlockedImages.length - 1] = nextBytes;
+          }
+          _unlockedCardsCount = _unlockedImages.length.clamp(1, 4);
+        });
+        return;
+    }
   }
 
   void _openFullResult() {
+    _openResultForBytes(widget.generatedImageBytes);
+  }
+
+  void _openResultForBytes(Uint8List bytes) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => ResultScreen(
           styleName: widget.styleName,
-          generatedImageBytes: widget.generatedImageBytes,
+          generatedImageBytes: bytes,
           promptText: widget.promptText,
           showProAccessOnOpen: false,
+          returnToHomeOnClose: false,
         ),
       ),
     );
@@ -109,7 +184,7 @@ class _FreeCreationMultiResultScreenState
       borderRadius: BorderRadius.circular(16.r),
       child: InkWell(
         borderRadius: BorderRadius.circular(16.r),
-        onTap: _openPaywall,
+        onTap: _onLockedCardTap,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.r),
           child: Stack(
@@ -181,17 +256,17 @@ class _FreeCreationMultiResultScreenState
     );
   }
 
-  Widget _unlockedCard(bool isDark) {
+  Widget _unlockedCard(Uint8List bytes, bool isDark) {
     return Material(
       color: AppColors.textWhite,
       borderRadius: BorderRadius.circular(16.r),
       elevation: 0,
       child: InkWell(
         borderRadius: BorderRadius.circular(16.r),
-        onTap: _openFullResult,
+        onTap: () => _openResultForBytes(bytes),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.r),
-          child: Image.memory(widget.generatedImageBytes, fit: BoxFit.cover),
+          child: Image.memory(bytes, fit: BoxFit.cover),
         ),
       ),
     );
@@ -245,7 +320,7 @@ class _FreeCreationMultiResultScreenState
                           child: Icon(
                             Icons.arrow_back,
                             color: AppColors.cardGlowStart,
-                            size: 22.sp,
+                            size: 20.sp,
                           ),
                         ),
                       ),
@@ -256,19 +331,19 @@ class _FreeCreationMultiResultScreenState
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 16.w,
-                      vertical: 12.h,
+                      vertical: 40.h,
                     ),
                     child: GridView.count(
                       crossAxisCount: 2,
                       mainAxisSpacing: 12.h,
                       crossAxisSpacing: 12.w,
                       childAspectRatio: 0.95,
-                      children: [
-                        _unlockedCard(isDark),
-                        _lockedCard(l10n, isDark),
-                        _lockedCard(l10n, isDark),
-                        _lockedCard(l10n, isDark),
-                      ],
+                      children: List<Widget>.generate(4, (index) {
+                        final isUnlocked = index < _unlockedCardsCount;
+                        if (!isUnlocked) return _lockedCard(l10n, isDark);
+                        final bytes = _unlockedImages[index];
+                        return _unlockedCard(bytes, isDark);
+                      }),
                     ),
                   ),
                 ),

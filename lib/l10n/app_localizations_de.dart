@@ -270,13 +270,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get creationFreeGateTitle =>
-      'Just one last step before your design is ready!';
+      'Nur noch ein letzter Schritt, bevor dein Design fertig ist!';
 
   @override
-  String get creationFreeGateRemoveLimits => 'Remove Limits';
+  String get creationFreeGateRemoveLimits => 'Limits entfernen';
 
   @override
-  String get creationFreeGateWatchAd => 'Watch an Ad';
+  String get creationFreeGateWatchAd => 'Werbung ansehen';
 
   @override
   String creationFreeGateAdUsesCounter(int remaining, int total) {
@@ -285,16 +285,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get creationFreeGateNoGenerationsLeft =>
-      'You have used all free designs. Remove limits to continue.';
+      'Du hast alle kostenlosen Designs verwendet. Entferne die Limits, um fortzufahren.';
 
   @override
-  String get creationMultiUnlockAllDesigns => 'Unlock all designs!';
+  String get creationMultiUnlockAllDesigns => 'Alle Designs freischalten!';
 
   @override
-  String get creationMultiRecreate => 'Recreate';
+  String get creationMultiRecreate => 'Neu erstellen';
 
   @override
   String get creationMultiProBadge => 'Pro';
+
+  @override
+  String get rewardedAdNotAvailableTryAgain =>
+      'Die Werbung ist gerade nicht verfügbar. Bitte versuche es erneut.';
 
   @override
   String get homeTutorialOverlayText =>

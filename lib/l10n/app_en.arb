@@ -360,6 +360,10 @@
   "@creationMultiProBadge": {
     "description": "Creation: short Pro label on locked card"
   },
+  "rewardedAdNotAvailableTryAgain": "Ad not available right now. Please try again.",
+  "@rewardedAdNotAvailableTryAgain": {
+    "description": "Rewarded ad: shown when the rewarded ad fails to load/show"
+  },
   "homeTutorialOverlayText": "Describe the tattoo you have in mind, or tap 'Inspiration' for ideas",
   "@homeTutorialOverlayText": {
     "description": "Home: Tutorial overlay text"

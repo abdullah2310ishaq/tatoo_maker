@@ -261,14 +261,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get homeGenerate => '생성';
 
   @override
-  String get creationFreeGateTitle =>
-      'Just one last step before your design is ready!';
+  String get creationFreeGateTitle => '디자인이 준비되기까지 마지막 단계만 남았어요!';
 
   @override
-  String get creationFreeGateRemoveLimits => 'Remove Limits';
+  String get creationFreeGateRemoveLimits => '제한 해제';
 
   @override
-  String get creationFreeGateWatchAd => 'Watch an Ad';
+  String get creationFreeGateWatchAd => '광고 보기';
 
   @override
   String creationFreeGateAdUsesCounter(int remaining, int total) {
@@ -277,16 +276,19 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get creationFreeGateNoGenerationsLeft =>
-      'You have used all free designs. Remove limits to continue.';
+      '무료 디자인을 모두 사용했어요. 계속하려면 제한을 해제하세요.';
 
   @override
-  String get creationMultiUnlockAllDesigns => 'Unlock all designs!';
+  String get creationMultiUnlockAllDesigns => '모든 디자인 잠금 해제!';
 
   @override
-  String get creationMultiRecreate => 'Recreate';
+  String get creationMultiRecreate => '다시 만들기';
 
   @override
   String get creationMultiProBadge => 'Pro';
+
+  @override
+  String get rewardedAdNotAvailableTryAgain => '현재 광고를 사용할 수 없습니다. 다시 시도해 주세요.';
 
   @override
   String get homeTutorialOverlayText =>
