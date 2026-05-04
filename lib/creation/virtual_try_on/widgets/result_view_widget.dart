@@ -49,6 +49,51 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
   Offset _focalStart = Offset.zero;
   Offset _positionStart = Offset.zero;
 
+  /// While true, tattoo shows stronger “ink on skin”; when false, same art, slightly dimmed.
+  bool _tattooGestureActive = false;
+
+  Widget _buildTattooLayerImage(Uint8List bytes, double baseSize) {
+    final image = Image.memory(
+      bytes,
+      width: baseSize,
+      height: baseSize,
+      fit: BoxFit.contain,
+      filterQuality: FilterQuality.high,
+    );
+
+    if (_tattooGestureActive) {
+      // Selected / manipulating: deeper contrast (reads as darker ink on skin).
+      return ColorFiltered(
+        colorFilter: const ColorFilter.matrix(<double>[
+          1.12,
+          0,
+          0,
+          0,
+          -18,
+          0,
+          1.12,
+          0,
+          0,
+          -18,
+          0,
+          0,
+          1.12,
+          0,
+          -18,
+          0,
+          0,
+          0,
+          1,
+          0,
+        ]),
+        child: image,
+      );
+    }
+
+    // Idle: original colors, lightly dimmed only (no grey cast, no blur).
+    return Opacity(opacity: 0.65, child: image);
+  }
+
   @override
   void didUpdateWidget(ResultViewWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -101,7 +146,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
         maxScale: 4.0,
         panEnabled: true,
         scaleEnabled: true,
-        
+
         child: Center(
           child: Image.memory(widget.processedTryOnBytes!, fit: BoxFit.contain),
         ),
@@ -172,20 +217,27 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
         return GestureDetector(
           behavior: HitTestBehavior.opaque,
           onScaleStart: (details) {
+            setState(() => _tattooGestureActive = true);
             if (details.pointerCount == 1) {
               _panStartPosition = widget.tattooPosition;
-              _panStartLocal = contentBox?.globalToLocal(details.focalPoint) ?? details.focalPoint;
+              _panStartLocal =
+                  contentBox?.globalToLocal(details.focalPoint) ??
+                  details.focalPoint;
             } else if (details.pointerCount >= 2) {
               _scaleStart = widget.tattooScale;
               _rotationStart = widget.tattooRotation;
-              _focalStart = contentBox?.globalToLocal(details.focalPoint) ?? details.focalPoint;
+              _focalStart =
+                  contentBox?.globalToLocal(details.focalPoint) ??
+                  details.focalPoint;
               _positionStart = widget.tattooPosition;
             }
           },
           onScaleUpdate: (details) {
             if (details.pointerCount == 1) {
               if (_panStartPosition == null || _panStartLocal == null) return;
-              final localNow = contentBox?.globalToLocal(details.focalPoint) ?? details.focalPoint;
+              final localNow =
+                  contentBox?.globalToLocal(details.focalPoint) ??
+                  details.focalPoint;
               final newPosition = clampToViewport(
                 _panStartPosition! + (localNow - _panStartLocal!),
                 widget.tattooScale,
@@ -198,7 +250,9 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
             } else if (details.pointerCount >= 2) {
               final newScale = (_scaleStart * details.scale).clamp(0.25, 3.0);
               final newRotation = _rotationStart + details.rotation;
-              final localNow = contentBox?.globalToLocal(details.focalPoint) ?? details.focalPoint;
+              final localNow =
+                  contentBox?.globalToLocal(details.focalPoint) ??
+                  details.focalPoint;
               final newPosition = clampToViewport(
                 _positionStart + (localNow - _focalStart),
                 newScale,
@@ -209,6 +263,7 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
           onScaleEnd: (_) {
             _panStartPosition = null;
             _panStartLocal = null;
+            setState(() => _tattooGestureActive = false);
           },
           child: RepaintBoundary(
             key: widget.previewRepaintKey,
@@ -247,11 +302,9 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
                                   : _watermarkLightAssetPath;
                               return Stack(
                                 children: [
-                                  Image.memory(
+                                  _buildTattooLayerImage(
                                     widget.tattooImageBytes!,
-                                    width: baseTattooSize,
-                                    height: baseTattooSize,
-                                    fit: BoxFit.contain,
+                                    baseTattooSize,
                                   ),
                                   if (showWatermark)
                                     Positioned(
