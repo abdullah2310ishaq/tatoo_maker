@@ -261,6 +261,34 @@ class AppLocalizationsKo extends AppLocalizations {
   String get homeGenerate => '생성';
 
   @override
+  String get creationFreeGateTitle =>
+      'Just one last step before your design is ready!';
+
+  @override
+  String get creationFreeGateRemoveLimits => 'Remove Limits';
+
+  @override
+  String get creationFreeGateWatchAd => 'Watch an Ad';
+
+  @override
+  String creationFreeGateAdUsesCounter(int remaining, int total) {
+    return '$remaining/$total';
+  }
+
+  @override
+  String get creationFreeGateNoGenerationsLeft =>
+      'You have used all free designs. Remove limits to continue.';
+
+  @override
+  String get creationMultiUnlockAllDesigns => 'Unlock all designs!';
+
+  @override
+  String get creationMultiRecreate => 'Recreate';
+
+  @override
+  String get creationMultiProBadge => 'Pro';
+
+  @override
   String get homeTutorialOverlayText =>
       '마음에 드는 타투를 설명하거나 \'영감\'을 탭하여 아이디어를 얻으세요';
 

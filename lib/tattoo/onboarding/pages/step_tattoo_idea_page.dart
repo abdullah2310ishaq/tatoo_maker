@@ -367,7 +367,7 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
   void didUpdateWidget(covariant _TattooIdeaNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
-    // No reload required; the cached native ad is shared.
+
   }
 
   @override

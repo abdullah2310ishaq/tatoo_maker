@@ -112,6 +112,8 @@ flutter:
     - assets/drawer_light.svg
     - assets/history_dark.svg
     - assets/history_light.svg
+    - assets/dialog.png
+    - assets/moda.png
     - assets/logo.png
     - assets/video.mp4
     - assets/video_light.mp4

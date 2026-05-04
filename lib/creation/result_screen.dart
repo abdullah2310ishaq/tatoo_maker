@@ -76,7 +76,9 @@ class _ResultScreenState extends State<ResultScreen> {
 
       // When the free usage limit is exceeded, other modules should show only
       // the in-app paywall (no blurred/dummy result UI).
-      if (!usage.isProUnlocked && usage.hasExceededFreeLimit && !_didShowLimitPaywall) {
+      if (!usage.isProUnlocked &&
+          usage.isFreeTierLimitedForCreationResults &&
+          !_didShowLimitPaywall) {
         _didShowLimitPaywall = true;
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
@@ -166,7 +168,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
   Future<void> _toggleFavorite(BuildContext context) async {
     final usage = context.read<UsageLimitProvider>();
-    if (!usage.isProUnlocked && usage.hasExceededFreeLimit) {
+    if (!usage.isProUnlocked && usage.isFreeTierLimitedForCreationResults) {
       AppToast.show(
         context,
         message: AppLocalizations.of(context)!.buyPremiumToAddToFavourites,
@@ -202,7 +204,8 @@ class _ResultScreenState extends State<ResultScreen> {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final favoritesProvider = Provider.of<FavoritesProvider>(context);
     final usage = context.watch<UsageLimitProvider>();
-    final isLocked = !usage.isProUnlocked && usage.hasExceededFreeLimit;
+    final isLocked =
+        !usage.isProUnlocked && usage.isFreeTierLimitedForCreationResults;
     final entry = _buildEntry();
     final isFavorited = favoritesProvider.isFavorited(entry);
     final isLoadingFavorite = favoritesProvider.isLoading;
@@ -479,7 +482,8 @@ class _ResultScreenState extends State<ResultScreen> {
   void _openPaywall() {
     if (!mounted) return;
     final usage = context.read<UsageLimitProvider>();
-    final hasReachedLimit = !usage.isProUnlocked && usage.hasExceededFreeLimit;
+    final hasReachedLimit =
+        !usage.isProUnlocked && usage.isFreeTierLimitedForCreationResults;
 
     // When free limit is reached, exiting the paywall must take user home
     // (no "locked/dummy" result UI for Creation/Tattoo modules).

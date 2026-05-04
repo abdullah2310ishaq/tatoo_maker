@@ -596,6 +596,54 @@ abstract class AppLocalizations {
   /// **'Generate'**
   String get homeGenerate;
 
+  /// Creation home: free-user gate dialog main message
+  ///
+  /// In en, this message translates to:
+  /// **'Just one last step before your design is ready!'**
+  String get creationFreeGateTitle;
+
+  /// Creation: free gate primary CTA to paywall
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Limits'**
+  String get creationFreeGateRemoveLimits;
+
+  /// Creation: free gate secondary CTA to watch ad
+  ///
+  /// In en, this message translates to:
+  /// **'Watch an Ad'**
+  String get creationFreeGateWatchAd;
+
+  /// Creation: remaining free generations shown on Watch Ad row
+  ///
+  /// In en, this message translates to:
+  /// **'{remaining}/{total}'**
+  String creationFreeGateAdUsesCounter(int remaining, int total);
+
+  /// Creation: toast when free tier exhausted
+  ///
+  /// In en, this message translates to:
+  /// **'You have used all free designs. Remove limits to continue.'**
+  String get creationFreeGateNoGenerationsLeft;
+
+  /// Creation: locked grid card subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock all designs!'**
+  String get creationMultiUnlockAllDesigns;
+
+  /// Creation: free multi-result bottom button
+  ///
+  /// In en, this message translates to:
+  /// **'Recreate'**
+  String get creationMultiRecreate;
+
+  /// Creation: short Pro label on locked card
+  ///
+  /// In en, this message translates to:
+  /// **'Pro'**
+  String get creationMultiProBadge;
+
   /// Home: Tutorial overlay text
   ///
   /// In en, this message translates to:

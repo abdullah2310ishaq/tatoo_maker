@@ -14,6 +14,7 @@ import '../providers/usage_limit_provider.dart';
 import '../services/prodia_api_service.dart';
 import '../services/history_service.dart';
 import '../l10n/app_localizations.dart';
+import 'free_creation_multi_result_screen.dart';
 import 'result_screen.dart';
 import '../widgets/creative_loading_spinner.dart';
 
@@ -33,6 +34,9 @@ class LoadingScreen extends StatefulWidget {
   /// Tattoo module only: place of birth
   final String? placeOfBirth;
 
+  /// Creation home: after generate, show the 4-card free preview instead of [ResultScreen].
+  final bool freeCreationHomeFlow;
+
   const LoadingScreen({
     super.key,
     this.selectedStyleAsset,
@@ -42,6 +46,7 @@ class LoadingScreen extends StatefulWidget {
     this.dobFormatted,
     this.zodiacSign,
     this.placeOfBirth,
+    this.freeCreationHomeFlow = false,
   });
 
   @override
@@ -354,7 +359,11 @@ class _LoadingScreenState extends State<LoadingScreen>
       '(hasImage=${_generatedImageBytes != null})',
     );
     if (_generatedImageBytes != null) {
-      await context.read<UsageLimitProvider>().recordGenerationSuccess();
+      if (widget.freeCreationHomeFlow) {
+        await context.read<UsageLimitProvider>().recordCreationHomeGenerationSuccess();
+      } else {
+        await context.read<UsageLimitProvider>().recordGenerationSuccess();
+      }
       if (name.isNotEmpty) {
         HistoryService.addTattooEntry(
           styleName: styleName,
@@ -370,8 +379,22 @@ class _LoadingScreenState extends State<LoadingScreen>
         );
       }
     }
-    // Ads removed from this flow for now.
     if (mounted) {
+      if (widget.freeCreationHomeFlow && _generatedImageBytes != null) {
+        debugPrint('[LoadingScreen] step 3/3: opening FreeCreationMultiResultScreen');
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => FreeCreationMultiResultScreen(
+              generatedImageBytes: _generatedImageBytes!,
+              styleName: styleName,
+              promptText: widget.promptText,
+              selectedStyleAsset: widget.selectedStyleAsset,
+            ),
+          ),
+        );
+        return;
+      }
+
       final nextResult = ResultScreen(
         styleName: styleName,
         promptText: widget.promptText,
@@ -380,7 +403,6 @@ class _LoadingScreenState extends State<LoadingScreen>
         showProAccessOnOpen: _generatedImageBytes != null,
       );
       debugPrint('[LoadingScreen] step 3/3: opening ResultScreen');
-      //
       Navigator.of(
         context,
       ).pushReplacement(MaterialPageRoute(builder: (context) => nextResult));

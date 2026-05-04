@@ -267,6 +267,34 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeGenerate => 'إنشاء';
 
   @override
+  String get creationFreeGateTitle =>
+      'Just one last step before your design is ready!';
+
+  @override
+  String get creationFreeGateRemoveLimits => 'Remove Limits';
+
+  @override
+  String get creationFreeGateWatchAd => 'Watch an Ad';
+
+  @override
+  String creationFreeGateAdUsesCounter(int remaining, int total) {
+    return '$remaining/$total';
+  }
+
+  @override
+  String get creationFreeGateNoGenerationsLeft =>
+      'You have used all free designs. Remove limits to continue.';
+
+  @override
+  String get creationMultiUnlockAllDesigns => 'Unlock all designs!';
+
+  @override
+  String get creationMultiRecreate => 'Recreate';
+
+  @override
+  String get creationMultiProBadge => 'Pro';
+
+  @override
   String get homeTutorialOverlayText =>
       'صف الوشم الذي تفكر فيه، أو اضغط على \'الإلهام\' للحصول على أفكار';
 

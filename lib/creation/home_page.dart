@@ -20,6 +20,9 @@ import '../utils/toast.dart';
 import '../utils/route_observer.dart';
 import '../pro_access_screen.dart';
 import '../home_shell.dart';
+import '../services/admob_ids.dart';
+import '../services/interstitial_ad_flow.dart';
+import 'widgets/free_creation_generate_gate_dialog.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback? onMenuTap;
@@ -493,17 +496,10 @@ class _HomePageState extends State<HomePage> with RouteAware {
   Future<void> _onGenerateTap() async {
     if (!_canGenerate) return;
     final l10n = AppLocalizations.of(context)!;
-    if (_selectedStyleIndex == null) {
-      AppToast.show(
-        context,
-        message: l10n.stepStylePickYourTitleStyle,
-        isSuccess: false,
-      );
-      return;
-    }
 
     final usageLimitProvider = context.read<UsageLimitProvider>();
-    final canStartGeneration = await usageLimitProvider.canStartGeneration();
+    final canStartCreationHome =
+        await usageLimitProvider.canStartCreationHomeGeneration();
     if (!mounted) return;
 
     // Close keyboard before navigating away so it won't remain open on return.
@@ -516,28 +512,75 @@ class _HomePageState extends State<HomePage> with RouteAware {
     final styleName = selectedStyle?.label;
     final promptText = _dreamInkController.text.trim();
 
-    if (!canStartGeneration) {
+    void openLoadingScreen({required bool freeCreationHomeFlow}) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => ProAccessScreen(
-            showInterstitialOnClose: false,
-            goToNextScreenOnClose: true,
-            nextScreen: const HomeShell(),
+          builder: (context) => LoadingScreen(
+            selectedStyleAsset: assetPath,
+            styleName: styleName,
+            promptText: promptText,
+            freeCreationHomeFlow: freeCreationHomeFlow,
           ),
         ),
       );
+    }
+
+    if (usageLimitProvider.isProUnlocked) {
+      if (!canStartCreationHome) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => ProAccessScreen(
+              showInterstitialOnClose: false,
+              goToNextScreenOnClose: true,
+              nextScreen: const HomeShell(),
+            ),
+          ),
+        );
+        return;
+      }
+      openLoadingScreen(freeCreationHomeFlow: false);
       return;
     }
 
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => LoadingScreen(
-          selectedStyleAsset: assetPath,
-          styleName: styleName,
-          promptText: promptText,
-        ),
-      ),
+    final gateChoice = await showFreeCreationGenerateGateDialog(
+      context: context,
+      freeGenerationsRemaining:
+          usageLimitProvider.freeCreationHomeGenerationsRemaining,
+      freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
     );
+    if (!mounted) return;
+
+    switch (gateChoice) {
+      case FreeCreationGenerateGateChoice.dismissed:
+        return;
+      case FreeCreationGenerateGateChoice.removeLimits:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => ProAccessScreen(
+              showInterstitialOnClose: false,
+              goToNextScreenOnClose: true,
+              nextScreen: const HomeShell(),
+            ),
+          ),
+        );
+        return;
+      case FreeCreationGenerateGateChoice.watchAd:
+        if (!canStartCreationHome) {
+          AppToast.show(
+            context,
+            message: l10n.creationFreeGateNoGenerationsLeft,
+            isSuccess: false,
+          );
+          return;
+        }
+        await showInterstitialAdIfAvailable(
+          context,
+          adUnitId: AdmobIds.interstitialUnitId(),
+        );
+        if (!mounted) return;
+        openLoadingScreen(freeCreationHomeFlow: true);
+        return;
+    }
   }
 
   void _onExplorePromptSelected(String prompt) {

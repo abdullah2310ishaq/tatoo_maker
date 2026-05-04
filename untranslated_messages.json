@@ -1,1 +1,111 @@
-{}
+{
+  "ar": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "de": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "es": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "fr": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "it": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "ja": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "ko": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "pt": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "ru": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ],
+
+  "zh": [
+    "creationFreeGateTitle",
+    "creationFreeGateRemoveLimits",
+    "creationFreeGateWatchAd",
+    "creationFreeGateAdUsesCounter",
+    "creationFreeGateNoGenerationsLeft",
+    "creationMultiUnlockAllDesigns",
+    "creationMultiRecreate",
+    "creationMultiProBadge"
+  ]
+}
