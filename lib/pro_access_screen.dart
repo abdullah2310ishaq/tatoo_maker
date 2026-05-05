@@ -650,32 +650,42 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                             ],
 
                             _PlanCard(
-                              variant: PlanVariant.lifetime,
-                              leftText: l10n.proAccessPlanLifetimeSubscription,
-
-                              rightText: _lifetimeDisplayPrice(),
-                              originalRightText: _lifetimeOriginalDisplayPrice(),
+                              variant: PlanVariant.freeTrial,
+                              leftText: '3-Day Full Access',
+                              leftSubText:
+                                  'then ${_billingService.weeklyPaidMaxPrice() ?? '--'}/week',
+                              leftSubTextColor: AppColors.textGrey.withOpacity(
+                                0.85,
+                              ),
+                              rightText:
+                                  _billingService.weeklyPaidMinPrice() ?? '--',
+                              rightSubText: 'per week',
+                              showBadge: true,
+                              badgeText: l10n.proAccessLifetimeDiscountBadge,
                               verticalPadding: planVerticalPadding,
-                              isSelected: _selectedPlan == PlanVariant.lifetime,
+                              isSelected: _selectedPlan == PlanVariant.freeTrial,
                               onTap: () {
-                                _selectPlan(PlanVariant.lifetime);
+                                _selectPlan(PlanVariant.freeTrial);
                               },
                             ),
 
                             SizedBox(height: plansGapSpacing),
 
                             _PlanCard(
-                              variant: PlanVariant.freeTrial,
-                              leftText: l10n.proAccessPlanWeekly,
-                              leftSubText: l10n.proAccessWeeklyTrialSubtitle,
+                              variant: PlanVariant.lifetime,
+                              leftText: 'Yearly',
+                              leftSubText:
+                                  'just ${_lifetimeDisplayPrice()} per year',
                               leftSubTextColor: AppColors.textGrey.withOpacity(
                                 0.85,
                               ),
-                              rightText: _freeTrialDisplayPrice(l10n),
+                              rightText: _lifetimeDisplayPrice(),
+                              rightSubText: 'per year',
+                              originalRightText: _lifetimeOriginalDisplayPrice(),
                               verticalPadding: planVerticalPadding,
-                              isSelected: _selectedPlan == PlanVariant.freeTrial,
+                              isSelected: _selectedPlan == PlanVariant.lifetime,
                               onTap: () {
-                                _selectPlan(PlanVariant.freeTrial);
+                                _selectPlan(PlanVariant.lifetime);
                               },
                             ),
                             SizedBox(height: endingSpacing),
@@ -887,7 +897,10 @@ class _PlanCard extends StatelessWidget {
   final String? leftSubText;
   final Color? leftSubTextColor;
   final String? rightText;
+  final String? rightSubText;
   final String? originalRightText;
+  final bool showBadge;
+  final String? badgeText;
   final bool isSelected;
   final VoidCallback? onTap;
   final double? verticalPadding;
@@ -898,7 +911,10 @@ class _PlanCard extends StatelessWidget {
     this.leftSubText,
     this.leftSubTextColor,
     this.rightText,
+    this.rightSubText,
     this.originalRightText,
+    this.showBadge = false,
+    this.badgeText,
     this.isSelected = false,
     this.onTap,
     this.verticalPadding,
@@ -906,7 +922,6 @@ class _PlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showLifetimeBadge = variant == PlanVariant.lifetime;
     final horizontalPadding = isSelected ? 16.w : 15.w;
     final resolvedVerticalPadding =
         (verticalPadding ?? 13.h) + (isSelected ? 2.h : 0);
@@ -1016,16 +1031,33 @@ class _PlanCard extends StatelessWidget {
                             fontFamily: 'Inter',
                           ),
                         ),
+                        if (rightSubText != null) ...[
+                          SizedBox(height: 2.h),
+                          Text(
+                            rightSubText!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.textGrey.withOpacity(0.85),
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),
               ],
             ),
-            if (showLifetimeBadge)
+            if (showBadge)
               Positioned(
                 top: -19.h,
                 right: -3.w,
-                child: IgnorePointer(child: const _LifetimeDiscountBadge()),
+                child: IgnorePointer(
+                  child: _DiscountBadge(text: badgeText),
+                ),
               ),
           ],
         ),
@@ -1034,12 +1066,17 @@ class _PlanCard extends StatelessWidget {
   }
 }
 
-class _LifetimeDiscountBadge extends StatelessWidget {
-  const _LifetimeDiscountBadge();
+class _DiscountBadge extends StatelessWidget {
+  const _DiscountBadge({required this.text});
+
+  final String? text;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final label = (text == null || text!.trim().isEmpty)
+        ? l10n.proAccessLifetimeDiscountBadge
+        : text!.trim();
 
     return SizedBox(
       width: 32.w,
@@ -1051,7 +1088,7 @@ class _LifetimeDiscountBadge extends StatelessWidget {
           borderRadius: BorderRadius.circular(6.r),
         ),
         child: Text(
-          l10n.proAccessLifetimeDiscountBadge,
+          label,
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,

@@ -34,6 +34,7 @@ class BillingService {
   bool _isInitialized = false;
   Map<String, ProductDetails> _productsById = const {};
   String? _trialPaidPriceFallback;
+  String? _trialPaidPriceMax;
 
   Stream<BillingPurchaseEvent> get purchaseEvents =>
       _purchaseEventsController.stream;
@@ -109,15 +110,19 @@ class BillingService {
       // same subscription productId (trial offer vs paid offer). Keep the paid
       // price around for UI display on the "Free trial" card.
       _trialPaidPriceFallback = null;
+      _trialPaidPriceMax = null;
       final paidVariants =
           response.productDetails
               .where((p) => p.id == kProTrial3DaysProductId && p.rawPrice > 0)
               .toList()
             ..sort((a, b) => a.rawPrice.compareTo(b.rawPrice));
       if (paidVariants.isNotEmpty) {
-        _trialPaidPriceFallback = paidVariants.first.price.trim().isEmpty
+        final minPrice = paidVariants.first.price.trim();
+        final maxPrice = paidVariants.last.price.trim();
+        _trialPaidPriceFallback = minPrice.isEmpty
             ? null
-            : paidVariants.first.price.trim();
+            : minPrice;
+        _trialPaidPriceMax = maxPrice.isEmpty ? null : maxPrice;
       }
 
       _productsById = _buildProductsById(response.productDetails);
@@ -195,6 +200,18 @@ class BillingService {
     // Fallback: use ProductDetails fields when formatted phase price missing.
     final fallback = details.price.trim();
     return fallback.isEmpty ? null : fallback;
+  }
+
+  /// Lowest paid weekly price among returned variants (if any).
+  String? weeklyPaidMinPrice() {
+    final p = _trialPaidPriceFallback?.trim();
+    return (p == null || p.isEmpty) ? null : p;
+  }
+
+  /// Highest paid weekly price among returned variants (if any).
+  String? weeklyPaidMaxPrice() {
+    final p = _trialPaidPriceMax?.trim();
+    return (p == null || p.isEmpty) ? null : p;
   }
 
   Future<bool> purchasePlan(BillingPlan plan) async {

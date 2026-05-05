@@ -2927,7 +2927,7 @@ abstract class AppLocalizations {
   /// Discount badge text shown on lifetime plan
   ///
   /// In en, this message translates to:
-  /// **'20%'**
+  /// **'87%'**
   String get proAccessLifetimeDiscountBadge;
 
   /// Pro access legal subscription note

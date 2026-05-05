@@ -1622,7 +1622,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get proAccessLifetimeDiscountBadge => '20%';
+  String get proAccessLifetimeDiscountBadge => '87%';
 
   @override
   String proAccessLegalNote(Object price) {
