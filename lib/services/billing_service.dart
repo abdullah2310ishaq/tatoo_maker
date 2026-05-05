@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
-const String kProTrial3DaysProductId = 'tatooweekly';
+const String kProTrial3DaysProductId = 'tattooweekly';
 const String kProLifetimeProductId = 'lifetime';
-const String extra = "tattooweekly";
+// const String extra = "tattooweekly";
 
 enum BillingPlan { freeTrial, lifetime }
 
@@ -50,6 +50,17 @@ class BillingService {
     debugPrint('[BillingService] $message');
   }
 
+  void _logStoreVariantsIfDebug(List<ProductDetails> products) {
+    if (!kDebugMode) return;
+    _log('--- Store variants (debug) count=${products.length} ---');
+    for (final p in products) {
+      _log(
+        'variant => id=${p.id}, title=${p.title}, price=${p.price}, currency=${p.currencyCode}, rawPrice=${p.rawPrice}',
+      );
+    }
+    _log('--- End store variants ---');
+  }
+
   Future<void> initialize() async {
     if (_isInitialized) return;
     _isInitialized = true;
@@ -90,6 +101,9 @@ class BillingService {
           'Store query error: code=${response.error!.code}, message=${response.error!.message}',
         );
       }
+
+      _log('kDebugMode=$kDebugMode (store variants printed only in debug)');
+      _logStoreVariantsIfDebug(response.productDetails);
 
       // Some Play Billing configurations return multiple ProductDetails for the
       // same subscription productId (trial offer vs paid offer). Keep the paid

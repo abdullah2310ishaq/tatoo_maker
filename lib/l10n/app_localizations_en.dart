@@ -1598,7 +1598,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proAccessPlanWeekly => 'WEEKLY';
 
   @override
-  String get proAccessPlanWeeklyPrice => 'Rs 1960/week';
+  String get proAccessPlanWeeklyPrice => '--';
 
   @override
   String get proAccessAutoRenewableCancelAnytime =>

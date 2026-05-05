@@ -1904,7 +1904,7 @@
   "@proAccessPlanWeekly": {
     "description": "Pro access weekly plan label"
   },
-  "proAccessPlanWeeklyPrice": "Rs 1960/week",
+  "proAccessPlanWeeklyPrice": "--",
   "@proAccessPlanWeeklyPrice": {
     "description": "Pro access weekly plan price"
   },

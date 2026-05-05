@@ -286,7 +286,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
       BillingPlan.lifetime,
     );
     _log(
-      'Billing products => trial=${trialProduct?.id}:${trialProduct?.price}, lifetime=${lifetimeProduct?.id}:${lifetimeProduct?.price}',
+      'Billing products => '
+      'trial=${trialProduct?.id}:${_billingService.displayPriceForPlan(BillingPlan.freeTrial)}, '
+      'lifetime=${lifetimeProduct?.id}:${_billingService.displayPriceForPlan(BillingPlan.lifetime)}',
     );
 
     setState(() {

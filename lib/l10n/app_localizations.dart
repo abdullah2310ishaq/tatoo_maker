@@ -2885,7 +2885,7 @@ abstract class AppLocalizations {
   /// Pro access weekly plan price
   ///
   /// In en, this message translates to:
-  /// **'Rs 1960/week'**
+  /// **'--'**
   String get proAccessPlanWeeklyPrice;
 
   /// Pro access auto-renew text
