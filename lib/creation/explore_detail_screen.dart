@@ -174,7 +174,7 @@ class _ExploreDetailScreenState extends State<ExploreDetailScreen> {
                                 fontFamily: 'Amaranth',
                               ),
                               textAlign: TextAlign.center,
-                              softWrap: true,
+                              softWrap: true, 
                               overflow: TextOverflow.visible,
                               maxLines: null,
                             ),

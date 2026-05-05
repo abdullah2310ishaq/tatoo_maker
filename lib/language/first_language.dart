@@ -211,7 +211,7 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 28.h),
+              padding: EdgeInsets.only(bottom: 28.h),
               child: Transform.translate(
                 offset: Offset(0, -15.h),
                 child: _FirstLanguageNativeAd(isDark: isDark),

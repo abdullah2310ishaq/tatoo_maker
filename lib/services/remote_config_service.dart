@@ -38,7 +38,7 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.tattooIdeaBanner: true,
     RemoteConfigKeys.tattooIdeaNative: false,
     RemoteConfigKeys.tattooStyleSelectionAdsAll: true,
-    RemoteConfigKeys.tattooStyleSelectionBanner: true,
+    RemoteConfigKeys.tattooStyleSelectionBanner: false,
     RemoteConfigKeys.tattooStyleSelectionNative: true,
 
     // Flower module (default OFF; control via Firebase).

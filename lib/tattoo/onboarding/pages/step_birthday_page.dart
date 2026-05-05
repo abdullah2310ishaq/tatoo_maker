@@ -105,49 +105,52 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                OnboardingHeader(
-                  currentStep: 2,
-                  onBack: widget.onBack,
-                  trailing: Padding(
-                    padding: EdgeInsets.only(top: 1.h),
-                    child: _BirthdayNextTopRightButton(
-                      enabled: _isDateValid(),
-                      onPressed: widget.onNext,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OnboardingHeader(
+                    currentStep: 2,
+                    onBack: widget.onBack,
+                    trailing: Padding(
+                      padding: EdgeInsets.only(top: 1.h),
+                      child: _BirthdayNextTopRightButton(
+                        enabled: _isDateValid(),
+                        onPressed: widget.onNext,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 6.h),
-                Text(
-                  AppLocalizations.of(context)!.stepBirthdayWhatsYourBirthday,
-                  style: TextStyle(
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
-                    fontFamily: 'Amaranth',
+                  SizedBox(height: 6.h),
+                  Text(
+                    AppLocalizations.of(context)!.stepBirthdayWhatsYourBirthday,
+                    style: TextStyle(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                      fontFamily: 'Amaranth',
+                    ),
                   ),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  _getFormattedDate(context),
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
-                    fontFamily: 'Amaranth',
+                  SizedBox(height: 5.h),
+                  Text(
+                    _getFormattedDate(context),
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                      fontFamily: 'Amaranth',
+                    ),
                   ),
-                ),
-                SizedBox(height: 8.h),
-                Padding(
-                  padding: EdgeInsets.only(top: 20.h),
-                  child: _buildDatePicker(isDark),
-                ),
-                SizedBox(height: 16.h),
-              ],
+                  SizedBox(height: 8.h),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.h),
+                    child: _buildDatePicker(isDark),
+                  ),
+                  SizedBox(height: 16.h),
+                ],
+              ),
             ),
           ),
         ),
@@ -170,7 +173,12 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
             },
           ),
         ],
-        SafeArea(top: false, child: SizedBox(height: 8.h)),
+        SafeArea(
+          top: false,
+          left: false,
+          right: false,
+          child: SizedBox(height: 8.h),
+        ),
       ],
     );
   }
@@ -197,7 +205,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
     final years = List.generate(100, (i) => currentYear - i);
 
     return SizedBox(
-      height: 210.h,
+      height: 205.h,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final pickerHeight = constraints.maxHeight;
@@ -438,6 +446,8 @@ class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
       children: [
         SafeArea(
           top: false,
+          left: false,
+          right: false,
           child: Center(
             child: SizedBox(
               width: ad.size.width.toDouble(),

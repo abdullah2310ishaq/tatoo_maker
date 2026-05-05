@@ -59,7 +59,11 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
               ? ThemeManager.darkModeBackgroundGradient
               : ThemeManager.lightModeBackground,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            // Steps with bottom ads (Birthday/Idea) need true edge-to-edge ads;
+            // those pages handle their own content padding internally.
+            padding: (!_showZodiac && (_currentStep == 2 || _currentStep == 3))
+                ? EdgeInsets.zero
+                : const EdgeInsets.symmetric(horizontal: 20.0),
             child: _buildCurrentPage(),
           ),
         ),

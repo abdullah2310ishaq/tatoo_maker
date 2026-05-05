@@ -80,78 +80,81 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: SingleChildScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                OnboardingHeader(
-                  currentStep: 3,
-                  onBack: widget.onBack,
-                  trailing: Padding(
-                    padding: EdgeInsets.only(top: 6.h),
-                    child: _IdeaNextTopRightButton(
-                      enabled: widget.controller.text.trim().isNotEmpty,
-                      onPressed: widget.onNext,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OnboardingHeader(
+                    currentStep: 3,
+                    onBack: widget.onBack,
+                    trailing: Padding(
+                      padding: EdgeInsets.only(top: 6.h),
+                      child: _IdeaNextTopRightButton(
+                        enabled: widget.controller.text.trim().isNotEmpty,
+                        onPressed: widget.onNext,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  AppLocalizations.of(
-                    context,
-                  )!.stepTattooIdeaWhatYourTattooIdea,
-                  style: TextStyle(
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
-                    fontFamily: 'Amaranth',
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                Container(
-                  constraints: BoxConstraints(minHeight: 150.h),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.r),
-                    border: Border.all(
-                      color: AppColors.titleGradientStart,
-                      width: 1.w,
+                  SizedBox(height: 20.h),
+                  Text(
+                    AppLocalizations.of(
+                      context,
+                    )!.stepTattooIdeaWhatYourTattooIdea,
+                    style: TextStyle(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                      fontFamily: 'Amaranth',
                     ),
-                    color: cardBgColor,
-                    gradient: cardGradient,
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.r),
-                    child: Padding(
-                      padding: EdgeInsets.all(16.w),
-                      child: TextField(
-                        controller: widget.controller,
-                        focusNode: _ideaFocusNode,
-                        onTapOutside: (_) => _ideaFocusNode.unfocus(),
-                        maxLength: _maxCharacters,
-                        maxLines: null,
-                        minLines: 6,
-                        keyboardType: TextInputType.multiline,
-                        textInputAction: TextInputAction.newline,
-                        style: TextStyle(fontSize: 14.sp, color: textColor),
-                        decoration: InputDecoration(
-                          hintText: AppLocalizations.of(
-                            context,
-                          )!.stepTattooIdeaHint,
-                          hintStyle: TextStyle(
-                            fontSize: 14.sp,
-                            color: AppColors.textGrey,
+                  SizedBox(height: 16.h),
+                  Container(
+                    constraints: BoxConstraints(minHeight: 150.h),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.r),
+                      border: Border.all(
+                        color: AppColors.titleGradientStart,
+                        width: 1.w,
+                      ),
+                      color: cardBgColor,
+                      gradient: cardGradient,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.r),
+                      child: Padding(
+                        padding: EdgeInsets.all(16.w),
+                        child: TextField(
+                          controller: widget.controller,
+                          focusNode: _ideaFocusNode,
+                          onTapOutside: (_) => _ideaFocusNode.unfocus(),
+                          maxLength: _maxCharacters,
+                          maxLines: null,
+                          minLines: 6,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.newline,
+                          style: TextStyle(fontSize: 14.sp, color: textColor),
+                          decoration: InputDecoration(
+                            hintText: AppLocalizations.of(
+                              context,
+                            )!.stepTattooIdeaHint,
+                            hintStyle: TextStyle(
+                              fontSize: 14.sp,
+                              color: AppColors.textGrey,
+                            ),
+                            border: InputBorder.none,
+                            counterText: '',
+                            contentPadding: EdgeInsets.zero,
                           ),
-                          border: InputBorder.none,
-                          counterText: '',
-                          contentPadding: EdgeInsets.zero,
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: 16.h),
-              ],
+                  SizedBox(height: 16.h),
+                ],
+              ),
             ),
           ),
         ),
@@ -398,7 +401,7 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
 
     final cardColor = AppColors.gradientBottom;
     final radius = BorderRadius.circular(14.r);
-    final slotHeight = 220.h;
+    final slotHeight = 290.h;
 
     return Padding(
       padding: EdgeInsets.only(bottom: 8.h),

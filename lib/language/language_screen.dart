@@ -214,7 +214,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 28.h),
+              padding: EdgeInsets.fromLTRB(2.w, 0, 2.w, 28.h),
               child: Transform.translate(
                 offset: Offset(0, -15.h),
                 child: _LanguageScreenNativeAd(isDark: isDark),
@@ -383,7 +383,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
     if (!nativeService.isLoaded || ad == null) return SizedBox(height: 115.h);
 
     // Keep in sync with native_ads_language.xml (MediaView video area).
-    final slotH = 260.h;
+    final slotH = 280.h;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(

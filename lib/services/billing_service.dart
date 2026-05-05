@@ -6,6 +6,7 @@ import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
 const String kProTrial3DaysProductId = 'tatooweekly';
 const String kProLifetimeProductId = 'lifetime';
+const String extra = "tattooweekly";
 
 enum BillingPlan { freeTrial, lifetime }
 
@@ -135,7 +136,6 @@ class BillingService {
   ProductDetails? productForPlan(BillingPlan plan) {
     return _productsById[_toProductId(plan)];
   }
-
 
   String? displayPriceForPlan(BillingPlan plan) {
     final details = productForPlan(plan);
