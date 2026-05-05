@@ -196,7 +196,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 2.35,
+                    childAspectRatio: 3.35,
                     crossAxisSpacing: 16.w,
                     mainAxisSpacing: 16.h,
                   ),
@@ -344,14 +344,26 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
   void initState() {
     super.initState();
     _log('initState isDark=${widget.isDark} → preload shared native');
-    unawaited(NativeAdService.instance.preload());
+    final cardColor = AppColors.gradientBottom;
+    unawaited(
+      NativeAdService.instance.preload(
+        backgroundColor: cardColor.value,
+        isDark: true,
+      ),
+    );
   }
 
   @override
   void didUpdateWidget(covariant _LanguageScreenNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
-    // Theme change does not require reloading the cached native ad.
+    final cardColor = AppColors.gradientBottom;
+    unawaited(
+      NativeAdService.instance.ensureLoaded(
+        backgroundColor: cardColor.value,
+        isDark: true,
+      ),
+    );
     _loggedLayoutOnce = false;
   }
 
@@ -370,8 +382,8 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
     final ad = nativeService.ad;
     if (!nativeService.isLoaded || ad == null) return SizedBox(height: 115.h);
 
-    // Keep in sync with native_ads_language.xml CTA-heavy layout.
-    final slotH = 135.h;
+    // Keep in sync with native_ads_language.xml (MediaView video area).
+    final slotH = 260.h;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(
@@ -380,9 +392,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
       );
     }
 
-    final cardColor = widget.isDark
-        ? AppColors.inputCardDarkBackground
-        : AppColors.lightBackground;
+    final cardColor = AppColors.gradientBottom;
 
     final radius = BorderRadius.circular(14.r);
 

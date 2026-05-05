@@ -344,14 +344,26 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
   void initState() {
     super.initState();
     // Ensure the shared native ad cache is being warmed.
-    unawaited(NativeAdService.instance.preload());
+    final cardColor = AppColors.gradientBottom;
+    unawaited(
+      NativeAdService.instance.preload(
+        backgroundColor: cardColor.value,
+        isDark: true,
+      ),
+    );
   }
 
   @override
   void didUpdateWidget(covariant _FirstLanguageNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
-    // Theme change does not require reloading the cached native ad.
+    final cardColor = AppColors.gradientBottom;
+    unawaited(
+      NativeAdService.instance.ensureLoaded(
+        backgroundColor: cardColor.value,
+        isDark: true,
+      ),
+    );
     _loggedLayoutOnce = false;
   }
 
@@ -384,8 +396,8 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
     final ad = nativeService.ad;
     if (!nativeService.isLoaded || ad == null) return SizedBox(height: 115.h);
 
-    // Tight layout in native_ads_language.xml; keep slot in sync with other screens.
-    final slotH = 135.h;
+    // Keep in sync with native_ads_language.xml (MediaView video area).
+    final slotH = 220.h;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(
@@ -394,9 +406,7 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
       );
     }
 
-    final cardColor = widget.isDark
-        ? AppColors.inputCardDarkBackground
-        : AppColors.lightBackground;
+    final cardColor = AppColors.gradientBottom;
     final radius = BorderRadius.circular(14.r);
 
     return Align(

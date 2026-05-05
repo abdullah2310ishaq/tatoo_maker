@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches Flutter AppColors.gradientBottom (#121416) -->
+    <color name="native_ad_background">#FF121416</color>
+</resources>
+

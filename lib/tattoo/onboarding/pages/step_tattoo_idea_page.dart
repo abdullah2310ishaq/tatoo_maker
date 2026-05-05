@@ -359,7 +359,13 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
       final rc = context.read<RemoteConfigService>();
       final isPro = context.read<UsageLimitProvider>().isProUnlocked;
       if (isPro || !rc.tattooIdeaShowNative) return;
-      unawaited(NativeAdService.instance.preload());
+      final cardColor = AppColors.gradientBottom;
+      unawaited(
+        NativeAdService.instance.preload(
+          backgroundColor: cardColor.value,
+          isDark: true,
+        ),
+      );
     });
   }
 
@@ -367,7 +373,13 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
   void didUpdateWidget(covariant _TattooIdeaNativeAd oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
-
+    final cardColor = AppColors.gradientBottom;
+    unawaited(
+      NativeAdService.instance.ensureLoaded(
+        backgroundColor: cardColor.value,
+        isDark: true,
+      ),
+    );
   }
 
   @override
@@ -384,11 +396,9 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
       return const SizedBox.shrink();
     }
 
-    final cardColor = widget.isDark
-        ? AppColors.inputCardDarkBackground
-        : AppColors.lightBackground;
+    final cardColor = AppColors.gradientBottom;
     final radius = BorderRadius.circular(14.r);
-    final slotHeight = 138.h;
+    final slotHeight = 220.h;
 
     return Padding(
       padding: EdgeInsets.only(bottom: 8.h),

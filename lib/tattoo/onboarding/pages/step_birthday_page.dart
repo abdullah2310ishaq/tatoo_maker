@@ -114,14 +114,14 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
                   currentStep: 2,
                   onBack: widget.onBack,
                   trailing: Padding(
-                    padding: EdgeInsets.only(top: 6.h),
+                    padding: EdgeInsets.only(top: 1.h),
                     child: _BirthdayNextTopRightButton(
                       enabled: _isDateValid(),
                       onPressed: widget.onNext,
                     ),
                   ),
                 ),
-                SizedBox(height: 24.h),
+                SizedBox(height: 6.h),
                 Text(
                   AppLocalizations.of(context)!.stepBirthdayWhatsYourBirthday,
                   style: TextStyle(
@@ -131,7 +131,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
                     fontFamily: 'Amaranth',
                   ),
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 5.h),
                 Text(
                   _getFormattedDate(context),
                   style: TextStyle(
@@ -141,7 +141,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
                     fontFamily: 'Amaranth',
                   ),
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 8.h),
                 Padding(
                   padding: EdgeInsets.only(top: 20.h),
                   child: _buildDatePicker(isDark),
@@ -197,7 +197,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
     final years = List.generate(100, (i) => currentYear - i);
 
     return SizedBox(
-      height: 200.h,
+      height: 210.h,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final pickerHeight = constraints.maxHeight;
@@ -233,7 +233,7 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
                       isDark: isDark,
                     ),
                   ),
-                  SizedBox(width: 8.w),
+                  SizedBox(width: 4.w),
                   Expanded(
                     child: _buildPickerColumn(
                       items: years.map((y) => y.toString()).toList(),
@@ -250,8 +250,8 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
                 ],
               ),
               Positioned(
-                left: 0,
-                right: 0,
+                left: 1,
+                right: 8,
                 top: top,
                 height: selectionHeight,
                 child: IgnorePointer(
@@ -476,7 +476,15 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
       final rc = context.read<RemoteConfigService>();
       final isPro = context.read<UsageLimitProvider>().isProUnlocked;
       if (isPro || !rc.tattooBirthdayShowNative) return;
-      unawaited(NativeAdService.instance.preload());
+      // Platform views may not preserve transparency reliably on all Android
+      // compositions, so we set an explicit themed background color.
+      final cardColor = AppColors.gradientBottom;
+      unawaited(
+        NativeAdService.instance.preload(
+          backgroundColor: cardColor.value,
+          isDark: true,
+        ),
+      );
     });
   }
 
@@ -494,7 +502,13 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isDark == widget.isDark) return;
     _emit(false);
-    // No reload required; the cached native ad is shared.
+    final cardColor = AppColors.gradientBottom;
+    unawaited(
+      NativeAdService.instance.ensureLoaded(
+        backgroundColor: cardColor.value,
+        isDark: true,
+      ),
+    );
   }
 
   @override
@@ -520,18 +534,16 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
     }
 
     _emit(true);
-    final cardColor = widget.isDark
-        ? AppColors.inputCardDarkBackground
-        : AppColors.lightBackground;
+    final cardColor = AppColors.gradientBottom;
     final radius = BorderRadius.circular(14.r);
-    final slotHeight = 138.h;
+    final slotHeight = 280.h;
 
     return Padding(
       padding: EdgeInsets.only(bottom: 8.h),
       child: Material(
         color: cardColor,
-        elevation: 4,
-        shadowColor: AppColors.toastShadow,
+        elevation: 0,
+        shadowColor: const Color(0x00000000),
         borderRadius: radius,
         clipBehavior: Clip.antiAlias,
         child: SizedBox(

@@ -31,7 +31,6 @@ void main() async {
   await MobileAds.instance.initialize();
   // Preload ads once at startup so screens only "show" cached ads.
   unawaited(AppOpenAdService.instance.preload(unitIdOverride: AdmobIds.appOpenUnitId()));
-  unawaited(NativeAdService.instance.preload());
   if (kDebugMode) {
     await MobileAds.instance.updateRequestConfiguration(
       RequestConfiguration(
