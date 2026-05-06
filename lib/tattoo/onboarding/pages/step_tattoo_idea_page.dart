@@ -38,6 +38,7 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
   void initState() {
     super.initState();
     widget.controller.addListener(_handleTextChanged);
+    _ideaFocusNode.addListener(_handleTextChanged);
   }
 
   @override
@@ -51,6 +52,7 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
   @override
   void dispose() {
     widget.controller.removeListener(_handleTextChanged);
+    _ideaFocusNode.removeListener(_handleTextChanged);
     _ideaFocusNode.dispose();
     super.dispose();
   }
@@ -75,85 +77,101 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
     final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
     final canShowBanner = !isPro && rc.tattooIdeaShowBanner;
     final canShowNative = !isPro && rc.tattooIdeaShowNative;
+    final keyboardInset = MediaQuery.viewInsetsOf(context).bottom;
+    // Focus-based detection is the most reliable way to hide ads while typing,
+    // even when the parent Scaffold disables resizeToAvoidBottomInset.
+    final isKeyboardOpen = _ideaFocusNode.hasFocus || keyboardInset > 0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: OnboardingHeader(
+            currentStep: 3,
+            onBack: widget.onBack,
+            trailing: Padding(
+              padding: EdgeInsets.only(top: 6.h),
+              child: _IdeaNextTopRightButton(
+                enabled: widget.controller.text.trim().isNotEmpty,
+                onPressed: widget.onNext,
+              ),
+            ),
+          ),
+        ),
         Expanded(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  OnboardingHeader(
-                    currentStep: 3,
-                    onBack: widget.onBack,
-                    trailing: Padding(
-                      padding: EdgeInsets.only(top: 6.h),
-                      child: _IdeaNextTopRightButton(
-                        enabled: widget.controller.text.trim().isNotEmpty,
-                        onPressed: widget.onNext,
+            child: AnimatedPadding(
+              duration: const Duration(milliseconds: 160),
+              curve: Curves.easeOut,
+              padding: EdgeInsets.only(bottom: keyboardInset),
+              child: SingleChildScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.manual,
+                // No ad padding here. Ads are hidden during keyboard and live
+                // in a separate bottom slot when keyboard is closed.
+                padding: EdgeInsets.only(bottom: 12.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20.h),
+                    Text(
+                      AppLocalizations.of(
+                        context,
+                      )!.stepTattooIdeaWhatYourTattooIdea,
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                        fontFamily: 'Amaranth',
                       ),
                     ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Text(
-                    AppLocalizations.of(
-                      context,
-                    )!.stepTattooIdeaWhatYourTattooIdea,
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                      fontFamily: 'Amaranth',
-                    ),
-                  ),
-                  SizedBox(height: 16.h),
-                  Container(
-                    constraints: BoxConstraints(minHeight: 150.h),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.r),
-                      border: Border.all(
-                        color: AppColors.titleGradientStart,
-                        width: 1.w,
+                    SizedBox(height: 16.h),
+                    Container(
+                      constraints: BoxConstraints(minHeight: 150.h),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16.r),
+                        border: Border.all(
+                          color: AppColors.titleGradientStart,
+                          width: 1.w,
+                        ),
+                        color: cardBgColor,
+                        gradient: cardGradient,
                       ),
-                      color: cardBgColor,
-                      gradient: cardGradient,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16.r),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.w),
-                        child: TextField(
-                          controller: widget.controller,
-                          focusNode: _ideaFocusNode,
-                          onTapOutside: (_) => _ideaFocusNode.unfocus(),
-                          maxLength: _maxCharacters,
-                          maxLines: null,
-                          minLines: 6,
-                          keyboardType: TextInputType.multiline,
-                          textInputAction: TextInputAction.newline,
-                          style: TextStyle(fontSize: 14.sp, color: textColor),
-                          decoration: InputDecoration(
-                            hintText: AppLocalizations.of(
-                              context,
-                            )!.stepTattooIdeaHint,
-                            hintStyle: TextStyle(
-                              fontSize: 14.sp,
-                              color: AppColors.textGrey,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16.r),
+                        child: Padding(
+                          padding: EdgeInsets.all(16.w),
+                          child: TextField(
+                            controller: widget.controller,
+                            focusNode: _ideaFocusNode,
+                            onTapOutside: (_) => _ideaFocusNode.unfocus(),
+                            maxLength: _maxCharacters,
+                            maxLines: null,
+                            minLines: 6,
+                            keyboardType: TextInputType.multiline,
+                            textInputAction: TextInputAction.newline,
+                            style: TextStyle(fontSize: 14.sp, color: textColor),
+                            decoration: InputDecoration(
+                              hintText: AppLocalizations.of(
+                                context,
+                              )!.stepTattooIdeaHint,
+                              hintStyle: TextStyle(
+                                fontSize: 14.sp,
+                                color: AppColors.textGrey,
+                              ),
+                              border: InputBorder.none,
+                              counterText: '',
+                              contentPadding: EdgeInsets.zero,
                             ),
-                            border: InputBorder.none,
-                            counterText: '',
-                            contentPadding: EdgeInsets.zero,
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 16.h),
-                ],
+                    SizedBox(height: 16.h),
+                  ],
+                ),
               ),
             ),
           ),
@@ -162,7 +180,10 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
         // placement stays stable and doesn't get removed/re-mounted (e.g. on
         // keyboard open/close). So we keep this bottom slot mounted and simply
         // decide which ad type occupies it.
-        if (canShowBanner) ...[
+        if (isKeyboardOpen) ...[
+          // Keyboard/editing mode: do not let ads block the prompt while typing.
+          SafeArea(top: false, child: SizedBox(height: 12.h)),
+        ] else if (canShowBanner) ...[
           const _TattooIdeaBannerAd(),
           SafeArea(top: false, child: SizedBox(height: 8.h)),
         ] else if (canShowNative) ...[

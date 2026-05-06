@@ -50,7 +50,10 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
+        // Keep onboarding steps stable when keyboard opens.
+        // Pages that need keyboard visibility (e.g. StepTattooIdeaPage) handle
+        // their own insets via padding/scroll.
+        resizeToAvoidBottomInset: false,
         backgroundColor: isDark
             ? AppColors.darkBackground
             : AppColors.lightBackground,
