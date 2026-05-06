@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
-import '../../../providers/usage_limit_provider.dart';
 
 class ResultViewWidget extends StatefulWidget {
   final File? bodyPartImage;
@@ -41,8 +39,6 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
   bool _didAutoCenter = false;
   Offset? _panStartPosition;
   Offset? _panStartLocal;
-  static const String _watermarkLightAssetPath = 'assets/watermark_light.png';
-  static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
 
   double _scaleStart = 1.0;
   double _rotationStart = 0.0;
@@ -291,40 +287,11 @@ class _ResultViewWidgetState extends State<ResultViewWidget> {
                         scale: widget.tattooScale,
                         child: Transform.rotate(
                           angle: widget.tattooRotation,
-                          child: Consumer<UsageLimitProvider>(
-                            builder: (context, usage, _) {
-                              final showWatermark = !usage.isProUnlocked;
-                              final isDark =
-                                  Theme.of(context).brightness ==
-                                  Brightness.dark;
-                              final watermarkAssetPath = isDark
-                                  ? _watermarkDarkAssetPath
-                                  : _watermarkLightAssetPath;
-                              return Stack(
-                                children: [
-                                  _buildTattooLayerImage(
-                                    widget.tattooImageBytes!,
-                                    baseTattooSize,
-                                  ),
-                                  if (showWatermark)
-                                    Positioned(
-                                      left: 10,
-                                      bottom: 70,
-                                      child: IgnorePointer(
-                                        child: Opacity(
-                                          opacity: 0.35,
-                                          child: Image.asset(
-                                            watermarkAssetPath,
-                                            width: baseTattooSize * 0.85,
-                                            fit: BoxFit.contain,
-                                            filterQuality: FilterQuality.high,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              );
-                            },
+                          // Keep editor preview watermark-free so placement looks clean.
+                          // Watermark is applied only when saving.
+                          child: _buildTattooLayerImage(
+                            widget.tattooImageBytes!,
+                            baseTattooSize,
                           ),
                         ),
                       ),

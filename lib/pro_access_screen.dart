@@ -318,19 +318,29 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     return _billingService.displayPriceForPlan(BillingPlan.lifetime) ?? '--';
   }
 
-  String? _lifetimeOriginalDisplayPrice() {
+  String _lifetimePerWeekDisplayPrice() {
     final lifetimeProduct = _billingService.productForPlan(
       BillingPlan.lifetime,
     );
-    if (lifetimeProduct == null) return null;
+    if (lifetimeProduct == null) return '--';
 
-    final originalRawPrice = lifetimeProduct.rawPrice / 0.8;
+    final perWeekRawPrice = lifetimeProduct.rawPrice / 52;
+    final truncated = perWeekRawPrice.floorToDouble();
     try {
       return NumberFormat.simpleCurrency(
         name: lifetimeProduct.currencyCode,
-      ).format(originalRawPrice);
+        decimalDigits: 0,
+      ).format(truncated);
     } catch (_) {
-      return null;
+      // Fallback: if currency formatting fails on this device/locale.
+      try {
+        return NumberFormat.currency(
+          name: lifetimeProduct.currencyCode,
+          decimalDigits: 0,
+        ).format(truncated);
+      } catch (_) {
+        return '--';
+      }
     }
   }
 
@@ -625,7 +635,8 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                             SizedBox(height: subtitleFeaturesSpacing),
 
                             _FeatureRow(
-                              text: l10n.proAccessFeatureUnlimitedTattooCreation,
+                              text:
+                                  l10n.proAccessFeatureUnlimitedTattooCreation,
                             ),
                             _FeatureRow(
                               text: l10n.proAccessFeatureFastProcessing,
@@ -663,7 +674,8 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                               showBadge: true,
                               badgeText: l10n.proAccessLifetimeDiscountBadge,
                               verticalPadding: planVerticalPadding,
-                              isSelected: _selectedPlan == PlanVariant.freeTrial,
+                              isSelected:
+                                  _selectedPlan == PlanVariant.freeTrial,
                               onTap: () {
                                 _selectPlan(PlanVariant.freeTrial);
                               },
@@ -679,9 +691,8 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                               leftSubTextColor: AppColors.textGrey.withOpacity(
                                 0.85,
                               ),
-                              rightText: _lifetimeDisplayPrice(),
-                              rightSubText: 'per year',
-                              originalRightText: _lifetimeOriginalDisplayPrice(),
+                              rightText: _lifetimePerWeekDisplayPrice(),
+                              rightSubText: 'per week',
                               verticalPadding: planVerticalPadding,
                               isSelected: _selectedPlan == PlanVariant.lifetime,
                               onTap: () {
@@ -898,7 +909,6 @@ class _PlanCard extends StatelessWidget {
   final Color? leftSubTextColor;
   final String? rightText;
   final String? rightSubText;
-  final String? originalRightText;
   final bool showBadge;
   final String? badgeText;
   final bool isSelected;
@@ -912,7 +922,6 @@ class _PlanCard extends StatelessWidget {
     this.leftSubTextColor,
     this.rightText,
     this.rightSubText,
-    this.originalRightText,
     this.showBadge = false,
     this.badgeText,
     this.isSelected = false,
@@ -1000,23 +1009,6 @@ class _PlanCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        if (originalRightText != null)
-                          Text(
-                            originalRightText!,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                              fontSize: 11.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.textGrey.withOpacity(0.9),
-                              decoration: TextDecoration.lineThrough,
-                              decorationColor: AppColors.textGrey.withOpacity(
-                                0.9,
-                              ),
-                              fontFamily: 'Inter',
-                            ),
-                          ),
                         Text(
                           rightText!,
                           maxLines: 1,
@@ -1055,9 +1047,7 @@ class _PlanCard extends StatelessWidget {
               Positioned(
                 top: -19.h,
                 right: -3.w,
-                child: IgnorePointer(
-                  child: _DiscountBadge(text: badgeText),
-                ),
+                child: IgnorePointer(child: _DiscountBadge(text: badgeText)),
               ),
           ],
         ),

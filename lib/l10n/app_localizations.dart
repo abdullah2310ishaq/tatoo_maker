@@ -599,7 +599,7 @@ abstract class AppLocalizations {
   /// Creation home: free-user gate dialog main message
   ///
   /// In en, this message translates to:
-  /// **'Just one last step before your design is ready!'**
+  /// **'Out of free generations, watch Ad to continue'**
   String get creationFreeGateTitle;
 
   /// Creation: free gate primary CTA to paywall

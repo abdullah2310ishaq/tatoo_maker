@@ -320,7 +320,7 @@
   "@homeGenerate": {
     "description": "Home: Generate button label"
   },
-  "creationFreeGateTitle": "Just one last step before your design is ready!",
+  "creationFreeGateTitle": "Out of free generations, watch Ad to continue",
   "@creationFreeGateTitle": {
     "description": "Creation home: free-user gate dialog main message"
   },

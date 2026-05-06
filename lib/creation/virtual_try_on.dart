@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'dart:async';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:gal/gal.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -39,6 +39,8 @@ class VirtualTryOnScreen extends StatefulWidget {
 }
 
 class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
+  static const String _watermarkLightAssetPath = 'assets/watermark_light.png';
+  static const String _watermarkDarkAssetPath = 'assets/watermark_dark.png';
   File? _bodyPartImage;
   bool _isSaving = false;
   bool _isProcessing = false;
@@ -251,6 +253,68 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
     }
   }
 
+  Future<Uint8List> _applyWatermarkToPngBytes({
+    required Uint8List basePngBytes,
+    required bool isDark,
+  }) async {
+    final codec = await ui.instantiateImageCodec(basePngBytes);
+    final baseFrame = await codec.getNextFrame();
+    final baseImage = baseFrame.image;
+
+    final watermarkAssetPath =
+        isDark ? _watermarkDarkAssetPath : _watermarkLightAssetPath;
+    final watermarkData = await rootBundle.load(watermarkAssetPath);
+    final watermarkCodec = await ui.instantiateImageCodec(
+      watermarkData.buffer.asUint8List(),
+    );
+    final watermarkFrame = await watermarkCodec.getNextFrame();
+    final watermarkImage = watermarkFrame.image;
+
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder);
+
+    canvas.drawImage(baseImage, Offset.zero, Paint());
+
+    // Match the old try-on watermark vibe: small-ish, bottom-left, semi-transparent.
+    final double marginX = baseImage.width * 0.05;
+    final double marginBottom = baseImage.height * 0.18;
+    final double targetWidth = baseImage.width * 0.30;
+    final double aspect = watermarkImage.height == 0
+        ? 1.0
+        : (watermarkImage.width / watermarkImage.height);
+    final double targetHeight = targetWidth / aspect;
+
+    final dst = Rect.fromLTWH(
+      marginX,
+      (baseImage.height - marginBottom - targetHeight).clamp(
+        0.0,
+        baseImage.height.toDouble(),
+      ),
+      targetWidth,
+      targetHeight,
+    );
+    final src = Rect.fromLTWH(
+      0,
+      0,
+      watermarkImage.width.toDouble(),
+      watermarkImage.height.toDouble(),
+    );
+
+    final paint = Paint()
+      ..filterQuality = FilterQuality.high
+      ..color = const Color(0xFFFFFFFF).withValues(alpha: 0.35);
+    canvas.drawImageRect(watermarkImage, src, dst, paint);
+
+    final picture = recorder.endRecording();
+    final outImage = await picture.toImage(baseImage.width, baseImage.height);
+    final outBytes = await outImage.toByteData(format: ui.ImageByteFormat.png);
+    if (outBytes == null) {
+      // Fallback: return original.
+      return basePngBytes;
+    }
+    return outBytes.buffer.asUint8List();
+  }
+
   Future<void> _saveToGallery() async {
     final l10n = AppLocalizations.of(context)!;
     try {
@@ -266,8 +330,17 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       }
       setState(() => _isSaving = true);
 
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+      final isProUnlocked = context.read<UsageLimitProvider>().isProUnlocked;
+      final bytesToSave = (!isProUnlocked)
+          ? await _applyWatermarkToPngBytes(
+              basePngBytes: _processedTryOnBytes!,
+              isDark: isDark,
+            )
+          : _processedTryOnBytes!;
+
       await Gal.putImageBytes(
-        _processedTryOnBytes!,
+        bytesToSave,
         name:
             '${widget.styleName}_tryon_${DateTime.now().millisecondsSinceEpoch}.jpg',
       );

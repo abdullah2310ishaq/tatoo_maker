@@ -268,7 +268,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get creationFreeGateTitle =>
-      'Just one last step before your design is ready!';
+      'Out of free generations, watch Ad to continue';
 
   @override
   String get creationFreeGateRemoveLimits => 'Remove Limits';
