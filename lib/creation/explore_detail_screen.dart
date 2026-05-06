@@ -5,6 +5,8 @@ import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/toast.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
+import '../services/firebase_asset_url_service.dart';
+import '../services/remote_asset_cache_service.dart';
 import '../widgets/remote_or_asset_image.dart';
 import 'virtual_try_on.dart';
 
@@ -35,14 +37,32 @@ class ExploreDetailScreen extends StatefulWidget {
 
 class _ExploreDetailScreenState extends State<ExploreDetailScreen> {
   bool _isLoadingImageBytes = false;
+  static final FirebaseAssetUrlService _sharedUrlService =
+      FirebaseAssetUrlService();
+  static final RemoteAssetCacheService _sharedCacheService =
+      RemoteAssetCacheService();
 
   /// Converts an asset image to Uint8List bytes
   Future<Uint8List?> _loadAssetImageBytes(String assetPath) async {
+    // 1) First try loading from the Flutter asset bundle.
     try {
       final ByteData data = await rootBundle.load(assetPath);
       return data.buffer.asUint8List();
     } catch (e) {
-      debugPrint('Error loading asset image: $e');
+      debugPrint('ExploreDetail: rootBundle load failed ($assetPath): $e');
+    }
+
+    // 2) Fallback: for images that are displayed via RemoteOrAssetImage
+    // (Firebase Storage + local cache), load the cached file bytes.
+    try {
+      final url = await _sharedUrlService.getDownloadUrl(assetPath);
+      final file = await _sharedCacheService.getOrDownload(
+        assetPath: assetPath,
+        url: url,
+      );
+      return await file.readAsBytes();
+    } catch (e) {
+      debugPrint('ExploreDetail: remote/cache load failed ($assetPath): $e');
       return null;
     }
   }
