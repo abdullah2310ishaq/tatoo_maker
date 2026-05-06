@@ -7,6 +7,7 @@ import '../../widgets/inkvision_underline.dart';
 
 class HomeHeader extends StatelessWidget {
   final bool isDark;
+  final bool isPro;
   final VoidCallback? onMenuTap;
   final VoidCallback? onHistoryTap;
   final VoidCallback? onProTap;
@@ -14,6 +15,7 @@ class HomeHeader extends StatelessWidget {
   const HomeHeader({
     super.key,
     required this.isDark,
+    required this.isPro,
     required this.onMenuTap,
     this.onHistoryTap,
     this.onProTap,
@@ -89,32 +91,34 @@ class HomeHeader extends StatelessWidget {
                 ),
                 onPressed: onHistoryTap,
               ),
-              SizedBox(width: 6.w),
-              Transform.translate(
-                offset: Offset(0, -2.h),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(proBadgeSize / 2),
-                    onTap: onProTap,
-                    child: SizedBox(
-                      width: proBadgeSize,
-                      height: proBadgeSize,
-                      child: Center(
-                        child: Container(
-                          width: proBadgeSize,
-                          height: proBadgeSize,
-                          alignment: Alignment.center,
-                          decoration: const BoxDecoration(
-                            color: AppColors.proBadgeBackground,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Text(
-                            'Pro',
-                            style: TextStyle(
-                              color: AppColors.textWhite,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w700,
+              if (!isPro) ...[
+                SizedBox(width: 6.w),
+                Transform.translate(
+                  offset: Offset(0, -2.h),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(proBadgeSize / 2),
+                      onTap: onProTap,
+                      child: SizedBox(
+                        width: proBadgeSize,
+                        height: proBadgeSize,
+                        child: Center(
+                          child: Container(
+                            width: proBadgeSize,
+                            height: proBadgeSize,
+                            alignment: Alignment.center,
+                            decoration: const BoxDecoration(
+                              color: AppColors.proBadgeBackground,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Text(
+                              'Pro',
+                              style: TextStyle(
+                                color: AppColors.textWhite,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
@@ -122,7 +126,7 @@ class HomeHeader extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
+              ],
             ],
           ),
         ],

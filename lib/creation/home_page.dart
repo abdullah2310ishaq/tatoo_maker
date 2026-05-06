@@ -234,6 +234,8 @@ class _HomePageState extends State<HomePage> with RouteAware {
             child: Builder(
               builder: (context) {
                 final isRtl = _isRtlLocale(Localizations.localeOf(context));
+                final isPro =
+                    context.watch<UsageLimitProvider>().isProUnlocked;
 
                 Widget scroll = CustomScrollView(
                   slivers: [
@@ -255,6 +257,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
                           ),
                           child: HomeHeader(
                             isDark: isDark,
+                            isPro: isPro,
                             onMenuTap: _onMenuTap,
                             onHistoryTap: widget.onHistoryTap,
                             onProTap: widget.onProTap,
