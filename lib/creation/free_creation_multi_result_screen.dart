@@ -13,6 +13,7 @@ import '../services/rewarded_ad_flow.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
+import '../pro_access_screen.dart';
 import 'loading_screen.dart';
 import 'result_screen.dart';
 import 'widgets/free_creation_generate_gate_dialog.dart';
@@ -43,19 +44,46 @@ class _FreeCreationMultiResultScreenState
   int _unlockedCardsCount = 1;
   late final List<Uint8List> _unlockedImages = [widget.generatedImageBytes];
 
+  void _openRemoveLimitsPaywall() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => ProAccessScreen(
+          showInterstitialOnClose: false,
+          // Close (X) should return back to this results screen (pop),
+          // not force the user to the home creation page.
+          goToNextScreenOnClose: false,
+          // If purchase/restore completes inside the paywall, it will replace
+          // with this screen so the user stays in the same flow.
+          nextScreen: FreeCreationMultiResultScreen(
+            generatedImageBytes: widget.generatedImageBytes,
+            styleName: widget.styleName,
+            promptText: widget.promptText,
+            selectedStyleAsset: widget.selectedStyleAsset,
+          ),
+        ),
+      ),
+    );
+  }
+
   Future<void> _onRecreatePressed() async {
     if (_isRecreating) return;
     final usage = context.read<UsageLimitProvider>();
-    final canStart = await usage.canStartCreationHomeGeneration();
-    if (!mounted) return;
     final l10n = AppLocalizations.of(context)!;
-    if (!canStart) {
-      AppToast.show(
-        context,
-        message: l10n.creationFreeGateNoGenerationsLeft,
-        isSuccess: false,
-      );
-      return;
+    final gateChoice = await showFreeCreationGenerateGateDialog(
+      context: context,
+      freeGenerationsRemaining: usage.freeCreationHomeGenerationsRemaining,
+      freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
+    );
+    if (!mounted) return;
+
+    switch (gateChoice) {
+      case FreeCreationGenerateGateChoice.dismissed:
+        return;
+      case FreeCreationGenerateGateChoice.removeLimits:
+        _openRemoveLimitsPaywall();
+        return;
+      case FreeCreationGenerateGateChoice.watchAd:
+        break;
     }
 
     setState(() => _isRecreating = true);
@@ -69,6 +97,16 @@ class _FreeCreationMultiResultScreenState
         AppToast.show(
           context,
           message: l10n.rewardedAdNotAvailableTryAgain,
+          isSuccess: false,
+        );
+        return;
+      }
+      final canStart = await usage.canStartCreationHomeGeneration();
+      if (!mounted) return;
+      if (!canStart) {
+        AppToast.show(
+          context,
+          message: l10n.creationFreeGateNoGenerationsLeft,
           isSuccess: false,
         );
         return;
@@ -94,18 +132,7 @@ class _FreeCreationMultiResultScreenState
       return;
     }
     final usage = context.read<UsageLimitProvider>();
-    final canStart = await usage.canStartCreationHomeGeneration();
-    if (!mounted) return;
-
     final l10n = AppLocalizations.of(context)!;
-    if (!canStart) {
-      AppToast.show(
-        context,
-        message: l10n.creationFreeGateNoGenerationsLeft,
-        isSuccess: false,
-      );
-      return;
-    }
 
     final gateChoice = await showFreeCreationGenerateGateDialog(
       context: context,
@@ -118,7 +145,7 @@ class _FreeCreationMultiResultScreenState
       case FreeCreationGenerateGateChoice.dismissed:
         return;
       case FreeCreationGenerateGateChoice.removeLimits:
-        // Requested: no in-app/paywall from this screen.
+        _openRemoveLimitsPaywall();
         return;
       case FreeCreationGenerateGateChoice.watchAd:
         final earned = await showRewardedAdIfAvailable(
@@ -130,6 +157,16 @@ class _FreeCreationMultiResultScreenState
           AppToast.show(
             context,
             message: l10n.rewardedAdNotAvailableTryAgain,
+            isSuccess: false,
+          );
+          return;
+        }
+        final canStart = await usage.canStartCreationHomeGeneration();
+        if (!mounted) return;
+        if (!canStart) {
+          AppToast.show(
+            context,
+            message: l10n.creationFreeGateNoGenerationsLeft,
             isSuccess: false,
           );
           return;

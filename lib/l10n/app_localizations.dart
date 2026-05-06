@@ -2933,7 +2933,7 @@ abstract class AppLocalizations {
   /// Pro access legal subscription note
   ///
   /// In en, this message translates to:
-  /// **'After 3 days free - then weekly subscription for {price} will start. Cancel anytime 24 hours before renewal'**
+  /// **'After 3 days full access - then weekly subscription for {price} will start. Cancel anytime 24 hours before renewal'**
   String proAccessLegalNote(Object price);
 
   /// Pro access lifetime plan label
@@ -2957,7 +2957,7 @@ abstract class AppLocalizations {
   /// Pro access lifetime note with price
   ///
   /// In en, this message translates to:
-  /// **'Lifetime subscription for {price} will start'**
+  /// **'Yearly subscription for {price} will start'**
   String proAccessLifetimeLegalWithPrice(Object price);
 }
 

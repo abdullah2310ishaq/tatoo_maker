@@ -275,21 +275,21 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
 
     canvas.drawImage(baseImage, Offset.zero, Paint());
 
-    // Match the old try-on watermark vibe: small-ish, bottom-left, semi-transparent.
-    final double marginX = baseImage.width * 0.05;
-    final double marginBottom = baseImage.height * 0.18;
-    final double targetWidth = baseImage.width * 0.30;
+    // Match ResultScreen watermark style: large overlay across the image (top-center).
+    final double targetWidth = baseImage.width * 2.25;
     final double aspect = watermarkImage.height == 0
         ? 1.0
         : (watermarkImage.width / watermarkImage.height);
     final double targetHeight = targetWidth / aspect;
 
+    final double left = (baseImage.width - targetWidth) / 2;
+    // Clamp safely even when watermark is larger than the base image.
+    final double maxTop = (baseImage.height - targetHeight).toDouble();
+    final double preferredTop = (baseImage.height * 0.15).toDouble();
+    final double top = maxTop <= 0 ? 0.0 : preferredTop.clamp(0.0, maxTop);
     final dst = Rect.fromLTWH(
-      marginX,
-      (baseImage.height - marginBottom - targetHeight).clamp(
-        0.0,
-        baseImage.height.toDouble(),
-      ),
+      left,
+      top,
       targetWidth,
       targetHeight,
     );
@@ -342,7 +342,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
       await Gal.putImageBytes(
         bytesToSave,
         name:
-            '${widget.styleName}_tryon_${DateTime.now().millisecondsSinceEpoch}.jpg',
+            '${widget.styleName}_tryon_${DateTime.now().millisecondsSinceEpoch}.png',
       );
 
       if (mounted) {

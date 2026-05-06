@@ -1626,7 +1626,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String proAccessLegalNote(Object price) {
-    return 'After 3 days free - then weekly subscription for $price will start. Cancel anytime 24 hours before renewal';
+    return 'After 3 days full access - then weekly subscription for $price will start. Cancel anytime 24 hours before renewal';
   }
 
   @override
@@ -1641,6 +1641,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String proAccessLifetimeLegalWithPrice(Object price) {
-    return 'Lifetime subscription for $price will start';
+    return 'Yearly subscription for $price will start';
   }
 }
