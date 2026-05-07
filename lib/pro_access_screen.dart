@@ -299,19 +299,11 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   }
 
   String _freeTrialDisplayPrice(AppLocalizations l10n) {
-    final storePrice = _billingService.displayPriceForPlan(
-      BillingPlan.freeTrial,
-    );
-    if (storePrice == null || storePrice.isEmpty) {
+    final maxPrice = _billingService.weeklyPaidMaxPrice();
+    if (maxPrice == null || maxPrice.isEmpty) {
       return l10n.proAccessPlanWeeklyPrice;
     }
-    if (storePrice.contains('/')) {
-      return storePrice;
-    }
-    if (!RegExp(r'\d').hasMatch(storePrice)) {
-      return storePrice;
-    }
-    return l10n.proAccessWeeklyPriceWithPeriod(storePrice);
+    return l10n.proAccessWeeklyPriceWithPeriod(maxPrice);
   }
 
   String _lifetimeDisplayPrice() {
