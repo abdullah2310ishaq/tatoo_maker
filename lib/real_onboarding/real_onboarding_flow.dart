@@ -1,10 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../utils/colors.dart';
 import '../home_shell.dart';
+import '../providers/usage_limit_provider.dart';
+import '../services/remote_config_service.dart';
+import '../splash_pro.dart';
+import '../pro_access_screen.dart';
 import 'real_ob_second.dart';
 import 'real_ob_third.dart';
 import 'real_ob_fourth.dart';
@@ -57,11 +62,8 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
 
   void _onSkip() async {
     await _markOnboardingCompleted();
-    if (mounted) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomeShell()),
-      );
-    }
+    if (!mounted) return;
+    await _routeAfterOnboarding();
   }
 
   void _onContinue() async {
@@ -72,12 +74,37 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
       );
     } else {
       await _markOnboardingCompleted();
-      if (mounted) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeShell()),
-        );
-      }
+      if (!mounted) return;
+      await _routeAfterOnboarding();
     }
+  }
+
+  static const String _prefsProSplashShownKey = 'pro_splash_shown_once';
+
+  Future<void> _routeAfterOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (!mounted) return;
+
+    final usage = context.read<UsageLimitProvider>();
+    final rc = context.read<RemoteConfigService>();
+    final shouldShowPaywall = rc.splashShowPaywall;
+    final proSplashShown = prefs.getBool(_prefsProSplashShownKey) ?? false;
+
+    final Widget next;
+    if (usage.isProUnlocked || !shouldShowPaywall) {
+      next = const HomeShell();
+    } else if (proSplashShown) {
+      next = const ProAccessScreen(nextScreen: HomeShell());
+    } else {
+      // Mark as shown immediately so it never repeats.
+      await prefs.setBool(_prefsProSplashShownKey, true);
+      if (!mounted) return;
+      next = const SplashProScreen(nextScreen: HomeShell());
+    }
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => next),
+    );
   }
 
   Future<void> _markOnboardingCompleted() async {

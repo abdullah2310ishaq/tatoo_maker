@@ -418,6 +418,8 @@ class _TattooIdeaNativeAd extends StatefulWidget {
 }
 
 class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
+  static const String _nativeSlotKey = 'onboarding_idea';
+
   @override
   void initState() {
     super.initState();
@@ -428,9 +430,10 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
       if (isPro || !rc.tattooIdeaShowNative) return;
       final cardColor = AppColors.gradientBottom;
       unawaited(
-        NativeAdService.instance.preload(
+        NativeAdService.instance.ensureLoadedForKey(
+          key: _nativeSlotKey,
           backgroundColor: cardColor.value,
-          isDark: true,
+          isDark: widget.isDark,
         ),
       );
     });
@@ -442,9 +445,10 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
     if (oldWidget.isDark == widget.isDark) return;
     final cardColor = AppColors.gradientBottom;
     unawaited(
-      NativeAdService.instance.ensureLoaded(
+      NativeAdService.instance.ensureLoadedForKey(
+        key: _nativeSlotKey,
         backgroundColor: cardColor.value,
-        isDark: true,
+        isDark: widget.isDark,
       ),
     );
   }
@@ -458,8 +462,8 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
     }
 
     final nativeService = context.watch<NativeAdService>();
-    final ad = nativeService.ad;
-    if (!nativeService.isLoaded || ad == null) {
+    final ad = nativeService.adForKey(_nativeSlotKey);
+    if (!nativeService.isLoadedForKey(_nativeSlotKey) || ad == null) {
       return const SizedBox.shrink();
     }
 

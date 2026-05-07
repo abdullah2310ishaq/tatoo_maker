@@ -477,6 +477,7 @@ class _BirthdayNativeAd extends StatefulWidget {
 
 class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
   bool _lastEmitted = false;
+  static const String _nativeSlotKey = 'onboarding_birthday';
 
   @override
   void initState() {
@@ -489,12 +490,13 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
       // Platform views may not preserve transparency reliably on all Android
       // compositions, so we set an explicit themed background color.
       final cardColor = AppColors.gradientBottom;
-      // Force a fresh NativeAd every time the screen is entered. The cached
-      // ad becomes unusable after its AdWidget is disposed (platform view
-      // detaches), so reusing it on re-entry would render only an empty box.
-      NativeAdService.instance.invalidateAndReload(
-        backgroundColor: cardColor.value,
-        isDark: true,
+      // Preload once and reuse (same approach as LanguageScreen).
+      unawaited(
+        NativeAdService.instance.ensureLoadedForKey(
+          key: _nativeSlotKey,
+          backgroundColor: cardColor.value,
+          isDark: widget.isDark,
+        ),
       );
     });
   }
@@ -515,9 +517,10 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
     _emit(false);
     final cardColor = AppColors.gradientBottom;
     unawaited(
-      NativeAdService.instance.ensureLoaded(
+      NativeAdService.instance.ensureLoadedForKey(
+        key: _nativeSlotKey,
         backgroundColor: cardColor.value,
-        isDark: true,
+        isDark: widget.isDark,
       ),
     );
   }
@@ -538,8 +541,8 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
     }
 
     final nativeService = context.watch<NativeAdService>();
-    final ad = nativeService.ad;
-    if (!nativeService.isLoaded || ad == null) {
+    final ad = nativeService.adForKey(_nativeSlotKey);
+    if (!nativeService.isLoadedForKey(_nativeSlotKey) || ad == null) {
       _emit(false);
       return const SizedBox.shrink();
     }

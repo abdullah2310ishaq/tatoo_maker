@@ -19,12 +19,18 @@ class ProAccessScreen extends StatefulWidget {
   final Widget nextScreen;
   final bool showInterstitialOnClose;
   final bool goToNextScreenOnClose;
+  final bool forceTrialEnabled;
+  final bool lockTrialToggle;
+  final bool alwaysShowTrialToggle;
 
   const ProAccessScreen({
     super.key,
     required this.nextScreen,
     this.showInterstitialOnClose = false,
     this.goToNextScreenOnClose = false,
+    this.forceTrialEnabled = false,
+    this.lockTrialToggle = false,
+    this.alwaysShowTrialToggle = true,
   });
 
   @override
@@ -70,6 +76,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
 
     _pageController = PageController();
     _billingService = BillingService();
+    if (widget.forceTrialEnabled) {
+      _selectedPlan = PlanVariant.freeTrial;
+    }
 
     _sliderTimer = Timer.periodic(const Duration(seconds: 2), (_) {
       if (!mounted) return;
@@ -641,12 +650,15 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                             ),
 
                             SizedBox(height: featuresToggleSpacing),
-                            if (context
-                                .watch<RemoteConfigService>()
-                                .proAccessShowTrialToggle) ...[
+                            if (widget.alwaysShowTrialToggle ||
+                                context
+                                    .watch<RemoteConfigService>()
+                                    .proAccessShowTrialToggle) ...[
                               _TrialToggleCard(
                                 isEnabled: _isTrialEnabled,
-                                onChanged: _onTrialToggleChanged,
+                                onChanged: widget.lockTrialToggle
+                                    ? null
+                                    : _onTrialToggleChanged,
                                 verticalPadding: trialToggleVerticalPadding,
                               ),
                               SizedBox(height: togglePlansSpacing),
@@ -839,7 +851,7 @@ enum PlanVariant { freeTrial, lifetime }
 
 class _TrialToggleCard extends StatelessWidget {
   final bool isEnabled;
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool>? onChanged;
   final double verticalPadding;
 
   const _TrialToggleCard({
@@ -882,7 +894,7 @@ class _TrialToggleCard extends StatelessWidget {
           Switch(
             value: isEnabled,
             onChanged: onChanged,
-            activeColor: AppColors.textWhite,
+            activeThumbColor: AppColors.textWhite,
             activeTrackColor: AppColors.darkPrimary,
             inactiveThumbColor: AppColors.textWhite,
             inactiveTrackColor: AppColors.darkBackground.withOpacity(0.45),

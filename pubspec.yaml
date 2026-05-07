@@ -119,6 +119,7 @@ flutter:
     - assets/video_light.mp4
     - assets/one_light.mp4
     - assets/one_dark.mp4
+    - assets/asset.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

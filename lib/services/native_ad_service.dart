@@ -19,20 +19,33 @@ class NativeAdService extends ChangeNotifier {
 
   static const String factoryIdListTileLanguage = 'listTileLanguage';
 
-  NativeAd? _ad;
-  NativeAd? _loadingAd;
-  bool _isLoading = false;
-  bool _isLoaded = false;
-  Completer<bool>? _loadCompleter;
-  int? _lastBackgroundColor;
-  bool? _lastIsDark;
-  final List<NativeAd> _pendingDispose = <NativeAd>[];
+  // We support multiple "slots" so different screens can hold their own native
+  // instance without accidentally mounting the same NativeAd in two AdWidgets
+  // at once (which causes: "This AdWidget is already in the widget tree").
+  static const String slotDefault = 'default';
 
-  NativeAd? get ad => _ad;
-  bool get isLoaded => _isLoaded && _ad != null;
+  final Map<String, _NativeSlot> _slots = <String, _NativeSlot>{};
+
+  _NativeSlot _slot(String key) =>
+      _slots.putIfAbsent(key, () => _NativeSlot());
+
+  // Backwards-compatible "default slot" API (used by Language/FirstLanguage).
+  NativeAd? get ad => _slot(slotDefault)._ad;
+  bool get isLoaded => _slot(slotDefault).isLoaded;
+
+  NativeAd? adForKey(String key) => _slot(key)._ad;
+  bool isLoadedForKey(String key) => _slot(key).isLoaded;
 
   Future<void> preload({int? backgroundColor, bool? isDark}) async {
     await ensureLoaded(backgroundColor: backgroundColor, isDark: isDark);
+  }
+
+  Future<void> preloadForKey({
+    required String key,
+    int? backgroundColor,
+    bool? isDark,
+  }) async {
+    await ensureLoadedForKey(key: key, backgroundColor: backgroundColor, isDark: isDark);
   }
 
   Future<bool> ensureLoaded({
@@ -40,36 +53,52 @@ class NativeAdService extends ChangeNotifier {
     int? backgroundColor,
     bool? isDark,
   }) async {
-    if (isLoaded &&
-        _lastBackgroundColor == backgroundColor &&
-        _lastIsDark == isDark) {
+    return ensureLoadedForKey(
+      key: slotDefault,
+      timeout: timeout,
+      backgroundColor: backgroundColor,
+      isDark: isDark,
+    );
+  }
+
+  Future<bool> ensureLoadedForKey({
+    required String key,
+    Duration timeout = const Duration(seconds: 12),
+    int? backgroundColor,
+    bool? isDark,
+  }) async {
+    final slot = _slot(key);
+
+    if (slot.isLoaded &&
+        slot.lastBackgroundColor == backgroundColor &&
+        slot.lastIsDark == isDark) {
       return true;
     }
-    if (_isLoading) {
-      final completer = _loadCompleter;
+    if (slot.isLoading) {
+      final completer = slot.loadCompleter;
       if (completer == null) return false;
       try {
         return await completer.future.timeout(timeout);
       } catch (_) {
-        return isLoaded;
+        return slot.isLoaded;
       }
     }
 
     final unitId = AdmobIds.nativeUnitId().trim();
     if (unitId.isEmpty) {
-      _disposeAd();
-      _isLoaded = false;
-      _lastBackgroundColor = null;
-      _lastIsDark = null;
+      _disposeSlot(slot);
+      slot.isLoadedFlag = false;
+      slot.lastBackgroundColor = null;
+      slot.lastIsDark = null;
       notifyListeners();
       return false;
     }
 
-    _isLoading = true;
-    _loadCompleter = Completer<bool>();
+    slot.isLoading = true;
+    slot.loadCompleter = Completer<bool>();
 
-    _lastBackgroundColor = backgroundColor;
-    _lastIsDark = isDark;
+    slot.lastBackgroundColor = backgroundColor;
+    slot.lastIsDark = isDark;
 
     final ad = NativeAd(
       adUnitId: unitId,
@@ -82,31 +111,31 @@ class NativeAdService extends ChangeNotifier {
       listener: NativeAdListener(
         onAdLoaded: (loadedAd) {
           // Ignore stale callbacks from an older load attempt.
-          if (!identical(loadedAd, _loadingAd)) {
+          if (!identical(loadedAd, slot.loadingAd)) {
             try {
               loadedAd.dispose();
             } catch (_) {}
             return;
           }
 
-          final previousAd = _ad;
-          _ad = loadedAd as NativeAd;
-          _loadingAd = null;
-          _isLoaded = true;
-          _isLoading = false;
-          if (_loadCompleter != null && !_loadCompleter!.isCompleted) {
-            _loadCompleter!.complete(true);
+          final previousAd = slot._ad;
+          slot._ad = loadedAd as NativeAd;
+          slot.loadingAd = null;
+          slot.isLoadedFlag = true;
+          slot.isLoading = false;
+          if (slot.loadCompleter != null && !slot.loadCompleter!.isCompleted) {
+            slot.loadCompleter!.complete(true);
           }
-          _loadCompleter = null;
+          slot.loadCompleter = null;
           notifyListeners();
 
           // Dispose the previous ad slightly later to avoid "ad may be disposed"
           // logs when the platform view is still detaching.
           if (previousAd != null) {
-            _pendingDispose.add(previousAd);
+            slot.pendingDispose.add(previousAd);
             Timer(const Duration(milliseconds: 800), () {
-              if (!_pendingDispose.contains(previousAd)) return;
-              _pendingDispose.remove(previousAd);
+              if (!slot.pendingDispose.contains(previousAd)) return;
+              slot.pendingDispose.remove(previousAd);
               try {
                 previousAd.dispose();
               } catch (_) {}
@@ -115,33 +144,33 @@ class NativeAdService extends ChangeNotifier {
         },
         onAdFailedToLoad: (failedAd, error) {
           if (kDebugMode) {
-            debugPrint('[NativeAdService] failed to load: $error');
+            debugPrint('[NativeAdService][$key] failed to load: $error');
           }
           failedAd.dispose();
-          if (identical(failedAd, _loadingAd)) {
-            _loadingAd = null;
+          if (identical(failedAd, slot.loadingAd)) {
+            slot.loadingAd = null;
           }
           // Keep showing the previous cached ad if we have one.
-          _isLoaded = _ad != null;
-          _isLoading = false;
-          if (_loadCompleter != null && !_loadCompleter!.isCompleted) {
-            _loadCompleter!.complete(false);
+          slot.isLoadedFlag = slot._ad != null;
+          slot.isLoading = false;
+          if (slot.loadCompleter != null && !slot.loadCompleter!.isCompleted) {
+            slot.loadCompleter!.complete(false);
           }
-          _loadCompleter = null;
+          slot.loadCompleter = null;
           notifyListeners();
         },
       ),
     );
 
     // Keep the currently displayed ad until the new one is loaded.
-    _loadingAd?.dispose();
-    _loadingAd = ad;
+    slot.loadingAd?.dispose();
+    slot.loadingAd = ad;
     ad.load();
 
     try {
-      return await _loadCompleter!.future.timeout(timeout);
+      return await slot.loadCompleter!.future.timeout(timeout);
     } catch (_) {
-      return isLoaded;
+      return slot.isLoaded;
     }
   }
 
@@ -151,44 +180,72 @@ class NativeAdService extends ChangeNotifier {
   /// rendered again reliably (the platform view detaches), so screens that are
   /// re-entered should request a fresh ad with this method.
   void invalidateAndReload({int? backgroundColor, bool? isDark}) {
-    _disposeAd();
-    _isLoaded = false;
-    _lastBackgroundColor = null;
-    _lastIsDark = null;
-    notifyListeners();
-    unawaited(
-      preload(backgroundColor: backgroundColor, isDark: isDark),
+    invalidateAndReloadForKey(
+      key: slotDefault,
+      backgroundColor: backgroundColor,
+      isDark: isDark,
     );
   }
 
-  void _disposeAd() {
+  void invalidateAndReloadForKey({
+    required String key,
+    int? backgroundColor,
+    bool? isDark,
+  }) {
+    final slot = _slot(key);
+    _disposeSlot(slot);
+    slot.isLoadedFlag = false;
+    slot.lastBackgroundColor = null;
+    slot.lastIsDark = null;
+    notifyListeners();
+    unawaited(
+      preloadForKey(key: key, backgroundColor: backgroundColor, isDark: isDark),
+    );
+  }
+
+  void _disposeSlot(_NativeSlot slot) {
     try {
-      _loadingAd?.dispose();
+      slot.loadingAd?.dispose();
     } catch (_) {
       // Ignore dispose failures.
     }
-    _loadingAd = null;
+    slot.loadingAd = null;
 
     // Dispose any queued ads now.
-    for (final ad in List<NativeAd>.from(_pendingDispose)) {
+    for (final ad in List<NativeAd>.from(slot.pendingDispose)) {
       try {
         ad.dispose();
       } catch (_) {}
     }
-    _pendingDispose.clear();
+    slot.pendingDispose.clear();
 
     try {
-      _ad?.dispose();
+      slot._ad?.dispose();
     } catch (_) {
       // Ignore dispose failures.
     }
-    _ad = null;
+    slot._ad = null;
   }
 
   @override
   void dispose() {
-    _disposeAd();
+    for (final slot in _slots.values) {
+      _disposeSlot(slot);
+    }
     super.dispose();
   }
+}
+
+class _NativeSlot {
+  NativeAd? _ad;
+  NativeAd? loadingAd;
+  bool isLoading = false;
+  bool isLoadedFlag = false;
+  Completer<bool>? loadCompleter;
+  int? lastBackgroundColor;
+  bool? lastIsDark;
+  final List<NativeAd> pendingDispose = <NativeAd>[];
+
+  bool get isLoaded => isLoadedFlag && _ad != null;
 }
 

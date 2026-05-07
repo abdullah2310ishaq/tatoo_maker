@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted && _showTutorialOverlay) {
         setState(() {
-          // Trigger rebuild to get card position
+ 
         });
       }
     });

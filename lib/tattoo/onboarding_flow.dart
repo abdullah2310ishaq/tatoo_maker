@@ -22,7 +22,7 @@ class OnboardingFlow extends StatefulWidget {
 
 class _OnboardingFlowState extends State<OnboardingFlow> {
   int _currentStep = 1;
-  bool _showZodiac = false;
+  final PageController _pageController = PageController();
   final List<TextEditingController> _controllers = List.generate(
     4,
     (_) => TextEditingController(),
@@ -38,6 +38,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
 
   @override
   void dispose() {
+    _pageController.dispose();
     for (var controller in _controllers) {
       controller.dispose();
     }
@@ -57,13 +58,8 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
           // Always close keyboard first.
           FocusManager.instance.primaryFocus?.unfocus();
 
-          if (_showZodiac) {
-            setState(() => _showZodiac = false);
-            return;
-          }
-
           if (_currentStep > 1) {
-            setState(() => _currentStep--);
+            _goToStep(_currentStep - 1);
             return;
           }
 
@@ -84,11 +80,10 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
             child: Padding(
               // Steps with bottom ads (Birthday/Idea) need true edge-to-edge ads;
               // those pages handle their own content padding internally.
-              padding:
-                  (!_showZodiac && (_currentStep == 2 || _currentStep == 3))
-                      ? EdgeInsets.zero
-                      : const EdgeInsets.symmetric(horizontal: 20.0),
-              child: _buildCurrentPage(),
+              padding: (_currentStep == 2 || _currentStep == 3)
+                  ? EdgeInsets.zero
+                  : const EdgeInsets.symmetric(horizontal: 20.0),
+              child: _buildContent(),
             ),
           ),
         ),
@@ -96,65 +91,66 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     );
   }
 
-  Widget _buildCurrentPage() {
-    if (_showZodiac) {
-      final zodiacSign = getZodiacSign(_selectedMonth, _selectedDay);
-      final zodiacInfo = getZodiacData(context, zodiacSign);
-      return ZodiacDisplayPage(
-        zodiacInfo: zodiacInfo,
-        onBack: () {
-          setState(() {
-            _showZodiac = false;
-          });
-        },
-        onNext: () {
-          setState(() {
-            _showZodiac = false;
-            _currentStep = 3;
-          });
-        },
-      );
-    }
+  void _goToStep(int step) {
+    final next = step.clamp(1, 4);
+    if (!mounted) return;
+    FocusManager.instance.primaryFocus?.unfocus();
+    if (_currentStep == next) return;
+    setState(() => _currentStep = next);
+    _pageController.jumpToPage(next - 1);
+  }
 
-    switch (_currentStep) {
-      case 1:
-        return StepNamePage(
+  Future<void> _openZodiac() async {
+    final zodiacSign = getZodiacSign(_selectedMonth, _selectedDay);
+    final zodiacInfo = getZodiacData(context, zodiacSign);
+
+    final result = await Navigator.of(context).push<bool>(
+      MaterialPageRoute(
+        builder: (_) => ZodiacDisplayPage(
+          zodiacInfo: zodiacInfo,
+          onBack: () => Navigator.of(context).pop(false),
+          onNext: () => Navigator.of(context).pop(true),
+        ),
+      ),
+    );
+
+    if (!mounted) return;
+    if (result == true) _goToStep(3);
+  }
+
+  Widget _buildContent() {
+    return PageView(
+      controller: _pageController,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        StepNamePage(
           controller: _controllers[0],
           onBack: () => Navigator.of(context).pop(),
-          onNext: () => setState(() => _currentStep++),
-        );
-      case 2:
-        return StepBirthdayPage(
+          onNext: () => _goToStep(2),
+        ),
+        StepBirthdayPage(
           selectedMonth: _selectedMonth,
           selectedDay: _selectedDay,
           selectedYear: _selectedYear,
           onMonthChanged: (index) => setState(() => _selectedMonth = index),
           onDayChanged: (day) => setState(() => _selectedDay = day),
           onYearChanged: (year) => setState(() => _selectedYear = year),
-          onBack: () => setState(() => _currentStep--),
-          onNext: () {
-            setState(() {
-              _showZodiac = true;
-            });
-          },
-        );
-      case 3:
-        return StepTattooIdeaPage(
+          onBack: () => _goToStep(1),
+          onNext: _openZodiac,
+        ),
+        StepTattooIdeaPage(
           controller: _controllers[2],
-          onBack: () => setState(() => _currentStep--),
-          onNext: () => setState(() => _currentStep++),
-        );
-      case 4:
-        return StepStyleSelectionPage(
+          onBack: () => _goToStep(2),
+          onNext: () => _goToStep(4),
+        ),
+        StepStyleSelectionPage(
           selectedStyleIndex: _selectedStyleIndex,
-          onStyleSelected: (index) =>
-              setState(() => _selectedStyleIndex = index),
-          onBack: () => setState(() => _currentStep--),
+          onStyleSelected: (index) => setState(() => _selectedStyleIndex = index),
+          onBack: () => _goToStep(3),
           onNext: () => _startGenerationFlow(context),
-        );
-      default:
-        return const SizedBox();
-    }
+        ),
+      ],
+    );
   }
 
   static const List<String> _monthNames = [
