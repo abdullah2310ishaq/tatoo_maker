@@ -146,13 +146,19 @@ class NativeAdService extends ChangeNotifier {
   }
 
   /// Call when you know the cached ad must not be reused anymore.
-  void invalidateAndReload() {
+  ///
+  /// A [NativeAd] that was previously bound to a disposed [AdWidget] cannot be
+  /// rendered again reliably (the platform view detaches), so screens that are
+  /// re-entered should request a fresh ad with this method.
+  void invalidateAndReload({int? backgroundColor, bool? isDark}) {
     _disposeAd();
     _isLoaded = false;
     _lastBackgroundColor = null;
     _lastIsDark = null;
     notifyListeners();
-    unawaited(preload());
+    unawaited(
+      preload(backgroundColor: backgroundColor, isDark: isDark),
+    );
   }
 
   void _disposeAd() {

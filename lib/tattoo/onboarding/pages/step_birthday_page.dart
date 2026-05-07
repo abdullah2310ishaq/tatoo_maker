@@ -489,11 +489,12 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
       // Platform views may not preserve transparency reliably on all Android
       // compositions, so we set an explicit themed background color.
       final cardColor = AppColors.gradientBottom;
-      unawaited(
-        NativeAdService.instance.preload(
-          backgroundColor: cardColor.value,
-          isDark: true,
-        ),
+      // Force a fresh NativeAd every time the screen is entered. The cached
+      // ad becomes unusable after its AdWidget is disposed (platform view
+      // detaches), so reusing it on re-entry would render only an empty box.
+      NativeAdService.instance.invalidateAndReload(
+        backgroundColor: cardColor.value,
+        isDark: true,
       );
     });
   }

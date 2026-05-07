@@ -30,15 +30,42 @@ class StepTattooIdeaPage extends StatefulWidget {
   State<StepTattooIdeaPage> createState() => _StepTattooIdeaPageState();
 }
 
-class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
+class _StepTattooIdeaPageState extends State<StepTattooIdeaPage>
+    with WidgetsBindingObserver {
   static const int _maxCharacters = 500;
   final FocusNode _ideaFocusNode = FocusNode();
+  double _lastBottomInsetPx = 0;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _lastBottomInsetPx =
+        WidgetsBinding.instance.platformDispatcher.implicitView?.viewInsets
+                .bottom ??
+            0;
     widget.controller.addListener(_handleTextChanged);
     _ideaFocusNode.addListener(_handleTextChanged);
+  }
+
+  @override
+  void didChangeMetrics() {
+    if (!mounted) return;
+    final bottomInsetPx =
+        WidgetsBinding.instance.platformDispatcher.implicitView?.viewInsets
+                .bottom ??
+            0;
+
+    final wasKeyboardOpen = _lastBottomInsetPx > 0;
+    final isKeyboardNowClosed = bottomInsetPx <= 0;
+    _lastBottomInsetPx = bottomInsetPx;
+
+    // Only unfocus on a real "open -> closed" transition. Some keyboards can
+    // emit multiple metric changes while typing; we must not close the keyboard
+    // unless it was actually dismissed.
+    if (wasKeyboardOpen && isKeyboardNowClosed && _ideaFocusNode.hasFocus) {
+      _ideaFocusNode.unfocus();
+    }
   }
 
   @override
@@ -51,6 +78,7 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     widget.controller.removeListener(_handleTextChanged);
     _ideaFocusNode.removeListener(_handleTextChanged);
     _ideaFocusNode.dispose();
@@ -176,23 +204,38 @@ class _StepTattooIdeaPageState extends State<StepTattooIdeaPage> {
             ),
           ),
         ),
-        // Collapsible banners are far more likely to be served when the ad
-        // placement stays stable and doesn't get removed/re-mounted (e.g. on
-        // keyboard open/close). So we keep this bottom slot mounted and simply
-        // decide which ad type occupies it.
-        if (isKeyboardOpen) ...[
-          // Keyboard/editing mode: do not let ads block the prompt while typing.
-          SafeArea(top: false, child: SizedBox(height: 12.h)),
-        ] else if (canShowBanner) ...[
-          const _TattooIdeaBannerAd(),
-          SafeArea(top: false, child: SizedBox(height: 8.h)),
-        ] else if (canShowNative) ...[
-          _TattooIdeaNativeAd(isDark: isDark),
-          SafeArea(top: false, child: SizedBox(height: 8.h)),
-        ] else ...[
-          // Keep a tiny bottom padding to match layout.
-          SafeArea(top: false, child: SizedBox(height: 12.h)),
-        ],
+        // Important: do NOT remove ads from the tree on keyboard open/close.
+        // We keep them mounted and only toggle visibility so their state (and
+        // cached platform view) is preserved when the keyboard is dismissed.
+        SafeArea(
+          top: false,
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 8.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Visibility(
+                  visible: !isKeyboardOpen && canShowBanner,
+                  maintainState: true,
+                  maintainAnimation: true,
+                  maintainSize: false,
+                  child: const _TattooIdeaBannerAd(),
+                ),
+                Visibility(
+                  visible: !isKeyboardOpen && !canShowBanner && canShowNative,
+                  maintainState: true,
+                  maintainAnimation: true,
+                  maintainSize: false,
+                  child: _TattooIdeaNativeAd(isDark: isDark),
+                ),
+                if (isKeyboardOpen || (!canShowBanner && !canShowNative))
+                  SizedBox(height: 12.h)
+                else
+                  SizedBox(height: 8.h),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
