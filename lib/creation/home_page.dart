@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -557,15 +557,24 @@ class _HomePageState extends State<HomePage> with RouteAware {
       case FreeCreationGenerateGateChoice.dismissed:
         return;
       case FreeCreationGenerateGateChoice.removeLimits:
-        Navigator.of(context).push(
+        await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => ProAccessScreen(
               showInterstitialOnClose: false,
-              goToNextScreenOnClose: true,
+              goToNextScreenOnClose: false,
               nextScreen: const HomeShell(),
             ),
           ),
         );
+        if (!mounted) return;
+
+        final isStillCurrent = ModalRoute.of(context)?.isCurrent ?? false;
+        if (!isStillCurrent || usageLimitProvider.isProUnlocked) {
+          return;
+        }
+        // User closed the paywall without purchasing — re-show the gate
+        // dialog by re-running the generate flow.
+        unawaited(_onGenerateTap());
         return;
       case FreeCreationGenerateGateChoice.watchAd:
         if (!canStartCreationHome) {
