@@ -49,25 +49,47 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SafeArea(
-      child: Scaffold(
-        // Keep onboarding steps stable when keyboard opens.
-        // Pages that need keyboard visibility (e.g. StepTattooIdeaPage) handle
-        // their own insets via padding/scroll.
-        resizeToAvoidBottomInset: false,
-        backgroundColor: isDark
-            ? AppColors.darkBackground
-            : AppColors.lightBackground,
-        body: Container(
-          decoration: isDark
-              ? ThemeManager.darkModeBackgroundGradient
-              : ThemeManager.lightModeBackground,
-          child: Padding(
-            // Steps with bottom ads (Birthday/Idea) need true edge-to-edge ads;
-            // those pages handle their own content padding internally.
-            padding: (!_showZodiac && (_currentStep == 2 || _currentStep == 3))
-                ? EdgeInsets.zero
-                : const EdgeInsets.symmetric(horizontal: 20.0),
-            child: _buildCurrentPage(),
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, _) {
+          if (didPop) return;
+
+          // Always close keyboard first.
+          FocusManager.instance.primaryFocus?.unfocus();
+
+          if (_showZodiac) {
+            setState(() => _showZodiac = false);
+            return;
+          }
+
+          if (_currentStep > 1) {
+            setState(() => _currentStep--);
+            return;
+          }
+
+          Navigator.of(context).pop();
+        },
+        child: Scaffold(
+          // Keep onboarding steps stable when keyboard opens.
+          // Pages that need keyboard visibility (e.g. StepTattooIdeaPage) handle
+          // their own insets via padding/scroll.
+          resizeToAvoidBottomInset: false,
+          backgroundColor: isDark
+              ? AppColors.darkBackground
+              : AppColors.lightBackground,
+          body: Container(
+            decoration: isDark
+                ? ThemeManager.darkModeBackgroundGradient
+                : ThemeManager.lightModeBackground,
+            child: Padding(
+              // Steps with bottom ads (Birthday/Idea) need true edge-to-edge ads;
+              // those pages handle their own content padding internally.
+              padding:
+                  (!_showZodiac && (_currentStep == 2 || _currentStep == 3))
+                      ? EdgeInsets.zero
+                      : const EdgeInsets.symmetric(horizontal: 20.0),
+              child: _buildCurrentPage(),
+            ),
           ),
         ),
       ),
