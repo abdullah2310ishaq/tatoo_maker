@@ -677,9 +677,8 @@ class AppLocalizationsKo extends AppLocalizations {
     final intl.NumberFormat currentStepNumberFormat = intl.NumberFormat.compact(
       locale: localeName,
     );
-    final String currentStepString = currentStepNumberFormat.format(
-      currentStep,
-    );
+    final String currentStepString =
+        currentStepNumberFormat.format(currentStep);
 
     return '단계 $currentStepString/4';
   }
@@ -1609,7 +1608,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proAccessPlanLifetimeSubscription => '구독';
 
   @override
-  String get proAccessContinueForFree => '무료로 계속하기';
+  String get proAccessContinueForFree => '계속';
 
   @override
   String get proAccessLifetimeLegalNoPrice => '연간 요금을 건너뛰고 평생 소유';

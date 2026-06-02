@@ -1188,7 +1188,7 @@
   "proAccessLifetimeDiscountBadge": "87%",
   "proAccessLegalNote": "Após 3 dias grátis, começará uma assinatura semanal de {price}. Cancele quando quiser até 24 horas antes da renovação",
   "proAccessPlanLifetimeSubscription": "Vitalícia",
-  "proAccessContinueForFree": "Continuar grátis",
+  "proAccessContinueForFree": "Continuar",
   "proAccessLifetimeLegalNoPrice": "Pule a taxa anual - para sempre seu",
   "proAccessLifetimeLegalWithPrice": "A assinatura vitalícia por {price} será iniciada"
 }

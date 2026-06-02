@@ -72,7 +72,7 @@ import 'app_localizations_zh.dart';
 /// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -95,11 +95,11 @@ abstract class AppLocalizations {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
@@ -113,7 +113,7 @@ abstract class AppLocalizations {
     Locale('ko'),
     Locale('pt'),
     Locale('ru'),
-    Locale('zh'),
+    Locale('zh')
   ];
 
   /// Skip button text for onboarding screens
@@ -2945,7 +2945,7 @@ abstract class AppLocalizations {
   /// Pro access CTA for free trial plan
   ///
   /// In en, this message translates to:
-  /// **'Continue for free'**
+  /// **'Continue'**
   String get proAccessContinueForFree;
 
   /// Pro access lifetime note without price
@@ -2972,18 +2972,18 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) => <String>[
-    'ar',
-    'de',
-    'en',
-    'es',
-    'fr',
-    'it',
-    'ja',
-    'ko',
-    'pt',
-    'ru',
-    'zh',
-  ].contains(locale.languageCode);
+        'ar',
+        'de',
+        'en',
+        'es',
+        'fr',
+        'it',
+        'ja',
+        'ko',
+        'pt',
+        'ru',
+        'zh'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -3017,9 +3017,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

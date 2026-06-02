@@ -51,7 +51,11 @@ Future<FreeCreationGenerateGateChoice> showFreeCreationGenerateGateDialog({
                           child: Image.asset(
                             _modaAssetPath,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, _, _) => ColoredBox(
+                            errorBuilder: (
+                              context,
+                              error,
+                              stackTrace,
+                            ) => ColoredBox(
                               color: AppColors.buttonBackground,
                               child: Center(
                                 child: Icon(

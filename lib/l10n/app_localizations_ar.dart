@@ -688,9 +688,8 @@ class AppLocalizationsAr extends AppLocalizations {
     final intl.NumberFormat currentStepNumberFormat = intl.NumberFormat.compact(
       locale: localeName,
     );
-    final String currentStepString = currentStepNumberFormat.format(
-      currentStep,
-    );
+    final String currentStepString =
+        currentStepNumberFormat.format(currentStep);
 
     return 'الخطوة $currentStepString/4';
   }
@@ -1627,7 +1626,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get proAccessPlanLifetimeSubscription => 'اشتراك';
 
   @override
-  String get proAccessContinueForFree => 'المتابعة مجانا';
+  String get proAccessContinueForFree => 'متابعة';
 
   @override
   String get proAccessLifetimeLegalNoPrice =>

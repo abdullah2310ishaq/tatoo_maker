@@ -1948,7 +1948,7 @@
   "@proAccessPlanLifetimeSubscription": {
     "description": "Pro access lifetime plan label"
   },
-  "proAccessContinueForFree": "Kostenlos fortfahren",
+  "proAccessContinueForFree": "Weiter",
   "@proAccessContinueForFree": {
     "description": "Pro access CTA for free trial plan"
   },

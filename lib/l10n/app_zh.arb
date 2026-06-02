@@ -1188,7 +1188,7 @@
   "proAccessLifetimeDiscountBadge": "87%",
   "proAccessLegalNote": "3 天免费期后，将开始每周 {price} 的订阅。可在续费前 24 小时内随时取消",
   "proAccessPlanLifetimeSubscription": "终身订阅",
-  "proAccessContinueForFree": "免费继续",
+  "proAccessContinueForFree": "继续",
   "proAccessLifetimeLegalNoPrice": "跳过年费 - 终身拥有",
   "proAccessLifetimeLegalWithPrice": "将开始价格为 {price} 的终身订阅"
 }

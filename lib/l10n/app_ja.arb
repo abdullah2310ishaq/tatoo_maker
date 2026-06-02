@@ -1194,7 +1194,7 @@
   "proAccessLifetimeDiscountBadge": "87%",
   "proAccessLegalNote": "3日間の無料期間後、{price} の週額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます",
   "proAccessPlanLifetimeSubscription": "リプション",
-  "proAccessContinueForFree": "無料で続行",
+  "proAccessContinueForFree": "続行",
   "proAccessLifetimeLegalNoPrice": "年額料金をスキップ - 生涯利用",
   "proAccessLifetimeLegalWithPrice": "{price} の生涯サブスクリプションが開始されます"
 }

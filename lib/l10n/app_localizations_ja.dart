@@ -675,9 +675,8 @@ class AppLocalizationsJa extends AppLocalizations {
     final intl.NumberFormat currentStepNumberFormat = intl.NumberFormat.compact(
       locale: localeName,
     );
-    final String currentStepString = currentStepNumberFormat.format(
-      currentStep,
-    );
+    final String currentStepString =
+        currentStepNumberFormat.format(currentStep);
 
     return 'ステップ $currentStepString/4';
   }
@@ -1606,7 +1605,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get proAccessPlanLifetimeSubscription => 'リプション';
 
   @override
-  String get proAccessContinueForFree => '無料で続行';
+  String get proAccessContinueForFree => '続行';
 
   @override
   String get proAccessLifetimeLegalNoPrice => '年額料金をスキップ - 生涯利用';
