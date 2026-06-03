@@ -454,360 +454,341 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
           backgroundColor: AppColors.darkBackground,
           body: LayoutBuilder(
             builder: (context, constraints) {
-              final screenHeight = constraints.maxHeight;
               final isArabic =
                   Localizations.localeOf(context).languageCode == 'ar';
-              final isCompactHeight = screenHeight < 760;
-              final isVeryCompactHeight = screenHeight < 680;
-              // Increase image height by ~10% for stronger background presence.
-              final imageHeight = screenHeight * 0.67;
-              final titleTopFactor = isArabic
-                  ? (isVeryCompactHeight
-                        ? 0.165
-                        : (isCompactHeight ? 0.19 : 0.235))
-                  : (isVeryCompactHeight
-                        ? 0.19
-                        : (isCompactHeight ? 0.215 : 0.275));
-              final titleSubtitleSpacing = isCompactHeight ? 6.h : 8.h;
-              final subtitleFeaturesSpacing =
-                  _selectedPlan == PlanVariant.freeTrial
-                  ? (isCompactHeight ? 12.h : 18.h)
-                  : (isCompactHeight ? 15.h : 22.h);
-              final featuresToggleSpacing = isCompactHeight ? 12.h : 18.h;
-              final togglePlansSpacing = isCompactHeight ? 8.h : 12.h;
-              final plansGapSpacing = isCompactHeight ? 8.h : 10.h;
-              final planVerticalPadding = isCompactHeight ? 14.h : 17.h;
-              final trialToggleVerticalPadding = isCompactHeight ? 5.h : 7.h;
-              final endingSpacing = _selectedPlan == PlanVariant.freeTrial
-                  ? (isArabic
-                        ? (isCompactHeight ? 18.h : 30.h)
-                        : (isCompactHeight ? 24.h : 40.h))
-                  : (isCompactHeight ? 14.h : 22.h);
+              final bottomSafeInset = MediaQuery.paddingOf(context).bottom;
+              // Slight lift from bottom edge (static on all devices).
+              final blockLiftFromBottom = 18.h;
+              final maxPaywallScrollHeight =
+                  constraints.maxHeight - bottomSafeInset - blockLiftFromBottom;
+              // Shorter hero image (static ratio on all devices).
+              final imageHeight = constraints.maxHeight * 0.55;
+              const titleFontSize = 40.0;
+              const subtitleFontSize = 20.0;
+              final planVerticalPadding = 12.h;
+              final trialToggleVerticalPadding = 5.h;
+              final horizontalPadding = 20.w;
+              // Fixed gaps — one connected block from title to legal text.
+              final gapSm = 6.h;
+              final gapMd = 8.h;
+              final gapPlansToCta = 10.h;
 
-              final bottomReservedHeight =
-                  screenHeight *
-                  (isArabic ? 0.16 : (isCompactHeight ? 0.10 : 0.12));
-              final headerTopOffset = screenHeight * titleTopFactor;
+              Widget buildTitleRow() {
+                return FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        l10n.proAccessTitleGet,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: isArabic ? 36.sp : titleFontSize.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textWhite,
+                          fontFamily: 'Antonio',
+                        ),
+                      ),
+                      SizedBox(width: 12.w),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        decoration: BoxDecoration(
+                          color: AppColors.darkPrimary,
+                          borderRadius: BorderRadius.circular(4.r),
+                        ),
+                        child: Text(
+                          l10n.proAccessTitlePro,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: isArabic ? 36.sp : titleFontSize.sp,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textWhite,
+                            fontFamily: 'Antonio',
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 12.w),
+                      Text(
+                        l10n.proAccessTitleAccess,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: isArabic ? 36.sp : titleFontSize.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textWhite,
+                          fontFamily: 'Antonio',
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
 
-              // Gradient should start fading exactly where the text starts.
-              final fadeStartFraction = headerTopOffset / screenHeight;
-              final fadeMidFraction = (fadeStartFraction + 0.18).clamp(
-                fadeStartFraction,
-                0.75,
-              );
+              Widget buildConnectedPaywallBlock() {
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    horizontalPadding,
+                    0,
+                    horizontalPadding,
+                    8.h,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      buildTitleRow(),
+                      SizedBox(height: gapSm),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          l10n.proAccessSubtitle,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: subtitleFontSize.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textWhite,
+                            fontFamily: 'Antonio',
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: gapMd),
+                      _FeatureRow(
+                        text: l10n.proAccessFeatureUnlimitedTattooCreation,
+                      ),
+                      _FeatureRow(
+                        text: l10n.proAccessFeatureFastProcessing,
+                      ),
+                      _FeatureRow(
+                        text: l10n.proAccessFeatureUnlockAllStyles,
+                      ),
+                      _FeatureRow(
+                        text: l10n.proAccessFeatureRemoveWatermarks,
+                      ),
+                      SizedBox(height: gapMd),
+                      if (widget.alwaysShowTrialToggle ||
+                          context
+                              .watch<RemoteConfigService>()
+                              .proAccessShowTrialToggle) ...[
+                        _TrialToggleCard(
+                          isEnabled: _isTrialEnabled,
+                          onChanged: widget.lockTrialToggle
+                              ? null
+                              : _onTrialToggleChanged,
+                          verticalPadding: trialToggleVerticalPadding,
+                        ),
+                        SizedBox(height: gapMd),
+                      ],
+                      _PlanCard(
+                        variant: PlanVariant.freeTrial,
+                        leftText: '3-Day Full Access',
+                        leftSubText:
+                            'then ${_billingService.weeklyPaidMaxPrice() ?? '--'}/week',
+                        leftSubTextColor: AppColors.textGrey.withOpacity(0.85),
+                        rightText: _billingService.weeklyPaidMinPrice() ?? '--',
+                        rightSubText: 'per week',
+                        showBadge: true,
+                        badgeText: l10n.proAccessLifetimeDiscountBadge,
+                        verticalPadding: planVerticalPadding,
+                        isSelected: _selectedPlan == PlanVariant.freeTrial,
+                        onTap: () {
+                          _selectPlan(PlanVariant.freeTrial);
+                        },
+                      ),
+                      SizedBox(height: gapSm),
+                      _PlanCard(
+                        variant: PlanVariant.lifetime,
+                        leftText: 'Yearly',
+                        leftSubText: 'just ${_lifetimeDisplayPrice()} per year',
+                        leftSubTextColor: AppColors.textGrey.withOpacity(0.85),
+                        rightText: _lifetimePerWeekDisplayPrice(),
+                        rightSubText: 'per week',
+                        verticalPadding: planVerticalPadding,
+                        isSelected: _selectedPlan == PlanVariant.lifetime,
+                        onTap: () {
+                          _selectPlan(PlanVariant.lifetime);
+                        },
+                      ),
+                      SizedBox(height: gapPlansToCta),
+                      Text(
+                        _preCtaText(l10n),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.textGrey.withOpacity(0.85),
+                          fontFamily: 'Inter',
+                        ),
+                      ),
+                      SizedBox(height: 4.h),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 50.h,
+                        child: ElevatedButton(
+                          onPressed: _isPurchasing ? null : _onContinuePressed,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.darkPrimary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                          ),
+                          child: _isPurchasing
+                              ? SizedBox(
+                                  width: 22.sp,
+                                  height: 22.sp,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      AppColors.textWhite,
+                                    ),
+                                  ),
+                                )
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        (_selectedPlan == PlanVariant.freeTrial
+                                                ? l10n.proAccessContinueForFree
+                                                : l10n.continue_)
+                                            .toUpperCase(),
+                                        maxLines: 1,
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: _selectedPlan ==
+                                                  PlanVariant.freeTrial
+                                              ? 16.sp
+                                              : 18.sp,
+                                          fontWeight: FontWeight.w700,
+                                          color: AppColors.textWhite,
+                                          fontFamily: 'Inter',
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 8.w),
+                                    Icon(
+                                      Icons.arrow_forward,
+                                      color: AppColors.textWhite,
+                                      size: 22.sp,
+                                    ),
+                                  ],
+                                ),
+                        ),
+                      ),
+                      SizedBox(height: 4.h),
+                      Text(
+                        _bottomFooterText(l10n),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.textGrey.withOpacity(0.85),
+                          height: 1.35,
+                          fontFamily: 'Inter',
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
 
               return Stack(
                 children: [
-                  /// TOP IMAGE SLIDER
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: SizedBox(
-                      height: imageHeight,
-                      width: double.infinity,
-                      child: PageView.builder(
-                        controller: _pageController,
-                        itemCount: _images.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return Image.asset(
-                            _images[index],
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) {
-                              return Container(color: AppColors.darkBackground);
-                            },
-                          );
-                        },
-                      ),
+                  /// BASE (area below shorter image)
+                  Positioned.fill(
+                    child: ColoredBox(color: AppColors.darkBackground),
+                  ),
+
+                  /// HERO IMAGE (shorter height, top-aligned)
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: imageHeight,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        PageView.builder(
+                          controller: _pageController,
+                          itemCount: _images.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return Image.asset(
+                              _images[index],
+                              fit: BoxFit.cover,
+                              alignment: Alignment.topCenter,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  color: AppColors.darkBackground,
+                                );
+                              },
+                            );
+                          },
+                        ),
+                        // Dim at bottom edge where image ends
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Color(0x00000000),
+                                Color(0x00000000),
+                                Color(0x80000000),
+                                Color(0xE6000000),
+                                Color(0xFF000000),
+                              ],
+                              stops: const [0.0, 0.5, 0.78, 0.92, 1.0],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
 
-                  /// GRADIENT OVERLAY
+                  /// GRADIENT for paywall text readability (fixed on all screens)
                   Positioned.fill(
-                    child: Container(
+                    child: DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
                             Color(0x00000000),
-                            Color(0x00000000),
-                            Color(0x99000000),
-                            Color(0xE6000000),
+                            Color(0x44000000),
+                            Color(0xCC000000),
                             Color(0xFF000000),
                           ],
-                          stops: [
-                            0.0,
-                            fadeStartFraction,
-                            fadeMidFraction,
-                            0.60,
-                            1.0,
-                          ],
+                          stops: const [0.0, 0.42, 0.72, 1.0],
                         ),
                       ),
                     ),
                   ),
 
-                  /// MAIN CONTENT
+                  /// ONE CONNECTED BLOCK: title → plans → CTA (anchored to bottom)
                   Positioned.fill(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        20.w,
-                        0,
-                        20.w,
-                        bottomReservedHeight,
-                      ),
-                      child: SingleChildScrollView(
-                        physics: const ClampingScrollPhysics(),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(height: headerTopOffset),
-
-                            /// TITLE (single line: Get [PRO] Access)
-                            FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    l10n.proAccessTitleGet,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: isArabic ? 40.sp : 46.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: AppColors.textWhite,
-                                      fontFamily: 'Antonio',
-                                    ),
-                                  ),
-                                  SizedBox(width: 15.w),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 5.w,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.darkPrimary,
-                                      borderRadius: BorderRadius.circular(4.r),
-                                    ),
-                                    child: Text(
-                                      l10n.proAccessTitlePro,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: isArabic ? 40.sp : 46.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: AppColors.textWhite,
-                                        fontFamily: 'Antonio',
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 15.w),
-                                  Text(
-                                    l10n.proAccessTitleAccess,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: isArabic ? 40.sp : 46.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: AppColors.textWhite,
-                                      fontFamily: 'Antonio',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            SizedBox(height: titleSubtitleSpacing),
-
-                            Text(
-                              l10n.proAccessSubtitle,
-                              textAlign: TextAlign.center,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: isArabic ? 22.sp : 22.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.textWhite,
-                                fontFamily: 'Antonio',
-                              ),
-                            ),
-
-                            SizedBox(height: subtitleFeaturesSpacing),
-
-                            _FeatureRow(
-                              text:
-                                  l10n.proAccessFeatureUnlimitedTattooCreation,
-                            ),
-                            _FeatureRow(
-                              text: l10n.proAccessFeatureFastProcessing,
-                            ),
-                            _FeatureRow(
-                              text: l10n.proAccessFeatureUnlockAllStyles,
-                            ),
-                            _FeatureRow(
-                              text: l10n.proAccessFeatureRemoveWatermarks,
-                            ),
-
-                            SizedBox(height: featuresToggleSpacing),
-                            if (widget.alwaysShowTrialToggle ||
-                                context
-                                    .watch<RemoteConfigService>()
-                                    .proAccessShowTrialToggle) ...[
-                              _TrialToggleCard(
-                                isEnabled: _isTrialEnabled,
-                                onChanged: widget.lockTrialToggle
-                                    ? null
-                                    : _onTrialToggleChanged,
-                                verticalPadding: trialToggleVerticalPadding,
-                              ),
-                              SizedBox(height: togglePlansSpacing),
-                            ],
-
-                            _PlanCard(
-                              variant: PlanVariant.freeTrial,
-                              leftText: '3-Day Full Access',
-                              leftSubText:
-                                  'then ${_billingService.weeklyPaidMaxPrice() ?? '--'}/week',
-                              leftSubTextColor: AppColors.textGrey.withOpacity(
-                                0.85,
-                              ),
-                              rightText:
-                                  _billingService.weeklyPaidMinPrice() ?? '--',
-                              rightSubText: 'per week',
-                              showBadge: true,
-                              badgeText: l10n.proAccessLifetimeDiscountBadge,
-                              verticalPadding: planVerticalPadding,
-                              isSelected:
-                                  _selectedPlan == PlanVariant.freeTrial,
-                              onTap: () {
-                                _selectPlan(PlanVariant.freeTrial);
-                              },
-                            ),
-
-                            SizedBox(height: plansGapSpacing),
-
-                            _PlanCard(
-                              variant: PlanVariant.lifetime,
-                              leftText: 'Yearly',
-                              leftSubText:
-                                  'just ${_lifetimeDisplayPrice()} per year',
-                              leftSubTextColor: AppColors.textGrey.withOpacity(
-                                0.85,
-                              ),
-                              rightText: _lifetimePerWeekDisplayPrice(),
-                              rightSubText: 'per week',
-                              verticalPadding: planVerticalPadding,
-                              isSelected: _selectedPlan == PlanVariant.lifetime,
-                              onTap: () {
-                                _selectPlan(PlanVariant.lifetime);
-                              },
-                            ),
-                            SizedBox(height: endingSpacing),
-                          ],
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: blockLiftFromBottom),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxHeight: maxPaywallScrollHeight,
+                          ),
+                          child: SingleChildScrollView(
+                            physics: const ClampingScrollPhysics(),
+                            child: buildConnectedPaywallBlock(),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-
-                  /// BOTTOM CTA
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(20.w, 1, 20.w, 10.h),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            _preCtaText(l10n),
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.textGrey.withOpacity(0.85),
-                              fontFamily: 'Inter',
-                            ),
-                          ),
-                          SizedBox(height: 6.h),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 56.h,
-                            child: ElevatedButton(
-                              onPressed: _isPurchasing
-                                  ? null
-                                  : _onContinuePressed,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.darkPrimary,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                ),
-                              ),
-                              child: _isPurchasing
-                                  ? SizedBox(
-                                      width: 22.sp,
-                                      height: 22.sp,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2.2,
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                              AppColors.textWhite,
-                                            ),
-                                      ),
-                                    )
-                                  : Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            (_selectedPlan ==
-                                                        PlanVariant.freeTrial
-                                                    ? l10n.proAccessContinueForFree
-                                                    : l10n.continue_)
-                                                .toUpperCase(),
-                                            maxLines: 1,
-                                            textAlign: TextAlign.center,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              fontSize:
-                                                  _selectedPlan ==
-                                                      PlanVariant.freeTrial
-                                                  ? 16.sp
-                                                  : 18.sp,
-                                              fontWeight: FontWeight.w700,
-                                              color: AppColors.textWhite,
-                                              fontFamily: 'Inter',
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Icon(
-                                          Icons.arrow_forward,
-                                          color: AppColors.textWhite,
-                                          size: 22.sp,
-                                        ),
-                                      ],
-                                    ),
-                            ),
-                          ),
-                          SizedBox(height: 6.h),
-
-                          Text(
-                            _bottomFooterText(l10n),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 11.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.textGrey.withOpacity(0.85),
-                              height: 1.4,
-                              fontFamily: 'Inter',
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                   ),
@@ -996,8 +977,7 @@ class _PlanCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w400,
-                            color:
-                                leftSubTextColor ??
+                            color: leftSubTextColor ??
                                 AppColors.textGrey.withOpacity(0.85),
                             fontFamily: 'Inter',
                           ),
@@ -1086,7 +1066,6 @@ class _DiscountBadge extends StatelessWidget {
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
-
             color: AppColors.textWhite,
             fontFamily: 'Inter',
           ),
@@ -1104,7 +1083,7 @@ class _FeatureRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 7.h),
+      padding: EdgeInsets.only(bottom: 5.h),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final rowWidth = constraints.maxWidth * 0.55;
@@ -1115,15 +1094,15 @@ class _FeatureRow extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  width: 24.w,
-                  height: 24.w,
+                  width: 22.w,
+                  height: 22.w,
                   decoration: BoxDecoration(
                     color: AppColors.darkPrimary,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
                     Icons.check,
-                    size: 12.sp,
+                    size: 11.sp,
                     color: AppColors.textWhite,
                   ),
                 ),
@@ -1134,7 +1113,7 @@ class _FeatureRow extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 13.sp,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textWhite,
                       fontFamily: 'Antonio',
