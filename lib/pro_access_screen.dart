@@ -176,8 +176,6 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     final unitId = AdmobIds.interstitialUnitId().trim();
     if (unitId.isEmpty) return;
 
-    // If we already have a cached interstitial (preloaded in initState),
-    // show it immediately so the "first close" doesn't feel like it skipped.
     final cachedAd = _closeInterstitialAd;
     if (cachedAd != null) {
       _closeInterstitialAd = null;
@@ -323,7 +321,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     final lifetimeProduct = _billingService.productForPlan(
       BillingPlan.lifetime,
     );
-    if (lifetimeProduct == null) return '--';
+    if (lifetimeProduct == null) return ' ';
 
     final perWeekRawPrice = lifetimeProduct.rawPrice / 52;
     final truncated = perWeekRawPrice.floorToDouble();
@@ -333,7 +331,6 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
         decimalDigits: 0,
       ).format(truncated);
     } catch (_) {
-      // Fallback: if currency formatting fails on this device/locale.
       try {
         return NumberFormat.currency(
           name: lifetimeProduct.currencyCode,
@@ -415,13 +412,11 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     if (_isPurchasing) return;
     _log('Continue tapped. selectedPlan=$_selectedPlan');
 
-    // While IDs are placeholders, purchase might fail to launch.
     if (!_isBillingReady) {
       _log('Billing not ready. Keeping user on paywall.');
       return;
     }
 
-    // Only show progress when we're actually attempting a purchase.
     setState(() {
       _isPurchasing = true;
     });
@@ -457,18 +452,15 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
               final isArabic =
                   Localizations.localeOf(context).languageCode == 'ar';
               final bottomSafeInset = MediaQuery.paddingOf(context).bottom;
-              // Slight lift from bottom edge (static on all devices).
               final blockLiftFromBottom = 18.h;
               final maxPaywallScrollHeight =
                   constraints.maxHeight - bottomSafeInset - blockLiftFromBottom;
-              // Shorter hero image (static ratio on all devices).
               final imageHeight = constraints.maxHeight * 0.55;
               const titleFontSize = 40.0;
               const subtitleFontSize = 20.0;
               final planVerticalPadding = 12.h;
               final trialToggleVerticalPadding = 5.h;
               final horizontalPadding = 20.w;
-              // Fixed gaps — one connected block from title to legal text.
               final gapSm = 6.h;
               final gapMd = 8.h;
               final gapPlansToCta = 10.h;
@@ -590,7 +582,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                             'then ${_billingService.weeklyPaidMaxPrice() ?? '--'}/week',
                         leftSubTextColor: AppColors.textGrey.withOpacity(0.85),
                         rightText: _billingService.weeklyPaidMinPrice() ?? '--',
-                        rightSubText: 'per week',
+                        rightSubText: '',
                         showBadge: true,
                         badgeText: l10n.proAccessLifetimeDiscountBadge,
                         verticalPadding: planVerticalPadding,
@@ -703,12 +695,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
 
               return Stack(
                 children: [
-                  /// BASE (area below shorter image)
                   Positioned.fill(
                     child: ColoredBox(color: AppColors.darkBackground),
                   ),
-
-                  /// HERO IMAGE (shorter height, top-aligned)
                   Positioned(
                     top: 0,
                     left: 0,
@@ -734,7 +723,6 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                             );
                           },
                         ),
-                        // Dim at bottom edge where image ends
                         DecoratedBox(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
@@ -754,8 +742,6 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                       ],
                     ),
                   ),
-
-                  /// GRADIENT for paywall text readability (fixed on all screens)
                   Positioned.fill(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
@@ -773,8 +759,6 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                       ),
                     ),
                   ),
-
-                  /// ONE CONNECTED BLOCK: title → plans → CTA (anchored to bottom)
                   Positioned.fill(
                     child: Align(
                       alignment: Alignment.bottomCenter,
@@ -792,8 +776,6 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                       ),
                     ),
                   ),
-
-                  /// CLOSE BUTTON (keep on top so taps are never blocked)
                   Positioned(
                     top: 12.h,
                     left: 16.w,
@@ -993,18 +975,21 @@ class _PlanCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          rightText!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontSize: rightTextSize,
-                            fontWeight: FontWeight.w500,
-                            color: isSelected
-                                ? AppColors.textWhite
-                                : AppColors.textGrey.withOpacity(0.95),
-                            fontFamily: 'Inter',
+                        Padding(
+                          padding: EdgeInsets.only(top: 4.h),
+                          child: Text(
+                            rightText!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                              fontSize: rightTextSize,
+                              fontWeight: FontWeight.w600,
+                              color: isSelected
+                                  ? AppColors.textWhite
+                                  : AppColors.textGrey.withOpacity(0.95),
+                              fontFamily: 'Inter',
+                            ),
                           ),
                         ),
                         if (rightSubText != null) ...[
