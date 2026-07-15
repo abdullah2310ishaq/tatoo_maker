@@ -84,7 +84,7 @@ class NativeAdService extends ChangeNotifier {
       }
     }
 
-    final unitId = AdmobIds.nativeUnitId().trim();
+    final unitId = AdIds.testNativeId.trim();
     if (unitId.isEmpty) {
       _disposeSlot(slot);
       slot.isLoadedFlag = false;

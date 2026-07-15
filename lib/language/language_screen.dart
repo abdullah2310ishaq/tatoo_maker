@@ -383,7 +383,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
     if (!nativeService.isLoaded || ad == null) return SizedBox(height: 115.h);
 
     // Keep in sync with native_ads_language.xml (MediaView video area).
-    final slotH = 280.h;
+    final slotH = 280.0;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(

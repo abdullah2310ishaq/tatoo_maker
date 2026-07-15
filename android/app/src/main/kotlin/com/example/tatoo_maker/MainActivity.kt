@@ -12,10 +12,16 @@ class MainActivity : FlutterActivity() {
             "listTileLanguage",
             NativeAdFactoryLanguage(this),
         )
+        GoogleMobileAdsPlugin.registerNativeAdFactory(
+            flutterEngine,
+            "listTileSmall",
+            NativeAdFactorySmall(this),
+        )
     }
 
     override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
         super.cleanUpFlutterEngine(flutterEngine)
         GoogleMobileAdsPlugin.unregisterNativeAdFactory(flutterEngine, "listTileLanguage")
+        GoogleMobileAdsPlugin.unregisterNativeAdFactory(flutterEngine, "listTileSmall")
     }
 }

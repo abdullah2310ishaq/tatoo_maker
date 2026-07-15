@@ -371,7 +371,7 @@ class _BirthdayBannerAdState extends State<_BirthdayBannerAd> {
     if (_loadedWidth == width && _ad != null) return;
     _loadedWidth = width;
 
-    await _loadAdaptive(unitId: AdmobIds.bannerUnitId(), width: width);
+    await _loadAdaptive(unitId: AdIds.testBannerId, width: width);
   }
 
   Future<void> _loadAdaptive({

@@ -51,7 +51,7 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
     final isPro = context.read<UsageLimitProvider>().isProUnlocked;
     if (isPro) return;
 
-    final unitId = AdmobIds.interstitialUnitId().trim();
+    final unitId = AdIds.testInterId.trim();
     if (unitId.isEmpty) return;
 
     final loadingHandle = await showInterstitialAdLoadingDialog(

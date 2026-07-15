@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       // Preload rewarded ad early so "Watch Ad" flows feel instant.
-      unawaited(RewardedAdService.instance.preload(AdmobIds.rewardedUnitId()));
+      unawaited(RewardedAdService.instance.preload(AdIds.testRewardedId));
       unawaited(_restorePurchasesInBackground());
       unawaited(_runSplashSequence());
     });
@@ -231,8 +231,8 @@ class _SplashScreenState extends State<SplashScreen>
     required bool showAppOpen,
     required bool showInterstitial,
   }) async {
-    final appOpenUnitId = AdmobIds.appOpenUnitId();
-    final interstitialUnitId = AdmobIds.interstitialUnitId();
+    final appOpenUnitId = AdIds.testAppOpenId;
+    final interstitialUnitId = AdIds.testInterId;
     _log(
       'showSplashAds called: showAppOpen=$showAppOpen, showInterstitial=$showInterstitial',
     );

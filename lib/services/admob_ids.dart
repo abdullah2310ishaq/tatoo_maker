@@ -1,66 +1,23 @@
-import 'package:flutter/foundation.dart';
+class AdIds {
 
-import 'ad_mode.dart';
 
-class AdmobIds {
-  // Production (Android).
-  static const String _prodAndroidAppOpen =
-      'ca-app-pub-5408098781737794/4589831949';
-  static const String _prodAndroidBanner =
-      'ca-app-pub-5408098781737794/4430049847';
-  static const String _prodAndroidInterstitial =
-      'ca-app-pub-5408098781737794/5232829779';
-  // NOTE: Add your production rewarded unit here when available.
-  static const String _prodAndroidRewarded = '';
-  static const String _prodAndroidNative =
-      'ca-app-pub-5408098781737794/3919748102';
 
-  // Google sample units — debug / `FORCE_TEST_ADS` only.
-  static const String _testAndroidBanner =
-      'ca-app-pub-3940256099942544/6300978111';
-  static const String _testAndroidCollapsibleBanner =
-      'ca-app-pub-3940256099942544/2014213617';
-  static const String _testAndroidNative =
-      'ca-app-pub-3940256099942544/2247696110';
-  static const String _testAndroidAppOpen =
-      'ca-app-pub-3940256099942544/9257395921';
-  static const String _testAndroidInterstitial =
-      'ca-app-pub-3940256099942544/1033173712';
-  static const String _testAndroidRewarded =
-      'ca-app-pub-3940256099942544/5224354917';
 
-  static bool get _isAndroid => defaultTargetPlatform == TargetPlatform.android;
-  static bool get _isIos => defaultTargetPlatform == TargetPlatform.iOS;
+  static String liveAppId="ca-app-pub-5408098781737794~8385866486";
+  static String liveBannerId="ca-app-pub-5408098781737794/4430049847";
+  // static String liveNativeSmallId="ca-app-pub-1210536470614301/8642101218";
+  static String liveNativeId="ca-app-pub-7182112310194934/5881841668";
+  static String liveNativeIdNew="ca-app-pub-5408098781737794/9485808041";
+   static String liveRewardedId="ca-app-pub-5408098781737794/2985744269";
+  static String liveInterId="ca-app-pub-5408098781737794/5232829779";
+  static String liveAppOpenId="ca-app-pub-5408098781737794/4589831949";
 
-  static String _pick({
-    required String androidProd,
-    required String androidTest,
-  }) {
-    if (!_isAndroid && !_isIos) return '';
-    return AdMode.useTestAds ? androidTest : androidProd;
-  }
+  static String testAppId="ca-app-pub-3940256099942544~3347511713";
+  static String testBannerId="ca-app-pub-3940256099942544/9214589741";
+  static String testNativeId="ca-app-pub-3940256099942544/2247696110";
+  static String testNativeIdNew="ca-app-pub-3940256099942544/2247696110";
+  static String testRewardedId="ca-app-pub-3940256099942544/5224354917";
+  static String testInterId="ca-app-pub-3940256099942544/1033173712";
+  static String testAppOpenId="ca-app-pub-3940256099942544/9257395921";
 
-  static String bannerUnitId() =>
-      _pick(androidProd: _prodAndroidBanner, androidTest: _testAndroidBanner);
-
-  static String collapsibleBannerUnitId() => _pick(
-    androidProd: _prodAndroidBanner,
-    androidTest: _testAndroidCollapsibleBanner,
-  );
-
-  static String nativeUnitId() =>
-      _pick(androidProd: _prodAndroidNative, androidTest: _testAndroidNative);
-
-  static String appOpenUnitId() =>
-      _pick(androidProd: _prodAndroidAppOpen, androidTest: _testAndroidAppOpen);
-
-  static String interstitialUnitId() => _pick(
-    androidProd: _prodAndroidInterstitial,
-    androidTest: _testAndroidInterstitial,
-  );
-
-  static String rewardedUnitId() => _pick(
-    androidProd: _prodAndroidRewarded,
-    androidTest: _testAndroidRewarded,
-  );
 }

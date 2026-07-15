@@ -397,7 +397,7 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
     if (!nativeService.isLoaded || ad == null) return SizedBox(height: 115.h);
 
     // Keep in sync with native_ads_language.xml (MediaView video area).
-    final slotH = 220.h;
+    final slotH = 280;
     if (kDebugMode && !_loggedLayoutOnce) {
       _loggedLayoutOnce = true;
       _log(
@@ -421,7 +421,7 @@ class _FirstLanguageNativeAdState extends State<_FirstLanguageNativeAd> {
           clipBehavior: Clip.antiAlias,
           child: SizedBox(
             width: double.infinity,
-            height: slotH,
+            height: 250,
             child: AdWidget(ad: ad),
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
+import 'package:tatoo_maker/services/native_small_ad_view.dart';
 import 'package:tatoo_maker/utils/colors.dart';
 import '../providers/theme_provider.dart';
 import '../providers/usage_limit_provider.dart';
@@ -310,6 +311,9 @@ class _HomePageState extends State<HomePage> with RouteAware {
                                 scrollController: _styleRowScrollController,
                               ),
                             ),
+
+                            SizedBox(height: 32.h),
+                            NativeSmallAdView(),
                             SizedBox(height: 32.h),
                             // Explore Inspiration section (parent provides start padding in both LTR/RTL)
                             _wrapWithRtlIfNeeded(
@@ -587,7 +591,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
         }
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdmobIds.rewardedUnitId(),
+          adUnitId: AdIds.testRewardedId,
         );
         if (!mounted) return;
         if (!earned) {

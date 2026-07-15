@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:provider/provider.dart';
 import '../../../l10n/app_localizations.dart';
 // import '../../../providers/usage_limit_provider.dart';
-// import '../../../services/admob_ids.dart';
+import '../../../services/admob_ids.dart';
 // import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../../../widgets/remote_or_asset_image.dart';
@@ -74,7 +74,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
         // Ads intentionally disabled.
         // if (shouldShowBanner) ...[
         //   _StyleSelectionBannerAd(
-        //     unitId: AdmobIds.bannerUnitId(),
+        //     unitId: AdIds.testBannerId,
         //     onVisibilityChanged: (visible) {
         //       if (_bannerLoaded == visible) return;
         //       setState(() => _bannerLoaded = visible);
@@ -336,7 +336,7 @@ class _StyleSelectionNativeAdState extends State<_StyleSelectionNativeAd> {
   }
 
   void _loadAd() {
-    final unitId = AdmobIds.nativeUnitId();
+    final unitId = AdIds.testNativeId;
     if (unitId.isEmpty) return;
 
     final ad = NativeAd(
