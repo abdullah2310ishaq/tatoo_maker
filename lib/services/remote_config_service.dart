@@ -58,6 +58,15 @@ class RemoteConfigService extends ChangeNotifier {
 
     // Paywall UI controls.
     RemoteConfigKeys.proAccessShowTrialToggle: true,
+
+    // Creation See All + home native (default ON; control via Firebase).
+    RemoteConfigKeys.seeAllBannerAd: true,
+    RemoteConfigKeys.seeAllNativeAd: true,
+    RemoteConfigKeys.mainScreenNativeAd: true,
+    RemoteConfigKeys.tattooNameNativeAd: true,
+    RemoteConfigKeys.historyScreenNativeAd: true,
+    RemoteConfigKeys.creationRewardedAd: true,
+    RemoteConfigKeys.tattooRewardedAd: true,
   };
 
   Future<void> initialize() async {
@@ -122,7 +131,14 @@ class RemoteConfigService extends ChangeNotifier {
       'splashShowPaywall=$splashShowPaywall, '
       'firstLanguageOnboardingEnabled=$firstLanguageOnboardingEnabled, '
       'firstLanguageShowNativeAd=$firstLanguageShowNativeAd, '
-      'proAccessShowTrialToggle=$proAccessShowTrialToggle',
+      'proAccessShowTrialToggle=$proAccessShowTrialToggle, '
+      'seeAllShowBannerAd=$seeAllShowBannerAd, '
+      'seeAllShowNativeAd=$seeAllShowNativeAd, '
+      'mainScreenShowNativeAd=$mainScreenShowNativeAd, '
+      'tattooNameShowNativeAd=$tattooNameShowNativeAd, '
+      'historyScreenShowNativeAd=$historyScreenShowNativeAd, '
+      'creationShowRewardedAd=$creationShowRewardedAd, '
+      'tattooShowRewardedAd=$tattooShowRewardedAd',
     );
   }
 
@@ -137,6 +153,13 @@ class RemoteConfigService extends ChangeNotifier {
     _logKeyDetail(RemoteConfigKeys.tattooIdeaAdsAll);
     _logKeyDetail(RemoteConfigKeys.tattooIdeaBanner);
     _logKeyDetail(RemoteConfigKeys.tattooIdeaNative);
+    _logKeyDetail(RemoteConfigKeys.seeAllBannerAd);
+    _logKeyDetail(RemoteConfigKeys.seeAllNativeAd);
+    _logKeyDetail(RemoteConfigKeys.mainScreenNativeAd);
+    _logKeyDetail(RemoteConfigKeys.tattooNameNativeAd);
+    _logKeyDetail(RemoteConfigKeys.historyScreenNativeAd);
+    _logKeyDetail(RemoteConfigKeys.creationRewardedAd);
+    _logKeyDetail(RemoteConfigKeys.tattooRewardedAd);
   }
 
   void _logKeyDetail(String key) {
@@ -238,4 +261,33 @@ class RemoteConfigService extends ChangeNotifier {
 
   bool get proAccessShowTrialToggle =>
       _rc.getBool(RemoteConfigKeys.proAccessShowTrialToggle);
+
+  /// See All: native has priority — when both flags are true, only native shows.
+  bool get seeAllShowNativeAd => _rc.getBool(RemoteConfigKeys.seeAllNativeAd);
+
+  /// See All banner only when banner is on and native is off.
+  bool get seeAllShowBannerAd {
+    final banner = _rc.getBool(RemoteConfigKeys.seeAllBannerAd);
+    final native = _rc.getBool(RemoteConfigKeys.seeAllNativeAd);
+    return banner && !native;
+  }
+
+  bool get mainScreenShowNativeAd =>
+      _rc.getBool(RemoteConfigKeys.mainScreenNativeAd);
+
+  bool get tattooNameShowNativeAd =>
+      _rc.getBool(RemoteConfigKeys.tattooNameNativeAd);
+
+  bool get historyScreenShowNativeAd =>
+      _rc.getBool(RemoteConfigKeys.historyScreenNativeAd);
+
+  /// When `false`, free users skip gate dialog + rewarded and generate directly
+  /// (usage limits still apply). Pro users never see the gate.
+  bool get creationShowRewardedAd =>
+      _rc.getBool(RemoteConfigKeys.creationRewardedAd);
+
+  /// When `false`, free users skip the tattoo gate and rewarded ad while the
+  /// shared creation/tattoo usage limit still applies.
+  bool get tattooShowRewardedAd =>
+      _rc.getBool(RemoteConfigKeys.tattooRewardedAd);
 }

@@ -39,8 +39,9 @@ class StepBirthdayPage extends StatefulWidget {
 }
 
 class _StepBirthdayPageState extends State<StepBirthdayPage> {
-  bool _bannerVisible = false;
-  bool _nativeVisible = false;
+  // Birthday ads temporarily disabled.
+  // bool _bannerVisible = false;
+  // bool _nativeVisible = false;
 
   bool _isDateValid() {
     final now = DateTime.now();
@@ -81,25 +82,26 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
-    final rc = context.watch<RemoteConfigService>();
-    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
-    final canShowBanner = !isPro && rc.tattooBirthdayShowBanner;
-    final canShowNative = !isPro && rc.tattooBirthdayShowNative;
-
-    final shouldShowNative = canShowNative;
-    final shouldShowBanner = canShowBanner && !canShowNative;
-    if (!shouldShowBanner && _bannerVisible) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        if (_bannerVisible) setState(() => _bannerVisible = false);
-      });
-    }
-    if (!shouldShowNative && _nativeVisible) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        if (_nativeVisible) setState(() => _nativeVisible = false);
-      });
-    }
+    // Birthday ads temporarily disabled.
+    // final rc = context.watch<RemoteConfigService>();
+    // final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    // final canShowBanner = !isPro && rc.tattooBirthdayShowBanner;
+    // final canShowNative = !isPro && rc.tattooBirthdayShowNative;
+    //
+    // final shouldShowNative = canShowNative;
+    // final shouldShowBanner = canShowBanner && !canShowNative;
+    // if (!shouldShowBanner && _bannerVisible) {
+    //   WidgetsBinding.instance.addPostFrameCallback((_) {
+    //     if (!mounted) return;
+    //     if (_bannerVisible) setState(() => _bannerVisible = false);
+    //   });
+    // }
+    // if (!shouldShowNative && _nativeVisible) {
+    //   WidgetsBinding.instance.addPostFrameCallback((_) {
+    //     if (!mounted) return;
+    //     if (_nativeVisible) setState(() => _nativeVisible = false);
+    //   });
+    // }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,25 +156,26 @@ class _StepBirthdayPageState extends State<StepBirthdayPage> {
             ),
           ),
         ),
-        // Bottom ads (no reserved space when not loaded).
-        // Order: Banner first, then Native. Gap only when both visible.
-        if (shouldShowBanner)
-          _BirthdayBannerAd(
-            onVisibilityChanged: (visible) {
-              if (_bannerVisible == visible) return;
-              setState(() => _bannerVisible = visible);
-            },
-          ),
-        if (shouldShowNative) ...[
-          if (_bannerVisible && _nativeVisible) SizedBox(height: 8.h),
-          _BirthdayNativeAd(
-            isDark: isDark,
-            onVisibilityChanged: (visible) {
-              if (_nativeVisible == visible) return;
-              setState(() => _nativeVisible = visible);
-            },
-          ),
-        ],
+        // Birthday ads temporarily disabled.
+        // // Bottom ads (no reserved space when not loaded).
+        // // Order: Banner first, then Native. Gap only when both visible.
+        // if (shouldShowBanner)
+        //   _BirthdayBannerAd(
+        //     onVisibilityChanged: (visible) {
+        //       if (_bannerVisible == visible) return;
+        //       setState(() => _bannerVisible = visible);
+        //     },
+        //   ),
+        // if (shouldShowNative) ...[
+        //   if (_bannerVisible && _nativeVisible) SizedBox(height: 8.h),
+        //   _BirthdayNativeAd(
+        //     isDark: isDark,
+        //     onVisibilityChanged: (visible) {
+        //       if (_nativeVisible == visible) return;
+        //       setState(() => _nativeVisible = visible);
+        //     },
+        //   ),
+        // ],
         SafeArea(
           top: false,
           left: false,

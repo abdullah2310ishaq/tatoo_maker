@@ -9,6 +9,8 @@ import '../l10n/app_localizations.dart';
 import '../models/explore_category.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/admob_ids.dart';
+import '../services/native_small_ad_view.dart';
+import '../services/remote_config_service.dart';
 import '../utils/colors.dart';
 import '../widgets/interstitial_ad_loading_dialog.dart';
 import 'explore_detail_screen.dart';
@@ -103,11 +105,48 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
     }
   }
 
+  static const int _crossAxisCount = 2;
+  /// 3 rows × 2 columns — native ad sits after this many items.
+  static const int _itemsBeforeNativeAd = 6;
+
+  SliverGridDelegate get _gridDelegate => SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: _crossAxisCount,
+        mainAxisSpacing: 12.h,
+        crossAxisSpacing: 12.w,
+        // Higher ratio => shorter cards (less height).
+        childAspectRatio: 1.02,
+      );
+
+  Widget _buildCategoryCard(
+    BuildContext context,
+    AppLocalizations l10n,
+    int index,
+  ) {
+    final item = widget.category.items[index];
+    return _CategoryDetailCard(
+      title: item.title(l10n),
+      prompt: item.prompt(l10n),
+      bigImagePath: item.bigImagePath,
+      smallImagePath: item.smallImagePath,
+      smallImagePathDark: item.smallImagePathDark,
+      styleKey: item.id,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final l10n = AppLocalizations.of(context)!;
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    final rc = context.watch<RemoteConfigService>();
+    final showBanner = !isPro && rc.seeAllShowBannerAd;
+    final showNative = !isPro && rc.seeAllShowNativeAd;
+    final items = widget.category.items;
+    final firstBatchCount =
+        showNative ? items.length.clamp(0, _itemsBeforeNativeAd) : items.length;
+    final remainingCount =
+        showNative ? (items.length - _itemsBeforeNativeAd).clamp(0, items.length) : 0;
 
     return PopScope(
       canPop: false,
@@ -143,31 +182,46 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
             : AppColors.lightBackground,
         body: Column(
           children: [
-            const TopBannerAd(),
+            if (showBanner) const TopBannerAd(),
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 12.h,
-                    crossAxisSpacing: 12.w,
-                    // Higher ratio => shorter cards (less height).
-                    childAspectRatio: 1.02,
+              child: CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 0),
+                    sliver: SliverGrid(
+                      gridDelegate: _gridDelegate,
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) =>
+                            _buildCategoryCard(context, l10n, index),
+                        childCount: firstBatchCount,
+                      ),
+                    ),
                   ),
-                  itemCount: widget.category.items.length,
-                  itemBuilder: (context, index) {
-                    final item = widget.category.items[index];
-                    return _CategoryDetailCard(
-                      title: item.title(l10n),
-                      prompt: item.prompt(l10n),
-                      bigImagePath: item.bigImagePath,
-                      smallImagePath: item.smallImagePath,
-                      smallImagePathDark: item.smallImagePathDark,
-                      styleKey: item.id,
-                    );
-                  },
-                ),
+                  if (showNative)
+                    SliverPadding(
+                      padding: EdgeInsets.symmetric(vertical: 12.h),
+                      sliver: const SliverToBoxAdapter(
+                        child: NativeSmallAdView(),
+                      ),
+                    ),
+                  if (remainingCount > 0)
+                    SliverPadding(
+                      padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
+                      sliver: SliverGrid(
+                        gridDelegate: _gridDelegate,
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => _buildCategoryCard(
+                            context,
+                            l10n,
+                            index + _itemsBeforeNativeAd,
+                          ),
+                          childCount: remainingCount,
+                        ),
+                      ),
+                    )
+                  else
+                    SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+                ],
               ),
             ),
           ],

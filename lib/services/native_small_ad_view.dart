@@ -13,7 +13,7 @@ class NativeSmallAdView extends StatefulWidget {
     this.backgroundColor,
   });
 
-  static const double height = 150;
+  static const double height = 140;
   static const String factoryId = 'listTileSmall';
 
   final bool? isDark;

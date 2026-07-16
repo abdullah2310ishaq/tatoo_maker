@@ -1,11 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../creation/widgets/free_creation_generate_gate_dialog.dart';
+import '../l10n/app_localizations.dart';
+import '../services/admob_ids.dart';
+import '../services/remote_config_service.dart';
+import '../services/rewarded_ad_flow.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../creation/loading_screen.dart';
 import '../providers/usage_limit_provider.dart';
 import '../pro_access_screen.dart';
 import '../home_shell.dart';
+import '../utils/toast.dart';
 import 'onboarding/utils/zodiac_utils.dart';
 import 'onboarding/pages/step_name_page.dart';
 import 'onboarding/pages/step_birthday_page.dart';
@@ -70,9 +78,8 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
           // Pages that need keyboard visibility (e.g. StepTattooIdeaPage) handle
           // their own insets via padding/scroll.
           resizeToAvoidBottomInset: false,
-          backgroundColor: isDark
-              ? AppColors.darkBackground
-              : AppColors.lightBackground,
+          backgroundColor:
+              isDark ? AppColors.darkBackground : AppColors.lightBackground,
           body: Container(
             decoration: isDark
                 ? ThemeManager.darkModeBackgroundGradient
@@ -145,7 +152,8 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
         ),
         StepStyleSelectionPage(
           selectedStyleIndex: _selectedStyleIndex,
-          onStyleSelected: (index) => setState(() => _selectedStyleIndex = index),
+          onStyleSelected: (index) =>
+              setState(() => _selectedStyleIndex = index),
           onBack: () => _goToStep(3),
           onNext: () => _startGenerationFlow(context),
         ),
@@ -170,20 +178,10 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
 
   Future<void> _startGenerationFlow(BuildContext context) async {
     final usageLimitProvider = context.read<UsageLimitProvider>();
-    final canStartGeneration = await usageLimitProvider.canStartGeneration();
+    final canStartGeneration =
+        await usageLimitProvider.canStartCreationHomeGeneration();
     if (!context.mounted) return;
-    if (!canStartGeneration) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => ProAccessScreen(
-            showInterstitialOnClose: false,
-            goToNextScreenOnClose: true,
-            nextScreen: const HomeShell(),
-          ),
-        ),
-      );
-      return;
-    }
+    final l10n = AppLocalizations.of(context)!;
 
     final name = _controllers[0].text.trim();
     final tattooIdea = _controllers[2].text.trim();
@@ -198,7 +196,12 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
           )[_selectedStyleIndex!]
         : null;
 
-    if (selectedStyle != null && tattooIdea.isNotEmpty) {
+    if (selectedStyle == null || tattooIdea.isEmpty) {
+      Navigator.of(context).pop();
+      return;
+    }
+
+    void openLoadingScreen({required bool useSharedGenerationQuota}) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => LoadingScreen(
@@ -208,11 +211,83 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
             name: name,
             dobFormatted: dobFormatted,
             zodiacSign: zodiacSign,
+            useSharedGenerationQuota: useSharedGenerationQuota,
           ),
         ),
       );
-    } else {
-      Navigator.of(context).pop();
+    }
+
+    if (usageLimitProvider.isProUnlocked) {
+      openLoadingScreen(useSharedGenerationQuota: false);
+      return;
+    }
+
+    final showRewardedGate =
+        context.read<RemoteConfigService>().tattooShowRewardedAd;
+    if (!showRewardedGate) {
+      if (!canStartGeneration) {
+        AppToast.show(
+          context,
+          message: l10n.creationFreeGateNoGenerationsLeft,
+          isSuccess: false,
+        );
+        return;
+      }
+      openLoadingScreen(useSharedGenerationQuota: true);
+      return;
+    }
+
+    final gateChoice = await showFreeCreationGenerateGateDialog(
+      context: context,
+      freeGenerationsRemaining:
+          usageLimitProvider.freeCreationHomeGenerationsRemaining,
+      freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
+    );
+    if (!context.mounted) return;
+
+    switch (gateChoice) {
+      case FreeCreationGenerateGateChoice.dismissed:
+        return;
+      case FreeCreationGenerateGateChoice.removeLimits:
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => ProAccessScreen(
+              showInterstitialOnClose: false,
+              goToNextScreenOnClose: false,
+              nextScreen: const HomeShell(),
+            ),
+          ),
+        );
+        if (!context.mounted) return;
+
+        final isStillCurrent = ModalRoute.of(context)?.isCurrent ?? false;
+        if (!isStillCurrent || usageLimitProvider.isProUnlocked) return;
+        unawaited(_startGenerationFlow(context));
+        return;
+      case FreeCreationGenerateGateChoice.watchAd:
+        if (!canStartGeneration) {
+          AppToast.show(
+            context,
+            message: l10n.creationFreeGateNoGenerationsLeft,
+            isSuccess: false,
+          );
+          return;
+        }
+        final earned = await showRewardedAdIfAvailable(
+          context,
+          adUnitId: AdIds.testRewardedId,
+        );
+        if (!context.mounted) return;
+        if (!earned) {
+          AppToast.show(
+            context,
+            message: l10n.rewardedAdNotAvailableTryAgain,
+            isSuccess: false,
+          );
+          return;
+        }
+        openLoadingScreen(useSharedGenerationQuota: true);
+        return;
     }
   }
 }

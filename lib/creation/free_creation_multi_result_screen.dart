@@ -9,6 +9,7 @@ import '../home_shell.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/admob_ids.dart';
+import '../services/remote_config_service.dart';
 import '../services/rewarded_ad_flow.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
@@ -69,37 +70,44 @@ class _FreeCreationMultiResultScreenState
     if (_isRecreating) return;
     final usage = context.read<UsageLimitProvider>();
     final l10n = AppLocalizations.of(context)!;
-    final gateChoice = await showFreeCreationGenerateGateDialog(
-      context: context,
-      freeGenerationsRemaining: usage.freeCreationHomeGenerationsRemaining,
-      freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
-    );
-    if (!mounted) return;
+    final showRewardedGate =
+        context.read<RemoteConfigService>().creationShowRewardedAd;
 
-    switch (gateChoice) {
-      case FreeCreationGenerateGateChoice.dismissed:
-        return;
-      case FreeCreationGenerateGateChoice.removeLimits:
-        _openRemoveLimitsPaywall();
-        return;
-      case FreeCreationGenerateGateChoice.watchAd:
-        break;
+    if (showRewardedGate) {
+      final gateChoice = await showFreeCreationGenerateGateDialog(
+        context: context,
+        freeGenerationsRemaining: usage.freeCreationHomeGenerationsRemaining,
+        freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
+      );
+      if (!mounted) return;
+
+      switch (gateChoice) {
+        case FreeCreationGenerateGateChoice.dismissed:
+          return;
+        case FreeCreationGenerateGateChoice.removeLimits:
+          _openRemoveLimitsPaywall();
+          return;
+        case FreeCreationGenerateGateChoice.watchAd:
+          break;
+      }
     }
 
     setState(() => _isRecreating = true);
     try {
-      final earned = await showRewardedAdIfAvailable(
-        context,
-        adUnitId: AdIds.testRewardedId,
-      );
-      if (!mounted) return;
-      if (!earned) {
-        AppToast.show(
+      if (showRewardedGate) {
+        final earned = await showRewardedAdIfAvailable(
           context,
-          message: l10n.rewardedAdNotAvailableTryAgain,
-          isSuccess: false,
+          adUnitId: AdIds.testRewardedId,
         );
-        return;
+        if (!mounted) return;
+        if (!earned) {
+          AppToast.show(
+            context,
+            message: l10n.rewardedAdNotAvailableTryAgain,
+            isSuccess: false,
+          );
+          return;
+        }
       }
       final canStart = await usage.canStartCreationHomeGeneration();
       if (!mounted) return;
@@ -133,6 +141,44 @@ class _FreeCreationMultiResultScreenState
     }
     final usage = context.read<UsageLimitProvider>();
     final l10n = AppLocalizations.of(context)!;
+    final showRewardedGate =
+        context.read<RemoteConfigService>().creationShowRewardedAd;
+
+    if (!showRewardedGate) {
+      final canStart = await usage.canStartCreationHomeGeneration();
+      if (!mounted) return;
+      if (!canStart) {
+        AppToast.show(
+          context,
+          message: l10n.creationFreeGateNoGenerationsLeft,
+          isSuccess: false,
+        );
+        return;
+      }
+      final nextBytes = await Navigator.of(context).push<Uint8List?>(
+        MaterialPageRoute(
+          builder: (_) => LoadingScreen(
+            selectedStyleAsset: widget.selectedStyleAsset,
+            styleName: widget.styleName == 'generic' ? null : widget.styleName,
+            promptText: widget.promptText,
+            freeCreationHomeFlow: true,
+            popWithResultOnComplete: true,
+          ),
+        ),
+      );
+      if (!mounted) return;
+      if (nextBytes == null || nextBytes.isEmpty) return;
+
+      setState(() {
+        if (_unlockedImages.length < 4) {
+          _unlockedImages.add(nextBytes);
+        } else {
+          _unlockedImages[_unlockedImages.length - 1] = nextBytes;
+        }
+        _unlockedCardsCount = _unlockedImages.length.clamp(1, 4);
+      });
+      return;
+    }
 
     final gateChoice = await showFreeCreationGenerateGateDialog(
       context: context,

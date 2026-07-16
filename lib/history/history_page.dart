@@ -4,7 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../creation/result_screen.dart';
 import '../flower/flower_result_screen.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/usage_limit_provider.dart';
 import '../services/history_service.dart';
+import '../services/native_small_ad_view.dart';
+import '../services/remote_config_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../providers/favorites_provider.dart';
@@ -383,6 +386,9 @@ class _HistoryPageState extends State<HistoryPage> {
     );
   }
 
+  /// 3 rows × 2 columns — native ad always sits after this slot (static).
+  static const int _itemsBeforeNativeAd = 6;
+
   Widget _buildGrid(
     BuildContext context,
     bool isDark,
@@ -390,7 +396,11 @@ class _HistoryPageState extends State<HistoryPage> {
     List<Map<String, dynamic>> items,
     String type,
   ) {
-    if (items.isEmpty) {
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    final showNative = !isPro &&
+        context.watch<RemoteConfigService>().historyScreenShowNativeAd;
+
+    if (items.isEmpty && !showNative) {
       return Center(
         child: Text(
           l10n.noHistoryYet,
@@ -398,33 +408,93 @@ class _HistoryPageState extends State<HistoryPage> {
         ),
       );
     }
-    return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12.w,
-        mainAxisSpacing: 12.h,
-        childAspectRatio: 1,
-      ),
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final entry = items[index];
-        final entryId = HistoryService.generateEntryId(entry);
-        return _HistoryGridItem(
-          entry: entry,
-          type: type,
-          isDark: isDark,
-          isSelectionMode: _isSelectionMode,
-          isSelected: _selectedIds.contains(entryId),
-          onTap: () {
-            if (_isSelectionMode) {
-              _toggleSelection(entryId);
-              return;
-            }
-            _openResult(context, entry, type, l10n);
-          },
-        );
-      },
+
+    final gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 12.w,
+      mainAxisSpacing: 12.h,
+      childAspectRatio: 1,
+    );
+    final firstBatchCount =
+        showNative ? _itemsBeforeNativeAd : items.length;
+    final remainingCount = showNative
+        ? (items.length - _itemsBeforeNativeAd).clamp(0, items.length)
+        : 0;
+
+    Widget buildItem(int index) {
+      final entry = items[index];
+      final entryId = HistoryService.generateEntryId(entry);
+      return _HistoryGridItem(
+        entry: entry,
+        type: type,
+        isDark: isDark,
+        isSelectionMode: _isSelectionMode,
+        isSelected: _selectedIds.contains(entryId),
+        onTap: () {
+          if (_isSelectionMode) {
+            _toggleSelection(entryId);
+            return;
+          }
+          _openResult(context, entry, type, l10n);
+        },
+      );
+    }
+
+    Widget buildFirstBatchCell(int index) {
+      if (index >= items.length) {
+        return const SizedBox.shrink();
+      }
+      return buildItem(index);
+    }
+
+    return CustomScrollView(
+      slivers: [
+        if (items.isEmpty && showNative)
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(20.w, 24.h, 20.w, 8.h),
+              child: Center(
+                child: Text(
+                  l10n.noHistoryYet,
+                  style: TextStyle(fontSize: 16.sp, color: AppColors.textGrey),
+                ),
+              ),
+            ),
+          ),
+        SliverPadding(
+          padding: EdgeInsets.fromLTRB(20.w, 8.h, 20.w, 0),
+          sliver: SliverGrid(
+            gridDelegate: gridDelegate,
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => showNative
+                  ? buildFirstBatchCell(index)
+                  : buildItem(index),
+              childCount: firstBatchCount,
+            ),
+          ),
+        ),
+        if (showNative)
+          SliverPadding(
+            padding: EdgeInsets.symmetric(vertical: 12.h),
+            sliver: const SliverToBoxAdapter(
+              child: NativeSmallAdView(),
+            ),
+          ),
+        if (remainingCount > 0)
+          SliverPadding(
+            padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 8.h),
+            sliver: SliverGrid(
+              gridDelegate: gridDelegate,
+              delegate: SliverChildBuilderDelegate(
+                (context, index) =>
+                    buildItem(index + _itemsBeforeNativeAd),
+                childCount: remainingCount,
+              ),
+            ),
+          )
+        else
+          SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+      ],
     );
   }
 
@@ -797,92 +867,152 @@ class _HistoryListPageState extends State<HistoryListPage> {
                 ),
               ),
               Expanded(
-                child: _items.isEmpty
-                    ? Center(
-                        child: Text(
-                          l10n.noHistoryYet,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            color: AppColors.textGrey,
-                          ),
-                        ),
-                      )
-                    : GridView.builder(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20.w,
-                          vertical: 8.h,
-                        ),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 12.w,
-                          mainAxisSpacing: 12.h,
-                          childAspectRatio: 1,
-                        ),
-                        itemCount: _items.length,
-                        itemBuilder: (context, index) {
-                          final entry = _items[index];
-                          final entryId = HistoryService.generateEntryId(entry);
-                          return _HistoryGridItem(
-                            entry: entry,
-                            isDark: isDark,
-                            type: widget.type,
-                            isSelectionMode: _isSelectionMode,
-                            isSelected: _selectedIds.contains(entryId),
-                            onTap: () {
-                              if (_isSelectionMode) {
-                                _toggleSelection(entryId);
-                                return;
-                              }
-
-                              final bytes = HistoryService.imageBytesFromEntry(
-                                entry,
-                              );
-                              if (bytes == null) return;
-
-                              final hasName =
-                                  entry['name'] != null &&
-                                  (entry['name'] as String).isNotEmpty;
-                              final hasStyleName =
-                                  entry['styleName'] != null &&
-                                  (entry['styleName'] as String).isNotEmpty;
-
-                              if (widget.type == 'flower' ||
-                                  (widget.type == 'favorites' &&
-                                      hasName &&
-                                      !hasStyleName)) {
-                                final name = entry['name'] as String? ?? '';
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => FlowerResultScreen(
-                                      name: name,
-                                      generatedImageBytes: bytes,
-                                    ),
-                                  ),
-                                );
-                              } else {
-                                final styleName =
-                                    entry['styleName'] as String? ??
-                                    l10n.genericTattoo;
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => ResultScreen(
-                                      styleName: styleName,
-                                      promptText:
-                                          entry['promptText'] as String?,
-                                      generatedImageBytes: bytes,
-                                    ),
-                                  ),
-                                );
-                              }
-                            },
-                          );
-                        },
-                      ),
+                child: _buildHistoryListGrid(context, isDark, l10n),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  static const int _itemsBeforeNativeAd = 6;
+
+  Widget _buildHistoryListGrid(
+    BuildContext context,
+    bool isDark,
+    AppLocalizations l10n,
+  ) {
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    final showNative = !isPro &&
+        context.watch<RemoteConfigService>().historyScreenShowNativeAd;
+
+    if (_items.isEmpty && !showNative) {
+      return Center(
+        child: Text(
+          l10n.noHistoryYet,
+          style: TextStyle(fontSize: 16.sp, color: AppColors.textGrey),
+        ),
+      );
+    }
+
+    final gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 12.w,
+      mainAxisSpacing: 12.h,
+      childAspectRatio: 1,
+    );
+    final firstBatchCount =
+        showNative ? _itemsBeforeNativeAd : _items.length;
+    final remainingCount = showNative
+        ? (_items.length - _itemsBeforeNativeAd).clamp(0, _items.length)
+        : 0;
+
+    Widget buildItem(int index) {
+      final entry = _items[index];
+      final entryId = HistoryService.generateEntryId(entry);
+      return _HistoryGridItem(
+        entry: entry,
+        isDark: isDark,
+        type: widget.type,
+        isSelectionMode: _isSelectionMode,
+        isSelected: _selectedIds.contains(entryId),
+        onTap: () {
+          if (_isSelectionMode) {
+            _toggleSelection(entryId);
+            return;
+          }
+
+          final bytes = HistoryService.imageBytesFromEntry(entry);
+          if (bytes == null) return;
+
+          final hasName =
+              entry['name'] != null && (entry['name'] as String).isNotEmpty;
+          final hasStyleName = entry['styleName'] != null &&
+              (entry['styleName'] as String).isNotEmpty;
+
+          if (widget.type == 'flower' ||
+              (widget.type == 'favorites' && hasName && !hasStyleName)) {
+            final name = entry['name'] as String? ?? '';
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => FlowerResultScreen(
+                  name: name,
+                  generatedImageBytes: bytes,
+                ),
+              ),
+            );
+          } else {
+            final styleName =
+                entry['styleName'] as String? ?? l10n.genericTattoo;
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => ResultScreen(
+                  styleName: styleName,
+                  promptText: entry['promptText'] as String?,
+                  generatedImageBytes: bytes,
+                ),
+              ),
+            );
+          }
+        },
+      );
+    }
+
+    Widget buildFirstBatchCell(int index) {
+      if (index >= _items.length) {
+        return const SizedBox.shrink();
+      }
+      return buildItem(index);
+    }
+
+    return CustomScrollView(
+      slivers: [
+        if (_items.isEmpty && showNative)
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(20.w, 24.h, 20.w, 8.h),
+              child: Center(
+                child: Text(
+                  l10n.noHistoryYet,
+                  style: TextStyle(fontSize: 16.sp, color: AppColors.textGrey),
+                ),
+              ),
+            ),
+          ),
+        SliverPadding(
+          padding: EdgeInsets.fromLTRB(20.w, 8.h, 20.w, 0),
+          sliver: SliverGrid(
+            gridDelegate: gridDelegate,
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => showNative
+                  ? buildFirstBatchCell(index)
+                  : buildItem(index),
+              childCount: firstBatchCount,
+            ),
+          ),
+        ),
+        if (showNative)
+          SliverPadding(
+            padding: EdgeInsets.symmetric(vertical: 12.h),
+            sliver: const SliverToBoxAdapter(
+              child: NativeSmallAdView(),
+            ),
+          ),
+        if (remainingCount > 0)
+          SliverPadding(
+            padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 8.h),
+            sliver: SliverGrid(
+              gridDelegate: gridDelegate,
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => buildItem(index + _itemsBeforeNativeAd),
+                childCount: remainingCount,
+              ),
+            ),
+          )
+        else
+          SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+      ],
     );
   }
 }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
 import '../../../l10n/app_localizations.dart';
+import '../../../providers/usage_limit_provider.dart';
+import '../../../services/native_small_ad_view.dart';
+import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
 import '../widgets/onboarding_header.dart';
-import '../widgets/onboarding_next_button.dart';
 
 class StepNamePage extends StatelessWidget {
   final TextEditingController controller;
@@ -22,13 +26,26 @@ class StepNamePage extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textWhite : AppColors.textPrimary;
     final borderColor = const Color(0xFFFE8B3A);
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    final showNative = !isPro &&
+        context.watch<RemoteConfigService>().tattooNameShowNativeAd;
 
     return StatefulBuilder(
       builder: (context, setState) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            OnboardingHeader(currentStep: 1, onBack: onBack),
+            OnboardingHeader(
+              currentStep: 1,
+              onBack: onBack,
+              trailing: Padding(
+                padding: EdgeInsets.only(top: 1.h),
+                child: _NameNextTopRightButton(
+                  enabled: controller.text.trim().isNotEmpty,
+                  onPressed: onNext,
+                ),
+              ),
+            ),
             SizedBox(height: 40.h),
             // Question
             Text(
@@ -73,16 +90,60 @@ class StepNamePage extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            // Next button
-            OnboardingNextButton(
-              enabled: controller.text.trim().isNotEmpty,
-              isLastStep: false,
-              onPressed: onNext,
-            ),
+            if (showNative) ...[
+              SizedBox(height: 16.h),
+              const NativeSmallAdView(),
+            ],
             SizedBox(height: 40.h),
           ],
         );
       },
+    );
+  }
+}
+
+class _NameNextTopRightButton extends StatelessWidget {
+  const _NameNextTopRightButton({
+    required this.enabled,
+    required this.onPressed,
+  });
+
+  final bool enabled;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final enabledBackground = AppColors.darkPrimary;
+    final disabledBackground = isDark
+        ? AppColors.buttonBackground
+        : AppColors.textGrey.withOpacity(0.1);
+    final enabledText = AppColors.textWhite;
+    final disabledText = AppColors.textGrey;
+
+    return SizedBox(
+      height: 44.h,
+      child: ElevatedButton(
+        onPressed: enabled ? onPressed : null,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: enabled ? enabledBackground : disabledBackground,
+          foregroundColor: enabled ? enabledText : disabledText,
+          elevation: enabled ? 4 : 0,
+          padding: EdgeInsets.symmetric(horizontal: 18.w),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+        ),
+        child: Text(
+          l10n.next,
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Amaranth',
+          ),
+        ),
+      ),
     );
   }
 }

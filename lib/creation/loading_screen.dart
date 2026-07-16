@@ -20,7 +20,7 @@ import '../widgets/creative_loading_spinner.dart';
 
 class LoadingScreen extends StatefulWidget {
   final String?
-  selectedStyleAsset; // Asset path for the selected style (e.g., 'assets/unicorn.png')
+      selectedStyleAsset; // Asset path for the selected style (e.g., 'assets/unicorn.png')
   final String? styleName; // Name of the selected style (e.g., 'Unicorn')
   final String? promptText; // The text prompt for image generation
   final String? name; // User's name for tattoo generation
@@ -36,6 +36,10 @@ class LoadingScreen extends StatefulWidget {
 
   /// Creation home: after generate, show the 4-card free preview instead of [ResultScreen].
   final bool freeCreationHomeFlow;
+
+  /// Count a successful generation against the shared Creation + Tattoo quota
+  /// without changing which result screen this flow opens.
+  final bool useSharedGenerationQuota;
   final bool popWithResultOnComplete;
 
   const LoadingScreen({
@@ -48,6 +52,7 @@ class LoadingScreen extends StatefulWidget {
     this.zodiacSign,
     this.placeOfBirth,
     this.freeCreationHomeFlow = false,
+    this.useSharedGenerationQuota = false,
     this.popWithResultOnComplete = false,
   });
 
@@ -282,8 +287,7 @@ class _LoadingScreenState extends State<LoadingScreen>
 
       // If this looks like a connectivity issue (no host / no internet),
       // show a clear toast. Covers SocketException and ClientException wrapping it.
-      final isNetworkError =
-          e is SocketException ||
+      final isNetworkError = e is SocketException ||
           e.toString().contains('SocketException') ||
           e.toString().contains('host lookup') ||
           e.toString().contains('Failed host lookup');
@@ -361,8 +365,10 @@ class _LoadingScreenState extends State<LoadingScreen>
       '(hasImage=${_generatedImageBytes != null})',
     );
     if (_generatedImageBytes != null) {
-      if (widget.freeCreationHomeFlow) {
-        await context.read<UsageLimitProvider>().recordCreationHomeGenerationSuccess();
+      if (widget.freeCreationHomeFlow || widget.useSharedGenerationQuota) {
+        await context
+            .read<UsageLimitProvider>()
+            .recordCreationHomeGenerationSuccess();
       } else {
         await context.read<UsageLimitProvider>().recordGenerationSuccess();
       }
@@ -391,7 +397,8 @@ class _LoadingScreenState extends State<LoadingScreen>
           Navigator.of(context).pop(_generatedImageBytes);
           return;
         }
-        debugPrint('[LoadingScreen] step 3/3: opening FreeCreationMultiResultScreen');
+        debugPrint(
+            '[LoadingScreen] step 3/3: opening FreeCreationMultiResultScreen');
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => FreeCreationMultiResultScreen(
@@ -457,9 +464,8 @@ class _LoadingScreenState extends State<LoadingScreen>
                     style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textWhite
-                          : AppColors.textPrimary,
+                      color:
+                          isDark ? AppColors.textWhite : AppColors.textPrimary,
                       fontFamily: 'Amaranth',
                       decoration: TextDecoration.none,
                     ),

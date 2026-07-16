@@ -7,14 +7,18 @@ class UsageLimitProvider extends ChangeNotifier {
   /// Tattoo onboarding / flower / shared [LoadingScreen] paths (not creation-home gate).
   static const int freeGenerationLimit = 2;
 
-  /// Creation home (Dream Ink + gate + multi-result flow) only.
+  /// Shared free quota for Creation home and Tattoo generation.
   static const int creationHomeFreeLimit = 5;
   // for premium version make it true abdullah sb
   static const bool forceProForTesting = false;
   static const String _generationCountKey = 'usage_generation_count';
   static const String _creationHomeGenerationKey =
       'usage_creation_home_generation_count';
+  static const String _creationHomeLastResetKey =
+      'usage_creation_home_last_reset_ms';
   static const String _proUnlockedKey = 'usage_pro_unlocked';
+
+  static const Duration freeCreditsResetInterval = Duration(hours: 24);
 
   int _generationCount = 0;
   int _creationHomeGenerationCount = 0;
@@ -44,14 +48,15 @@ class UsageLimitProvider extends ChangeNotifier {
     return left < 0 ? 0 : left;
   }
 
-  /// Remaining free creation-home runs (0 … [creationHomeFreeLimit]). Pro reads as full.
+  /// Remaining shared Creation + Tattoo runs (0 … [creationHomeFreeLimit]).
+  /// Pro reads as full.
   int get freeCreationHomeGenerationsRemaining {
     if (isProUnlocked) return creationHomeFreeLimit;
     final left = creationHomeFreeLimit - _creationHomeGenerationCount;
     return left < 0 ? 0 : left;
   }
 
-  /// Free user has used all creation-home quota ([creationHomeFreeLimit]).
+  /// Free user has used all shared Creation + Tattoo quota.
   bool get isCreationHomeFreeQuotaExhausted =>
       !isProUnlocked && _creationHomeGenerationCount >= creationHomeFreeLimit;
 
@@ -72,6 +77,13 @@ class UsageLimitProvider extends ChangeNotifier {
       _creationHomeGenerationCount =
           prefs.getInt(_creationHomeGenerationKey) ?? 0;
       _proUnlocked = prefs.getBool(_proUnlockedKey) ?? false;
+
+      if (!isProUnlocked) {
+        final didReset = await _maybeResetSharedFreeCredits(prefs);
+        if (didReset) {
+          await _persistState();
+        }
+      }
     } catch (error) {
       debugPrint('UsageLimitProvider load failed: $error');
       _generationCount = 0;
@@ -79,6 +91,27 @@ class UsageLimitProvider extends ChangeNotifier {
       _proUnlocked = false;
     }
     notifyListeners();
+  }
+
+  /// Resets shared Creation + Tattoo credits after [freeCreditsResetInterval].
+  /// Returns `true` when the count was reset.
+  Future<bool> _maybeResetSharedFreeCredits(SharedPreferences prefs) async {
+    final now = DateTime.now();
+    final lastResetMs = prefs.getInt(_creationHomeLastResetKey);
+
+    if (lastResetMs == null) {
+      await prefs.setInt(_creationHomeLastResetKey, now.millisecondsSinceEpoch);
+      return false;
+    }
+
+    final lastReset = DateTime.fromMillisecondsSinceEpoch(lastResetMs);
+    if (now.difference(lastReset) < freeCreditsResetInterval) {
+      return false;
+    }
+
+    _creationHomeGenerationCount = 0;
+    await prefs.setInt(_creationHomeLastResetKey, now.millisecondsSinceEpoch);
+    return true;
   }
 
   Future<void> recordGenerationSuccess() async {

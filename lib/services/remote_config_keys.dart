@@ -36,4 +36,24 @@ abstract final class RemoteConfigKeys {
 
   /// Pro / paywall: show or hide the trial toggle card.
   static const String proAccessShowTrialToggle = 'pro_access_show_trial_toggle';
+
+  /// Creation explore "See All" category screen ads.
+  /// Native has priority over banner when both are true.
+  static const String seeAllBannerAd = 'see_all_banner_ad';
+  static const String seeAllNativeAd = 'see_all_native_ad';
+
+  /// Creation home: native ad below tattoo style section.
+  static const String mainScreenNativeAd = 'main_screen_native_ad';
+
+  /// Tattoo onboarding step 1 (name): small native under Next CTA.
+  static const String tattooNameNativeAd = 'tattoo_name_native_ad';
+
+  /// History screen: small native under 3rd row (all categories).
+  static const String historyScreenNativeAd = 'history_screen_native_ad';
+
+  /// Creation home: gate dialog + rewarded ad for free generate.
+  static const String creationRewardedAd = 'creation_rewarded_ad';
+
+  /// Tattoo last step: gate dialog + rewarded ad for free generate.
+  static const String tattooRewardedAd = 'tattoo_rewarded_ad';
 }

@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tatoo_maker/services/native_small_ad_view.dart';
+import 'package:tatoo_maker/services/remote_config_service.dart';
 import 'package:tatoo_maker/utils/colors.dart';
 import '../providers/theme_provider.dart';
 import '../providers/usage_limit_provider.dart';
@@ -312,9 +313,14 @@ class _HomePageState extends State<HomePage> with RouteAware {
                               ),
                             ),
 
-                            SizedBox(height: 32.h),
-                            NativeSmallAdView(),
-                            SizedBox(height: 32.h),
+                            if (!isPro &&
+                                context
+                                    .watch<RemoteConfigService>()
+                                    .mainScreenShowNativeAd) ...[
+                              SizedBox(height: 16.h),
+                              const NativeSmallAdView(),
+                            ],
+                            SizedBox(height: 16.h),
                             // Explore Inspiration section (parent provides start padding in both LTR/RTL)
                             _wrapWithRtlIfNeeded(
                               context,
@@ -546,6 +552,21 @@ class _HomePageState extends State<HomePage> with RouteAware {
         return;
       }
       openLoadingScreen(freeCreationHomeFlow: false);
+      return;
+    }
+
+    final showRewardedGate =
+        context.read<RemoteConfigService>().creationShowRewardedAd;
+    if (!showRewardedGate) {
+      if (!canStartCreationHome) {
+        AppToast.show(
+          context,
+          message: l10n.creationFreeGateNoGenerationsLeft,
+          isSuccess: false,
+        );
+        return;
+      }
+      openLoadingScreen(freeCreationHomeFlow: true);
       return;
     }
 
