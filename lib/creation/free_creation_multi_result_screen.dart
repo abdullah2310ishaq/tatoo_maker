@@ -97,7 +97,7 @@ class _FreeCreationMultiResultScreenState
       if (showRewardedGate) {
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdIds.testRewardedId,
+          adUnitId: AdIds.liveRewardedId,
         );
         if (!mounted) return;
         if (!earned) {
@@ -196,7 +196,7 @@ class _FreeCreationMultiResultScreenState
       case FreeCreationGenerateGateChoice.watchAd:
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdIds.testRewardedId,
+          adUnitId: AdIds.liveRewardedId,
         );
         if (!mounted) return;
         if (!earned) {

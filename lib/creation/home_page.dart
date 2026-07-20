@@ -612,7 +612,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
         }
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdIds.testRewardedId,
+          adUnitId: AdIds.liveRewardedId,
         );
         if (!mounted) return;
         if (!earned) {

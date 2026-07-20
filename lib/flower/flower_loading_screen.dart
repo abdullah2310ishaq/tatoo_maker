@@ -101,7 +101,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     if (_shouldShowFlowerInterstitial()) {
       _didShowInterstitialForThisFlow = true;
       await _showInterstitialAdIfAvailable(
-        unitIdOverride: AdIds.testInterId,
+        unitIdOverride: AdIds.liveInterId,
       );
     }
     if (!mounted) return;
@@ -282,7 +282,7 @@ class _FlowerLoadingScreenState extends State<FlowerLoadingScreen>
     _isShowingInterstitial = true;
     try {
       await _showInterstitialAdIfAvailable(
-        unitIdOverride: AdIds.testInterId,
+        unitIdOverride: AdIds.liveInterId,
       );
     } finally {
       _isShowingInterstitial = false;

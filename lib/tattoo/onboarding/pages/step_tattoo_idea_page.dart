@@ -309,7 +309,7 @@ class _TattooIdeaBannerAdState extends State<_TattooIdeaBannerAd> {
     _requestedWidth = width;
 
     final banner = BannerAd(
-      adUnitId: AdIds.testBannerId.trim(),
+      adUnitId: AdIds.liveBannerId.trim(),
       request: AdRequestFactory.collapsibleBottom(),
       size: size,
       listener: BannerAdListener(

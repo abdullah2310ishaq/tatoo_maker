@@ -24,7 +24,7 @@ class _TopBannerAdState extends State<TopBannerAd> {
       if (!mounted) return;
       final isPro = context.read<UsageLimitProvider>().isProUnlocked;
       if (isPro) return;
-      final unitId = AdIds.testBannerId;
+      final unitId = AdIds.liveBannerId;
       _load(unitId: unitId);
     });
   }

@@ -30,7 +30,7 @@ void main() async {
   await RemoteConfigService.instance.initialize();
   await MobileAds.instance.initialize();
   // Preload ads once at startup so screens only "show" cached ads.
-  unawaited(AppOpenAdService.instance.preload(unitIdOverride: AdIds.testAppOpenId));
+  unawaited(AppOpenAdService.instance.preload(unitIdOverride: AdIds.liveAppOpenId));
   if (kDebugMode) {
     await MobileAds.instance.updateRequestConfiguration(
       RequestConfiguration(
@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     _appOpenAdService = AppOpenAdService.instance
       ..configure(
         minIntervalBetweenShows: Duration.zero,
-        defaultUnitId: AdIds.testAppOpenId,
+        defaultUnitId: AdIds.liveAppOpenId,
       );
     _usageLimitProvider = UsageLimitProvider();
     // Preload early so "resume from cache" can show ASAP.
@@ -167,7 +167,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       await _appOpenAdService.showIfAvailable(
         waitForLoad: false,
         waitForDismiss: false,
-        unitIdOverride: AdIds.testAppOpenId,
+        unitIdOverride: AdIds.liveAppOpenId,
       );
 
       // Reset so next resume requires a fresh background.

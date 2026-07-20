@@ -74,7 +74,7 @@ class _StepStyleSelectionPageState extends State<StepStyleSelectionPage> {
         // Ads intentionally disabled.
         // if (shouldShowBanner) ...[
         //   _StyleSelectionBannerAd(
-        //     unitId: AdIds.testBannerId,
+        //     unitId: AdIds.liveBannerId,
         //     onVisibilityChanged: (visible) {
         //       if (_bannerLoaded == visible) return;
         //       setState(() => _bannerLoaded = visible);
@@ -336,7 +336,7 @@ class _StyleSelectionNativeAdState extends State<_StyleSelectionNativeAd> {
   }
 
   void _loadAd() {
-    final unitId = AdIds.testNativeId;
+    final unitId = AdIds.liveNativeId;
     if (unitId.isEmpty) return;
 
     final ad = NativeAd(

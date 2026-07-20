@@ -57,7 +57,7 @@ class _VirtualTryOnScreenState extends State<VirtualTryOnScreen> {
 
     unawaited(
       AppOpenAdService.instance.showIfAvailable(
-        unitIdOverride: AdIds.testAppOpenId,
+        unitIdOverride: AdIds.liveAppOpenId,
         waitForLoad: false,
         waitForDismiss: false,
       ),
