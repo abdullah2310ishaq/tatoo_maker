@@ -122,7 +122,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     if (_isCloseInterstitialLoadStarted) return;
     _isCloseInterstitialLoadStarted = true;
 
-    final unitId = AdIds.liveInterId.trim();
+    final unitId = AdIds.testInterId.trim();
     if (unitId.isEmpty) return;
 
     InterstitialAd.load(
@@ -173,7 +173,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   }
 
   Future<void> _showInterstitialOnCloseIfAvailable() async {
-    final unitId = AdIds.liveInterId.trim();
+    final unitId = AdIds.testInterId.trim();
     if (unitId.isEmpty) return;
 
     final cachedAd = _closeInterstitialAd;

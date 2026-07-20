@@ -38,7 +38,7 @@ class _NativeSmallAdViewState extends State<NativeSmallAdView> {
   }
 
   Future<void> _loadAd() async {
-    final unitId = AdIds.liveNativeIdNew.trim();
+    final unitId = AdIds.testNativeIdNew.trim();
     if (unitId.isEmpty) return;
 
     final isDark = widget.isDark ??

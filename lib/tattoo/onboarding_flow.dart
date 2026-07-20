@@ -275,7 +275,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
         }
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdIds.liveRewardedId,
+          adUnitId: AdIds.testRewardedId,
         );
         if (!context.mounted) return;
         if (!earned) {
