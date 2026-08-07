@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       // Preload rewarded ad early so "Watch Ad" flows feel instant.
-      unawaited(RewardedAdService.instance.preload(AdIds.testRewardedId));
+      unawaited(RewardedAdService.instance.preload(AdIds.liveRewardedId));
       unawaited(_restorePurchasesInBackground());
       unawaited(_runSplashSequence());
     });

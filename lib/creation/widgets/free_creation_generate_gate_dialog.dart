@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../../services/rewarded_ad_service.dart';
 import '../../utils/colors.dart';
 
 /// User choice from the free-tier creation generate gate.
@@ -14,7 +17,10 @@ Future<FreeCreationGenerateGateChoice> showFreeCreationGenerateGateDialog({
   required BuildContext context,
   required int freeGenerationsRemaining,
   required int freeGenerationLimit,
+  required String rewardedAdUnitId,
 }) async {
+  unawaited(RewardedAdService.instance.preload(rewardedAdUnitId));
+
   final result = await showDialog<FreeCreationGenerateGateChoice>(
     context: context,
     barrierDismissible: true,

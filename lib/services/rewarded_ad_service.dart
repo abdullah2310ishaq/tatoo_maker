@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+enum RewardedAdLoadState { idle, loading, loaded, failed }
+
 /// Very small cache around a single rewarded ad instance.
 ///
 /// Purpose: reduce perceived latency when user taps "Watch Ad".
@@ -12,56 +14,100 @@ class RewardedAdService {
   static final RewardedAdService instance = RewardedAdService._();
 
   RewardedAd? _ad;
-  bool _isLoading = false;
+  RewardedAdLoadState _loadState = RewardedAdLoadState.idle;
   String _loadedUnitId = '';
+  String _loadingUnitId = '';
+  Completer<void>? _loadCompleter;
 
   bool get hasAd => _ad != null;
 
-  Future<void> preload(String adUnitId) async {
-    final unitId = adUnitId.trim();
-    if (unitId.isEmpty) return;
-    if (_isLoading) return;
-    if (_ad != null && _loadedUnitId == unitId) return;
+  bool get isLoading => _loadState == RewardedAdLoadState.loading;
 
-    _isLoading = true;
-    try {
-      if (kDebugMode) {
-        debugPrint('[RewardedAdService] preload start unitId=$unitId');
-      }
-      final completer = Completer<void>();
-      RewardedAd.load(
-        adUnitId: unitId,
-        request: const AdRequest(),
-        rewardedAdLoadCallback: RewardedAdLoadCallback(
-          onAdLoaded: (ad) {
-            _ad?.dispose();
-            _ad = ad;
-            _loadedUnitId = unitId;
-            if (kDebugMode) {
-              debugPrint('[RewardedAdService] preload success');
-            }
-            completer.complete();
-          },
-          onAdFailedToLoad: (error) {
-            _ad?.dispose();
-            _ad = null;
-            _loadedUnitId = '';
-            if (kDebugMode) {
-              debugPrint(
-                '[RewardedAdService] preload failed '
-                '(code=${error.code}, domain=${error.domain}): ${error.message}',
-              );
-            }
-            completer.complete();
-          },
-        ),
-      );
-      await completer.future.timeout(const Duration(seconds: 8));
-    } catch (_) {
-      // ignore
-    } finally {
-      _isLoading = false;
+  RewardedAdLoadState get loadState => _loadState;
+
+  /// Starts loading if not already ready or loading for this unit id.
+  Future<void> preload(String adUnitId) {
+    final unitId = adUnitId.trim();
+    if (unitId.isEmpty) return Future<void>.value();
+
+    if (_loadState == RewardedAdLoadState.loaded &&
+        _ad != null &&
+        _loadedUnitId == unitId) {
+      return Future<void>.value();
     }
+
+    if (_loadState == RewardedAdLoadState.loading && _loadingUnitId == unitId) {
+      return _loadCompleter?.future ?? Future<void>.value();
+    }
+
+    return _startLoad(unitId);
+  }
+
+  /// Waits for an in-progress preload started by [preload].
+  Future<bool> waitForLoad({
+    Duration timeout = const Duration(seconds: 12),
+  }) async {
+    if (hasAd) return true;
+
+    if (_loadState == RewardedAdLoadState.loading && _loadCompleter != null) {
+      try {
+        await _loadCompleter!.future.timeout(timeout);
+      } catch (_) {
+        return hasAd;
+      }
+    }
+
+    return hasAd;
+  }
+
+  Future<void> _startLoad(String unitId) {
+    _ad?.dispose();
+    _ad = null;
+    _loadedUnitId = '';
+    _loadState = RewardedAdLoadState.loading;
+    _loadingUnitId = unitId;
+    _loadCompleter = Completer<void>();
+
+    if (kDebugMode) {
+      debugPrint('[RewardedAdService] preload start unitId=$unitId');
+    }
+
+    RewardedAd.load(
+      adUnitId: unitId,
+      request: const AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (ad) {
+          _ad = ad;
+          _loadedUnitId = unitId;
+          _loadState = RewardedAdLoadState.loaded;
+          _loadingUnitId = '';
+          if (kDebugMode) {
+            debugPrint('[RewardedAdService] preload success');
+          }
+          if (_loadCompleter != null && !_loadCompleter!.isCompleted) {
+            _loadCompleter!.complete();
+          }
+        },
+        onAdFailedToLoad: (error) {
+          _ad?.dispose();
+          _ad = null;
+          _loadedUnitId = '';
+          _loadState = RewardedAdLoadState.failed;
+          _loadingUnitId = '';
+          if (kDebugMode) {
+            debugPrint(
+              '[RewardedAdService] preload failed '
+              '(code=${error.code}, domain=${error.domain}): ${error.message}',
+            );
+          }
+          if (_loadCompleter != null && !_loadCompleter!.isCompleted) {
+            _loadCompleter!.complete();
+          }
+        },
+      ),
+    );
+
+    return _loadCompleter!.future;
   }
 
   /// Shows a cached ad if available.
@@ -77,6 +123,7 @@ class RewardedAdService {
 
     _ad = null;
     _loadedUnitId = '';
+    _loadState = RewardedAdLoadState.idle;
 
     final earnedCompleter = Completer<bool>();
 
@@ -109,4 +156,3 @@ class RewardedAdService {
     return earnedCompleter.future;
   }
 }
-
