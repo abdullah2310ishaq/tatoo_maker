@@ -242,7 +242,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
       freeGenerationsRemaining:
           usageLimitProvider.freeCreationHomeGenerationsRemaining,
       freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
-      rewardedAdUnitId: AdIds.liveRewardedId,
+      rewardedAdUnitId: AdIds.testRewardedId,
     );
     if (!context.mounted) return;
 
@@ -276,7 +276,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
         }
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdIds.liveRewardedId,
+          adUnitId: AdIds.testRewardedId,
         );
         if (!context.mounted) return;
         if (!earned) {

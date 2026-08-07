@@ -78,7 +78,7 @@ class _FreeCreationMultiResultScreenState
         context: context,
         freeGenerationsRemaining: usage.freeCreationHomeGenerationsRemaining,
         freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
-        rewardedAdUnitId: AdIds.liveRewardedId,
+        rewardedAdUnitId: AdIds.testRewardedId,
       );
       if (!mounted) return;
 
@@ -98,7 +98,7 @@ class _FreeCreationMultiResultScreenState
       if (showRewardedGate) {
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdIds.liveRewardedId,
+          adUnitId: AdIds.testRewardedId,
         );
         if (!mounted) return;
         if (!earned) {
@@ -185,7 +185,7 @@ class _FreeCreationMultiResultScreenState
       context: context,
       freeGenerationsRemaining: usage.freeCreationHomeGenerationsRemaining,
       freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
-      rewardedAdUnitId: AdIds.liveRewardedId,
+      rewardedAdUnitId: AdIds.testRewardedId,
     );
     if (!mounted) return;
 
@@ -198,7 +198,7 @@ class _FreeCreationMultiResultScreenState
       case FreeCreationGenerateGateChoice.watchAd:
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdIds.liveRewardedId,
+          adUnitId: AdIds.testRewardedId,
         );
         if (!mounted) return;
         if (!earned) {

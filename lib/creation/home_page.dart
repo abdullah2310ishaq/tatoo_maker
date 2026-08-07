@@ -575,7 +575,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
       freeGenerationsRemaining:
           usageLimitProvider.freeCreationHomeGenerationsRemaining,
       freeGenerationLimit: UsageLimitProvider.creationHomeFreeLimit,
-      rewardedAdUnitId: AdIds.liveRewardedId,
+      rewardedAdUnitId: AdIds.testRewardedId,
     );
     if (!mounted) return;
 
@@ -613,7 +613,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
         }
         final earned = await showRewardedAdIfAvailable(
           context,
-          adUnitId: AdIds.liveRewardedId,
+          adUnitId: AdIds.testRewardedId,
         );
         if (!mounted) return;
         if (!earned) {
