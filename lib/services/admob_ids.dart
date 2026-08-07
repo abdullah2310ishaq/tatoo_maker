@@ -6,7 +6,7 @@ class AdIds {
   static String liveAppId="ca-app-pub-5408098781737794~8385866486";
   static String liveBannerId="ca-app-pub-5408098781737794/4430049847";
   // static String liveNativeSmallId="ca-app-pub-1210536470614301/8642101218";
-  static String liveNativeId="ca-app-pub-7182112310194934/5881841668";
+  static String liveNativeId="ca-app-pub-5408098781737794/3919748102";
   static String liveNativeIdNew="ca-app-pub-5408098781737794/9485808041";
    static String liveRewardedId="ca-app-pub-5408098781737794/2985744269";
   static String liveInterId="ca-app-pub-5408098781737794/5232829779";
