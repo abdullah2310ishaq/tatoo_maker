@@ -11,6 +11,7 @@ class AdIds {
    static String liveRewardedId="ca-app-pub-5408098781737794/2985744269";
   static String liveInterId="ca-app-pub-5408098781737794/5232829779";
   static String liveAppOpenId="ca-app-pub-5408098781737794/4589831949";
+  static String liveSplashAppOpenId="ca-app-pub-5408098781737794/6813747943";
 
   static String testAppId="ca-app-pub-3940256099942544~3347511713";
   static String testBannerId="ca-app-pub-3940256099942544/9214589741";
@@ -19,5 +20,6 @@ class AdIds {
   static String testRewardedId="ca-app-pub-3940256099942544/5224354917";
   static String testInterId="ca-app-pub-3940256099942544/1033173712";
   static String testAppOpenId="ca-app-pub-3940256099942544/9257395921";
+  static String testSplashAppOpenId="ca-app-pub-3940256099942544/9257395921";
 
 }

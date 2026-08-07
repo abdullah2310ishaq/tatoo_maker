@@ -231,7 +231,7 @@ class _SplashScreenState extends State<SplashScreen>
     required bool showAppOpen,
     required bool showInterstitial,
   }) async {
-    final appOpenUnitId = AdIds.testAppOpenId;
+    final appOpenUnitId = AdIds.testSplashAppOpenId;
     final interstitialUnitId = AdIds.testInterId;
     _log(
       'showSplashAds called: showAppOpen=$showAppOpen, showInterstitial=$showInterstitial',
