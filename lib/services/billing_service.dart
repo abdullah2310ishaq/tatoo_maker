@@ -4,8 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
-const String kProTrial3DaysProductId = 'tattooweekly';
+const String kProTrial3DaysProductId = 'tattooaiweekly';
 const String kProLifetimeProductId = 'lifetime';
+// const String kProTrial3DaysProductId = 'tattooweekly';
 // const String extra = "tattooweekly";
 
 enum BillingPlan { freeTrial, lifetime }

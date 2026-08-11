@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'l10n/app_localizations.dart';
@@ -11,11 +10,10 @@ import 'providers/usage_limit_provider.dart';
 import 'services/admob_ids.dart';
 import 'services/app_open_ad_service.dart';
 import 'services/billing_service.dart';
-import 'services/remote_config_service.dart';
 import 'utils/colors.dart';
 import 'widgets/interstitial_ad_loading_dialog.dart';
 
-class Pro3DayAccessScreen extends StatefulWidget {
+class ProAccessScreen extends StatefulWidget {
   final Widget nextScreen;
   final bool showInterstitialOnClose;
   final bool goToNextScreenOnClose;
@@ -23,7 +21,7 @@ class Pro3DayAccessScreen extends StatefulWidget {
   final bool lockTrialToggle;
   final bool alwaysShowTrialToggle;
 
-  const Pro3DayAccessScreen({
+  const ProAccessScreen({
     super.key,
     required this.nextScreen,
     this.showInterstitialOnClose = false,
@@ -34,10 +32,10 @@ class Pro3DayAccessScreen extends StatefulWidget {
   });
 
   @override
-  State<Pro3DayAccessScreen> createState() => _ProAccessScreenState();
+  State<ProAccessScreen> createState() => _ProAccessScreenState();
 }
 
-class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
+class _ProAccessScreenState extends State<ProAccessScreen> {
   late final PageController _pageController;
   late final Timer _sliderTimer;
   late final BillingService _billingService;
@@ -53,8 +51,6 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
   bool _isPurchasing = false;
   bool _isBillingReady = false;
   bool _isClosing = false;
-  PlanVariant _selectedPlan = PlanVariant.lifetime;
-  bool get _isTrialEnabled => _selectedPlan == PlanVariant.freeTrial;
 
   void _log(String message) {
     debugPrint('[ProAccessScreen] $message');
@@ -76,9 +72,6 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
 
     _pageController = PageController();
     _billingService = BillingService();
-    if (widget.forceTrialEnabled) {
-      _selectedPlan = PlanVariant.freeTrial;
-    }
 
     _sliderTimer = Timer.periodic(const Duration(seconds: 2), (_) {
       if (!mounted) return;
@@ -289,13 +282,9 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
     );
 
     final trialProduct = _billingService.productForPlan(BillingPlan.freeTrial);
-    final lifetimeProduct = _billingService.productForPlan(
-      BillingPlan.lifetime,
-    );
     _log(
       'Billing products => '
-      'trial=${trialProduct?.id}:${_billingService.displayPriceForPlan(BillingPlan.freeTrial)}, '
-      'lifetime=${lifetimeProduct?.id}:${_billingService.displayPriceForPlan(BillingPlan.lifetime)}',
+          'trial=${trialProduct?.id}:${_billingService.displayPriceForPlan(BillingPlan.freeTrial)}',
     );
 
     setState(() {
@@ -305,82 +294,15 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
     _log('Billing ready=$_isBillingReady');
   }
 
-  String _freeTrialDisplayPrice(AppLocalizations l10n) {
-    final maxPrice = _billingService.weeklyPaidMaxPrice();
-    if (maxPrice == null || maxPrice.isEmpty) {
-      return l10n.proAccessPlanWeeklyPrice;
-    }
-    return l10n.proAccessWeeklyPriceWithPeriod(maxPrice);
+  String _weeklySubscriptionPrice() {
+    return _billingService.weeklyPaidMaxPrice() ??
+        _billingService.displayPriceForPlan(BillingPlan.freeTrial) ??
+        '--';
   }
 
-  String _lifetimeDisplayPrice() {
-    return _billingService.displayPriceForPlan(BillingPlan.lifetime) ?? '--';
-  }
-
-  String _lifetimePerWeekDisplayPrice() {
-    final lifetimeProduct = _billingService.productForPlan(
-      BillingPlan.lifetime,
-    );
-    if (lifetimeProduct == null) return ' ';
-
-    final perWeekRawPrice = lifetimeProduct.rawPrice / 52;
-    final truncated = perWeekRawPrice.floorToDouble();
-    try {
-      return NumberFormat.simpleCurrency(
-        name: lifetimeProduct.currencyCode,
-        decimalDigits: 0,
-      ).format(truncated);
-    } catch (_) {
-      try {
-        return NumberFormat.currency(
-          name: lifetimeProduct.currencyCode,
-          decimalDigits: 0,
-        ).format(truncated);
-      } catch (_) {
-        return '--';
-      }
-    }
-  }
-
-  String _bottomFooterText(AppLocalizations l10n) {
-    if (_selectedPlan == PlanVariant.lifetime) {
-      final lifetimePrice = _lifetimeDisplayPrice();
-      if (lifetimePrice == '--') {
-        return l10n.proAccessLifetimeLegalNoPrice;
-      }
-      return l10n.proAccessLifetimeLegalWithPrice(lifetimePrice);
-    }
-    return l10n.proAccessLegalNote(_freeTrialDisplayPrice(l10n));
-  }
-
-  String _preCtaText(AppLocalizations l10n) {
-    if (_selectedPlan == PlanVariant.freeTrial) {
-      return l10n.proAccessAutoRenewableCancelAnytime;
-    }
-    return l10n.proAccessCancelAnytime;
-  }
-
-  void _selectPlan(PlanVariant plan) {
-    if (_selectedPlan == plan) return;
-    _log('Plan selected: $plan');
-    setState(() {
-      _selectedPlan = plan;
-    });
-  }
-
-  void _onTrialToggleChanged(bool isEnabled) {
-    final nextPlan = isEnabled ? PlanVariant.freeTrial : PlanVariant.lifetime;
-    _log('Enable trial toggled: $isEnabled');
-    _selectPlan(nextPlan);
-  }
-
-  BillingPlan _toBillingPlan(PlanVariant variant) {
-    switch (variant) {
-      case PlanVariant.freeTrial:
-        return BillingPlan.freeTrial;
-      case PlanVariant.lifetime:
-        return BillingPlan.lifetime;
-    }
+  String _bottomFooterText() {
+    final price = _weeklySubscriptionPrice();
+    return 'After 3 days free - then weekly subscription for $price will start. Cancel anytime 24 hours before renewal';
   }
 
   void _onBillingEvent(BillingPurchaseEvent event) {
@@ -410,7 +332,7 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
 
   Future<void> _onContinuePressed() async {
     if (_isPurchasing) return;
-    _log('Continue tapped. selectedPlan=$_selectedPlan');
+    _log('Continue tapped for free trial plan.');
 
     if (!_isBillingReady) {
       _log('Billing not ready. Keeping user on paywall.');
@@ -422,7 +344,7 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
     });
 
     final bool started = await _billingService.purchasePlan(
-      _toBillingPlan(_selectedPlan),
+      BillingPlan.freeTrial,
     );
     if (!mounted) return;
 
@@ -458,12 +380,10 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
               final imageHeight = constraints.maxHeight * 0.55;
               const titleFontSize = 40.0;
               const subtitleFontSize = 20.0;
-              final planVerticalPadding = 12.h;
-              final trialToggleVerticalPadding = 5.h;
               final horizontalPadding = 20.w;
               final gapSm = 6.h;
               final gapMd = 8.h;
-              final gapPlansToCta = 10.h;
+              final gapFeaturesToCta = 16.h;
 
               Widget buildTitleRow() {
                 return FittedBox(
@@ -536,7 +456,7 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          l10n.proAccessSubtitle,
+                          'Unleash your creativity with PRO',
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -549,65 +469,21 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
                         ),
                       ),
                       SizedBox(height: gapMd),
-                      _FeatureRow(
-                        text: l10n.proAccessFeatureUnlimitedTattooCreation,
+                      const _FeatureRow(
+                        text: 'Unlimited tattoo creation',
                       ),
-                      _FeatureRow(
-                        text: l10n.proAccessFeatureFastProcessing,
+                      const _FeatureRow(
+                        text: 'Fast processing',
                       ),
-                      _FeatureRow(
-                        text: l10n.proAccessFeatureUnlockAllStyles,
+                      const _FeatureRow(
+                        text: 'Unlock all styles',
                       ),
-                      _FeatureRow(
-                        text: l10n.proAccessFeatureRemoveWatermarks,
+                      const _FeatureRow(
+                        text: 'Remove watermarks',
                       ),
-                      SizedBox(height: gapMd),
-                      if (widget.alwaysShowTrialToggle ||
-                          context
-                              .watch<RemoteConfigService>()
-                              .proAccessShowTrialToggle) ...[
-                        _TrialToggleCard(
-                          isEnabled: _isTrialEnabled,
-                          onChanged: widget.lockTrialToggle
-                              ? null
-                              : _onTrialToggleChanged,
-                          verticalPadding: trialToggleVerticalPadding,
-                        ),
-                        SizedBox(height: gapMd),
-                      ],
-                      _PlanCard(
-                        variant: PlanVariant.freeTrial,
-                        leftText: '3-Day Full Access',
-                        leftSubText:
-                            'then ${_billingService.weeklyPaidMaxPrice() ?? '--'}/week',
-                        leftSubTextColor: AppColors.textGrey.withOpacity(0.85),
-                        rightText: _billingService.weeklyPaidMinPrice() ?? '--',
-                        rightSubText: '',
-                        showBadge: true,
-                        badgeText: l10n.proAccessLifetimeDiscountBadge,
-                        verticalPadding: planVerticalPadding,
-                        isSelected: _selectedPlan == PlanVariant.freeTrial,
-                        onTap: () {
-                          _selectPlan(PlanVariant.freeTrial);
-                        },
-                      ),
-                      SizedBox(height: gapSm),
-                      _PlanCard(
-                        variant: PlanVariant.lifetime,
-                        leftText: 'Yearly',
-                        leftSubText: 'just ${_lifetimeDisplayPrice()} per year',
-                        leftSubTextColor: AppColors.textGrey.withOpacity(0.85),
-                        rightText: _lifetimePerWeekDisplayPrice(),
-                        rightSubText: 'per week',
-                        verticalPadding: planVerticalPadding,
-                        isSelected: _selectedPlan == PlanVariant.lifetime,
-                        onTap: () {
-                          _selectPlan(PlanVariant.lifetime);
-                        },
-                      ),
-                      SizedBox(height: gapPlansToCta),
+                      SizedBox(height: gapFeaturesToCta),
                       Text(
-                        _preCtaText(l10n),
+                        l10n.proAccessAutoRenewableCancelAnytime,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -632,53 +508,47 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
                           ),
                           child: _isPurchasing
                               ? SizedBox(
-                                  width: 22.sp,
-                                  height: 22.sp,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2.2,
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      AppColors.textWhite,
-                                    ),
-                                  ),
-                                )
+                            width: 22.sp,
+                            height: 22.sp,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2.2,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                AppColors.textWhite,
+                              ),
+                            ),
+                          )
                               : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        (_selectedPlan == PlanVariant.freeTrial
-                                                ? l10n.proAccessContinueForFree
-                                                : l10n.continue_)
-                                            .toUpperCase(),
-                                        maxLines: 1,
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: _selectedPlan ==
-                                                  PlanVariant.freeTrial
-                                              ? 16.sp
-                                              : 18.sp,
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColors.textWhite,
-                                          fontFamily: 'Inter',
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Icon(
-                                      Icons.arrow_forward,
-                                      color: AppColors.textWhite,
-                                      size: 22.sp,
-                                    ),
-                                  ],
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  'CONTINUE FOR FREE',
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.textWhite,
+                                    fontFamily: 'Inter',
+                                  ),
                                 ),
+                              ),
+                              SizedBox(width: 8.w),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: AppColors.textWhite,
+                                size: 22.sp,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        _bottomFooterText(l10n),
+                        _bottomFooterText(),
                         textAlign: TextAlign.center,
-                        maxLines: 2,
+                        maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 11.sp,
@@ -803,256 +673,6 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
                 ],
               );
             },
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-enum PlanVariant { freeTrial, lifetime }
-
-class _TrialToggleCard extends StatelessWidget {
-  final bool isEnabled;
-  final ValueChanged<bool>? onChanged;
-  final double verticalPadding;
-
-  const _TrialToggleCard({
-    required this.isEnabled,
-    required this.onChanged,
-    this.verticalPadding = 7,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: 15.w,
-        vertical: verticalPadding,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.proAccessOptionBackground,
-        borderRadius: BorderRadius.circular(4.r),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              isEnabled
-                  ? l10n.proAccessTrialEnabled
-                  : l10n.proAccessEnableTrial,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textWhite,
-                fontFamily: 'Inter',
-              ),
-            ),
-          ),
-          Switch(
-            value: isEnabled,
-            onChanged: onChanged,
-            activeThumbColor: AppColors.textWhite,
-            activeTrackColor: AppColors.darkPrimary,
-            inactiveThumbColor: AppColors.textWhite,
-            inactiveTrackColor: AppColors.darkBackground.withOpacity(0.45),
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _PlanCard extends StatelessWidget {
-  final PlanVariant variant;
-  final String leftText;
-  final String? leftSubText;
-  final Color? leftSubTextColor;
-  final String? rightText;
-  final String? rightSubText;
-  final bool showBadge;
-  final String? badgeText;
-  final bool isSelected;
-  final VoidCallback? onTap;
-  final double? verticalPadding;
-
-  const _PlanCard({
-    required this.variant,
-    required this.leftText,
-    this.leftSubText,
-    this.leftSubTextColor,
-    this.rightText,
-    this.rightSubText,
-    this.showBadge = false,
-    this.badgeText,
-    this.isSelected = false,
-    this.onTap,
-    this.verticalPadding,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final horizontalPadding = isSelected ? 16.w : 15.w;
-    final resolvedVerticalPadding =
-        (verticalPadding ?? 13.h) + (isSelected ? 2.h : 0);
-    final leftTextSize = isSelected ? 14.sp : 13.sp;
-    final rightTextSize = isSelected ? 13.sp : 12.sp;
-    final borderColor = isSelected
-        ? AppColors.darkPrimary
-        : AppColors.navBarBackground.withOpacity(0);
-    final borderWidth = isSelected ? 1.0.w : 0.0;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 170),
-        curve: Curves.easeOut,
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(
-          horizontal: horizontalPadding,
-          vertical: resolvedVerticalPadding,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.darkBackground.withOpacity(0.01)
-              : AppColors.proAccessOptionBackground,
-          borderRadius: BorderRadius.circular(isSelected ? 4.r : 4.r),
-          border: Border.all(color: borderColor, width: borderWidth),
-        ),
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        leftText,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: leftTextSize,
-                          fontWeight: FontWeight.bold,
-                          color: isSelected
-                              ? AppColors.darkPrimary
-                              : AppColors.textWhite,
-                          fontFamily: 'Inter',
-                        ),
-                      ),
-                      if (leftSubText != null) ...[
-                        SizedBox(height: 2.h),
-                        Text(
-                          leftSubText!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.w400,
-                            color: leftSubTextColor ??
-                                AppColors.textGrey.withOpacity(0.85),
-                            fontFamily: 'Inter',
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-                if (rightText != null)
-                  ConstrainedBox(
-                    constraints: BoxConstraints(minWidth: 86.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 4.h),
-                          child: Text(
-                            rightText!,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                              fontSize: rightTextSize,
-                              fontWeight: FontWeight.w600,
-                              color: isSelected
-                                  ? AppColors.textWhite
-                                  : AppColors.textGrey.withOpacity(0.95),
-                              fontFamily: 'Inter',
-                            ),
-                          ),
-                        ),
-                        if (rightSubText != null) ...[
-                          SizedBox(height: 2.h),
-                          Text(
-                            rightSubText!,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.textGrey.withOpacity(0.85),
-                              fontFamily: 'Inter',
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-            if (showBadge)
-              Positioned(
-                top: -19.h,
-                right: -3.w,
-                child: IgnorePointer(child: _DiscountBadge(text: badgeText)),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DiscountBadge extends StatelessWidget {
-  const _DiscountBadge({required this.text});
-
-  final String? text;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final label = (text == null || text!.trim().isEmpty)
-        ? l10n.proAccessLifetimeDiscountBadge
-        : text!.trim();
-
-    return SizedBox(
-      width: 32.w,
-      height: 16.h,
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: AppColors.proBadgeBackground,
-          borderRadius: BorderRadius.circular(6.r),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textWhite,
-            fontFamily: 'Inter',
           ),
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
+import '../pro_access_screen_free_trial.dart';
 import '../utils/colors.dart';
 import '../home_shell.dart';
 import '../providers/usage_limit_provider.dart';

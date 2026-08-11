@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../home_shell.dart';
 import '../l10n/app_localizations.dart';
+import '../pro_access_screen_free_trial.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/admob_ids.dart';
 import '../services/remote_config_service.dart';

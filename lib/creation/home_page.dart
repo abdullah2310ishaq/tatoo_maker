@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:tatoo_maker/services/native_small_ad_view.dart';
 import 'package:tatoo_maker/services/remote_config_service.dart';
 import 'package:tatoo_maker/utils/colors.dart';
+import '../pro_access_screen_free_trial.dart';
 import '../providers/theme_provider.dart';
 import '../providers/usage_limit_provider.dart';
 import 'loading_screen.dart';

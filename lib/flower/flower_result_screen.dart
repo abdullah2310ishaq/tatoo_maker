@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../l10n/app_localizations.dart';
+import '../pro_access_screen_free_trial.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/usage_limit_provider.dart';
 import '../utils/colors.dart';

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tatoo_maker/pro_access_screen_free_trial.dart';
 
 import 'utils/colors.dart';
 import 'pro_access_screen.dart';

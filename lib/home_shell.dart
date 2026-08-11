@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
+import 'package:tatoo_maker/pro_access_screen_free_trial.dart';
 import 'utils/colors.dart';
 import 'utils/toast.dart';
 import 'creation/home_page.dart';

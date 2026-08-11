@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../creation/widgets/free_creation_generate_gate_dialog.dart';
 import '../l10n/app_localizations.dart';
+import '../pro_access_screen_free_trial.dart';
 import '../services/admob_ids.dart';
 import '../services/remote_config_service.dart';
 import '../services/rewarded_ad_flow.dart';

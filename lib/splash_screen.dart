@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tatoo_maker/pro_access_screen_free_trial.dart';
 import 'package:tatoo_maker/providers/usage_limit_provider.dart';
 import 'package:tatoo_maker/services/admob_ids.dart';
 import 'package:tatoo_maker/services/app_open_ad_service.dart';
