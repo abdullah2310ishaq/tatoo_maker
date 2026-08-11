@@ -58,6 +58,7 @@ class RemoteConfigService extends ChangeNotifier {
 
     // Paywall UI controls.
     RemoteConfigKeys.proAccessShowTrialToggle: true,
+    RemoteConfigKeys.proFreeTrialScreen: false,
 
     // Creation See All + home native (default ON; control via Firebase).
     RemoteConfigKeys.seeAllBannerAd: true,
@@ -132,6 +133,7 @@ class RemoteConfigService extends ChangeNotifier {
       'firstLanguageOnboardingEnabled=$firstLanguageOnboardingEnabled, '
       'firstLanguageShowNativeAd=$firstLanguageShowNativeAd, '
       'proAccessShowTrialToggle=$proAccessShowTrialToggle, '
+      'proFreeTrialScreen=$proFreeTrialScreen, '
       'seeAllShowBannerAd=$seeAllShowBannerAd, '
       'seeAllShowNativeAd=$seeAllShowNativeAd, '
       'mainScreenShowNativeAd=$mainScreenShowNativeAd, '
@@ -150,6 +152,7 @@ class RemoteConfigService extends ChangeNotifier {
     _logKeyDetail(RemoteConfigKeys.firstLanguageOnboardingEnabled);
     _logKeyDetail(RemoteConfigKeys.firstLanguageShowNativeAd);
     _logKeyDetail(RemoteConfigKeys.proAccessShowTrialToggle);
+    _logKeyDetail(RemoteConfigKeys.proFreeTrialScreen);
     _logKeyDetail(RemoteConfigKeys.tattooIdeaAdsAll);
     _logKeyDetail(RemoteConfigKeys.tattooIdeaBanner);
     _logKeyDetail(RemoteConfigKeys.tattooIdeaNative);
@@ -261,6 +264,10 @@ class RemoteConfigService extends ChangeNotifier {
 
   bool get proAccessShowTrialToggle =>
       _rc.getBool(RemoteConfigKeys.proAccessShowTrialToggle);
+
+  /// When `true`, show [ProFreeTrialAccessScreen]; otherwise [Pro3DayAccessScreen].
+  bool get proFreeTrialScreen =>
+      _rc.getBool(RemoteConfigKeys.proFreeTrialScreen);
 
   /// See All: native has priority — when both flags are true, only native shows.
   bool get seeAllShowNativeAd => _rc.getBool(RemoteConfigKeys.seeAllNativeAd);

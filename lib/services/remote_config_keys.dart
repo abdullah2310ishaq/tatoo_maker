@@ -37,6 +37,9 @@ abstract final class RemoteConfigKeys {
   /// Pro / paywall: show or hide the trial toggle card.
   static const String proAccessShowTrialToggle = 'pro_access_show_trial_toggle';
 
+  /// When `true`, show simplified free-trial paywall; when `false`, show full paywall.
+  static const String proFreeTrialScreen = 'proFreeTrialScreen';
+
   /// Creation explore "See All" category screen ads.
   /// Native has priority over banner when both are true.
   static const String seeAllBannerAd = 'see_all_banner_ad';

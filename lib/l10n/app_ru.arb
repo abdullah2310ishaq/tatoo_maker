@@ -1190,5 +1190,12 @@
   "proAccessPlanLifetimeSubscription": "Подписка",
   "proAccessContinueForFree": "Продолжить",
   "proAccessLifetimeLegalNoPrice": "Пропустите ежегодную плату - навсегда ваша",
-  "proAccessLifetimeLegalWithPrice": "Начнется пожизненная подписка за {price}"
+  "proAccessLifetimeLegalWithPrice": "Начнется пожизненная подписка за {price}",
+  "proFreeTrialSubtitle": "Раскройте творчество с PRO",
+  "proFreeTrialFeatureUnlimitedTattooCreation": "Безлимитное создание тату",
+  "proFreeTrialFeatureFastProcessing": "Быстрая обработка",
+  "proFreeTrialFeatureUnlockAllStyles": "Разблокируйте все стили",
+  "proFreeTrialFeatureRemoveWatermarks": "Удаление водяных знаков",
+  "proFreeTrialContinueForFree": "Продолжить бесплатно",
+  "proFreeTrialLegalNote": "После 3 бесплатных дней начнётся недельная подписка за {price}. Отмена в любой момент не позднее чем за 24 часа до продления"
 }

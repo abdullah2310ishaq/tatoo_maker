@@ -13,7 +13,7 @@ import 'services/billing_service.dart';
 import 'utils/colors.dart';
 import 'widgets/interstitial_ad_loading_dialog.dart';
 
-class ProAccessScreen extends StatefulWidget {
+class ProFreeTrialAccessScreen extends StatefulWidget {
   final Widget nextScreen;
   final bool showInterstitialOnClose;
   final bool goToNextScreenOnClose;
@@ -21,7 +21,7 @@ class ProAccessScreen extends StatefulWidget {
   final bool lockTrialToggle;
   final bool alwaysShowTrialToggle;
 
-  const ProAccessScreen({
+  const ProFreeTrialAccessScreen({
     super.key,
     required this.nextScreen,
     this.showInterstitialOnClose = false,
@@ -32,10 +32,11 @@ class ProAccessScreen extends StatefulWidget {
   });
 
   @override
-  State<ProAccessScreen> createState() => _ProAccessScreenState();
+  State<ProFreeTrialAccessScreen> createState() =>
+      _ProFreeTrialAccessScreenState();
 }
 
-class _ProAccessScreenState extends State<ProAccessScreen> {
+class _ProFreeTrialAccessScreenState extends State<ProFreeTrialAccessScreen> {
   late final PageController _pageController;
   late final Timer _sliderTimer;
   late final BillingService _billingService;
@@ -53,7 +54,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
   bool _isClosing = false;
 
   void _log(String message) {
-    debugPrint('[ProAccessScreen] $message');
+    debugPrint('[ProFreeTrialAccessScreen] $message');
   }
 
   final List<String> _images = const [
@@ -272,8 +273,8 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
     try {
       await _billingService.initialize();
     } catch (error, stackTrace) {
-      debugPrint('[ProAccessScreen] Billing initialize failed: $error');
-      debugPrint('[ProAccessScreen] Billing init stack trace: $stackTrace');
+      debugPrint('[ProFreeTrialAccessScreen] Billing initialize failed: $error');
+      debugPrint('[ProFreeTrialAccessScreen] Billing init stack trace: $stackTrace');
     }
     if (!mounted) return;
 
@@ -300,9 +301,8 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
         '--';
   }
 
-  String _bottomFooterText() {
-    final price = _weeklySubscriptionPrice();
-    return 'After 3 days free - then weekly subscription for $price will start. Cancel anytime 24 hours before renewal';
+  String _bottomFooterText(AppLocalizations l10n) {
+    return l10n.proFreeTrialLegalNote(_weeklySubscriptionPrice());
   }
 
   void _onBillingEvent(BillingPurchaseEvent event) {
@@ -377,9 +377,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
               final blockLiftFromBottom = 18.h;
               final maxPaywallScrollHeight =
                   constraints.maxHeight - bottomSafeInset - blockLiftFromBottom;
-              final imageHeight = constraints.maxHeight * 0.55;
-              const titleFontSize = 40.0;
-              const subtitleFontSize = 20.0;
+              final imageHeight = constraints.maxHeight * 0.50;
+              const titleFontSize = 45.0;
+              const subtitleFontSize = 25.0;
               final horizontalPadding = 20.w;
               final gapSm = 6.h;
               final gapMd = 8.h;
@@ -439,14 +439,9 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                 );
               }
 
-              Widget buildConnectedPaywallBlock() {
-                return Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    horizontalPadding,
-                    0,
-                    horizontalPadding,
-                    8.h,
-                  ),
+              Widget buildHeaderSection() {
+                return Transform.translate(
+                  offset: Offset(0, -22.h),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -456,7 +451,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          'Unleash your creativity with PRO',
+                          l10n.proFreeTrialSubtitle,
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -469,18 +464,35 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                         ),
                       ),
                       SizedBox(height: gapMd),
-                      const _FeatureRow(
-                        text: 'Unlimited tattoo creation',
+                      _FeatureRow(
+                        text: l10n.proFreeTrialFeatureUnlimitedTattooCreation,
                       ),
-                      const _FeatureRow(
-                        text: 'Fast processing',
+                      _FeatureRow(
+                        text: l10n.proFreeTrialFeatureFastProcessing,
                       ),
-                      const _FeatureRow(
-                        text: 'Unlock all styles',
+                      _FeatureRow(
+                        text: l10n.proFreeTrialFeatureUnlockAllStyles,
                       ),
-                      const _FeatureRow(
-                        text: 'Remove watermarks',
+                      _FeatureRow(
+                        text: l10n.proFreeTrialFeatureRemoveWatermarks,
                       ),
+                    ],
+                  ),
+                );
+              }
+
+              Widget buildConnectedPaywallBlock() {
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    horizontalPadding,
+                    0,
+                    horizontalPadding,
+                    8.h,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      buildHeaderSection(),
                       SizedBox(height: gapFeaturesToCta),
                       Text(
                         l10n.proAccessAutoRenewableCancelAnytime,
@@ -488,7 +500,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 10.sp,
+                          fontSize: 13.sp,
                           fontWeight: FontWeight.w400,
                           color: AppColors.textGrey.withOpacity(0.85),
                           fontFamily: 'Inter',
@@ -522,7 +534,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                             children: [
                               Flexible(
                                 child: Text(
-                                  'CONTINUE FOR FREE',
+                                  l10n.proFreeTrialContinueForFree.toUpperCase(),
                                   maxLines: 1,
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.ellipsis,
@@ -546,7 +558,7 @@ class _ProAccessScreenState extends State<ProAccessScreen> {
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        _bottomFooterText(),
+                        _bottomFooterText(l10n),
                         textAlign: TextAlign.center,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
@@ -711,14 +723,14 @@ class _FeatureRow extends StatelessWidget {
                     color: AppColors.textWhite,
                   ),
                 ),
-                SizedBox(width: 10.w),
+                SizedBox(width: 5.w),
                 Expanded(
                   child: Text(
                     text,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 12.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textWhite,
                       fontFamily: 'Antonio',

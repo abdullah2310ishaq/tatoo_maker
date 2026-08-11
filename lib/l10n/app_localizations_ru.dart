@@ -1652,4 +1652,28 @@ class AppLocalizationsRu extends AppLocalizations {
   String proAccessLifetimeLegalWithPrice(Object price) {
     return 'Начнется пожизненная подписка за $price';
   }
+
+  @override
+  String get proFreeTrialSubtitle => 'Раскройте творчество с PRO';
+
+  @override
+  String get proFreeTrialFeatureUnlimitedTattooCreation =>
+      'Безлимитное создание тату';
+
+  @override
+  String get proFreeTrialFeatureFastProcessing => 'Быстрая обработка';
+
+  @override
+  String get proFreeTrialFeatureUnlockAllStyles => 'Разблокируйте все стили';
+
+  @override
+  String get proFreeTrialFeatureRemoveWatermarks => 'Удаление водяных знаков';
+
+  @override
+  String get proFreeTrialContinueForFree => 'Продолжить бесплатно';
+
+  @override
+  String proFreeTrialLegalNote(Object price) {
+    return 'После 3 бесплатных дней начнётся недельная подписка за $price. Отмена в любой момент не позднее чем за 24 часа до продления';
+  }
 }

@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
-import 'package:tatoo_maker/pro_access_screen_free_trial.dart';
+import 'package:tatoo_maker/pro_access_screen_route.dart';
 import 'utils/colors.dart';
 import 'utils/toast.dart';
 import 'creation/home_page.dart';
@@ -17,7 +17,6 @@ import 'widgets/app_drawer.dart';
 import 'widgets/exit_confirmation_dialog.dart';
 import 'providers/theme_provider.dart';
 import 'services/history_service.dart';
-import 'pro_access_screen.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
@@ -246,7 +245,7 @@ class _HomeShellState extends State<HomeShell> {
           onProTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+                builder: (_) => ProAccessScreen(nextScreen: HomeShell()),
               ),
             );
           },
@@ -307,7 +306,7 @@ class _HomeShellState extends State<HomeShell> {
           onProTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => const ProAccessScreen(nextScreen: HomeShell()),
+                builder: (_) => ProAccessScreen(nextScreen: HomeShell()),
               ),
             );
           },

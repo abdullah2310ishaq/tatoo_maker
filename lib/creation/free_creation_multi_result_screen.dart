@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../home_shell.dart';
 import '../l10n/app_localizations.dart';
-import '../pro_access_screen_free_trial.dart';
+import '../pro_access_screen_route.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/admob_ids.dart';
 import '../services/remote_config_service.dart';
@@ -15,7 +15,6 @@ import '../services/rewarded_ad_flow.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
-import '../pro_access_screen.dart';
 import 'loading_screen.dart';
 import 'result_screen.dart';
 import 'widgets/free_creation_generate_gate_dialog.dart';

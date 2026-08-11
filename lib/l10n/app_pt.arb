@@ -1190,5 +1190,12 @@
   "proAccessPlanLifetimeSubscription": "Vitalícia",
   "proAccessContinueForFree": "Continuar",
   "proAccessLifetimeLegalNoPrice": "Pule a taxa anual - para sempre seu",
-  "proAccessLifetimeLegalWithPrice": "A assinatura vitalícia por {price} será iniciada"
+  "proAccessLifetimeLegalWithPrice": "A assinatura vitalícia por {price} será iniciada",
+  "proFreeTrialSubtitle": "Liberte sua criatividade com PRO",
+  "proFreeTrialFeatureUnlimitedTattooCreation": "Criação ilimitada de tatuagens",
+  "proFreeTrialFeatureFastProcessing": "Processamento rápido",
+  "proFreeTrialFeatureUnlockAllStyles": "Desbloqueie todos os estilos",
+  "proFreeTrialFeatureRemoveWatermarks": "Remova marcas d'água",
+  "proFreeTrialContinueForFree": "Continuar grátis",
+  "proFreeTrialLegalNote": "Após 3 dias grátis, começará uma assinatura semanal de {price}. Cancele quando quiser até 24 horas antes da renovação"
 }

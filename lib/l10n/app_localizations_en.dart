@@ -1642,4 +1642,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String proAccessLifetimeLegalWithPrice(Object price) {
     return 'Yearly subscription for $price will start';
   }
+
+  @override
+  String get proFreeTrialSubtitle => 'Unleash your creativity with PRO';
+
+  @override
+  String get proFreeTrialFeatureUnlimitedTattooCreation =>
+      'Unlimited tattoo creation';
+
+  @override
+  String get proFreeTrialFeatureFastProcessing => 'Fast processing';
+
+  @override
+  String get proFreeTrialFeatureUnlockAllStyles => 'Unlock all styles';
+
+  @override
+  String get proFreeTrialFeatureRemoveWatermarks => 'Remove watermarks';
+
+  @override
+  String get proFreeTrialContinueForFree => 'Continue For Free';
+
+  @override
+  String proFreeTrialLegalNote(Object price) {
+    return 'After 3 days free - then weekly subscription for $price will start. Cancel anytime 24 hours before renewal';
+  }
 }

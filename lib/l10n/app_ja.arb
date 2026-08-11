@@ -1196,6 +1196,13 @@
   "proAccessPlanLifetimeSubscription": "リプション",
   "proAccessContinueForFree": "続行",
   "proAccessLifetimeLegalNoPrice": "年額料金をスキップ - 生涯利用",
-  "proAccessLifetimeLegalWithPrice": "{price} の生涯サブスクリプションが開始されます"
+  "proAccessLifetimeLegalWithPrice": "{price} の生涯サブスクリプションが開始されます",
+  "proFreeTrialSubtitle": "PROで創造力を解き放とう",
+  "proFreeTrialFeatureUnlimitedTattooCreation": "タトゥー作成無制限",
+  "proFreeTrialFeatureFastProcessing": "高速処理",
+  "proFreeTrialFeatureUnlockAllStyles": "全スタイルを解放",
+  "proFreeTrialFeatureRemoveWatermarks": "透かしを削除",
+  "proFreeTrialContinueForFree": "無料で続ける",
+  "proFreeTrialLegalNote": "3日間無料の後、{price} の週額サブスクリプションが開始されます。更新の24時間前までいつでも解約できます"
 }
 

@@ -1190,5 +1190,12 @@
   "proAccessPlanLifetimeSubscription": "终身订阅",
   "proAccessContinueForFree": "继续",
   "proAccessLifetimeLegalNoPrice": "跳过年费 - 终身拥有",
-  "proAccessLifetimeLegalWithPrice": "将开始价格为 {price} 的终身订阅"
+  "proAccessLifetimeLegalWithPrice": "将开始价格为 {price} 的终身订阅",
+  "proFreeTrialSubtitle": "用 PRO 释放你的创造力",
+  "proFreeTrialFeatureUnlimitedTattooCreation": "无限纹身创作",
+  "proFreeTrialFeatureFastProcessing": "快速处理",
+  "proFreeTrialFeatureUnlockAllStyles": "解锁所有风格",
+  "proFreeTrialFeatureRemoveWatermarks": "去除水印",
+  "proFreeTrialContinueForFree": "免费继续",
+  "proFreeTrialLegalNote": "3 天免费期后，将开始每周 {price} 的订阅。可在续费前 24 小时内随时取消"
 }

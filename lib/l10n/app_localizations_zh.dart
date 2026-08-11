@@ -1601,4 +1601,27 @@ class AppLocalizationsZh extends AppLocalizations {
   String proAccessLifetimeLegalWithPrice(Object price) {
     return '将开始价格为 $price 的终身订阅';
   }
+
+  @override
+  String get proFreeTrialSubtitle => '用 PRO 释放你的创造力';
+
+  @override
+  String get proFreeTrialFeatureUnlimitedTattooCreation => '无限纹身创作';
+
+  @override
+  String get proFreeTrialFeatureFastProcessing => '快速处理';
+
+  @override
+  String get proFreeTrialFeatureUnlockAllStyles => '解锁所有风格';
+
+  @override
+  String get proFreeTrialFeatureRemoveWatermarks => '去除水印';
+
+  @override
+  String get proFreeTrialContinueForFree => '免费继续';
+
+  @override
+  String proFreeTrialLegalNote(Object price) {
+    return '3 天免费期后，将开始每周 $price 的订阅。可在续费前 24 小时内随时取消';
+  }
 }

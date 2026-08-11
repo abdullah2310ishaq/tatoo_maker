@@ -4,13 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
-import '../pro_access_screen_free_trial.dart';
+import '../pro_access_screen_route.dart';
 import '../utils/colors.dart';
 import '../home_shell.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/remote_config_service.dart';
 import '../splash_pro.dart';
-import '../pro_access_screen.dart';
 import 'real_ob_second.dart';
 import 'real_ob_third.dart';
 import 'real_ob_fourth.dart';
@@ -95,7 +94,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
     if (usage.isProUnlocked || !shouldShowPaywall) {
       next = const HomeShell();
     } else if (proSplashShown) {
-      next = const ProAccessScreen(nextScreen: HomeShell());
+      next = ProAccessScreen(nextScreen: HomeShell());
     } else {
       // Mark as shown immediately so it never repeats.
       await prefs.setBool(_prefsProSplashShownKey, true);

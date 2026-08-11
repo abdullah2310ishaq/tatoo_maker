@@ -1617,4 +1617,27 @@ class AppLocalizationsKo extends AppLocalizations {
   String proAccessLifetimeLegalWithPrice(Object price) {
     return '$price의 평생 구독이 시작됩니다';
   }
+
+  @override
+  String get proFreeTrialSubtitle => 'PRO로 창의력을 마음껏 발휘하세요';
+
+  @override
+  String get proFreeTrialFeatureUnlimitedTattooCreation => '무제한 타투 생성';
+
+  @override
+  String get proFreeTrialFeatureFastProcessing => '빠른 처리';
+
+  @override
+  String get proFreeTrialFeatureUnlockAllStyles => '모든 스타일 잠금 해제';
+
+  @override
+  String get proFreeTrialFeatureRemoveWatermarks => '워터마크 제거';
+
+  @override
+  String get proFreeTrialContinueForFree => '무료로 계속';
+
+  @override
+  String proFreeTrialLegalNote(Object price) {
+    return '3일 무료 후 $price 주간 구독이 시작됩니다. 갱신 24시간 전까지 언제든지 취소할 수 있습니다';
+  }
 }

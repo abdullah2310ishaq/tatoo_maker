@@ -1657,4 +1657,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String proAccessLifetimeLegalWithPrice(Object price) {
     return 'L\'abonnement à vie pour $price commencera';
   }
+
+  @override
+  String get proFreeTrialSubtitle => 'Libérez votre créativité avec PRO';
+
+  @override
+  String get proFreeTrialFeatureUnlimitedTattooCreation =>
+      'Création illimitée de tatouages';
+
+  @override
+  String get proFreeTrialFeatureFastProcessing => 'Traitement rapide';
+
+  @override
+  String get proFreeTrialFeatureUnlockAllStyles => 'Débloquez tous les styles';
+
+  @override
+  String get proFreeTrialFeatureRemoveWatermarks => 'Supprimez les filigranes';
+
+  @override
+  String get proFreeTrialContinueForFree => 'Continuer gratuitement';
+
+  @override
+  String proFreeTrialLegalNote(Object price) {
+    return 'Après 3 jours gratuits, un abonnement hebdomadaire de $price commencera. Annulez à tout moment jusqu\'à 24 h avant le renouvellement';
+  }
 }

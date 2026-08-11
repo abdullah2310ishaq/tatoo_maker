@@ -1961,5 +1961,12 @@
     "placeholders": {
       "price": {}
     }
-  }
+  },
+  "proFreeTrialSubtitle": "أطلق العنان لإبداعك مع PRO",
+  "proFreeTrialFeatureUnlimitedTattooCreation": "إنشاء وشوم بلا حدود",
+  "proFreeTrialFeatureFastProcessing": "معالجة سريعة",
+  "proFreeTrialFeatureUnlockAllStyles": "افتح جميع الأنماط",
+  "proFreeTrialFeatureRemoveWatermarks": "إزالة العلامات المائية",
+  "proFreeTrialContinueForFree": "متابعة مجاناً",
+  "proFreeTrialLegalNote": "بعد 3 أيام مجانية، سيبدأ اشتراك أسبوعي بقيمة {price}. يمكنك الإلغاء في أي وقت قبل 24 ساعة من التجديد"
 }

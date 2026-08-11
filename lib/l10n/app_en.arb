@@ -1961,5 +1961,36 @@
     "placeholders": {
       "price": {}
     }
+  },
+  "proFreeTrialSubtitle": "Unleash your creativity with PRO",
+  "@proFreeTrialSubtitle": {
+    "description": "Free trial paywall subtitle"
+  },
+  "proFreeTrialFeatureUnlimitedTattooCreation": "Unlimited tattoo creation",
+  "@proFreeTrialFeatureUnlimitedTattooCreation": {
+    "description": "Free trial paywall feature: unlimited tattoo creation"
+  },
+  "proFreeTrialFeatureFastProcessing": "Fast processing",
+  "@proFreeTrialFeatureFastProcessing": {
+    "description": "Free trial paywall feature: fast processing"
+  },
+  "proFreeTrialFeatureUnlockAllStyles": "Unlock all styles",
+  "@proFreeTrialFeatureUnlockAllStyles": {
+    "description": "Free trial paywall feature: unlock all styles"
+  },
+  "proFreeTrialFeatureRemoveWatermarks": "Remove watermarks",
+  "@proFreeTrialFeatureRemoveWatermarks": {
+    "description": "Free trial paywall feature: remove watermarks"
+  },
+  "proFreeTrialContinueForFree": "Continue For Free",
+  "@proFreeTrialContinueForFree": {
+    "description": "Free trial paywall CTA button"
+  },
+  "proFreeTrialLegalNote": "After 3 days free - then weekly subscription for {price} will start. Cancel anytime 24 hours before renewal",
+  "@proFreeTrialLegalNote": {
+    "description": "Free trial paywall legal subscription note",
+    "placeholders": {
+      "price": {}
+    }
   }
 }

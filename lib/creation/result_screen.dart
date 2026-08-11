@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
-import '../pro_access_screen_free_trial.dart';
+import '../pro_access_screen_route.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
@@ -17,7 +17,6 @@ import '../l10n/app_localizations.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/usage_limit_provider.dart';
 import '../home_shell.dart';
-import '../pro_access_screen.dart';
 import 'virtual_try_on.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -94,7 +93,7 @@ class _ResultScreenState extends State<ResultScreen> {
         _didShowLimitPaywall = true;
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (_) => const ProAccessScreen(
+            builder: (_) => ProAccessScreen(
               showInterstitialOnClose: false,
               goToNextScreenOnClose: true,
               nextScreen: HomeShell(),
@@ -503,7 +502,7 @@ class _ResultScreenState extends State<ResultScreen> {
     if (hasReachedLimit) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => const ProAccessScreen(
+          builder: (_) => ProAccessScreen(
             showInterstitialOnClose: false,
             goToNextScreenOnClose: true,
             nextScreen: HomeShell(),

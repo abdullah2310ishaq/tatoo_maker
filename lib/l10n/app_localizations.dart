@@ -2959,6 +2959,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yearly subscription for {price} will start'**
   String proAccessLifetimeLegalWithPrice(Object price);
+
+  /// Free trial paywall subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Unleash your creativity with PRO'**
+  String get proFreeTrialSubtitle;
+
+  /// Free trial paywall feature: unlimited tattoo creation
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited tattoo creation'**
+  String get proFreeTrialFeatureUnlimitedTattooCreation;
+
+  /// Free trial paywall feature: fast processing
+  ///
+  /// In en, this message translates to:
+  /// **'Fast processing'**
+  String get proFreeTrialFeatureFastProcessing;
+
+  /// Free trial paywall feature: unlock all styles
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock all styles'**
+  String get proFreeTrialFeatureUnlockAllStyles;
+
+  /// Free trial paywall feature: remove watermarks
+  ///
+  /// In en, this message translates to:
+  /// **'Remove watermarks'**
+  String get proFreeTrialFeatureRemoveWatermarks;
+
+  /// Free trial paywall CTA button
+  ///
+  /// In en, this message translates to:
+  /// **'Continue For Free'**
+  String get proFreeTrialContinueForFree;
+
+  /// Free trial paywall legal subscription note
+  ///
+  /// In en, this message translates to:
+  /// **'After 3 days free - then weekly subscription for {price} will start. Cancel anytime 24 hours before renewal'**
+  String proFreeTrialLegalNote(Object price);
 }
 
 class _AppLocalizationsDelegate

@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../l10n/app_localizations.dart';
-import '../pro_access_screen_free_trial.dart';
+import '../pro_access_screen_route.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/usage_limit_provider.dart';
 import '../utils/colors.dart';
@@ -18,7 +18,6 @@ import '../utils/theme_manager.dart';
 import '../utils/toast.dart';
 import '../creation/virtual_try_on.dart';
 import '../home_shell.dart';
-import '../pro_access_screen.dart';
 
 /// Result screen for displaying generated floral tattoo
 class FlowerResultScreen extends StatefulWidget {
@@ -725,7 +724,7 @@ class _FlowerResultScreenState extends State<FlowerResultScreen> {
           _didShowPaywallAfterDownload = true;
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => const ProAccessScreen(
+              builder: (_) => ProAccessScreen(
                 nextScreen: HomeShell(),
                 showInterstitialOnClose: false,
               ),

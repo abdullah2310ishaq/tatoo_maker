@@ -1962,5 +1962,12 @@
     "placeholders": {
       "price": {}
     }
-  }
+  },
+  "proFreeTrialSubtitle": "Entfessle deine Kreativität mit PRO",
+  "proFreeTrialFeatureUnlimitedTattooCreation": "Unbegrenzte Tattoo-Erstellung",
+  "proFreeTrialFeatureFastProcessing": "Schnelle Verarbeitung",
+  "proFreeTrialFeatureUnlockAllStyles": "Alle Stile freischalten",
+  "proFreeTrialFeatureRemoveWatermarks": "Wasserzeichen entfernen",
+  "proFreeTrialContinueForFree": "Kostenlos fortfahren",
+  "proFreeTrialLegalNote": "Nach 3 kostenlosen Tagen startet ein Wochenabo für {price}. Jederzeit bis 24 Stunden vor Verlängerung kündbar"
 }
