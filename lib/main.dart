@@ -157,17 +157,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         return;
       }
       // Only show when coming back from background ("cache"), not on cold start.
-      final pausedAt = _pausedAt;
-      if (pausedAt == null) {
-        return;
-      }
-
-      // Ignore super-quick task switching (prevents spammy show attempts).
-      if (DateTime.now().difference(pausedAt) < const Duration(seconds: 2)) {
-        if (kDebugMode) {
-          debugPrint('[AppOpen] skip: resumed too quickly');
-        }
-        _pausedAt = null;
+      if (_pausedAt == null) {
         return;
       }
 

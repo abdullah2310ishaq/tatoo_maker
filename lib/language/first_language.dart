@@ -163,15 +163,18 @@ class _FirstLanguageScreenState extends State<FirstLanguageScreen> {
                 backgroundColor: AppColors.lightPrimary,
                 foregroundColor: AppColors.textWhite,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24.r),
+                  borderRadius: BorderRadius.circular(18.r),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
+                minimumSize: Size(52.w, 40.h),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                visualDensity: VisualDensity.compact,
                 elevation: 0,
               ),
               child: Text(
                 AppLocalizations.of(context)!.next,
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Amaranth',
                 ),
