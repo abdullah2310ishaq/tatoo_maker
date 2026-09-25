@@ -11,6 +11,7 @@ import 'package:tatoo_maker/services/admob_ids.dart';
 import 'package:tatoo_maker/services/app_open_ad_service.dart';
 import 'package:tatoo_maker/services/billing_service.dart';
 import 'package:tatoo_maker/services/remote_config_service.dart';
+import 'package:tatoo_maker/services/native_small_ad_view.dart';
 import 'package:tatoo_maker/services/rewarded_ad_service.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/widgets/interstitial_ad_loading_dialog.dart';
@@ -41,6 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
   static const String _prefsSplashHasRunBeforeKey = 'splash_has_run_before';
   static const String _prefsProUnlockedKey = 'usage_pro_unlocked';
   static const String _logTag = 'SplashScreen';
+  static const Duration _fullScreenAdStartDelay = Duration(seconds: 5);
 
   static void _log(String message) {
     final tagged = '[$_logTag] $message';
@@ -200,7 +202,7 @@ class _SplashScreenState extends State<SplashScreen>
       );
 
       final Future<void> adsFuture = shouldAttemptAds
-          ? _showSplashAds(
+          ? _showSplashAdsAfterDelay(
               showAppOpen: rc.splashShowAppOpen,
               showInterstitial: rc.splashShowInterstitial,
             )
@@ -225,6 +227,21 @@ class _SplashScreenState extends State<SplashScreen>
       if (!mounted) return;
       await _checkOnboardingStatus();
     }
+  }
+
+  Future<void> _showSplashAdsAfterDelay({
+    required bool showAppOpen,
+    required bool showInterstitial,
+  }) async {
+    _log(
+      'waiting ${_fullScreenAdStartDelay.inSeconds}s before splash full-screen ad...',
+    );
+    await Future<void>.delayed(_fullScreenAdStartDelay);
+    if (!mounted) return;
+    await _showSplashAds(
+      showAppOpen: showAppOpen,
+      showInterstitial: showInterstitial,
+    );
   }
 
   Future<void> _showSplashAds({
@@ -360,77 +377,102 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: widget.isDarkTheme
-            ? AppColors.darkBackground
-            : AppColors.lightBackground,
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: widget.isDarkTheme
-                ? LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      AppColors.darkSplashStart, // #000000 at 8.17%
-                      AppColors.darkSplashEnd.withOpacity(
-                        0.0,
-                      ), // rgba(45, 49, 54, 0) at 87.03%
-                    ],
-                    stops: const [0.0817, 0.8703],
-                  )
-                : null,
-            color: widget.isDarkTheme ? null : AppColors.lightBackground,
-          ),
-          child: Stack(
-            children: [
-              const Align(alignment: Alignment.center, child: _SplashTitle()),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 58),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      AnimatedBuilder(
-                        animation: _progressController,
-                        builder: (context, _) {
-                          return SizedBox(
-                            width: 34,
-                            height: 34,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 3.2,
-                              backgroundColor: AppColors.textGrey.withOpacity(
-                                0.0,
-                              ),
-                              valueColor: const AlwaysStoppedAnimation<Color>(
-                                AppColors.lightPrimary,
-                              ),
+    final isPro = context.watch<UsageLimitProvider>().isProUnlocked;
+    final showSplashNative =
+        !isPro && context.watch<RemoteConfigService>().splashShowNativeAd;
+    final splashBackground = widget.isDarkTheme
+        ? AppColors.darkBackground
+        : AppColors.lightBackground;
+
+    return Scaffold(
+      backgroundColor: splashBackground,
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: widget.isDarkTheme
+                      ? LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            AppColors.darkSplashStart,
+                            AppColors.darkSplashEnd.withOpacity(0.0),
+                          ],
+                          stops: const [0.0817, 0.8703],
+                        )
+                      : null,
+                  color: widget.isDarkTheme ? null : AppColors.lightBackground,
+                ),
+                child: Stack(
+                  children: [
+                    const Align(
+                      alignment: Alignment.center,
+                      child: _SplashTitle(),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AnimatedBuilder(
+                              animation: _progressController,
+                              builder: (context, _) {
+                                return SizedBox(
+                                  width: 34,
+                                  height: 34,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 3.2,
+                                    backgroundColor: AppColors.textGrey
+                                        .withOpacity(0.0),
+                                    valueColor:
+                                        const AlwaysStoppedAnimation<Color>(
+                                      AppColors.lightPrimary,
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 14),
-                      if (_shouldShowSplashAdText)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          child: Text(
-                            AppLocalizations.of(context)!.splashAdMayShowNotice,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.textGrey,
-                              letterSpacing: 0.2,
-                            ),
-                          ),
+                            const SizedBox(height: 14),
+                            if (_shouldShowSplashAdText)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 24,
+                                ),
+                                child: Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.splashAdMayShowNotice,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.textGrey,
+                                    letterSpacing: 0.2,
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+            if (showSplashNative)
+              SafeArea(
+                top: false,
+                child: NativeSmallAdView(
+                  isDark: widget.isDarkTheme,
+                  backgroundColor: splashBackground,
+                ),
+              ),
+          ],
         ),
       ),
     );

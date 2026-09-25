@@ -27,6 +27,9 @@ abstract final class RemoteConfigKeys {
 
   static const String splashShowPaywall = 'splash_show_paywall';
 
+  /// Splash screen: small native ad pinned to the bottom.
+  static const String splashNativeAd = 'splash_native_ad';
+
   static const String firstLanguageOnboardingEnabled =
       'first_language_onboarding_enabled';
 
@@ -53,6 +56,9 @@ abstract final class RemoteConfigKeys {
 
   /// History screen: small native under 3rd row (all categories).
   static const String historyScreenNativeAd = 'history_screen_native_ad';
+
+  /// Main bottom nav: interstitial every 3rd tab tap (free users).
+  static const String bottomNavInterAd = 'bottom_nav_inter_ad';
 
   /// Creation home: gate dialog + rewarded ad for free generate.
   static const String creationRewardedAd = 'creation_rewarded_ad';

@@ -5,8 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/pro_access_screen_route.dart';
+import 'package:tatoo_maker/providers/usage_limit_provider.dart';
+import 'package:tatoo_maker/services/admob_ids.dart';
+import 'package:tatoo_maker/services/interstitial_ad_flow.dart';
+import 'package:tatoo_maker/services/remote_config_service.dart';
 import 'utils/colors.dart';
 import 'utils/toast.dart';
 import 'creation/home_page.dart';
@@ -31,9 +36,8 @@ class _HomeShellState extends State<HomeShell> {
   bool _generateEnabled = false;
   VoidCallback? _onGenerateTap;
   bool _hasShownConnectivityToast = false;
-  // Ad logic temporarily commented out (as requested).
-  // int _navBarTapCount = 0;
-  // bool _isShowingNavInterstitial = false;
+  int _navBarTapCount = 0;
+  bool _isShowingNavInterstitial = false;
 
   @override
   void initState() {
@@ -83,85 +87,31 @@ class _HomeShellState extends State<HomeShell> {
   Future<void> _onItemTapped(int index) async {
     FocusScope.of(context).unfocus();
 
-    // Ad logic temporarily commented out (as requested).
-    // _navBarTapCount += 1;
-    // final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-    // final shouldShowInterstitial =
-    //     !isPro && _navBarTapCount % 4 == 0 && !_isShowingNavInterstitial;
-    //
-    // if (shouldShowInterstitial) {
-    //   _isShowingNavInterstitial = true;
-    //   try {
-    //     await _showInterstitialAdIfAvailable();
-    //   } finally {
-    //     _isShowingNavInterstitial = false;
-    //   }
-    // }
+    _navBarTapCount += 1;
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    final showNavInter = context.read<RemoteConfigService>().bottomNavShowInterAd;
+    final shouldShowInterstitial = showNavInter &&
+        !isPro &&
+        _navBarTapCount % 3 == 0 &&
+        !_isShowingNavInterstitial;
+
+    if (shouldShowInterstitial) {
+      _isShowingNavInterstitial = true;
+      try {
+        await showInterstitialAdIfAvailable(
+          context,
+          adUnitId: AdIds.testInterId,
+        );
+      } finally {
+        _isShowingNavInterstitial = false;
+      }
+    }
 
     if (!mounted) return;
     setState(() {
       _selectedIndex = index;
     });
   }
-
-  // Ad logic temporarily commented out (as requested).
-  // Future<void> _showInterstitialAdIfAvailable({
-  //   bool didRetry = false,
-  //   String? unitIdOverride,
-  // }) async {
-  //   final unitId = unitIdOverride ?? AdIds.testInterId;
-  //   if (unitId.isEmpty) return;
-  //
-  //   final testUnitId = AdIds.testInterId;
-  //   int? errorCode;
-  //
-  //   final completer = Completer<void>();
-  //   InterstitialAd.load(
-  //     adUnitId: unitId,
-  //     request: const AdRequest(),
-  //     adLoadCallback: InterstitialAdLoadCallback(
-  //       onAdLoaded: (ad) {
-  //         ad.fullScreenContentCallback = FullScreenContentCallback(
-  //           onAdDismissedFullScreenContent: (ad) {
-  //             ad.dispose();
-  //             if (!completer.isCompleted) completer.complete();
-  //           },
-  //           onAdFailedToShowFullScreenContent: (ad, error) {
-  //             ad.dispose();
-  //             errorCode = error.code;
-  //             if (!completer.isCompleted) completer.complete();
-  //           },
-  //         );
-  //         try {
-  //           ad.show();
-  //         } catch (_) {
-  //           ad.dispose();
-  //           if (!completer.isCompleted) completer.complete();
-  //         }
-  //       },
-  //       onAdFailedToLoad: (error) {
-  //         errorCode = error.code;
-  //         if (!completer.isCompleted) completer.complete();
-  //       },
-  //     ),
-  //   );
-  //
-  //   try {
-  //     await completer.future.timeout(const Duration(seconds: 5));
-  //   } catch (_) {
-  //     // Avoid blocking navigation forever.
-  //   }
-  //
-  //   if (!didRetry &&
-  //       errorCode == 3 &&
-  //       testUnitId.isNotEmpty &&
-  //       testUnitId != unitId) {
-  //     await _showInterstitialAdIfAvailable(
-  //       didRetry: true,
-  //       unitIdOverride: testUnitId,
-  //     );
-  //   }
-  // }
 
   void openDrawer() {
     _scaffoldKey.currentState?.openDrawer();

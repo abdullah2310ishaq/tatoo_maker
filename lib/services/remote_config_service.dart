@@ -52,6 +52,7 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.splashShowAppOpen: true,
     // Paywall after splash for returning (onboarding completed) free users.
     RemoteConfigKeys.splashShowPaywall: true,
+    RemoteConfigKeys.splashNativeAd: true,
 
     RemoteConfigKeys.firstLanguageOnboardingEnabled: true,
     RemoteConfigKeys.firstLanguageShowNativeAd: true,
@@ -66,6 +67,7 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.mainScreenNativeAd: true,
     RemoteConfigKeys.tattooNameNativeAd: true,
     RemoteConfigKeys.historyScreenNativeAd: true,
+    RemoteConfigKeys.bottomNavInterAd: true,
     RemoteConfigKeys.creationRewardedAd: true,
     RemoteConfigKeys.tattooRewardedAd: true,
   };
@@ -130,6 +132,7 @@ class RemoteConfigService extends ChangeNotifier {
       'splashShowInterstitial=$splashShowInterstitial, '
       'splashShowAppOpen=$splashShowAppOpen, '
       'splashShowPaywall=$splashShowPaywall, '
+      'splashShowNativeAd=$splashShowNativeAd, '
       'firstLanguageOnboardingEnabled=$firstLanguageOnboardingEnabled, '
       'firstLanguageShowNativeAd=$firstLanguageShowNativeAd, '
       'proAccessShowTrialToggle=$proAccessShowTrialToggle, '
@@ -139,6 +142,7 @@ class RemoteConfigService extends ChangeNotifier {
       'mainScreenShowNativeAd=$mainScreenShowNativeAd, '
       'tattooNameShowNativeAd=$tattooNameShowNativeAd, '
       'historyScreenShowNativeAd=$historyScreenShowNativeAd, '
+      'bottomNavShowInterAd=$bottomNavShowInterAd, '
       'creationShowRewardedAd=$creationShowRewardedAd, '
       'tattooShowRewardedAd=$tattooShowRewardedAd',
     );
@@ -149,6 +153,7 @@ class RemoteConfigService extends ChangeNotifier {
     _logKeyDetail(RemoteConfigKeys.splashShowAppOpen);
     _logKeyDetail(RemoteConfigKeys.splashShowInterstitial);
     _logKeyDetail(RemoteConfigKeys.splashShowPaywall);
+    _logKeyDetail(RemoteConfigKeys.splashNativeAd);
     _logKeyDetail(RemoteConfigKeys.firstLanguageOnboardingEnabled);
     _logKeyDetail(RemoteConfigKeys.firstLanguageShowNativeAd);
     _logKeyDetail(RemoteConfigKeys.proAccessShowTrialToggle);
@@ -161,6 +166,7 @@ class RemoteConfigService extends ChangeNotifier {
     _logKeyDetail(RemoteConfigKeys.mainScreenNativeAd);
     _logKeyDetail(RemoteConfigKeys.tattooNameNativeAd);
     _logKeyDetail(RemoteConfigKeys.historyScreenNativeAd);
+    _logKeyDetail(RemoteConfigKeys.bottomNavInterAd);
     _logKeyDetail(RemoteConfigKeys.creationRewardedAd);
     _logKeyDetail(RemoteConfigKeys.tattooRewardedAd);
   }
@@ -248,6 +254,8 @@ class RemoteConfigService extends ChangeNotifier {
   /// When `false`, skip the paywall after splash for returning free users.
   bool get splashShowPaywall => _rc.getBool(RemoteConfigKeys.splashShowPaywall);
 
+  bool get splashShowNativeAd => _rc.getBool(RemoteConfigKeys.splashNativeAd);
+
   /// When `false`, skip the first language selection onboarding screen and go
   /// directly to the main onboarding flow.
   bool get firstLanguageOnboardingEnabled {
@@ -287,6 +295,8 @@ class RemoteConfigService extends ChangeNotifier {
 
   bool get historyScreenShowNativeAd =>
       _rc.getBool(RemoteConfigKeys.historyScreenNativeAd);
+
+  bool get bottomNavShowInterAd => _rc.getBool(RemoteConfigKeys.bottomNavInterAd);
 
   /// When `false`, free users skip gate dialog + rewarded and generate directly
   /// (usage limits still apply). Pro users never see the gate.

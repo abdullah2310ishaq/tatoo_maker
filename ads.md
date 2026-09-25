@@ -6,6 +6,8 @@ Remote Config keys to create (Firebase)
 - splash_show_app_open = true
 - splash_show_interstitial = false
 - splash_show_paywall = true
+- splash_native_ad = true
+- bottom_nav_inter_ad = true
 
 - tattoo_birthday_ads_all = true
 - tattoo_birthday_banner = true
@@ -19,7 +21,9 @@ Remote Config keys to create (Firebase)
 
 What Remote Config controls (ON/OFF only)
 
-- Splash full-screen ads + splash notice text (second-time user only)
+- Splash full-screen ads + splash notice text (second-time user only; starts after 5s)
+- Splash bottom small native ad (`splash_native_ad`)
+- Main bottom nav interstitial every 3rd tap (`bottom_nav_inter_ad`)
 - Tattoo: birthday step (banner + native)
 - Tattoo: step 04 idea/prompt (banner + native)
 - Tattoo: last step style selection (banner + native)
