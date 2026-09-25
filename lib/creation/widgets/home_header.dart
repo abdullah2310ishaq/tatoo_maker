@@ -31,10 +31,9 @@ class HomeHeader extends StatelessWidget {
         ? 'assets/history_dark.svg'
         : 'assets/history_light.svg';
     // Keep header actions aligned across light/dark themes.
-    final double actionSize = 40.w;
     final double menuIconSize = 46.w;
     final double historyIconSize = 52.w;
-    final double proBadgeSize = actionSize;
+    final double proBadgeSize = 32.w;
 
     // LTR so menu stays left and history right (same as English) in Arabic
     return Directionality(
@@ -92,9 +91,9 @@ class HomeHeader extends StatelessWidget {
                 onPressed: onHistoryTap,
               ),
               if (!isPro) ...[
-                SizedBox(width: 6.w),
+                SizedBox(width: 4.w),
                 Transform.translate(
-                  offset: Offset(0, -2.h),
+                  offset: Offset(0, -1.h),
                   child: Material(
                     color: Colors.transparent,
                     child: InkWell(
@@ -116,7 +115,7 @@ class HomeHeader extends StatelessWidget {
                               'Pro',
                               style: TextStyle(
                                 color: AppColors.textWhite,
-                                fontSize: 14.sp,
+                                fontSize: 11.sp,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
