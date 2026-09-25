@@ -497,6 +497,7 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
       unawaited(
         NativeAdService.instance.ensureLoadedForKey(
           key: _nativeSlotKey,
+          adUnitId: AdIds.testNativeId,
           backgroundColor: cardColor.value,
           isDark: widget.isDark,
         ),
@@ -522,6 +523,7 @@ class _BirthdayNativeAdState extends State<_BirthdayNativeAd> {
     unawaited(
       NativeAdService.instance.ensureLoadedForKey(
         key: _nativeSlotKey,
+        adUnitId: AdIds.testNativeId,
         backgroundColor: cardColor.value,
         isDark: widget.isDark,
       ),

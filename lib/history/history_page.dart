@@ -6,6 +6,7 @@ import '../flower/flower_result_screen.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/history_service.dart';
+import '../services/admob_ids.dart';
 import '../services/native_small_ad_view.dart';
 import '../services/remote_config_service.dart';
 import '../utils/colors.dart';
@@ -476,8 +477,8 @@ class _HistoryPageState extends State<HistoryPage> {
         if (showNative)
           SliverPadding(
             padding: EdgeInsets.symmetric(vertical: 12.h),
-            sliver: const SliverToBoxAdapter(
-              child: NativeSmallAdView(),
+            sliver: SliverToBoxAdapter(
+              child: NativeSmallAdView(adUnitId: AdIds.testHistoryNativeId),
             ),
           ),
         if (remainingCount > 0)
@@ -995,8 +996,8 @@ class _HistoryListPageState extends State<HistoryListPage> {
         if (showNative)
           SliverPadding(
             padding: EdgeInsets.symmetric(vertical: 12.h),
-            sliver: const SliverToBoxAdapter(
-              child: NativeSmallAdView(),
+            sliver: SliverToBoxAdapter(
+              child: NativeSmallAdView(adUnitId: AdIds.testHistoryNativeId),
             ),
           ),
         if (remainingCount > 0)

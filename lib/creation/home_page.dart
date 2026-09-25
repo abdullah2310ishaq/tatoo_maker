@@ -318,7 +318,9 @@ class _HomePageState extends State<HomePage> with RouteAware {
                                     .watch<RemoteConfigService>()
                                     .mainScreenShowNativeAd) ...[
                               SizedBox(height: 16.h),
-                              const NativeSmallAdView(),
+                              NativeSmallAdView(
+                                adUnitId: AdIds.testNativeId,
+                              ),
                             ],
                             SizedBox(height: 16.h),
                             // Explore Inspiration section (parent provides start padding in both LTR/RTL)

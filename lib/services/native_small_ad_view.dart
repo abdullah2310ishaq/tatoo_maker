@@ -4,11 +4,11 @@ import 'package:provider/provider.dart';
 
 import '../providers/usage_limit_provider.dart';
 import '../utils/colors.dart';
-import 'admob_ids.dart';
 
 class NativeSmallAdView extends StatefulWidget {
   const NativeSmallAdView({
     super.key,
+    required this.adUnitId,
     this.isDark,
     this.backgroundColor,
   });
@@ -16,6 +16,7 @@ class NativeSmallAdView extends StatefulWidget {
   static const double height = 140;
   static const String factoryId = 'listTileSmall';
 
+  final String adUnitId;
   final bool? isDark;
   final Color? backgroundColor;
 
@@ -38,7 +39,7 @@ class _NativeSmallAdViewState extends State<NativeSmallAdView> {
   }
 
   Future<void> _loadAd() async {
-    final unitId = AdIds.testNativeIdNew.trim();
+    final unitId = widget.adUnitId.trim();
     if (unitId.isEmpty) return;
 
     final isDark = widget.isDark ??

@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import 'admob_ids.dart';
-
 /// Simple singleton cache for one NativeAd instance.
 ///
 /// Goal: preload once at app start and reuse across screens without each screen
@@ -36,25 +34,41 @@ class NativeAdService extends ChangeNotifier {
   NativeAd? adForKey(String key) => _slot(key)._ad;
   bool isLoadedForKey(String key) => _slot(key).isLoaded;
 
-  Future<void> preload({int? backgroundColor, bool? isDark}) async {
-    await ensureLoaded(backgroundColor: backgroundColor, isDark: isDark);
+  Future<void> preload({
+    required String adUnitId,
+    int? backgroundColor,
+    bool? isDark,
+  }) async {
+    await ensureLoaded(
+      adUnitId: adUnitId,
+      backgroundColor: backgroundColor,
+      isDark: isDark,
+    );
   }
 
   Future<void> preloadForKey({
     required String key,
+    required String adUnitId,
     int? backgroundColor,
     bool? isDark,
   }) async {
-    await ensureLoadedForKey(key: key, backgroundColor: backgroundColor, isDark: isDark);
+    await ensureLoadedForKey(
+      key: key,
+      adUnitId: adUnitId,
+      backgroundColor: backgroundColor,
+      isDark: isDark,
+    );
   }
 
   Future<bool> ensureLoaded({
+    required String adUnitId,
     Duration timeout = const Duration(seconds: 12),
     int? backgroundColor,
     bool? isDark,
   }) async {
     return ensureLoadedForKey(
       key: slotDefault,
+      adUnitId: adUnitId,
       timeout: timeout,
       backgroundColor: backgroundColor,
       isDark: isDark,
@@ -63,6 +77,7 @@ class NativeAdService extends ChangeNotifier {
 
   Future<bool> ensureLoadedForKey({
     required String key,
+    required String adUnitId,
     Duration timeout = const Duration(seconds: 12),
     int? backgroundColor,
     bool? isDark,
@@ -84,7 +99,7 @@ class NativeAdService extends ChangeNotifier {
       }
     }
 
-    final unitId = AdIds.testNativeId.trim();
+    final unitId = adUnitId.trim();
     if (unitId.isEmpty) {
       _disposeSlot(slot);
       slot.isLoadedFlag = false;
@@ -179,9 +194,14 @@ class NativeAdService extends ChangeNotifier {
   /// A [NativeAd] that was previously bound to a disposed [AdWidget] cannot be
   /// rendered again reliably (the platform view detaches), so screens that are
   /// re-entered should request a fresh ad with this method.
-  void invalidateAndReload({int? backgroundColor, bool? isDark}) {
+  void invalidateAndReload({
+    required String adUnitId,
+    int? backgroundColor,
+    bool? isDark,
+  }) {
     invalidateAndReloadForKey(
       key: slotDefault,
+      adUnitId: adUnitId,
       backgroundColor: backgroundColor,
       isDark: isDark,
     );
@@ -189,6 +209,7 @@ class NativeAdService extends ChangeNotifier {
 
   void invalidateAndReloadForKey({
     required String key,
+    required String adUnitId,
     int? backgroundColor,
     bool? isDark,
   }) {
@@ -199,7 +220,12 @@ class NativeAdService extends ChangeNotifier {
     slot.lastIsDark = null;
     notifyListeners();
     unawaited(
-      preloadForKey(key: key, backgroundColor: backgroundColor, isDark: isDark),
+      preloadForKey(
+        key: key,
+        adUnitId: adUnitId,
+        backgroundColor: backgroundColor,
+        isDark: isDark,
+      ),
     );
   }
 

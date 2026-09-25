@@ -200,8 +200,10 @@ class _ExploreCategoryScreenState extends State<ExploreCategoryScreen> {
                   if (showNative)
                     SliverPadding(
                       padding: EdgeInsets.symmetric(vertical: 12.h),
-                      sliver: const SliverToBoxAdapter(
-                        child: NativeSmallAdView(),
+                      sliver: SliverToBoxAdapter(
+                        child: NativeSmallAdView(
+                          adUnitId: AdIds.testSeeAllNativeId,
+                        ),
                       ),
                     ),
                   if (remainingCount > 0)

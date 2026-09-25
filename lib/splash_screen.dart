@@ -468,6 +468,7 @@ class _SplashScreenState extends State<SplashScreen>
               SafeArea(
                 top: false,
                 child: NativeSmallAdView(
+                  adUnitId: AdIds.testSplashNativeId,
                   isDark: widget.isDarkTheme,
                   backgroundColor: splashBackground,
                 ),

@@ -432,6 +432,7 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
       unawaited(
         NativeAdService.instance.ensureLoadedForKey(
           key: _nativeSlotKey,
+          adUnitId: AdIds.testTatooIdeaNativeId,
           backgroundColor: cardColor.value,
           isDark: widget.isDark,
         ),
@@ -447,6 +448,7 @@ class _TattooIdeaNativeAdState extends State<_TattooIdeaNativeAd> {
     unawaited(
       NativeAdService.instance.ensureLoadedForKey(
         key: _nativeSlotKey,
+        adUnitId: AdIds.testTatooIdeaNativeId,
         backgroundColor: cardColor.value,
         isDark: widget.isDark,
       ),

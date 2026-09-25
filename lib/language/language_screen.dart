@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../providers/usage_limit_provider.dart';
 import '../services/locale_service.dart';
+import '../services/admob_ids.dart';
 import '../services/native_ad_service.dart';
 import '../utils/colors.dart';
 import '../utils/theme_manager.dart';
@@ -350,6 +351,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
     final cardColor = AppColors.gradientBottom;
     unawaited(
       NativeAdService.instance.preload(
+        adUnitId: AdIds.testNativeId,
         backgroundColor: cardColor.value,
         isDark: true,
       ),
@@ -363,6 +365,7 @@ class _LanguageScreenNativeAdState extends State<_LanguageScreenNativeAd> {
     final cardColor = AppColors.gradientBottom;
     unawaited(
       NativeAdService.instance.ensureLoaded(
+        adUnitId: AdIds.testNativeId,
         backgroundColor: cardColor.value,
         isDark: true,
       ),

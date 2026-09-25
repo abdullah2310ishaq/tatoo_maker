@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/usage_limit_provider.dart';
+import '../../../services/admob_ids.dart';
 import '../../../services/native_small_ad_view.dart';
 import '../../../services/remote_config_service.dart';
 import '../../../utils/colors.dart';
@@ -92,7 +93,7 @@ class StepNamePage extends StatelessWidget {
             const Spacer(),
             if (showNative) ...[
               SizedBox(height: 16.h),
-              const NativeSmallAdView(),
+              NativeSmallAdView(adUnitId: AdIds.testNameScreenNativeId),
             ],
             SizedBox(height: 40.h),
           ],
