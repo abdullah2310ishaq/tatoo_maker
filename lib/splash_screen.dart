@@ -178,7 +178,8 @@ class _SplashScreenState extends State<SplashScreen>
       final adsAndTextEnabled = rc.splashAdsAndTextEnabled;
       // First-ever splash: no ad. Every splash after that: ad can be shown.
       final shouldAttemptAds =
-          hasRunBefore && adsAndTextEnabled && !isProUnlocked && !forcePro;
+          // hasRunBefore &&
+              adsAndTextEnabled && !isProUnlocked && !forcePro;
 
       _log(
         'first-run/ad gate: '
