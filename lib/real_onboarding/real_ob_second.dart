@@ -47,7 +47,6 @@ class RealOnboardingSecondScreen extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 30.sp,
-
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontFamily: 'Amaranth',

@@ -13,6 +13,7 @@ class AdIds {
   static String liveSeeAllNativeId="ca-app-pub-5408098781737794/6335607895";
   static String liveNameScreenNativeId="ca-app-pub-5408098781737794/7289596915";
   static String liveHistoryNativeId="ca-app-pub-5408098781737794/2196307471";
+  static String liveOnBoardingNativeId="ca-app-pub-5408098781737794/6443590543";
   // static String liveNativeIdNew="ca-app-pub-5408098781737794/9485808041";
    static String liveRewardedId="ca-app-pub-5408098781737794/2985744269";
   static String liveInterId="ca-app-pub-5408098781737794/5232829779";
@@ -28,6 +29,7 @@ class AdIds {
   static String testSeeAllNativeId="ca-app-pub-3940256099942544/2247696110";
   static String testNameScreenNativeId="ca-app-pub-3940256099942544/2247696110";
   static String testHistoryNativeId="ca-app-pub-3940256099942544/2247696110";
+  static String testOnBoardingNativeId="ca-app-pub-3940256099942544/2247696110";
   // static String testNativeIdNew="ca-app-pub-3940256099942544/2247696110";
   static String testRewardedId="ca-app-pub-3940256099942544/5224354917";
   static String testInterId="ca-app-pub-3940256099942544/1033173712";

@@ -81,7 +81,7 @@ class RealOnboardingThirdScreen extends StatelessWidget {
                     color: Colors.white.withOpacity(0.9),
                   ),
                 ),
-                SizedBox(height: 124.h),
+                SizedBox(height: 400.h),
               ],
             ),
           ),

@@ -1,7 +1,10 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:tatoo_maker/services/admob_ids.dart';
+import 'package:tatoo_maker/services/native_ad_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../pro_access_screen_route.dart';
@@ -13,8 +16,9 @@ import '../splash_pro.dart';
 import 'real_ob_second.dart';
 import 'real_ob_third.dart';
 import 'real_ob_fourth.dart';
+import 'real_onboarding_bottom_native_ad.dart';
 
-/// Main onboarding flow with PageView for swiping between screens
+/// Main onboarding flow — pages advance only via Continue / Start.
 class RealOnboardingFlow extends StatefulWidget {
   const RealOnboardingFlow({super.key});
 
@@ -25,31 +29,34 @@ class RealOnboardingFlow extends StatefulWidget {
 class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  Timer? _autoScrollTimer;
+
+  /// Page index 1 = second onboarding screen (Moon Owl).
+  static const int _secondOnboardingPageIndex = 1;
 
   @override
   void initState() {
     super.initState();
-    _startAutoScroll();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _preloadSecondPageNativeAd();
+    });
   }
 
-  void _startAutoScroll() {
-    _autoScrollTimer?.cancel();
-    _autoScrollTimer = Timer.periodic(const Duration(seconds: 3), (_) {
-      if (!mounted) return;
-      if (_currentPage >= 2) return; // last page: only proceed on Start tap
-      if (!_pageController.hasClients) return;
-
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 350),
-        curve: Curves.easeInOut,
-      );
-    });
+  void _preloadSecondPageNativeAd() {
+    if (!mounted) return;
+    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+    if (isPro) return;
+    unawaited(
+      NativeAdService.instance.ensureLoadedForKey(
+        key: RealOnboardingBottomNativeAd.slotKey,
+        adUnitId: AdIds.testOnBoardingNativeId,
+        backgroundColor: RealOnboardingBottomNativeAd.nativeBackgroundColor,
+        isDark: true,
+      ),
+    );
   }
 
   @override
   void dispose() {
-    _autoScrollTimer?.cancel();
     _pageController.dispose();
     super.dispose();
   }
@@ -58,12 +65,9 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
     setState(() {
       _currentPage = page;
     });
-  }
-
-  void _onSkip() async {
-    await _markOnboardingCompleted();
-    if (!mounted) return;
-    await _routeAfterOnboarding();
+    if (page == _secondOnboardingPageIndex) {
+      _preloadSecondPageNativeAd();
+    }
   }
 
   void _onContinue() async {
@@ -120,7 +124,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   @override
   Widget build(BuildContext context) {
     // Force light theme for onboarding (one-time flow)
-    // Force LTR so swipe direction is same as English in Arabic/RTL locales
+    // Force LTR so layout stays consistent in Arabic/RTL locales
     return Theme(
       data: ThemeData.light(),
       child: Directionality(
@@ -129,55 +133,17 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
           backgroundColor: Colors.black,
           body: Stack(
             children: [
-              // PageView for swiping
               PageView(
                 controller: _pageController,
                 onPageChanged: _onPageChanged,
-                physics: const ClampingScrollPhysics(),
-                children: [
-                  const RealOnboardingSecondScreen(),
-                  const RealOnboardingThirdScreen(),
-                  const RealOnboardingFourthScreen(),
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [
+                  RealOnboardingSecondScreen(),
+                  RealOnboardingThirdScreen(),
+                  RealOnboardingFourthScreen(),
                 ],
               ),
               _buildBottomActionArea(context),
-              // Skip button (only show on first two pages) - Stack on top
-              if (_currentPage < 2)
-                SafeArea(
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: EdgeInsets.all(16.w),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16.w,
-                          vertical: 8.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 0.3),
-                          borderRadius: BorderRadius.circular(20.r),
-                        ),
-                        child: TextButton(
-                          onPressed: _onSkip,
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            minimumSize: Size.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: Text(
-                            AppLocalizations.of(context)!.skip,
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontFamily: 'Amaranth',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
             ],
           ),
         ),
@@ -185,7 +151,6 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
     );
   }
 
-  // Three-dot page indicator
   Widget _buildBottomActionArea(BuildContext context) {
     final isLastPage = _currentPage == 2;
     return SafeArea(
@@ -220,7 +185,11 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
                   ),
                 ),
               ),
-              SizedBox(height: 12.h),
+              if (_currentPage == _secondOnboardingPageIndex) ...[
+                 SizedBox(height: 5.h),
+                const RealOnboardingBottomNativeAd(),
+              ],
+               SizedBox(height: 5.h),
               _buildPaginationDots(),
             ],
           ),
