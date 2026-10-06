@@ -97,7 +97,11 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
       next = const HomeShell();
     } else {
       // Direct full premium paywall (skip free-trial intro + trial paywall).
-      next = Pro3DayAccessScreen(nextScreen: HomeShell());
+      next = Pro3DayAccessScreen(
+        nextScreen: HomeShell(),
+        showInterstitialOnClose: true,
+        goToNextScreenOnClose: true,
+      );
     }
 
     // Previously: first time showed [SplashProScreen] (free-trial intro), then paywall.
