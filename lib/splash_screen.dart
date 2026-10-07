@@ -273,6 +273,7 @@ class _SplashScreenState extends State<SplashScreen>
     final unitId = (unitIdOverride ?? '').trim();
     if (unitId.isEmpty) return;
 
+    final appOpen = AppOpenAdService.instance;
     final completer = Completer<void>();
     final loadingHandle = await showInterstitialAdLoadingDialog(
       context,
@@ -287,13 +288,16 @@ class _SplashScreenState extends State<SplashScreen>
         onAdLoaded: (ad) async {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdShowedFullScreenContent: (_) {
+              appOpen.onInterstitialShowed();
               _log('interstitial shown');
             },
             onAdDismissedFullScreenContent: (ad) {
+              appOpen.onInterstitialClosed();
               ad.dispose();
               if (!completer.isCompleted) completer.complete();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
+              appOpen.onInterstitialClosed();
               ad.dispose();
               _log('interstitial failed to show: $error');
               if (!completer.isCompleted) completer.complete();

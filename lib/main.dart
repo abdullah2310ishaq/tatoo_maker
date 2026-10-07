@@ -134,7 +134,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     switch (state) {
       case AppLifecycleState.paused:
-        _pausedAt = DateTime.now();
+        _appOpenAdService.noteAppPausedForInterstitialTracking();
+        if (!_appOpenAdService.isInterstitialShowing) {
+          _pausedAt = DateTime.now();
+        }
         // Preload while app is backgrounded so it's ready on resume.
         _appOpenAdService.preload();
         break;
@@ -159,6 +162,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         _pausedAt = null;
         return;
       }
+      if (_appOpenAdService.consumeSuppressNextResumeAppOpen()) {
+        if (kDebugMode) {
+          debugPrint('[AppOpen] skip: one-shot suppress after interstitial');
+        }
+        _pausedAt = null;
+        return;
+      }
+
       // Only show when coming back from background ("cache"), not on cold start.
       if (_pausedAt == null) {
         return;

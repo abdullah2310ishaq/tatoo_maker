@@ -39,6 +39,53 @@ class AppOpenAdService {
   bool get isShowing => _isShowing;
   bool get isTemporarilyDisabled => _temporarilyDisabled;
 
+  /// Set from interstitial callbacks while a full-screen interstitial is visible.
+  bool _isInterstitialShowing = false;
+  bool _backgroundedWhileInterstitialShowing = false;
+  bool _suppressNextResumeAppOpen = false;
+
+  bool get isInterstitialShowing => _isInterstitialShowing;
+
+  /// Call from interstitial [onAdShowedFullScreenContent].
+  void onInterstitialShowed() {
+    _isInterstitialShowing = true;
+    if (kDebugMode) {
+      debugPrint('[AppOpenAdService] interstitial showing');
+    }
+  }
+
+  /// Call from interstitial dismiss / failed-to-show callbacks.
+  void onInterstitialClosed() {
+    final wasShowing = _isInterstitialShowing;
+    _isInterstitialShowing = false;
+    if (wasShowing && _backgroundedWhileInterstitialShowing) {
+      _suppressNextResumeAppOpen = true;
+      _backgroundedWhileInterstitialShowing = false;
+      if (kDebugMode) {
+        debugPrint(
+          '[AppOpenAdService] suppress next resume app-open after interstitial',
+        );
+      }
+    }
+  }
+
+  /// Call from [WidgetsBindingObserver] when app pauses.
+  void noteAppPausedForInterstitialTracking() {
+    if (_isInterstitialShowing) {
+      _backgroundedWhileInterstitialShowing = true;
+      if (kDebugMode) {
+        debugPrint('[AppOpenAdService] background noted during interstitial');
+      }
+    }
+  }
+
+  /// One-shot skip for the resume right after interstitial (same background cycle).
+  bool consumeSuppressNextResumeAppOpen() {
+    if (!_suppressNextResumeAppOpen) return false;
+    _suppressNextResumeAppOpen = false;
+    return true;
+  }
+
   /// Temporarily disable app-open display for sensitive screens
   /// (for example: paywall/pro screen). Preloading can continue.
   void setTemporarilyDisabled(bool disabled) {

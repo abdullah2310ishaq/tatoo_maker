@@ -176,6 +176,7 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
     final unitId = AdIds.testInterId.trim();
     if (unitId.isEmpty) return;
 
+    final appOpen = AppOpenAdService.instance;
     final cachedAd = _closeInterstitialAd;
     if (cachedAd != null) {
       _closeInterstitialAd = null;
@@ -186,12 +187,17 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
         safetyTimeout: const Duration(seconds: 4),
       );
       cachedAd.fullScreenContentCallback = FullScreenContentCallback(
+        onAdShowedFullScreenContent: (_) {
+          appOpen.onInterstitialShowed();
+        },
         onAdDismissedFullScreenContent: (ad) {
+          appOpen.onInterstitialClosed();
           ad.dispose();
           loadingHandle.close();
           if (!completer.isCompleted) completer.complete();
         },
         onAdFailedToShowFullScreenContent: (ad, error) {
+          appOpen.onInterstitialClosed();
           ad.dispose();
           _log('Interstitial failed to show on close: $error');
           loadingHandle.close();
@@ -231,12 +237,17 @@ class _ProAccessScreenState extends State<Pro3DayAccessScreen> {
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) async {
           ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (_) {
+              appOpen.onInterstitialShowed();
+            },
             onAdDismissedFullScreenContent: (ad) {
+              appOpen.onInterstitialClosed();
               ad.dispose();
               loadingHandle.close();
               if (!completer.isCompleted) completer.complete();
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
+              appOpen.onInterstitialClosed();
               ad.dispose();
               _log('Interstitial failed to show on close: $error');
               loadingHandle.close();
