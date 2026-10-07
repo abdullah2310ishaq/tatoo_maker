@@ -33,10 +33,19 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   /// Full-screen native shown after the second onboarding page (non-Pro).
   bool _showPostSecondOnboardingFullScreenNative = false;
 
-  static const int _onboardingStepCount = 4;
-
   /// Page index 2 = third onboarding screen (try-on), after the native ad step.
   static const int _thirdOnboardingPageIndex = 2;
+
+  bool _shouldShowOnboardingFullScreenNative() {
+    if (context.read<UsageLimitProvider>().isProUnlocked) {
+      return false;
+    }
+    return context.read<RemoteConfigService>().onboardingShowFullScreenNative;
+  }
+
+  int _onboardingStepCount() {
+    return _shouldShowOnboardingFullScreenNative() ? 4 : 3;
+  }
 
   @override
   void dispose() {
@@ -65,16 +74,15 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
     }
 
     if (_currentPage == _secondOnboardingPageIndex) {
-      final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-      if (isPro) {
+      if (_shouldShowOnboardingFullScreenNative()) {
+        setState(() {
+          _showPostSecondOnboardingFullScreenNative = true;
+        });
+      } else {
         _pageController.nextPage(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
         );
-      } else {
-        setState(() {
-          _showPostSecondOnboardingFullScreenNative = true;
-        });
       }
       return;
     }
@@ -273,14 +281,15 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
     }
     if (_currentPage == 0) return 0;
     if (_currentPage == 1) return 1;
-    return 3;
+    return _shouldShowOnboardingFullScreenNative() ? 3 : 2;
   }
 
   Widget _buildPaginationDots() {
     final activeIndex = _activePaginationIndex();
+    final stepCount = _onboardingStepCount();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(_onboardingStepCount, (index) {
+      children: List.generate(stepCount, (index) {
         final isActive = index == activeIndex;
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),

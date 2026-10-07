@@ -56,6 +56,7 @@ class RemoteConfigService extends ChangeNotifier {
 
     RemoteConfigKeys.firstLanguageOnboardingEnabled: true,
     RemoteConfigKeys.firstLanguageShowNativeAd: true,
+    RemoteConfigKeys.onboardingFullScreenNative: true,
 
     // Paywall UI controls.
     RemoteConfigKeys.proAccessShowTrialToggle: true,
@@ -135,6 +136,7 @@ class RemoteConfigService extends ChangeNotifier {
       'splashShowNativeAd=$splashShowNativeAd, '
       'firstLanguageOnboardingEnabled=$firstLanguageOnboardingEnabled, '
       'firstLanguageShowNativeAd=$firstLanguageShowNativeAd, '
+      'onboardingShowFullScreenNative=$onboardingShowFullScreenNative, '
       'proAccessShowTrialToggle=$proAccessShowTrialToggle, '
       'proFreeTrialScreen=$proFreeTrialScreen, '
       'seeAllShowBannerAd=$seeAllShowBannerAd, '
@@ -156,6 +158,7 @@ class RemoteConfigService extends ChangeNotifier {
     _logKeyDetail(RemoteConfigKeys.splashNativeAd);
     _logKeyDetail(RemoteConfigKeys.firstLanguageOnboardingEnabled);
     _logKeyDetail(RemoteConfigKeys.firstLanguageShowNativeAd);
+    _logKeyDetail(RemoteConfigKeys.onboardingFullScreenNative);
     _logKeyDetail(RemoteConfigKeys.proAccessShowTrialToggle);
     _logKeyDetail(RemoteConfigKeys.proFreeTrialScreen);
     _logKeyDetail(RemoteConfigKeys.tattooIdeaAdsAll);
@@ -267,6 +270,13 @@ class RemoteConfigService extends ChangeNotifier {
   bool get firstLanguageShowNativeAd {
     final value = _rc.getBool(RemoteConfigKeys.firstLanguageShowNativeAd);
     _log('getter firstLanguageShowNativeAd=$value');
+    return value;
+  }
+
+  /// When `false`, skip the full-screen native step in real onboarding.
+  bool get onboardingShowFullScreenNative {
+    final value = _rc.getBool(RemoteConfigKeys.onboardingFullScreenNative);
+    _log('getter onboardingShowFullScreenNative=$value');
     return value;
   }
 

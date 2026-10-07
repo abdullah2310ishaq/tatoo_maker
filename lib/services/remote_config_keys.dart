@@ -37,6 +37,10 @@ abstract final class RemoteConfigKeys {
   static const String firstLanguageShowNativeAd =
       'first_language_show_native_ad';
 
+  /// Real onboarding: full-screen native step after the second onboarding page.
+  static const String onboardingFullScreenNative =
+      'onboarding_full_screen_native';
+
   /// Pro / paywall: show or hide the trial toggle card.
   static const String proAccessShowTrialToggle = 'pro_access_show_trial_toggle';
 
