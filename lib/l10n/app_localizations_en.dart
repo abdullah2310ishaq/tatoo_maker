@@ -707,6 +707,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ad => 'Ad';
 
   @override
+  String get adIsLoading => 'Ad is loading...';
+
+  @override
   String get languageEnglish => 'English';
 
   @override

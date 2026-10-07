@@ -704,6 +704,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ad => 'إعلان';
 
   @override
+  String get adIsLoading => 'جاري تحميل الإعلان...';
+
+  @override
   String get languageEnglish => 'English';
 
   @override

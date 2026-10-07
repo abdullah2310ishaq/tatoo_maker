@@ -1352,6 +1352,12 @@ abstract class AppLocalizations {
   /// **'Ad'**
   String get ad;
 
+  /// Interstitial / app-open ad loading dialog message
+  ///
+  /// In en, this message translates to:
+  /// **'Ad is loading...'**
+  String get adIsLoading;
+
   /// Language name: English
   ///
   /// In en, this message translates to:

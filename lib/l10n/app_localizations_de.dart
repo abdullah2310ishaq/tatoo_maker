@@ -710,6 +710,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get ad => 'Werbung';
 
   @override
+  String get adIsLoading => 'Werbung wird geladen...';
+
+  @override
   String get languageEnglish => 'English';
 
   @override

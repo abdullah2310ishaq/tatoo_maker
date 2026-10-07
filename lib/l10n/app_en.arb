@@ -878,6 +878,10 @@
   "@ad": {
     "description": "Ad badge label in drawer menu"
   },
+  "adIsLoading": "Ad is loading...",
+  "@adIsLoading": {
+    "description": "Interstitial / app-open ad loading dialog message"
+  },
   "languageEnglish": "English",
   "@languageEnglish": {
     "description": "Language name: English"

@@ -693,6 +693,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get ad => '광고';
 
   @override
+  String get adIsLoading => '광고 로딩 중...';
+
+  @override
   String get languageEnglish => 'English';
 
   @override

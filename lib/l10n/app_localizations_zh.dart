@@ -684,6 +684,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get ad => '广告';
 
   @override
+  String get adIsLoading => '广告加载中...';
+
+  @override
   String get languageEnglish => 'English';
 
   @override

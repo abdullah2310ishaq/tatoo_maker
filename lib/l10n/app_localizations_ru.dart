@@ -714,6 +714,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get ad => 'Реклама';
 
   @override
+  String get adIsLoading => 'Загрузка рекламы...';
+
+  @override
   String get languageEnglish => 'English';
 
   @override

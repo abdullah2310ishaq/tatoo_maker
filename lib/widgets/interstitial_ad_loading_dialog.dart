@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../l10n/app_localizations.dart';
 import '../utils/colors.dart';
 
@@ -54,8 +52,10 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
   Duration minShowDuration = const Duration(seconds: 2),
   Duration safetyTimeout = const Duration(seconds: 4),
 }) async {
-  final l10n = AppLocalizations.of(context)!;
   final isDark = Theme.of(context).brightness == Brightness.dark;
+  final cardColor =
+      isDark ? AppColors.lightBackground : AppColors.darkBackground;
+  final textColor = isDark ? AppColors.textPrimary : AppColors.textWhite;
 
   // Ensure the dialog closes even if ad callbacks never fire.
   final handleCompleter = Completer<InterstitialAdLoadingDialogHandle>();
@@ -77,6 +77,7 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
     barrierDismissible: false,
     useRootNavigator: true,
     builder: (dialogContext) {
+      final l10n = AppLocalizations.of(dialogContext)!;
       final shownAt = DateTime.now();
       final handle = InterstitialAdLoadingDialogHandle._(
         dialogContext,
@@ -91,38 +92,42 @@ Future<InterstitialAdLoadingDialogHandle> showInterstitialAdLoadingDialog(
           '[InterstitialLoadingDialog] shown at=${shownAt.toIso8601String()}',
         );
       }
-      return AlertDialog(
-        // Requested: use opposite theme colors for this dialog.
-        // Dark theme -> light colors; light theme -> dark colors.
-        backgroundColor: isDark
-            ? AppColors.lightBackground
-            : AppColors.darkBackground,
-        title: Text(
-          l10n.ad,
-          style: TextStyle(
-            fontFamily: 'Amaranth',
-            fontWeight: FontWeight.w700,
-            color: isDark ? AppColors.textPrimary : AppColors.textWhite,
-          ),
-        ),
-        content: Row(
-          children: [
-            SizedBox(
-              width: 18.w,
-              height: 18.w,
-              child: const CircularProgressIndicator(strokeWidth: 2),
+      return Dialog(
+        backgroundColor: const Color(0x00000000),
+        elevation: 0,
+        child: Center(
+          child: Container(
+            height: 120,
+            width: 120,
+            decoration: BoxDecoration(
+              color: cardColor,
+              borderRadius: BorderRadius.circular(16),
             ),
-            SizedBox(width: 12.w),
-            Expanded(
-              child: Text(
-                'Ad is loading...',
-                style: TextStyle(
-                  fontFamily: 'Amaranth',
-                  color: isDark ? AppColors.textGrey : AppColors.textGrey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 28,
+                  width: 28,
+                  child: CircularProgressIndicator(
+                    color: AppColors.lightPrimary,
+                    strokeWidth: 3,
+                  ),
                 ),
-              ),
+                const SizedBox(height: 14),
+                Text(
+                  l10n.adIsLoading,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontFamily: 'Amaranth',
+                    color: textColor,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       );
     },

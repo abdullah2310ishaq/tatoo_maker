@@ -714,6 +714,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get ad => 'Anúncio';
 
   @override
+  String get adIsLoading => 'Carregando anúncio...';
+
+  @override
   String get languageEnglish => 'English';
 
   @override

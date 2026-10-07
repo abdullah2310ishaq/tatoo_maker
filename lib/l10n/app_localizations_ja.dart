@@ -691,6 +691,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get ad => '広告';
 
   @override
+  String get adIsLoading => '広告を読み込み中...';
+
+  @override
   String get languageEnglish => 'English';
 
   @override
