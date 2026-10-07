@@ -1481,7 +1481,7 @@ abstract class AppLocalizations {
   /// Splash screen notice shown only for second-time users when splash ads may run
   ///
   /// In en, this message translates to:
-  /// **'This action may perform an ad.'**
+  /// **'This action may show an ad.'**
   String get splashAdMayShowNotice;
 
   /// Explore category: Minimal Tattoos

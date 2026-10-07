@@ -82,11 +82,14 @@ void main() async {
   // Lock app orientation so it does not rotate.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  runApp(const MyApp());
+  final initialLocale = await LocaleService.loadInitialLocale();
+  runApp(MyApp(initialLocale: initialLocale));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.initialLocale});
+
+  final Locale initialLocale;
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -282,7 +285,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: RemoteConfigService.instance),
-        ChangeNotifierProvider(create: (_) => LocaleService()),
+        ChangeNotifierProvider(
+          create: (_) => LocaleService(initialLocale: widget.initialLocale),
+        ),
         ChangeNotifierProvider(
           create: (_) => FavoritesProvider()..loadFavorites(),
         ),

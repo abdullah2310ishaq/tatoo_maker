@@ -763,7 +763,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'インターネットに接続されていません。ネットワークを確認してください。';
 
   @override
-  String get splashAdMayShowNotice => 'This action may perform an ad.';
+  String get splashAdMayShowNotice => 'この操作で広告が表示される場合があります。';
 
   @override
   String get exploreCategoryMinimal => 'ミニマリストタトゥー';

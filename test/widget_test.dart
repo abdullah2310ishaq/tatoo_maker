@@ -14,7 +14,9 @@ import 'package:tatoo_maker/main.dart';
 void main() {
   testWidgets('App boots to splash', (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      const MyApp(initialLocale: Locale('en')),
+    );
     await tester.pump(const Duration(milliseconds: 50));
 
     // Initial boot can show an app-level loading state while reading prefs.

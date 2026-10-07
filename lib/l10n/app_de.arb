@@ -969,7 +969,7 @@
   "@noInternetConnectionPleaseCheckNetwork": {
     "description": "Toast during generation when network fails"
   },
-  "splashAdMayShowNotice": "This action may perform an ad.",
+  "splashAdMayShowNotice": "Bei dieser Aktion kann eine Werbung angezeigt werden.",
   "@splashAdMayShowNotice": {
     "description": "Splash screen notice shown only for second-time users when splash ads may run"
   },

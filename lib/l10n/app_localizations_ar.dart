@@ -776,7 +776,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة.';
 
   @override
-  String get splashAdMayShowNotice => 'This action may perform an ad.';
+  String get splashAdMayShowNotice => 'قد يعرض هذا الإجراء إعلانًا.';
 
   @override
   String get exploreCategoryMinimal => 'وشوم مينيمالية';

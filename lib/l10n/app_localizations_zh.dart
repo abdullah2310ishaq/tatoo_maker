@@ -754,7 +754,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noInternetConnectionPleaseCheckNetwork => '未连接互联网。请检查网络连接。';
 
   @override
-  String get splashAdMayShowNotice => 'This action may perform an ad.';
+  String get splashAdMayShowNotice => '此操作可能会展示广告。';
 
   @override
   String get exploreCategoryMinimal => '极简主义纹身';
