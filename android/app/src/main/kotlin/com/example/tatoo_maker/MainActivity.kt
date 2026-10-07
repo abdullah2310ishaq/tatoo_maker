@@ -17,11 +17,20 @@ class MainActivity : FlutterActivity() {
             "listTileSmall",
             NativeAdFactorySmall(this),
         )
+        GoogleMobileAdsPlugin.registerNativeAdFactory(
+            flutterEngine,
+            "listTileLanguageFullScreen",
+            NativeAdFactoryLanguageFullScreen(this),
+        )
     }
 
     override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
         super.cleanUpFlutterEngine(flutterEngine)
         GoogleMobileAdsPlugin.unregisterNativeAdFactory(flutterEngine, "listTileLanguage")
         GoogleMobileAdsPlugin.unregisterNativeAdFactory(flutterEngine, "listTileSmall")
+        GoogleMobileAdsPlugin.unregisterNativeAdFactory(
+            flutterEngine,
+            "listTileLanguageFullScreen",
+        )
     }
 }

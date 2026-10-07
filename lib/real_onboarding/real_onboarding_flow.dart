@@ -1,10 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:tatoo_maker/services/admob_ids.dart';
-import 'package:tatoo_maker/services/native_ad_service.dart';
+import 'package:tatoo_maker/services/native_full_screen_ad_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import '../pro_access_screen.dart';
@@ -16,7 +14,6 @@ import '../services/remote_config_service.dart';
 import 'real_ob_second.dart';
 import 'real_ob_third.dart';
 import 'real_ob_fourth.dart';
-import 'real_onboarding_bottom_native_ad.dart';
 
 /// Main onboarding flow — pages advance only via Continue / Start.
 class RealOnboardingFlow extends StatefulWidget {
@@ -33,27 +30,13 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   /// Page index 1 = second onboarding screen (Moon Owl).
   static const int _secondOnboardingPageIndex = 1;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _preloadSecondPageNativeAd();
-    });
-  }
+  /// Full-screen native shown after the second onboarding page (non-Pro).
+  bool _showPostSecondOnboardingFullScreenNative = false;
 
-  void _preloadSecondPageNativeAd() {
-    if (!mounted) return;
-    final isPro = context.read<UsageLimitProvider>().isProUnlocked;
-    if (isPro) return;
-    unawaited(
-      NativeAdService.instance.ensureLoadedForKey(
-        key: RealOnboardingBottomNativeAd.slotKey,
-        adUnitId: AdIds.testOnBoardingNativeId,
-        backgroundColor: RealOnboardingBottomNativeAd.nativeBackgroundColor,
-        isDark: true,
-      ),
-    );
-  }
+  static const int _onboardingStepCount = 4;
+
+  /// Page index 2 = third onboarding screen (try-on), after the native ad step.
+  static const int _thirdOnboardingPageIndex = 2;
 
   @override
   void dispose() {
@@ -65,13 +48,38 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
     setState(() {
       _currentPage = page;
     });
-    if (page == _secondOnboardingPageIndex) {
-      _preloadSecondPageNativeAd();
-    }
   }
 
   void _onContinue() async {
-    if (_currentPage < 2) {
+    if (_showPostSecondOnboardingFullScreenNative) {
+      setState(() {
+        _showPostSecondOnboardingFullScreenNative = false;
+        _currentPage = _thirdOnboardingPageIndex;
+      });
+      await _pageController.animateToPage(
+        _thirdOnboardingPageIndex,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      return;
+    }
+
+    if (_currentPage == _secondOnboardingPageIndex) {
+      final isPro = context.read<UsageLimitProvider>().isProUnlocked;
+      if (isPro) {
+        _pageController.nextPage(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      } else {
+        setState(() {
+          _showPostSecondOnboardingFullScreenNative = true;
+        });
+      }
+      return;
+    }
+
+    if (_currentPage < _thirdOnboardingPageIndex) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -141,17 +149,23 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
           backgroundColor: Colors.black,
           body: Stack(
             children: [
-              PageView(
-                controller: _pageController,
-                onPageChanged: _onPageChanged,
-                physics: const NeverScrollableScrollPhysics(),
-                children: const [
-                  RealOnboardingSecondScreen(),
-                  RealOnboardingThirdScreen(),
-                  RealOnboardingFourthScreen(),
-                ],
+              Offstage(
+                offstage: _showPostSecondOnboardingFullScreenNative,
+                child: PageView(
+                  controller: _pageController,
+                  onPageChanged: _onPageChanged,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: const [
+                    RealOnboardingSecondScreen(),
+                    RealOnboardingThirdScreen(),
+                    RealOnboardingFourthScreen(),
+                  ],
+                ),
               ),
-              _buildBottomActionArea(context),
+              if (_showPostSecondOnboardingFullScreenNative)
+                _buildPostSecondOnboardingFullScreenNative(context),
+              if (!_showPostSecondOnboardingFullScreenNative)
+                _buildBottomActionArea(context),
             ],
           ),
         ),
@@ -160,7 +174,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
   }
 
   Widget _buildBottomActionArea(BuildContext context) {
-    final isLastPage = _currentPage == 2;
+    final isLastPage = _currentPage == _thirdOnboardingPageIndex;
     return SafeArea(
       child: Align(
         alignment: Alignment.bottomCenter,
@@ -193,11 +207,7 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
                   ),
                 ),
               ),
-              if (_currentPage == _secondOnboardingPageIndex) ...[
-                 SizedBox(height: 5.h),
-                const RealOnboardingBottomNativeAd(),
-              ],
-               SizedBox(height: 5.h),
+              SizedBox(height: 5.h),
               _buildPaginationDots(),
             ],
           ),
@@ -206,11 +216,72 @@ class _RealOnboardingFlowState extends State<RealOnboardingFlow> {
     );
   }
 
+  Widget _buildPostSecondOnboardingFullScreenNative(BuildContext context) {
+    return ColoredBox(
+      color: AppColors.darkBackground,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: NativeFullScreenAdView(
+                adUnitId: AdIds.testOnBoardingNativeId,
+                isDark: true,
+                backgroundColor: AppColors.darkBackground,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 6.h),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: _onContinue,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFA6541D),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text(
+                        AppLocalizations.of(context)!.continue_,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontFamily: 'Amaranth',
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5.h),
+                  _buildPaginationDots(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  int _activePaginationIndex() {
+    if (_showPostSecondOnboardingFullScreenNative) {
+      return 2;
+    }
+    if (_currentPage == 0) return 0;
+    if (_currentPage == 1) return 1;
+    return 3;
+  }
+
   Widget _buildPaginationDots() {
+    final activeIndex = _activePaginationIndex();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(3, (index) {
-        final isActive = index == _currentPage;
+      children: List.generate(_onboardingStepCount, (index) {
+        final isActive = index == activeIndex;
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           margin: const EdgeInsets.symmetric(horizontal: 4.0),

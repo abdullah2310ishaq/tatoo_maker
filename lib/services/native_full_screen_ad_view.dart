@@ -109,7 +109,7 @@ class NativeFullScreenAdView extends StatefulWidget {
     this.backgroundColor,
   });
 
-  static const String factoryId = 'listTileLanguage';
+  static const String factoryId = 'listTileLanguageFullScreen';
 
   final String adUnitId;
   final bool? isDark;
@@ -229,7 +229,6 @@ class _NativeFullScreenAdViewState extends State<NativeFullScreenAdView> {
       );
     }
 
-// Loaded full-screen native ad.
     return SizedBox.expand(
       child: AdWidget(ad: ad),
     );
