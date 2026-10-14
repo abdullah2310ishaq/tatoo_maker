@@ -84,7 +84,7 @@ class RemoteConfigService extends ChangeNotifier {
 
     await _rc.setConfigSettings(
       RemoteConfigSettings(
-        fetchTimeout: const Duration(seconds: 12),
+        fetchTimeout: const Duration(seconds: 60),
         // Always allow immediate refetch so flag updates are not delayed by throttle.
         minimumFetchInterval: Duration.zero,
       ),

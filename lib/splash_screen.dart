@@ -15,6 +15,7 @@ import 'package:tatoo_maker/services/native_small_ad_view.dart';
 import 'package:tatoo_maker/services/rewarded_ad_service.dart';
 import 'package:tatoo_maker/l10n/app_localizations.dart';
 import 'package:tatoo_maker/widgets/interstitial_ad_loading_dialog.dart';
+import 'consent_service.dart';
 import 'utils/colors.dart';
 import 'home_shell.dart';
 import 'language/first_language.dart';
@@ -70,12 +71,13 @@ class _SplashScreenState extends State<SplashScreen>
     _billingService = BillingService();
 
     // Start async work only after first frame so Provider/Navigator are ready.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
       if (!mounted) return;
       // Preload rewarded ad early so "Watch Ad" flows feel instant.
       unawaited(RewardedAdService.instance.preload(AdIds.testRewardedId));
       unawaited(_restorePurchasesInBackground());
       unawaited(_runSplashSequence());
+      await requestConsentAndShowForm();
     });
   }
 

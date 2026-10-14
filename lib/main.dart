@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -23,53 +24,69 @@ import 'services/app_open_ad_service.dart';
 import 'services/admob_ids.dart';
 import 'services/remote_config_service.dart';
 import 'services/native_ad_service.dart';
-Future<void> requestConsentAndShowForm(VoidCallback onConsentHandled) async {
-  ConsentRequestParameters params = ConsentRequestParameters();
-  ConsentInformation consentInfo = ConsentInformation.instance;
+bool _matchesNonFatalErrorMessage(String message) {
+  return message.contains('Impeller texture') ||
+      message.contains('Could not create') ||
+      message.contains('HttpException') ||
+      message.contains('SocketException') ||
+      message.contains('Connection closed') ||
+      message.contains('Connection reset') ||
+      message.contains('Failed host lookup') ||
+      message.contains('Null check operator used on a null value') ||
+      message.contains('ProxyBillingActivity') ||
+      message.contains('com.android.billingclient.api.ProxyBillingActivity') ||
+      message.contains('getIntentSender()') ||
+      (message.contains('PendingIntent') &&
+          message.contains('null object reference')) ||
+      (message.contains('Unable to start activity ComponentInfo') &&
+          message.contains('ProxyBillingActivity')) ||
+      message.contains('RenderFlex overflowed') ||
+      // Firebase Firestore transaction stream cancellation
+      (message.contains('MissingPluginException') &&
+          message.contains('firebase_firestore/transaction/') &&
+          message.contains('method cancel'));
+}
 
-  consentInfo.requestConsentInfoUpdate(
-    params,
-        () async {
-      final status = await consentInfo.getConsentStatus();
-      final isConsentRequired = await consentInfo.isConsentFormAvailable();
+bool _isNonFatalAppError(Object error) {
+  return _matchesNonFatalErrorMessage(error.toString());
+}
 
-      if (isConsentRequired && status == ConsentStatus.required) {
-        // Show consent form and wait for user action
-        ConsentForm.loadConsentForm(
-              (ConsentForm consentForm) {
-            consentForm.show((FormError? formError) {
-              // User has accepted or rejected, or form error
-              onConsentHandled();
-            });
-          },
-              (formError) {
-            // Failed to load form, proceed but log error
-            print('Consent form load error: ${formError.message}');
-            onConsentHandled();
-          },
-        );
-      } else {
-        // Consent not required (non-EEA), or already handled
-        onConsentHandled();
-      }
-    },
-        (FormError error) {
-      // Handle consent info update error if needed
-      print('Consent info update error: \\${error.message}');
-      onConsentHandled();
-    },
-  );
+bool _isNonFatalFlutterError(FlutterErrorDetails details) {
+  return _isNonFatalAppError(details.exception) ||
+      _matchesNonFatalErrorMessage(details.toString());
 }
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await RemoteConfigService.instance.initialize();
   await MobileAds.instance.initialize();
-  final completer = Completer<void>();
-  requestConsentAndShowForm(() {
-    completer.complete();
-  });
-  await completer.future;
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.edgeToEdge,
+  );
+
+  final initialLocale = await LocaleService.loadInitialLocale();
+
+  // Show the Flutter UI without waiting for a Remote Config fetch.
+  runApp(MyApp(initialLocale: initialLocale));
+
+  FlutterError.onError = (errorDetails) {
+    if (_isNonFatalFlutterError(errorDetails)) {
+      return;
+    }
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    if (_isNonFatalAppError(error)) {
+      return true;
+    }
+    FirebaseCrashlytics.instance.recordError(error, stack);
+    return true;
+  };
+
   // Preload ads once at startup so screens only "show" cached ads.
   unawaited(AppOpenAdService.instance.preload(unitIdOverride: AdIds.testAppOpenId));
   if (kDebugMode) {
@@ -80,10 +97,10 @@ void main() async {
     );
   }
   // Lock app orientation so it does not rotate.
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  final initialLocale = await LocaleService.loadInitialLocale();
-  runApp(MyApp(initialLocale: initialLocale));
+  // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  // final initialLocale = await LocaleService.loadInitialLocale();
+  // runApp(MyApp(initialLocale: initialLocale));
 }
 
 class MyApp extends StatefulWidget {
