@@ -4,18 +4,23 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
+import 'remote_config_service.dart';
+
 /// API Service for Prodia text-to-image and image-to-image generation
 class ProdiaApiService {
   static const String _baseUrl = 'https://inference.prodia.com/v2/job';
-  static const String _apiToken =
-      'eyJhbGciOiJkaXIiLCJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIn0.._k05Twd72f3VpXEH.NTMw5WDFlsZQqc67PCWmPZKER_yUMNeUdR63goeffclZVsaEsMSnZu8_8KKNWmBH0KCWS3eeuoIoNxo7rAA6BPdtMXyM9rwHq2n3_L9dai9Abps_0ids6xAsA5Wo_WiGhwuxc_3eM1nWWYc_AmMz5zapabbOe3LwriCIGGpABnlSfw7fa8frQtNPyMFuBYGxUeScbk9H88c01R0-7ZMvIeEh_RfluDOgKeQY7MYAnbJOAAl1vkTKmo770ATG8MHkM5sP2Dno-ifMSpLyvzVfxNkoRXHAQ5mwykoQaCgYZu7y8DUiAZtb6S9JZB12GN8sF7Inj2PWfsAHd1p7bFboFiW1at8dQgLerWPOLY0IBNKChbCkez2wmqZ-bRkPz6nANz5Vez2hQ4UPudY6etNo0eIyXYF_jLO1LLbZ2ywC-4SgIU_SZOME4voli39IkmpWfk1_slFnh1GYI5cpZbmgKtjvRB9fKmVoc2WnkHxO6KXindAgIUMvOAjchQ9jN185p7gync-_gGki6CNNSaZFIikou2bJ946kNhf8Ev3uXcJqt1g.dPB0ImNvlLDFk3mBz9Xm2g';
+
   static const String _textToImageModel =
       'inference.flux-2.klein.txt2img.v1';
   static const String _imageToImageModel = 'inference.flux-2.klein.img2img.v1';
   static const String _removeBackgroundModel = 'inference.remove-background.v1';
   static const String _maskBackgroundModel = 'inference.mask-background.v1';
 
-  final Map<String, String> _headers = {'Authorization': 'Bearer $_apiToken'};
+  String get _apiToken => RemoteConfigService.instance.prodiaApiKey;
+
+  Map<String, String> get _headers => {
+        'Authorization': 'Bearer $_apiToken',
+      };
 
   /// Text to Image using Flux Fast Schnell
   ///
@@ -450,9 +455,9 @@ class ProdiaApiService {
   }
 
   void _validateToken() {
-    if (_apiToken.trim().isEmpty || _apiToken == 'PUT_YOUR_PRODIA_TOKEN_HERE') {
+    if (_apiToken.isEmpty) {
       throw Exception(
-        'Prodia API token is missing. Please set _apiToken in ProdiaApiService.',
+        'Prodia API token is missing. Set Remote Config key "prodia_api_key".',
       );
     }
   }

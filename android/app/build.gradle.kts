@@ -26,8 +26,8 @@ android {
         applicationId = "com.tattoo.generator.ai.tattoo.tattoo.maker.name.tattoo"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
-        versionCode = 21
-        versionName = "11.0.10"
+        versionCode = 22
+        versionName = "11.0.11"
     }
 
     val signingPropertiesFile = rootProject.file("key.properties")
