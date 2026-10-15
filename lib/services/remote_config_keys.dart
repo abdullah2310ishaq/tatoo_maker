@@ -69,4 +69,7 @@ abstract final class RemoteConfigKeys {
 
   /// Tattoo last step: gate dialog + rewarded ad for free generate.
   static const String tattooRewardedAd = 'tattoo_rewarded_ad';
+
+  /// Prodia inference API bearer token.
+  static const String prodiaApiKey = 'prodia_api_key';
 }

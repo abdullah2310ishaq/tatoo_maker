@@ -71,6 +71,8 @@ class RemoteConfigService extends ChangeNotifier {
     RemoteConfigKeys.bottomNavInterAd: true,
     RemoteConfigKeys.creationRewardedAd: true,
     RemoteConfigKeys.tattooRewardedAd: true,
+
+    RemoteConfigKeys.prodiaApiKey: '',
   };
 
   Future<void> initialize() async {
@@ -317,4 +319,10 @@ class RemoteConfigService extends ChangeNotifier {
   /// shared creation/tattoo usage limit still applies.
   bool get tattooShowRewardedAd =>
       _rc.getBool(RemoteConfigKeys.tattooRewardedAd);
+
+  /// Prodia API bearer token (Firebase key [RemoteConfigKeys.prodiaApiKey]).
+  String get prodiaApiKey {
+    final token = _rc.getString(RemoteConfigKeys.prodiaApiKey).trim();
+    return token;
+  }
 }
