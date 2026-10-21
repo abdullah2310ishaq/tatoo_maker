@@ -588,7 +588,7 @@ class _HomePageState extends State<HomePage> with RouteAware {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => ProAccessScreen(
-              showInterstitialOnClose: false,
+              showInterstitialOnClose: true,
               goToNextScreenOnClose: false,
               nextScreen: const HomeShell(),
             ),

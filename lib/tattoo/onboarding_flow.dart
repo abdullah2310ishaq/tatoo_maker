@@ -253,7 +253,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
         await Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => ProAccessScreen(
-              showInterstitialOnClose: false,
+              showInterstitialOnClose: true,
               goToNextScreenOnClose: false,
               nextScreen: const HomeShell(),
             ),
